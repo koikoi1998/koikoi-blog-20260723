@@ -1,0 +1,1 @@
+# zenn-blog-idrac-20260713
