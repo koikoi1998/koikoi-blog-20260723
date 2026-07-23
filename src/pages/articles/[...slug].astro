@@ -1,25 +1,70 @@
 ---
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { seriesNames } from "../../consts";
 
 export async function getStaticPaths() {
   const articles = await getCollection("articles", ({ data }) => !data.draft);
-  return articles.map((article) => ({
-    params: { slug: article.id },
-    props: { article },
-  }));
+  const bySeries = Map.groupBy(articles, (a) => a.data.series);
+  for (const items of bySeries.values()) {
+    items.sort((a, b) => a.data.order - b.data.order);
+  }
+
+  return articles.map((article) => {
+    const siblings = bySeries.get(article.data.series) ?? [];
+    const index = siblings.indexOf(article);
+    return {
+      params: { slug: article.id },
+      props: {
+        article,
+        prev: index > 0 ? siblings[index - 1] : undefined,
+        next: index < siblings.length - 1 ? siblings[index + 1] : undefined,
+      },
+    };
+  });
 }
 
-const { article } = Astro.props;
+const { article, prev, next } = Astro.props;
 const { Content } = await render(article);
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString("ja-JP", { year: "numeric", month: "2-digit", day: "2-digit" }).replaceAll("/", ".");
 ---
 
 <BaseLayout title={article.data.title} description={article.data.description}>
   <article>
+    <span class="series-badge">{seriesNames[article.data.series] ?? article.data.series}</span>
     <h1>{article.data.emoji ? `${article.data.emoji} ` : ""}{article.data.title}</h1>
-    <p class="muted">
-      {article.data.tags.map((tag: string) => `#${tag}`).join(" ")}
-    </p>
+    <div class="article-meta">
+      <span class="card-date">{formatDate(article.data.pubDate)}</span>
+      <ul class="tag-list">
+        {article.data.tags.map((tag: string) => (
+          <li class="tag">#{tag}</li>
+        ))}
+      </ul>
+    </div>
     <Content />
+    {
+      (prev || next) && (
+        <nav class="series-nav">
+          {prev ? (
+            <a href={`/articles/${prev.id}`}>
+              <span class="dir">← 前の記事</span>
+              {prev.data.title}
+            </a>
+          ) : (
+            <span />
+          )}
+          {next ? (
+            <a class="next" href={`/articles/${next.id}`}>
+              <span class="dir">次の記事 →</span>
+              {next.data.title}
+            </a>
+          ) : (
+            <span />
+          )}
+        </nav>
+      )
+    }
   </article>
 </BaseLayout>

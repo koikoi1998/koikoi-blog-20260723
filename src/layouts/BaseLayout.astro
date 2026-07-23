@@ -21,13 +21,24 @@ const pageTitle = title ? `${title} | 上位1%シリーズ` : "上位1%シリー
   <body>
     <header class="site-header">
       <nav>
-        <a href="/">上位1%シリーズ</a>
-        <a href="/sitemap">サイトマップ</a>
+        <a href="/" class="brand">
+          <span class="brand-mark">上位1%シリーズ</span>
+          <span class="brand-tagline">// infra engineering, deep-dive only</span>
+        </a>
+        <div class="nav-links">
+          <a href="/sitemap">サイトマップ</a>
+        </div>
       </nav>
     </header>
     <main class="page">
       <slot />
     </main>
+    <footer class="site-footer">
+      <div class="page">
+        <span>© {new Date().getFullYear()} 上位1%シリーズ</span>
+        <span class="stack">Astro + Vercel</span>
+      </div>
+    </footer>
     <script>
       import mermaid from "mermaid";
 

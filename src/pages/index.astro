@@ -1,37 +1,57 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { seriesNames } from "../consts";
 
 const articles = (await getCollection("articles", ({ data }) => !data.draft)).sort(
   (a, b) => a.data.series.localeCompare(b.data.series) || a.data.order - b.data.order
 );
 
-const seriesNames: Record<string, string> = {
-  idrac: "iDRAC / BMC シリーズ",
-  network: "ネットワーク基礎シリーズ",
-  api: "Web / API シリーズ",
-};
-
 const bySeries = Map.groupBy(articles, (a) => a.data.series);
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString("ja-JP", { year: "numeric", month: "2-digit", day: "2-digit" }).replaceAll("/", ".");
 ---
 
 <BaseLayout title="トップ" description="インフラエンジニア上位1%レベルの理解を目指す技術ブログ">
-  <h1>上位1%シリーズ</h1>
-  <p>
-    AWS・Googleのような最高峰のインフラ企業に在籍するインフラエンジニアの、さらに上位1%の理解水準を目指す技術ブログです。
-    読む順番やシリーズ間のつながりは<a href="/sitemap">サイトマップ</a>にまとめています。
-  </p>
+  <div class="hero">
+    <span class="eyebrow">// TOP 1% INFRA ENGINEERING</span>
+    <h1>インフラの深淵を、上位1%の解像度で。</h1>
+    <p>
+      AWS・Googleのような最高峰のインフラ企業に在籍するトップ層が持つ理解水準を目指す技術ブログです。
+      操作手順の暗記ではなく、なぜそう設計されているのかという内部動作・設計思想まで掘り下げます。
+      読む順番やシリーズ間のつながりは<a href="/sitemap">サイトマップ</a>にまとめています。
+    </p>
+    <div class="hero-stats">
+      <div><strong>{articles.length}</strong><span>本の記事</span></div>
+      <div><strong>{bySeries.size}</strong><span>シリーズ</span></div>
+    </div>
+  </div>
 
   {
     [...bySeries.entries()].map(([series, items]) => (
-      <section>
-        <h2>{seriesNames[series] ?? series}</h2>
-        <ul>
+      <section class="series-section">
+        <h2>
+          {seriesNames[series] ?? series}
+          <span class="series-count">{items.length}本</span>
+        </h2>
+        <ul class="card-list">
           {items.map((article) => (
             <li>
-              <a href={`/articles/${article.id}`}>
-                {article.data.emoji ? `${article.data.emoji} ` : ""}
-                {article.data.title}
+              <a class="card" href={`/articles/${article.id}`}>
+                <p class="card-title">
+                  {article.data.emoji ? `${article.data.emoji} ` : ""}
+                  {article.data.title}
+                </p>
+                <p class="card-desc">{article.data.description}</p>
+                <div class="card-meta">
+                  <span class="card-date">{formatDate(article.data.pubDate)}</span>
+                  <ul class="tag-list">
+                    {article.data.tags.map((tag: string) => (
+                      <li class="tag">#{tag}</li>
+                    ))}
+                  </ul>
+                </div>
               </a>
             </li>
           ))}
