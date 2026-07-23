@@ -1,0 +1,42 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const articles = (await getCollection("articles", ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.series.localeCompare(b.data.series) || a.data.order - b.data.order
+);
+
+const seriesNames: Record<string, string> = {
+  idrac: "iDRAC / BMC シリーズ",
+  network: "ネットワーク基礎シリーズ",
+  api: "Web / API シリーズ",
+};
+
+const bySeries = Map.groupBy(articles, (a) => a.data.series);
+---
+
+<BaseLayout title="トップ" description="インフラエンジニア上位1%レベルの理解を目指す技術ブログ">
+  <h1>上位1%シリーズ</h1>
+  <p>
+    AWS・Googleのような最高峰のインフラ企業に在籍するインフラエンジニアの、さらに上位1%の理解水準を目指す技術ブログです。
+    読む順番やシリーズ間のつながりは<a href="/sitemap">サイトマップ</a>にまとめています。
+  </p>
+
+  {
+    [...bySeries.entries()].map(([series, items]) => (
+      <section>
+        <h2>{seriesNames[series] ?? series}</h2>
+        <ul>
+          {items.map((article) => (
+            <li>
+              <a href={`/articles/${article.id}`}>
+                {article.data.emoji ? `${article.data.emoji} ` : ""}
+                {article.data.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))
+  }
+</BaseLayout>
