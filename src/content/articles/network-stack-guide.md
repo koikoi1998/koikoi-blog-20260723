@@ -6,6 +6,7 @@ order: 1
 tags: ["network", "tcpip", "infra", "linux", "osi"]
 emoji: "🌐"
 pubDate: 2026-07-23
+updatedDate: 2026-07-28
 ---
 
 ## はじめに

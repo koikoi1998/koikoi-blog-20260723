@@ -359,6 +359,10 @@ pre.mermaid {
   color: var(--muted);
 }
 
+.card-date-updated {
+  color: var(--accent);
+}
+
 /* ---------- article page meta ---------- */
 
 .article-meta {

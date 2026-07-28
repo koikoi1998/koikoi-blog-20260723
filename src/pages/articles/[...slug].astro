@@ -29,6 +29,9 @@ const { Content } = await render(article);
 
 const formatDate = (date: Date) =>
   date.toLocaleDateString("ja-JP", { year: "numeric", month: "2-digit", day: "2-digit" }).replaceAll("/", ".");
+
+const { pubDate, updatedDate } = article.data;
+const hasUpdate = updatedDate && updatedDate.getTime() !== pubDate.getTime();
 ---
 
 <BaseLayout title={article.data.title} description={article.data.description}>
@@ -36,7 +39,8 @@ const formatDate = (date: Date) =>
     <span class="series-badge">{seriesNames[article.data.series] ?? article.data.series}</span>
     <h1>{article.data.emoji ? `${article.data.emoji} ` : ""}{article.data.title}</h1>
     <div class="article-meta">
-      <span class="card-date">{formatDate(article.data.pubDate)}</span>
+      <span class="card-date">公開: {formatDate(pubDate)}</span>
+      {hasUpdate && <span class="card-date card-date-updated">更新: {formatDate(updatedDate)}</span>}
       <ul class="tag-list">
         {article.data.tags.map((tag: string) => (
           <li class="tag">#{tag}</li>

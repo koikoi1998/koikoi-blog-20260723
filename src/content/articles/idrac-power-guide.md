@@ -6,6 +6,7 @@ order: 2
 tags: ["server", "infra", "power", "psu", "datacenter"]
 emoji: "🔌"
 pubDate: 2026-07-23
+updatedDate: 2026-07-28
 ---
 
 ## はじめに

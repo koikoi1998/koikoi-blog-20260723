@@ -6,6 +6,7 @@ order: 2
 tags: ["network", "linux", "kernel", "nic", "performance"]
 emoji: "⚙️"
 pubDate: 2026-07-23
+updatedDate: 2026-07-28
 ---
 
 ## はじめに

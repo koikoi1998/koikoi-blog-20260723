@@ -46,6 +46,9 @@ const formatDate = (date: Date) =>
                 <p class="card-desc">{article.data.description}</p>
                 <div class="card-meta">
                   <span class="card-date">{formatDate(article.data.pubDate)}</span>
+                  {article.data.updatedDate && article.data.updatedDate.getTime() !== article.data.pubDate.getTime() && (
+                    <span class="card-date card-date-updated">更新: {formatDate(article.data.updatedDate)}</span>
+                  )}
                   <ul class="tag-list">
                     {article.data.tags.map((tag: string) => (
                       <li class="tag">#{tag}</li>

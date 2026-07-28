@@ -6,6 +6,7 @@ order: 1
 tags: ["idrac", "dell", "server", "infra", "bmc"]
 emoji: "🖥️"
 pubDate: 2026-07-23
+updatedDate: 2026-07-28
 ---
 
 ## はじめに
