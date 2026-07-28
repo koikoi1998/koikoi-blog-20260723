@@ -4,8 +4,7 @@ import { remarkMermaid } from "./src/remark-mermaid.mjs";
 
 // https://astro.build/config
 export default defineConfig({
-  // TODO: Vercelでの公開ドメインが決まったら書き換える
-  site: "https://example.com",
+  site: "https://koikoi-blog-20260723.vercel.app",
   markdown: {
     remarkPlugins: [remarkMermaid],
     shikiConfig: {
