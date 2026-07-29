@@ -24,14 +24,16 @@ graph TB
     Net["② network-stack-guide<br/>(ネットワークスタックの仕組み)"]
     Api["② restful-api-guide<br/>(RESTful APIとは何か)"]
     Nic["③ nic-driver-internals-guide<br/>(NICドライバの内部実装)"]
+    L2tp["③ l2tp-ipsec-guide<br/>(L2TP/IPsecの仕組み)"]
 
     Idrac --> Power
     Idrac --> Net
     Idrac --> Api
     Net --> Nic
+    Net --> L2tp
 ```
 
-まず①のiDRACの記事を起点に、興味・必要に応じて②の各深掘り記事（電源・ネットワーク・API）へ進む、という順番を想定しています。②の3本はそれぞれ独立して読める内容なので、順不同で構いません。③はネットワークスタックの記事からさらに一段深く掘り下げた発展編で、②のネットワーク記事を読んだ後の実力試しとして読むのがおすすめです。
+まず①のiDRACの記事を起点に、興味・必要に応じて②の各深掘り記事（電源・ネットワーク・API）へ進む、という順番を想定しています。②の3本はそれぞれ独立して読める内容なので、順不同で構いません。③はネットワークスタックの記事からさらに一段深く掘り下げた発展編（NICドライバの内部実装、L2TP/IPsecの仕組み）で、②のネットワーク記事を読んだ後の実力試しとして読むのがおすすめです。
 
 ## シリーズ一覧
 
@@ -46,6 +48,7 @@ graph TB
 
 - [ネットワークスタックの仕組みを『上位1%』の視点で理解する](/articles/network-stack-guide) — NICドライバ・IP・TCP/UDP・アプリケーション層の階層構造の深掘り。
 - [NICドライバとLinuxカーネルのネットワーク処理を『上位1%』の視点で理解する](/articles/nic-driver-internals-guide) — 割り込み処理・DMA・オフロード機能・カーネルバイパスまでの発展編。
+- [L2TP/IPsecの仕組みを『上位1%』の視点で理解する](/articles/l2tp-ipsec-guide) — L2TPとIPsecを組み合わせる理由、接続確立のシーケンス、NATトラバーサルまでの深掘り。
 
 ### Web / API シリーズ
 
