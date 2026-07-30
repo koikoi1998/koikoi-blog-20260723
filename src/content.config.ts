@@ -6,7 +6,7 @@ const articles = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    series: z.enum(["idrac", "network", "api"]),
+    series: z.enum(["idrac", "network", "api", "security"]),
     order: z.number(),
     tags: z.array(z.string()),
     emoji: z.string().optional(),
