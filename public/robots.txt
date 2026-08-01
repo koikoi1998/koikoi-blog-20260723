@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://koikoi-blog-20260723.vercel.app/sitemap-index.xml

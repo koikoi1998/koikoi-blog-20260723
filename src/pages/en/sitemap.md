@@ -1,0 +1,83 @@
+---
+layout: ../../layouts/MarkdownPageLayout.astro
+title: "Top 1% Series — Full Article Guide: Reading Order and Sitemap"
+description: "The table of contents, recommended reading order, and sitemap for every article in the Top 1% Series."
+lang: "en"
+altHref: "/sitemap"
+---
+
+## About this series
+
+This series aims for the level of understanding held by "the top 1% of infrastructure engineers, even among those working at the leading infrastructure companies like AWS and Google." Rather than just memorizing operational steps, the goal is to thoroughly explain:
+
+- The internal mechanics and design rationale behind why something is built the way it is
+- How to actually diagnose and troubleshoot the problems that come up in production
+
+...in a way that lets even a beginner climb the ladder one step at a time. When a topic gets too large, we don't force it into a single article — we split it by theme and link the articles together. This page is the table of contents, recommended reading order, and sitemap across all of them. It gets updated every time a new topic is added.
+
+## Recommended reading order
+
+```mermaid
+graph TB
+    Idrac["① idrac-guide<br/>(What Is iDRAC)"]
+    Power["② idrac-power-guide<br/>(Server Power Design)"]
+    Net["② network-stack-guide<br/>(The Network Stack)"]
+    Devices["② network-devices-guide<br/>(Hub/Switch/L3SW/Router)"]
+    Api["② restful-api-guide<br/>(What Is a RESTful API)"]
+    Nic["③ nic-driver-internals-guide<br/>(NIC Driver Internals)"]
+    L2tp["③ l2tp-ipsec-guide<br/>(How L2TP/IPsec Works)"]
+    Pki["④ pki-guide<br/>(PKI / Digital Certificates)"]
+    Circuit["④ circuit-switching-ppp-guide<br/>(Telephone Lines and PPP)"]
+    Sym["④ symmetric-encryption-guide<br/>(Symmetric Encryption / AES & HMAC)"]
+    Nat["④ nat-guide<br/>(How NAT/NAPT Works)"]
+    Winvpn["④ windows-server-l2tp-vpn-guide<br/>(L2TP/IPsec on Windows Server)"]
+    Vip["④ virtual-ip-guide<br/>(Virtual IPs / VIPs)"]
+
+    Idrac --> Power
+    Idrac --> Net
+    Idrac --> Devices
+    Idrac --> Api
+    Net --> Nic
+    Net --> L2tp
+    L2tp --> Pki
+    L2tp --> Circuit
+    L2tp --> Sym
+    L2tp --> Nat
+    L2tp --> Winvpn
+    L2tp --> Vip
+```
+
+Start with article ① on iDRAC, then branch out into the ② deep-dive articles (power, networking, API) depending on your interest. The three ② articles are independent of each other, so read them in any order. The ③ articles are a further step down from the networking deep-dive (NIC driver internals, how L2TP/IPsec works) — a good way to test your understanding after finishing the ② networking articles. The six ④ articles are all deep dives that branch off from the L2TP/IPsec article to cover topics that wouldn't fit in the main article, but **every one of them can be read entirely on its own**. The three on PKI/digital certificates, symmetric encryption (AES/HMAC), and NAT/NAPT are general-purpose technical topics used far beyond L2TP/IPsec, in TLS, SSH, and elsewhere. The telephone-lines-and-PPP article covers both the historical background of why L2TP/IPsec reuses dial-up-era PPP and the internals of MS-CHAPv2 authentication. The Windows Server (RRAS) L2TP/IPsec setup and virtual IP (VIP) articles cover more implementation-level topics you'll run into when actually building and operating a VPN server.
+
+## Series list
+
+### iDRAC / BMC Series
+
+A series covering out-of-band server management.
+
+- [What Is iDRAC? Understanding How It Works from a "Top 1%" Perspective](/en/articles/idrac-guide) — The main article: iDRAC (BMC) overview, power design, licensing, security, and troubleshooting.
+- [Understanding Server Power Design from a "Top 1%" Perspective](/en/articles/idrac-power-guide) — A deep dive into the power design touched on in the iDRAC article: AC/DC conversion and PSU redundancy (A/B grid, hot spares). Also readable standalone.
+
+### Networking Fundamentals Series
+
+- [Understanding the Network Stack from a "Top 1%" Perspective](/en/articles/network-stack-guide) — A deep dive into the layered structure of the NIC driver, IP, TCP/UDP, and the application layer.
+- [Understanding the Differences Between Hubs, Switches (L2SW), L3 Switches, and Routers from a "Top 1%" Perspective](/en/articles/network-devices-guide) — How to tell these devices apart by OSI layer and forwarding method (MAC address tables, VLANs, spanning tree, ASIC/TCAM).
+- [Understanding NIC Drivers and Linux Kernel Networking from a "Top 1%" Perspective](/en/articles/nic-driver-internals-guide) — A further deep dive into interrupt handling, DMA, offloading, and kernel bypass.
+- [Understanding How L2TP/IPsec Works from a "Top 1%" Perspective](/en/articles/l2tp-ipsec-guide) — Why L2TP and IPsec are combined, the connection-establishment sequence, and a deep dive into NAT traversal.
+- [Understanding the Difference Between Telephone Lines and IP Networks from a "Top 1%" Perspective](/en/articles/circuit-switching-ppp-guide) — Circuit switching vs. packet switching, the historical background behind PPP, its reuse in PPPoE/L2TP, and the internals of CHAP/MS-CHAPv2 challenge-response authentication (a deep dive spun off from the PPP portion of the L2TP/IPsec article; also readable standalone).
+- [Understanding How NAT/NAPT Works from a "Top 1%" Perspective](/en/articles/nat-guide) — The internals of the translation table, NAT behavior types, and how NAT-T works (spun off from the L2TP/IPsec article's NAT traversal section; also readable standalone).
+- [Understanding Virtual IPs (VIPs) and NIC Teaming's Virtual IP from a "Top 1%" Perspective](/en/articles/virtual-ip-guide) — The difference between the two ways a virtual IP is realized (IP takeover vs. a load balancer's NAT translation), plus NIC teaming's virtual IP (spun off from IP address management in redundant setups; also readable standalone).
+- [Understanding Windows Server (RRAS) L2TP/IPsec VPN Setup and IP Address Management from a "Top 1%" Perspective](/en/articles/windows-server-l2tp-vpn-guide) — RRAS's address pool, and why a gateway is needed even though clients look like they're on the same subnet (a Windows Server implementation companion to the L2TP/IPsec article; also readable standalone).
+
+### Web / API Series
+
+- [What Is a RESTful API? Understanding from HTTP/JSON Basics to Practical Design from a "Top 1%" Perspective](/en/articles/restful-api-guide) — A deep dive into HTTP, REST, JSON, authentication, idempotency, and pagination.
+
+### Security Fundamentals Series
+
+- [Understanding PKI and Digital Certificates from a "Top 1%" Perspective](/en/articles/pki-guide) — A deep dive into public-key cryptography, Diffie-Hellman key exchange, digital signatures, CSRs, and certificate chain verification (spun off from L2TP/IPsec's certificate authentication; also readable standalone).
+- [Understanding Symmetric Encryption (AES) and HMAC/AEAD from a "Top 1%" Perspective](/en/articles/symmetric-encryption-guide) — A deep dive into block cipher internals, the differences between CBC/CTR/GCM modes, and HMAC-based tamper detection (spun off from L2TP/IPsec's ESP encryption; also readable standalone).
+
+## What's next
+
+Once the iDRAC-related series reaches a good stopping point, we plan to add a new series on a different theme (TBD). When a new series is added, this page will be updated too.

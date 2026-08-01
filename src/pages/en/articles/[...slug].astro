@@ -1,12 +1,10 @@
 ---
 import { getCollection, render } from "astro:content";
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import { seriesNames, ui } from "../../consts";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { seriesNamesEn, ui } from "../../../consts";
 
 export async function getStaticPaths() {
-  const articles = await getCollection("articles", ({ data }) => !data.draft);
-  const articlesEn = await getCollection("articlesEn", ({ data }) => !data.draft);
-  const enIds = new Set(articlesEn.map((a) => a.id));
+  const articles = await getCollection("articlesEn", ({ data }) => !data.draft);
   const bySeries = Map.groupBy(articles, (a) => a.data.series);
   for (const items of bySeries.values()) {
     items.sort((a, b) => a.data.order - b.data.order);
@@ -21,18 +19,17 @@ export async function getStaticPaths() {
         article,
         prev: index > 0 ? siblings[index - 1] : undefined,
         next: index < siblings.length - 1 ? siblings[index + 1] : undefined,
-        hasEnVersion: enIds.has(article.id),
       },
     };
   });
 }
 
-const { article, prev, next, hasEnVersion } = Astro.props;
+const { article, prev, next } = Astro.props;
 const { Content } = await render(article);
-const t = ui.ja;
+const t = ui.en;
 
 const formatDate = (date: Date) =>
-  date.toLocaleDateString("ja-JP", { year: "numeric", month: "2-digit", day: "2-digit" }).replaceAll("/", ".");
+  date.toLocaleDateString("en-US", { year: "numeric", month: "2-digit", day: "2-digit" });
 
 const { pubDate, updatedDate } = article.data;
 const hasUpdate = updatedDate && updatedDate.getTime() !== pubDate.getTime();
@@ -41,11 +38,11 @@ const hasUpdate = updatedDate && updatedDate.getTime() !== pubDate.getTime();
 <BaseLayout
   title={article.data.title}
   description={article.data.description}
-  lang="ja"
-  altHref={hasEnVersion ? `/en/articles/${article.id}` : "/en"}
+  lang="en"
+  altHref={`/articles/${article.id}`}
 >
   <article>
-    <span class="series-badge">{seriesNames[article.data.series] ?? article.data.series}</span>
+    <span class="series-badge">{seriesNamesEn[article.data.series] ?? article.data.series}</span>
     <h1>{article.data.emoji ? `${article.data.emoji} ` : ""}{article.data.title}</h1>
     <div class="article-meta">
       <span class="card-date">{t.publishedLabel}: {formatDate(pubDate)}</span>
@@ -61,7 +58,7 @@ const hasUpdate = updatedDate && updatedDate.getTime() !== pubDate.getTime();
       (prev || next) && (
         <nav class="series-nav">
           {prev ? (
-            <a href={`/articles/${prev.id}`}>
+            <a href={`/en/articles/${prev.id}`}>
               <span class="dir">{t.prevArticle}</span>
               {prev.data.title}
             </a>
@@ -69,7 +66,7 @@ const hasUpdate = updatedDate && updatedDate.getTime() !== pubDate.getTime();
             <span />
           )}
           {next ? (
-            <a class="next" href={`/articles/${next.id}`}>
+            <a class="next" href={`/en/articles/${next.id}`}>
               <span class="dir">{t.nextArticle}</span>
               {next.data.title}
             </a>

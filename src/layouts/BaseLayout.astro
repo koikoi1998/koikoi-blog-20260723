@@ -1,35 +1,52 @@
 ---
 import "../styles/global.css";
 import Analytics from "@vercel/analytics/astro";
+import { ui, type Lang } from "../consts";
 
 interface Props {
   title: string;
   description?: string;
+  lang?: Lang;
+  /** 同じページの、もう一方の言語版の絶対パス(例: "/en/articles/idrac-guide")。未指定ならその言語のトップページにフォールバックする。 */
+  altHref?: string;
 }
 
-const { title, description } = Astro.props;
-const pageTitle = title ? `${title} | 上位1%シリーズ` : "上位1%シリーズ";
+const { title, description, lang = "ja", altHref } = Astro.props;
+const t = ui[lang];
+const pageTitle = title ? `${title} | ${t.siteName}` : t.siteName;
+const otherLang: Lang = lang === "ja" ? "en" : "ja";
+const resolvedAltHref = altHref ?? (lang === "ja" ? "/en" : "/");
+const homeHref = lang === "ja" ? "/" : "/en";
+const sitemapHref = lang === "ja" ? "/sitemap" : "/en/sitemap";
+const quizHref = lang === "ja" ? "/quiz" : "/en/quiz";
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const altUrl = new URL(resolvedAltHref, Astro.site);
 ---
 
-<html lang="ja">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{pageTitle}</title>
     {description && <meta name="description" content={description} />}
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang={lang} href={canonicalUrl} />
+    <link rel="alternate" hreflang={otherLang} href={altUrl} />
+    <link rel="alternate" hreflang="x-default" href={lang === "ja" ? canonicalUrl : altUrl} />
     <Analytics />
   </head>
   <body>
     <header class="site-header">
       <nav>
-        <a href="/" class="brand">
-          <span class="brand-mark">上位1%シリーズ</span>
-          <span class="brand-tagline">// infra engineering, deep-dive only</span>
+        <a href={homeHref} class="brand">
+          <span class="brand-mark">{t.siteName}</span>
+          <span class="brand-tagline">{t.tagline}</span>
         </a>
         <div class="nav-links">
-          <a href="/sitemap">サイトマップ</a>
-          <a href="/quiz">確認問題</a>
+          <a href={sitemapHref}>{t.sitemap}</a>
+          <a href={quizHref}>{t.quiz}</a>
+          <a href={resolvedAltHref} class="lang-switch" rel="alternate" hreflang={otherLang}>{t.langSwitchLabel}</a>
         </div>
       </nav>
     </header>
@@ -38,7 +55,7 @@ const pageTitle = title ? `${title} | 上位1%シリーズ` : "上位1%シリー
     </main>
     <footer class="site-footer">
       <div class="page">
-        <span>© {new Date().getFullYear()} 上位1%シリーズ</span>
+        <span>© {new Date().getFullYear()} {t.siteName}</span>
         <span class="stack">Astro + Vercel</span>
       </div>
     </footer>

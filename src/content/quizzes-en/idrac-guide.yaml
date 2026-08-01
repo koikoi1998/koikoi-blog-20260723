@@ -1,0 +1,108 @@
+questions:
+  - question: "Which of the following best describes the relationship between \"BMC\" and \"iDRAC\"?"
+    choices:
+      - "BMC and iDRAC are exactly the same concept — they're just different names with no implementation difference whatsoever"
+      - "BMC is the industry-wide term for a hardware component built into a server's motherboard that enables remote monitoring and management, while iDRAC is Dell's implementation of a BMC, adding extra features such as a virtual console and firmware updates"
+      - "iDRAC is a new communication protocol that supersedes BMC, a standard designed to replace IPMI and Redfish"
+      - "BMC refers to the software name, while iDRAC refers to the hardware chip itself"
+    answerIndex: 1
+    explanation: "As the article states, BMC is an industry-wide concept (a common noun), while iDRAC is the product name for Dell's implementation of that concept (a proper noun). The two are not a difference of protocol — they're in a containment relationship (iDRAC is an implementation within the broader concept of BMC)."
+
+  - question: "On a server where the OS has completely frozen and the OS's internal network stack has stopped responding, an administrator was still able to access iDRAC's management interface. Which of the following most accurately explains this?"
+    choices:
+      - "iDRAC sits at the topmost layer of the OS's network stack, and is designed so that even when the entire OS freezes, only that layer survives"
+      - "iDRAC has an independent communication path that never passes through the OS's network stack at all, operating out-of-band as a separate computer with its own dedicated processor and dedicated memory"
+      - "Even when the OS freezes, only the NIC driver portion is automatically made redundant, continuing to run as an independent process"
+      - "iDRAC runs in a protected region (safe mode) reserved within the OS's memory space, so it's unaffected even when the OS itself freezes"
+    answerIndex: 1
+    explanation: "The essence of iDRAC is out-of-band management: it operates as a separate path and a separate computer that never passes through the OS's network stack itself. Understanding it as part of the OS's stack (choices 1 and 3) or as a protected memory region (choice 4) is incorrect."
+
+  - question: "In response to the question \"couldn't you just keep the host's main power on standby power instead of bothering with a separate computer called iDRAC?\", which of the following best matches the article's explanation?"
+    choices:
+      - "Standby power has very high conversion efficiency thanks to PFC (power factor correction), so it could in theory supply enough power for the whole host, but Dell deliberately uses a separate chip to cut costs"
+      - "Standby power can supply, at most, only a few to a dozen or so watts — nowhere near enough to run an entire host with dozens of CPU cores and large amounts of DIMM memory — so a small, dedicated computer is needed separately"
+      - "Standby power has a physical constraint where it can supply the CPU but not memory, making it fundamentally impossible to run the whole host"
+      - "The OS is specified to always go through POST when powered on, and completing POST on standby power alone is prohibited by specification"
+    answerIndex: 1
+    explanation: "The article cites the difference in the order of magnitude of power as the reason. Standby power is enough to run iDRAC's small, dedicated embedded chip, but nowhere near enough to run the entire host. It also notes the benefit of keeping the host and iDRAC separate, so an OS crash doesn't take the management functions down with it."
+
+  - question: "After iDRAC became unstable, a \"flea drain\" was performed — unplugging the AC cable and leaving it for a few minutes — but the symptoms didn't improve. What should be suspected next, according to the article?"
+    choices:
+      - "The cause was residual charge in capacitors or half-finished state in volatile memory, but the discharge time simply wasn't long enough — leaving it unplugged for longer is likely to fix it"
+      - "The firmware itself, as written to flash memory, may be corrupted (non-volatile data corruption); in this case, discharging won't help, and reflashing the firmware or replacing the hardware is required"
+      - "A flea drain is effective for initializing the host OS's boot process, but has essentially no effect on iDRAC's own malfunctions"
+      - "Performing a flea drain always resets all of iDRAC's settings to factory defaults, so simply forgetting to reconfigure it was the cause"
+    answerIndex: 1
+    explanation: "The article clearly distinguishes between \"issues that discharging fixes (volatile state anomalies)\" and \"issues that discharging doesn't fix (non-volatile data corruption).\" If discharging doesn't help, you should suspect the latter and consider reflashing firmware or replacing hardware."
+
+  - question: "Which of the following statements about iDRAC's network access paths is incorrect?"
+    choices:
+      - "In a Dedicated NIC configuration, management traffic to iDRAC can be routed to a separate physical network from production traffic, making it the most recommended configuration from a security standpoint"
+      - "A Shared LOM configuration can also be operated by enabling VLANs, but in that case iDRAC's management traffic runs over the same wiring as the production network"
+      - "Dell recommends exposing iDRAC directly to the internet, regardless of whether a dedicated NIC or shared LOM configuration is used"
+      - "A Shared LOM configuration requires no extra wiring, but shares bandwidth with production traffic, increasing bandwidth contention and security risk"
+    answerIndex: 2
+    explanation: "Dell explicitly states that direct use from, or direct connection to, the internet is not something iDRAC was designed or intended for, and clearly discourages it. In practice, \"dedicated NIC + a dedicated management VLAN/subnet\" is the recommended configuration. Choices 1, 2, and 4 are all consistent with the article's content."
+
+  - question: "On a Windows Server where an application crashed and the event was recorded in the event log, the iDRAC Service Module (iSM) is installed and Lifecycle Log event replication is enabled. Which of the following best describes this situation?"
+    choices:
+      - "Thanks to iSM's log replication feature, details of the Windows application crash can now also be viewed from iDRAC's own event log"
+      - "iSM is a feature that replicates hardware events from the iDRAC side into the OS-side event log; it doesn't convey information like an application crash on the OS side to iDRAC. iDRAC only observes events at the hardware/firmware layer and cannot detect an application crash itself"
+      - "When iSM is enabled, iDRAC's and the OS's event logs are fully merged, with every event synchronized bidirectionally"
+      - "iSM has a feature that automatically performs root-cause analysis on the iDRAC side whenever an OS failure occurs, determining and reporting whether it's hardware-related or application-related"
+    answerIndex: 1
+    explanation: "iSM's log replication is a one-directional feature that copies iDRAC-side logs into the OS side — it doesn't broaden the OS-side log's scope onto the iDRAC side. iDRAC only monitors the hardware/firmware layer, and an application crash falls outside what it can detect."
+
+  - question: "Which of the following statements about the relationship between the communication path used by the iDRAC Service Module (iSM) and the path iDRAC uses to control host power is most accurate?"
+    choices:
+      - "iSM is a bidirectional communication path, and both conveying commands from the OS to iDRAC and iDRAC's control of the host's power pass through this same path"
+      - "iSM is a one-directional path (USB NIC/KCS) for \"conveying commands from the host OS side to iDRAC.\" Meanwhile, when iDRAC turns the host's power ON/OFF, the BMC directly accesses the power-control circuitry on the motherboard via a separate path, so iDRAC's power operations work even on a server where iSM isn't installed, or where no OS is installed at all"
+      - "If iSM isn't installed, iDRAC cannot control the host's power at all"
+      - "Even when iDRAC controls the host's power, it must always go through iSM's internal path (USB NIC/KCS), so power operations also become impossible if the OS crashes completely"
+    answerIndex: 1
+    explanation: "The article explains that there are two independent paths flowing in different directions: the \"OS → iDRAC\" path is iSM (via USB NIC/KCS), while the \"iDRAC → host power control\" path is the BMC's direct access to the power circuitry. Because power control never passes through OS-side software, it works regardless of whether the OS or iSM is present."
+
+  - question: "An engineer assumed, \"since this server has iDRAC, of course the virtual console (KVM) should be usable remotely,\" and proceeded with verification, only to find the virtual console wasn't actually available. Based on the article, what is the most likely cause?"
+    choices:
+      - "The configuration used Shared LOM instead of Dedicated NIC, so the virtual console feature itself was disabled at the hardware level"
+      - "The installed license was Express, and Express doesn't include the virtual console feature"
+      - "The iDRAC firmware version was old, predating the version in which the virtual console feature was implemented"
+      - "The virtual console should be usable even with an iDRAC Basic license, but the relevant port was blocked on the network"
+    answerIndex: 1
+    explanation: "The article cites exactly this case as a \"common trap in practice.\" As shown in the licensing tier table, Express provides embedded tools and simple remote access but doesn't include the virtual console feature — Enterprise or above is required."
+
+  - question: "On a server with the hot spare feature enabled, iDRAC's hardware log records an unusually low current reading for one of the PSUs. Which of the following is the most appropriate interpretation of this situation?"
+    choices:
+      - "This is clearly an anomaly, and the PSU with the low current reading is likely to have failed — it should be replaced immediately"
+      - "With the hot spare feature, when the load is low, one PSU may enter a \"sleep\" state, supplying only minimal current, in order to raise overall system power efficiency. A PSU's transition to sleep state and an actual failure are recorded as separate events in the log, so the event type should be checked to distinguish between them"
+      - "This is a typical sign that the A/B grid redundancy configuration isn't functioning correctly, and both PSUs need to be reconnected to the same distribution panel"
+      - "This is a typical sign of a failed PFC (power factor correction) circuit, requiring replacement of the entire PSU unit"
+    answerIndex: 1
+    explanation: "In a hot spare configuration, one PSU's load is deliberately reduced, splitting the units into active/sleep states, so a low current reading on its own can be entirely normal behavior. The article also emphasizes the importance of checking that a sleep-transition event is recorded separately from a failure event."
+
+  - question: "Which of the following statements about the misconception \"iDRAC's IP address and the OS's IP address are the same\" and the actual network design is most accurate?"
+    choices:
+      - "In a Dedicated NIC configuration they have separate IP addresses and subnets, but in a Shared LOM configuration, because the physical NIC is shared, they must use the same IP address"
+      - "In both Dedicated NIC and Shared LOM configurations, separate IP addresses are generally assigned for iDRAC and for the OS; the intent behind deliberately segmenting them is to isolate the attack surface of iDRAC — a management interface with the strongest privileges — from the production network"
+      - "The separation of iDRAC's and the OS's IP addresses is purely a technical constraint, with no particular security intent behind it"
+      - "iDRAC doesn't have its own IP address — it's accessed via the OS's IP address using a different port number"
+    answerIndex: 1
+    explanation: "The article explicitly states that even in a Shared LOM configuration, separate IP addresses are assigned for iDRAC and for the OS. It also cites the clear security intent of segmenting the attack surface: even if the production side is compromised, an attacker's path into iDRAC can be blocked."
+
+  - question: "You can SSH into iDRAC, and the host OS is running normally, but you can no longer access iDRAC's browser interface. What is the most appropriate first step to take?"
+    choices:
+      - "Immediately unplug the AC cable and perform a flea drain"
+      - "Run `racadm racresetcfg -rc` to reset the user back to the initial root/calvin state"
+      - "Check the value of the `Enable` attribute with `racadm get idrac.webserver`. If it's `Disabled`, enable it with `racadm set idrac.webserver.enable enabled`. A typical cause of this is accidentally disabling it during network security hardening work"
+      - "There's no effective option other than holding down the System ID button for a physical reset"
+    answerIndex: 2
+    explanation: "SSH working while only the web interface fails to connect is a case the article cites as a typical example of the web server function itself having been disabled in the configuration. Destructive operations like a flea drain or a factory reset aren't needed — first check and enable the web server setting."
+
+  - question: "iDRAC's RACADM commands return an error, and neither SSH nor the browser can connect, both timing out. The host OS is running normally. What is the safest and most appropriate first response in this situation?"
+    choices:
+      - "Immediately unplug the AC cable and fully discharge standby power (flea drain)"
+      - "Run `racadm racresetcfg -rc` to restore factory defaults, including user and network settings"
+      - "If iDRAC Service Module (iSM) 2.3 or later is installed, remotely reset iDRAC from the OS side via iSM. Because iSM uses a dedicated internal path (USB NIC/KCS) connecting the host OS and iDRAC, this path can still be used to attempt a reset even when iDRAC can't be reached over the normal management network, as long as the OS is alive — and this is considered the safest option when the OS is alive"
+      - "There's no option other than a physical reset via the System ID button"
+    answerIndex: 2
+    explanation: "In the article's troubleshooting procedure, a remote reset via iSM is positioned as the safest option when the OS is alive. Options that destroy the configuration, like `racresetcfg -rc`, or jumping straight to a physical discharge, are later-stage options to try only after less invasive measures."

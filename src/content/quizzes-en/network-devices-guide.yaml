@@ -1,0 +1,99 @@
+questions:
+  - question: "An office builds a LAN by connecting 5 PCs to a single repeater hub. Which statement about this configuration is most accurate?"
+    choices:
+      - "Because each port has its own independent collision domain, full-duplex communication is possible"
+      - "Because all ports share a single collision domain, half-duplex operation via CSMA/CD is required"
+      - "Because each port has its own independent broadcast domain, segments are separated without needing to configure VLANs"
+      - "Because it forwards based on the destination MAC address to narrow down the outgoing port, flooding never occurs"
+    answerIndex: 1
+    explanation: "A repeater hub is an L1 device that simply amplifies and re-sends the electrical signal as-is, and all its ports share a single collision domain. Because it never judges the destination at all, half-duplex operation via CSMA/CD is a given."
+
+  - question: "What is the most accurate description of the term \"switching hub\"?"
+    choices:
+      - "A device that adds signal amplification to a repeater hub — an upgraded version that still operates entirely at L1"
+      - "A device whose internal behavior (forwarding based on a MAC address table) is identical to what's called an L2 switch; the term became established in the Japanese market to distinguish it, since it looked physically similar to a repeater hub"
+      - "An abbreviation for L3 switch, indicating that it has inter-VLAN routing capability"
+      - "A term that refers only to cheap switches that don't implement STP or have no loop-detection capability"
+    answerIndex: 1
+    explanation: "Switching hub, SW hub, and L2SW refer, in practice, to essentially the same device (an L2 switch that forwards based on MAC address learning). The difference in naming comes from context — a Japanese consumer-market colloquialism versus technical terminology."
+
+  - question: "On an L2 switch with an empty MAC address table, a frame is sent from PC-A to PC-B. Assuming PC-B has never transmitted anything before this, what is the correct behavior immediately after the frame is sent?"
+    choices:
+      - "Because the destination MAC address (PC-B) is not yet learned, the frame is flooded to every port except the one it was received on"
+      - "If the destination MAC address is unknown, the switch immediately discards the frame"
+      - "The switch does not learn the source MAC address (PC-A); only the destination MAC address is a target for learning"
+      - "A frame addressed to an unlearned destination MAC address is automatically forwarded only to the default VLAN"
+    answerIndex: 0
+    explanation: "The switch first learns the pairing of the source MAC address and the receiving port. If the destination MAC address is not yet learned (or the destination is broadcast), the frame is flooded to every port except the one it was received on."
+
+  - question: "What is the most appropriate response to the claim \"behind an L2 switch, collisions can never happen\"?"
+    choices:
+      - "Correct. A switch makes each port an independent collision domain, so collisions cannot structurally occur"
+      - "Incorrect. If a duplex mismatch occurs — where the duplex setting (full/half) differs between the two ports — the half-duplex side can still experience a late collision"
+      - "Incorrect. Ports with no VLAN configured always experience collisions"
+      - "Correct, but only when using the cut-through method, in which case collisions can still occur"
+    answerIndex: 1
+    explanation: "As long as full-duplex communication is correctly established, collisions don't occur, but if a duplex mismatch occurs, the half-duplex side is still affected by CSMA/CD-like behavior, and late collisions can occur. It is not the case that \"behind a switch = unconditionally collision-free.\""
+
+  - question: "What is the correct combination of the bit width of the VID (VLAN Identifier) field in an 802.1Q tag, and the theoretical maximum number of VLANs it can identify?"
+    choices:
+      - "8 bits, 256"
+      - "12 bits, 4094"
+      - "16 bits, 65536"
+      - "3 bits, 8"
+    answerIndex: 1
+    explanation: "VID is a 12-bit field, with 0–4094 used as valid values, theoretically identifying up to 4094 VLANs (TPID is a fixed 16-bit value of 0x8100, PCP is 3 bits, and DEI is 1 bit)."
+
+  - question: "Two switches are connected via a trunk port, but the native VLAN is set to 10 on one side and 20 on the other. What problem is most likely to result?"
+    choices:
+      - "The trunk port itself fails to establish, and the link goes down entirely"
+      - "Untagged frames get interpreted as belonging to a different VLAN than the sender intended on the receiving side, causing frames to unintentionally cross between VLANs"
+      - "STP automatically detects this and puts the affected port into a blocked state, so there is no impact on communication"
+      - "Forwarding of 802.1Q-tagged frames stops completely"
+    answerIndex: 1
+    explanation: "The native VLAN setting determines which VLAN an untagged frame on a trunk port is treated as belonging to. A mismatch between the two ends causes untagged frames to be assigned to the unintended VLAN, resulting in cross-VLAN mixing."
+
+  - question: "Based on the IEEE 802.1D standard's default timers (Hello 2 seconds, Forward Delay 15 seconds, Max Age 20 seconds), approximately how long does it take for a port to transition from the Blocking state to the Forwarding state?"
+    choices:
+      - "About 2–4 seconds"
+      - "About 15 seconds"
+      - "About 30–50 seconds"
+      - "About 20 seconds (depends only on the Max Age)"
+    answerIndex: 2
+    explanation: "In the transition Blocking → Listening → Learning → Forwarding, the Forward Delay (15 seconds) is spent in both Listening and Learning, resulting in a theoretical total convergence time of about 30–50 seconds. This is the issue RSTP improves on."
+
+  - question: "Compared to a \"router-on-a-stick\" configuration, what is the most appropriate advantage of inter-VLAN routing via an L3 switch?"
+    choices:
+      - "The bandwidth of the single trunk link connecting the L2 switch and the external router no longer becomes a bottleneck, enabling wire-speed routing"
+      - "It newly enables WAN-side advanced features such as NAT and VPN termination"
+      - "It becomes possible to hold the internet's full BGP routing table"
+      - "STP is no longer needed, eliminating the need for a redundant configuration"
+    answerIndex: 0
+    explanation: "With router-on-a-stick, every piece of inter-VLAN traffic had to travel back and forth over a single trunk link, which tended to become a bandwidth bottleneck. An L3 switch removes this constraint by building the routing function directly into the switch chassis."
+
+  - question: "Which statement about hardware forwarding (TCAM-based fast path) on L3 switches/routers is most accurate?"
+    choices:
+      - "Every packet, without exception, is forwarded solely by referencing TCAM, and the CPU is never involved at all"
+      - "Some packets that the fast path can't fully handle — such as packets whose TTL has reached 0, or packets with IP options — are punted to the CPU (control plane) and processed in software"
+      - "Punting exists, but there is no meaningful difference in processing speed compared to normal hardware forwarding"
+      - "Punting only occurs on devices with ACLs configured, and never occurs when only route information is involved"
+    answerIndex: 1
+    explanation: "Some packets that the fast path can't handle (TTL exceeded, packets with IP options, ARP requests, etc.) are punted to the CPU and processed in software. This processing is orders of magnitude slower than normal hardware forwarding."
+
+  - question: "A data center needs to interconnect multiple VLANs at high speed within a campus network, while simultaneously holding the internet's full routing table (900,000+ routes) and peering directly with an ISP via BGP. What is the most appropriate equipment choice?"
+    choices:
+      - "A single L3 switch is generally sufficient to meet both requirements"
+      - "Use an L3 switch for inter-VLAN routing, while using a router capable of holding a correspondingly large routing table for full-route capacity and BGP peering — this is the common practical approach"
+      - "A combination of a repeater hub and an L2 switch alone can meet both requirements"
+      - "Disabling STP allows an L3 switch to hold the full route table without any problem"
+    answerIndex: 1
+    explanation: "Many L3 switch models can't hold the internet's full routing table due to TCAM capacity constraints, making them unsuitable for the ISP edge. The standard practical division of labor is: L3 switch for inter-VLAN routing, router for the WAN boundary and full-route capacity."
+
+  - question: "What is the fundamental reason a CAM table overflow attack (MAC flooding attack) works?"
+    choices:
+      - "An L2 switch unconditionally learns whatever source MAC address a frame claims (first-come first-served), so an attacker can exhaust the MAC address table's capacity with a large volume of fake source MAC addresses"
+      - "Because VLAN tags are transmitted unencrypted, a third party can easily read them"
+      - "Because STP's BPDUs have no authentication mechanism, an attacker can claim to be a fake root bridge"
+      - "Because the 802.1Q tag's VID field is only 12 bits, its value is easy to guess"
+    answerIndex: 0
+    explanation: "L2 switch MAC address learning is built on the premise of unconditionally trusting and learning whatever source MAC address a frame claims. A CAM table overflow attack exploits this by exhausting the table with a large volume of fake MAC addresses, causing subsequent frames to be flooded."

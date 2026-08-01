@@ -1,0 +1,81 @@
+questions:
+  - question: "Which statement about the characteristics of symmetric-key encryption (AES) best matches the content of the article?"
+    choices:
+      - "It uses separate keys (a public key and a private key) for encryption and decryption, and its computational cost is lower than public-key cryptography"
+      - "It uses one single key for both encryption and decryption, and because its computational cost is lower than public-key cryptography, it's well suited to high-speed encryption of large volumes of data"
+      - "It uses the same key for encryption and decryption, but its computational cost is higher than public-key cryptography"
+      - "AES encrypts the entire body of data at once, rather than block by block"
+    answerIndex: 1
+    explanation: "Symmetric-key encryption uses the same key for encryption and decryption, and has a lower computational cost than public-key cryptography, which is why it's used to encrypt large volumes of data at high speed in scenarios like TLS's real data payload and the contents of a VPN tunnel. AES is a block cipher that processes data in block-sized units (128 bits)."
+
+  - question: "Which statement best matches the article's explanation of AES's avalanche effect?"
+    choices:
+      - "The property that a longer key length makes encryption faster"
+      - "The property that a difference of a single input bit propagates through the entire output in an unpredictable way"
+      - "The property that encrypting the same plaintext always produces the same ciphertext"
+      - "The property that eliminates the need for padding"
+    answerIndex: 1
+    explanation: "The avalanche effect is the property that a difference of a single input bit propagates through the entire output in an unpredictable way, achieved by repeating substitution (SubBytes) and diffusion (ShiftRows/MixColumns). This makes it difficult to statistically infer the plaintext or key from the ciphertext."
+
+  - question: "Which statement best matches the article's explanation for why ECB mode is almost never used in practice?"
+    choices:
+      - "Because its processing speed is extremely slow compared to other modes"
+      - "Because an identical plaintext block always produces an identical ciphertext block, causing repeating patterns in the original data to show through in the ciphertext"
+      - "Because it requires an IV, making implementation complex"
+      - "Because the block length is variable and not standardized"
+    answerIndex: 1
+    explanation: "ECB mode encrypts each block independently with the same key, so an identical plaintext block always produces an identical ciphertext block. This weakness allows patterns in the original data to show through in the ciphertext, and is known through the example of the \"ECB penguin.\""
+
+  - question: "Which statement best matches the article's explanation of the role the IV (initialization vector) plays in CBC mode?"
+    choices:
+      - "It's used as a secret key to authenticate the receiver"
+      - "It's XORed into the first block as a substitute for a \"previous block,\" ensuring the same plaintext produces a different ciphertext every time"
+      - "It's used as a numeric value indicating the length of the padding"
+      - "It's a value used to identify the encryption algorithm itself (whether it's AES or not)"
+    answerIndex: 1
+    explanation: "In CBC mode, since there's no \"result of the previous block\" for the first block, the IV is XORed in its place instead. By varying the IV every time, the same plaintext with the same key produces a different ciphertext every time, resolving ECB's pattern-leakage problem."
+
+  - question: "What does the article list as the \"absolute requirement\" in CTR mode?"
+    choices:
+      - "The plaintext length must always be a multiple of the block size"
+      - "The same \"nonce + counter\" combination must never be reused under the same key"
+      - "The IV must never be sent without being kept secret every time"
+      - "It must always be used in combination with CBC mode"
+    answerIndex: 1
+    explanation: "Because CTR mode XORs a keystream with the plaintext, reusing the same \"nonce + counter\" under the same key causes the relationship between the two plaintexts to leak from the XOR of the two ciphertexts, causing security to collapse completely."
+
+  - question: "Which statement best matches the article's explanation for why HMAC, unlike a \"simple hash value,\" can be used for tamper detection?"
+    choices:
+      - "Because HMAC is always encrypted with AES"
+      - "Because incorporating a shared key into the computation means an attacker who doesn't know that key cannot recompute the correct HMAC value after tampering"
+      - "Because HMAC doesn't use a hash function and is computed using public-key cryptography alone"
+      - "Because the HMAC value changes randomly every time and can never be reproduced"
+    answerIndex: 1
+    explanation: "Anyone can recompute a simple hash value, so an attacker could tamper with the data and swap in a recomputed hash value without detection. HMAC incorporates a shared key known only to the sender and receiver into the computation, preventing an attacker who doesn't know that key from forging the correct HMAC value."
+
+  - question: "Which statement best matches the article's explanation of the characteristics of AEAD (authenticated encryption, such as AES-GCM)?"
+    choices:
+      - "It performs encryption and tamper detection (authentication) simultaneously within a single algorithm, and can incorporate unencrypted additional data into the authentication tag as well"
+      - "It performs only encryption, and tamper detection can only be achieved by separately combining it with HMAC"
+      - "It's always built on top of ECB mode"
+      - "It's designed so that nonce reuse has no impact on security"
+    answerIndex: 0
+    explanation: "AEAD performs encryption (CTR-mode equivalent in GCM's case) and authentication tag generation (GHASH) within a single algorithm, and can guarantee integrity even including additional data such as unencrypted headers. Nonce reuse is catastrophic even with GCM."
+
+  - question: "Among the three schemes Encrypt-then-MAC, MAC-then-Encrypt, and Encrypt-and-MAC, which does the article identify as \"currently considered the safest scheme\"?"
+    choices:
+      - "MAC-then-Encrypt"
+      - "Encrypt-and-MAC"
+      - "Encrypt-then-MAC"
+      - "All three schemes are equally secure"
+    answerIndex: 2
+    explanation: "With Encrypt-then-MAC, the receiver can verify the MAC on the ciphertext to check for tampering before decrypting, so tampered data never gets passed to the decryption process — making it a fundamental countermeasure against attacks like the padding oracle attack, which exploit differences in the behavior of the decryption process."
+
+  - question: "Which misconception about the handling of the IV/nonce does the article explicitly refute?"
+    choices:
+      - "That the IV/nonce must be kept secret"
+      - "That in CTR/GCM, the nonce must not be duplicated under the same key"
+      - "That there are scenarios where a CBC IV needs to be unpredictable"
+      - "That the IV/nonce is typically sent alongside the ciphertext in plaintext"
+    answerIndex: 0
+    explanation: "Most IVs/nonces don't need to be kept secret and are typically sent alongside the ciphertext in plaintext. What matters is unpredictability (CBC) or non-duplication (CTR/GCM), not confidentiality itself."

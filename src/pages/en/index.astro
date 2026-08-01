@@ -1,30 +1,36 @@
 ---
 import { getCollection } from "astro:content";
-import BaseLayout from "../layouts/BaseLayout.astro";
-import { seriesNames } from "../consts";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { seriesNamesEn } from "../../consts";
 
-const articles = (await getCollection("articles", ({ data }) => !data.draft)).sort(
+const articles = (await getCollection("articlesEn", ({ data }) => !data.draft)).sort(
   (a, b) => a.data.series.localeCompare(b.data.series) || a.data.order - b.data.order
 );
 
 const bySeries = Map.groupBy(articles, (a) => a.data.series);
 
 const formatDate = (date: Date) =>
-  date.toLocaleDateString("ja-JP", { year: "numeric", month: "2-digit", day: "2-digit" }).replaceAll("/", ".");
+  date.toLocaleDateString("en-US", { year: "numeric", month: "2-digit", day: "2-digit" });
 ---
 
-<BaseLayout title="トップ" description="インフラエンジニア上位1%レベルの理解を目指す技術ブログ" lang="ja" altHref="/en">
+<BaseLayout
+  title="Home"
+  description="A technical blog aiming for the depth of understanding held by the top 1% of infrastructure engineers."
+  lang="en"
+  altHref="/"
+>
   <div class="hero">
     <span class="eyebrow">// TOP 1% INFRA ENGINEERING</span>
-    <h1>インフラの深淵を、上位1%の解像度で。</h1>
+    <h1>The depths of infrastructure, at top-1% resolution.</h1>
     <p>
-      AWS・Googleのような最高峰のインフラ企業に在籍するトップ層が持つ理解水準を目指す技術ブログです。
-      操作手順の暗記ではなく、なぜそう設計されているのかという内部動作・設計思想まで掘り下げます。
-      読む順番やシリーズ間のつながりは<a href="/sitemap">サイトマップ</a>にまとめています。
+      A technical blog aiming for the level of understanding held by top engineers at leading infrastructure
+      companies like AWS and Google. Rather than memorizing operational steps, we dig into the internal
+      mechanics and design rationale behind why things are built the way they are. The recommended reading
+      order and how the series connect are summarized on the <a href="/en/sitemap">sitemap</a>.
     </p>
     <div class="hero-stats">
-      <div><strong>{articles.length}</strong><span>本の記事</span></div>
-      <div><strong>{bySeries.size}</strong><span>シリーズ</span></div>
+      <div><strong>{articles.length}</strong><span>articles</span></div>
+      <div><strong>{bySeries.size}</strong><span>series</span></div>
     </div>
   </div>
 
@@ -32,13 +38,13 @@ const formatDate = (date: Date) =>
     [...bySeries.entries()].map(([series, items]) => (
       <section class="series-section">
         <h2>
-          {seriesNames[series] ?? series}
-          <span class="series-count">{items.length}本</span>
+          {seriesNamesEn[series] ?? series}
+          <span class="series-count">{items.length}</span>
         </h2>
         <ul class="card-list">
           {items.map((article) => (
             <li>
-              <a class="card" href={`/articles/${article.id}`}>
+              <a class="card" href={`/en/articles/${article.id}`}>
                 <p class="card-title">
                   {article.data.emoji ? `${article.data.emoji} ` : ""}
                   {article.data.title}
@@ -47,7 +53,7 @@ const formatDate = (date: Date) =>
                 <div class="card-meta">
                   <span class="card-date">{formatDate(article.data.pubDate)}</span>
                   {article.data.updatedDate && article.data.updatedDate.getTime() !== article.data.pubDate.getTime() && (
-                    <span class="card-date card-date-updated">更新: {formatDate(article.data.updatedDate)}</span>
+                    <span class="card-date card-date-updated">Updated: {formatDate(article.data.updatedDate)}</span>
                   )}
                   <ul class="tag-list">
                     {article.data.tags.map((tag: string) => (

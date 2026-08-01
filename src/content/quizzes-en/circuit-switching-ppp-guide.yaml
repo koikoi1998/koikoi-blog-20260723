@@ -1,0 +1,108 @@
+questions:
+  - question: "Which of the following best matches the article's explanation of the essential difference between circuit switching (the telephone network) and packet switching (an IP network)?"
+    choices:
+      - "Circuit switching is limited to passing through a single exchange, whereas packet switching can pass through multiple relay devices"
+      - "Circuit switching builds a dedicated path for each communication and keeps it occupied for the duration of that communication, whereas packet switching has many communications share a single line, routing traffic to its destination packet by packet"
+      - "Circuit switching splits data into packets, whereas packet switching sends data as a single unit without splitting it"
+      - "Circuit switching determines the path using a destination IP address, whereas packet switching determines the path using a phone number"
+    answerIndex: 1
+    explanation: "Circuit switching builds a dedicated one-to-one path for each call and keeps it occupied for the duration of communication. Packet switching has many communications statistically share a single line, with each router deciding where to forward a packet based on its destination IP address. The number of exchanges traversed (choice 1) and the reversal of which system uses which type of destination information (choice 4) both differ from the article's explanation."
+
+  - question: "Even when a call on the fixed telephone network passes through multiple exchanges from the originating exchange to the destination, what reason does the article give for it still having 'dedicated line'-like properties?"
+    choices:
+      - "Because the number of exchanges traversed is always limited to one"
+      - "Because the path (time slot) assigned via TDM (Time Division Multiplexing) stays fixed for the duration of the call and is never taken over by other traffic"
+      - "Because every exchange manages its path using IP addresses"
+      - "Because the modem handshake guarantees exclusive occupation of the path"
+    answerIndex: 1
+    explanation: "The point isn't the number of exchanges traversed, but the property that the path (time slot) assigned via TDM stays fixed for the entire call and is never taken over by other traffic. Managing paths by IP address is a matter for IP networks, not an explanation of circuit switching in the telephone network (choice 3)."
+
+  - question: "Which of the following best matches the article's explanation of why PPP can get away with a simple design that carries no destination address and simply processes incoming frames in order?"
+    choices:
+      - "Because PPP was originally designed exclusively for packet-switched IP networks"
+      - "Because the telephone line was a circuit-switched medium where the circuit was occupied one-to-one and data could be assumed to arrive in the order it was sent"
+      - "Because the modem handles all error correction, so PPP doesn't need to consider anything"
+      - "Because IPCP always automatically fills in the destination for every packet"
+    answerIndex: 1
+    explanation: "A telephone line keeps a single physical circuit occupied for the duration of communication, and because data simply flows along that one path, order can be assumed to be preserved. It's precisely this premise of 'a circuit occupied one-to-one, with order preserved' that lets PPP get away with a simple design carrying no destination address. PPP was not designed exclusively for packet switching (choice 1)."
+
+  - question: "Which of the following best matches the article's explanation of the steps in a dial-up connection (dialing through circuit connection, modem handshake, PPP's LCP, the PPP authentication phase, IPCP)?"
+    choices:
+      - "The client already has an IP address assigned at the moment the phone number is dialed"
+      - "PPP's LCP negotiation is already complete at the modem handshake stage"
+      - "The client side has no IP address whatsoever until IPCP assigns one after successful authentication"
+      - "During the PPP authentication phase, a human operator verbally asks for the username and password"
+    answerIndex: 2
+    explanation: "The client side has no IP address whatsoever until IPCP assigns exactly one after successful authentication. Dialing the phone number is merely an L1-level circuit reservation (choice 1), and neither PPP nor IP has appeared yet at the modem handshake stage (choice 2). The call is treated as a data call, and no human operator answers it (choice 4)."
+
+  - question: "Which of the following best matches the article's explanation of how the username and password are transmitted between modems during the PPP authentication phase?"
+    choices:
+      - "The modem performs voice recognition and sends what the user says aloud as the username and password"
+      - "They are exchanged automatically as continuous digital data flowing over the line, which has been switched to data-communication use by the modem handshake"
+      - "An operator at the telephone exchange enters the authentication information on the user's behalf"
+      - "The username and password can only be exchanged after IPCP completes"
+    answerIndex: 1
+    explanation: "Once the modem handshake switches the line over to data-communication use, LCP → authentication → IPCP are automatically exchanged as continuous digital data modulated by the modem. If a human listened to the line during this time, it would sound like nothing but noise — no voice recognition or human listening is involved (choices 1 and 3). Authentication is a phase that comes before IPCP (choice 4)."
+
+  - question: "Which of the following best matches the article's explanation of why authentication methods from CHAP onward are considered more secure than PAP?"
+    choices:
+      - "Because they never send the password itself over the network even once, exchanging only hash values via a challenge-response scheme"
+      - "Because CHAP and later methods perform no authentication at all and always allow the connection"
+      - "Because CHAP and later methods automatically generate the password every time, so the user never has to enter it"
+      - "Because CHAP and later methods can only be used over leased lines, not telephone lines, eliminating any possibility of eavesdropping"
+    answerIndex: 0
+    explanation: "PAP sends the username and password as plaintext, whereas CHAP and later methods never send the password itself over the network, thanks to the challenge-response scheme. All an eavesdropper can obtain is a challenge that changes every time and a one-time response, from which the original password cannot be read directly."
+
+  - question: "Which of the following best matches the article's explanation of what MS-CHAPv2 additionally achieves compared to CHAP?"
+    choices:
+      - "It speeds up processing by sending the password in plaintext"
+      - "It supports bidirectional mutual authentication, verifying not just client→server but also the server→client direction"
+      - "It abandons the challenge-response scheme and authenticates using only a fixed shared key"
+      - "MS-CHAPv2 itself handles IP address assignment"
+    answerIndex: 1
+    explanation: "MS-CHAPv2 uses the same challenge-response scheme as CHAP, but the server computes an Authenticator Response and returns it to the client, enabling bidirectional mutual authentication that can also confirm 'whether the client is connected to the genuine server.'"
+
+  - question: "Which of the following best matches the article's explanation of why the analysis cost of MS-CHAPv2's NT response is reduced to that of a single DES key (2^56 possibilities), rather than the theoretical 128 bits (the 16-byte NT hash)?"
+    choices:
+      - "Because the NT hash is computed using CRC32 instead of MD4"
+      - "Because the 16-byte NT hash is split into three pieces of 7, 7, and 2 bytes, with the same single challenge hash encrypted independently by each DES key, allowing the three keys to be brute-forced individually"
+      - "Because the server always sends a fixed challenge value"
+      - "Because MS-CHAPv2 performs no encryption at all and sends the hash value as-is"
+    answerIndex: 1
+    explanation: "The 24-byte NT response is nothing more than the same 8-byte challenge hash encrypted separately by three independent DES keys and concatenated. There's no need to brute-force the three keys together; each can be broken individually as a standalone DES key, which collapses the effective decryption cost down to that of a single 56-bit DES key."
+
+  - question: "Which of the following best matches the article's explanation of why, in step 2 of MS-CHAPv2, the client's own Peer Challenge is combined with the server's challenge when computing the challenge hash, rather than using the server's challenge alone?"
+    choices:
+      - "To reduce the computation and speed up processing"
+      - "So that the response doesn't depend solely on the server's challenge, ensuring that even if the server tried to reuse the same challenge for a replay attack, the client's random value changes every time and prevents the same response from being produced"
+      - "To determine the range of IP addresses to be assigned"
+      - "To align the number of padding bytes"
+    answerIndex: 1
+    explanation: "By mixing in randomness from the client side (the Peer Challenge), the response no longer depends solely on the server's challenge, so even if the server tried to reuse the same challenge for a replay attack, the client's random value changes every time and the same response is never produced."
+
+  - question: "Regarding the understanding that 'PPP is a standard exclusive to telephone lines,' which is the most appropriate assessment in light of the article's explanation?"
+    choices:
+      - "Correct. PPP was invented for the purpose of dial-up connections"
+      - "Incorrect. PPP is a general-purpose protocol for point-to-point serial links in general, and the telephone line was just one means of realizing that"
+      - "Correct. PPPoE and L2TP are separate standards unrelated to PPP"
+      - "Incorrect. PPP was originally designed exclusively for Ethernet"
+    answerIndex: 1
+    explanation: "PPP is designed as a general-purpose protocol for establishing a link, authenticating, and configuring an IP address over point-to-point serial links in general, not limited to dial-up over telephone lines. The telephone line was simply one of the cheaply available means of realizing this at the time. PPPoE and L2TP are technologies that reuse this generality of PPP (making choice 3 incorrect)."
+
+  - question: "What reason does the article give for why both PPPoE, which emerged after broadband became widespread, and L2TP, used in remote-access VPNs, continue to reuse PPP?"
+    choices:
+      - "Because the feature set PPP provides — authenticating per user and dynamically assigning an IP address over a one-to-one link — had demand extending well beyond telephone lines"
+      - "Because PPPoE and L2TP were each developed independently of PPP, and just happened to end up with the same name"
+      - "Because PPP was the only protocol that supported IPv6"
+      - "Because telephone exchanges directly relay PPPoE and L2TP traffic"
+    answerIndex: 0
+    explanation: "PPPoE encapsulates PPP frames inside Ethernet frames, and L2TP encapsulates PPP frames inside a virtual tunnel over an IP network — each reproducing, even as the medium changes, the 'one-to-one link' PPP assumes and the user authentication and IP address assignment that run over it. This is because the demand for that feature set was never limited to telephone lines."
+
+  - question: "What does the article describe as the basic approach to isolating a fault when a PPP-family connection (such as PPPoE or a WAN leased line) fails?"
+    choices:
+      - "Always suspect modem hardware failure first"
+      - "Narrow down which stage — LCP (link establishment) → authentication → IPCP (IP address assignment) — it's stuck at"
+      - "If it fails at IPCP, you can always conclude with certainty that incorrect authentication information is the cause"
+      - "Since PPP-family faults don't involve telephone lines, the isolation procedure has nothing to do with modern IP networks"
+    answerIndex: 1
+    explanation: "PPP may look like an old technology, but it still shows up in practice today, and the basic approach to isolating the problem is the same as in the telephone-line era: narrowing down which stage — LCP → authentication → IPCP — it's stuck at. Failures at IPCP can have multiple causes, such as a mismatch in subscriber information or exhaustion of the IP address pool, not just incorrect authentication information (choice 3)."

@@ -1,0 +1,90 @@
+questions:
+  - question: "Which of the following best explains why a VRM makes voltage, rather than current, the target of feedback control when powering the CPU?"
+    choices:
+      - "The CPU notifies the VRM of the amount of current it needs via a digital signal based on processing load, and the VRM matches its output exactly to that requested value"
+      - "Semiconductors such as CPUs and memory are designed on the assumption of constant-voltage operation, and voltage fluctuations lead directly to malfunction or damage, while current (power consumption) is expected to vary normally with processing content. So the VRM only performs feedback control to hold the output voltage at its reference value, and current automatically increases or decreases as a result"
+      - "Because power = voltage × current, fixing the voltage alone automatically keeps the entire system's power consumption constant, simplifying power management"
+      - "The switching elements inside a VRM are structurally incapable of controlling current directly, so voltage control is used as an unavoidable workaround"
+    answerIndex: 1
+    explanation: "CPUs and memory have no protocol for explicitly requesting power from the VRM. The VRM performs feedback control only to hold the output voltage at its reference value, and current (power consumption) increases or decreases as a byproduct, in response to impedance changes on the CPU side. The kind of request protocol described in choice 1 is explicitly ruled out in the article."
+
+  - question: "Which of the following best explains why voltage conversion using a transformer cannot, in principle, work on a DC transmission grid?"
+    choices:
+      - "Because DC's current direction is always constant, no magnetic field forms around the wire in the first place"
+      - "Because DC has a constant current magnitude, the magnetic field it produces also stays constant and doesn't change, and electromagnetic induction — which requires a changing magnetic field — can't occur continuously"
+      - "Because DC voltage is structurally low, the magnetic field lines can't reach the secondary coil through the iron core"
+      - "Feeding DC through a transformer always outputs the same voltage as the primary side, regardless of the coil's turns ratio"
+    answerIndex: 1
+    explanation: "The condition for electromagnetic induction is not \"whether current is flowing\" but \"whether the magnetic field keeps changing.\" Because DC keeps flowing at a constant current, the field it creates also stays constant, and no induction into the secondary coil occurs except momentarily at power-on/power-off (note that current does still flow with DC, so a magnetic field does exist — choice 1 is incorrect)."
+
+  - question: "In a given transmission segment, voltage is raised to 4 times its original value and current is reduced to 1/4, while sending the same amount of power. Based on the loss equation given in the article, how does the transmission loss (loss from heat) change?"
+    choices:
+      - "Transmission loss is proportional to current, so it becomes 1/4"
+      - "Transmission loss is proportional to the square of current, so it becomes 1/16"
+      - "Since the power being transmitted doesn't change even as voltage and current change, transmission loss also doesn't change"
+      - "Transmission loss is proportional to the square of voltage, so it becomes 16 times greater"
+    answerIndex: 1
+    explanation: "The article states that \"loss = current² × resistance,\" proportional to the square of the current. Reducing current to 1/4 makes the loss (1/4)² = 1/16. This is the same reasoning applied to a different ratio as the article's example of \"10x voltage, 1/10 current, 1/100 loss.\""
+
+  - question: "Which of the following best explains why an online (double-conversion) UPS, unlike a standby UPS, causes no momentary interruption in principle during a power outage?"
+    choices:
+      - "The output-side inverter always draws power from the same DC bus; during an outage, only the source feeding that DC bus changes from commercial power to battery, and no switching action that flips the path itself occurs"
+      - "The battery is connected in parallel with commercial power, and a high-speed relay switches the circuit from commercial power to battery during an outage, shrinking the switchover time to a level imperceptible to humans"
+      - "The online method doesn't perform AC→DC→AC double conversion at all — it outputs AC continuously, so the very concept of a switchover doesn't apply"
+      - "The online method just has a faster interruption-detection circuit — in practice it still experiences the same few-ms-to-few-dozen-ms interruption as the standby method"
+    answerIndex: 0
+    explanation: "In the online method, the inverter continuously draws power from the same DC bus; during an outage, only the source feeding that DC bus changes from commercial power to battery. Because there's no physical switching action that flips the path itself, no momentary interruption occurs in principle. This is a property purchased at the cost of a double-conversion loss."
+
+  - question: "The AC cable is connected, but the host's power is off. Which of the following statements best matches the article's description of this server's state?"
+    choices:
+      - "Every circuit, including the BMC/iDRAC, remains completely unpowered until the power button is pressed or a command is sent via iDRAC"
+      - "The PSU continuously supplies a few to a dozen or so watts to a standby rail dedicated to the BMC/iDRAC, and output of the main +12V rail doesn't begin until the PS_ON signal is toggled"
+      - "The PSU continuously outputs at full power on every rail, including the host's main power rail, and the power button only controls the timing at which the VRM begins supplying power"
+      - "The standby rail and the main rail are turned ON/OFF simultaneously by the same control signal, so the BMC is also stopped while the host's power is off"
+    answerIndex: 1
+    explanation: "As long as AC is connected, the PSU continuously supplies power to the standby rail dedicated to the BMC/iDRAC. The main power rail doesn't begin output until the PS_ON signal is toggled Low/High, triggered by the physical button or a command via iDRAC. The BMC remains up throughout, even while the host's power is off."
+
+  - question: "A server has 4 PSUs installed, and `System.Power.RedundancyPolicy` is set to `PSU Redundant`. Which of the following best describes this configuration?"
+    choices:
+      - "Connecting 2 PSUs to different power grids (A/B) lets the server survive the loss of an entire grid, and this setting doesn't depend on the number of PSUs"
+      - "With 4 units, this configuration is equivalent to 2+1 redundancy, tolerating the failure of a single PSU unit. However, this setting alone does not guarantee redundancy of the input system (grid)"
+      - "This behaves effectively the same as the Not Redundant policy, with the only difference being that hot-swap replacement without downtime becomes possible"
+      - "PSU Redundant can also be selected with a 2-unit configuration, and should be used in preference to AC Redundant"
+    answerIndex: 1
+    explanation: "The article's table states that PSU Redundant (DC Redundant) is \"selectable only with a 4-PSU configuration (equivalent to 2+1)\" and \"tolerates the failure of a single PSU unit.\" This is about tolerance to a single PSU failure, a different concern from AC Redundant, which guarantees redundancy of the input system (grid) itself. Choice 1's description is closer to AC Redundant, making it an inappropriate description of PSU Redundant."
+
+  - question: "Which of the following best matches the article's description of the risk that can arise when multiple servers simultaneously enable the hot spare feature without deliberately distributing the Primary PSU setting, and the primary safeguard against it?"
+    choices:
+      - "Risk: Load may continue concentrating on a particular grid. Safeguard: the data center's distribution design itself is premised on each grid, on its own, being able to carry the full load (N+N), so it doesn't become instantly overloaded"
+      - "Risk: PSU redundancy is entirely lost, and the server goes down immediately if one PSU fails. Safeguard: if an odd number of servers have it enabled, hot spare is automatically disabled"
+      - "Risk: PSU conversion efficiency keeps dropping, increasing power costs. Safeguard: iDRAC monitors the load ratio and automatically disables hot spare once it exceeds 40-60%"
+      - "Risk: a PSU in sleep state actually loses its power-supply capability. Safeguard: this is prevented by periodically power-cycling it via the PDU's switched function"
+    answerIndex: 0
+    explanation: "The article addresses the concern about \"load concentrating on one grid\" with a two-pronged response: (1) the data center's distribution design itself is an N+N design, where each grid can carry the full load on its own, and (2) `Hotspare.PrimaryPSU` is deliberately distributed across racks and servers. The automatic-disabling mechanisms and efficiency/capability-loss claims in choices 2-4 aren't mentioned in the article."
+
+  - question: "Regarding the idea that \"as long as a server has two PSUs installed, power redundancy has been achieved,\" which of the following is the most appropriate critique based on the article?"
+    choices:
+      - "Correct. With two PSUs, if one fails the other automatically takes over, so no further design is needed"
+      - "Incorrect. If the two PSUs are connected to the same distribution panel and the same breaker, both lose power together if that panel fails, so duplication of the power delivery path (the distribution system) itself needs to be paired with PSU duplication"
+      - "Incorrect. PSUs don't support hot-swapping unless there are 3 or more units, so a 2-unit configuration always requires a planned outage for replacement"
+      - "Incorrect. Installing 2 PSUs automatically sets `System.Power.RedundancyPolicy` to Not Redundant, requiring manual reconfiguration"
+    answerIndex: 1
+    explanation: "As explicitly stated as Misconception 1 in the article, true power redundancy requires pairing PSU duplication with duplication of the power delivery path (the distribution system) itself. If both PSUs are connected to the same distribution panel and breaker, both lose power together when that panel fails."
+
+  - question: "Which of the following best matches the article's description of the triage steps to take when a PSU-related alert appears in iDRAC?"
+    choices:
+      - "First replace the PSU unit, then check the event log for the cause afterward"
+      - "First check the event log to determine the event type (Redundancy lost/PSU failure/PSU entered sleep state) to triage the nature of the cause, then check for AC input using `racadm getsensorinfo`, and consider replacing the PSU unit if errors continue despite AC input being present"
+      - "A transition to sleep state is always a precursor to PSU failure, so replacement should be arranged immediately upon detection"
+      - "`racadm getsensorinfo` cannot measure AC input voltage and therefore cannot be used to triage distribution-panel-side issues — a tester must always be used on-site"
+    answerIndex: 1
+    explanation: "The article's troubleshooting procedure shows checking the event log first to determine the type (it's important not to mistake a sleep transition for a failure), then checking input voltage and output state with `racadm getsensorinfo` to triage whether the issue is on the AC input side or the PSU unit itself, and considering replacement if errors persist despite normal AC input."
+
+  - question: "Which of the following best matches the article's description of the relationship between iDRAC's power cap policy and PSU redundancy design?"
+    choices:
+      - "Power cap policy can only be enabled on servers that have not achieved PSU redundancy, as an alternative safety feature"
+      - "PSU redundancy is a design ensuring power never runs out no matter what happens, while power cap policy is a design for managing the total amount of power actually used, applied to capacity planning at the rack and data center level — the two serve separate purposes in power design at scale"
+      - "Enabling power cap policy automatically switches the PSU redundancy policy to AC Redundant"
+      - "Power cap policy has a side effect of disabling PSU hot-swap capability, so it should generally not be used during operation"
+    answerIndex: 1
+    explanation: "The article states that \"PSU redundancy design (making sure power never runs out, no matter what happens) and power cap policy (managing the total amount of power actually used, to begin with) are two sides of the same coin in power design at scale.\" The two are neither mutually exclusive nor dependent on each other — they are separate mechanisms serving different purposes."

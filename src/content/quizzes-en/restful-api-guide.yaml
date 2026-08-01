@@ -1,0 +1,90 @@
+questions:
+  - question: "A client sent a GET request for a resource that had existed until just moments before, but another client had actually deleted it a few seconds earlier, so a 404 Not Found was returned. Which explanation of this 404's classification is most appropriate?"
+    choices:
+      - "It's the result of an abnormal termination on the server side, so it should really be classified as 5xx, but is treated as 4xx as a matter of convenience"
+      - "A 4xx always means there was an implementation mistake or improper operation on the client side"
+      - "The server-side processing itself completed normally; it's simply that the requested resource doesn't exist in the server's current state — so even though it isn't necessarily a client implementation mistake, it's still consistently classified as 4xx (client-caused)"
+      - "Because this was caused by a deletion by another client, the correct status code to return in this specific case is 409 Conflict"
+    answerIndex: 2
+    explanation: "The article explains that a 404 can occur even when \"the information the client was holding became stale due to a state change on the server side,\" and that this doesn't necessarily mean a bug or improper operation — but since the server-side processing completed normally, it's still consistently classified as 4xx."
+
+  - question: "Which statement about the role of public-key cryptography in the TLS handshake is most accurate?"
+    choices:
+      - "The public key contained in the certificate continues to be used to encrypt the entire body of subsequent actual HTTP requests and responses"
+      - "Public-key cryptography is used solely for the key exchange that securely shares a symmetric key for subsequent communication, and the actual data exchange is done with symmetric-key cryptography such as AES"
+      - "Because public-key cryptography has a lower computational cost than symmetric-key cryptography, it's also used as standard for encrypting the actual data"
+      - "Even if server certificate verification fails, as long as the public-key-cryptography-based key exchange succeeds, the communication continues securely"
+    answerIndex: 1
+    explanation: "The article explains that public-key cryptography has a high computational cost, so it isn't used for the actual exchange of data — it's used solely to securely hand over the symmetric key — and that all subsequent actual communication is done using symmetric-key cryptography such as AES (which is faster than public-key cryptography)."
+
+  - question: "A transfer request was sent to a money-transfer API via `POST /transfers`, but a timeout occurred before a response came back. Which statement about safe retry design in this situation is most appropriate?"
+    choices:
+      - "POST is defined as an idempotent method, so it's safe to simply resend the same request"
+      - "Since a timeout occurred, you can conclude the server-side processing definitely failed, so it's fine to just resend it"
+      - "The client can't tell whether the connection dropped before the request arrived, or after the server completed processing but before the completion response arrived, so a naive resend risks executing the transfer twice. Including an idempotency key in the request and having the server return the same result for a repeated key enables safe retries"
+      - "An idempotency key is a mechanism for caching GET request results for speed, and is unrelated to preventing duplicate POST execution"
+    answerIndex: 2
+    explanation: "The article explains that POST is non-idempotent, so a naive retry is dangerous, and that the client cannot tell which side of the timeout the failure occurred on. As a countermeasure, it introduces the idempotency key (Idempotency-Key), a design where the server detects duplicate requests and returns the same result."
+
+  - question: "Which of the following statements about REST's \"stateless\" principle is incorrect?"
+    choices:
+      - "Stateless means the server never persists the state of resources in a database at all"
+      - "Because of the stateless principle, the server doesn't retain the context of its dialogue with the client (session state), so authentication information must be included with every single request"
+      - "In pagination, the fact that \"the rest of the pages not yet sent\" isn't sent proactively by the server, but is only returned once the client explicitly requests the next page, stems from the stateless property that the server doesn't remember each client's retrieval progress"
+      - "Stateless refers strictly to the concept that the server doesn't retain the context of its dialogue with the client (such as whether they're currently logged in)"
+    answerIndex: 0
+    explanation: "The article's \"Common Misconceptions\" section explicitly states that stateless means the server doesn't retain the context of its dialogue (session state) — it does not mean the server doesn't persist the state of resources in a database. It's important not to conflate the two."
+
+  - question: "Which statement about the reality of what's commonly called a \"RESTful API\" is most appropriate?"
+    choices:
+      - "The majority strictly satisfy the principles defined in Fielding's original dissertation (particularly HATEOAS)"
+      - "As long as data is exchanged in JSON format, it qualifies as RESTful regardless of URL design"
+      - "Many are loose \"REST-like\" implementations that only practice representing resources via URLs, using HTTP methods appropriately, and exchanging data as JSON — often not strictly satisfying principles like HATEOAS — but this itself is rarely treated as a problem in practice"
+      - "Calling an API that doesn't satisfy HATEOAS \"RESTful\" is a technical error, and is also strictly treated as a problem in practice"
+    answerIndex: 2
+    explanation: "The article explains that much of what's called a \"RESTful API\" in practice is a \"REST-like\" implementation that doesn't strictly satisfy Fielding's principles, such as HATEOAS, and that this itself is rarely treated as a problem in practice."
+
+  - question: "Which statement about OAuth 2.0's authorization code flow is most appropriate?"
+    choices:
+      - "The client (third-party app) receives the user's password directly from the authorization server and uses it to access the resource server"
+      - "The access token the client ultimately receives is typically given a long validity period, and there's no need to also use a refresh token"
+      - "The client never receives the user's password, instead obtaining an access token in exchange for an authorization code. The access token is typically given a short validity period, and is commonly paired with a long-lived refresh token so it can be renewed without requiring the user to log in again"
+      - "The resource owner enters their login credentials directly into the client's screen, and the client forwards that information to the authorization server, causing an authorization code to be issued"
+    answerIndex: 2
+    explanation: "The article explains that the key point of OAuth 2.0 is that the client never receives the user's password even once, with the user logging in and granting consent directly on the authorization server's own screen. It also describes the access token as typically short-lived, with a long-lived refresh token being a common design choice."
+
+  - question: "For a Redfish API that lists hundreds of iDRACs, in an environment where servers are added and decommissioned on a routine basis, which statement about pagination implementation is most appropriate?"
+    choices:
+      - "Offset-based pagination (`?page=2&limit=50`) is best suited to this environment because the page boundaries don't shift even when data is added or removed during retrieval"
+      - "Cursor-based pagination (`?after=<ID of the last item from before>`) tends to be preferred in practice in this kind of large-scale, frequently changing environment because it's resistant to shifting even when data is added or removed"
+      - "Because REST is a stateless mechanism, the server remembers which page each client has already retrieved, and automatically pushes the next page"
+      - "Cursor-based pagination has a clear advantage over offset-based pagination in that it lets you jump directly to a specific page number"
+    answerIndex: 1
+    explanation: "The article explains that offset-based pagination can have its page boundaries shift due to data being added or removed during retrieval, causing duplicates or gaps, whereas cursor-based pagination is resistant to shifting and behaves stably against large amounts of data — making it preferred in practice for large-scale environments where servers are frequently added and removed. Conversely, jumping directly to a specific page is something cursor-based pagination is not well suited for."
+
+  - question: "Which statement about isolating the cause when requests to an API client start returning 401 or 403 is most appropriate?"
+    choices:
+      - "401 means \"no or invalid credentials,\" and 403 means \"authenticated, but insufficient permission\" — in either case, the standard first step is to suspect an expired authentication token, insufficient permissions, or a typo in a header name"
+      - "Both 401 and 403 indicate that server-side processing is heavy and the response is delayed, so the first step is to lower the request frequency and wait"
+      - "401 is classified as client-caused and 403 as server-caused, so if 403 is returned, you should try restarting the server"
+      - "403 indicates that no credentials exist at all, and 401 indicates that authentication succeeded but permissions are insufficient"
+    answerIndex: 0
+    explanation: "The article's status code table defines 401 as \"no or invalid credentials\" and 403 as \"authenticated, but insufficient permission,\" and the troubleshooting section states that when 401/403 is returned, you should suspect an expired authentication token, insufficient permissions, or a typo in a header name. Note that both are classified under 4xx (client-side issues)."
+
+  - question: "Which statement about the relationship between \"protocol\" and \"API\" is most appropriate?"
+    choices:
+      - "A protocol refers to an individual window that differs by service, while an API refers to a general-purpose communication etiquette shared across devices and software"
+      - "An API is built on top of a protocol — the protocol is a general-purpose set of procedures and formats (like HTTP) that doesn't depend on any particular piece of software, while the API is the window and set of conventions each individual service exposes on top of it"
+      - "Protocol and API refer to the same layer of concept under different names, and there's no practical need to distinguish between them"
+      - "A RESTful API is a new, higher-level protocol proposed specifically to replace the protocol HTTP"
+    answerIndex: 1
+    explanation: "The article explains that a protocol is the communication etiquette itself, shared across any combination of client and server, while an API is the window and set of conventions each service individually exposes on top of it. A RESTful API is described as being built from the combination of individual services exposing an API, following the etiquette of the HTTP protocol."
+
+  - question: "What is the most appropriate rebuttal to the claim \"as long as it's HTTPS, the API is secure\"?"
+    choices:
+      - "True. HTTPS encompasses authentication and authorization functionality in addition to encrypting communication, so this is sufficient on its own"
+      - "False. HTTPS guarantees prevention of eavesdropping and tampering on the communication path (encryption), but who is accessing it (authentication) and what they're allowed to do (authorization) are separate layers, so anyone can impersonate a user if authentication credentials are leaked"
+      - "False. HTTPS doesn't go through a TLS handshake, so the communication content isn't actually encrypted, meaning it can't be called secure"
+      - "True, but only when Basic authentication is used does a separate countermeasure become necessary"
+    answerIndex: 1
+    explanation: "The article's \"Common Misconceptions\" section explicitly states that HTTPS guarantees encryption of the communication path, but authentication and authorization are separate layers, and that anyone can impersonate a user over HTTPS if authentication credentials are leaked. The TLS handshake itself is always performed as part of HTTPS communication."

@@ -1,0 +1,72 @@
+questions:
+  - question: "Which statement best matches the article's description of the \"static address pool\" method RRAS uses to hand out IP addresses to VPN clients?"
+    choices:
+      - "It relays requests to a real DHCP server on the corporate LAN and passes the address handed out from there to the client"
+      - "It hands out addresses, in connection order, from a range of IP addresses specified in advance in the RRAS configuration screen"
+      - "The client declares any IP address it wants, and RRAS simply approves it as-is"
+      - "It always hands out the same IP address as the corporate LAN's DNS server"
+    answerIndex: 1
+    explanation: "A static address pool hands out addresses, in connection order, from a range of IP addresses specified in advance in the RRAS configuration screen. Relaying to a DHCP server is a separate method—the DHCP relay agent."
+
+  - question: "In a typical configuration using a static address pool, how is the first address in the pool used? Which statement best matches the article's explanation?"
+    choices:
+      - "It is always reserved unused and is never used for any purpose"
+      - "It is reserved for the RRAS server's own internal interface and used as the common counterpart for every connecting VPN client"
+      - "It is permanently assigned to whichever client connects first, and only that client ever uses it thereafter"
+      - "It always matches the IP address of the corporate LAN's default gateway (a physical router)"
+    answerIndex: 1
+    explanation: "In many implementations, the first address of the static address pool is reserved for the RRAS server's own internal interface, and is used as the common point-to-point-link counterpart for every VPN client."
+
+  - question: "Which statement best matches the article's explanation of why it isn't contradictory for multiple VPN clients to share the same \"server-side peer address\"?"
+    choices:
+      - "In reality, only one client can be connected at a time"
+      - "L2TP's Tunnel ID/Session ID lets the link with each client be treated as an independent, separate virtual link"
+      - "IP address duplication is automatically resolved at the TCP layer"
+      - "The Windows Firewall automatically reassigns a different address to each client"
+    answerIndex: 1
+    explanation: "Because L2TP's Tunnel ID/Session ID treats the link with each client as independent, the RRAS server can use the same internal address while simultaneously maintaining a separate dedicated link with each client."
+
+  - question: "Which statement best matches the article's explanation of why a gateway must be specified even though the IP address handed to a VPN client numerically appears to be on the same subnet as the corporate LAN?"
+    choices:
+      - "Because the VPN client's virtual adapter does not participate in the corporate LAN's Ethernet segment, L2 reachability via ARP doesn't apply, so communication must always go through L3 routing via the RRAS server"
+      - "Because IPv6 and IPv4 addresses are mixed, and a gateway is needed to convert between them"
+      - "Because a VPN client's IP address is actually always on a different subnet, so it isn't really the same segment"
+      - "Because specifying a gateway is merely a security convention with no technical necessity"
+    answerIndex: 0
+    explanation: "The VPN client's virtual PPP adapter does not participate in the corporate LAN's Ethernet segment, either physically or logically. The very concept of L2 reachability via ARP doesn't exist over a point-to-point link, so communication is always achieved through L3 routing via the RRAS server."
+
+  - question: "Which statement best matches the article's explanation of how the RRAS server manages each connected VPN client?"
+    choices:
+      - "It processes all clients' traffic indiscriminately through a single shared interface"
+      - "It dynamically creates a dedicated virtual interface for each client, and adds a host route to the routing table for each client's assigned IP address"
+      - "It unifies all clients' IP addresses into a single one to simplify management"
+      - "It reconfigures the corporate LAN's physical NIC every time a client connects"
+    answerIndex: 1
+    explanation: "RRAS creates a dedicated virtual PPP interface each time a client connects, and a host route is automatically added to the routing table for each client's assigned IP address."
+
+  - question: "According to the article, what is the cause of the typical stumbling point where \"the VPN connects, but there's no communication at all with the corporate LAN\"?"
+    choices:
+      - "The static address pool's range was set too wide"
+      - "IPv4 routing was not enabled on RRAS, so relay to the LAN side simply isn't functioning"
+      - "The L2TP port number was changed from 1701"
+      - "The client's OS doesn't support PPP"
+    answerIndex: 1
+    explanation: "Forgetting to enable IPv4 routing means the VPN connection itself can still succeed, but relay to the corporate LAN via the routing table doesn't function, so communication fails. Establishing the VPN connection and enabling routing are separate settings."
+
+  - question: "Which statement best matches the article's explanation of the relationship between the \"internal address for VPN clients\" discussed in the article and the \"virtual IP (VIP)\" used in redundant configurations?"
+    choices:
+      - "They are exactly the same mechanism, and are always configured with the identical IP address"
+      - "The former is the counterpart of the VPN's point-to-point link, and the latter is an abstraction that keeps clients from needing to know which real server is currently active—they are separate IP addresses serving different purposes"
+      - "If a virtual IP is configured, the internal address for VPN clients becomes unnecessary"
+      - "The internal address for VPN clients always automatically inherits the same value as the virtual IP"
+    answerIndex: 1
+    explanation: "The internal address for VPN clients acts as the counterpart of the point-to-point link, while the virtual IP is an abstraction used in redundant configurations—entirely separate purposes. Both can coexist on the same server at once, each playing its own independent role."
+
+  - question: "Which statement best matches the article's explanation of how \"gateway\" is handled in a configuration using a DHCP relay agent?"
+    choices:
+      - "The gateway setting distributed via the DHCP scope always functions as-is"
+      - "Regardless of what the DHCP scope configures, since it's still a PPP link, the only thing that actually functions is the RRAS server's internal address"
+      - "The concept of a gateway becomes unnecessary when using DHCP relay"
+      - "When using DHCP relay, the gateway is always the corporate LAN's physical router"
+    answerIndex: 1
+    explanation: "With DHCP relay, the actual DHCP server hands out the IP address, but since the connection is still a PPP link via RRAS, only the RRAS server's internal address actually functions as the gateway—regardless of what the DHCP scope's gateway setting says."

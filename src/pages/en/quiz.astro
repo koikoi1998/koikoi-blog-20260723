@@ -1,13 +1,13 @@
 ---
 import { getCollection } from "astro:content";
-import BaseLayout from "../layouts/BaseLayout.astro";
-import { seriesNames } from "../consts";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { seriesNamesEn } from "../../consts";
 
-const articles = await getCollection("articles", ({ data }) => !data.draft);
-const quizzes = await getCollection("quizzes");
+const articles = await getCollection("articlesEn", ({ data }) => !data.draft);
+const quizzes = await getCollection("quizzesEn");
 const articleById = new Map(articles.map((a) => [a.id, a]));
 
-const seriesOrder = Object.keys(seriesNames);
+const seriesOrder = Object.keys(seriesNamesEn);
 
 const dataset = quizzes
   .filter((q) => articleById.has(q.id) && q.data.questions.length > 0)
@@ -18,7 +18,7 @@ const dataset = quizzes
       title: article.data.title,
       series: article.data.series,
       order: article.data.order,
-      url: `/articles/${q.id}`,
+      url: `/en/articles/${q.id}`,
       questions: q.data.questions,
     };
   })
@@ -26,36 +26,39 @@ const dataset = quizzes
 
 const totalQuestions = dataset.reduce((sum, a) => sum + a.questions.length, 0);
 
-// script要素の中で "</script>" が出現してタグが途中終了しないようにエスケープする
-const quizJson = JSON.stringify({ seriesNames, articles: dataset }).replace(/</g, "\\u003c");
+// Escape "</script>" inside the JSON payload so it can't prematurely close the script tag.
+const quizJson = JSON.stringify({ seriesNames: seriesNamesEn, articles: dataset }).replace(/</g, "\\u003c");
 ---
 
 <BaseLayout
-  title="確認問題"
-  description="公開している記事を読めば正解できる、4択の理解度チェック問題集。ランダム3問モードとテーマ別の全問モードがあります。"
-  lang="ja"
-  altHref="/en/quiz"
+  title="Quiz"
+  description="A 4-choice comprehension quiz you should be able to pass just by reading the published articles. Includes a random 3-question mode and a full per-topic mode."
+  lang="en"
+  altHref="/quiz"
 >
   <div class="quiz-intro">
     <span class="eyebrow">// SELF-CHECK QUIZ</span>
-    <h1>確認問題</h1>
+    <h1>Quiz</h1>
     <p>
-      各記事の「本筋の理解」と「上位1%の理解」を確認するための、4択の理解度チェックです。公開している記事を読んでいれば正解できるレベルにしてありますが、難易度は資格試験相当を想定しています。間違えた問題は、そのテーマの記事に戻って復習しましょう。
+      A 4-choice comprehension check covering both each article's core narrative and its "top 1%" deep-dive
+      sections. You should be able to answer correctly just by having read the published articles, though the
+      difficulty is calibrated to roughly certification-exam level. If you miss a question, go back and review
+      the corresponding article.
     </p>
-    <p class="quiz-total muted">全{dataset.length}テーマ・{totalQuestions}問収録</p>
+    <p class="quiz-total muted">{dataset.length} topics, {totalQuestions} questions total</p>
   </div>
 
   <div class="quiz-app" id="quiz-app">
     <section class="quiz-mode-select" id="mode-select">
       <div class="quiz-mode-card">
-        <h2>🎲 ランダム3問モード</h2>
-        <p>全テーマの中からランダムに3問出題します。すきま時間の理解度チェックに。</p>
-        <button class="btn-primary" id="start-random">ランダム3問を始める</button>
+        <h2>🎲 Random 3-question mode</h2>
+        <p>Draws 3 random questions from across all topics. Good for a quick comprehension check.</p>
+        <button class="btn-primary" id="start-random">Start random 3</button>
       </div>
 
       <div class="quiz-mode-card quiz-mode-card-wide">
-        <h2>📚 テーマ別 全問モード</h2>
-        <p>記事(テーマ)を選んで、そのテーマの問題をすべて解きます。</p>
+        <h2>📚 Full mode by topic</h2>
+        <p>Pick an article (topic) and answer every question for that topic.</p>
         <div class="theme-list" id="theme-list"></div>
       </div>
     </section>
@@ -68,19 +71,19 @@ const quizJson = JSON.stringify({ seriesNames, articles: dataset }).replace(/</g
         <div class="quiz-choices" id="quiz-choices"></div>
         <div class="quiz-feedback" id="quiz-feedback" hidden>
           <p id="quiz-feedback-text"></p>
-          <button class="btn-primary" id="quiz-next">次へ</button>
+          <button class="btn-primary" id="quiz-next">Next</button>
         </div>
       </div>
-      <button class="btn-secondary quiz-quit" id="quiz-quit">中断してテーマ選択に戻る</button>
+      <button class="btn-secondary quiz-quit" id="quiz-quit">Quit and return to topic selection</button>
     </section>
 
     <section class="quiz-result" id="quiz-result" hidden>
-      <h2>結果</h2>
+      <h2>Results</h2>
       <p class="quiz-score" id="quiz-score"></p>
       <div id="quiz-wrong-list"></div>
       <div class="quiz-result-actions">
-        <button class="btn-primary" id="quiz-retry-random">もう一度(ランダム3問)</button>
-        <button class="btn-secondary" id="quiz-back-to-select">テーマ選択に戻る</button>
+        <button class="btn-primary" id="quiz-retry-random">Try again (random 3)</button>
+        <button class="btn-secondary" id="quiz-back-to-select">Back to topic selection</button>
       </div>
     </section>
   </div>
@@ -117,7 +120,7 @@ const quizJson = JSON.stringify({ seriesNames, articles: dataset }).replace(/</g
       return a;
     }
 
-    // テーマ別モードの一覧をシリーズごとにグルーピングして描画
+    // Render the per-topic mode list, grouped by series.
     const bySeries = new Map<string, Article[]>();
     for (const a of articles) {
       if (!bySeries.has(a.series)) bySeries.set(a.series, []);
@@ -136,7 +139,7 @@ const quizJson = JSON.stringify({ seriesNames, articles: dataset }).replace(/</g
         const btn = document.createElement("button");
         btn.type = "button";
         btn.className = "theme-btn";
-        btn.textContent = `${a.title}(${a.questions.length}問)`;
+        btn.textContent = `${a.title} (${a.questions.length} questions)`;
         btn.addEventListener("click", () => {
           startQuiz(a.questions.map((q) => ({ ...q, _source: a })));
         });
@@ -182,7 +185,7 @@ const quizJson = JSON.stringify({ seriesNames, articles: dataset }).replace(/</g
     function renderQuestion() {
       const s = session!;
       const q = s.questions[s.index];
-      document.getElementById("quiz-progress-label")!.textContent = `第${s.index + 1}問 / 全${s.questions.length}問`;
+      document.getElementById("quiz-progress-label")!.textContent = `Question ${s.index + 1} of ${s.questions.length}`;
       document.getElementById("quiz-theme-tag")!.textContent = q._source.title;
       document.getElementById("quiz-question-text")!.textContent = q.question;
 
@@ -218,11 +221,11 @@ const quizJson = JSON.stringify({ seriesNames, articles: dataset }).replace(/</g
 
       const feedback = document.getElementById("quiz-feedback")!;
       const feedbackText = document.getElementById("quiz-feedback-text")!;
-      feedbackText.textContent = (correct ? "✅ 正解。" : "❌ 不正解。") + q.explanation;
+      feedbackText.textContent = (correct ? "✅ Correct. " : "❌ Incorrect. ") + q.explanation;
       feedback.hidden = false;
 
       document.getElementById("quiz-next")!.textContent =
-        s.index + 1 < s.questions.length ? "次へ" : "結果を見る";
+        s.index + 1 < s.questions.length ? "Next" : "See results";
     }
 
     document.getElementById("quiz-next")!.addEventListener("click", () => {
@@ -239,13 +242,13 @@ const quizJson = JSON.stringify({ seriesNames, articles: dataset }).replace(/</g
       const s = session!;
       runner.hidden = true;
       result.hidden = false;
-      document.getElementById("quiz-score")!.textContent = `${s.score} / ${s.questions.length} 問正解`;
+      document.getElementById("quiz-score")!.textContent = `${s.score} / ${s.questions.length} correct`;
 
       const wrongListEl = document.getElementById("quiz-wrong-list")!;
       wrongListEl.innerHTML = "";
       if (s.wrong.length === 0) {
         const p = document.createElement("p");
-        p.textContent = "全問正解です。素晴らしい理解度です。";
+        p.textContent = "All correct. Excellent understanding.";
         wrongListEl.appendChild(p);
         return;
       }
@@ -254,7 +257,7 @@ const quizJson = JSON.stringify({ seriesNames, articles: dataset }).replace(/</g
       for (const q of s.wrong) uniqueArticles.set(q._source.slug, q._source);
 
       const p = document.createElement("p");
-      p.textContent = "次のテーマの記事を復習しましょう:";
+      p.textContent = "Review these articles:";
       wrongListEl.appendChild(p);
 
       const ul = document.createElement("ul");

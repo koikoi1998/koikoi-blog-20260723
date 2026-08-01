@@ -1,0 +1,72 @@
+questions:
+  - question: "In a hub environment (where all ports share the same wire), a frame not addressed to a given host arrives at that host's NIC. Based on the article's content, what is the most appropriate description of what happens?"
+    choices:
+      - "The NIC parses the destination IP address in the IP header in hardware, and discards the frame if it's not addressed to it"
+      - "The NIC chip itself checks, at the hardware level, whether the destination MAC address is addressed to it (or to broadcast/multicast), and discards the frame without notifying the CPU at all"
+      - "An interrupt is raised to the CPU first, and then the top-half interrupt handler looks at the IP address to decide whether to discard the frame"
+      - "The NIC has a mechanism similar to a switch's MAC address table, and decides the destination port before forwarding only to the relevant host"
+    answerIndex: 1
+    explanation: "NIC hardware doesn't dutifully raise a CPU interrupt for every frame it receives — it performs first-pass filtering at the hardware level based on the destination MAC address, and discards irrelevant frames without notifying the CPU. The criterion is the MAC address, not the IP address (choice 1 mixes this up), and this decision completes before an interrupt is even raised, so the top half never gets involved (choice 3). It's also a single NIC's self-contained decision, distinct from the port selection a switch performs (choice 4)."
+
+  - question: "When incoming traffic to a server surges, what is the most appropriate description of how the Linux kernel behaves regarding interrupt handling?"
+    choices:
+      - "The top half (hardware interrupt handler) extends its processing time and starts delivering arriving frames all the way to the network stack on the spot"
+      - "Depending on traffic volume, the system dynamically switches from raising an interrupt per frame to NAPI actively polling the ring buffer at regular intervals, avoiding an interrupt storm"
+      - "RSS's distribution across multiple CPU cores automatically stops, and a single core starts processing all frames sequentially"
+      - "DMA is automatically disabled, and the CPU switches to reading data byte by byte from the NIC's registers"
+    answerIndex: 1
+    explanation: "NAPI switches to polling mode, stopping interrupts once traffic increases, to avoid the overhead of one interrupt per packet (an interrupt storm). The top half is designed to always finish with the bare minimum of processing and is not extended under high load (choice 1), and RSS's distribution across multiple cores is most important precisely under high load (choice 3). The text also never states that DMA gets disabled under high load (choice 4)."
+
+  - question: "What happens between a NIC receiving a frame and the CPU being notified via an interrupt, as most consistent with the article's content?"
+    choices:
+      - "The NIC only holds the frame temporarily in its own internal buffer, and the CPU writes it into main memory from within the interrupt handler"
+      - "The frame's data has already been written directly by DMA into a ring buffer in main memory, and the CPU is not involved in this write process at all"
+      - "The frame's data is transferred to main memory byte by byte via the CPU's registers"
+      - "The frame's data is first copied from kernel space to user space, and then written to main memory via DMA"
+    answerIndex: 1
+    explanation: "Thanks to DMA, before the CPU is even interrupted, the NIC has already written the frame directly into a ring buffer in main memory. The CPU is only invoked after this write completes, and is not involved in the write operation itself. Having the CPU read data byte by byte is explained in the article as the inefficient scenario that would occur without DMA (choice 3)."
+
+  - question: "In an environment where a software-based relay mechanism that rewrites packet contents — such as a virtual switch or load balancer — sits along the communication path, an intermittent communication failure attributable to checksum offload occurs. What is the most appropriate technical explanation for this?"
+    choices:
+      - "Checksum offload works on the premise that the sender hands off the packet to the NIC without computing the checksum; an intermediary unaware of this premise forwards the packet with an uncalculated (or dummy) checksum, and the receiver silently discards it as a verification failure"
+      - "Checksum offload is a feature that's entirely self-contained on the receiving NIC and is never affected by the sender's settings or any intermediary along the path"
+      - "With checksum offload enabled, the TCP sequence number calculation itself is performed incorrectly on the NIC side, causing packets to arrive out of order"
+      - "Checksum offload is a feature that automatically disables itself depending on whether a VLAN tag is present, and this symptom is caused solely by TSO/GRO"
+    answerIndex: 0
+    explanation: "Checksum offload is built on the premise that the NIC computes the checksum just before transmission; if an intermediary unaware of this forwards the packet with an uncalculated checksum, the receiver treats it as a verification failure and silently drops it. Sequence number calculation (choice 3) isn't mentioned in the text, and automatic coupling with VLAN tags or attributing it solely to TSO/GRO (choice 4) is incorrect."
+
+  - question: "After newly adopting VXLAN tunneling internally, an unexplained bug appears where packets of a specific size cause a hang. What is the most consistent technical background for this bug, based on the article?"
+    choices:
+      - "VXLAN encapsulation shifts the position and length of headers from normal, causing a mismatch with the header structure that TSO/GSO/GRO assume in hardware or driver logic, which can lead to incorrect splitting/combining calculations"
+      - "Because VXLAN is a protocol that doesn't use IP addresses, it conflicts with the NIC's first-pass MAC-address filtering, causing frames to be discarded"
+      - "VXLAN tunneling is incompatible with DMA, so writes to the ring buffer stop happening altogether"
+      - "Using VXLAN forces NAPI into polling mode permanently, preventing it from ever returning to interrupt-driven mode"
+    answerIndex: 0
+    explanation: "TSO, GSO, and GRO perform their splitting/combining based on assumptions about the Ethernet frame's header structure (position and length); when tunneling like VXLAN shifts this assumption via encapsulation, the calculations can go wrong, leading to packet corruption or hangs at specific sizes. VXLAN is not a protocol that avoids IP (choice 2), and the article describes no relationship between DMA or NAPI's operating mode and VXLAN (choices 3 and 4)."
+
+  - question: "A proposal is made to introduce DPDK-based kernel bypass on a load balancer for an ordinary web service. Based on the article's content, what is the most reasonable evaluation of this proposal?"
+    choices:
+      - "Kernel bypass always speeds up network processing, so it should be actively adopted for any use case"
+      - "Because DPDK permanently dedicates at least one CPU core to busy polling and loses general-purpose kernel functionality like iptables, for ordinary use cases where sub-microsecond latency isn't an issue, the downside of increased operational complexity tends to outweigh the benefit"
+      - "DPDK is essentially just internally invoking NAPI's polling mode, with no fundamental difference from a normal NIC driver's behavior"
+      - "Adopting DPDK completely eliminates the need for IRQ affinity or NUMA-aware tuning, so operations are always simplified"
+    answerIndex: 1
+    explanation: "The article explicitly states that because kernel bypass comes with the cost of permanently dedicating CPU cores and losing general-purpose functionality, the downside of operational complexity tends to outweigh the benefit outside of use cases where microsecond-level latency actually matters. DPDK takes the NIC out from under kernel management and operates it directly from user space, which is distinct from NAPI (choice 3)."
+
+  - question: "On a 2-socket server, a NIC is physically plugged into a PCIe slot close to socket 0. What happens if that NIC's interrupt processing (IRQ affinity) is deliberately pinned to a CPU core belonging to socket 1?"
+    choices:
+      - "Cross-socket memory access becomes more likely, and given NUMA characteristics, extra latency piles up"
+      - "RSS automatically reassigns processing to a core on socket 0, so there is no performance impact"
+      - "DMA writes to the ring buffer can no longer cross sockets at all, causing packet loss"
+      - "As long as irqbalance is running, there is theoretically no performance difference due to NUMA placement"
+    answerIndex: 0
+    explanation: "Assigning interrupt processing to a core on the socket farther from the NIC makes cross-socket memory access more likely when processing the packet data, and given NUMA characteristics, this piles on extra latency. The article notes that automatic distribution tools like irqbalance often don't account for NUMA topology, so there's no guarantee this gets automatically corrected (choices 2 and 4)."
+
+  - question: "Running `mpstat -P ALL 1` reveals that `%soft` is unusually high on one specific core. Based on the article's content, what is the most appropriate investigation/response approach for this situation?"
+    choices:
+      - "Check `/proc/interrupts` to see which core the relevant NIC's interrupts are concentrated on, and verify whether the number of RSS queues matches the CPU core count and whether irqbalance is running"
+      - "`%soft` is an indicator of disk I/O wait, so a storage bottleneck should be suspected first"
+      - "Disabling all offload features with `ethtool -K` is the only remedy for this situation"
+      - "Skew in `%soft` is always caused by a DMA malfunction, and increasing the ring buffer size will always resolve it"
+    answerIndex: 0
+    explanation: "When `%soft` (software interrupt processing) is high on a specific core, interrupts may be skewed toward that core, and the article lists checking `/proc/interrupts` along with the RSS queue count and irqbalance status as the investigation steps. Disabling offload (choice 3) is an isolation step for a different symptom (communication problems), not the sole remedy for this situation."

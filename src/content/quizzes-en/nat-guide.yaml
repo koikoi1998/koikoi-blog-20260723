@@ -1,0 +1,81 @@
+questions:
+  - question: "Which statement best matches the article's description of the difference between the three forms of NAT (Static NAT, Dynamic NAT, and NAPT)?"
+    choices:
+      - "Static NAT and Dynamic NAT preserve a 1:1 relationship between one private IP and one global IP, while NAPT achieves many-to-one sharing by also using port numbers"
+      - "Only NAPT translates between private and global IP addresses; Static NAT and Dynamic NAT translate only port numbers"
+      - "Static NAT dynamically assigns a global IP, while Dynamic NAT always assigns a fixed global IP"
+      - "In all three forms, only one global IP can ever be in use at a time"
+    answerIndex: 0
+    explanation: "Static NAT and Dynamic NAT are limited to 1:1 translation between IP addresses, but NAPT adds a new axis of identification—the port number—allowing many devices to share a single global IP simultaneously. Choice 3 has the descriptions of Static and Dynamic reversed."
+
+  - question: "Which of the following is NOT part of the \"5-tuple\" that the NAPT translation table uses to identify a communication session?"
+    choices:
+      - "Protocol type"
+      - "Source IP address and source port number"
+      - "Destination IP address and destination port number"
+      - "Source MAC address"
+    answerIndex: 3
+    explanation: "The 5-tuple is the combination of \"protocol type + source IP:port + destination IP:port.\" A MAC address is Layer 2 information and is not used as a key in the NAPT translation table."
+
+  - question: "Which statement best matches the article's explanation of how a NAT device decides which internal device to forward a returning packet to?"
+    choices:
+      - "It looks up the translation table in reverse, keyed on the destination port number (the external port) of the returning packet"
+      - "It looks only at the source IP address of the returning packet and always forwards it to whichever device communicated most recently"
+      - "It embeds the internal device's MAC address into the packet and uses that to decide"
+      - "It reverse-calculates the internal device from the TTL value of the returning packet"
+    answerIndex: 0
+    explanation: "A NAT device looks up the translation table in reverse, keyed on the destination port number of the returning packet (the external port assigned by the NAT device), and forwards it to the corresponding internal IP:port. The external port number is effectively the identifier that distinguishes between multiple devices."
+
+  - question: "Which statement best matches the article's explanation of why a protocol like ESP (IPsec) causes problems in a NAPT environment?"
+    choices:
+      - "Because ESP is always encrypted, the NAT device can't read the contents of the packet"
+      - "ESP has no concept of a port number, so it can't be used as a key in the NAPT translation table"
+      - "ESP only operates on top of TCP and is incompatible with UDP-based NAT devices"
+      - "ESP is always an IPv6-only protocol and is structurally incompatible with IPv4 NAT"
+    answerIndex: 1
+    explanation: "The NAPT translation table is designed around the assumption of port numbers, but ESP has no concept of a port number. On top of that, many NAT devices don't even support passthrough for IP protocol number 50, causing a compound problem."
+
+  - question: "According to the article, what happens under NAT-T when a NAT is detected?"
+    choices:
+      - "The ESP packet's encryption is removed and it is exchanged in plaintext"
+      - "Subsequent exchanges float to UDP port 4500, and the ESP packet is further wrapped in a UDP header"
+      - "The NAT device automatically whitelists IP protocol number 50, and communication continues using plain ESP thereafter"
+      - "The key exchange protocol stops entirely and communication continues without a pre-shared key"
+    answerIndex: 1
+    explanation: "Once NAT is detected, both key exchange and ESP traffic float to UDP port 4500, and ESP packets are further wrapped in a UDP header (RFC 3948). This allows the NAT device to perform port-based translation as it would for an ordinary UDP packet. Encryption itself is not removed."
+
+  - question: "Which statement best matches the article's explanation of the role of the \"Non-ESP Marker\" in NAT-T?"
+    choices:
+      - "A field that stores the encryption key for the ESP packet"
+      - "A marker that lets the receiving side distinguish between key-exchange messages and encapsulated ESP packets flowing over the same UDP port 4500"
+      - "A flag that determines whether the NAT device should drop the ESP packet"
+      - "An identifier indicating ESP's authentication method (PSK or certificate)"
+    answerIndex: 1
+    explanation: "Because both key-exchange messages and encapsulated ESP packets flow over the same UDP port 4500, a 4-byte 0x00000000 (the Non-ESP Marker) is prepended to key-exchange messages so the receiving side can instantly distinguish between the two."
+
+  - question: "Which statement best matches the article's explanation of why NAT-T keepalives are necessary?"
+    choices:
+      - "Because ESP encryption keys must be automatically rotated at regular intervals"
+      - "Because NAPT translation table entries are automatically deleted after a period of inactivity"
+      - "Because the key exchange protocol itself requires periodic retransmission as part of its specification"
+      - "Because it is needed to maintain the modem handshake"
+    answerIndex: 1
+    explanation: "NAPT translation table entries are automatically deleted after a period without traffic. Because ESP/key-exchange traffic doesn't necessarily occur continuously, periodic keepalives are used to prevent entries from expiring."
+
+  - question: "Which statement best matches the article's explanation of the difference between Cone-type NAT (Full/Restricted/Port-Restricted) and Symmetric NAT?"
+    choices:
+      - "Cone-type NAT keeps using the same external port even when the destination changes, while Symmetric NAT assigns a different external port for each destination"
+      - "Cone-type NAT only supports UDP, while Symmetric NAT only supports TCP"
+      - "Symmetric NAT can always accommodate more devices than Cone-type NAT"
+      - "Cone-type NAT only allows encrypted traffic, while Symmetric NAT only allows plaintext traffic"
+    answerIndex: 0
+    explanation: "Cone-type NAT always assigns the same external port for a given internal source IP:port, whereas Symmetric NAT assigns a new external port every time the destination changes. This difference determines how easily NAT hole punching can succeed."
+
+  - question: "Which misconception about NAT does the article explicitly refute?"
+    choices:
+      - "NAT's original purpose is to share and conserve IP addresses"
+      - "NAT is itself a security feature that performs encryption and access control"
+      - "There is a realistic upper limit to the external port numbers usable by NAPT"
+      - "NAT and a firewall are separate functions with different purposes"
+    answerIndex: 1
+    explanation: "NAT's purpose is to share and conserve IP addresses; it does not perform encryption or access control. A firewall-like effect can arise as a byproduct of the design where \"only return traffic for connections that originated from the inside is automatically passed,\" but this is not a substitute for explicit access control rules."

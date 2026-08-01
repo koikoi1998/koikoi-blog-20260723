@@ -1,0 +1,99 @@
+questions:
+  - question: "Which of the following is the most accurate reason why L2TP and IPsec need to be combined?"
+    choices:
+      - "L2TP alone has no encryption capability, and IKEv1-based IPsec alone had no standard mechanism for per-user authentication or automatic virtual IP address assignment, both of which remote-access VPNs require"
+      - "L2TP alone cannot create a tunnel over the internet, and IPsec itself provides the tunneling function"
+      - "IPsec alone cannot exchange encryption keys, and L2TP substitutes for key exchange"
+      - "L2TP is a TCP-based protocol, so it needs to be encapsulated with IPsec in order to be sent over UDP"
+    answerIndex: 0
+    explanation: "The technology for digging a tunnel (L2TP) and the technology for locking that tunnel (IPsec) were each developed for their own separate reasons, and later combined into the form we see today. L2TP itself has no encryption capability, and IKEv1-based IPsec had no standard mechanism for per-user authentication or virtual IP assignment — that's the reason for combining them."
+
+  - question: "Which statement about the scope of encryption performed by IPsec's ESP (in transport mode) is correct?"
+    choices:
+      - "Everything is encrypted, including the outer IP header and the UDP header (port 1701)"
+      - "The L2TP/PPP/data portion, including the UDP header (port 1701), is encrypted, but the original (outer) IP header remains intact"
+      - "Only the L2TP header and the data portion are encrypted; the UDP header remains visible on the path"
+      - "Only the IKE negotiation content is encrypted; the actual data portion is sent in plaintext"
+    answerIndex: 1
+    explanation: "Transport mode leaves the original IP header intact and encrypts only its contents (UDP/L2TP/PPP/data). This means the information that this is UDP port 1701 becomes invisible along the path."
+
+  - question: "What is the most appropriate rebuttal to the claim that 'L2TP/IPsec communication cannot work unless UDP 1701 is opened on the firewall'?"
+    choices:
+      - "Correct. UDP 1701 is a port dedicated to L2TP control messages, and it must be permitted on every device along the path"
+      - "Incorrect. UDP 1701 becomes part of the content already encrypted by ESP, so all that's visible to firewalls along the path is UDP 500, UDP 4500, and IP protocol number 50 (ESP) — there's normally no need to individually permit UDP 1701 on intermediate devices"
+      - "Incorrect. L2TP/IPsec doesn't use UDP at all in the first place — it uses TCP port 1701, so the claim is fundamentally wrong"
+      - "Correct, but only when NAT-T is not used — in that case UDP 1701 must be explicitly permitted"
+    answerIndex: 1
+    explanation: "Because ESP encrypts the UDP header along with everything else, all that's visible to firewalls and routers along the path is UDP 500 (IKE), UDP 4500 (NAT-T), and IP protocol number 50 (ESP). There's normally no need to individually permit UDP 1701 on any intermediate device other than the endpoints."
+
+  - question: "What is the most appropriate reason why transport mode, rather than IPsec's tunnel mode, is sufficient for L2TP/IPsec?"
+    choices:
+      - "Transport mode has stronger encryption than tunnel mode"
+      - "Because the role of 'creating a virtual tunnel' is already fulfilled on the L2TP side, layering tunnel mode on top would only add a duplicate IP header — pure wasted overhead"
+      - "Because the NAT-T mechanism only works with transport mode"
+      - "Because RFCs mandate the use of transport mode for PPP authentication"
+    answerIndex: 1
+    explanation: "Tunnel mode wraps the entire original IP packet with a new outer IP header. Because L2TP itself already provides tunneling, transport mode is sufficient for L2TP/IPsec, and layering tunnel mode on top would be redundant."
+
+  - question: "What is the correct role of the 'Non-ESP marker' in NAT-T?"
+    choices:
+      - "A payload used to compute a hash of the source IP address and port number, in order to detect whether NAT is present along the path"
+      - "A 4-byte identifier attached to the start of the payload so the receiving side can distinguish between IKE messages flowing over UDP port 4500 and encapsulated ESP packets"
+      - "An authentication tag (ICV) for detecting tampering with an ESP packet"
+      - "An encrypted payload for securely delivering a pre-shared key (PSK)"
+    answerIndex: 1
+    explanation: "IKE messages have a 4-byte value of 0x00000000 (the Non-ESP marker) attached to the start of the UDP payload, while ESP packets do not have this marker. The receiving side can instantly distinguish the two kinds of messages sharing UDP port 4500 just by looking at the first 4 bytes."
+
+  - question: "Which statement about the trade-off between IKE Phase 1's Main Mode and Aggressive Mode is most accurate?"
+    choices:
+      - "Aggressive Mode completes in 6 round-trips and Main Mode in 3 round-trips of messages"
+      - "Main Mode exchanges identity information only after encrypting it, so it remains protected even if eavesdropped, whereas Aggressive Mode exchanges identity information and the authentication hash before encryption, creating a risk of an offline brute-force attack against the pre-shared key"
+      - "Aggressive Mode is an IKEv2-only mode and cannot be selected under IKEv1"
+      - "Main Mode and Aggressive Mode differ only in which encryption algorithm they use, with no difference in the security of authentication itself"
+    answerIndex: 1
+    explanation: "Main Mode uses six round-trips to exchange identity information only after encrypting it, keeping it protected. Aggressive Mode shortens this to three round-trips, but exchanges the authentication hash before encryption, which creates a risk of offline brute-force attacks when combined with PSK authentication."
+
+  - question: "What is the most appropriate reason why the 'virtual IP address' assigned after successful PPP authentication is necessary in L2TP/IPsec?"
+    choices:
+      - "Because the client cannot yet reach the VPN server's public IP address, so a separate IP address is needed for internal communication"
+      - "Because many internal servers perform access control based on whether the source IP address falls within the internal address range, and the client's source IP needs to be made to look like 'legitimate access originating from inside the company'"
+      - "Because IPsec's ESP is specified to be able to encrypt only packets addressed to a virtual IP address"
+      - "Because L2TP's Tunnel ID must have the same value as the virtual IP address in order to identify the session"
+    answerIndex: 1
+    explanation: "The client can already reach the gateway that is the VPN server, but the internal servers beyond it often perform access control based on whether the source IP address is within the internal address range. Assigning a virtual IP address allows this control to be passed legitimately."
+
+  - question: "Which practical weakness in L2TP/IPsec's two-layer authentication model (IPsec-layer authentication and PPP-layer authentication) is pointed out in the article?"
+    choices:
+      - "A configuration where the IPsec-layer pre-shared key (PSK) is reused across every user in the organization is common, and in this case effective personal authentication depends entirely on the PPP-layer username and password"
+      - "PPP-layer authentication happens before encryption by ESP, so it always travels over the network in plaintext"
+      - "Only certificates can be used for IPsec-layer authentication; pre-shared keys (PSK) are not supported by the specification"
+      - "The two-layer authentication model requires generating a brand-new key pair for every connection, which makes operational overhead extremely high"
+    answerIndex: 0
+    explanation: "A configuration where the IPsec-layer PSK is shared across all users is common; in this case the IPsec layer becomes a state where anyone can open a tunnel with the same key, and all effective personal authentication ends up depending entirely on the PPP-layer username and password."
+
+  - question: "In the context of L2TP/IPsec, which is the most accurate explanation of MS-CHAPv2's known cryptographic-strength weakness?"
+    choices:
+      - "MS-CHAPv2 cannot be used with L2TP/IPsec under the specification, so this weakness is irrelevant"
+      - "It has been pointed out that the analysis cost of MS-CHAPv2's internal DES-based authentication handshake can be reduced to that of a single DES key, but in L2TP/IPsec this authentication handshake takes place inside a path already encrypted by ESP, so a third party on the path cannot directly observe the plaintext handshake"
+      - "This weakness affects only the IKE Phase 1 pre-shared key and has no effect on PPP authentication at all"
+      - "This weakness exists only in L2TPv3 and not in L2TPv2, which is used in remote-access VPNs"
+    answerIndex: 1
+    explanation: "The reduction in MS-CHAPv2's analysis cost was mainly identified as a critical weakness for PPTP (a configuration that doesn't go through L2TP). In L2TP/IPsec, the PPP authentication exchange takes place inside a path already encrypted by ESP, so a third party on the communication path cannot observe it directly."
+
+  - question: "Which statement about the difference between L2TPv3 and the L2TPv2 used in remote-access VPNs is correct?"
+    choices:
+      - "L2TPv3 does not assume PPP; it is a pseudowire technology that tunnels L2 frames such as Ethernet frames themselves over an IP network, and its use case differs from L2TP/IPsec in remote-access VPNs"
+      - "L2TPv3 is a version that strengthens L2TPv2's encryption capability, allowing encryption without combining it with IPsec"
+      - "L2TPv3 differs from L2TPv2 in that it uses TCP instead of UDP"
+      - "L2TPv3 does not support NAT-T, so it is not used in enterprise remote-access VPNs"
+    answerIndex: 0
+    explanation: "L2TPv3 (RFC 3931) does not assume PPP; it is a pseudowire technology that tunnels L2 frames themselves, used for things like extending an L2 segment between data centers. It is a completely different thing from the L2TP/IPsec (L2TPv2) discussed in the context of remote-access VPNs."
+
+  - question: "In certificate-based authentication during IKE Phase 1, what is the most appropriate purpose of including a nonce (a random value that changes every time) in what gets signed?"
+    choices:
+      - "To reduce the computational cost of the DH key exchange and speed up the handshake"
+      - "To prevent a 'replay attack,' in which an eavesdropper reuses a signature from a past handshake as-is to impersonate a party"
+      - "To automatically extend the certificate's validity period"
+      - "To identify the peer's port number when traversing NAT"
+    answerIndex: 1
+    explanation: "By including a different nonce every time in what gets signed, it's guaranteed that the signature was made 'specifically for this session, right now,' preventing replay attacks that reuse a past signature."

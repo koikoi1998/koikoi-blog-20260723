@@ -1,0 +1,90 @@
+questions:
+  - question: "In TLS communication, which statement about the distinction between public-key cryptography's \"encryption (confidentiality)\" and \"digital signature\" uses is most accurate?"
+    choices:
+      - "The data you send is encrypted with the peer's private key, preventing eavesdropping"
+      - "The sender encrypts the message itself with their own private key, and the receiver decrypts it with that sender's public key, achieving confidentiality of the communication"
+      - "For confidentiality, you encrypt with the recipient's public key and the recipient decrypts with their own private key; for a signature, the sender signs with their own private key and anyone can verify with the sender's public key — the direction the keys are used in reverses depending on the purpose"
+      - "Public-key cryptography operates with the same direction — \"create with the public key, verify with the private key\" — for both confidentiality and signature purposes"
+    answerIndex: 2
+    explanation: "As shown in the article's table, for confidentiality the direction is \"encrypt with the recipient's public key → decrypt with the recipient's own private key,\" while for a signature it's \"sender signs with their own private key → anyone verifies with the sender's public key.\" The direction the keys are used in reverses depending on the purpose. The article explicitly states that the understanding \"encrypt with the private key, decrypt with the public key\" is wrong."
+
+  - question: "Which of the following best matches the article's explanation for why a digital signature is applied (encrypted with the private key) to the hash value of a message rather than to the entire message?"
+    choices:
+      - "Turning it into a hash value hides the original message itself from third parties"
+      - "Public-key cryptography has a high computational cost, making it inefficient to encrypt an entire body of data, so signing only the fixed-length hash value keeps the cost of the signing operation itself constant regardless of the size of the original data"
+      - "Without going through a hash function, the mathematical correspondence between the private key and public key (the key pair) wouldn't hold in the first place"
+      - "Signing the hash value physically prevents the message from being tampered with on the receiving end"
+    answerIndex: 1
+    explanation: "The article explicitly states that \"public-key cryptography has a high computational cost, making it inefficient to encrypt an entire body of data,\" and that signing only the fixed-length hash value keeps the cost of the signing operation constant regardless of the size of the original data. A hash signature only allows tampering to be detected after the fact — it does not prevent tampering itself."
+
+  - question: "Regarding Diffie-Hellman (DH) key exchange, which statement is most appropriate from the perspective of an eavesdropper who can observe the entire communication over the path?"
+    choices:
+      - "The eavesdropper can observe all of p, g, A, and B, but computing the shared secret value from these requires working backward from A to recover a (solving the discrete logarithm problem), which cannot be solved in a practical amount of time if p and g are sufficiently large"
+      - "As long as the eavesdropper observes A and B, they can directly compute the shared secret value g^(ab) mod p using only multiplication"
+      - "In DH key exchange, p and g themselves are also treated as secret, so the eavesdropper can't even obtain the material needed to compute A or B"
+      - "The eavesdropper can work backward to the shared secret value without knowing a or b, by exploiting the one-way property of a hash function"
+    answerIndex: 0
+    explanation: "The article explains that \"the eavesdropper can see all of p, g, A, and B\" but that \"computing the shared secret value from these requires working backward from A to recover a, known as the discrete logarithm problem, which cannot be solved in a practical amount of time if p and g are sufficiently large.\" p and g are public information that can safely be observed — they are not secret. Also, DH's security rests on the asymmetry that multiplication/exponentiation is easy while recovering the exponent is extremely hard; it has nothing to do with the one-way property of hash functions."
+
+  - question: "Regarding a VPN product configured with PFS (Perfect Forward Secrecy) enabled for IKE Phase 2 and using ECDHE for key exchange, which statement is most appropriate?"
+    choices:
+      - "Key exchange via ECDHE alone completes identity verification of the peer, so no separate authentication via digital signature or pre-shared key is needed"
+      - "Because DH key exchange uses a secret number good for that session alone, separate from the long-lived private key used for signing, even if that long-term key is compromised in the future, past communications that were recorded or eavesdropped on cannot later be decrypted"
+      - "Enabling PFS causes the values of p and g used in DH key exchange to change every time, making the discrete logarithm problem harder"
+      - "Because ECDHE uses elliptic curve cryptography, it improves the strength of peer identity authentication on every key exchange compared to ordinary DHE"
+    answerIndex: 1
+    explanation: "The article explains that the practice of discarding the DH (including ECDHE) secret number after every use — Ephemeral DH — is what's called PFS, and that this ensures that even if the long-term signing private key is compromised in the future, past communications can't be decrypted. It also explicitly states that \"DH has no concept of encrypting or signing at all, and provides no guarantee whatsoever about whether the peer is who they claim to be\" — in real protocols, DH key exchange must be combined with identity verification via a digital signature (or pre-shared key) for secure communication to be established. Using ECDHE does not eliminate the need for identity verification."
+
+  - question: "What is the purpose of a CA verifying the signature on a received CSR using the public key contained within that CSR?"
+    choices:
+      - "Solely to confirm that the CSR's content hasn't been tampered with in transit; it has nothing to do with proof of possession of the public key"
+      - "To confirm that the applicant genuinely possesses the private key corresponding to that public key (Proof of Possession) — without this verification, anyone could submit a CSR using someone else's public key"
+      - "It's processing to automatically adjust the key length of the certificate the CA issues to match the key length recorded in the CSR"
+      - "This signature verification completes identity verification of the applicant (such as confirming domain ownership), so the CA no longer needs to perform any additional identity verification"
+    answerIndex: 1
+    explanation: "The article states that \"by verifying the CSR's signature using the public key contained within the CSR, the CA can confirm that the applicant genuinely possesses the private key corresponding to this public key (Proof of Possession),\" and that without this verification, anyone could submit a CSR using someone else's public key. It's explicitly noted that the CA separately performs identity verification of the applicant (such as confirming domain ownership) in addition to this signature verification — signature verification alone does not complete identity verification."
+
+  - question: "What is the reason for normally keeping the root CA's private key strictly secured offline and delegating day-to-day certificate issuance to intermediate CAs?"
+    choices:
+      - "The root CA's private key has a shorter key length than the intermediate CA's private key, making it more vulnerable to brute-force attacks if kept online"
+      - "If the root CA's private key is compromised, the trustworthiness of every certificate that relies on that root collapses, whereas if an intermediate CA's key is compromised, only that intermediate CA needs to be revoked, sparing the root CA itself from damage"
+      - "The root CA lacks the authority to perform CSR signature verification (Proof of Possession); only intermediate CAs can perform this verification"
+      - "Operating offline is a mechanism that automatically extends the validity period of the root CA certificate"
+    answerIndex: 1
+    explanation: "The article explains that \"the root CA's private key is an extremely critical key — if it's compromised, the trustworthiness of every certificate that relies on that root collapses\" — which is why it's kept strictly secured offline, and that \"even if an intermediate CA's key is compromised, only that particular intermediate CA needs to be revoked, sparing the root CA itself from any damage.\" This isn't about key length or CSR signature verification authority."
+
+  - question: "A client received a certificate and succeeded on all of: signature chain verification, expiration check, and hostname (CN/SAN) match check — yet the connection still failed with a certificate error. Based on the article's verification procedure, what is the most likely cause?"
+    choices:
+      - "If the signature chain verification, expiration, and hostname checks all succeed, every verification item the article lists must be satisfied, so this situation couldn't occur"
+      - "The root CA certificate ultimately reached was not included in that client's trust store (the set of trusted root CA certificates built into the OS or browser)"
+      - "Since a digital signature only proves authenticity and not integrity, tamper detection likely failed"
+      - "The identifying information recorded in the certificate differed from the identifying information the applicant specified when submitting the CSR"
+    answerIndex: 1
+    explanation: "The article's verification procedure includes, in addition to signature chain verification, expiration, revocation, and hostname match, an independent step: confirming whether \"the root CA certificate ultimately reached is included in the verifier's own trust store.\" It states that \"if even one of these checks fails, verification results in an error.\" Whether the signature chain can be correctly traced and whether that root is registered in the trust store are separate checks, so an error can occur solely due to the root not being in the trust store even when every other item succeeds."
+
+  - question: "Which of the following best matches the article's explanation for why TLS adopts a hybrid approach — \"public-key cryptography at the start of the communication, symmetric-key cryptography for exchanging the actual data thereafter\"?"
+    choices:
+      - "Symmetric-key cryptography has an inherent security problem in key distribution itself, so the entire communication should ideally be encrypted with public-key cryptography alone, but it's made hybrid as an unavoidable implementation compromise"
+      - "Because public-key cryptography has a considerably higher computational cost than symmetric-key cryptography, public-key cryptography is used only to securely agree on a symmetric key, and the subsequent exchange of large volumes of data switches to lower-cost symmetric-key cryptography, capturing the benefits of both security and speed"
+      - "Public-key cryptography alone cannot prove authenticity, so an additional signing operation using symmetric-key cryptography is required"
+      - "In TLS, symmetric-key cryptography is used only for key exchange, and actual data is always encrypted using public-key cryptography (such as RSA)"
+    answerIndex: 1
+    explanation: "The article states that \"public-key cryptography has a considerably higher computational cost than symmetric-key cryptography, making it unsuited to encrypting large volumes of actual data,\" and describes the design of using public-key cryptography only for the initial key agreement and switching to symmetric-key cryptography (such as AES) thereafter as \"the standard playbook for capturing the benefits of both — the security of public-key cryptography and the speed of symmetric-key cryptography.\" Proving authenticity is the role of digital signatures (public-key cryptography); a mechanism of \"signing via symmetric-key cryptography\" does not appear in the article."
+
+  - question: "What is the article's position on the claim \"self-signed certificates have weaker cryptographic strength\"?"
+    choices:
+      - "Correct. Since self-signed certificates don't receive a CA's signature, they're forced to use shorter key lengths, lowering their cryptographic strength"
+      - "Incorrect. The strength of the cryptographic algorithm itself (key length, cipher scheme) is unrelated to whether a CA has signed it; the fundamental problem with a self-signed certificate is a matter of trust — that a third party isn't vouching for its identity"
+      - "Correct. Self-signed certificates can only use RSA and can't use stronger schemes like ECDSA, lowering their cryptographic strength"
+      - "Incorrect. Self-signed certificates are automatically registered in the trust store upon issuance, so the trust issue never even arises"
+    answerIndex: 1
+    explanation: "As Misconception 2, the article explicitly states that \"the strength of the cryptographic algorithm itself is unrelated to whether a CA has signed the certificate,\" and that \"the fundamental problem with a self-signed certificate is a matter of trust — it's a certificate whose identity is not vouched for by a third party — not a matter of cryptographic strength.\" It also notes that a certificate issued by an internal CA is likewise treated as untrusted unless that CA is added to the client's trust store, so it's not automatically trusted."
+
+  - question: "A mobile app gets a certificate chain error connecting via HTTPS to an API server, but a colleague connecting to the same server via a PC browser connects without any issue. Based on the article's troubleshooting perspective, what is the most likely cause?"
+    choices:
+      - "The server forgot to present the intermediate certificate, and while the browser was able to fill the gap using an intermediate certificate cached by the OS, many mobile apps and API clients don't fill it in and simply error out"
+      - "Mobile devices and PCs are fundamentally different in the set of root CA certificates registered in their trust stores"
+      - "Mobile apps always perform revocation checking via CRL/OCSP, while browsers never perform revocation checking at all"
+      - "The mobile device's clock isn't synchronized via NTP and is set to a time later than the certificate's expiration date, causing a valid certificate to be misjudged as expired"
+    answerIndex: 0
+    explanation: "In the troubleshooting section, the article explicitly states that \"when the server forgets to present the intermediate certificate, some clients such as browsers can sometimes fill the gap using an intermediate certificate cached by the OS, but many clients (especially API clients and mobile apps) don't fill it in and simply error out,\" explaining this as a typical example of connection results to the same server differing by client type. Clock skew (choice 4) is also a cause mentioned in the article, but in that case there normally wouldn't be a difference where \"only the browser succeeds and only the mobile app fails\" — the device's clock being off is itself the problem, and it doesn't match the scenario in the question."

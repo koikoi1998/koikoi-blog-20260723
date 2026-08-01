@@ -1,0 +1,81 @@
+questions:
+  - question: "Which statement about the correspondence between the OSI reference model and the TCP/IP model is correct?"
+    choices:
+      - "The OSI session layer and presentation layer correspond to the transport layer in the TCP/IP model"
+      - "The OSI application, presentation, and session layers (3 layers) are together treated as the application layer in the TCP/IP model"
+      - "There is no layer in the TCP/IP model that corresponds to the OSI physical layer"
+      - "The OSI network layer corresponds to the transport layer in the TCP/IP model"
+    answerIndex: 1
+    explanation: "The TCP/IP model reorganizes the OSI 7 layers into 4 layers for practical use. OSI's L5 through L7 (session, presentation, application) are together mapped to the application layer in the TCP/IP model."
+
+  - question: "During encapsulation, at which layer is the header containing the source and destination IP addresses attached?"
+    choices:
+      - "Application layer"
+      - "Transport layer (TCP/UDP header)"
+      - "Internet layer (IP header)"
+      - "Network interface layer (Ethernet header)"
+    answerIndex: 2
+    explanation: "The source and destination IP addresses are stored in the IP header attached at the internet layer. The transport layer's header stores port numbers, and the network interface layer's header stores MAC addresses."
+
+  - question: "For communication addressed to a different subnet, which statement correctly explains why it's first sent to the default gateway instead of being resolved directly via ARP?"
+    choices:
+      - "ARP only works within the same LAN, so communication addressed to a different network needs to be forwarded to the next hop based on the routing table"
+      - "ARP is designed to only work after a TCP connection has already been established"
+      - "The MAC address for a different subnet is always a fixed broadcast address"
+      - "Only the default gateway is specially allowed to hold an ARP table"
+    answerIndex: 0
+    explanation: "ARP is a mechanism for mapping IP addresses to MAC addresses within the same LAN. Communication addressed to a different network is first sent to the default gateway (router), and from there forwarded to the next hop based on the routing table."
+
+  - question: "Which of the following statements about the differences between TCP and UDP is incorrect?"
+    choices:
+      - "TCP establishes a connection in advance via a 3-way handshake, while UDP can send data immediately with no setup"
+      - "TCP has congestion control, while UDP does not"
+      - "TCP is always superior to UDP, so it should be used even for use cases where speed is required"
+      - "UDP does not provide delivery confirmation or ordering guarantees"
+    answerIndex: 2
+    explanation: "TCP and UDP aren't a matter of superior vs. inferior — it's a matter of choosing the right tool for the use case. For use cases that prioritize low latency and speed over reliability (real-time video/audio, DNS, etc.), UDP is the appropriate choice, so \"TCP is always better\" is incorrect."
+
+  - question: "What is the most appropriate response to the claim \"if ping works, communication is fine\"?"
+    choices:
+      - "Correct. If ICMP gets through, TCP/UDP communication is guaranteed to succeed as well"
+      - "Incorrect. Ping is a connectivity check using the ICMP protocol, and it does not guarantee whether communication will succeed on a specific TCP/UDP port"
+      - "Incorrect. Ping internally performs a TCP 3-way handshake, so it cannot be used to check UDP communication"
+      - "Correct. But only for IPv6, where the results of ICMP and TCP/UDP can sometimes diverge"
+    answerIndex: 1
+    explanation: "Ping is merely an ICMP-based connectivity check; whether communication succeeds on a specific TCP/UDP port needs to be checked separately. Cases where ICMP gets through but a specific TCP port is closed happen frequently in practice."
+
+  - question: "What is the most accurate description of the state an OS is in during a kernel panic?"
+    choices:
+      - "A state where processing stalls due to deadlock, in which keyboard input and display output often remain alive"
+      - "A self-defensive state in which the kernel decides on its own that it can no longer safely continue processing, and deliberately halts all processing"
+      - "A state that occurs only due to disk I/O congestion, unrelated to the NIC driver"
+      - "A state where, even if the OS freezes, network stack processing alone continues independently"
+    answerIndex: 1
+    explanation: "A kernel panic is a self-defensive halt: the kernel detects things like invalid memory access or an inconsistency in its internal data structures, and deliberately stops all processing to prevent the damage from spreading. Choice A describes the characteristics of a hang (deadlock)."
+
+  - question: "Which of the following correctly describes the mechanism behind a PMTUD black hole?"
+    choices:
+      - "The sender sends a large packet with the DF flag set; a router along the path doesn't fragment it and instead tries to send back an ICMP \"Fragmentation Needed\" message, but that ICMP message gets blocked somewhere along the path, so the sender never receives the feedback and the packet keeps getting silently dropped"
+      - "Because the sender doesn't set the DF flag, every router along the path automatically fragments the packet"
+      - "If a router with too large an MTU exists along the path, TCP's congestion control algorithm malfunctions and throughput drops"
+      - "PMTUD is a mechanism that only affects UDP communication and never occurs with TCP communication"
+    answerIndex: 0
+    explanation: "When the ICMP \"Fragmentation Needed\" message that a router along the path should send back for a large packet with the DF flag set gets blocked by something like a firewall, the sender has no way of learning that the size is too large, and the packet keeps getting silently dropped. This is a PMTUD black hole."
+
+  - question: "What is the most appropriate example of a typical environment where the BBR congestion control algorithm is considered advantageous compared to CUBIC?"
+    choices:
+      - "A stable, low-latency wired LAN where packet loss almost never occurs"
+      - "A Wi-Fi environment where packet loss tends to occur independently of congestion, or a path like an intercontinental link with high latency and high bandwidth"
+      - "Communication confined entirely within a closed network, where congestion control itself could be disabled"
+      - "A network that only uses IPv6"
+    answerIndex: 1
+    explanation: "Because CUBIC is a trial-and-error approach that keeps increasing the send rate until loss occurs, it has a weakness in environments where loss and congestion don't correlate, or in high-latency environments where feedback takes a long time to arrive. BBR determines the send rate model-based from measured bandwidth and RTT, so it's considered advantageous in these environments."
+
+  - question: "Which of the following statements about NIC offload features and kernel bypass is correct?"
+    choices:
+      - "TSO (TCP Segmentation Offload) is a feature where the NIC hardware itself, rather than the CPU, takes over TCP segmentation processing"
+      - "Kernel bypass (e.g., DPDK) is a technology that speeds things up by parallelizing processing inside the OS's network stack"
+      - "Enabling offload features always disables TCP's encryption functionality"
+      - "Kernel bypass is achieved by increasing the frequency of the NIC driver's interrupt processing"
+    answerIndex: 0
+    explanation: "TSO is an offload feature that has the NIC hardware take over TCP segmentation processing. Kernel bypass is a technology that shaves latency by having user-space applications operate the NIC directly, bypassing the OS's network stack entirely — it is not the same as parallelizing internal processing."

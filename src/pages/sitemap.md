@@ -2,6 +2,8 @@
 layout: ../layouts/MarkdownPageLayout.astro
 title: "『上位1%』シリーズ 全記事ガイド——読む順番とサイトマップ"
 description: "『上位1%』シリーズの全記事の目次・読む順番のロードマップ・サイトマップ"
+lang: "ja"
+altHref: "/en/sitemap"
 ---
 
 ## このシリーズについて

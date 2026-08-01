@@ -1,0 +1,72 @@
+questions:
+  - question: "Which statement best matches the article's description of what the \"IP takeover\" approach to implementing a virtual IP (VIP) actually is?"
+    choices:
+      - "A load balancer NAT-translates packets addressed to the virtual IP and forwards them to a real IP"
+      - "The virtual IP itself is simply assigned directly to the NIC of whichever physical server happens to be active at that moment, with no translation process involved"
+      - "The virtual IP is resolved to a real IP by a DNS server"
+      - "The virtual IP is always held simultaneously by multiple servers, which respond in round-robin fashion"
+    answerIndex: 1
+    explanation: "In the IP takeover approach (VRRP/clustering, etc.), there is no translation process between the virtual IP and the real IP—the virtual IP address itself is simply additionally assigned to the active server's NIC."
+
+  - question: "According to the article, what does the newly active server do when a failover occurs under the IP takeover approach?"
+    choices:
+      - "It queries a DNS server to confirm the new destination for the virtual IP"
+      - "It adds the virtual IP to its own NIC and sends a Gratuitous ARP to update the MAC information on the switch and surrounding devices"
+      - "It registers a new real IP with the load balancer"
+      - "It changes the virtual IP's subnet mask"
+    answerIndex: 1
+    explanation: "The newly active server adds the virtual IP to its own NIC and sends a Gratuitous ARP (an unsolicited ARP), which immediately updates the switch's MAC address table and the ARP caches of surrounding devices, so subsequent traffic reaches it."
+
+  - question: "Which statement best matches the article's description of the characteristic that load balancer NAT translation has, compared to the IP takeover approach?"
+    choices:
+      - "Traffic can be distributed to multiple real servers simultaneously (load balancing is possible)"
+      - "No translation process occurs at all"
+      - "It cannot function without using Gratuitous ARP"
+      - "Only one server can ever respond at a time"
+    answerIndex: 0
+    explanation: "Because NAT translation rewrites the destination IP to a real server each time, it can distribute traffic across multiple real servers (load balancing). IP takeover, by contrast, always has only one server holding the virtual IP at a time."
+
+  - question: "Which statement best matches the article's description of the difference between NIC teaming's virtual IP and a cluster's virtual IP (VIP)?"
+    choices:
+      - "They are exactly the same mechanism, and there is no meaningful distinction between them"
+      - "NIC teaming makes multiple physical NICs within a single server appear as one logical NIC, while a virtual IP makes multiple servers appear as a single logical destination—they operate at different layers of abstraction"
+      - "NIC teaming is for multiple servers, while a virtual IP is for NICs within a single server"
+      - "NIC teaming always involves NAT translation, while a virtual IP never does"
+    answerIndex: 1
+    explanation: "NIC teaming abstracts multiple physical NICs within a single server, while a virtual IP abstracts multiple servers. Both share the idea of \"making multiple entities appear as one,\" but they operate at different layers."
+
+  - question: "According to the article, why can a single physical NIC hold multiple IP addresses—a real IP and a virtual IP—at the same time?"
+    choices:
+      - "It cannot be done without special virtualization hardware"
+      - "IP aliasing, which assigns multiple IP addresses to a single NIC, is a standard, well-supported feature, and a NIC processes any frame addressed to any of its own IP addresses"
+      - "The OS automatically disables one of the two IP addresses, so effectively only one is ever in use"
+      - "The virtual IP is actually assigned to a physically separate NIC"
+    answerIndex: 1
+    explanation: "IP aliasing, which assigns multiple IP addresses to a single physical NIC, is a standard feature, and a NIC accepts frames addressed to any of its own IP addresses. The active server accepts both its real IP and the virtual IP simultaneously on the same NIC."
+
+  - question: "According to the article, what is the main cause of the phenomenon where some clients keep sending traffic to the old server right after a failover?"
+    choices:
+      - "The new active server failed to be assigned the virtual IP"
+      - "There is no guarantee that Gratuitous ARP reliably reaches every device, and some devices' ARP caches don't get updated and must wait for a timeout"
+      - "The load balancer forgot to forward all traffic to the new server"
+      - "The virtual IP's subnet mask is misconfigured"
+    answerIndex: 1
+    explanation: "Gratuitous ARP actively updates the ARP caches of the switch and surrounding devices, but there is no guarantee it reaches every device. Some devices fail to update and a lag occurs until their ARP cache times out."
+
+  - question: "Which misconception about virtual IPs does the article explicitly refute?"
+    choices:
+      - "A virtual IP is always implemented via NAT (address translation)"
+      - "Under the IP takeover approach, there can be cases where no translation process exists between the virtual IP and the real IP"
+      - "The load balancer itself can also become a single point of failure and may therefore be made redundant"
+      - "A lag can occur right after a failover"
+    answerIndex: 0
+    explanation: "In IP takeover approaches like Windows Server Failover Clustering or keepalived (VRRP), no translation occurs at all. NAT translation only occurs in approaches that use a load balancer."
+
+  - question: "Which statement best matches the article's description of the basic operation of VRRP (Virtual Router Redundancy Protocol)?"
+    choices:
+      - "Multiple routers form a virtual router, and the one with the highest priority acts as the master, holding the virtual IP and virtual MAC address"
+      - "All routers always respond on the virtual IP simultaneously"
+      - "Switching over the virtual IP always requires reconfiguring DNS"
+      - "VRRP is the standardized protocol for NIC teaming"
+    answerIndex: 0
+    explanation: "VRRP forms a virtual router out of multiple physical routers, with the one having the highest priority acting as master and holding the virtual IP and virtual MAC address. When the master's liveness advertisements stop, the next-highest-priority router takes over."
