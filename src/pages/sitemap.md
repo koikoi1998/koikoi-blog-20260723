@@ -22,6 +22,7 @@ graph TB
     Idrac["① idrac-guide<br/>(iDRACとは何か)"]
     Power["② idrac-power-guide<br/>(サーバー電源の仕組み)"]
     Net["② network-stack-guide<br/>(ネットワークスタックの仕組み)"]
+    Devices["② network-devices-guide<br/>(HUB/SW/L3SW/Routerの違い)"]
     Api["② restful-api-guide<br/>(RESTful APIとは何か)"]
     Nic["③ nic-driver-internals-guide<br/>(NICドライバの内部実装)"]
     L2tp["③ l2tp-ipsec-guide<br/>(L2TP/IPsecの仕組み)"]
@@ -29,6 +30,7 @@ graph TB
 
     Idrac --> Power
     Idrac --> Net
+    Idrac --> Devices
     Idrac --> Api
     Net --> Nic
     Net --> L2tp
@@ -49,6 +51,7 @@ graph TB
 ### ネットワーク基礎シリーズ
 
 - [ネットワークスタックの仕組みを『上位1%』の視点で理解する](/articles/network-stack-guide) — NICドライバ・IP・TCP/UDP・アプリケーション層の階層構造の深掘り。
+- [HUB・スイッチ(L2SW)・L3SW・ルーターの違いを『上位1%』の視点で理解する](/articles/network-devices-guide) — OSI階層と転送方式(MACアドレス表・VLAN・STP・ASIC/TCAM)による中継装置の使い分け。
 - [NICドライバとLinuxカーネルのネットワーク処理を『上位1%』の視点で理解する](/articles/nic-driver-internals-guide) — 割り込み処理・DMA・オフロード機能・カーネルバイパスまでの発展編。
 - [L2TP/IPsecの仕組みを『上位1%』の視点で理解する](/articles/l2tp-ipsec-guide) — L2TPとIPsecを組み合わせる理由、接続確立のシーケンス、NATトラバーサルまでの深掘り。
 
