@@ -27,6 +27,7 @@ graph TB
     Nic["③ nic-driver-internals-guide<br/>(NICドライバの内部実装)"]
     L2tp["③ l2tp-ipsec-guide<br/>(L2TP/IPsecの仕組み)"]
     Pki["④ pki-guide<br/>(PKI/デジタル証明書の仕組み)"]
+    Circuit["④ circuit-switching-ppp-guide<br/>(電話回線とPPPの仕組み)"]
 
     Idrac --> Power
     Idrac --> Net
@@ -35,9 +36,10 @@ graph TB
     Net --> Nic
     Net --> L2tp
     L2tp --> Pki
+    L2tp --> Circuit
 ```
 
-まず①のiDRACの記事を起点に、興味・必要に応じて②の各深掘り記事（電源・ネットワーク・API）へ進む、という順番を想定しています。②の3本はそれぞれ独立して読める内容なので、順不同で構いません。③はネットワークスタックの記事からさらに一段深く掘り下げた発展編（NICドライバの内部実装、L2TP/IPsecの仕組み）で、②のネットワーク記事を読んだ後の実力試しとして読むのがおすすめです。④のPKI/デジタル証明書の記事は、L2TP/IPsecの証明書認証から派生した発展編ですが、TLS/SSHなど幅広い場面で使われる汎用的な内容なので単体でも読めます。
+まず①のiDRACの記事を起点に、興味・必要に応じて②の各深掘り記事（電源・ネットワーク・API）へ進む、という順番を想定しています。②の3本はそれぞれ独立して読める内容なので、順不同で構いません。③はネットワークスタックの記事からさらに一段深く掘り下げた発展編（NICドライバの内部実装、L2TP/IPsecの仕組み）で、②のネットワーク記事を読んだ後の実力試しとして読むのがおすすめです。④のPKI/デジタル証明書の記事は、L2TP/IPsecの証明書認証から派生した発展編ですが、TLS/SSHなど幅広い場面で使われる汎用的な内容なので単体でも読めます。同じく④の電話回線とPPPの記事は、L2TP/IPsecがなぜダイヤルアップ時代のPPPを流用しているのかを歴史的背景から深掘りした発展編で、こちらも単体で読める内容です。
 
 ## シリーズ一覧
 
@@ -54,6 +56,7 @@ graph TB
 - [HUB・スイッチ(L2SW)・L3SW・ルーターの違いを『上位1%』の視点で理解する](/articles/network-devices-guide) — OSI階層と転送方式(MACアドレス表・VLAN・STP・ASIC/TCAM)による中継装置の使い分け。
 - [NICドライバとLinuxカーネルのネットワーク処理を『上位1%』の視点で理解する](/articles/nic-driver-internals-guide) — 割り込み処理・DMA・オフロード機能・カーネルバイパスまでの発展編。
 - [L2TP/IPsecの仕組みを『上位1%』の視点で理解する](/articles/l2tp-ipsec-guide) — L2TPとIPsecを組み合わせる理由、接続確立のシーケンス、NATトラバーサルまでの深掘り。
+- [電話回線とIPネットワークの違いを『上位1%』の視点で理解する](/articles/circuit-switching-ppp-guide) — 回線交換とパケット交換の違い、PPPが生まれた歴史的背景からPPPoE/L2TPへの流用までの深掘り（L2TP/IPsecのPPPの話から派生した発展編、単体でも読めます）。
 
 ### Web / API シリーズ
 
