@@ -1,0 +1,268 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { seriesNames } from "../consts";
+
+const articles = await getCollection("articles", ({ data }) => !data.draft);
+const quizzes = await getCollection("quizzes");
+const articleById = new Map(articles.map((a) => [a.id, a]));
+
+const seriesOrder = Object.keys(seriesNames);
+
+const dataset = quizzes
+  .filter((q) => articleById.has(q.id) && q.data.questions.length > 0)
+  .map((q) => {
+    const article = articleById.get(q.id)!;
+    return {
+      slug: q.id,
+      title: article.data.title,
+      series: article.data.series,
+      order: article.data.order,
+      url: `/articles/${q.id}`,
+      questions: q.data.questions,
+    };
+  })
+  .sort((a, b) => seriesOrder.indexOf(a.series) - seriesOrder.indexOf(b.series) || a.order - b.order);
+
+const totalQuestions = dataset.reduce((sum, a) => sum + a.questions.length, 0);
+
+// script要素の中で "</script>" が出現してタグが途中終了しないようにエスケープする
+const quizJson = JSON.stringify({ seriesNames, articles: dataset }).replace(/</g, "\\u003c");
+---
+
+<BaseLayout title="確認問題" description="公開している記事を読めば正解できる、4択の理解度チェック問題集。ランダム3問モードとテーマ別の全問モードがあります。">
+  <div class="quiz-intro">
+    <span class="eyebrow">// SELF-CHECK QUIZ</span>
+    <h1>確認問題</h1>
+    <p>
+      各記事の「本筋の理解」と「上位1%の理解」を確認するための、4択の理解度チェックです。公開している記事を読んでいれば正解できるレベルにしてありますが、難易度は資格試験相当を想定しています。間違えた問題は、そのテーマの記事に戻って復習しましょう。
+    </p>
+    <p class="quiz-total muted">全{dataset.length}テーマ・{totalQuestions}問収録</p>
+  </div>
+
+  <div class="quiz-app" id="quiz-app">
+    <section class="quiz-mode-select" id="mode-select">
+      <div class="quiz-mode-card">
+        <h2>🎲 ランダム3問モード</h2>
+        <p>全テーマの中からランダムに3問出題します。すきま時間の理解度チェックに。</p>
+        <button class="btn-primary" id="start-random">ランダム3問を始める</button>
+      </div>
+
+      <div class="quiz-mode-card quiz-mode-card-wide">
+        <h2>📚 テーマ別 全問モード</h2>
+        <p>記事(テーマ)を選んで、そのテーマの問題をすべて解きます。</p>
+        <div class="theme-list" id="theme-list"></div>
+      </div>
+    </section>
+
+    <section class="quiz-runner" id="quiz-runner" hidden>
+      <p class="quiz-progress" id="quiz-progress-label"></p>
+      <div class="quiz-question-card">
+        <p class="quiz-theme-tag" id="quiz-theme-tag"></p>
+        <h2 id="quiz-question-text"></h2>
+        <div class="quiz-choices" id="quiz-choices"></div>
+        <div class="quiz-feedback" id="quiz-feedback" hidden>
+          <p id="quiz-feedback-text"></p>
+          <button class="btn-primary" id="quiz-next">次へ</button>
+        </div>
+      </div>
+      <button class="btn-secondary quiz-quit" id="quiz-quit">中断してテーマ選択に戻る</button>
+    </section>
+
+    <section class="quiz-result" id="quiz-result" hidden>
+      <h2>結果</h2>
+      <p class="quiz-score" id="quiz-score"></p>
+      <div id="quiz-wrong-list"></div>
+      <div class="quiz-result-actions">
+        <button class="btn-primary" id="quiz-retry-random">もう一度(ランダム3問)</button>
+        <button class="btn-secondary" id="quiz-back-to-select">テーマ選択に戻る</button>
+      </div>
+    </section>
+  </div>
+
+  <script type="application/json" id="quiz-data" is:inline set:html={quizJson} />
+
+  <script>
+    const dataEl = document.getElementById("quiz-data")!;
+    const { seriesNames, articles } = JSON.parse(dataEl.textContent || "{}") as {
+      seriesNames: Record<string, string>;
+      articles: {
+        slug: string;
+        title: string;
+        series: string;
+        url: string;
+        questions: { question: string; choices: string[]; answerIndex: number; explanation: string }[];
+      }[];
+    };
+
+    type Article = (typeof articles)[number];
+    type Question = Article["questions"][number] & { _source: Article };
+
+    const modeSelect = document.getElementById("mode-select")!;
+    const runner = document.getElementById("quiz-runner")!;
+    const result = document.getElementById("quiz-result")!;
+    const themeList = document.getElementById("theme-list")!;
+
+    function shuffle<T>(arr: T[]): T[] {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    // テーマ別モードの一覧をシリーズごとにグルーピングして描画
+    const bySeries = new Map<string, Article[]>();
+    for (const a of articles) {
+      if (!bySeries.has(a.series)) bySeries.set(a.series, []);
+      bySeries.get(a.series)!.push(a);
+    }
+    for (const [series, items] of bySeries) {
+      const group = document.createElement("div");
+      group.className = "theme-group";
+      const h3 = document.createElement("h3");
+      h3.textContent = seriesNames[series] ?? series;
+      group.appendChild(h3);
+      const ul = document.createElement("ul");
+      ul.className = "theme-items";
+      for (const a of items) {
+        const li = document.createElement("li");
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "theme-btn";
+        btn.textContent = `${a.title}(${a.questions.length}問)`;
+        btn.addEventListener("click", () => {
+          startQuiz(a.questions.map((q) => ({ ...q, _source: a })));
+        });
+        li.appendChild(btn);
+        ul.appendChild(li);
+      }
+      group.appendChild(ul);
+      themeList.appendChild(group);
+    }
+
+    let session: { questions: Question[]; index: number; score: number; wrong: Question[] } | null = null;
+
+    function allQuestionsPool(): Question[] {
+      return articles.flatMap((a) => a.questions.map((q) => ({ ...q, _source: a })));
+    }
+
+    document.getElementById("start-random")!.addEventListener("click", () => {
+      startQuiz(shuffle(allQuestionsPool()).slice(0, 3));
+    });
+
+    document.getElementById("quiz-retry-random")!.addEventListener("click", () => {
+      startQuiz(shuffle(allQuestionsPool()).slice(0, 3));
+    });
+
+    document.getElementById("quiz-back-to-select")!.addEventListener("click", () => {
+      result.hidden = true;
+      modeSelect.hidden = false;
+    });
+
+    document.getElementById("quiz-quit")!.addEventListener("click", () => {
+      runner.hidden = true;
+      modeSelect.hidden = false;
+    });
+
+    function startQuiz(questions: Question[]) {
+      session = { questions: shuffle(questions), index: 0, score: 0, wrong: [] };
+      modeSelect.hidden = true;
+      result.hidden = true;
+      runner.hidden = false;
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      const s = session!;
+      const q = s.questions[s.index];
+      document.getElementById("quiz-progress-label")!.textContent = `第${s.index + 1}問 / 全${s.questions.length}問`;
+      document.getElementById("quiz-theme-tag")!.textContent = q._source.title;
+      document.getElementById("quiz-question-text")!.textContent = q.question;
+
+      const choicesEl = document.getElementById("quiz-choices")!;
+      choicesEl.innerHTML = "";
+      document.getElementById("quiz-feedback")!.hidden = true;
+
+      q.choices.forEach((choice, i) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "quiz-choice-btn";
+        btn.textContent = choice;
+        btn.addEventListener("click", () => selectAnswer(i, btn));
+        choicesEl.appendChild(btn);
+      });
+    }
+
+    function selectAnswer(i: number, btnEl: HTMLButtonElement) {
+      const s = session!;
+      const q = s.questions[s.index];
+      const allBtns = document.querySelectorAll<HTMLButtonElement>(".quiz-choice-btn");
+      allBtns.forEach((b) => (b.disabled = true));
+
+      const correct = i === q.answerIndex;
+      if (correct) {
+        s.score++;
+        btnEl.classList.add("is-correct");
+      } else {
+        btnEl.classList.add("is-wrong");
+        allBtns[q.answerIndex]?.classList.add("is-correct");
+        s.wrong.push(q);
+      }
+
+      const feedback = document.getElementById("quiz-feedback")!;
+      const feedbackText = document.getElementById("quiz-feedback-text")!;
+      feedbackText.textContent = (correct ? "✅ 正解。" : "❌ 不正解。") + q.explanation;
+      feedback.hidden = false;
+
+      document.getElementById("quiz-next")!.textContent =
+        s.index + 1 < s.questions.length ? "次へ" : "結果を見る";
+    }
+
+    document.getElementById("quiz-next")!.addEventListener("click", () => {
+      const s = session!;
+      s.index++;
+      if (s.index < s.questions.length) {
+        renderQuestion();
+      } else {
+        showResult();
+      }
+    });
+
+    function showResult() {
+      const s = session!;
+      runner.hidden = true;
+      result.hidden = false;
+      document.getElementById("quiz-score")!.textContent = `${s.score} / ${s.questions.length} 問正解`;
+
+      const wrongListEl = document.getElementById("quiz-wrong-list")!;
+      wrongListEl.innerHTML = "";
+      if (s.wrong.length === 0) {
+        const p = document.createElement("p");
+        p.textContent = "全問正解です。素晴らしい理解度です。";
+        wrongListEl.appendChild(p);
+        return;
+      }
+
+      const uniqueArticles = new Map<string, Article>();
+      for (const q of s.wrong) uniqueArticles.set(q._source.slug, q._source);
+
+      const p = document.createElement("p");
+      p.textContent = "次のテーマの記事を復習しましょう:";
+      wrongListEl.appendChild(p);
+
+      const ul = document.createElement("ul");
+      ul.className = "quiz-wrong-articles";
+      for (const a of uniqueArticles.values()) {
+        const li = document.createElement("li");
+        const link = document.createElement("a");
+        link.href = a.url;
+        link.textContent = a.title;
+        li.appendChild(link);
+        ul.appendChild(li);
+      }
+      wrongListEl.appendChild(ul);
+    }
+  </script>
+</BaseLayout>
