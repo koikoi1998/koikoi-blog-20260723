@@ -28,6 +28,10 @@ graph TB
     L2tp["③ l2tp-ipsec-guide<br/>(L2TP/IPsecの仕組み)"]
     Pki["④ pki-guide<br/>(PKI/デジタル証明書の仕組み)"]
     Circuit["④ circuit-switching-ppp-guide<br/>(電話回線とPPPの仕組み)"]
+    Sym["④ symmetric-encryption-guide<br/>(共通鍵暗号/AESとHMACの仕組み)"]
+    Nat["④ nat-guide<br/>(NAT/NAPTの仕組み)"]
+    Winvpn["④ windows-server-l2tp-vpn-guide<br/>(Windows ServerでのL2TP/IPsec構築)"]
+    Vip["④ virtual-ip-guide<br/>(代表IP/VIPの仕組み)"]
 
     Idrac --> Power
     Idrac --> Net
@@ -37,9 +41,13 @@ graph TB
     Net --> L2tp
     L2tp --> Pki
     L2tp --> Circuit
+    L2tp --> Sym
+    L2tp --> Nat
+    L2tp --> Winvpn
+    L2tp --> Vip
 ```
 
-まず①のiDRACの記事を起点に、興味・必要に応じて②の各深掘り記事（電源・ネットワーク・API）へ進む、という順番を想定しています。②の3本はそれぞれ独立して読める内容なので、順不同で構いません。③はネットワークスタックの記事からさらに一段深く掘り下げた発展編（NICドライバの内部実装、L2TP/IPsecの仕組み）で、②のネットワーク記事を読んだ後の実力試しとして読むのがおすすめです。④のPKI/デジタル証明書の記事は、L2TP/IPsecの証明書認証から派生した発展編ですが、TLS/SSHなど幅広い場面で使われる汎用的な内容なので単体でも読めます。同じく④の電話回線とPPPの記事は、L2TP/IPsecがなぜダイヤルアップ時代のPPPを流用しているのかを歴史的背景から深掘りした発展編で、こちらも単体で読める内容です。
+まず①のiDRACの記事を起点に、興味・必要に応じて②の各深掘り記事（電源・ネットワーク・API）へ進む、という順番を想定しています。②の3本はそれぞれ独立して読める内容なので、順不同で構いません。③はネットワークスタックの記事からさらに一段深く掘り下げた発展編（NICドライバの内部実装、L2TP/IPsecの仕組み）で、②のネットワーク記事を読んだ後の実力試しとして読むのがおすすめです。④の6本は、いずれもL2TP/IPsecの記事で扱いきれなかったテーマを深掘りした発展編ですが、**すべて単体でも読める内容**です。PKI/デジタル証明書、共通鍵暗号(AES/HMAC)、NAT/NAPTの3本は、L2TP/IPsecに限らずTLS/SSHなど幅広い場面で使われる汎用的な技術テーマです。電話回線とPPPの記事は、L2TP/IPsecがなぜダイヤルアップ時代のPPPを流用しているのかという歴史的背景と、MS-CHAPv2認証の内部動作を扱っています。Windows Server(RRAS)でのL2TP/IPsec構築、代表IP(VIP)の記事は、実際にVPNサーバーを構築・運用する場面でぶつかる、より実装寄りのテーマを扱っています。
 
 ## シリーズ一覧
 
@@ -56,7 +64,10 @@ graph TB
 - [HUB・スイッチ(L2SW)・L3SW・ルーターの違いを『上位1%』の視点で理解する](/articles/network-devices-guide) — OSI階層と転送方式(MACアドレス表・VLAN・STP・ASIC/TCAM)による中継装置の使い分け。
 - [NICドライバとLinuxカーネルのネットワーク処理を『上位1%』の視点で理解する](/articles/nic-driver-internals-guide) — 割り込み処理・DMA・オフロード機能・カーネルバイパスまでの発展編。
 - [L2TP/IPsecの仕組みを『上位1%』の視点で理解する](/articles/l2tp-ipsec-guide) — L2TPとIPsecを組み合わせる理由、接続確立のシーケンス、NATトラバーサルまでの深掘り。
-- [電話回線とIPネットワークの違いを『上位1%』の視点で理解する](/articles/circuit-switching-ppp-guide) — 回線交換とパケット交換の違い、PPPが生まれた歴史的背景からPPPoE/L2TPへの流用までの深掘り（L2TP/IPsecのPPPの話から派生した発展編、単体でも読めます）。
+- [電話回線とIPネットワークの違いを『上位1%』の視点で理解する](/articles/circuit-switching-ppp-guide) — 回線交換とパケット交換の違い、PPPが生まれた歴史的背景からPPPoE/L2TPへの流用、CHAP/MS-CHAPv2のチャレンジレスポンス認証の内部動作までの深掘り（L2TP/IPsecのPPPの話から派生した発展編、単体でも読めます）。
+- [NAT/NAPTの仕組みを『上位1%』の視点で理解する](/articles/nat-guide) — 変換テーブルの内部動作、NATの挙動によるタイプ分類、NAT-Tの仕組みまでの深掘り（L2TP/IPsecのNATトラバーサルから派生した発展編、単体でも読めます）。
+- [代表IP(VIP)とNICチーミングの仮想IPの仕組みを『上位1%』の視点で理解する](/articles/virtual-ip-guide) — IPテイクオーバーとロードバランサーのNAT変換という2つの代表IP実現方式の違い、NICチーミングの仮想IPまでの深掘り（冗長化構成のIPアドレス管理から派生した発展編、単体でも読めます）。
+- [Windows Server(RRAS)でのL2TP/IPsec VPN構築とIPアドレス管理を『上位1%』の視点で理解する](/articles/windows-server-l2tp-vpn-guide) — RRASのアドレスプール、なぜ同一セグメントなのにゲートウェイが必要なのかまでの深掘り（L2TP/IPsecのWindows Server実装編、単体でも読めます）。
 
 ### Web / API シリーズ
 
@@ -65,6 +76,7 @@ graph TB
 ### セキュリティ基礎シリーズ
 
 - [PKIとデジタル証明書の仕組みを『上位1%』の視点で理解する](/articles/pki-guide) — 公開鍵暗号・Diffie-Hellman鍵交換・デジタル署名・CSR・証明書チェーンの検証までの深掘り（L2TP/IPsecの証明書認証からの発展編、単体でも読めます）。
+- [共通鍵暗号(AES)とHMAC/AEADの仕組みを『上位1%』の視点で理解する](/articles/symmetric-encryption-guide) — ブロック暗号の仕組み、CBC/CTR/GCMといった暗号利用モードの違い、HMACによる改ざん検知までの深掘り（L2TP/IPsecのESP暗号化からの発展編、単体でも読めます）。
 
 ## 今後の展開予定
 
