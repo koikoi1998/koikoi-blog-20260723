@@ -62,6 +62,15 @@ questions:
     answerIndex: 1
     explanation: "記事では「OS→iDRAC」への経路はiSM(USB NIC/KCS経由)、「iDRAC→ホストの電源制御」への経路はBMCが持つ電源回路への直接アクセス、という向きの異なる2つの独立した経路が存在すると説明されています。電源制御はOS上のソフトウェアを一切経由しないため、OSやiSMの有無に関わらず機能します。"
 
+  - question: "iSM(iDRAC Service Module)がインストールされていないサーバーにおける、内部経路(USB NIC/KCS)の利用状況として、記事の説明に最も合致するものはどれか。"
+    choices:
+      - "USB NIC・KCSのどちらも、iSM専用の経路であるため、iSM未インストールの環境では完全に無駄になっている"
+      - "KCSはIPMI仕様が定義する汎用のシステムインターフェースであり、ipmitoolやOS標準のIPMIドライバ、BIOS/UEFIのPOST進捗通知などがiSMの有無にかかわらず常時利用している。一方でDell独自の高速チャネルであるUSB NICは、通信相手のiSMプロセスが存在しないため実質的に使われないまま待機する"
+      - "USB NICはIPMI仕様が定義する汎用インターフェースであり、KCSの方がDell独自の拡張チャネルである"
+      - "iSMがインストールされていなくても、USB NICはBIOS/UEFIのPOST進捗通知に常時使われている"
+    answerIndex: 1
+    explanation: "KCSはIPMI仕様そのものが定義する標準的なシステムインターフェースであり、ipmitoolやOS標準IPMIドライバ、BIOS/UEFIなど、iSMとは無関係な汎用ツール・ファームウェアが常時利用しています。一方、USB NICはiSM固有の機能のために使われるDell独自の高速拡張チャネルであり、iSM未インストール環境では通信相手が存在しないため実質的に待機状態になります。選択肢3はKCSとUSB NICの説明が逆です。"
+
   - question: "あるエンジニアが「iDRACが搭載されているサーバーなのだから、当然リモートで仮想コンソール(KVM)が使えるはずだ」と考えて検証を進めたところ、実際には仮想コンソールが利用できなかった。記事の内容から見て、最も可能性が高い原因はどれか。"
     choices:
       - "Dedicated NICではなくShared LOM構成だったため、仮想コンソール機能自体がハードウェア的に無効化されていた"
