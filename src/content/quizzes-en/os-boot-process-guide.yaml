@@ -1,0 +1,72 @@
+questions:
+  - question: "According to the article, how does the UEFI boot manager decide which program to run first after POST completes?"
+    choices:
+      - "It unconditionally runs the 446-byte bootstrap code inside the MBR located in the first 512 bytes of the disk"
+      - "It reads the `BootOrder` list and the corresponding `Boot0000`-style entries stored in the motherboard's NVRAM, and identifies and runs the `.efi` executable on the EFI System Partition (ESP)"
+      - "It scans the entire partition table of the hard disk and mechanically boots whichever partition is listed first"
+      - "It reads the OS kernel's version information directly and automatically selects the newest kernel"
+    answerIndex: 1
+    explanation: "As explained in the article, the UEFI boot manager reads NVRAM's `BootOrder` and the individual `Boot####` entries to identify and run the `.efi` executable on the ESP (typically GRUB2 or shim). The 446-byte MBR bootstrap code is part of the legacy BIOS scheme, a different mechanism from UEFI."
+
+  - question: "In an environment with Secure Boot enabled, why is GRUB2 invoked via \"shim\" rather than directly by the boot manager, according to the article?"
+    choices:
+      - "Shim boots faster than GRUB2, so it's placed in front purely for performance reasons"
+      - "Shim is a Microsoft-signed intermediary program that verifies GRUB2's signature using an embedded distro certificate or a MOK, and only runs GRUB2 if verification succeeds"
+      - "Shim IS the NVRAM's PK/KEK/db/dbx data itself, and is needed to directly rewrite that key data"
+      - "GRUB2 alone has a structural limitation preventing it from loading `.efi`-format files, so shim converts the file format"
+    answerIndex: 1
+    explanation: "The article explains that shim is a Microsoft-signed intermediary program that verifies GRUB2's signature using a certificate embedded in itself or a MOK (Machine Owner Key), running GRUB2 only if verification succeeds. PK/KEK/db/dbx are separate NVRAM-stored key data belonging to the firmware itself, distinct from the MOK that shim manages individually."
+
+  - question: "What is the \"chicken and egg\" problem that necessitates initramfs, according to the article?"
+    choices:
+      - "The kernel image is too large for the bootloader to load in one piece, so initramfs splits it into chunks"
+      - "When the real root filesystem sits on RAID/LVM/encryption, the drivers and tools needed to handle those are themselves located inside that real root filesystem, creating a circular dependency where you can't access them before reaching the real root"
+      - "POST itself cannot complete without initramfs, due to a hardware diagnostic constraint"
+      - "initramfs is a dedicated screen for the user to enter a login password, and is required as a place to store credentials"
+    answerIndex: 1
+    explanation: "The \"chicken and egg\" problem described in the article is that the drivers and tools needed to handle the real root FS are themselves located inside the very real root FS you're about to load. initramfs solves this by pre-loading the minimum necessary drivers and tools into memory ahead of time."
+
+  - question: "Why do modern initramfs implementations use `switch_root` rather than `pivot_root` when switching to the real root filesystem, according to the article?"
+    choices:
+      - "It's adopted purely because benchmarks show `switch_root` runs faster than `pivot_root`"
+      - "Modern initramfs is a root filesystem unpacked directly onto tmpfs, with no parent mount to set aside, so `pivot_root` can't be used; instead, `switch_root` is used, which `mount --move`s things like `/proc` under the new root before chrooting and execing"
+      - "`pivot_root` is a UEFI-only system call that doesn't work under legacy BIOS, so it was replaced with `switch_root`"
+      - "`switch_root` is a feature provided by GRUB2 and conforms to a newer standard than the kernel feature `pivot_root`"
+    answerIndex: 1
+    explanation: "The article explains that since initramfs on tmpfs has no parent mount to set aside, `pivot_root` can't be used; instead, `switch_root` is used, which `mount --move`s `/proc`, `/dev`, `/sys`, and `/run` under the new root before chrooting and execing."
+
+  - question: "How does systemd's behavior as PID 1 compare to the legacy SysV init approach, according to the article?"
+    choices:
+      - "systemd behaves the same as SysV init, sequentially running scripts defined per runlevel in numeric order"
+      - "systemd builds a dependency graph from units' `Before=`/`After=` and `Wants=`/`Requires=` directives and starts units in parallel wherever the dependency graph allows, whereas SysV init runs runlevel scripts sequentially"
+      - "systemd is compiled as part of the kernel and runs directly, bypassing initramfs entirely"
+      - "systemd can only ever start a single unit at a time and cannot manage multiple services"
+    answerIndex: 1
+    explanation: "As shown in the article's table, SysV init runs runlevel scripts sequentially in numeric order, whereas systemd builds a dependency graph between units and starts units with no dependency on each other in parallel. This is described as one major reason systemd can boot faster."
+
+  - question: "What is the difference between Secure Boot and measured boot, according to the article?"
+    choices:
+      - "Secure Boot blocks execution, while measured boot records what actually ran into the TPM's PCRs in a tamper-proof way; measured boot itself does not block unsigned programs from running"
+      - "Secure Boot and measured boot are just two names for the same mechanism, and enabling one automatically enables the other"
+      - "Measured boot is stricter than Secure Boot, and always halts the boot the moment it detects an unsigned program"
+      - "Secure Boot records hash values into the TPM's PCRs, while measured boot blocks execution via signature verification (the reverse of what the article says)"
+    answerIndex: 0
+    explanation: "The article explains that Secure Boot blocks unsigned/tampered programs from running via signature verification, while measured boot doesn't block execution — it records each stage's hash into the TPM's PCRs in a tamper-proof way, for uses like remote attestation and key sealing. Choice 4 reverses the two mechanisms' roles."
+
+  - question: "According to the article, what is the difference between a server stopping at a `grub rescue>` prompt versus dropping into the `(initramfs)` emergency shell?"
+    choices:
+      - "Both have the same cause and the same fix, so there's no practical reason to distinguish them"
+      - "`grub rescue>` means the kernel has started but can't find the real root FS, while `(initramfs)` means the bootloader itself can't find its configuration file (the reverse of the article)"
+      - "`grub rescue>` is a pre-kernel failure where the bootloader itself can't find its configuration file or modules, while `(initramfs)` is a post-kernel failure where the kernel has started fine but can't locate or mount the real root FS"
+      - "`grub rescue>` only appears on hardware failures, while `(initramfs)` only appears on software-caused failures"
+    answerIndex: 2
+    explanation: "As explained in the article's troubleshooting section, `grub rescue>` is a pre-kernel failure where the bootloader itself can't find its configuration file or modules, while the `(initramfs)` emergency shell is a post-kernel, pre-OS failure where the kernel has started successfully but initramfs can't locate or mount the real root FS."
+
+  - question: "According to the article, how are measurements recorded into a PCR (Platform Configuration Register)?"
+    choices:
+      - "They're always overwritten by the newest measurement, so only the most recent record is kept"
+      - "They're recorded cumulatively via an operation called \"extend,\" which hashes the new measurement together with the existing value, so earlier records can't be tampered with afterward"
+      - "PCRs aren't just for recording — they also directly block unsigned programs from running, using the recorded values"
+      - "PCR values can be freely rewritten by an administrator after the OS boots, just like an ordinary mutable log file"
+    answerIndex: 1
+    explanation: "The article explains that PCRs aren't overwritten — they're recorded cumulatively via \"extend,\" an operation that hashes the new value together with the existing one, so earlier records can't be tampered with afterward. Blocking execution is the job of Secure Boot, not measured boot."

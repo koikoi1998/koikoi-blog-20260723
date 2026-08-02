@@ -26,6 +26,7 @@ graph TB
     Net["② network-stack-guide<br/>(ネットワークスタックの仕組み)"]
     Devices["② network-devices-guide<br/>(HUB/SW/L3SW/Routerの違い)"]
     Api["② restful-api-guide<br/>(RESTful APIとは何か)"]
+    Boot["③ os-boot-process-guide<br/>(POST後のOS起動プロセス)"]
     Nic["③ nic-driver-internals-guide<br/>(NICドライバの内部実装)"]
     L2tp["③ l2tp-ipsec-guide<br/>(L2TP/IPsecの仕組み)"]
     Pki["④ pki-guide<br/>(PKI/デジタル証明書の仕組み)"]
@@ -39,6 +40,7 @@ graph TB
     Idrac --> Net
     Idrac --> Devices
     Idrac --> Api
+    Power --> Boot
     Net --> Nic
     Net --> L2tp
     L2tp --> Pki
@@ -49,7 +51,7 @@ graph TB
     L2tp --> Vip
 ```
 
-まず①のiDRACの記事を起点に、興味・必要に応じて②の各深掘り記事（電源・ネットワーク・API）へ進む、という順番を想定しています。②の3本はそれぞれ独立して読める内容なので、順不同で構いません。③はネットワークスタックの記事からさらに一段深く掘り下げた発展編（NICドライバの内部実装、L2TP/IPsecの仕組み）で、②のネットワーク記事を読んだ後の実力試しとして読むのがおすすめです。④の6本は、いずれもL2TP/IPsecの記事で扱いきれなかったテーマを深掘りした発展編ですが、**すべて単体でも読める内容**です。PKI/デジタル証明書、共通鍵暗号(AES/HMAC)、NAT/NAPTの3本は、L2TP/IPsecに限らずTLS/SSHなど幅広い場面で使われる汎用的な技術テーマです。電話回線とPPPの記事は、L2TP/IPsecがなぜダイヤルアップ時代のPPPを流用しているのかという歴史的背景と、MS-CHAPv2認証の内部動作を扱っています。Windows Server(RRAS)でのL2TP/IPsec構築、代表IP(VIP)の記事は、実際にVPNサーバーを構築・運用する場面でぶつかる、より実装寄りのテーマを扱っています。
+まず①のiDRACの記事を起点に、興味・必要に応じて②の各深掘り記事（電源・ネットワーク・API）へ進む、という順番を想定しています。②の3本はそれぞれ独立して読める内容なので、順不同で構いません。③はそれぞれ②の記事からさらに一段深く掘り下げた発展編（POST後のOS起動プロセス、NICドライバの内部実装、L2TP/IPsecの仕組み）で、②の記事を読んだ後の実力試しとして読むのがおすすめです。④の6本は、いずれもL2TP/IPsecの記事で扱いきれなかったテーマを深掘りした発展編ですが、**すべて単体でも読める内容**です。PKI/デジタル証明書、共通鍵暗号(AES/HMAC)、NAT/NAPTの3本は、L2TP/IPsecに限らずTLS/SSHなど幅広い場面で使われる汎用的な技術テーマです。電話回線とPPPの記事は、L2TP/IPsecがなぜダイヤルアップ時代のPPPを流用しているのかという歴史的背景と、MS-CHAPv2認証の内部動作を扱っています。Windows Server(RRAS)でのL2TP/IPsec構築、代表IP(VIP)の記事は、実際にVPNサーバーを構築・運用する場面でぶつかる、より実装寄りのテーマを扱っています。
 
 ## シリーズ一覧
 
@@ -59,6 +61,7 @@ graph TB
 
 - [iDRACとは何か？その仕組みを『上位1%』の視点まで理解する](/articles/idrac-guide) — iDRAC（BMC）の全体像、電源設計、ライセンス、セキュリティ、障害対応までの本編。
 - [サーバー電源の仕組みを『上位1%』の視点で理解する](/articles/idrac-power-guide) — iDRACの電源設計を掘り下げた、AC/DC変換・PSU冗長化（A/Bグリッド・ホットスペア）の深掘り記事（単体でも読めます）。
+- [POST後のOS起動プロセスを『上位1%』の視点で理解する](/articles/os-boot-process-guide) — POST完了後のブートローダー・initramfs・systemd(PID1)の仕組み、Secure Bootと測定起動の違いまでの深掘り（サーバー電源の記事のPOST/OS起動の話から派生した発展編、単体でも読めます）。
 
 ### ネットワーク基礎シリーズ
 

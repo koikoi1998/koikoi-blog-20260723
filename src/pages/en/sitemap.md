@@ -24,6 +24,7 @@ graph TB
     Net["② network-stack-guide<br/>(The Network Stack)"]
     Devices["② network-devices-guide<br/>(Hub/Switch/L3SW/Router)"]
     Api["② restful-api-guide<br/>(What Is a RESTful API)"]
+    Boot["③ os-boot-process-guide<br/>(OS Boot Process After POST)"]
     Nic["③ nic-driver-internals-guide<br/>(NIC Driver Internals)"]
     L2tp["③ l2tp-ipsec-guide<br/>(How L2TP/IPsec Works)"]
     Pki["④ pki-guide<br/>(PKI / Digital Certificates)"]
@@ -37,6 +38,7 @@ graph TB
     Idrac --> Net
     Idrac --> Devices
     Idrac --> Api
+    Power --> Boot
     Net --> Nic
     Net --> L2tp
     L2tp --> Pki
@@ -47,7 +49,7 @@ graph TB
     L2tp --> Vip
 ```
 
-Start with article ① on iDRAC, then branch out into the ② deep-dive articles (power, networking, API) depending on your interest. The three ② articles are independent of each other, so read them in any order. The ③ articles are a further step down from the networking deep-dive (NIC driver internals, how L2TP/IPsec works) — a good way to test your understanding after finishing the ② networking articles. The six ④ articles are all deep dives that branch off from the L2TP/IPsec article to cover topics that wouldn't fit in the main article, but **every one of them can be read entirely on its own**. The three on PKI/digital certificates, symmetric encryption (AES/HMAC), and NAT/NAPT are general-purpose technical topics used far beyond L2TP/IPsec, in TLS, SSH, and elsewhere. The telephone-lines-and-PPP article covers both the historical background of why L2TP/IPsec reuses dial-up-era PPP and the internals of MS-CHAPv2 authentication. The Windows Server (RRAS) L2TP/IPsec setup and virtual IP (VIP) articles cover more implementation-level topics you'll run into when actually building and operating a VPN server.
+Start with article ① on iDRAC, then branch out into the ② deep-dive articles (power, networking, API) depending on your interest. The three ② articles are independent of each other, so read them in any order. The ③ articles are each a further step down from one of the ② articles (the OS boot process after POST, NIC driver internals, how L2TP/IPsec works) — a good way to test your understanding after finishing the corresponding ② article. The six ④ articles are all deep dives that branch off from the L2TP/IPsec article to cover topics that wouldn't fit in the main article, but **every one of them can be read entirely on its own**. The three on PKI/digital certificates, symmetric encryption (AES/HMAC), and NAT/NAPT are general-purpose technical topics used far beyond L2TP/IPsec, in TLS, SSH, and elsewhere. The telephone-lines-and-PPP article covers both the historical background of why L2TP/IPsec reuses dial-up-era PPP and the internals of MS-CHAPv2 authentication. The Windows Server (RRAS) L2TP/IPsec setup and virtual IP (VIP) articles cover more implementation-level topics you'll run into when actually building and operating a VPN server.
 
 ## Series list
 
@@ -57,6 +59,7 @@ A series covering out-of-band server management.
 
 - [What Is iDRAC? Understanding How It Works from a "Top 1%" Perspective](/en/articles/idrac-guide) — The main article: iDRAC (BMC) overview, power design, licensing, security, and troubleshooting.
 - [Understanding Server Power Design from a "Top 1%" Perspective](/en/articles/idrac-power-guide) — A deep dive into the power design touched on in the iDRAC article: AC/DC conversion and PSU redundancy (A/B grid, hot spares). Also readable standalone.
+- [Understanding the OS Boot Process After POST from a "Top 1%" Perspective](/en/articles/os-boot-process-guide) — A deep dive into the bootloader, initramfs, and systemd (PID 1) stages after POST completes, plus the difference between Secure Boot and measured boot (spun off from the power article's POST/OS-boot section; also readable standalone).
 
 ### Networking Fundamentals Series
 
