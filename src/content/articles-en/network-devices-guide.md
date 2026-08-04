@@ -181,6 +181,8 @@ A **trunk port** is what's used to connect switches over a single physical link 
 
 On the other hand, a port belonging to only a single, specific VLAN (the kind of port a regular PC or server would connect to) is called an **access port**, and frames passing through it are not given an 802.1Q tag (they're treated as untagged frames). The **native VLAN** setting determines which VLAN an "untagged frame with no explicit VLAN assignment" received on a trunk port should be treated as belonging to; if this setting differs between the two ends of a trunk, it causes trouble where frames unintentionally cross between VLANs (covered later, in "Common Misconceptions and Pitfalls").
 
+Splitting a network into segments with VLANs isn't just a textbook exercise — it maps directly onto how real organizations design their networks. Japanese local governments, for instance, implement three segments — the My Number business segment, the LGWAN-connected segment, and the internet-connected segment — using exactly this combination of VLANs and firewalls, based on how sensitive the resident information involved is. That concrete design is covered in a deep dive: [Understanding Japanese Local Government Network Segregation and Security Clouds from a "Top 1%" Perspective](/en/articles/local-gov-network-guide).
+
 #### Loops and the Spanning Tree Protocol (STP)
 
 When switches are interconnected with redundant links (multiple physical links) to improve availability, this creates a **loop** in the L2 network. IP routing has TTL (Time to Live, a packet's lifespan), but **Ethernet frames have no equivalent mechanism**. So if a broadcast frame flows through a network with a loop present, that frame keeps looping forever, multiplying as it goes, and eventually causes a **broadcast storm** that consumes all available network bandwidth and exhausts the switches' CPU and MAC address table capacity.
@@ -321,6 +323,9 @@ Given the layered structure of these devices, failure isolation can also be orga
 **Starting Today**
 1. When you hear a device name (hub/switch/L3SW/router), get in the habit of first asking "which OSI layer's information is it using to forward?"
 2. When isolating a network failure, make "is this an L2 problem (MAC address table, VLAN, STP), or an L3 problem (routing, ACLs)?" your first step.
+
+**Deep Dive**
+- How VLAN-based segmentation is applied in practice, using Japanese local government network segregation as an example: [Understanding Japanese Local Government Network Segregation and Security Clouds from a "Top 1%" Perspective](/en/articles/local-gov-network-guide)
 
 ## References
 

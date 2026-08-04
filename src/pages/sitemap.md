@@ -29,6 +29,7 @@ graph TB
     Boot["③ os-boot-process-guide<br/>(POST後のOS起動プロセス)"]
     Nic["③ nic-driver-internals-guide<br/>(NICドライバの内部実装)"]
     L2tp["③ l2tp-ipsec-guide<br/>(L2TP/IPsecの仕組み)"]
+    GovNet["③ local-gov-network-guide<br/>(自治体ネットワークの三層分離)"]
     Pki["④ pki-guide<br/>(PKI/デジタル証明書の仕組み)"]
     Circuit["④ circuit-switching-ppp-guide<br/>(電話回線とPPPの仕組み)"]
     Sym["④ symmetric-encryption-guide<br/>(共通鍵暗号/AESとHMACの仕組み)"]
@@ -46,6 +47,7 @@ graph TB
     Power --> Boot
     Net --> Nic
     Net --> L2tp
+    Devices --> GovNet
     L2tp --> Pki
     L2tp --> Circuit
     L2tp --> Sym
@@ -57,7 +59,7 @@ graph TB
     L2tp --> L2tpLab
 ```
 
-まず①のiDRACの記事を起点に、興味・必要に応じて②の各深掘り記事（電源・ネットワーク・API）へ進む、という順番を想定しています。②の3本はそれぞれ独立して読める内容なので、順不同で構いません。③はそれぞれ②の記事からさらに一段深く掘り下げた発展編（POST後のOS起動プロセス、NICドライバの内部実装、L2TP/IPsecの仕組み）で、②の記事を読んだ後の実力試しとして読むのがおすすめです。
+まず①のiDRACの記事を起点に、興味・必要に応じて②の各深掘り記事（電源・ネットワーク・API）へ進む、という順番を想定しています。②の3本はそれぞれ独立して読める内容なので、順不同で構いません。③はそれぞれ②の記事からさらに一段深く掘り下げた発展編（POST後のOS起動プロセス、NICドライバの内部実装、L2TP/IPsecの仕組み、自治体ネットワークの三層分離）で、②の記事を読んだ後の実力試しとして読むのがおすすめです。
 ④の8本は、いずれもL2TP/IPsecの記事で扱いきれなかったテーマを深掘りした発展編ですが、**すべて単体でも読める内容**です。PKI/デジタル証明書、共通鍵暗号(AES/HMAC)、NAT/NAPT、TCP/UDPセッションとポート番号の4本は、L2TP/IPsecに限らずTLS/SSHなど幅広い場面で使われる汎用的な技術テーマです。電話回線とPPPの記事は、L2TP/IPsecがなぜダイヤルアップ時代のPPPを流用しているのかという歴史的背景と、MS-CHAPv2認証の内部動作を扱っています。Windows Server(RRAS)でのL2TP/IPsec構築、代表IP(VIP)の記事は、実際にVPNサーバーを構築・運用する場面でぶつかる、より実装寄りのテーマを扱っています。現代的なVPNプロトコルとの比較の記事は、IKEv2/IPsec・OpenVPN・WireGuardとの設計思想の違いを扱っています。⑤のハンズオン記事は、本シリーズでは例外的に実機構築を扱う実践編で、Proxmox VE上にL2TP/IPsecサーバーを自作し、パケットキャプチャで理論を検証します。
 
 ## シリーズ一覧
@@ -74,6 +76,7 @@ graph TB
 
 - [ネットワークスタックの仕組みを『上位1%』の視点で理解する](/articles/network-stack-guide) — NICドライバ・IP・TCP/UDP・アプリケーション層の階層構造の深掘り。
 - [HUB・スイッチ(L2SW)・L3SW・ルーターの違いを『上位1%』の視点で理解する](/articles/network-devices-guide) — OSI階層と転送方式(MACアドレス表・VLAN・STP・ASIC/TCAM)による中継装置の使い分け。
+- [自治体ネットワークの三層分離とセキュリティクラウドを『上位1%』の視点で理解する](/articles/local-gov-network-guide) — LGWAN接続系・マイナンバー利用事務系・インターネット接続系というVLAN/ファイアウォールによる実際のセグメント設計、自治体情報セキュリティクラウドまでの深掘り(network-devices-guideのVLANの話から派生した発展編、単体でも読めます)。
 - [NICドライバとLinuxカーネルのネットワーク処理を『上位1%』の視点で理解する](/articles/nic-driver-internals-guide) — 割り込み処理・DMA・オフロード機能・カーネルバイパスまでの発展編。
 - [L2TP/IPsecの仕組みを『上位1%』の視点で理解する](/articles/l2tp-ipsec-guide) — L2TPとIPsecを組み合わせる理由、接続確立のシーケンス、NATトラバーサルまでの深掘り。
 - [電話回線とIPネットワークの違いを『上位1%』の視点で理解する](/articles/circuit-switching-ppp-guide) — 回線交換とパケット交換の違い、PPPが生まれた歴史的背景からPPPoE/L2TPへの流用、CHAP/MS-CHAPv2のチャレンジレスポンス認証の内部動作までの深掘り（L2TP/IPsecのPPPの話から派生した発展編、単体でも読めます）。

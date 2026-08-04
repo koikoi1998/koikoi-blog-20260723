@@ -1,0 +1,108 @@
+questions:
+  - question: "What event triggered the introduction of the \"three-tier measures\" in Japanese local government networks?"
+    choices:
+      - "A 2015 personal-data leak at the Japan Pension Service"
+      - "The surge in remote-work demand during the 2020 COVID-19 pandemic"
+      - "The launch of the My Number system itself"
+      - "Delays in the initial construction project for LGWAN"
+    answerIndex: 0
+    explanation: "Following a 2015 data-leak incident at the Japan Pension Service, Japan's Ministry of Internal Affairs and Communications (MIC) required local governments to implement the \"three-tier measures,\" formally reflected in the September 2018 revision of the guidelines."
+
+  - question: "Which of the following is the most accurate description of the \"My Number business segment\"?"
+    choices:
+      - "It refers to the issuance of My Number cards and their electronic certificates"
+      - "It is the name of the network segment where business processes handling resident information tied to a person's My Number (tax, social security, etc.) run, and it's subject to strict measures such as blocking data from being taken off terminals"
+      - "It is another name for LGWAN, used for document exchange between local governments"
+      - "It is the portion of the internet-connected segment dedicated to resident-facing electronic applications"
+    answerIndex: 1
+    explanation: "The My Number business segment is the network segment for internal processes handling resident data linked to a person's My Number. It's subject to the strictest measures among the three tiers, including blocking data from leaving terminals."
+
+  - question: "Which of the following best describes LGWAN (Local Government Wide Area Network)?"
+    choices:
+      - "A type of VPN that builds an encrypted tunnel over the public internet"
+      - "A dedicated closed IP network, independent of the internet, that interconnects prefectures, municipalities, and national government agencies"
+      - "Another name for the prefectural security cloud"
+      - "A network that only terminals in the My Number business segment are permitted to connect to"
+    answerIndex: 1
+    explanation: "LGWAN is a dedicated IP network, physically and logically independent of the internet, used for internal administrative work such as document exchange between local governments, electronic applications, and groupware — a different mechanism from an internet-based VPN."
+
+  - question: "Which statement most accurately describes the β and β' models introduced in the 2020 guideline revision?"
+    choices:
+      - "Models that place all business terminals in the My Number business segment"
+      - "Models that place primary business terminals in the internet-connected segment, conditional on reliably implementing technical measures like EDR as well as organizational/human measures"
+      - "Models that eliminate the LGWAN-connected segment entirely and operate solely on the internet-connected segment"
+      - "Models that discontinue use of the prefectural security cloud in favor of individual local-government measures"
+    answerIndex: 1
+    explanation: "The β model places primary business terminals in the internet-connected segment, conditional on measures like EDR and a ready incident-response capability. The β' model goes further, also placing systems like document management and accounting in the internet-connected segment, under an even higher bar of required measures."
+
+  - question: "Why do many local governments layer dedicated physical switches and dedicated lines on top of VLAN-based logical separation between the My Number segment and the LGWAN-connected segment?"
+    choices:
+      - "Because using VLANs in the My Number segment is prohibited by law"
+      - "Because a single ACL misconfiguration on a shared L3 switch could directly lead to a serious leak of resident information, so a more robust form of separation is needed"
+      - "Because physical separation is cheaper in terms of networking equipment cost"
+      - "Because LGWAN bandwidth needs to be reserved exclusively for the My Number segment"
+    answerIndex: 1
+    explanation: "The My Number segment handles the most sensitive resident data, so a single misconfiguration in logical separation could cause a serious leak — which is why many local governments add physical separation as a second, more robust layer of defense."
+
+  - question: "Which of the following best describes how the prefectural security cloud works?"
+    choices:
+      - "Each municipality implements web-server security independently"
+      - "A prefecture and its municipalities jointly consolidate resources like web servers, and share advanced security measures such as monitoring, log collection, and analysis"
+      - "A monitoring service that covers only terminals in the My Number business segment"
+      - "A single, nationally centralized security monitoring center operated by the national government"
+    answerIndex: 1
+    explanation: "The prefectural security cloud is a shared arrangement where a prefecture and its municipalities jointly consolidate infrastructure and run advanced security measures like IDS/IPS, WAF, and SOC monitoring together. All 47 prefectures have built one."
+
+  - question: "Which optional requirement of the prefectural security cloud had 94% adoption as of 2024, and is under discussion for being upgraded to a required item to align with Japan's unified government security baseline?"
+    choices:
+      - "Content tampering detection"
+      - "Decrypting encrypted traffic for inspection"
+      - "Monitoring a constituent municipality's AD server"
+      - "Remote-desktop access to the internet-connected segment (VDI)"
+    answerIndex: 1
+    explanation: "\"Decrypting encrypted traffic\" is an optional requirement adopted by 94% of prefectures, and since Japan's unified government security baseline also calls for decrypting monitored traffic, its promotion to a required item is under discussion."
+
+  - question: "What problem does the local government security-enhancement relay platform solve?"
+    choices:
+      - "Residents being unable to apply for a My Number card online"
+      - "The structural dilemma that terminals in the LGWAN-connected and My Number business segments, being restricted from direct internet access, struggle to receive OS and antivirus security patches and pattern-file updates"
+      - "Complexity in the contract-renewal process for the prefectural security cloud"
+      - "Slow LGWAN line speeds preventing large file transfers"
+    answerIndex: 1
+    explanation: "Restricting internet access to keep these segments secure ironically made it harder to keep them patched — this platform, operated by J-LIS, resolves that by safely relaying update programs over LGWAN."
+
+  - question: "Which statement best describes the relationship between the prefectural security cloud and zero-trust architecture?"
+    choices:
+      - "The two are completely unrelated, independent mechanisms"
+      - "Because it detects and responds to threats originating outside the network, the security cloud is positioned as already fulfilling part of the Digital Agency's Zero Trust Architecture Application Policy's \"observe resources and access\" element"
+      - "Once zero-trust architecture is adopted, the security cloud will be immediately discontinued"
+      - "Zero-trust architecture is a concept that applies only to the My Number business segment"
+    answerIndex: 1
+    explanation: "The security cloud is positioned as already fulfilling part of the \"observe resources and access\" element of the Digital Agency's 2022 zero-trust policy, and the three-tier segregation model itself is understood as a transitional step toward a future zero-trust model."
+
+  - question: "Which of the following is NOT one of the structural challenges cited for the prefectural security cloud?"
+    choices:
+      - "Rising financial burden, with costs borne by prefectures and municipalities increasing year over year"
+      - "A shared data-center outage having a wide blast radius"
+      - "Traffic decryption processing causing delay or failures for real-time traffic like online meetings"
+      - "The security cloud being largely ineffective against cyberattacks, with almost none of the 47 prefectures feeling any benefit"
+    answerIndex: 3
+    explanation: "All 47 prefectures reported that their current security cloud is effective against cyberattacks — a lack of effectiveness is not one of the cited challenges. The real challenges include financial burden, structural risk from shared use, side effects of traffic decryption, and clustering of contract expirations."
+
+  - question: "What internet-connectivity policy did the March 2023 guideline revision establish for Government Cloud and equivalent cloud services?"
+    choices:
+      - "Internet connectivity is completely prohibited under all circumstances"
+      - "Internet connectivity is prohibited in principle, with narrow exceptions carved out for exactly three cases: applying patches, activating software licenses, and connecting to a management console"
+      - "Internet connectivity is permitted at all times, with only enhanced monitoring required"
+      - "Standardized systems in the My Number business segment are permitted unrestricted internet connectivity"
+    answerIndex: 1
+    explanation: "The March 2023 revision established that Government Cloud and equivalent services are prohibited from internet connectivity in principle, with exceptions limited to patch application, software activation, and management-console connections."
+
+  - question: "Which is the most accurate response to the claim that \"three-tier segregation makes the network structurally invulnerable\"?"
+    choices:
+      - "True. No information security incident has occurred at any local government since three-tier segregation was built"
+      - "False. Email-borne malware like Emotet can still reach terminals in the LGWAN-connected segment — three-tier segregation is a measure that limits the spread of an intrusion and the information it can reach, not a mechanism that eliminates intrusion itself"
+      - "False. Three-tier segregation applies only to the My Number business segment and has no effect on the LGWAN-connected or internet-connected segments"
+      - "True, but only for local governments that have not adopted the prefectural security cloud"
+    answerIndex: 1
+    explanation: "Three-tier segregation limits the attack surface and blast radius after an intrusion — it doesn't reduce the probability of intrusion itself to zero. Email-based attack vectors can still reach the LGWAN-connected segment, so \"segregation = invulnerable\" is a misconception."
