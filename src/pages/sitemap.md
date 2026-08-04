@@ -38,6 +38,7 @@ graph TB
     Vip["④ virtual-ip-guide<br/>(代表IP/VIPの仕組み)"]
     TcpUdp["④ tcp-udp-session-port-guide<br/>(TCP/UDPセッションとポート番号)"]
     VpnCompare["④ vpn-protocols-comparison-guide<br/>(現代的VPNプロトコルとの比較)"]
+    S2s["④ site-to-site-vpn-guide<br/>(拠点間VPNとCisco/WatchGuard間の構築)"]
     L2tpLab["⑤ l2tp-ipsec-lab-guide<br/>(PVEでのL2TP/IPsec自作ハンズオン)"]
 
     Idrac --> Power
@@ -56,11 +57,12 @@ graph TB
     L2tp --> Vip
     L2tp --> TcpUdp
     L2tp --> VpnCompare
+    L2tp --> S2s
     L2tp --> L2tpLab
 ```
 
 まず①のiDRACの記事を起点に、興味・必要に応じて②の各深掘り記事（電源・ネットワーク・API）へ進む、という順番を想定しています。②の3本はそれぞれ独立して読める内容なので、順不同で構いません。③はそれぞれ②の記事からさらに一段深く掘り下げた発展編（POST後のOS起動プロセス、NICドライバの内部実装、L2TP/IPsecの仕組み、自治体ネットワークの三層分離）で、②の記事を読んだ後の実力試しとして読むのがおすすめです。
-④の8本は、いずれもL2TP/IPsecの記事で扱いきれなかったテーマを深掘りした発展編ですが、**すべて単体でも読める内容**です。PKI/デジタル証明書、共通鍵暗号(AES/HMAC)、NAT/NAPT、TCP/UDPセッションとポート番号の4本は、L2TP/IPsecに限らずTLS/SSHなど幅広い場面で使われる汎用的な技術テーマです。電話回線とPPPの記事は、L2TP/IPsecがなぜダイヤルアップ時代のPPPを流用しているのかという歴史的背景と、MS-CHAPv2認証の内部動作を扱っています。Windows Server(RRAS)でのL2TP/IPsec構築、代表IP(VIP)の記事は、実際にVPNサーバーを構築・運用する場面でぶつかる、より実装寄りのテーマを扱っています。現代的なVPNプロトコルとの比較の記事は、IKEv2/IPsec・OpenVPN・WireGuardとの設計思想の違いを扱っています。⑤のハンズオン記事は、本シリーズでは例外的に実機構築を扱う実践編で、Proxmox VE上にL2TP/IPsecサーバーを自作し、パケットキャプチャで理論を検証します。
+④の9本は、いずれもL2TP/IPsecの記事で扱いきれなかったテーマを深掘りした発展編ですが、**すべて単体でも読める内容**です。PKI/デジタル証明書、共通鍵暗号(AES/HMAC)、NAT/NAPT、TCP/UDPセッションとポート番号の4本は、L2TP/IPsecに限らずTLS/SSHなど幅広い場面で使われる汎用的な技術テーマです。電話回線とPPPの記事は、L2TP/IPsecがなぜダイヤルアップ時代のPPPを流用しているのかという歴史的背景と、MS-CHAPv2認証の内部動作を扱っています。Windows Server(RRAS)でのL2TP/IPsec構築、代表IP(VIP)の記事は、実際にVPNサーバーを構築・運用する場面でぶつかる、より実装寄りのテーマを扱っています。現代的なVPNプロトコルとの比較の記事は、IKEv2/IPsec・OpenVPN・WireGuardとの設計思想の違いを扱っています。拠点間VPNの記事は、リモートアクセスVPNとは異なるgateway-to-gatewayの接続形態と、CiscoとWatchGuardという異なるベンダー間でIPsecトンネルを組む際の実務上の注意点を扱っています。⑤のハンズオン記事は、本シリーズでは例外的に実機構築を扱う実践編で、Proxmox VE上にL2TP/IPsecサーバーを自作し、パケットキャプチャで理論を検証します。
 
 ## シリーズ一覧
 
@@ -85,6 +87,7 @@ graph TB
 - [Windows Server(RRAS)でのL2TP/IPsec VPN構築とIPアドレス管理を『上位1%』の視点で理解する](/articles/windows-server-l2tp-vpn-guide) — RRASのアドレスプール、なぜ同一セグメントなのにゲートウェイが必要なのかまでの深掘り（L2TP/IPsecのWindows Server実装編、単体でも読めます）。
 - [TCP/UDPの「セッション」とポート番号の関係を『上位1%』の視点で理解する](/articles/tcp-udp-session-port-guide) — TCPコネクションの状態機械としての実体、NAT/FWの疑似セッションとの違い、プロトコル番号とポート番号がなぜ1対1でないのかまでの深掘り（L2TP/IPsecのESP/ポート番号の話から派生した発展編、単体でも読めます）。
 - [L2TP/IPsecと現代的なVPNプロトコルを『上位1%』の視点で比較する](/articles/vpn-protocols-comparison-guide) — IKEv2/IPsec・OpenVPN・WireGuardとの設計思想・実装規模・モバイル耐性の違いまでの深掘り（L2TP/IPsecがなぜレガシーと評されるのかを掘り下げた発展編、単体でも読めます）。
+- [拠点間VPN(Site-to-Site VPN)を『上位1%』の視点で理解する](/articles/site-to-site-vpn-guide) — リモートアクセスVPNとの違い、IPsecトンネルモードとトラフィックセレクタの仕組み、CiscoとWatchGuardという異なるベンダー間でIPsecトンネルを組む際の実務上の注意点までの深掘り（L2TP/IPsecとの対比から派生した発展編、単体でも読めます）。
 - [PVE上でL2TP/IPsecサーバーを自作する『上位1%』のハンズオン](/articles/l2tp-ipsec-lab-guide) — Proxmox VE上にstrongSwan+xl2tpdでL2TP/IPsecサーバーを構築し、tcpdumpで接続シーケンスを検証する実践編(本シリーズでは例外的な実機構築のハンズオン記事です)。
 
 ### Web / API シリーズ

@@ -1,0 +1,72 @@
+questions:
+  - question: "According to the article, what is the most fundamental difference between a site-to-site VPN and a remote-access VPN (like L2TP/IPsec)?"
+    choices:
+      - "Site-to-site VPNs always use TCP, while remote-access VPNs always use UDP"
+      - "The connection topology itself — whether it's gateway-to-gateway or an individual client device to a VPN server"
+      - "Site-to-site VPNs have no encryption at all, while only remote-access VPNs are encrypted"
+      - "Site-to-site VPNs are IPv6-only, while remote-access VPNs are IPv4-only"
+    answerIndex: 1
+    explanation: "The article explains that the single biggest difference is the connection topology itself — who connects to whom. A site-to-site VPN connects gateways to each other; a remote-access VPN connects a client device to a VPN server, one-to-one."
+
+  - question: "According to the article, why does a site-to-site VPN use IPsec tunnel mode?"
+    choices:
+      - "Because tunnel mode uses a stronger encryption algorithm"
+      - "Because a site-to-site VPN has no equivalent of L2TP dedicated to building a tunnel, so IPsec itself has to take on that job alone"
+      - "Because transport mode only works over IPv6"
+      - "Because tunnel mode has a larger effective MTU and is less prone to fragmentation"
+    answerIndex: 1
+    explanation: "In L2TP/IPsec, L2TP already builds the tunnel, so transport mode is sufficient. A site-to-site VPN has no such mechanism, so IPsec itself must wrap the entire original IP packet in a new outer IP header — tunnel mode."
+
+  - question: "According to the article, what is a \"traffic selector (proxy ID)\" in a site-to-site VPN?"
+    choices:
+      - "Information used to identify the username and password of the connecting user"
+      - "Information exchanged during IKE Phase 2 that declares which local-subnet/remote-subnet combination is allowed through the tunnel"
+      - "Information used to identify the VPN gateway's MAC address"
+      - "A term referring to the pre-shared key (PSK) itself, used in IKE Phase 1"
+    answerIndex: 1
+    explanation: "A site-to-site VPN has no concept of per-user authentication. Instead, both gateways exchange traffic selectors (proxy IDs) during IKE Phase 2 and must agree on which local-subnet/remote-subnet pair is allowed through the tunnel."
+
+  - question: "Which statement best describes the authentication model of a site-to-site VPN, according to the article?"
+    choices:
+      - "Like a remote-access VPN, individual users are authenticated with a username and password at the PPP layer"
+      - "Only gateway-level authentication via PSK or certificate takes place; there is no concept of per-user authentication at all"
+      - "A site-to-site VPN has no authentication mechanism whatsoever, and anyone can connect to the tunnel freely"
+      - "A site-to-site VPN trusts unconditionally based on IP address alone, with no key- or certificate-based authentication"
+    answerIndex: 1
+    explanation: "During IKE Phase 1, a site-to-site VPN authenticates only at the gateway/device level, using a PSK or certificate. There is no mechanism to identify individual users; per-user access control is delegated elsewhere."
+
+  - question: "According to the article, what is the correct description of the difference between policy-based VPN and route-based VPN?"
+    choices:
+      - "Policy-based VPN decides what to encrypt using the routing table, while route-based VPN uses an ACL"
+      - "Policy-based VPN creates an independent SA per local/remote subnet combination, so the SA count tends to explode combinatorially as subnets grow, while route-based VPN decides traffic using the routing table and scales better"
+      - "Route-based VPN can never use a dynamic routing protocol"
+      - "There is no practical difference between policy-based VPN and route-based VPN"
+    answerIndex: 1
+    explanation: "A policy-based VPN builds an independent IPsec SA for every traffic-selector combination, so the SA count grows combinatorially as subnets increase. A route-based VPN decides what traffic to send through the tunnel using the routing table, making it far more scalable across many sites and subnets."
+
+  - question: "According to the article, what is the most common cross-vendor failure cause when building a site-to-site VPN between Cisco and WatchGuard?"
+    choices:
+      - "The two vendors implement completely different TCP/IP stacks, making communication fundamentally impossible"
+      - "Phase 1/Phase 2 encryption algorithms or traffic-selector granularity don't match between the two sides, with mismatched traffic selectors being the leading cause of negotiation failure"
+      - "WatchGuard products don't support IPsec at all, so a connection is impossible from the start"
+      - "Cisco products don't support pre-shared key (PSK) authentication"
+    answerIndex: 1
+    explanation: "The article explains that building a site-to-site VPN between different vendors requires matching every Phase 1/Phase 2 parameter exactly, and that mismatched traffic-selector granularity is by far the most common source of trouble."
+
+  - question: "According to the article, what is the effect of tunnel mode on effective MTU in a site-to-site VPN?"
+    choices:
+      - "Tunnel mode keeps the original IP header, so its overhead is smaller than transport mode's"
+      - "Tunnel mode adds an entirely new outer IP header, so its overhead tends to be simply larger than transport mode's"
+      - "There is no overhead difference between tunnel mode and transport mode"
+      - "Reduced effective MTU is unique to site-to-site VPNs and never happens with remote-access VPNs"
+    answerIndex: 1
+    explanation: "A site-to-site VPN's tunnel mode adds an entirely new outer IP header to the original packet, so its overhead is simply larger than transport mode's — potentially around 50-70 bytes depending on conditions, according to the article."
+
+  - question: "How does the article characterize the claim that \"using tunnel mode instead of transport mode gives you stronger encryption\"?"
+    choices:
+      - "True — tunnel mode forces a longer key length, which increases encryption strength"
+      - "A misconception — the difference between the modes is about the scope of what gets wrapped in a new outer header, and has no bearing on the encryption algorithm's strength or key length"
+      - "True — tunnel mode encrypts the data twice, which increases encryption strength"
+      - "The article does not address this claim"
+    answerIndex: 1
+    explanation: "The article lists this as a misconception, explaining that the difference between tunnel mode and transport mode is about scope of encapsulation, not the strength of the encryption algorithm or key length."

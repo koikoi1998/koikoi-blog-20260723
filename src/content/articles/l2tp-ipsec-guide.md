@@ -181,6 +181,8 @@ IPsecは単一のプロトコルではなく、複数の要素技術の集合で
 
 L2TP/IPsecがトランスポートモードで済むのは、 **「仮想的なトンネルを作る」という役目がすでにL2TP側で果たされているから** です。ここでさらにトンネルモードを重ねると、IPヘッダーが二重に付くだけの無駄なオーバーヘッドになります。
 
+なお、この記事が扱っているのはあくまで「クライアント端末とVPNサーバーを1対1でつなぐ」リモートアクセスVPNです。拠点同士のネットワークをまるごと接続する拠点間VPN(site-to-site VPN)は、認証モデル(個人単位かゲートウェイ単位か)やトラフィックの識別方法(仮想IPアドレスかトラフィックセレクタか)も含めて異なる考え方で設計されており、その違いと、CiscoとWatchGuardのような異なるベンダー間でIPsecトンネルを組む際の実務上の注意点は、別記事「[拠点間VPN(Site-to-Site VPN)を『上位1%』の視点で理解する](/articles/site-to-site-vpn-guide)」で深掘りしています。
+
 ### 接続確立の全体シーケンス
 
 ここまでの要素を時系列で並べると、実際の接続確立は次の順序で進みます。
@@ -343,7 +345,7 @@ L2TP/IPsecの接続失敗は、 **「どのフェーズで止まっているか�
 
 なお、この記事はL2TP/IPsecそのものの全体像に焦点を絞っているため、ボリュームの大きいテーマはそれぞれ別記事に深掘りを譲っています。IKEフェーズ1で使われるDiffie-Hellman鍵交換の数学的な仕組みや、証明書認証で使われる公開鍵暗号・デジタル署名・証明書チェーンの検証といったPKIの仕組みそのものは「[PKIとデジタル証明書の仕組みを『上位1%』の視点で理解する](/articles/pki-guide)」、ESPが使う共通鍵暗号(AES)とHMAC/AEADの内部動作は「[共通鍵暗号(AES)とHMAC/AEADの仕組みを『上位1%』の視点で理解する](/articles/symmetric-encryption-guide)」、NAT/NAPTの基礎からNAT-Tの仕組みは「[NAT/NAPTの仕組みを『上位1%』の視点で理解する](/articles/nat-guide)」、MS-CHAPv2認証の内部計算は「[電話回線とIPネットワークの違いを『上位1%』の視点で理解する](/articles/circuit-switching-ppp-guide)」、Windows Server(RRAS)での具体的な構築とIPアドレス管理は「[Windows Server(RRAS)でのL2TP/IPsec VPN構築とIPアドレス管理を『上位1%』の視点で理解する](/articles/windows-server-l2tp-vpn-guide)」、冗長化構成における代表IP(VIP)は「[代表IP(VIP)とNICチーミングの仮想IPの仕組みを『上位1%』の視点で理解する](/articles/virtual-ip-guide)」で、それぞれさらに深掘りしています。
 
-これに加えて、TCP/UDPの「セッション」という言葉の実体やプロトコル番号とポート番号の関係は「[TCP/UDPの「セッション」とポート番号の関係を『上位1%』の視点で理解する](/articles/tcp-udp-session-port-guide)」、IKEv2/IPsec・OpenVPN・WireGuardといった現代的なVPNプロトコルとの比較は「[L2TP/IPsecと現代的なVPNプロトコルを『上位1%』の視点で比較する](/articles/vpn-protocols-comparison-guide)」で扱っています。また、実際に手を動かして検証したい場合は、Proxmox VE上にstrongSwan・xl2tpdでL2TP/IPsecサーバーを自作し、tcpdumpで接続シーケンスを観測するハンズオン教材「[PVE上でL2TP/IPsecサーバーを自作する『上位1%』のハンズオン](/articles/l2tp-ipsec-lab-guide)」も用意しています。
+これに加えて、TCP/UDPの「セッション」という言葉の実体やプロトコル番号とポート番号の関係は「[TCP/UDPの「セッション」とポート番号の関係を『上位1%』の視点で理解する](/articles/tcp-udp-session-port-guide)」、IKEv2/IPsec・OpenVPN・WireGuardといった現代的なVPNプロトコルとの比較は「[L2TP/IPsecと現代的なVPNプロトコルを『上位1%』の視点で比較する](/articles/vpn-protocols-comparison-guide)」、拠点同士のネットワークをまるごと接続する拠点間VPN(site-to-site VPN)との違いとCisco・WatchGuard間での構築は「[拠点間VPN(Site-to-Site VPN)を『上位1%』の視点で理解する](/articles/site-to-site-vpn-guide)」で扱っています。また、実際に手を動かして検証したい場合は、Proxmox VE上にstrongSwan・xl2tpdでL2TP/IPsecサーバーを自作し、tcpdumpで接続シーケンスを観測するハンズオン教材「[PVE上でL2TP/IPsecサーバーを自作する『上位1%』のハンズオン](/articles/l2tp-ipsec-lab-guide)」も用意しています。
 
 ## 参考文献
 
