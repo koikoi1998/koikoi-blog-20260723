@@ -1,0 +1,90 @@
+questions:
+  - question: "Which statement best matches the article's description of the role SS7 (common-channel signaling) plays inside a telephone network?"
+    choices:
+      - "Carrying the actual voice itself as TDM time slots"
+      - "Handling call control (signaling) — establishing, answering, and tearing down calls, querying number portability, and relaying billing information"
+      - "Serving as the access line itself connecting a subscriber's home to the nearest exchange"
+      - "Acting as the codec that digitizes voice"
+    answerIndex: 1
+    explanation: "SS7 is the group of protocols dedicated to call control (signaling) — establishing, answering, and tearing down calls, querying number portability, and relaying billing information. The actual voice transmission (the bearer) happens over a separate channel."
+
+  - question: "What benefit does the article describe for SS7 running over a dedicated signaling link separate from the channel that carries the actual voice (out-of-band signaling)?"
+    choices:
+      - "Exchanges can exchange call-control information as messages even before a voice circuit has been established"
+      - "It increases the voice compression ratio to save bandwidth"
+      - "It encrypts phone numbers to protect privacy"
+      - "It reduces the number of exchanges that need to be installed"
+    answerIndex: 0
+    explanation: "Using a dedicated signaling link lets exchanges exchange call-control information as messages even before a voice circuit has been established. The older in-band signaling approach (sending tones within the voice band) was inefficient and had a known vulnerability (phreaking)."
+
+  - question: "How does the article evaluate the idea that \"SS7 itself is circuit switching\"?"
+    choices:
+      - "Correct — SS7 flows over a fixed transmission path via TDM"
+      - "Incorrect — SS7 itself is a message-switched protocol stack, relayed message by message from exchange to exchange, rather than flowing over a pre-reserved fixed path"
+      - "Correct — SS7 transmits voice itself via circuit switching"
+      - "Incorrect — SS7 has nothing to do with telephone networks and is an IP-network-only protocol"
+    answerIndex: 1
+    explanation: "The part of a telephone network that carries voice (the bearer) is genuinely circuit-switched via TDM, but SS7 itself — the part that handles call control — is a message-switched protocol stack, relayed message by message between exchanges rather than flowing over a fixed path."
+
+  - question: "Which statement best matches the article's explanation of what the term \"VoIP\" refers to?"
+    choices:
+      - "The name of a specific internet phone service, like Skype or LINE calling"
+      - "The umbrella term for technology that digitizes and packetizes voice for transmission over an IP network, also used internally inside carriers' core networks"
+      - "The name of a technology that replaces telephone-line copper wiring with optical fiber"
+      - "The name of a new database that replaced SS7 for managing number portability"
+    answerIndex: 1
+    explanation: "VoIP isn't the name of a specific service — it's the umbrella term for technology that digitizes and packetizes voice for transmission over an IP network. A carrier's core network transmitting voice over IP internally is also VoIP, in this sense."
+
+  - question: "Why does RTP (Real-time Transport Protocol) run on top of UDP and attach a sequence number and timestamp to every packet, according to the article?"
+    choices:
+      - "Because it provides stronger encryption than TCP"
+      - "To prioritize low latency while still letting the receiving side detect and correct for lost packets, out-of-order arrival, and jitter"
+      - "To increase the number of digits in a phone number"
+      - "To unify the message format with SS7"
+    answerIndex: 1
+    explanation: "RTP runs on top of UDP to prioritize low latency, attaching a sequence number and timestamp to each packet so the receiving side can detect and correct for lost packets, out-of-order arrival, and jitter (variation in playback timing)."
+
+  - question: "What shared design philosophy does the article describe between the SIP/RTP relationship and the SS7/TDM relationship?"
+    choices:
+      - "Keeping control (signaling) and the data actually being carried (media) on separate channels"
+      - "Consolidating all communication onto a single channel"
+      - "Handling voice and text data in the same format"
+      - "Allowing anyone to connect without any authentication at all"
+    answerIndex: 0
+    explanation: "SIP handles only session control (signaling); the actual voice data flows as an RTP stream established separately from the SIP exchange. This mirrors a telephone network's separation of \"SS7 (signaling) from the TDM bearer channel (data)\" — keeping control and data on separate channels."
+
+  - question: "Which statement best matches the article's description of the communication path when watching a YouTube video on a home PC?"
+    choices:
+      - "A dedicated path is established by relaying exchange by exchange via SS7 signaling"
+      - "DNS name resolution, dynamic BGP route advertisement, and CDN geographic optimization combine to determine the path dynamically, per destination and per packet"
+      - "IP addresses are assigned following the same numbering plan as phone numbers"
+      - "It always travels over a single, fixed physical circuit"
+    answerIndex: 1
+    explanation: "The internet's path is determined dynamically, per destination and per packet, through the combination of several independent mechanisms: hierarchical DNS name resolution, dynamic BGP route advertisement between countless networks, and geographic optimization via a CDN. There's no equivalent, on the internet, to a telephone network's \"one dedicated path per call.\""
+
+  - question: "What background does the article give for why SS7's vulnerabilities (so-called SS7 hacks) are a problem?"
+    choices:
+      - "SS7 came with encryption and MFA built in from the start, which paradoxically made it easier for attackers to exploit"
+      - "SS7 was designed on the premise that it would only ever run over a closed network connecting a small set of trusted operators, but the expansion of international interconnection has let third parties never envisioned in the original design gain access to SS7 networks"
+      - "SS7 was originally designed exclusively for packet-switched IP networks, making it poorly suited to telephone networks"
+      - "SS7 never handles billing information, so exploiting it causes no real harm"
+    answerIndex: 1
+    explanation: "SS7 was designed in the 1970s on the premise that it would only ever run over a closed network connecting a small set of trusted operators, with no built-in mechanism to strongly authenticate a message's origin or encrypt its contents. As international interconnection has expanded, third parties never envisioned in the original design have, in reported cases, been able to access SS7 networks."
+
+  - question: "Why does the article say QoS (Quality of Service) configuration is often necessary when deploying VoIP (IP telephony) within an organization?"
+    choices:
+      - "Because RTP runs on top of UDP and gets none of TCP's congestion control or retransmission, so when voice traffic shares bandwidth with other bulk traffic, voice packets can get deprioritized, worsening jitter, delay, and packet loss"
+      - "Because SIP INVITE messages can't be sent without QoS configured"
+      - "Because voice would otherwise be sent as raw analog signal instead of being digitized"
+      - "Because connecting to an SS7 network is refused without QoS configured"
+    answerIndex: 0
+    explanation: "Because RTP runs on top of UDP and gets none of TCP's congestion control or retransmission, sharing an IP network with other bulk traffic can deprioritize voice packets, worsening jitter, delay, and packet loss. QoS mechanisms give voice traffic preferential treatment to prevent this."
+
+  - question: "How does the article evaluate the idea that \"the internet's communication path is a single fixed route, like a phone call\"?"
+    choices:
+      - "Correct — the internet establishes a dedicated path via signaling, just like a telephone network's SS7"
+      - "Incorrect — the internet's path is determined dynamically, per destination and per packet, through the combination of DNS, BGP, and a CDN, and there's no equivalent concept of a dedicated path as in a telephone network"
+      - "Correct — the internet's path is fixed at contract signup and never changes afterward"
+      - "Incorrect — the internet's path is determined entirely by a single DNS server"
+    answerIndex: 1
+    explanation: "The internet's path is determined dynamically, per destination and per packet, through the combination of several independent mechanisms — DNS name resolution, dynamic BGP route advertisement, and CDN geographic optimization. There's no equivalent, on the internet, to a telephone network's \"one dedicated path per call.\""

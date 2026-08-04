@@ -1,0 +1,90 @@
+questions:
+  - question: "Which statement best matches the article's explanation of the two meanings carried by the phrase \"telephone line\"?"
+    choices:
+      - "It refers to both the circuit-switched voice network itself and the physical metal wiring reaching a subscriber's home"
+      - "It refers to both ADSL lines and fiber lines as two new types of wiring"
+      - "It refers to both IP networks and Ethernet as two logical systems"
+      - "It refers to both domestic and international types of exchange"
+    answerIndex: 0
+    explanation: "\"Telephone line\" is used to mean both the circuit-switched voice network itself, in which an exchange uses TDM to build a dedicated one-to-one path, and the physical metal wiring actually strung from a subscriber's home to the nearest local exchange."
+
+  - question: "Which statement best matches the article's explanation of how ADSL reuses the existing telephone line?"
+    choices:
+      - "It lays new metal wiring separate from the telephone line"
+      - "It layers data onto the higher frequency band that voice doesn't use, over the metal wiring already laid as a telephone line"
+      - "It modifies the telephone exchange itself to support packet switching"
+      - "It uses the voice band as-is, switching between voice and data by time of day"
+    answerIndex: 1
+    explanation: "ADSL doesn't involve new wiring — it layers data, via DMT modulation, onto the higher frequency band that voice doesn't use, over the existing telephone metal wiring. A splitter separates voice and data by frequency."
+
+  - question: "Why does ADSL speed tend to degrade as the distance from the local exchange increases, according to the article?"
+    choices:
+      - "Because the number of telephone exchanges increases with distance"
+      - "Because higher-frequency signals attenuate more sharply over a metal wire, so the usable high-frequency (data) band narrows as distance increases"
+      - "Because IP address assignment takes longer as distance increases"
+      - "Because the number of splitters automatically increases with distance"
+    answerIndex: 1
+    explanation: "Higher-frequency signals attenuate more sharply over a metal wire, so the farther the distance from the local exchange, the narrower the usable high-frequency (data) band becomes, and speed drops accordingly."
+
+  - question: "Which statement best matches the article's description of PON, the architecture used in fiber (FTTH)?"
+    choices:
+      - "A single fiber leaving the OLT is split by a power-free optical splitter and shared across multiple subscribers' ONUs"
+      - "A dedicated exchange is installed for each subscriber, electrically amplifying and relaying the signal"
+      - "Voice and data bands are frequency-divided so phone and internet can be used simultaneously"
+      - "Lines are identified by assigning each subscriber a different phone number"
+    answerIndex: 0
+    explanation: "PON (Passive Optical Network) splits a single fiber leaving the OLT using a power-free passive component, the optical splitter, delivering it to multiple subscribers' ONUs. Frequency-division coexistence of voice and data is specific to ADSL (choice 3)."
+
+  - question: "What mechanism does the article describe for preventing collisions among upstream signals (each ONU → OLT) in PON?"
+    choices:
+      - "TDMA, in which the OLT individually assigns each ONU a time slot it's allowed to transmit in"
+      - "Each ONU voluntarily picks a random time to transmit and retransmits if a collision occurs"
+      - "Assigning each ONU a fixed IP address to avoid collisions"
+      - "The optical splitter uses electrical power to amplify signals and absorb collisions"
+    answerIndex: 0
+    explanation: "Upstream in PON, collisions are avoided through TDMA (Time Division Multiple Access), in which the OLT individually assigns each ONU a time slot during which it may transmit."
+
+  - question: "Which statement best matches the article's explanation of the relationship between \"Ethernet\" and an \"IP network\"?"
+    choices:
+      - "Ethernet and an IP network are simply two different names for the exact same thing"
+      - "Ethernet is a data-link-layer (L2) standard, and an IP network is a logical network-layer-and-above (L3+) system that runs on top of it, with IP packets carried inside Ethernet frames"
+      - "An IP network is the data-link layer, and Ethernet runs on top of it as the network layer"
+      - "Ethernet is a standard for communicating using IP addresses"
+    answerIndex: 1
+    explanation: "Ethernet is a data-link-layer (L2) standard using MAC addresses, while an IP network is a logical network-layer-and-above (L3+) system that runs on top of it. IP packets are carried as the payload of Ethernet frames — a layered relationship, not an equivalence."
+
+  - question: "Which statement best matches the article's explanation of fiber-optic phone service (\"hikari denwa\")?"
+    choices:
+      - "It carries a separate analog voice band layered on top, just like a traditional telephone line"
+      - "Voice is digitized into packets and carried as IP packets over Ethernet, in a form called VoIP"
+      - "Phone service itself is no longer offered over fiber"
+      - "A separate dedicated fiber is laid just for phone service"
+    answerIndex: 1
+    explanation: "Phone service over fiber isn't a layered voice band like ADSL — it digitizes voice itself into packets and carries it as IP packets over the same Ethernet link, in a form called VoIP (Voice over IP)."
+
+  - question: "How does the article evaluate the idea that \"once a line is upgraded from ADSL to fiber, subscriber authentication and dynamic IP assignment become unnecessary\"?"
+    choices:
+      - "Correct — faster lines automatically eliminate the need for authentication and IP assignment"
+      - "Incorrect — the line's transmission technology (an L1/L2 upgrade) and the user authentication/address-management scheme running on top of it are entirely separate layers, and the commercial practice inherited from the telephone/dial-up era carries straight over"
+      - "Correct — fiber assigns every IP address as a fixed address, so dynamic assignment is no longer needed"
+      - "Incorrect — authentication actually happens more often as lines get faster"
+    answerIndex: 1
+    explanation: "Upgrading the access line is purely an L1/L2 transmission-technology change. The per-subscriber authentication and dynamic IP assignment practice inherited from the telephone/dial-up era carries straight over, which is why PPP-based connection methods like PPPoE remain in use."
+
+  - question: "What does the article give as the reason behind the recent shift from PPPoE to IPoE on fiber connections?"
+    choices:
+      - "PPPoE requires the carrier's network termination device to concentrate each subscriber's PPP session, and as subscriber counts grow this concentration point becomes a bottleneck, degrading speed during busy hours"
+      - "A security vulnerability was found in PPPoE and its use was banned"
+      - "IPoE costs less in electricity than PPPoE"
+      - "PPPoE is physically incompatible with fiber ONUs"
+    answerIndex: 0
+    explanation: "PPPoE requires the carrier's network termination device to concentrate and process each subscriber's individual PPP session, and as subscriber counts grow this concentration point becomes a structural bottleneck, with speed tending to degrade during congested hours such as evenings. IPoE is a connection method that sidesteps this bottleneck."
+
+  - question: "Which check does the article list for troubleshooting ADSL speed and stability issues?"
+    choices:
+      - "Check the sync rate and noise margin from the modem's admin page"
+      - "Check the ONU's optical receive level (dBm)"
+      - "Check the fiber cable's minimum bend radius"
+      - "Check the OLT's installation location"
+    answerIndex: 0
+    explanation: "For poor or unstable ADSL speed, the article recommends checking the sync rate and noise margin from the modem's admin page. Checking optical receive level or bend radius applies to fiber (ONU) troubleshooting instead."
