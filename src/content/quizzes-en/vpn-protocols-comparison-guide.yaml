@@ -1,0 +1,72 @@
+questions:
+  - question: "What fundamental difference in design philosophy does the article give for why L2TP/IPsec is called \"legacy\"?"
+    choices:
+      - "L2TP/IPsec is TCP-based, while all modern protocols are UDP-based"
+      - "L2TP/IPsec is a \"patchwork\" that combines a tunneling technology with no encryption and an encryption technology with no user authentication, bolted together after the fact, whereas modern protocols are built from the ground up with a consistent design"
+      - "L2TP/IPsec doesn't support IPv6, while all modern protocols are IPv6-only"
+      - "L2TP/IPsec cannot be implemented as open source, while all modern protocols are open source"
+    answerIndex: 1
+    explanation: "L2TP/IPsec combines L2TP (which has no encryption) with IKEv1-based IPsec (which originally had no user-authentication mechanism)—two protocols designed for different purposes, combined after the fact. Modern protocols are consistently designed from the start for a single purpose."
+
+  - question: "Which of the following is NOT one of the reasons the article gives for why IKEv2/IPsec can deliver a complete remote-access VPN without going through L2TP?"
+    choices:
+      - "It natively supports EAP authentication, letting IKEv2 itself handle per-user authentication"
+      - "It natively supports handing out virtual IP addresses and DNS servers through a mechanism called the Configuration Payload"
+      - "The MOBIKE extension lets it carry over the SA to a new IP address when the client's IP address changes"
+      - "IKEv2 always uses TCP port 443, letting it bypass firewalls"
+    answerIndex: 3
+    explanation: "The reasons IKEv2/IPsec can be self-contained are EAP authentication, the Configuration Payload, and MOBIKE. Using TCP port 443 to more easily get past firewalls is described in the article as a characteristic of OpenVPN, not IKEv2."
+
+  - question: "Which of the following describes WireGuard's design philosophy as explained in the article?"
+    choices:
+      - "It increases the number of selectable cryptographic algorithms so the optimal one can be chosen per environment"
+      - "It fixes on a single cryptographic algorithm suite in advance, eliminating the very possibility of misconfiguration or downgrade attacks"
+      - "It keeps IKE's negotiation procedure intact while only modernizing the authentication method"
+      - "It reuses L2TP's tunneling mechanism while replacing only the encryption portion with a custom implementation"
+    answerIndex: 1
+    explanation: "WireGuard fixes its cipher suite in advance to Curve25519, ChaCha20, Poly1305, and BLAKE2s. Because there's no negotiation step for choosing an algorithm at all, the risk of ending up with a weak algorithm is structurally eliminated."
+
+  - question: "Which of the following is described in the article as a major practical characteristic of OpenVPN?"
+    choices:
+      - "It can run over TCP as well as UDP, and configuring it to use TCP port 443 lets it disguise itself as ordinary HTTPS traffic"
+      - "It's built directly into the kernel, giving it the highest throughput of any VPN protocol discussed"
+      - "It fixes on a single cryptographic algorithm with no room for configuration changes"
+      - "It has no user-authentication feature at all and authenticates devices solely via public-key pairs"
+    answerIndex: 0
+    explanation: "OpenVPN can run over either UDP or TCP, with a freely configurable port number. Using TCP 443 makes it look like ordinary HTTPS traffic on the wire, making it easier to connect on restrictive networks that block UDP/ESP."
+
+  - question: "What does the article say about the idea that \"complexity widens the attack surface\"?"
+    choices:
+      - "This idea doesn't apply to VPN protocol design; more features always translates directly into better security"
+      - "The more message types and extension specs an IKE negotiation has to handle, the higher the risk a bug is hiding in the implementation, which is why WireGuard eliminates choice among cryptographic algorithms and minimizes its codebase"
+      - "This idea applies only to OpenVPN and is irrelevant to IPsec-family protocols"
+      - "The article does not draw a clear connection between complexity and security risk"
+    answerIndex: 1
+    explanation: "The article introduces the idea that complexity in implementation or specification widens the attack surface, and explains that WireGuard eliminating choice among cryptographic algorithms and minimizing its codebase is a design decision reflecting this lesson."
+
+  - question: "What does the article say about the performance characteristics of user-space vs. kernel-space implementations?"
+    choices:
+      - "OpenVPN, a user-space implementation, incurs a context switch between kernel and user space on every packet, tending to put it at a throughput disadvantage compared to WireGuard, a kernel-space implementation"
+      - "Kernel-space implementations are always a higher security risk, and user-space implementations are considered safer"
+      - "OpenVPN and WireGuard are both kernel-space implementations, so there's no difference in performance characteristics"
+      - "All IPsec-family protocols are processed entirely in user space, so they're slower than WireGuard"
+    answerIndex: 0
+    explanation: "OpenVPN is a user-space implementation, so every packet it processes incurs a context switch and memory copy with the kernel. WireGuard, built directly into the kernel, has much lower overhead here and tends to have an edge in throughput and latency."
+
+  - question: "What is the article's rebuttal to the idea that \"you should always pick the newer protocol\"?"
+    choices:
+      - "That's correct—you should always choose the most recent protocol available"
+      - "While WireGuard is technically elegant, it has no specification for standard user authentication or centralized management features, so it may not on its own satisfy a large organization's access-management requirements—selection should be based on fit for requirements"
+      - "Newer protocols always end up with larger implementations, so older protocols are always preferable"
+      - "The age of a protocol has no effect on security at all, so either choice is equivalent"
+    answerIndex: 1
+    explanation: "The article explains that even though a protocol like WireGuard is technically excellent, it may lack specified features like user authentication or enterprise centralized management, so the choice should be based on fit for requirements, not novelty."
+
+  - question: "How does the article position the claim that \"L2TP/IPsec is dangerous now and should never be used\"?"
+    choices:
+      - "It agrees—L2TP/IPsec cannot be operated safely under any configuration"
+      - "It calls this an extreme conclusion, stating that with the right configuration—certificate-based authentication, strictly enforced Main Mode—adequate security can be achieved in practice"
+      - "It agrees, since L2TP/IPsec has no encryption capability of its own"
+      - "It says this claim applies to modern protocols in general, and that the VPN category itself is considered dangerous"
+    answerIndex: 1
+    explanation: "The article states that L2TP/IPsec \"leaves a lot of room, by design, to end up choosing an insecure configuration\"—not that it's \"always insecure\"—and that adequate real-world security is achievable with the right configuration."

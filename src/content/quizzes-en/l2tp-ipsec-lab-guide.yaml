@@ -1,0 +1,54 @@
+questions:
+  - question: "In the L2TP/IPsec server built in this article, which software is responsible for IKE/ESP processing, L2TP tunnel/session processing, and PPP negotiation, respectively?"
+    choices:
+      - "strongSwan handles IKE/ESP, xl2tpd handles L2TP, and pppd handles PPP"
+      - "strongSwan handles everything by itself, with xl2tpd and pppd only providing auxiliary logging"
+      - "xl2tpd handles both IKE/ESP and L2TP, while strongSwan only configures the firewall"
+      - "pppd handles IKE/ESP/L2TP/PPP all in one integrated process"
+    answerIndex: 0
+    explanation: "In this article's setup, IKE/ESP processing is handled by strongSwan, L2TP tunnel/session processing by xl2tpd, and PPP negotiation by pppd (invoked internally by xl2tpd)."
+
+  - question: "According to the article, why is `type=transport` specified in ipsec.conf?"
+    choices:
+      - "Because tunnel mode is an outdated spec that's now deprecated"
+      - "Because L2TP itself already provides tunneling, so there's no need to stack a second layer of tunnel mode on top in IPsec — transport mode is enough"
+      - "Because xl2tpd won't start unless transport mode is used"
+      - "Because the client's OS doesn't support tunnel mode"
+    answerIndex: 1
+    explanation: "L2TP itself already plays the role of building a virtual tunnel, so stacking IPsec's tunnel mode on top of it would only add a redundant, duplicate IP header. Transport mode is therefore sufficient."
+
+  - question: "What reason does the article give for why UDP port 1701 is often explicitly allowed in the server's own firewall (INPUT chain)?"
+    choices:
+      - "Because UDP 1701 is never encrypted and is always visible in plaintext everywhere along the path"
+      - "Because strongSwan's kernel implementation (XFRM) decrypts an ESP packet before handing it to the OS network stack, so depending on when the INPUT chain is evaluated, it may see a decrypted, plaintext packet"
+      - "Because xl2tpd's specification requires UDP 1701 to be allowed or the service itself won't start"
+      - "Because UDP 1701 is a NAT-T-specific port required for the initial IKE negotiation"
+    answerIndex: 1
+    explanation: "UDP 1701 is invisible, encrypted, to intermediate devices along the path, but on the server's own INPUT chain, depending on the timing of XFRM's decryption, it may be evaluated as a decrypted plaintext packet — so it's common practice to explicitly allow it as a precaution."
+
+  - question: "When connecting from a client through an extra layer of NAT set up inside PVE, what phenomenon does the article describe as observable in a tcpdump capture?"
+    choices:
+      - "All IKE exchanges switch over to TCP"
+      - "The IKE Phase 1 message contains a NAT-D payload, subsequent traffic floats from UDP port 500 to UDP port 4500, and the ESP packet is further encapsulated inside a UDP header"
+      - "The L2TP tunnel fails to establish and PPP negotiation is skipped entirely"
+      - "The ESP packet's protocol number automatically changes from 50 to 51"
+    answerIndex: 1
+    explanation: "Under NAT, the NAT-D payload in IKE Phase 1 triggers detection, causing a float from UDP port 500 to UDP port 4500 and further UDP encapsulation of the ESP packet — all observable as real packets."
+
+  - question: "What weakness of the PSK setup built in this article's hands-on exercise does the article describe?"
+    choices:
+      - "A new PSK is automatically generated at random for every connection, making operational management cumbersome"
+      - "The pre-shared key set in ipsec.secrets is shared by every connecting client, so IPsec-layer authentication ends up in a state where \"anyone can open the tunnel with the same key,\" leaving actual per-user authentication dependent on the PPP layer"
+      - "The PSK setup is specified to allow PPP-layer authentication to be skipped entirely"
+      - "The PSK method cannot be used together with NAT-T"
+    answerIndex: 1
+    explanation: "Because the PSK in ipsec.secrets is shared across every client, IPsec-layer authentication alone can't distinguish individual users — actual per-user authentication ends up depending entirely on the PPP layer's username and password."
+
+  - question: "What does the article describe as the fix when a Windows client fails to connect in a double-NAT environment (where the server itself is also behind NAT)?"
+    choices:
+      - "Explicitly open TCP port 1701 on the client side"
+      - "Set the `AssumeUDPEncapsulationContextOnSendRule` registry value on the client to `2`"
+      - "Change `type=tunnel` in the server's ipsec.conf"
+      - "Downgrade the version of xl2tpd"
+    answerIndex: 1
+    explanation: "When the server itself is also behind a NAT (a double-NAT setup), setting the client-side registry value `AssumeUDPEncapsulationContextOnSendRule` to `2` allows this configuration to be accommodated."

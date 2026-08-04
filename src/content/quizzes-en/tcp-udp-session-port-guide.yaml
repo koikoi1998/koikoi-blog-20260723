@@ -1,0 +1,81 @@
+questions:
+  - question: "Which of the following is the most accurate description of what a TCP \"connection\" actually is?"
+    choices:
+      - "A real state, identified by the 5-tuple (protocol + source IP:port + destination IP:port), that both the sending and receiving OS kernels manage as a state machine"
+      - "A logical state that the application layer manages on its own using cookies, with no OS involvement"
+      - "A state that is uniquely identified solely by the protocol number field in the IP header"
+      - "A pseudo-state that a NAT device or firewall manages for convenience using a timeout"
+    answerIndex: 0
+    explanation: "A TCP connection is uniquely identified by the 5-tuple, and both OS kernels involved formally hold and manage states such as ESTABLISHED as a genuine state machine belonging to the protocol itself."
+
+  - question: "What does the commonly used phrase \"UDP session\" actually refer to?"
+    choices:
+      - "A state managed via a connection-establishment procedure that UDP itself defines in its RFC"
+      - "A pseudo-state, since UDP itself has no protocol-level state at all, that a NAT device or stateful firewall infers by observing repeated source/destination pairs and manages via a timeout, purely as a convenience"
+      - "A state identified by a session ID field inside the UDP header"
+      - "A state established via the same three-way handshake used by TCP"
+    answerIndex: 1
+    explanation: "UDP is connectionless and holds no state of its own. A \"UDP session\" is merely a pseudo-state that a NAT device or firewall infers by watching the back-and-forth of traffic and manages with a timeout, as a matter of convenience."
+
+  - question: "According to the article, why is TCP's TIME_WAIT state necessary?"
+    choices:
+      - "It exists to reduce server load by closing connections as quickly as possible"
+      - "To account for the case where the final ACK never reached the peer, and to prevent a new connection reusing the same 5-tuple from mistakenly receiving a stray, delayed packet from the old connection"
+      - "TCP's congestion control algorithm uses this state to adjust its send rate"
+      - "To reflect the IP-to-port-number mapping into the ARP table"
+    answerIndex: 1
+    explanation: "TIME_WAIT is held for roughly 2MSL both to handle the case where the peer retransmits its FIN because the final ACK never arrived, and to prevent a new connection with the same 5-tuple from mistakenly receiving a delayed packet left over from the previous connection."
+
+  - question: "Which of the following most accurately describes the relationship between protocol numbers and port numbers?"
+    choices:
+      - "Protocol numbers and port numbers are the same field within the same header — they are, in effect, the same thing"
+      - "The protocol number is an 8-bit field in the IP header, while the port number is a 16-bit field that TCP and UDP headers each carry independently — they belong to different layers and different namespaces entirely"
+      - "Port numbers form a single namespace shared across the entire IP protocol suite, so the same number on TCP and UDP always means the same thing"
+      - "The protocol number is managed by the application layer, and the port number by the network layer"
+    answerIndex: 1
+    explanation: "The protocol number is the IP header's 8-bit field (TCP = 6, UDP = 17, etc.), while the port number is a 16-bit field that TCP and UDP each carry independently. TCP port 80 and UDP port 80 belong to entirely separate namespaces."
+
+  - question: "What is the article's answer to the question \"if protocols and ports aren't 1:1 anyway, why not just assign ESP an arbitrary port number\"?"
+    choices:
+      - "That's correct, and in practice ESP is widely operated with an arbitrarily assigned port number"
+      - "A port number is simply a field predefined as part of the TCP/UDP header format, and no such field exists in ESP's header format (RFC 4303) — assigning one would require changing ESP's specification itself"
+      - "ESP is only used with IPv6, so the concept of a port number is unnecessary for it"
+      - "Port numbers correspond 1:1 with MAC addresses, so there's no room to assign one to ESP in the first place"
+    answerIndex: 1
+    explanation: "A port number is a field defined as part of the TCP or UDP header structure, not a general-purpose identifier attachable to any protocol from outside. ESP's header (RFC 4303) has no port-number field, so one cannot simply be assigned to it."
+
+  - question: "Which of the following correctly describes the approach NAT-T takes to let ESP traverse a NAT environment?"
+    choices:
+      - "It adds a brand-new port-number field to ESP's own header format"
+      - "It encapsulates the entire ESP packet inside a UDP header, which already has a port-number field, so it can ride on the existing port-based NAPT translation table"
+      - "It converts all ESP traffic into ICMP before sending it"
+      - "It updates the NAT device's firmware so protocol number 50 receives special-case handling"
+    answerIndex: 1
+    explanation: "Rather than changing ESP's own specification, NAT-T wraps (encapsulates) the entire ESP packet inside a UDP header, allowing it to ride on the existing port-based NAPT translation mechanism as-is."
+
+  - question: "Which of the following correctly describes TCP/UDP port numbers in the range 0-1023?"
+    choices:
+      - "They're called dynamic/private (ephemeral) ports and are used temporarily by a client each time it communicates"
+      - "They're called well-known ports and are reserved for widely agreed-upon standard services such as HTTP (80) and SSH (22)"
+      - "They're an unregistered range with IANA that anyone is free to use"
+      - "They're used only by TCP; UDP has no reservation for ports 0-1023"
+    answerIndex: 1
+    explanation: "0-1023 are the well-known ports, reserved for widely agreed-upon standard services such as HTTP, HTTPS, SSH, and DNS. On most OSes, binding to a port below 1024 requires administrator privileges."
+
+  - question: "Which of the following is NOT one of the examples the article gives of \"session\" meaning different things at different layers?"
+    choices:
+      - "A TCP connection (a state machine identified by the 5-tuple, managed by the OS kernel)"
+      - "A pseudo-session managed for convenience by a NAT device or firewall"
+      - "A login session managed by an application via a cookie or token"
+      - "A learning entry a switch's MAC address table keeps per port"
+    answerIndex: 3
+    explanation: "The article lists four: TCP connections, NAT/firewall pseudo-sessions, the OSI model's session layer, and applications' login sessions. A switch's MAC address table learning entries aren't discussed in the context of \"sessions.\""
+
+  - question: "Which design characteristic of QUIC (the transport protocol behind HTTP/3) does the article describe?"
+    choices:
+      - "It carries over TCP's 5-tuple-based connection identification unchanged, so a connection is always dropped if the IP address changes"
+      - "It's built on top of UDP, but manages connections using its own connection ID, allowing a connection to persist even if the client's IP address changes"
+      - "It abolishes the concept of port numbers entirely and identifies peers using only the protocol number"
+      - "It's registered with IANA as a brand-new transport-layer protocol number that replaces TCP"
+    answerIndex: 1
+    explanation: "QUIC is built on top of UDP but manages connections with its own connection ID rather than relying on TCP's 5-tuple, which lets a connection survive an IP address change such as switching from Wi-Fi to a mobile network."

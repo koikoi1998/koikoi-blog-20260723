@@ -33,6 +33,9 @@ graph TB
     Nat["④ nat-guide<br/>(How NAT/NAPT Works)"]
     Winvpn["④ windows-server-l2tp-vpn-guide<br/>(L2TP/IPsec on Windows Server)"]
     Vip["④ virtual-ip-guide<br/>(Virtual IPs / VIPs)"]
+    TcpUdp["④ tcp-udp-session-port-guide<br/>(TCP/UDP Sessions and Port Numbers)"]
+    VpnCompare["④ vpn-protocols-comparison-guide<br/>(Comparison with Modern VPN Protocols)"]
+    L2tpLab["⑤ l2tp-ipsec-lab-guide<br/>(Hands-On: Build L2TP/IPsec on PVE)"]
 
     Idrac --> Power
     Idrac --> Net
@@ -47,9 +50,12 @@ graph TB
     L2tp --> Nat
     L2tp --> Winvpn
     L2tp --> Vip
+    L2tp --> TcpUdp
+    L2tp --> VpnCompare
+    L2tp --> L2tpLab
 ```
 
-Start with article ① on iDRAC, then branch out into the ② deep-dive articles (power, networking, API) depending on your interest. The three ② articles are independent of each other, so read them in any order. The ③ articles are each a further step down from one of the ② articles (the OS boot process after POST, NIC driver internals, how L2TP/IPsec works) — a good way to test your understanding after finishing the corresponding ② article. The six ④ articles are all deep dives that branch off from the L2TP/IPsec article to cover topics that wouldn't fit in the main article, but **every one of them can be read entirely on its own**. The three on PKI/digital certificates, symmetric encryption (AES/HMAC), and NAT/NAPT are general-purpose technical topics used far beyond L2TP/IPsec, in TLS, SSH, and elsewhere. The telephone-lines-and-PPP article covers both the historical background of why L2TP/IPsec reuses dial-up-era PPP and the internals of MS-CHAPv2 authentication. The Windows Server (RRAS) L2TP/IPsec setup and virtual IP (VIP) articles cover more implementation-level topics you'll run into when actually building and operating a VPN server.
+Start with article ① on iDRAC, then branch out into the ② deep-dive articles (power, networking, API) depending on your interest. The three ② articles are independent of each other, so read them in any order. The ③ articles are each a further step down from one of the ② articles (the OS boot process after POST, NIC driver internals, how L2TP/IPsec works) — a good way to test your understanding after finishing the corresponding ② article. The eight ④ articles are all deep dives that branch off from the L2TP/IPsec article to cover topics that wouldn't fit in the main article, but **every one of them can be read entirely on its own**. The four on PKI/digital certificates, symmetric encryption (AES/HMAC), NAT/NAPT, and TCP/UDP sessions and port numbers are general-purpose technical topics used far beyond L2TP/IPsec, in TLS, SSH, and elsewhere. The telephone-lines-and-PPP article covers both the historical background of why L2TP/IPsec reuses dial-up-era PPP and the internals of MS-CHAPv2 authentication. The Windows Server (RRAS) L2TP/IPsec setup and virtual IP (VIP) articles cover more implementation-level topics you'll run into when actually building and operating a VPN server. The comparison article covers how L2TP/IPsec's design differs from IKEv2/IPsec, OpenVPN, and WireGuard. The ⑤ hands-on article is a deliberate exception in this series — a practical build guide where you construct an L2TP/IPsec server on Proxmox VE and verify the theory with packet captures.
 
 ## Series list
 
@@ -71,6 +77,9 @@ A series covering out-of-band server management.
 - [Understanding How NAT/NAPT Works from a "Top 1%" Perspective](/en/articles/nat-guide) — The internals of the translation table, NAT behavior types, and how NAT-T works (spun off from the L2TP/IPsec article's NAT traversal section; also readable standalone).
 - [Understanding Virtual IPs (VIPs) and NIC Teaming's Virtual IP from a "Top 1%" Perspective](/en/articles/virtual-ip-guide) — The difference between the two ways a virtual IP is realized (IP takeover vs. a load balancer's NAT translation), plus NIC teaming's virtual IP (spun off from IP address management in redundant setups; also readable standalone).
 - [Understanding Windows Server (RRAS) L2TP/IPsec VPN Setup and IP Address Management from a "Top 1%" Perspective](/en/articles/windows-server-l2tp-vpn-guide) — RRAS's address pool, and why a gateway is needed even though clients look like they're on the same subnet (a Windows Server implementation companion to the L2TP/IPsec article; also readable standalone).
+- [Understanding the Relationship Between TCP/UDP "Sessions" and Port Numbers from a "Top 1%" Perspective](/en/articles/tcp-udp-session-port-guide) — What a TCP connection's state machine really is, how it differs from a NAT/firewall's pseudo-session, and why protocol numbers and port numbers aren't a 1:1 mapping (spun off from the L2TP/IPsec article's discussion of ESP and port numbers; also readable standalone).
+- [Comparing L2TP/IPsec to Modern VPN Protocols from a "Top 1%" Perspective](/en/articles/vpn-protocols-comparison-guide) — A deep dive into the differences in design philosophy, implementation size, and mobile resilience against IKEv2/IPsec, OpenVPN, and WireGuard (spun off to dig into why L2TP/IPsec is called legacy; also readable standalone).
+- [A "Top 1%" Hands-On Lab: Building Your Own L2TP/IPsec Server on Proxmox VE](/en/articles/l2tp-ipsec-lab-guide) — Build an L2TP/IPsec server on Proxmox VE with strongSwan and xl2tpd, and verify the connection sequence with tcpdump (a deliberate exception in this series: a hands-on build guide).
 
 ### Web / API Series
 

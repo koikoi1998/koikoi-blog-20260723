@@ -6,6 +6,7 @@ order: 8
 tags: ["network", "nat", "napt", "vpn", "infra"]
 emoji: "🔁"
 pubDate: 2026-08-01
+updatedDate: 2026-08-03
 ---
 
 ## Introduction
@@ -119,6 +120,32 @@ graph LR
 Once NAT-T is active, the packet as seen from outside becomes "an ordinary UDP packet addressed to UDP port 4500." From the NAT device's point of view, there's no need to care at all whether the contents are ESP—the existing NAPT mechanism (translation based on source/destination port numbers) can simply be used as-is. This is the essence of NAT-T: **"put a port-number costume on a protocol that has no port number, after the fact, so it can ride on the NAPT translation table."** This is the idea common to all technologies bearing the name "NAT-T."
 
 **Conversely, if no NAT is detected**, this switchover does not happen. Key exchange continues on UDP port 500 as before, and ESP is sent and received **directly as IP protocol number 50 packets**, without being wrapped in UDP. There's no overhead from the extra UDP header, and no keepalive is needed—which is why NAT-T should be understood strictly as "a workaround to allow communication to work behind NAT," and is in fact not used at all in environments without NAT.
+
+### Inside the NAT-D (NAT Detection) Payload: Why Two Hashes Are Sent
+
+Let's go one level deeper on "1. NAT Detection" from the previous section. **NAT-D (NAT Detection, a payload type defined in RFC 3947)** is the piece of information exchanged during IKE Phase 1 messaging to determine whether a NAT is present. Its formula is as follows:
+
+```
+NAT-D = HASH( ISAKMP Cookie(Initiator) | ISAKMP Cookie(Responder) | IP address | Port number )
+```
+
+The Cookie here (also called the ISAKMP SPI) is an 8-byte random value each side generates during the very first message exchange of IKE Phase 1, and it's carried in the ISAKMP header. The reason it's included as material for the hash is **to prevent the hash value for a given IP address/port combination from being reused and compared across a different session by a third party**. Because the Cookie value changes with every session, the hash value changes every time even for the same target IP address and port.
+
+**Why are two NAT-D payloads (two hashes) sent in a single exchange?** — that's the key to understanding this mechanism. Each IKE party includes the following two kinds of NAT-D payloads in its Phase 1 message:
+
+1. **A hash keyed on the peer's (destination's) IP address and port**: computed using the value of "the peer's IP address and port" that this side believes it's connecting to.
+2. **A hash keyed on its own (source) IP address and port**: computed using the value of the local IP address and port this side itself is aware of.
+
+The receiving side then performs two independent comparisons:
+
+| What's being compared | Value it's compared against | What a mismatch reveals |
+|---|---|---|
+| The received "1. peer(destination)-facing" hash | A hash computed from the local IP address and port this side actually has | The peer sees this side's address differently than it actually is — meaning **this side itself is behind a NAT** |
+| The received "2. source-facing" hash | A hash computed from the actual source IP address and port of the packet as received (the raw value observed over the network) | The value the peer sent differs from the value that actually arrived — meaning **the peer is behind a NAT** |
+
+Because both parties in IKE Phase 1 perform these two comparisons independently, each side can accurately determine, in both directions, "am I behind a NAT?" and "is my peer behind a NAT?" — not just one or the other. If a mismatch is detected on either side, both sides agree to float to UDP port 4500 as described above. Conversely, if both comparisons match, no NAT is judged to exist on the path, and IKE/ESP traffic continues on UDP port 500 as before.
+
+One thing worth noting: **what NAT-D detects is strictly the fact that "the address/port was rewritten somewhere along the path"—it cannot distinguish whether that rewrite was done by a legitimate NAT device or by a malicious third party tampering with or spoofing the traffic.** NAT-D is purely a functional mechanism for deciding whether to float to UDP 4500, not a security defense mechanism. What actually prevents spoofing and tampering is, in addition to the unpredictability the Cookie brings to the hash itself, the handshake authentication that follows in IKE Phase 1 (via PSK or certificates) and ESP's per-packet integrity verification through its ICV (Integrity Check Value).
 
 ## The View from the Top 1% (What Experts See)
 
