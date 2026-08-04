@@ -6,7 +6,7 @@ order: 2
 tags: ["server", "infra", "power", "psu", "datacenter"]
 emoji: "🔌"
 pubDate: 2026-07-23
-updatedDate: 2026-07-28
+updatedDate: 2026-08-04
 ---
 
 ## Introduction
@@ -36,8 +36,8 @@ A server's power supply is "**a mechanism that keeps converting the coarse, unst
 
 ```mermaid
 graph LR
-    Utility["Utility Company<br/>(High-voltage AC)"] --> UPS["UPS<br/>(Uninterruptible Power Supply)"]
-    UPS --> PDU["PDU<br/>(In-rack Power Distribution Unit)"]
+    Utility["Utility Company<br/>(High-voltage AC)"] --> UPS["UPS<br/>(Uninterruptible Power Supply)<br/>Either a large floor/DC-level facility,<br/>or a small rack-level unit"]
+    UPS --> PDU["PDU<br/>(Power Distribution Unit)<br/>Either a large floor-level distribution panel,<br/>or a small rack-level power strip (rPDU)"]
     PDU --> PSU1["PSU#1<br/>(AC→DC conversion)"]
     PDU --> PSU2["PSU#2<br/>(AC→DC conversion)"]
     PSU1 --> Rail["+12V DC Rail"]
@@ -50,7 +50,7 @@ graph LR
 
 Including the stages upstream of the server itself (UPS, PDU), you can see that power delivery is a design built from many layers of "conversion" and "redundancy." This article focuses specifically on the conversion mechanisms inside the server itself (PSU, VRM) and on PSU redundancy design.
 
-Note that this diagram is a simplified single-line view of the path power takes. In practice, to achieve **A/B grid redundancy** (discussed later), this entire path from UPS to PDU is typically duplicated into two independent systems (Grid A and Grid B) running in parallel, so that a single server can draw power from both. We'll come back to this point in "Digging Deeper into the Roles of the UPS and PDU."
+Note that this diagram is a simplified single-line view of the path power takes. In practice, to achieve **A/B grid redundancy** (discussed later), this entire path from UPS to PDU is typically duplicated into two independent systems (Grid A and Grid B) running in parallel, so that a single server can draw power from both. Also, the UPS and PDU nodes in this diagram each stand for two different things — a large piece of equipment operating at the floor (data center) level, or a small unit that's entirely self-contained within a single rack — and the two scales don't necessarily both appear together on the same path; which one you get depends on the scale of the deployment. We'll come back to this granularity, and to what the UPS and PDU each actually do, in "Digging Deeper into the Roles of the UPS and PDU."
 
 ## Fundamentals, Thoroughly Explained
 
@@ -95,11 +95,11 @@ The key point is that **voltage (more precisely, electric potential) isn't a pro
 
 The same is true in an electric circuit: the positive terminal of a battery sits at high potential, and the negative terminal at low potential (this potential difference is the "voltage"). It's precisely because of this potential difference that connecting the two points with a wire creates a force (an electric field) pushing electrons from the high-potential side toward the low-potential side. And the amount of energy a single electron loses (or gains) as it moves across that entire potential difference is exactly the energy computed as "voltage × one unit of charge." In other words, "voltage = the size of the pushing force" and "voltage = the energy handed off as an electron moves" are not competing explanations — they're the same potential-difference phenomenon, seen once as a force and once as energy.
 
-**What a battery actually does**: A battery isn't a device that "sends out special electrons carrying a fixed voltage." The chemical reaction inside a battery acts like a pump lifting water from the bottom of a dam back up to the top — it continuously uses chemical energy to pump electrons from the negative terminal side over to the positive terminal side, and as a result maintains a constant potential difference (voltage) between the two terminals. When the circuit is closed and electrons travel around the outside of the battery, back to the negative terminal, the battery pumps them back up to the positive side via the same chemical reaction, so the potential difference is sustained and current keeps flowing. Your intuition that "if there's no friction, energy should be conserved" fits neatly into this picture — it's correct: if an electron simply moves through a wire with zero resistance, its potential (i.e., potential energy) isn't lost at all. Potential only drops (i.e., energy is lost) when an electron passes through something like a resistor — an "electrical friction" — and that's exactly what a "voltage drop" is.
+**What a battery actually does**: A battery isn't a device that "sends out special electrons carrying a fixed voltage." The chemical reaction inside a battery acts like a pump lifting water from the bottom of a dam back up to the top — it continuously uses chemical energy to pump electrons from the negative terminal side over to the positive terminal side, and as a result maintains a constant potential difference (voltage) between the two terminals. When the circuit is closed and electrons travel around the outside of the battery, back to the negative terminal, the battery pumps them back up to the positive side via the same chemical reaction, so the potential difference is sustained and current keeps flowing. It's tempting to picture this as "if there's no friction, energy should be conserved," and that picture is correct: if an electron simply moves through a wire with zero resistance, its potential (i.e., potential energy) isn't lost at all. Potential only drops (i.e., energy is lost) when an electron passes through something like a resistor — an "electrical friction" — and that's exactly what a "voltage drop" is.
 
 **What does "applying a voltage" actually mean?**: Given all this, "applying a voltage" means deliberately creating a potential difference between two points in a circuit — typically by connecting the positive and negative terminals of a battery or power supply to those two points. Conversely, as long as a potential difference exists between two points, a "voltage is applied" there, and connecting those two points with a conductor will start a current flowing in the direction that cancels out the potential difference (if nothing is connected, you can have a potential difference present with no current flowing at all).
 
-**Applying this to capacitors**: When you apply a voltage across a capacitor's two plates, electrons pile up on one plate (making it negative), while electrons are pushed away from the other (making it positive), and a potential difference (voltage) forms between the plates. Your intuition — "once negative charge piles up on one side, additional negative charge can't keep advancing (like two south magnetic poles repelling each other)" — is nearly spot-on as an intuitive model. The more same-sign charge (electrons) accumulates in one place, the stronger the repulsive force (from the electric field) against pushing yet more of the same charge in, and as the potential difference between the plates approaches the external voltage, the "pushing force" driving further electrons in gets increasingly canceled out. That's why a capacitor doesn't charge forever under a constant applied voltage — current converges toward zero once it balances the external voltage. Conversely, when the external voltage drops or disappears (i.e., the capacitor gets connected to something at lower potential), the stored potential difference drives the accumulated electrons back out, and current flows in reverse. This is exactly what's behind the timing of when voltage rises and falls: it rises while charging, and falls while discharging.
+The same idea of a "potential difference" applies directly to capacitors as well. How a voltage gets applied to a capacitor, and exactly how charge accumulates on its plates, is covered together in one place later on, in "What exactly does a 'capacitor' do, anyway?"
 
 </details>
 
@@ -122,6 +122,17 @@ It's easy to picture this like a battery — "storing up power and dispensing it
 <summary>What exactly does a "capacitor" do, anyway?</summary>
 
 A capacitor is, structurally, a very simple component: two metal plates (electrodes) placed facing each other with only a tiny gap between them. When a voltage is applied, positive charge accumulates on one electrode and negative charge on the other, and this "imbalance of charge" is how it stores energy. Because the two electrodes are separated by an insulator (a dielectric), the charge can't jump across and flow through — it has nowhere to go and simply keeps accumulating on both electrodes.
+
+Here's what it looks like to place these two plates inside a circuit with a battery:
+
+```mermaid
+graph LR
+    Bat["Battery"] -->|"wire from + terminal"| PA["Electrode A<br/>(electrons pulled out, becomes positively charged)"]
+    Bat -->|"wire from - terminal"| PB["Electrode B<br/>(electrons pushed in, becomes negatively charged)"]
+    PA -.Separated by an insulator (dielectric),<br/>so charge cannot jump across this gap.- PB
+```
+
+Electrons are pulled out of electrode A, connected to the battery's positive terminal, leaving it positively charged, while electrons are pushed into electrode B, connected to the negative terminal, leaving it negatively charged. It's a fair intuition that "once negative charge piles up on one side, additional negative charge can't keep advancing (like two south magnetic poles repelling each other)" — that's nearly spot-on as a mental model. The more same-sign charge (electrons) accumulates in one place, the stronger the repulsive force (from the electric field) against pushing yet more of the same charge in, and as the potential difference between the plates approaches the external voltage, the "pushing force" driving further electrons in gets increasingly canceled out. That's why a capacitor doesn't charge forever under a constant applied voltage — current converges toward zero once it balances the external voltage. Conversely, when the external voltage drops or disappears (i.e., the capacitor gets connected to something at lower potential), the stored potential difference drives the accumulated electrons back out, and current flows in reverse. This is exactly what's behind the timing of when voltage rises and falls: it rises while charging, and falls while discharging.
 
 The idea that "a voltage difference arises, and current flows to try to cancel it out" is correct here, and this is exactly the property a capacitor exploits. **When the external voltage tries to rise, the capacitor resists that change by storing more charge (slowing the rise in voltage); conversely, when the external voltage tries to fall, it resists that change by releasing stored charge (slowing the drop in voltage)**. In other words, a capacitor acts as an "electrical shock absorber" that dampens sudden changes in voltage.
 
@@ -163,8 +174,7 @@ Why does "just changing the turns ratio" let you freely convert voltage? The key
 
 This mechanism only works in the first place because of AC's property of "the direction and magnitude of current continuously changing." DC, whose current always stays at a constant direction and magnitude, can't use this electromagnetic-induction-based voltage-conversion mechanism as-is — changing DC voltage requires a separate, active electronic circuit (something like a DC-DC converter, using active switching). Historically, the fact that long-distance transmission developed around AC was largely due to the ability to convert voltage using only a simple, highly reliable mechanical device — the transformer. (In modern times, HVDC — high-voltage direct current transmission — is used in some cases, such as intercontinental submarine transmission lines, but this is a special case where the cost of conversion equipment can be justified by the sheer length of the transmission distance.)
 
-<details>
-<summary>Why can alternating current induce electromagnetic induction (and why can't direct current)?</summary>
+**Why can alternating current induce electromagnetic induction (and why can't direct current)?**
 
 Underlying electromagnetic induction are the following two physical laws:
 
@@ -175,14 +185,11 @@ When AC is run through a transformer's primary coil, the magnitude and direction
 
 DC, on the other hand, when run through the primary coil, produces a magnetic field of constant strength that doesn't change, since the current itself is constant (a brief current is induced in the secondary coil only at the instant power is switched on or off, when the field does change momentarily; after that, since the field no longer changes, no further induction occurs and the current drops to zero). The condition for electromagnetic induction isn't "whether current is flowing" but "whether the magnetic field keeps changing," which is why only AC, which keeps changing continuously, can sustain ongoing voltage conversion through a transformer.
 
-</details>
-
 **Why transistors and DC are a good match**
 
 A transistor is a semiconductor device that can switch or amplify a large current using only a very small change in voltage or current. Inside a CPU, a huge number of these transistors are combined as switches with two states — "high voltage = 1," "low voltage = 0" — to perform logical operations (AND/OR/NOT, etc.). This 0/1 determination happens with such tight timing that even a slight voltage wobble can cause a misreading, which means AC, whose voltage keeps periodically fluctuating, can't provide the precise switching needed. DC's property of being "always constant" is fundamentally well-matched to this kind of fast, precise 0/1 determination.
 
-<details>
-<summary>What exactly is a "semiconductor," anyway? (How a transistor works as a switch)</summary>
+**What exactly is a "semiconductor," anyway? (How a transistor works as a switch)**
 
 A semiconductor is a material, like silicon, whose electrical properties fall between those of a "conductor" (which conducts electricity) and an "insulator" (which doesn't). The key point is that **pure silicon barely conducts electricity at all, but mixing in a tiny amount of impurity (doping) lets you artificially control how well it conducts**.
 
@@ -190,8 +197,6 @@ A semiconductor is a material, like silicon, whose electrical properties fall be
 - Mixing in an impurity such as boron produces a "P-type semiconductor," which has a deficiency of electrons (an excess of "holes," the absence of an electron).
 
 A transistor is structured as a sandwich of these N-type and P-type materials, arranged as "N-P-N" or "P-N-P." By making only a small change to the voltage applied to the middle layer (the base), you can electrically switch between a state where current flows between the two outer layers (the collector and emitter) and a state where it doesn't. This is the true nature of a transistor's switching action — "a tiny change in voltage that can switch a large current ON/OFF." It's only because of this special property of semiconductors — the ability to freely control how well they conduct electricity — that it's possible to pack billions of these fast, precise switches onto a chip the size of a fingernail.
-
-</details>
 
 **Consumer devices perform the same conversion, too**
 
@@ -250,16 +255,18 @@ A PDU is a device that distributes power received from the UPS or breakers to th
 To achieve the A/B grid redundancy mentioned earlier, connecting all PSUs to a single PDU defeats the purpose. **Only by physically splitting into two separate PDUs — one for Grid A (PDU-A) and one for Grid B (PDU-B), each connected to its own UPS and its own breaker, and then plugging a single server's multiple PSUs into different PDUs — does redundancy of the power delivery path actually hold.** In other words, it isn't that "a single PDU splits power into Grid A and Grid B" — rather, PDU-A and PDU-B are independent, physically separate units running in parallel from the start, and the server draws one cable from each.
 
 <details>
-<summary>Why can't I find a PDU in my rack, even though there's a UPS? (Two different scales the word "PDU" can refer to)</summary>
+<summary>"UPS" and "PDU" each refer to two different scales (why can't I find a PDU in my rack, even though there's a UPS?)</summary>
 
-In practice, the word "PDU" gets used for two different scales, which is a common source of confusion:
+In practice, both "UPS" and "PDU" get used to refer to either a **large piece of equipment at the floor (data center facility) level** or a **small unit at the rack level**, which is a common source of confusion:
 
+- **Floor UPS (a centralized, facility-side UPS)**: A large, stationary UPS that backs up power collectively for an entire server room or data center floor, or for a "UPS zone" spanning multiple racks. It's typically operated in a redundant configuration such as `N+1` or `2N`, and, like a floor PDU, it's part of the building's electrical infrastructure rather than something that fits inside a rack.
+- **Rack-mount UPS**: A small UPS installed inside the rack itself, alongside the servers, covering just that one rack's worth of load.
 - **Floor PDU (facility-side distribution panel)**: A large distribution panel, installed in the wall or under the floor, that splits the UPS's output into multiple circuits (breakers) at the level of an entire server room or data center floor. Some types even include a built-in transformer for voltage conversion. It's part of the building's electrical infrastructure, not something that fits inside a rack.
 - **Rack PDU (rPDU)**: The unit mounted inside a rack — essentially, a "business-grade power strip." This is the PDU the table above is describing — the one visible at the rack level.
 
-The setup you described (a single rack holding both a server and a UPS, wired as server → UPS → floor outlet) is an example of a **small, simple configuration where the rack PDU (rPDU) has been omitted**. A rack-mount UPS itself typically has several outlets on the back, and those outlets effectively serve as that rack's power distribution point, so there was no need for a separate "PDU" box inside the rack. Meanwhile, behind the "floor outlet" the UPS draws from, there is, invisibly, always a floor PDU (or an equivalent distribution panel) that splits power out toward multiple racks and multiple UPSes. In other words, "there's no PDU device visible in the rack" and "the utility→UPS→PDU big picture doesn't hold" are not the same thing — the PDU's role is simply being handled one level upstream (inside the wall, under the floor) rather than somewhere visible.
+What matters here is that **these two scales don't necessarily stack together on the same path — a given deployment typically picks one or the other, depending on its size.** In a large data center, it's typical for a floor-level UPS and PDU to collectively receive power from the utility company and then distribute it out to each server via a rack PDU (rPDU). A small-scale setup where a single rack holds both a server and a UPS, wired as server → UPS → floor outlet, is instead the **simplest possible configuration: a rack-mount UPS in place of a floor UPS, with the rack PDU (rPDU) omitted as well.** A rack-mount UPS itself typically has several outlets on the back, and those outlets effectively serve as that rack's power distribution point, so there was no need for a separate "PDU" box inside the rack. Meanwhile, behind the "floor outlet" that rack-mount UPS draws from, there is, invisibly, always a floor PDU (or an equivalent distribution panel) that splits power out toward multiple racks and multiple UPSes. In other words, "there's no PDU device visible in the rack" and "the utility→UPS→PDU big picture doesn't hold" are not the same thing — the PDU's role is simply being handled one level upstream (inside the wall, under the floor) rather than somewhere visible.
 
-The reason rack PDUs are standard in large data centers is that in a dense environment with many servers per rack, a per-rack distribution point plus features like per-outlet power metering and remote power-cycling become practically essential. In smaller environments with only a handful of servers per rack, it's common in practice to skip the rack PDU and plug directly into the UPS's outlets, just as in your setup.
+The reason the combination of a floor UPS and rack PDUs is standard in large data centers is that in a dense environment with many servers per rack, centralized, facility-wide management via a floor UPS tends to be more maintainable and scalable than per-rack battery backup alone, and a per-rack distribution point plus features like per-outlet power metering and remote power-cycling become practically essential. In smaller environments with only a handful of servers per rack, the configuration covered in this article — a rack-mount UPS with the rack PDU omitted — is also commonly seen in practice.
 
 </details>
 
