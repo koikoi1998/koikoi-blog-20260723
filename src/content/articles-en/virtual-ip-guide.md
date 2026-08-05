@@ -149,6 +149,20 @@ You might feel it's odd that, under the IP takeover approach, a single server (a
 
 Gratuitous ARP is a mechanism for actively updating the switch's MAC address table and the ARP caches of devices within the same segment, but **there is no guarantee it will reliably reach every device**. Due to packet loss, or because some devices/network equipment don't immediately update their cache upon receiving a Gratuitous ARP (or ignore it outright), such devices may continue sending traffic to the old MAC address (the former active server) until that device's ARP cache times out (typically a few minutes). The phenomenon where only some clients are unable to connect for tens of seconds to a few minutes right after a failover is often rooted in this lag in ARP cache propagation.
 
+### Why Can an Application Be Reached at an IP the Physical NIC Didn't "Originally" Have?
+
+As noted above, a single physical NIC can hold multiple IP addresses at once (IP aliasing). This property isn't limited to cluster use cases like a virtual IP—it's also exactly what's used when you want to **publish a web server or application under an IP address other than the "main" one the NIC originally had.** An IP address isn't physical wiring; it's simply a logical value the OS assigns to a network interface, and an application (a web server, say) can bind its listening socket to any locally recognized IP address, whether or not it happens to be the NIC's original "first" address. So a request addressed to a secondary IP or a virtual IP added later is still received by that same physical NIC, and the OS's TCP/IP stack dispatches it to the correct socket (application) based on the destination IP address.
+
+### Beyond Redundancy, Is There a Reason to Split IP Addresses Across Separate Physical NICs and Cables?
+
+Even though multiple IP addresses can coexist on a single NIC, in practice it's also common to **deliberately separate IP addresses by purpose onto physically distinct NICs, cables, and switches, for reasons other than redundancy.** The typical reasons include:
+
+- **Physical traffic separation**: Separating a management interface (such as an iDRAC or IPMI management port) from an interface carrying production data onto physically distinct NICs and switches, so congestion on production traffic doesn't affect management access.
+- **Security zone separation**: Physically separating the NIC facing a DMZ exposed to the internet from the NIC facing the internal LAN provides defense in depth—even if a VLAN or firewall rule is misconfigured, there's simply no physical path to communicate over, no matter how hard you try.
+- **Physically guaranteed bandwidth**: Dedicating one physical link to a specific purpose (backup traffic, storage traffic, and so on) structurally avoids contention for bandwidth with other traffic.
+
+In every case, it's worth noting that **logically, a VLAN or firewall rule alone can sometimes achieve the same result** — but physically separating the wiring itself provides the reassurance of eliminating the risk of misconfiguration-driven cross-talk between paths at the cabling level itself, which is why physical separation tends to be favored especially for management networks and environments with strict security requirements.
+
 ## Common Misconceptions and Pitfalls
 
 - **Misconception 1: "A virtual IP is always implemented via NAT (address translation)."**
