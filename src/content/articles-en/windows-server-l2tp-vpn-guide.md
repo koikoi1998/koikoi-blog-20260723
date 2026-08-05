@@ -1,8 +1,8 @@
 ---
 title: "Understanding Windows Server (RRAS) L2TP/IPsec VPN Setup and IP Address Management from a \"Top 1%\" Perspective — Why Do You Need a Gateway on the Same Subnet?"
 description: "When building an L2TP/IPsec VPN with Windows Server's RRAS (Routing and Remote Access Service), how are the IP address handed out to the VPN client and the multiple IP addresses held by the server itself actually managed? This article answers, from the internal mechanism, the recurring question of \"why do I need to specify a gateway when it's the same subnet,\" which arises from the fact that PPP is a point-to-point link."
-series: "network"
-order: 7
+series: "vpn"
+order: 2
 tags: ["network", "windows-server", "rras", "vpn", "infra"]
 emoji: "🪟"
 pubDate: 2026-08-01
@@ -87,7 +87,9 @@ However, this premise only holds **when devices within the same segment can reso
 
 Take, for example, a real server on the corporate LAN (10.0.20.2) and another physical server or management workstation on the same floor (say, 10.0.20.3), where both are **connected directly by cable to the same physical switch (or to multiple switches that belong to the same VLAN)**. In that case, the two genuinely belong to the same L2 segment. If 10.0.20.3 wants to send a packet to 10.0.20.2, it can send an ARP request ("please tell me the MAC address for 10.0.20.2") directly over the switch, with no router in between; once it receives the ARP reply from 10.0.20.2, it simply addresses subsequent Ethernet frames directly to that MAC address, and communication succeeds. In a virtualized environment, the same holds for multiple VMs connected to the same virtual switch and the same port group. The detailed mechanics of ARP and MAC-address-table-based forwarding are covered in [Understanding the Differences Between Hubs, Switches (L2SW), L3 Switches, and Routers from a "Top 1%" Perspective](/en/articles/network-devices-guide).
 
-By contrast, the VPN client's virtual PPP adapter discussed in this article is **one end of a purely logical point-to-point link, not connected to any port of any physical switch or VLAN at all.** So even if it wanted to send an ARP request, there's no switch or segment—no "place"—to receive that request in the first place. That, as described above, is the fundamental reason direct L2 reachability isn't possible here.
+Conversely, if 10.0.20.2 and 10.0.20.3 were connected **through a router instead of a switch**, the picture changes entirely. A router is precisely the device that draws the boundary of a broadcast domain—the range an ARP request can actually reach. So even if the IP addresses on paper still look like they belong to the same `10.0.20.0/24`, an ARP request destined for a device on the far side of the router will never get there. Direct MAC resolution via ARP simply doesn't happen in this case (and in practice, such a configuration would normally have the two devices assigned to genuinely different subnets from the start); communication instead has to go through L3 routing, with the router acting as the gateway. In other words, the line that determines whether direct ARP reachability is possible or not is exactly this: is it the same switch (the same broadcast domain), or is a router drawing a line between them?
+
+The VPN client's virtual PPP adapter discussed in this article is **one end of a purely logical point-to-point link, not connected to any port of any physical switch or VLAN at all.** So even if it wanted to send an ARP request, there's no switch or segment—no "place"—to receive that request in the first place. That, as described above, is the fundamental reason direct L2 reachability isn't possible here. Structurally, this is exactly the same as the "router in between" case above—the RRAS server is effectively playing the role of that router, and ARP simply doesn't function between it and the VPN client on the far side, which is precisely why L3 routing (i.e., specifying a gateway) is required.
 
 </details>
 

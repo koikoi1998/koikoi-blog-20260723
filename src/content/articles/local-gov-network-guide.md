@@ -2,7 +2,7 @@
 title: "自治体ネットワークの三層分離とセキュリティクラウドを『上位1%』の視点で理解する——LGWAN・マイナンバー利用事務系・インターネット接続系とVLAN設計"
 description: "地方公共団体(自治体)のネットワークがなぜLGWAN接続系・マイナンバー利用事務系・インターネット接続系の3つに分離されているのかを、VLAN/L3SW/ファイアウォールによる実装、自治体情報セキュリティクラウド、自治体情報セキュリティ向上プラットフォームまで体系的に整理する。"
 series: "network"
-order: 5
+order: 4
 tags: ["network", "security", "vlan", "government", "lgwan"]
 emoji: "🏛️"
 pubDate: 2026-08-04

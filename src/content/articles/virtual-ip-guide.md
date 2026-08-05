@@ -2,7 +2,7 @@
 title: "代表IP(VIP)とNICチーミングの仮想IPの仕組みを『上位1%』の視点で理解する——冗長化構成におけるIPアドレス管理"
 description: "冗長化されたサーバーがクライアントに見せる「代表IP」は、実際のサーバーのIPアドレスとどう対応しているのか。IPテイクオーバー(VRRP/クラスタリング)とロードバランサーのNAT変換という2つの方式の違い、そしてNICチーミングの仮想IP/仮想MACの仕組みまでを体系的に理解する。"
 series: "network"
-order: 6
+order: 5
 tags: ["network", "vip", "ha", "clustering", "nic-teaming", "infra"]
 emoji: "🎭"
 pubDate: 2026-08-01

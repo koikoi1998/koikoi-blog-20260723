@@ -1,8 +1,8 @@
 ---
 title: "A \"Top 1%\" Hands-On Lab: Building Your Own L2TP/IPsec Server on Proxmox VE — strongSwan + xl2tpd, Verified with Packet Captures"
 description: "Build a real L2TP/IPsec server on a lab VM running on Proxmox VE (PVE) using strongSwan and xl2tpd, connect a client to it, and use tcpdump to watch the IKE → L2TP → PPP connection sequence with your own eyes."
-series: "network"
-order: 11
+series: "vpn"
+order: 4
 tags: ["network", "vpn", "l2tp", "ipsec", "proxmox", "handson"]
 emoji: "🧪"
 pubDate: 2026-08-03

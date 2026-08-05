@@ -1,8 +1,8 @@
 ---
 title: "Understanding VoIP and SS7 — and the Real Path Your Traffic Takes — from a \"Top 1%\" Perspective"
 description: "How does VoIP technology digitize and packetize voice for transmission over an IP network? What does SS7 (Signaling System No. 7) actually do to establish, tear down, and bill a call? And what path and protocol stack does your home PC actually go through to reach a service like YouTube? A systematic look, contrasted against the path of an ordinary phone call."
-series: "network"
-order: 14
+series: "telephony"
+order: 3
 tags: ["network", "voip", "ss7", "sip", "infra"]
 emoji: "📞"
 pubDate: 2026-08-04

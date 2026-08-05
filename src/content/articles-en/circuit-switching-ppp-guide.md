@@ -1,8 +1,8 @@
 ---
 title: "Understanding the Difference Between Telephone Lines and IP Networks from a \"Top 1%\" Perspective — Circuit Switching, Packet Switching, and the Design of PPP"
 description: "What actually separates a telephone line (circuit switching) from an IP network (packet switching)? A systematic look at why the PPP protocol was born in the dial-up era and still lives on today in PPPoE and VPNs, all the way down to how CHAP/MS-CHAPv2 challenge-response authentication works internally, told through its historical background."
-series: "network"
-order: 5
+series: "telephony"
+order: 1
 tags: ["network", "ppp", "telephony", "circuit-switching", "infra"]
 emoji: "☎️"
 pubDate: 2026-08-01

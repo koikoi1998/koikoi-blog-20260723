@@ -1,8 +1,8 @@
 ---
 title: "PVE上でL2TP/IPsecサーバーを自作する『上位1%』のハンズオン——strongSwan+xl2tpdで構築し、パケットキャプチャで理論を検証する"
 description: "Proxmox VE(PVE)上に構築した検証用VMに、strongSwanとxl2tpdでL2TP/IPsecサーバーを実際に構築し、クライアントから接続、tcpdumpでIKE→L2TP→PPPという接続シーケンスを自分の目で確認するハンズオン教材。"
-series: "network"
-order: 11
+series: "vpn"
+order: 4
 tags: ["network", "vpn", "l2tp", "ipsec", "proxmox", "handson"]
 emoji: "🧪"
 pubDate: 2026-08-03

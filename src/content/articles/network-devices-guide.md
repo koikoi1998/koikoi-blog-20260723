@@ -2,7 +2,7 @@
 title: "HUB・スイッチ(L2SW)・L3SW・ルーターの違いを『上位1%』の視点で理解する——OSI階層と転送方式で使い分ける"
 description: "HUB・スイッチングハブ・L2SW・L3SW・ルーターが、それぞれ何の情報を根拠にフレーム/パケットを転送しているのかを、OSI階層とハードウェア実装の観点から体系的に整理する。"
 series: "network"
-order: 4
+order: 3
 tags: ["network", "switch", "router", "vlan", "infra"]
 emoji: "🔀"
 pubDate: 2026-08-01

@@ -2,7 +2,7 @@
 title: "Understanding Japanese Local Government Network Segregation and Security Clouds from a \"Top 1%\" Perspective — LGWAN, the My Number Business Segment, the Internet-Connected Segment, and VLAN Design"
 description: "A systematic look at why Japanese local government networks are split into the My Number business segment, the LGWAN-connected segment, and the internet-connected segment, how that's implemented with VLANs/L3 switches/firewalls, and how the shared prefectural security cloud and patch-delivery platform fit in."
 series: "network"
-order: 5
+order: 4
 tags: ["network", "security", "vlan", "government", "lgwan"]
 emoji: "🏛️"
 pubDate: 2026-08-04

@@ -1,8 +1,8 @@
 ---
 title: "L2TP/IPsecの仕組みを『上位1%』の視点で理解する——なぜ2つのプロトコルを組み合わせるのか"
 description: "L2TPとIPsecという別々の規格がなぜ組み合わさってVPNになるのか、トンネル確立からPPP認証、NATトラバーサルまでを体系的に理解する。"
-series: "network"
-order: 3
+series: "vpn"
+order: 1
 tags: ["network", "vpn", "l2tp", "ipsec", "security"]
 emoji: "🔐"
 pubDate: 2026-07-29

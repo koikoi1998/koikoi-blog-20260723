@@ -2,7 +2,7 @@
 title: "Understanding Virtual IPs (VIPs) and NIC Teaming's Virtual IP from a \"Top 1%\" Perspective — IP Address Management in Redundant Configurations"
 description: "How does the \"virtual IP\" that a redundant server presents to clients correspond to the actual IP addresses of the physical servers behind it? A systematic look at the difference between the two approaches—IP takeover (VRRP/clustering) and load balancer NAT translation—and how NIC teaming's virtual IP works."
 series: "network"
-order: 6
+order: 5
 tags: ["network", "vip", "ha", "clustering", "nic-teaming", "infra"]
 emoji: "🎭"
 pubDate: 2026-08-01

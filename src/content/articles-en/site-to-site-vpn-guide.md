@@ -1,8 +1,8 @@
 ---
 title: "Understanding Site-to-Site VPN from a \"Top 1%\" Perspective — Building an IPsec Tunnel Between Cisco and WatchGuard Across Vendors"
 description: "How does a site-to-site VPN differ from a remote-access VPN like L2TP/IPsec? A systematic look at IPsec tunnel mode internals, and what it takes to establish an IPsec tunnel between a Cisco device at a Japanese office and a WatchGuard device at an overseas branch."
-series: "network"
-order: 12
+series: "vpn"
+order: 5
 tags: ["network", "vpn", "ipsec", "cisco", "watchguard", "security"]
 emoji: "🌉"
 pubDate: 2026-08-04

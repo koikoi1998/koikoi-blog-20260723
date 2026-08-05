@@ -2,7 +2,7 @@
 title: "NAT/NAPTの仕組みを『上位1%』の視点で理解する——変換テーブルの内部動作からNAT-Tまで"
 description: "プライベートIPとグローバルIPを変換するNATが内部で何を「キー」に変換テーブルを管理しているのか、NAPT(ポート変換)の仕組み、NATの挙動によるタイプ分類、そしてESPのようにポート番号を持たないプロトコルがNATを越えるためのNAT-Tの仕組みまでを体系的に理解する。"
 series: "network"
-order: 8
+order: 6
 tags: ["network", "nat", "napt", "vpn", "infra"]
 emoji: "🔁"
 pubDate: 2026-08-01

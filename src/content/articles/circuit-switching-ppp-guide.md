@@ -1,8 +1,8 @@
 ---
 title: "電話回線とIPネットワークの違いを『上位1%』の視点で理解する——回線交換・パケット交換とPPPの設計思想"
 description: "電話回線(回線交換)とIPネットワーク(パケット交換)は何が違うのか、なぜPPPというプロトコルがダイヤルアップ時代に生まれ、今なおPPPoEやVPNで使われ続けているのか、そしてCHAP/MS-CHAPv2のチャレンジレスポンス認証の内部動作までを、歴史的背景から体系的に理解する。"
-series: "network"
-order: 5
+series: "telephony"
+order: 1
 tags: ["network", "ppp", "telephony", "circuit-switching", "infra"]
 emoji: "☎️"
 pubDate: 2026-08-01

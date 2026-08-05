@@ -1,6 +1,8 @@
 export const seriesNames: Record<string, string> = {
   idrac: "iDRAC / BMC シリーズ",
   network: "ネットワーク基礎シリーズ",
+  vpn: "VPN/L2TP・IPsecシリーズ",
+  telephony: "電話網・アクセス回線シリーズ",
   api: "Web / API シリーズ",
   security: "セキュリティ基礎シリーズ",
 };
@@ -8,6 +10,8 @@ export const seriesNames: Record<string, string> = {
 export const seriesNamesEn: Record<string, string> = {
   idrac: "iDRAC / BMC Series",
   network: "Networking Fundamentals Series",
+  vpn: "VPN / L2TP-IPsec Series",
+  telephony: "Telephony & Access Network Series",
   api: "Web / API Series",
   security: "Security Fundamentals Series",
 };

@@ -2,7 +2,7 @@
 title: "Understanding the Relationship Between TCP/UDP \"Sessions\" and Port Numbers from a \"Top 1%\" Perspective — Are Protocols and Ports a 1:1 Mapping?"
 description: "A systematic look at why the word \"session\" means different things for a TCP connection, a NAT device's pseudo-session, and an application's login session, and why protocol numbers and port numbers are not a 1:1 mapping — including why ESP has no port number."
 series: "network"
-order: 9
+order: 7
 tags: ["network", "tcp", "udp", "session", "port"]
 emoji: "🔌"
 pubDate: 2026-08-03

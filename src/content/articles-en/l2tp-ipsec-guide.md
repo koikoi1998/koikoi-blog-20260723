@@ -1,8 +1,8 @@
 ---
 title: "Understanding How L2TP/IPsec Works from a \"Top 1%\" Perspective — Why Combine Two Protocols?"
 description: "A systematic look at why the separate standards L2TP and IPsec combine to form a VPN — covering everything from tunnel establishment to PPP authentication and NAT traversal."
-series: "network"
-order: 3
+series: "vpn"
+order: 1
 tags: ["network", "vpn", "l2tp", "ipsec", "security"]
 emoji: "🔐"
 pubDate: 2026-07-29

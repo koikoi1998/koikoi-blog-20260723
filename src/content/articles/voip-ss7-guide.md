@@ -1,8 +1,8 @@
 ---
 title: "VoIPとSS7、そして実際の通信経路を『上位1%』の視点で理解する——自宅からのインターネット接続を例に"
 description: "VoIP技術が音声をどうデジタルパケット化してIPネットワーク上で運ぶのか、SS7(共通線信号方式)が呼の確立・課金・番号管理をどう担っているのか、そして自宅のPCがYouTubeなどのサービスにアクセスするまでに実際どのような経路・プロトコルを経由しているのかを、電話をかける経路との対比で体系的に理解する。"
-series: "network"
-order: 14
+series: "telephony"
+order: 3
 tags: ["network", "voip", "ss7", "sip", "infra"]
 emoji: "📞"
 pubDate: 2026-08-04

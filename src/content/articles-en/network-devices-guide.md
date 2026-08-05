@@ -2,7 +2,7 @@
 title: "Understanding the Differences Between Hubs, Switches (L2SW), L3 Switches, and Routers from a \"Top 1%\" Perspective — Choosing by OSI Layer and Forwarding Method"
 description: "A systematic breakdown of what information hubs, switching hubs, L2 switches, L3 switches, and routers each use as the basis for forwarding frames/packets, from the perspective of OSI layers and hardware implementation."
 series: "network"
-order: 4
+order: 3
 tags: ["network", "switch", "router", "vlan", "infra"]
 emoji: "🔀"
 pubDate: 2026-08-01

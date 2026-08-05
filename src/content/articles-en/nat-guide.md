@@ -2,7 +2,7 @@
 title: "Understanding How NAT/NAPT Works from a \"Top 1%\" Perspective — From the Translation Table's Internals to NAT-T"
 description: "A systematic look at what NAT actually uses as a \"key\" internally to manage its translation table when converting between private and global IP addresses, how NAPT (port translation) works, the type classification of NAT behavior, and how NAT-T lets protocols without port numbers—like ESP—traverse NAT."
 series: "network"
-order: 8
+order: 6
 tags: ["network", "nat", "napt", "vpn", "infra"]
 emoji: "🔁"
 pubDate: 2026-08-01

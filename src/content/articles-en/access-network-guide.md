@@ -1,8 +1,8 @@
 ---
 title: "Understanding the Evolution of Access-Line Technology — ADSL, Fiber, and More — from a \"Top 1%\" Perspective"
 description: "What actually differs between a telephone line, ADSL, and fiber as ways of realizing the \"access line\"? How can ADSL carry a phone call and data at once over the same wire? How does fiber's PON scheme actually deliver light to a home? And why isn't \"Ethernet\" the same thing as an \"IP network\"? A systematic look at all four."
-series: "network"
-order: 13
+series: "telephony"
+order: 2
 tags: ["network", "adsl", "fiber", "ethernet", "infra"]
 emoji: "📡"
 pubDate: 2026-08-04

@@ -1,8 +1,8 @@
 ---
 title: "ADSL・光回線などアクセス回線の技術変遷を『上位1%』の視点で理解する——電話回線・イーサネット・IPネットワークの関係を整理する"
 description: "「電話回線」「ADSL」「光回線」はアクセス回線の実現方式として何が違うのか、なぜADSLは電話をしながら通信できるのか、光回線(FTTH)のPON方式はどう動いているのか、そして「イーサネット」と「IPネットワーク」がなぜイコールではないのかを体系的に整理する。"
-series: "network"
-order: 13
+series: "telephony"
+order: 2
 tags: ["network", "adsl", "fiber", "ethernet", "infra"]
 emoji: "📡"
 pubDate: 2026-08-04
