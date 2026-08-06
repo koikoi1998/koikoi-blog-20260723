@@ -1,0 +1,45 @@
+questions:
+  - question: "According to the article, what is the most essential reason for separating kernel space from user space?"
+    choices:
+      - "To prevent a bug or crash in an ordinary application from directly damaging the OS as a whole or the underlying hardware"
+      - "To improve application startup speed"
+      - "To save disk space"
+      - "To allow multiple users to log in at the same time"
+    answerIndex: 0
+    explanation: "The article explains that the essential purpose of separating kernel space from user space is to prevent a bug or crash in an ordinary application from directly damaging the OS or hardware."
+
+  - question: "According to the article, how does the CPU behave when a user-space program attempts to execute a privileged instruction?"
+    choices:
+      - "Nothing special happens, and execution simply continues"
+      - "It raises a fault and forcibly interrupts the operation"
+      - "It automatically promotes the process to kernel mode and lets it continue"
+      - "It automatically migrates the process to a different CPU core"
+    answerIndex: 1
+    explanation: "The article explains that attempting a privileged instruction in user mode causes the CPU to raise a fault and forcibly interrupt it — this is a hardware-level constraint, not merely a convention."
+
+  - question: "Which statement correctly describes how a TUN/TAP device works, according to the article?"
+    choices:
+      - "A mechanism that lets a user-space program directly rewrite a physical NIC's hardware registers"
+      - "A mechanism that creates a virtual network interface, letting the kernel's network stack and a user-space program exchange packets bidirectionally via read()/write()"
+      - "The name of dedicated hardware for forwarding packets between two pieces of kernel-space code"
+      - "A mechanism that lets a user-space program perform network communication without using any system calls at all"
+    answerIndex: 1
+    explanation: "TUN/TAP is a virtual network interface mechanism that creates a two-way channel for exchanging packets between the kernel's network stack and a user-space program."
+
+  - question: "How does the article describe the difference between a TUN device and a TAP device?"
+    choices:
+      - "TUN handles raw IP packets (layer 3), while TAP handles Ethernet frames (layer 2, including MAC addresses)"
+      - "TUN requires physical hardware, while TAP does not"
+      - "TUN is TCP-only, while TAP is UDP-only"
+      - "TUN is Windows-only, while TAP is Linux-only"
+    answerIndex: 0
+    explanation: "The article explains that TUN works with raw IP packets, while TAP works with Ethernet frames that include MAC addresses."
+
+  - question: "According to the article, why do kernel-space-only implementations (like WireGuard) tend to be faster than user-space implementations (like OpenVPN, via TUN/TAP)?"
+    choices:
+      - "Because kernel-space implementations never use any cryptographic algorithm at all"
+      - "Because they avoid the round trip of copying data and switching context to and from user space"
+      - "Because kernel-space implementations always use multiple CPU cores simultaneously"
+      - "Because user-space implementations always use TCP, while kernel-space implementations always use UDP"
+    answerIndex: 1
+    explanation: "Communication through TUN/TAP involves a round trip of copying and context-switching between kernel and user space, while an implementation that completes entirely in kernel space avoids that round trip, tending to be faster."

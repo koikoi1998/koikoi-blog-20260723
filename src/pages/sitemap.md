@@ -42,6 +42,9 @@ graph TB
     L2tpLab["⑤ l2tp-ipsec-lab-guide<br/>(PVEでのL2TP/IPsec自作ハンズオン)"]
     Access["⑤ access-network-guide<br/>(ADSL/光回線とイーサネットの関係)"]
     Voip["⑤ voip-ss7-guide<br/>(VoIP/SS7と実際の通信経路)"]
+    Daemon["⑤ linux-daemon-guide<br/>(デーモンとは何か)"]
+    Library["⑤ software-library-guide<br/>(ライブラリとは何か)"]
+    UserKernel["⑤ linux-user-kernel-space-guide<br/>(ユーザー空間/カーネル空間とTUN/TAP)"]
 
     Idrac --> Power
     Idrac --> Net
@@ -63,10 +66,13 @@ graph TB
     L2tp --> L2tpLab
     Circuit --> Access
     Circuit --> Voip
+    VpnCompare --> Daemon
+    VpnCompare --> Library
+    VpnCompare --> UserKernel
 ```
 
 まず①のiDRACの記事を起点に、興味・必要に応じて②の各深掘り記事（電源・ネットワーク・API）へ進む、という順番を想定しています。②の3本はそれぞれ独立して読める内容なので、順不同で構いません。③はそれぞれ②の記事からさらに一段深く掘り下げた発展編（POST後のOS起動プロセス、NICドライバの内部実装、L2TP/IPsecの仕組み、自治体ネットワークの三層分離）で、②の記事を読んだ後の実力試しとして読むのがおすすめです。
-④の9本は、いずれもL2TP/IPsecの記事で扱いきれなかったテーマを深掘りした発展編ですが、**すべて単体でも読める内容**です。PKI/デジタル証明書、共通鍵暗号(AES/HMAC)、NAT/NAPT、TCP/UDPセッションとポート番号の4本は、L2TP/IPsecに限らずTLS/SSHなど幅広い場面で使われる汎用的な技術テーマです。電話回線とPPPの記事は、L2TP/IPsecがなぜダイヤルアップ時代のPPPを流用しているのかという歴史的背景と、MS-CHAPv2認証の内部動作を扱っています。Windows Server(RRAS)でのL2TP/IPsec構築、代表IP(VIP)の記事は、実際にVPNサーバーを構築・運用する場面でぶつかる、より実装寄りのテーマを扱っています。現代的なVPNプロトコルとの比較の記事は、IKEv2/IPsec・OpenVPN・WireGuardとの設計思想の違いを扱っています。拠点間VPNの記事は、リモートアクセスVPNとは異なるgateway-to-gatewayの接続形態と、CiscoとWatchGuardという異なるベンダー間でIPsecトンネルを組む際の実務上の注意点を扱っています。⑤の3本は、④の記事からさらに一段深掘りした発展編です。ハンズオン記事は、本シリーズでは例外的に実機構築を扱う実践編で、Proxmox VE上にL2TP/IPsecサーバーを自作し、パケットキャプチャで理論を検証します。アクセス回線の記事は、電話回線とPPPの記事から派生し、ADSL・光回線というアクセス回線の技術的な仕組みと、イーサネット・IPネットワークの関係を整理しています。VoIP/SS7の記事も同じく電話回線とPPPの記事から派生し、電話網のシグナリング(SS7)とメディア伝送(VoIP)の仕組み、そして実際に自宅PCがインターネット上のサービスにアクセスするまでの通信経路を扱っています。
+④の9本は、いずれもL2TP/IPsecの記事で扱いきれなかったテーマを深掘りした発展編ですが、**すべて単体でも読める内容**です。PKI/デジタル証明書、共通鍵暗号(AES/HMAC)、NAT/NAPT、TCP/UDPセッションとポート番号の4本は、L2TP/IPsecに限らずTLS/SSHなど幅広い場面で使われる汎用的な技術テーマです。電話回線とPPPの記事は、L2TP/IPsecがなぜダイヤルアップ時代のPPPを流用しているのかという歴史的背景と、MS-CHAPv2認証の内部動作を扱っています。Windows Server(RRAS)でのL2TP/IPsec構築、代表IP(VIP)の記事は、実際にVPNサーバーを構築・運用する場面でぶつかる、より実装寄りのテーマを扱っています。現代的なVPNプロトコルとの比較の記事は、IKEv2/IPsec・OpenVPN・WireGuardとの設計思想の違いを扱っています。拠点間VPNの記事は、リモートアクセスVPNとは異なるgateway-to-gatewayの接続形態と、CiscoとWatchGuardという異なるベンダー間でIPsecトンネルを組む際の実務上の注意点を扱っています。⑤の6本は、④の記事からさらに一段深掘りした発展編です。ハンズオン記事は、本シリーズでは例外的に実機構築を扱う実践編で、Proxmox VE上にL2TP/IPsecサーバーを自作し、パケットキャプチャで理論を検証します。アクセス回線の記事は、電話回線とPPPの記事から派生し、ADSL・光回線というアクセス回線の技術的な仕組みと、イーサネット・IPネットワークの関係を整理しています。VoIP/SS7の記事も同じく電話回線とPPPの記事から派生し、電話網のシグナリング(SS7)とメディア伝送(VoIP)の仕組み、そして実際に自宅PCがインターネット上のサービスにアクセスするまでの通信経路を扱っています。デーモン・ライブラリ・ユーザー空間/カーネル空間の3本は、現代的なVPNプロトコルとの比較の記事でたびたび登場する「デーモン」「ライブラリ」「TUN/TAPデバイス」といった実行環境レベルの用語を、Linux/OSの基礎として独立に深掘りした発展編で、**いずれも単体で読める内容**です。
 
 ## シリーズ一覧
 
@@ -95,6 +101,14 @@ graph TB
 - [L2TP/IPsecと現代的なVPNプロトコルを『上位1%』の視点で比較する](/articles/vpn-protocols-comparison-guide) — IKEv2/IPsec・OpenVPN・WireGuardとの設計思想・実装規模・モバイル耐性の違いまでの深掘り（L2TP/IPsecがなぜレガシーと評されるのかを掘り下げた発展編、単体でも読めます）。
 - [PVE上でL2TP/IPsecサーバーを自作する『上位1%』のハンズオン](/articles/l2tp-ipsec-lab-guide) — Proxmox VE上にstrongSwan+xl2tpdでL2TP/IPsecサーバーを構築し、tcpdumpで接続シーケンスを検証する実践編(本シリーズでは例外的な実機構築のハンズオン記事です)。
 - [拠点間VPN(Site-to-Site VPN)を『上位1%』の視点で理解する](/articles/site-to-site-vpn-guide) — リモートアクセスVPNとの違い、IPsecトンネルモードとトラフィックセレクタの仕組み、CiscoとWatchGuardという異なるベンダー間でIPsecトンネルを組む際の実務上の注意点までの深掘り（L2TP/IPsecとの対比から派生した発展編、単体でも読めます）。
+
+### Linux/OS基礎シリーズ
+
+VPNプロトコルの記事などで繰り返し登場する、実行環境レベルの基礎用語を深掘りするシリーズです。
+
+- [デーモン(daemon)とは何か——Linuxのバックグラウンドプロセスを『上位1%』の視点で理解する](/articles/linux-daemon-guide) — 通常のプロセスとの違い、IKEデーモンなどプロトコル処理がデーモンとして実装される理由、systemdによる起動・監視・ログの仕組みまでの深掘り（現代的なVPNプロトコルとの比較の記事のデーモンの話から派生した発展編、単体でも読めます）。
+- [ライブラリ(library)とは何か——静的リンク・動的リンクの仕組みを『上位1%』の視点で理解する](/articles/software-library-guide) — 静的リンクと動的リンク(共有ライブラリ)の違い、シンボル解決の仕組み、ABI互換性が障害要因になる理由までの深掘り（現代的なVPNプロトコルとの比較の記事のOpenSSLの話から派生した発展編、単体でも読めます）。
+- [ユーザー空間とカーネル空間、TUN/TAPデバイスの仕組みを『上位1%』の視点で理解する](/articles/linux-user-kernel-space-guide) — CPUの特権レベルによる空間分離、システムコールとコンテキストスイッチ、OpenVPNが使うTUN/TAPデバイスの仕組みまでの深掘り（現代的なVPNプロトコルとの比較の記事のユーザー空間実装の話から派生した発展編、単体でも読めます）。
 
 ### 電話網・アクセス回線シリーズ
 

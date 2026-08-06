@@ -1,0 +1,45 @@
+questions:
+  - question: "Which statement correctly describes the difference between static linking and dynamic linking (shared libraries), as explained in the article?"
+    choices:
+      - "Static linking copies a library's code into the executable to make it self-contained, while dynamic linking loads the library from a separate file at runtime"
+      - "Static linking loads a library at runtime, while dynamic linking copies the code in at compile time"
+      - "A dynamically linked program can't be compiled at all without the library present"
+      - "Static linking and dynamic linking always produce executables of the same file size"
+    answerIndex: 0
+    explanation: "Static linking copies the library's code into the executable to make it self-contained, while dynamic linking loads the library from a separate file (a shared library) at runtime."
+
+  - question: "What is the process called that lets a dynamically linked executable actually call a shared library's functions once it starts up?"
+    choices:
+      - "Compiling"
+      - "Daemonizing"
+      - "Symbol resolution"
+      - "Packaging"
+    answerIndex: 2
+    explanation: "The dynamic linker wires up each function call in the executable to the actual address of that code inside the shared library — this process is called symbol resolution."
+
+  - question: "According to the article, what is the main cause of \"the library is installed, but this one application fails to start\"?"
+    choices:
+      - "ABI incompatibility, where the major version of the library the application requires isn't present"
+      - "The application not being implemented as a daemon"
+      - "The library's file size being too large"
+      - "The application not running inside a container"
+    answerIndex: 0
+    explanation: "A library's major version bump can introduce ABI incompatibility, and the article explains that the required major version simply not being present is a typical cause of this failure."
+
+  - question: "How does the article describe the difference between a \"runtime package\" and a \"development package\" (-dev/-devel) in a package manager?"
+    choices:
+      - "The runtime package contains only the shared library itself; the development package additionally includes header files and static-linking files"
+      - "The runtime package includes source code, while the development package includes only the binary"
+      - "Installing the development package automatically removes the existing runtime package"
+      - "There's no functional difference between the two — it's purely a naming convention"
+    answerIndex: 0
+    explanation: "The runtime package contains only the shared library needed to run a program, while the development package additionally includes what's needed to build against it, such as header files and static-linking files."
+
+  - question: "Which statement correctly describes lazy binding, as explained in the article?"
+    choices:
+      - "Instead of resolving every symbol at program startup, it resolves a function's symbol the first time that function is actually called"
+      - "It disables library loading entirely to achieve speed equivalent to static linking"
+      - "It allows multiple versions of a library to be installed and used at the same time"
+      - "It delays a daemon's startup while waiting for dependency resolution"
+    answerIndex: 0
+    explanation: "Lazy binding mitigates startup-time cost by resolving a symbol only when that function is actually first called, rather than resolving everything up front."

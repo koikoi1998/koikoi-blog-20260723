@@ -1,0 +1,45 @@
+questions:
+  - question: "Which of the following best describes a \"daemon\" as explained in the article?"
+    choices:
+      - "A program compiled with special language features into an executable format different from a normal process"
+      - "A process detached from a terminal that stays resident in the background and handles work triggered by incoming requests"
+      - "A process that, by specification, must always run with root privileges"
+      - "A process that runs exactly once at OS boot and then exits"
+    answerIndex: 1
+    explanation: "A daemon isn't a special executable format; it's distinguished from a regular process by how it's started — detaching from a terminal to run resident in the background."
+
+  - question: "According to the article, why is protocol-handling software like an IKE daemon or L2TP daemon implemented as a resident daemon?"
+    choices:
+      - "Because the OS won't trust the program for security purposes unless it's a daemon"
+      - "Because protocol negotiation spans multiple messages and needs to keep in-progress state alive the whole time"
+      - "Because implementing it as a daemon automatically enables encryption"
+      - "Because short-lived programs that handle one request and exit are actually faster, so the opposite design was deliberately chosen"
+    answerIndex: 1
+    explanation: "Protocol negotiation needs to exchange multiple messages while holding onto state such as cryptographic keys and sequence numbers, which the article explains is a natural fit for a resident daemon."
+
+  - question: "Which of the following is NOT described in the article as a role systemd takes over in managing daemons on modern Linux?"
+    choices:
+      - "Performing the daemonizing steps at startup (fork/setsid/redirecting standard I/O, etc.) on the program's behalf"
+      - "Controlling automatic restart after a crash (e.g., Restart=on-failure)"
+      - "Resolving startup order and dependencies"
+      - "Automatically upgrading the cryptographic algorithm a daemon's protocol uses to the latest one"
+    answerIndex: 3
+    explanation: "systemd takes over daemonizing, startup ordering, dependency resolution, automatic restart on crash, and centralized logging — but it has no feature for swapping out a protocol's cryptographic algorithm."
+
+  - question: "What trade-off does the article describe for a setup where multiple daemons cooperate (such as L2TP/IPsec's IKE, L2TP, and PPP daemons)?"
+    choices:
+      - "It gains fault isolation, but tracing a full connection sequence requires cross-referencing logs from multiple daemons, raising troubleshooting cost"
+      - "If one daemon crashes, all the others are guaranteed to crash in a chain reaction"
+      - "Cooperating multiple daemons is theoretically impossible, so it's actually implemented as one giant daemon"
+      - "System-call overhead increases linearly and without bound as the number of daemons grows"
+    answerIndex: 0
+    explanation: "The article explains the trade-off between fault isolation (one daemon's crash doesn't directly affect the others) and the increased troubleshooting cost of tracing logs across multiple daemons."
+
+  - question: "Regarding \"systemctl status showing active (running),\" which statement best matches the misconception the article addresses?"
+    choices:
+      - "It only shows that the process is alive; it doesn't guarantee the daemon is configured correctly or handling connections properly"
+      - "It guarantees that every feature the daemon provides is working correctly"
+      - "It guarantees the daemon will never crash in the future"
+      - "It means the daemon is running with root privileges"
+    answerIndex: 0
+    explanation: "The article treats \"running means it's fine\" as a misconception — you still need actual connectivity checks and log review before concluding the daemon is healthy."
