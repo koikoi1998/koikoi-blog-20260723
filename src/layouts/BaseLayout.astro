@@ -36,6 +36,15 @@ const altUrl = new URL(resolvedAltHref, Astro.site);
     <link rel="alternate" hreflang={otherLang} href={altUrl} />
     <link rel="alternate" hreflang="x-default" href={lang === "ja" ? canonicalUrl : altUrl} />
     <Analytics />
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-FCRPFEBGHG"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-FCRPFEBGHG");
+    </script>
   </head>
   <body>
     <header class="site-header">
