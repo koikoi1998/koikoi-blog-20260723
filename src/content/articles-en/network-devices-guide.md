@@ -255,6 +255,18 @@ A **router** performs IP-address-based routing just like an L3SW, but it differs
 
 In short, the basic practical rule of thumb is: **use an L3 switch to "connect VLANs together quickly within the LAN," and use a router when you need to "connect to the outside of the LAN (WAN/internet), or need NAT, VPN, or advanced firewall functionality."**
 
+<details>
+<summary>Does a router's internal processing actually differ between its "WAN port" and "LAN ports"?</summary>
+
+The back of a typical home or SOHO router usually has one port labeled "WAN" and several labeled "LAN." They look identical, but internally the router treats the two very differently.
+
+- **The WAN port**: Treated internally as the "WAN-side interface" — the one that obtains a global IP address from the ISP via DHCP or PPPoE. **NAT (NAPT)**, which rewrites the source IP address of outbound LAN traffic to this interface's global IP, is applied at the boundary of this WAN interface as a rule. The stateful firewall function on most home routers also runs an asymmetric default policy here: block new connections originating from the WAN side by default, but allow return traffic for connections that originated from the LAN side. The default route (the destination for `0.0.0.0/0`) normally points out this interface too.
+- **The LAN ports**: Usually bundled internally into a single "LAN-side interface (bridge)" — the multiple LAN ports on a home router are, in effect, connected to one segment through a small built-in L2 switch. The DHCP server function runs against this LAN-side interface, handing out private IP addresses.
+
+In other words, the "WAN/LAN" distinction isn't about a physical difference in port capability — it reflects a configuration-level difference in **which logical interface (zone) a port is assigned to inside the router, and which functions (NAT, the firewall's default policy, the DHCP server) are tied to that zone.** In fact, on many business-grade routers and L3 switches, which physical port serves as the WAN (uplink) side and which serve as LAN isn't fixed at the factory at all — an administrator can assign either role to any port through configuration. Home routers only look fixed because their internal circuitry and firmware are cost-optimized to expose just one physical interface as the WAN port, with the remaining LAN ports already bundled together behind a built-in switch.
+
+</details>
+
 Note that most routers today, like L3 switches, also adopt ASIC/TCAM-based hardware forwarding internally. However, home routers and small-branch-office models often use a design where a general-purpose CPU handles processing that TCAM alone can't complete — complex NAT translation, packet filtering, VPN encryption, and so on (or a design that combines hardware and software processing). The simple dichotomy "a router is always slow because it's software-based, an L3 switch is always fast because it's hardware-based" isn't accurate; it's more true to reality to think of it as **a difference in design philosophy — specializing in simple forwarding within the LAN, versus handling the full range of multi-featured processing at the WAN boundary**.
 
 ## The View from the Top 1% (What Experts See)

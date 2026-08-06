@@ -19,8 +19,9 @@ This article is part of the [Top 1% Series' full article guide](/en/sitemap).
 ## Prerequisites
 
 - **VPN (Virtual Private Network)**: A general term for technology that creates a logical communication path over a public network like the internet, functioning as if it were a dedicated line.
-- **IKE (Internet Key Exchange)**: A protocol for safely agreeing on encryption keys and authenticating the two parties. It uses UDP port 500 (or 4500 when traversing NAT).
+- **IKE (Internet Key Exchange)**: A protocol for safely agreeing on encryption keys and authenticating the two parties. It uses UDP port 500 (or 4500 when traversing NAT). IKE comes in two versions, IKEv1 and IKEv2; the design differences between them (EAP authentication, Configuration Payload, MOBIKE, and more) are covered in detail in [Comparing L2TP/IPsec with Modern VPN Protocols from a "Top 1%" Perspective](/en/articles/vpn-protocols-comparison-guide).
 - **ESP (Encapsulating Security Payload)**: The protocol that uses the key agreed on via IKE to actually encrypt data and detect tampering. It's handled as IP protocol number 50.
+- **SA (Security Association)**: A uniquely-identified set of agreed-upon parameters — encryption algorithm, keys, lifetime, and so on — used in an IKE or IPsec exchange. There are two kinds: the **IKE SA**, established during IKE Phase 1, which protects the control channel itself, and the **IPsec SA**, established during IKE Phase 2, which ESP uses to protect the actual data. Encrypted communication only works once both are in place.
 - **Pre-Shared Key (PSK) / Certificate Authentication**: The two representative ways IKE negotiation proves "the other party is who they claim to be." A PSK is a secret string both sides share in advance; certificate authentication uses a certificate issued by a CA (Certificate Authority).
 - **ACL (Access Control List)**: A set of rules that permits or denies packets based on conditions like source/destination IP address. Routers and firewalls also use ACLs to declare which traffic should be treated specially, not just to allow or block it.
 
@@ -94,6 +95,15 @@ With a **policy-based VPN**, if Site A has 5 subnets and Site B has 3, and every
 
 A **route-based VPN** creates a tunnel interface — a genuine, single virtual interface — and lets a routing entry (or a dynamic routing protocol like OSPF/BGP) pointed at it decide what flows into the tunnel. The IPsec SA itself can be established just once, with a broad selector (potentially `0.0.0.0/0`), leaving the actual decision of what traffic goes through the tunnel to the routing table. That makes it far more scalable across many sites and subnets, and it means a dynamic routing protocol can run directly over the tunnel — so as sites are added, routes propagate automatically.
 
+### The Typical Real-World Setup: One VPN Gateway at the Site Boundary
+
+Even when a site has multiple internal segments, the common real-world pattern is **not** one VPN router per segment. Instead, a single VPN gateway sits at the boundary where the site meets the internet (the WAN side), and that one gateway handles every internal segment. Deploying a separate physical VPN router per segment is impractical in terms of hardware count and operational cost — in most environments, the existing firewall or router doubles as the VPN gateway.
+
+How that single gateway handles multiple segments differs between the two approaches:
+
+- With a **policy-based VPN**, the VPN gateway remains one physical device, but as described above, an independent IPsec SA is established for every (local segment, remote segment) pair. It helps to picture one physical box that logically bundles together as many virtual tunnels as there are segment-pair combinations.
+- With a **route-based VPN**, the single gateway's tunnel interface is left open to traffic from any internal segment, and which segment's traffic actually flows into the tunnel is decided by routing inside the site — static routes, or a dynamic routing protocol like OSPF/BGP.
+
 <details>
 <summary>How Cisco and WatchGuard each support this</summary>
 
@@ -105,7 +115,7 @@ A WatchGuard Firebox's basic building block is the **manual BOVPN (Branch Office
 
 ### Case Study: Building an IPsec Tunnel Between Cisco (Japan) and WatchGuard (Overseas)
 
-Now let's walk through a common real-world, mixed-vendor scenario: Cisco equipment at a Japanese head office, a WatchGuard Firebox at an overseas branch, connected by a site-to-site IPsec VPN. The first wall you hit when connecting equipment from different vendors is that **the terminology is completely different from vendor to vendor.** The same underlying setting is named differently in Cisco's documentation than in WatchGuard's, so the first order of business is mapping the terms to each other.
+In practice, mismatched hardware between sites is common — a merger or acquisition can leave different vendors' gear in place from before, or a head office and its overseas branches may simply procure through different channels — and organizations often end up building a site-to-site VPN between different vendors' equipment: Cisco⇔Fortinet, Palo Alto⇔Juniper, Cisco⇔WatchGuard, and so on. As one example among many such mixed-vendor patterns, let's walk through Cisco equipment at a Japanese head office connected to a WatchGuard Firebox at an overseas branch by a site-to-site IPsec VPN. The first wall you hit when connecting equipment from different vendors is that **the terminology is completely different from vendor to vendor.** The same underlying setting is named differently in Cisco's documentation than in WatchGuard's, so the first order of business is mapping the terms to each other.
 
 | Role | Cisco's term | WatchGuard Firebox's term |
 |---|---|---|
