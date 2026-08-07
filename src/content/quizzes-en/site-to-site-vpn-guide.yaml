@@ -53,6 +53,15 @@ questions:
     answerIndex: 1
     explanation: "The article explains that building a site-to-site VPN between different vendors requires matching every Phase 1/Phase 2 parameter exactly, and that mismatched traffic-selector granularity is by far the most common source of trouble."
 
+  - question: "What does the article say about migrating a live IKEv1 site-to-site VPN to IKEv2?"
+    choices:
+      - "Switching every site's IKE version all at once is the safest approach; a phased migration only adds risk"
+      - "The old IKEv1 configuration should be deleted entirely at the moment of migration, leaving no rollback option"
+      - "Cut over gradually, starting with low-impact sites, keep the old configuration commented out or archived, and have a procedure ready to revert immediately if the IKEv2 side fails to establish an SA"
+      - "DPD implementations and defaults are identical between IKEv1 and IKEv2, so monitoring settings never need to be reviewed during a migration"
+    answerIndex: 2
+    explanation: "The article recommends migrating gradually, starting with low-impact sites (or low-traffic windows), keeping the old IKEv1 configuration commented out or archived so you can roll back immediately if the IKEv2 side fails to establish an SA. DPD/keepalive implementations and defaults vary by vendor and version, so monitoring settings need to be reviewed as part of the migration too."
+
   - question: "According to the article, what is the effect of tunnel mode on effective MTU in a site-to-site VPN?"
     choices:
       - "Tunnel mode keeps the original IP header, so its overhead is smaller than transport mode's"
