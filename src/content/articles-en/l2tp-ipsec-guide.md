@@ -22,7 +22,7 @@ This article is part of the [Top 1% Series' full article guide](/en/sitemap).
 - **VPN (Virtual Private Network)**: A general term for technologies that create a logical communication path — one that behaves like a dedicated line — on top of a public network such as the internet.
 - **Encapsulation**: Attaching headers (control information) before and after a piece of data and wrapping it inside another protocol for transport. The basic idea that a header gets added every time a packet descends a layer is common to network communication in general.
 - **UDP (User Datagram Protocol)**: A lightweight, connectionless transport-layer protocol that performs no delivery confirmation or retransmission control. Unlike TCP, its basic nature is "fire and forget."
-- **NAT (Network Address Translation)**: A technology that translates between private and global IP addresses. Many home and corporate routers use it so that multiple internal devices can share a single global IP address.
+- **NAT (Network Address Translation)**: A technology that translates between private and global IP addresses. Many home and corporate routers use it so that multiple internal devices can share a single global IP address. Why a home router gets a global IP in the first place (and the difference between cases where the carrier's concentration point performs NAT translation and cases where it doesn't) is covered in "Whose Global IP Is It, Really?" in [Understanding the Evolution of Access-Line Technology — ADSL, Fiber, and More — from a "Top 1%" Perspective](/en/articles/access-network-guide).
 
 ## Getting the Big Picture
 

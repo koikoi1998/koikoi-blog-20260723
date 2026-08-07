@@ -80,6 +80,33 @@ questions:
     answerIndex: 0
     explanation: "PPPoE requires the carrier's network termination device to concentrate and process each subscriber's individual PPP session, and as subscriber counts grow this concentration point becomes a structural bottleneck, with speed tending to degrade during congested hours such as evenings. IPoE is a connection method that sidesteps this bottleneck."
 
+  - question: "In PPPoE, what does the article say about the IP address assigned to a subscriber's home router?"
+    choices:
+      - "It's an address left over after the carrier's concentration point translates multiple subscribers' traffic through NAT, so the router itself never holds a global IP"
+      - "It's a global IP address assigned directly to the home router itself via IPCP — one contract equals one global IP"
+      - "Only an IPv6 address is ever assigned; IPv4 is never used"
+      - "The BAS assigns a randomly chosen private IP address each time"
+    answerIndex: 1
+    explanation: "With PPPoE, the subscriber's own equipment acts directly as the PPPoE client, and the IP address IPCP assigns is a global IP address assigned directly to the home router itself. No NAT translation happens at a concentration point."
+
+  - question: "What does the article say about an IPoE configuration that uses CGNAT, such as DS-Lite or MAP-E?"
+    choices:
+      - "The IPv4 address assigned to the home router is a private IP shared across many subscribers, and the actual translation to a global IP happens at the carrier's AFTR or similar"
+      - "The IPv4 address assigned to the home router is always a global IP, handled exactly the same way as PPPoE"
+      - "CGNAT exists solely to solve IPv6 address exhaustion"
+      - "Using CGNAT eliminates the need for the router's own NAPT function"
+    answerIndex: 0
+    explanation: "With IPv4 exhaustion, many IPoE deployments using DS-Lite and similar schemes assign subscribers a private IPv4 address shared across many users, with actual translation to a global IP happening at the carrier's AFTR concentration point (CGNAT)."
+
+  - question: "What mechanism does the article describe that lets a packet sent from anywhere on the internet reach a subscriber's assigned global IP?"
+    choices:
+      - "Each ISP advertises the IP address range it manages to neighboring ASes via BGP (Border Gateway Protocol), and that propagates so route information spreads across the whole internet"
+      - "Every global IP address is cached in a single central database"
+      - "The ONU automatically broadcasts routes to every router in the world"
+      - "The address becomes temporarily reachable worldwide only while the PPPoE session is active"
+    answerIndex: 0
+    explanation: "The internet is a collection of many ASes (Autonomous Systems). Each ISP advertises the IP address range it manages to neighboring ASes via BGP, and as that propagates outward, route information saying \"go through this AS to reach this range\" spreads across the entire internet."
+
   - question: "Which check does the article list for troubleshooting ADSL speed and stability issues?"
     choices:
       - "Check the sync rate and noise margin from the modem's admin page"

@@ -6,7 +6,7 @@ order: 2
 tags: ["network", "adsl", "fiber", "ethernet", "infra"]
 emoji: "📡"
 pubDate: 2026-08-04
-updatedDate: 2026-08-04
+updatedDate: 2026-08-07
 ---
 
 ## Introduction
@@ -114,6 +114,30 @@ The move to ADSL and fiber was purely an upgrade to the access line's transmissi
 
 Modern fiber connections are increasingly moving toward **IPoE**, a connection method that doesn't use PPPoE (it runs IP directly over Ethernet, without PPP in between). The reason is structural: PPPoE requires the carrier's local exchange to concentrate and process each subscriber's individual PPP session through a **network termination device (tunnel termination device)**, and as the number of subscribers grows, this concentration point becomes a bottleneck — speeds tend to degrade during congested periods such as evenings. IPoE sidesteps this bottleneck by routing IPv6 traffic directly, without going through a network termination device, and by tunneling IPv4 packets over the IPv6 network using an "IPv4 over IPv6" technique (carriers use different names for this, such as DS-Lite or MAP-E). It helps to think of this as IPoE replacing the very function PPP used to provide — "authenticate per line, hand out an IP address" — with a different mechanism (IPv6 address assignment tied to the subscriber's physical line, plus IPv6 routing coordinated with an authentication server).
 
+### Whose Global IP Is It, Really? — CGNAT and Route Advertisement
+
+So far we've covered the commercial practice of "an IP address gets assigned every time you connect." Let's go one step further and ask **whether that address is really a global IP, and why the global IP you're assigned can be reached from anywhere on the internet.**
+
+**PPPoE hands a global IP directly to the home router.** With PPPoE, the subscriber's own equipment (typically a home router) acts as the PPPoE client itself and establishes a PPP session with the carrier's **BAS (Broadband Access Server)** at the local exchange. The IP address IPCP assigns in this exchange is a global IP address assigned directly to the subscriber's home router itself. There's no intermediate concentration point translating multiple subscribers' traffic through NAT — one contract equals one global IP, delivered all the way to the home router that terminates the PPP session. The reason multiple devices inside the home can share this single global IP is NAPT performed by the router itself (covered in detail in [Understanding How NAT/NAPT Works from a "Top 1%" Perspective](/en/articles/nat-guide)) — not any translation happening on the carrier's side.
+
+**With IPv4 address exhaustion, though, many IPoE deployments tell a different story.** The "IPv4 over IPv6" scheme mentioned earlier (DS-Lite, MAP-E, and similar) is, in effect, a form of **CGNAT (Carrier Grade NAT)**. With DS-Lite, the subscriber's CPE encapsulates IPv4 packets inside IPv6 and delivers them to the ISP's **AFTR (Address Family Transition Router)**, which performs large-scale NAT translation before sending the traffic out to the internet. In this configuration, the IPv4 address handed to the subscriber isn't a global IP at all — it's a private IP shared across many subscribers, and the actual translation to a global IP happens at the carrier's AFTR, a concentration point. The idea that "the concentration point where traffic from many homes converges ought to be where global-IP NAT translation happens" is exactly this CGNAT architecture — and in an IPoE environment using DS-Lite/MAP-E, that's genuinely how it's built.
+
+```mermaid
+graph TB
+    subgraph PPPoE["PPPoE: one contract = one global IP"]
+        Home1["Home router"] -->|PPP session| BAS["BAS (network termination device)"]
+        BAS -->|IPCP assigns a global IP| Home1
+    end
+    subgraph IPoECgnat["IPoE + CGNAT (DS-Lite/MAP-E, etc.)"]
+        Home2["Home router (IPv4 stays private)"] -->|IPv4 encapsulated in IPv6| Aftr["AFTR (carrier-side shared NAT)"]
+        Aftr -->|Sent out after large-scale NAT translation| Internet["The internet (only here does it become a global IP)"]
+    end
+```
+
+So the accurate answer to "does the home router have a global IP?" is: **it depends on the connection type (PPPoE vs. IPoE) and the carrier's implementation choice (plain IPoE vs. IPoE with CGNAT).** The idea that "the concentration point does the NAT translation" doesn't hold for PPPoE, but it's exactly what happens in an IPoE deployment that uses CGNAT.
+
+Finally, let's briefly cover how a packet sent from anywhere on the internet actually reaches a subscriber's assigned global IP. The internet is a collection of many **ASes (Autonomous Systems)** managed by ISPs, large enterprises, and similar organizations. Each ISP advertises the range of global IP addresses (prefixes) it manages to neighboring ASes using a routing protocol called **BGP (Border Gateway Protocol)**, and that advertisement propagates onward from AS to AS, so that the entire internet ends up with route information saying, in effect, "to reach this address range, go through this AS." The global IP assigned to a subscriber's router is part of the address range managed by their ISP, and it's precisely because ISPs exchange BGP routes with each other — often via an **IX (Internet eXchange)** — that a packet can reach that IP from anywhere in the world. BGP's route-selection mechanics and the internal structure of an AS are each a substantial, independent topic beyond this article's scope, so for now it's enough to take away the conclusion: **a global IP is visible from the rest of the world because the ISP advertises a route to it via BGP.**
+
 ## Common Misconceptions and Pitfalls
 
 - **Misconception 1: "ADSL is a brand-new line, separate from the telephone line."**
@@ -124,6 +148,8 @@ Modern fiber connections are increasingly moving toward **IPoE**, a connection m
   Ethernet is a data-link-layer (L2) standard, while an IP network is a logical, network-layer-and-above (L3+) system — an IP packet is carried inside an Ethernet frame, a layered relationship.
 - **Misconception 4: "ADSL is just a cheaper version of fiber, with essentially the same mechanism."**
   ADSL layers data onto existing metal wiring via frequency division, while fiber replaces the transmission medium itself with optical fiber — the underlying mechanisms are fundamentally different.
+- **Misconception 5: "Fiber (IPoE) always gets you a global IP, just like PPPoE."**
+  With an IPoE configuration that uses CGNAT (DS-Lite, MAP-E, etc.), the IPv4 address handed to the home router is often a private IP that gets translated through large-scale NAT at the carrier's AFTR/BR (Border Relay), which restricts things like hosting a server at home or opening ports. If you genuinely need a global IP, you need to check your plan and options (such as a static/global IP add-on) individually.
 
 ## Troubleshooting Perspective
 
