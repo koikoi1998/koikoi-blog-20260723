@@ -6,7 +6,7 @@ order: 1
 tags: ["network", "vpn", "l2tp", "ipsec", "security"]
 emoji: "🔐"
 pubDate: 2026-07-29
-updatedDate: 2026-08-03
+updatedDate: 2026-08-07
 ---
 
 ## Introduction
@@ -111,6 +111,18 @@ With this groundwork in place, two common questions can now be answered clearly.
 
 **Second: "IPsec already provides encryption, so why not start PPP negotiation directly instead of inserting the L2TP tunneling step?"** — what matters here is the difference between what IPsec (ESP) provides and what PPP needs. What IPsec (ESP) provides is "a confidential IP communication path between two IP addresses"; it does not, on its own, set up "the shape of a one-to-one link that PPP can run over" inside that path. PPP is a protocol designed on the premise that it exchanges LCP/authentication/IPCP with exactly one peer over a dedicated link, and it is not built to ride directly on the flow of IP packets that IPsec has encrypted. Inserting L2TP provides, inside the already-encrypted path, the "virtual link that PPP can run over" described earlier. In addition, L2TP's Tunnel ID/Session ID also serves to identify and multiplex individual PPP sessions when many users connect to a single VPN server simultaneously — a function that IPsec's SA (Security Association) alone cannot substitute for.
 
+### Why Encapsulate in UDP/IP At All? — Why ESP Alone Isn't Enough
+
+Even once you understand that "L2TP encapsulates PPP frames in UDP/IP," one more question remains. **ESP runs directly after the IP header as IP protocol number 50 and handles encryption and authentication on its own — it looks like that alone should be enough to get a packet to the VPN server, so why is a UDP header needed at all?**
+
+The first thing to sort out is that **L2TP's choice to use UDP was already fixed in L2TP's own specification (RFC 2661), before it was ever combined with IPsec.** Encryption via ESP is a separate layer stacked on top afterward — there's no relationship of "UDP becomes unnecessary because ESP exists" to begin with. So why did L2TP itself choose UDP? There are mainly two reasons.
+
+The first is that **it can be implemented entirely with ordinary user-space socket APIs.** Handling an IP protocol other than TCP/UDP directly — like ESP (IP protocol number 50) — requires creating a raw socket, which on most operating systems demands root-equivalent privileges. UDP, on the other hand, can be implemented with completely ordinary socket programming — just `bind()` to a specific port (1701 for L2TP) — the kind any application programmer can do. In fact, `xl2tpd`, a commonly used L2TP implementation on Linux, runs as an ordinary, unprivileged daemon process that simply handles a UDP socket — a direct benefit of L2TP being designed on top of UDP, a transport layer that "anyone can use." Why a daemon's implementation can be self-contained as an ordinary user-space process is covered in [What Is a Daemon? Understanding Linux Background Processes from a "Top 1%" Perspective](/en/articles/linux-daemon-guide).
+
+The second is **multiplexing by port number.** An IP protocol number (50 for ESP) is fundamentally treated as a single protocol per IP address, and the OS kernel can only dispatch processing by protocol number. Inserting a transport layer like UDP lets multiple UDP ports (L2TP's 1701, IKE's 500, NAT-T's 4500, and so on) listen independently as separate services on the same IP address at the same time, with the OS's standard socket API automatically handling the per-port dispatch.
+
+Note that, in actual L2TP/IPsec communication, this "L2TP uses UDP 1701" detail ends up encrypted, UDP header and all, by the ESP layered on top of it afterward, so the UDP port 1701 information itself becomes invisible to any third party along the path or to NAT devices (as covered earlier in "Misconception 3"). In short, the reason L2TP uses UDP and the reason IPsec protects it are two entirely separate design decisions stacked on top of each other — it's more accurate to think "UDP is a matter of L2TP's own implementation convenience, and ESP is a matter of encryption, and the two just happen to overlap in the same packet" than to think "UDP is unnecessary because ESP exists."
+
 L2TP has two kinds of messages with different communication characteristics.
 
 - **Control messages**: Messages for establishing and tearing down tunnels and sessions. Messages named SCCRQ/SCCRP/SCCCN (tunnel establishment) and ICRQ/ICRP/ICCN (session establishment) are exchanged, and their content is carried in a variable-length attribute format called AVP (Attribute-Value Pair). Because control messages cannot be allowed to be lost, they have their own retransmission control based on Ns/Nr (send/receive sequence numbers).
@@ -140,7 +152,15 @@ Once an L2TP session is established, **PPP negotiation** begins within it. This 
 
     MS-CHAPv2 is by far the most widely used method today. The basics of the challenge-response scheme, and the concrete procedure by which MS-CHAPv2 splits the NT hash into DES keys to compute the response (the part that underlies the reduction of analysis cost to a single DES key mentioned later in "Known Weaknesses"), are covered in detail in the "Inside the Authentication Phase" section of [Understanding the Difference Between Telephone Lines and IP Networks from a "Top 1%" Perspective — Circuit Switching, Packet Switching, and the Design of PPP](/en/articles/circuit-switching-ppp-guide).
 
-3. **NCP/IPCP (Network Control Protocol / IP Control Protocol)**: After successful authentication, the server assigns the client a virtual IP address (typically something like an internal `10.x.x.x` address) and DNS server information. The familiar VPN-connection behavior of "receiving an IP address for the internal network" is exactly this IPCP exchange.
+3. **NCP/IPCP (Network Control Protocol / IP Control Protocol)**: After successful authentication, the server assigns the client a virtual IP address (typically something like an internal `10.x.x.x` address) and DNS server information. The familiar VPN-connection behavior of "receiving an IP address for the internal network" is exactly this IPCP exchange. How the client actually manages and prioritizes multiple DNS servers is covered in depth in [Understanding How DNS Works from a "Top 1%" Perspective](/en/articles/dns-guide).
+
+### Why Is a PPP Header Still Needed After IPCP Completes?
+
+You might wonder, at this point, "authentication and IP address assignment via IPCP are already done, so shouldn't the PPP header become unnecessary from here on, with L2TP just carrying IP packets directly?" The answer is **no — the PPP header keeps being attached to every frame carrying real data for as long as the connection stays up.**
+
+What the PPP header carries is not limited to control information used during setup, like LCP, authentication, and IPCP. Its core content is a **Protocol field that identifies what kind of content the frame carries** (for example, protocol number `0x0021` for a real IP data packet, or `0x8021` for an IPCP control message). L2TP is a protocol that "tunnels PPP frames wholesale over UDP/IP," and L2TP itself has no way to distinguish whether the content it's carrying is real IP data, an IPCP renegotiation, or an LCP Echo Request (a keepalive, discussed below). That job — distinguishing what kind of content is inside — is exactly what the PPP header's Protocol field does.
+
+In other words, even after IPCP completes, LCP Echo Request/Reply messages (link keepalives) and, when needed, IPCP renegotiation continue to flow over the same PPP link, and the PPP header remains necessary for the entire duration of the connection precisely so these control frames can be distinguished from the real IP data packets. It's correct to think of authentication and IP address assignment as a one-time procedure that happens at connection start, but it helps to also keep in mind that "the PPP mechanism used for that procedure keeps being used for the ongoing exchange of real data afterward, too" — that's why the earlier "Inside the Packet" diagram shows a PPP header attached to the real data as well.
 
 ### Why Is Assigning a Virtual IP Address Necessary?
 
@@ -169,6 +189,8 @@ IPsec is not a single protocol but a collection of component technologies. The t
 
 - **IKE (Internet Key Exchange)**: A protocol for securely agreeing on encryption keys (IKEv1 is RFC 2409, IKEv2 is RFC 7296). It uses UDP port 500.
 - **ESP (Encapsulating Security Payload, RFC 4303)**: The protocol that actually encrypts the data and attaches authentication information for tamper detection. It is treated as IP protocol number 50.
+
+IKEv1 and IKEv2 sound like mere version numbers of the same thing, but they're separate versions with a fundamentally redesigned message exchange. Their differences (EAP authentication, Configuration Payload, MOBIKE, and more) are covered in detail, table included, in the "IKEv2/IPsec: The 'Evolved' Version That Skips L2TP" section of [Comparing L2TP/IPsec to Modern VPN Protocols from a "Top 1%" Perspective](/en/articles/vpn-protocols-comparison-guide). What to watch out for when actually upgrading a live IKEv1 deployment to IKEv2 (this mostly comes up in a site-to-site VPN context) is covered in [Understanding Site-to-Site VPN from a "Top 1%" Perspective](/en/articles/site-to-site-vpn-guide).
 
 A similar mechanism, **AH (Authentication Header, RFC 4302)**, exists, but AH only performs tamper detection and source authentication — it does not provide encryption (confidentiality). Since L2TP/IPsec's purpose is to keep communication content confidential, AH alone is never used; ESP is always used.
 
