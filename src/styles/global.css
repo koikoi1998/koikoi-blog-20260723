@@ -627,6 +627,13 @@ pre.mermaid {
   color: var(--fg);
 }
 
+.quiz-skip-btn {
+  display: block;
+  margin: 0.75rem 0 0 auto;
+  font-size: 0.85rem;
+  padding: 0.4em 0.9em;
+}
+
 .quiz-feedback {
   margin-top: 1.25rem;
   padding-top: 1.25rem;
@@ -652,6 +659,11 @@ pre.mermaid {
   font-family: var(--font-mono);
   font-size: 1.3rem;
   color: var(--accent);
+}
+
+.quiz-skipped-count {
+  margin-top: 0.25rem;
+  font-size: 0.9rem;
 }
 
 .quiz-wrong-articles {

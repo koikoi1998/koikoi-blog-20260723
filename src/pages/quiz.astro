@@ -66,6 +66,7 @@ const quizJson = JSON.stringify({ seriesNames, articles: dataset }).replace(/</g
         <p class="quiz-theme-tag" id="quiz-theme-tag"></p>
         <h2 id="quiz-question-text"></h2>
         <div class="quiz-choices" id="quiz-choices"></div>
+        <button class="btn-secondary quiz-skip-btn" id="quiz-skip">この問題をスキップ</button>
         <div class="quiz-feedback" id="quiz-feedback" hidden>
           <p id="quiz-feedback-text"></p>
           <button class="btn-primary" id="quiz-next">次へ</button>
@@ -77,8 +78,10 @@ const quizJson = JSON.stringify({ seriesNames, articles: dataset }).replace(/</g
     <section class="quiz-result" id="quiz-result" hidden>
       <h2>結果</h2>
       <p class="quiz-score" id="quiz-score"></p>
+      <p class="quiz-skipped-count muted" id="quiz-skipped-count" hidden></p>
       <div id="quiz-wrong-list"></div>
       <div class="quiz-result-actions">
+        <button class="btn-primary" id="quiz-retry-skipped" hidden>スキップした問題に挑戦する</button>
         <button class="btn-primary" id="quiz-retry-random">もう一度(ランダム3問)</button>
         <button class="btn-secondary" id="quiz-back-to-select">テーマ選択に戻る</button>
       </div>
@@ -147,7 +150,7 @@ const quizJson = JSON.stringify({ seriesNames, articles: dataset }).replace(/</g
       themeList.appendChild(group);
     }
 
-    let session: { questions: Question[]; index: number; score: number; wrong: Question[] } | null = null;
+    let session: { questions: Question[]; index: number; score: number; wrong: Question[]; skipped: Question[] } | null = null;
 
     function allQuestionsPool(): Question[] {
       return articles.flatMap((a) => a.questions.map((q) => ({ ...q, _source: a })));
@@ -172,11 +175,20 @@ const quizJson = JSON.stringify({ seriesNames, articles: dataset }).replace(/</g
     });
 
     function startQuiz(questions: Question[]) {
-      session = { questions: shuffle(questions), index: 0, score: 0, wrong: [] };
+      session = { questions: shuffle(questions), index: 0, score: 0, wrong: [], skipped: [] };
       modeSelect.hidden = true;
       result.hidden = true;
       runner.hidden = false;
       renderQuestion();
+    }
+
+    function advance(s: NonNullable<typeof session>) {
+      s.index++;
+      if (s.index < s.questions.length) {
+        renderQuestion();
+      } else {
+        showResult();
+      }
     }
 
     function renderQuestion() {
@@ -190,6 +202,10 @@ const quizJson = JSON.stringify({ seriesNames, articles: dataset }).replace(/</g
       choicesEl.innerHTML = "";
       document.getElementById("quiz-feedback")!.hidden = true;
 
+      const skipBtn = document.getElementById("quiz-skip") as HTMLButtonElement;
+      skipBtn.hidden = false;
+      skipBtn.disabled = false;
+
       q.choices.forEach((choice, i) => {
         const btn = document.createElement("button");
         btn.type = "button";
@@ -200,11 +216,20 @@ const quizJson = JSON.stringify({ seriesNames, articles: dataset }).replace(/</g
       });
     }
 
+    document.getElementById("quiz-skip")!.addEventListener("click", () => {
+      const s = session!;
+      const q = s.questions[s.index];
+      s.skipped.push(q);
+      (document.getElementById("quiz-skip") as HTMLButtonElement).hidden = true;
+      advance(s);
+    });
+
     function selectAnswer(i: number, btnEl: HTMLButtonElement) {
       const s = session!;
       const q = s.questions[s.index];
       const allBtns = document.querySelectorAll<HTMLButtonElement>(".quiz-choice-btn");
       allBtns.forEach((b) => (b.disabled = true));
+      (document.getElementById("quiz-skip") as HTMLButtonElement).hidden = true;
 
       const correct = i === q.answerIndex;
       if (correct) {
@@ -226,26 +251,33 @@ const quizJson = JSON.stringify({ seriesNames, articles: dataset }).replace(/</g
     }
 
     document.getElementById("quiz-next")!.addEventListener("click", () => {
-      const s = session!;
-      s.index++;
-      if (s.index < s.questions.length) {
-        renderQuestion();
-      } else {
-        showResult();
-      }
+      advance(session!);
     });
 
     function showResult() {
       const s = session!;
       runner.hidden = true;
       result.hidden = false;
-      document.getElementById("quiz-score")!.textContent = `${s.score} / ${s.questions.length} 問正解`;
+      const answered = s.questions.length - s.skipped.length;
+      document.getElementById("quiz-score")!.textContent = `${s.score} / ${answered} 問正解`;
+
+      const skippedCountEl = document.getElementById("quiz-skipped-count")!;
+      const retrySkippedBtn = document.getElementById("quiz-retry-skipped") as HTMLButtonElement;
+      if (s.skipped.length > 0) {
+        skippedCountEl.hidden = false;
+        skippedCountEl.textContent = `(${s.skipped.length}問スキップしました)`;
+        retrySkippedBtn.hidden = false;
+        retrySkippedBtn.onclick = () => startQuiz(s.skipped);
+      } else {
+        skippedCountEl.hidden = true;
+        retrySkippedBtn.hidden = true;
+      }
 
       const wrongListEl = document.getElementById("quiz-wrong-list")!;
       wrongListEl.innerHTML = "";
       if (s.wrong.length === 0) {
         const p = document.createElement("p");
-        p.textContent = "全問正解です。素晴らしい理解度です。";
+        p.textContent = answered > 0 ? "回答した問題は全問正解です。素晴らしい理解度です。" : "すべてスキップしました。";
         wrongListEl.appendChild(p);
         return;
       }
