@@ -696,3 +696,38 @@ pre.mermaid {
   margin-top: 2rem;
   flex-wrap: wrap;
 }
+
+/* ---------- search ---------- */
+
+.search-intro {
+  margin-bottom: 2rem;
+}
+
+.search-intro h1 {
+  font-size: 2rem;
+  letter-spacing: -0.02em;
+  margin: 0 0 1rem;
+}
+
+.search-intro p {
+  max-width: 68ch;
+  font-size: 1rem;
+  color: var(--muted);
+}
+
+#search {
+  --pagefind-ui-primary: var(--accent);
+  --pagefind-ui-text: var(--fg);
+  --pagefind-ui-background: var(--bg);
+  --pagefind-ui-border: var(--border-strong);
+  --pagefind-ui-tag: var(--border);
+  --pagefind-ui-border-width: 1px;
+  --pagefind-ui-border-radius: 8px;
+  --pagefind-ui-font: var(--font-sans);
+}
+
+#search-fallback code {
+  background: var(--code-bg);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+}

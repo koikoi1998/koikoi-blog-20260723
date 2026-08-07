@@ -19,6 +19,7 @@ const resolvedAltHref = altHref ?? (lang === "ja" ? "/en" : "/");
 const homeHref = lang === "ja" ? "/" : "/en";
 const sitemapHref = lang === "ja" ? "/sitemap" : "/en/sitemap";
 const quizHref = lang === "ja" ? "/quiz" : "/en/quiz";
+const searchHref = lang === "ja" ? "/search" : "/en/search";
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 const altUrl = new URL(resolvedAltHref, Astro.site);
 ---
@@ -56,11 +57,12 @@ const altUrl = new URL(resolvedAltHref, Astro.site);
         <div class="nav-links">
           <a href={sitemapHref}>{t.sitemap}</a>
           <a href={quizHref}>{t.quiz}</a>
+          <a href={searchHref}>{t.search}</a>
           <a href={resolvedAltHref} class="lang-switch" rel="alternate" hreflang={otherLang}>{t.langSwitchLabel}</a>
         </div>
       </nav>
     </header>
-    <main class="page">
+    <main class="page" data-pagefind-body>
       <slot />
     </main>
     <footer class="site-footer">

@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="検索"
+  description="『上位1%』シリーズの全記事を横断検索できます。"
+  lang="ja"
+  altHref="/en/search"
+>
+  <div class="search-intro">
+    <span class="eyebrow">// SITE SEARCH</span>
+    <h1>検索</h1>
+    <p>記事のタイトル・本文を横断して検索できます。読みたい記事のキーワードを入力してください。</p>
+  </div>
+
+  <div id="search"></div>
+  <p id="search-fallback" class="muted" hidden>
+    検索機能は本番ビルド後の環境(Vercel上など)でのみ利用できます。ローカルの<code>npm run dev</code>では動作しません。<code>npm run build</code>を実行後、<code>npm run preview</code>でお試しください。
+  </p>
+
+  <script>
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "/pagefind/pagefind-ui.css";
+    document.head.appendChild(link);
+
+    const script = document.createElement("script");
+    script.src = "/pagefind/pagefind-ui.js";
+    script.onload = () => {
+      // @ts-expect-error PagefindUI is loaded globally by the script above (only present in production builds)
+      new PagefindUI({ element: "#search", showSubResults: true, showImages: false });
+    };
+    script.onerror = () => {
+      document.getElementById("search-fallback")!.hidden = false;
+    };
+    document.body.appendChild(script);
+  </script>
+</BaseLayout>

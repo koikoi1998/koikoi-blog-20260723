@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Search"
+  description="Search across every article in the Top 1% Series."
+  lang="en"
+  altHref="/search"
+>
+  <div class="search-intro">
+    <span class="eyebrow">// SITE SEARCH</span>
+    <h1>Search</h1>
+    <p>Search across article titles and bodies. Enter a keyword for the article you're looking for.</p>
+  </div>
+
+  <div id="search"></div>
+  <p id="search-fallback" class="muted" hidden>
+    Search is only available in a production build (such as on Vercel) — it doesn't work in local <code>npm run dev</code>. Run <code>npm run build</code>, then try <code>npm run preview</code>.
+  </p>
+
+  <script>
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "/pagefind/pagefind-ui.css";
+    document.head.appendChild(link);
+
+    const script = document.createElement("script");
+    script.src = "/pagefind/pagefind-ui.js";
+    script.onload = () => {
+      // @ts-expect-error PagefindUI is loaded globally by the script above (only present in production builds)
+      new PagefindUI({ element: "#search", showSubResults: true, showImages: false });
+    };
+    script.onerror = () => {
+      document.getElementById("search-fallback")!.hidden = false;
+    };
+    document.body.appendChild(script);
+  </script>
+</BaseLayout>
