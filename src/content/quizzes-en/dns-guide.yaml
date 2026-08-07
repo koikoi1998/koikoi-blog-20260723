@@ -1,0 +1,90 @@
+questions:
+  - question: "According to the article, how is the DNS namespace designed?"
+    choices:
+      - "A single giant server manages every domain name centrally"
+      - "The namespace is structured as a hierarchy (a tree), with each level delegated to a different managing entity"
+      - "Each country's government independently manages all domain names on its own"
+      - "The authoritative server and the recursive resolver must always be the same server"
+    answerIndex: 1
+    explanation: "DNS's namespace itself is structured as a hierarchy, delegated level by level to different managing entities — root, TLD, authoritative server, and so on. This distributed design is precisely what lets the entire world's domain names be managed without a single point of failure."
+
+  - question: "According to the article, what is the difference in role between an authoritative server and a recursive resolver?"
+    choices:
+      - "An authoritative server gives the official answer for the zone it manages, while a recursive resolver chases down the answer on the client's behalf, from root to the authoritative server"
+      - "\"Authoritative server\" is just another name for \"recursive resolver\" — there's no functional difference"
+      - "A recursive resolver never caches anything and always queries a root server directly, every time"
+      - "An authoritative server never accepts queries directly from clients"
+    answerIndex: 0
+    explanation: "An authoritative server holds the official data for a specific zone and answers accurately from it; a recursive resolver chases down the answer on the client's behalf, querying root, then TLD, then authoritative server in turn. These are clearly distinct roles."
+
+  - question: "According to the article, what does a recursive resolver receive back from a root server or a TLD server?"
+    choices:
+      - "Always the final, authoritative answer"
+      - "Referral information about where to ask next"
+      - "A rejection, with only an error returned"
+      - "The client's own IP address, echoed straight back"
+    answerIndex: 1
+    explanation: "Neither the root server nor the TLD server returns the actual answer — each returns referral information about where to ask next. Only the authoritative server that actually manages that zone can return the final, official answer."
+
+  - question: "According to the article, what is the role and trade-off of TTL (Time To Live)?"
+    choices:
+      - "Longer is always better for TTL, with no downside whatsoever"
+      - "TTL sets how long a cached entry stays valid — a longer TTL raises the cache hit rate, but also extends how long stale data can persist worldwide after a record changes"
+      - "TTL is a parameter that determines how many authoritative servers exist"
+      - "TTL refers to how long a DNSSEC signature stays valid"
+    answerIndex: 1
+    explanation: "TTL is a caching-duration value set by the authoritative server side. A longer TTL raises the cache hit rate and reduces load/latency, but also extends how long stale cached data persists worldwide after a record change — a genuine trade-off."
+
+  - question: "According to the article, what is the difference between a stub resolver and a full-service resolver?"
+    choices:
+      - "A stub resolver is a lightweight implementation that simply forwards a query to a single configured recursive resolver, while the actual work of walking root, TLD, and authoritative servers is done by the full-service (recursive) resolver"
+      - "A stub resolver and a full-service resolver have exactly the same functionality"
+      - "A stub resolver is a feature implemented inside an authoritative server"
+      - "A full-service resolver always runs on the client device itself"
+    answerIndex: 0
+    explanation: "What's built into a client OS is usually a stub resolver, which just forwards the query to a configured recursive resolver. The actual work of walking root → TLD → authoritative server is handled by the full-service (recursive) resolver, provided by an ISP or public DNS."
+
+  - question: "According to the article, what happens on Windows when different network adapters have different DNS servers configured?"
+    choices:
+      - "A PC can only have one DNS server setting system-wide; per-adapter settings aren't possible"
+      - "DNS server settings are held per adapter, and when multiple adapters are active, factors like the interface metric affect which one takes priority"
+      - "Only the DNS server of whichever adapter connected most recently is ever used"
+      - "The wired LAN adapter's DNS server is always given top priority, and no other setting is ever consulted"
+    answerIndex: 1
+    explanation: "On Windows, DNS server settings are held per network adapter. When multiple adapters are active at once, the interface metric and similar factors affect which DNS server gets used for name resolution."
+
+  - question: "According to the article, what is the NRPT (Name Resolution Policy Table)?"
+    choices:
+      - "A mechanism that defines domain-level routing rules to reliably route queries for a specific domain namespace to a designated DNS server"
+      - "A command that forcibly clears every DNS cache"
+      - "A feature that evenly load-balances queries across multiple DNS servers"
+      - "A policy that automatically shortens TTL values"
+    answerIndex: 0
+    explanation: "NRPT explicitly defines a domain-level routing rule — \"queries for this specific namespace (e.g., corp.example.com) go to this designated DNS server.\" It was originally designed for DirectAccess, but can also be used with regular VPN split-tunnel setups."
+
+  - question: "According to the article, what is a \"routing domain\" in Linux's systemd-resolved?"
+    choices:
+      - "The NRPT-equivalent mechanism where assigning a tilde-prefixed domain (~) to a link routes queries for that domain specifically to that link's DNS server"
+      - "A feature that automatically reorders the nameserver entries in /etc/resolv.conf"
+      - "A transfer protocol used to synchronize zone data between DNS servers"
+      - "A Windows-only concept that doesn't exist on Linux"
+    answerIndex: 0
+    explanation: "A systemd-resolved routing domain assigns a tilde-prefixed domain (like ~corp.example.com) to a specific link, routing only queries for that domain to that link's DNS server — the equivalent of Windows' NRPT."
+
+  - question: "According to the article, what happens over a split-tunnel VPN connection when NRPT (Windows) or a routing domain (Linux) is not configured?"
+    choices:
+      - "Internal-domain name resolution is always top priority, and no issues ever occur"
+      - "Behavior can become inconsistent — general queries might get sent to the VPN-side DNS server, or, conversely, internal-domain queries might get sent to the regular DNS server and fail"
+      - "The VPN connection itself fails to establish"
+      - "All DNS queries switch over to TCP"
+    answerIndex: 1
+    explanation: "In a split-tunnel environment without NRPT or a routing domain configured, behavior can become inconsistent depending on factors like interface metrics — general queries might get routed to the VPN side, or internal-domain queries might fail by going to the regular DNS server instead."
+
+  - question: "How does the article evaluate the claim that \"registering multiple DNS servers gives you load balancing\"?"
+    choices:
+      - "Correct — queries registered to multiple DNS servers are always distributed evenly"
+      - "Incorrect — a typical OS's DNS client implementation fundamentally treats multiple DNS servers as preferred/alternate failover, not as an even load-balancing mechanism"
+      - "Correct, but only for IPv6"
+      - "Incorrect — registering multiple DNS servers always results in an error"
+    answerIndex: 1
+    explanation: "A typical OS's DNS client implementation treats multiple registered DNS servers as preferred/alternate, with failover to the next one if the preferred server doesn't respond. It is fundamentally not a load balancer that evenly distributes queries."
