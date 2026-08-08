@@ -51,6 +51,15 @@ Here's a summary of the main differences among the four protocols:
 
 ## Fundamentals, Thoroughly Explained
 
+### Why the "Transport It Runs Over" Matters for Remote-Access VPN
+
+The "Transport It Runs Over" column in the comparison table isn't just a spec-sheet detail. It's one of the most practically important selection criteria for a remote-access VPN, because it directly determines **which networks the VPN can actually connect from, and how stable its performance will be.** There are two main reasons.
+
+1. **Ease of traversing firewalls and NAT**: Corporate networks, and public Wi-Fi at hotels or airports, often block UDP traffic and the ESP protocol (IP protocol number 50) that IPsec uses, as a matter of security policy, allowing only TCP ports 80 and 443 (used for ordinary web traffic) out to the internet. UDP-only protocols like IKEv2/IPsec and WireGuard can sometimes fail to connect from such restrictive networks, whereas OpenVPN can be configured to run over TCP port 443, making it look, to anything on the path, like ordinary HTTPS traffic — which makes it much easier to establish a connection (covered in more detail in the OpenVPN section below). The reason IPsec-family protocols have a **NAT-T (NAT Traversal)** mechanism that re-wraps themselves inside UDP port 4500 (which does have a port number) when behind NAT is the same underlying constraint: ESP, being identified purely by protocol number, doesn't traverse NAT devices well (the internal workings of NAT-T are covered in depth in [How L2TP/IPsec Works](/en/articles/l2tp-ipsec-guide)).
+2. **Impact on performance and stability — the "TCP over TCP" problem**: When the VPN tunnel itself runs over TCP, the user's own traffic flowing through the tunnel (SSH, HTTPS, and so on — much of which is itself TCP) ends up nested as "TCP inside TCP." When packet loss occurs on the path, the inner TCP connection (the user's traffic) and the outer TCP connection (the tunnel itself) each independently try to run their own retransmission timers and congestion control, and these retransmissions end up competing with each other. RTT estimates get thrown off, and throughput can drop sharply. This is a well-known phenomenon called **"TCP-over-TCP meltdown,"** and it's the main reason OpenVPN recommends UDP as its default mode of operation, treating the TCP-443 configuration as a fallback specifically for restrictive-firewall environments.
+
+In short, UDP is designed to leave retransmission, when packet loss occurs, up to the application riding inside the tunnel while the tunnel itself stays lightweight — which usually means high performance and low latency, but it can't connect where UDP itself is blocked. TCP prioritizes connectivity at the cost of the TCP-over-TCP performance risk described above. That tradeoff between connectivity and performance is the real meaning behind lining up each protocol's supported transport in the comparison table.
+
 ### Why Is L2TP/IPsec Called "Legacy"?
 
 The grounds for considering L2TP/IPsec dated boil down to three main points.
@@ -87,6 +96,14 @@ This is exactly why so many of the built-in VPN clients on Windows, iOS, macOS, 
 
 **OpenVPN** is a piece of VPN software that reuses the same [library](/en/articles/software-library-guide) (OpenSSL) that underpins TLS (SSL), the protocol widely used to secure HTTPS traffic on the web, implementing key exchange, authentication, and encryption as a single, consistent protocol stack. Rather than IPsec's "combination of several separate standards," it's built on a single design based on a TLS handshake, and supports both certificate-based and PSK authentication (why TLS combines key exchange, authentication, and encryption the way it does is covered in [How PKI and Digital Certificates Work](/en/articles/pki-guide); the inner workings of the symmetric-key cryptography that encrypts the actual data are covered in [How Symmetric-Key Encryption (AES) and HMAC/AEAD Work](/en/articles/symmetric-encryption-guide)).
 
+TLS was originally built to **encrypt a specific application's communication**, the way it secures HTTP traffic between a browser and a server. What OpenVPN does is take the raw IP packets handed to it by the OS through a TUN virtual network interface (covered below) and pour them straight into a single TLS connection. From TLS's point of view, it has no idea what's inside the connection — it's just a byte stream, and it treats an HTTP request and an IP packet exactly the same way. There's nothing special, spec-wise, about pouring arbitrary data into a TLS-protected connection like this; OpenVPN simply exploits that property to implement its VPN tunnel.
+
+So why didn't the designers of L2TP and IPsec just build a TLS-based VPN from the start? There are three main reasons.
+
+1. **A generational gap**: SSL (TLS's predecessor) was published by Netscape around 1994–1995, and TLS 1.0 (RFC 2246) wasn't standardized until 1999. IPsec's original form, by contrast, had been under standardization since around 1995 — roughly the same era, or slightly ahead of TLS. The option of "building on the newer TLS instead of the already-running IPsec design" simply hadn't matured yet at the time.
+2. **A difference in the scope the design targeted**: L2TP/IPsec was aiming to transparently tunnel arbitrary Layer-2 traffic between sites — not just IP packets but Ethernet frames as well (it wasn't unusual back then for a company's internal network to run non-IP protocols like IPX or AppleTalk). TLS assumes a single TCP connection as its foundation, and was never designed with that kind of Layer-2 transparency in mind.
+3. **The TCP-over-TCP problem discussed above**: TLS fundamentally runs on top of TCP. Building a VPN tunnel on top of TLS (i.e., TCP) reintroduces the "TCP-over-TCP meltdown" described in the previous section, causing throughput to collapse on lossy connections. The reason IPsec (ESP) and WireGuard are designed to run over UDP is precisely to avoid this problem, and it's the same reason OpenVPN is recommended to run over UDP wherever possible. Implementing a VPN over TLS is entirely possible — but as long as it's built on TCP, this constraint doesn't go away.
+
 <details>
 <summary>Aside: "VPN server" versus "VPN software"</summary>
 
@@ -120,6 +137,22 @@ In the world of VPN protocols, the principle that **"complexity in the implement
 ### Performance Characteristics: User-Space vs. Kernel-Space Implementations
 
 VPN implementations broadly split into those running outside the OS kernel (user space) and those running inside it (kernel space). OpenVPN is a user-space implementation, so every packet it processes incurs a context switch and memory copy between the kernel and user space. WireGuard, by contrast, is a kernel-space implementation built directly into the Linux kernel, so this back-and-forth overhead is much smaller—which tends to give it an edge in both throughput and latency under equivalent conditions. IPsec (whether L2TP/IPsec or IKEv2/IPsec) can also take advantage of kernel-space crypto processing on many OSes (frameworks such as XFRM), so the general trend is that IPsec-family protocols and WireGuard tend to outperform OpenVPN on the performance front.
+
+### How These Are Actually Used in Practice: Protocol-by-Protocol Pros and Cons
+
+"WireGuard is the simplest and fastest" is technically correct, but in real-world deployments, IKEv2/IPsec and OpenVPN both remain in wide use. Looking at the pros and cons that fall out of each protocol's design explains why this split persists.
+
+- **IKEv2/IPsec**
+  - Pros: It's a built-in standard client on Windows, iOS, macOS, and Android, so there's no need to distribute or manage a separate app. Paired with an MDM (mobile device management) tool that auto-distributes client certificates via a mechanism like SCEP, large-scale rollouts can be handled entirely with OS-native functionality. Major VPN appliance and firewall products from vendors like Cisco and Palo Alto support IKEv2/IPsec as standard, which is exactly why it remains a common choice for enterprise remote-access VPN.
+  - Cons: Because it's UDP-only, as noted above, it can fail to connect from restrictive networks. The IKE daemon implementation itself still carries over much of the complexity inherited from the IKEv1 era, and interoperability issues are still occasionally reported even among open-source implementations like strongSwan.
+- **OpenVPN**
+  - Pros: Its TCP-443 fallback gives it the strongest connectivity of the bunch, and both its open-source and commercial implementations are mature thanks to its long history. Many consumer commercial VPN services have traditionally offered an OpenVPN-based option, precisely because of this connectivity and battle-tested maturity. Its high configuration flexibility, including the ability to build a custom self-signed PKI, also makes it a popular choice for self-hosted enterprise environments.
+  - Cons: Being a user-space implementation carries overhead, putting it at a disadvantage on performance for site-to-site links carrying heavy traffic. Using the TCP-443 configuration always carries the risk of the TCP-over-TCP problem.
+- **WireGuard**
+  - Pros: Its radically simple implementation delivers high speed and low latency with few configuration items and low operational overhead, driving rapid adoption in self-hosted VPNs (router OSes like pfSense/OPNsense, or individual/small-organization servers) and in mesh connections between sites or devices. Commercial VPN services have increasingly moved toward WireGuard-based proprietary protocols in recent years too — NordVPN's NordLynx and ExpressVPN's Lightway among them.
+  - Cons: The standard spec includes no username/password login management and no DHCP-like mechanism for dynamically handing out IP addresses per connection. That makes bare WireGuard alone a poor fit for large-scale enterprise access management, and in practice it's usually deployed through a commercial or open-source wrapper — Tailscale, Cloudflare WARP, NetBird, and the like — that uses WireGuard as its internal protocol while layering IdP integration, key distribution, and access-control lists (ACLs) on top.
+
+In other words, the real-world choice comes down not to a simple performance comparison but to operational requirements: whether you want to run on OS-native clients, whether connectivity from restrictive networks is a hard requirement, and where user-level access management should live. In recent years, more enterprises have also been migrating toward **ZTNA (Zero Trust Network Access)** services like Zscaler Private Access or Cloudflare Access, on top of these VPN protocols — but the underlying transport for those services is frequently built on IPsec or WireGuard technology too, so understanding the characteristics of each protocol covered here remains directly relevant.
 
 ### Selection Criteria for Enterprise Deployment
 
@@ -159,6 +192,7 @@ Trouble during a protocol migration or connectivity issues on mobile networks ar
 
 ## Summary
 
+- Which transport (UDP/TCP) each protocol runs over is a practically important selection axis, affecting both how easily it traverses firewalls/NAT and whether it avoids the TCP-over-TCP meltdown that hurts performance.
 - L2TP/IPsec's "legacy" status rests on the complexity of implementation and operations that comes from combining independent standards after the fact, its weakness under IP address changes on mobile networks, and known weaknesses around key exchange and authentication.
 - IKEv2/IPsec extends IPsec's own standard specification (EAP authentication, Configuration Payload, MOBIKE) to deliver a complete remote-access VPN without going through L2TP, gaining mobile resilience along the way.
 - OpenVPN is a consistent design built on TLS, and excels at firewall traversal (such as disguising itself over TCP 443), but pays an overhead cost for being a user-space implementation.

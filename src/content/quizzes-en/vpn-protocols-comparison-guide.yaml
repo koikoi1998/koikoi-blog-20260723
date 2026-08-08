@@ -70,3 +70,30 @@ questions:
       - "It says this claim applies to modern protocols in general, and that the VPN category itself is considered dangerous"
     answerIndex: 1
     explanation: "The article states that L2TP/IPsec \"leaves a lot of room, by design, to end up choosing an insecure configuration\"—not that it's \"always insecure\"—and that adequate real-world security is achievable with the right configuration."
+
+  - question: "What is the \"TCP-over-TCP\" problem described in the article as a reason the transport a VPN runs over matters?"
+    choices:
+      - "When the VPN tunnel itself runs over TCP, the user's traffic inside the tunnel (much of which is itself TCP) and the tunnel's own TCP connection each independently run retransmission and congestion control, and these retransmissions end up competing, causing throughput to collapse"
+      - "TCP has weaker encryption than UDP, so a VPN running over TCP is always insecure"
+      - "TCP port numbers get permanently fixed to 443, causing conflicts with other services"
+      - "TCP cannot exchange encryption keys, making it fundamentally impossible to build a VPN tunnel over TCP"
+    answerIndex: 0
+    explanation: "Nesting TCP inside TCP causes the inner and outer connections to each run their own retransmission timers and congestion control, which throws off RTT estimates and can sharply reduce throughput. This is why OpenVPN recommends UDP as its default."
+
+  - question: "What does the article say about the fact that TLS can be used to implement a VPN (as OpenVPN does)?"
+    choices:
+      - "Since TLS cannot handle IP packets, OpenVPN had to define an entirely new protocol that extends TLS from scratch"
+      - "OpenVPN pours IP packets received via a TUN virtual network interface directly into a TLS connection, which doesn't care what's inside it; L2TP/IPsec ended up IPsec-based rather than TLS-based mainly due to the generational gap, the Layer-2 transparency the design targeted, and the TCP-over-TCP problem"
+      - "TLS only runs over UDP, so OpenVPN can only ever operate in UDP mode"
+      - "The designers of L2TP/IPsec were unaware TLS existed, so they used IPsec instead"
+    answerIndex: 1
+    explanation: "TLS can carry an IP packet just like any other byte stream, since it doesn't care what's inside. L2TP/IPsec ended up IPsec-based for three reasons: TLS was standardized around the same time as or after IPsec, the design aimed for transparent tunneling of Layer-2 frames as well as IP, and building on TLS (TCP) reintroduces the TCP-over-TCP problem."
+
+  - question: "What does the article say about how modern VPN protocols are actually used in practice?"
+    choices:
+      - "WireGuard is technically the best, so IKEv2/IPsec and OpenVPN are no longer used in enterprise remote-access VPNs at all"
+      - "IKEv2/IPsec's ability to run on native OS clients, OpenVPN's strong connectivity via its TCP-443 fallback, and WireGuard's simplicity and speed (driving adoption in self-hosted setups and wrapper products like Tailscale) each shape how the protocols get used in practice"
+      - "WireGuard fully includes user-level access management in its standard spec, so it's deployed directly into large enterprises as-is"
+      - "OpenVPN only supports UDP, so it cannot be used on networks with strict firewalls"
+    answerIndex: 1
+    explanation: "The article explains that real-world protocol choice depends on operational requirements—whether native OS clients suffice, whether connectivity from restrictive networks matters, and where user-level access management should live. WireGuard itself lacks built-in user management, so wrappers like Tailscale add IdP integration on top."
