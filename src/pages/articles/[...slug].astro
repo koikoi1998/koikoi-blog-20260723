@@ -84,6 +84,29 @@ const hasUpdate = updatedDate && updatedDate.getTime() !== pubDate.getTime();
     }
   </article>
 
+  <section class="giscus-section">
+    <h2>コメント</h2>
+    <p class="giscus-hint">記事の感想や、疑問点、指摘などがあれば気軽にどうぞ(GitHubアカウントでログインするとコメント・リアクションできます)。</p>
+    <script
+      is:inline
+      src="https://giscus.app/client.js"
+      data-repo="koikoi1998/koikoi-blog-20260723"
+      data-repo-id="R_kgDOTXNp-A"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOTXNp-M4DC7tI"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="preferred_color_scheme"
+      data-lang="ja"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async
+    ></script>
+  </section>
+
   <script>
     document.querySelectorAll<HTMLButtonElement>(".share-btn").forEach((btn) => {
       btn.addEventListener("click", async () => {

@@ -415,6 +415,25 @@ pre.mermaid {
   color: var(--accent-fg);
 }
 
+/* ---------- comments (giscus) ---------- */
+
+.giscus-section {
+  margin-top: 3.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.giscus-section h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.3rem;
+}
+
+.giscus-hint {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0 0 1.25rem;
+}
+
 /* ---------- prev/next nav ---------- */
 
 .series-nav {
