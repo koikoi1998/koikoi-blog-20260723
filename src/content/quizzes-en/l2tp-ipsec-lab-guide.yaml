@@ -1,54 +1,72 @@
 questions:
-  - question: "In the L2TP/IPsec server built in this article, which software is responsible for IKE/ESP processing, L2TP tunnel/session processing, and PPP negotiation, respectively?"
+  - question: "In the L2TP/IPsec server built in this article, which software handles IKE/ESP processing, L2TP tunnel/session processing, and PPP negotiation respectively?"
     choices:
-      - "strongSwan handles IKE/ESP, xl2tpd handles L2TP, and pppd handles PPP"
-      - "strongSwan handles everything by itself, with xl2tpd and pppd only providing auxiliary logging"
-      - "xl2tpd handles both IKE/ESP and L2TP, while strongSwan only configures the firewall"
+      - "strongSwan handles IKE/ESP, xl2tpd handles L2TP, and pppd handles PPP negotiation"
+      - "strongSwan handles everything by itself, while xl2tpd and pppd only produce supplementary log output"
+      - "xl2tpd handles both IKE/ESP and L2TP, while strongSwan only handles firewall configuration"
       - "pppd handles IKE/ESP/L2TP/PPP all in one integrated process"
     answerIndex: 0
-    explanation: "In this article's setup, IKE/ESP processing is handled by strongSwan, L2TP tunnel/session processing by xl2tpd, and PPP negotiation by pppd (invoked internally by xl2tpd)."
+    explanation: "In this article's setup, strongSwan handles IKE/ESP processing, xl2tpd handles L2TP tunnel/session processing, and pppd (invoked internally by xl2tpd) handles PPP negotiation."
 
-  - question: "According to the article, why is `type=transport` specified in ipsec.conf?"
+  - question: "What reason does the article give for specifying `type=transport` in ipsec.conf?"
     choices:
-      - "Because tunnel mode is an outdated spec that's now deprecated"
-      - "Because L2TP itself already provides tunneling, so there's no need to stack a second layer of tunnel mode on top in IPsec — transport mode is enough"
-      - "Because xl2tpd won't start unless transport mode is used"
-      - "Because the client's OS doesn't support tunnel mode"
+      - "Tunnel mode is an old specification that's now deprecated"
+      - "Because L2TP already provides its own tunneling function, there's no need to stack IPsec's tunnel mode on top of it, so transport mode is sufficient"
+      - "xl2tpd is specified to refuse to start unless transport mode is used"
+      - "The client OS doesn't support tunnel mode"
     answerIndex: 1
-    explanation: "L2TP itself already plays the role of building a virtual tunnel, so stacking IPsec's tunnel mode on top of it would only add a redundant, duplicate IP header. Transport mode is therefore sufficient."
+    explanation: "Since L2TP already plays the role of creating a virtual tunnel, stacking IPsec's tunnel mode on top would just add a redundant, wasteful extra IP header. Transport mode is sufficient."
 
-  - question: "What reason does the article give for why UDP port 1701 is often explicitly allowed in the server's own firewall (INPUT chain)?"
+  - question: "When you count the actual IKEv1 message exchange from the tcpdump capture in this article, how many round trips does the theory predict, as explained in the article?"
     choices:
-      - "Because UDP 1701 is never encrypted and is always visible in plaintext everywhere along the path"
-      - "Because strongSwan's kernel implementation (XFRM) decrypts an ESP packet before handing it to the OS network stack, so depending on when the INPUT chain is evaluated, it may see a decrypted, plaintext packet"
-      - "Because xl2tpd's specification requires UDP 1701 to be allowed or the service itself won't start"
-      - "Because UDP 1701 is a NAT-T-specific port required for the initial IKE negotiation"
-    answerIndex: 1
-    explanation: "UDP 1701 is invisible, encrypted, to intermediate devices along the path, but on the server's own INPUT chain, depending on the timing of XFRM's decryption, it may be evaluated as a decrypted plaintext packet — so it's common practice to explicitly allow it as a precaution."
+      - "9 round trips total: Phase 1 (Main Mode, 6 round trips) plus Phase 2 (Quick Mode, 3 round trips)"
+      - "Just 1 round trip, completed entirely within Phase 1"
+      - "4 round trips, the same as IKEv2"
+      - "The round-trip count is completely random depending on implementation, with no theoretical value"
+    answerIndex: 0
+    explanation: "As explained in the vpn-protocols-comparison-guide article, IKEv1 performs 9 round trips of message exchange total — Phase 1 (Main Mode, 6 round trips) plus Phase 2 (Quick Mode, 3 round trips) — and this article has you confirm that by actually counting an captured exchange."
 
-  - question: "When connecting from a client through an extra layer of NAT set up inside PVE, what phenomenon does the article describe as observable in a tcpdump capture?"
+  - question: "After connecting a Windows client and checking the PPP adapter with `ipconfig /all`, what does the subnet mask show, and what does that mean?"
+    choices:
+      - "255.255.255.0, meaning it's treated the same as an ordinary LAN"
+      - "255.255.255.255, which is evidence that this link is treated not as a \"network\" but as a \"1-to-1 dedicated link\""
+      - "0.0.0.0, meaning no IP address has been assigned yet"
+      - "255.255.0.0, meaning the link spans multiple segments"
+    answerIndex: 1
+    explanation: "The PPP adapter's subnet mask ends up as 255.255.255.255 (/32), which is direct evidence that broadcast and ARP don't work on this point-to-point link. That's exactly why an explicit gateway must be specified."
+
+  - question: "What value shows up as the gateway in the PPP-adapter route you can see with `route print`?"
+    choices:
+      - "It always shows 0.0.0.0, indicating no gateway exists"
+      - "The value set as `local ip` in xl2tpd.conf — the server's own virtual gateway address"
+      - "The client's own IP address, shown as-is"
+      - "The DNS server's IP address"
+    answerIndex: 1
+    explanation: "The gateway column shows the value set as local ip in xl2tpd.conf. This is the real-world output that backs up the claim from the Windows Server (RRAS) article: PPP being a point-to-point link is exactly why an explicit gateway must be specified."
+
+  - question: "What does the article say you'll observe in a tcpdump capture when connecting from a client to the server through an extra layer of NAT inside PVE?"
     choices:
       - "All IKE exchanges switch over to TCP"
-      - "The IKE Phase 1 message contains a NAT-D payload, subsequent traffic floats from UDP port 500 to UDP port 4500, and the ESP packet is further encapsulated inside a UDP header"
+      - "The IKE Phase 1 messages include a NAT-D payload, subsequent traffic floats from UDP port 500 to UDP port 4500, and ESP packets arrive further encapsulated inside a UDP header"
       - "The L2TP tunnel fails to establish and PPP negotiation is skipped entirely"
       - "The ESP packet's protocol number automatically changes from 50 to 51"
     answerIndex: 1
-    explanation: "Under NAT, the NAT-D payload in IKE Phase 1 triggers detection, causing a float from UDP port 500 to UDP port 4500 and further UDP encapsulation of the ESP packet — all observable as real packets."
+    explanation: "Under NAT, detection via the NAT-D payload in IKE Phase 1 triggers a float from UDP port 500 to UDP port 4500, and you can observe, as real packets, ESP packets arriving further encapsulated inside a UDP header."
 
-  - question: "What weakness of the PSK setup built in this article's hands-on exercise does the article describe?"
+  - question: "What weakness in the PSK configuration built in this hands-on article does the article describe?"
     choices:
-      - "A new PSK is automatically generated at random for every connection, making operational management cumbersome"
-      - "The pre-shared key set in ipsec.secrets is shared by every connecting client, so IPsec-layer authentication ends up in a state where \"anyone can open the tunnel with the same key,\" leaving actual per-user authentication dependent on the PPP layer"
-      - "The PSK setup is specified to allow PPP-layer authentication to be skipped entirely"
+      - "A PSK is automatically regenerated at random for every connection, making operational management cumbersome"
+      - "The pre-shared key set in ipsec.secrets is shared by every connecting client, so IPsec-layer authentication becomes \"anyone can open a tunnel with the same key,\" and per-user authentication ends up depending entirely on the PPP layer"
+      - "The PSK setup makes it possible to skip PPP-layer authentication entirely"
       - "The PSK method cannot be used together with NAT-T"
     answerIndex: 1
-    explanation: "Because the PSK in ipsec.secrets is shared across every client, IPsec-layer authentication alone can't distinguish individual users — actual per-user authentication ends up depending entirely on the PPP layer's username and password."
+    explanation: "Because the PSK in ipsec.secrets is shared across all clients, IPsec-layer authentication alone can't distinguish individual users — per-user authentication ends up depending entirely on the PPP layer's username and password."
 
-  - question: "What does the article describe as the fix when a Windows client fails to connect in a double-NAT environment (where the server itself is also behind NAT)?"
+  - question: "What does the article say the performance baseline recorded with `iperf3` in this article is used for?"
     choices:
-      - "Explicitly open TCP port 1701 on the client side"
-      - "Set the `AssumeUDPEncapsulationContextOnSendRule` registry value on the client to `2`"
-      - "Change `type=tunnel` in the server's ipsec.conf"
-      - "Downgrade the version of xl2tpd"
+      - "It's a number required for strongSwan's license activation"
+      - "As a baseline for comparing performance against OpenVPN/WireGuard in the next hands-on article"
+      - "To automatically adjust PVE's resource allocation"
+      - "To automatically select IKE Phase 1's cryptographic algorithm"
     answerIndex: 1
-    explanation: "When the server itself is also behind a NAT (a double-NAT setup), setting the client-side registry value `AssumeUDPEncapsulationContextOnSendRule` to `2` allows this configuration to be accommodated."
+    explanation: "The L2TP/IPsec throughput and IKE negotiation time recorded in this article become the baseline used in the next hands-on article (comparing performance against OpenVPN/WireGuard) to evaluate the performance gap between user-space and kernel-space implementations."

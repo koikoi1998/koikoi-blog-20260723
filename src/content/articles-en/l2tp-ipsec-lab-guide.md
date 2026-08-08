@@ -1,89 +1,97 @@
 ---
-title: "A \"Top 1%\" Hands-On Lab: Building Your Own L2TP/IPsec Server on Proxmox VE — strongSwan + xl2tpd, Verified with Packet Captures"
-description: "Build a real L2TP/IPsec server on a lab VM running on Proxmox VE (PVE) using strongSwan and xl2tpd, connect a client to it, and use tcpdump to watch the IKE → L2TP → PPP connection sequence with your own eyes."
+title: "A \"Top 1%\" Hands-On Lab: Building Your Own L2TP/IPsec Server and Verifying the Theory Yourself — strongSwan + xl2tpd, Windows Client Routing, and a Performance Baseline"
+description: "For readers who've finished the How L2TP/IPsec Works, Windows Server implementation, and modern-protocol-comparison articles: build a real L2TP/IPsec server on Proxmox VE (PVE), verify the connection sequence with tcpdump, inspect a Windows client's routing table, trigger NAT-T, examine the PSK weakness, and record a performance baseline — all in one hands-on session."
 series: "vpn"
 order: 4
-tags: ["network", "vpn", "l2tp", "ipsec", "proxmox", "handson"]
+tags: ["network", "vpn", "l2tp", "ipsec", "proxmox", "windows", "handson"]
 emoji: "🧪"
 pubDate: 2026-08-03
+updatedDate: 2026-08-08
 ---
 
 ## Introduction
 
-- **What You'll Learn From This Article**: How to spin up a lab VM on a home Proxmox VE (PVE) environment, build a real L2TP/IPsec server on it using strongSwan (IKE/IPsec) and xl2tpd (L2TP), connect a client to it, and use `tcpdump` to watch the entire connection sequence—IKE Phase 1 → Phase 2 → the L2TP control connection → PPP negotiation—unfold as actual packets.
-- **Intended Audience**: This article is aimed at infrastructure engineers who have a home virtualization platform like PVE and want to get hands-on and actually verify how L2TP/IPsec works internally.
-- **Estimated Reading Time**: About 90 minutes, including setup and verification
+- **What You'll Learn From This Article**: How to verify, with your own eyes on a real L2TP/IPsec server built in your home Proxmox VE (PVE) lab, what you learned across three articles: [How L2TP/IPsec Works](/en/articles/l2tp-ipsec-guide), [Building L2TP/IPsec VPN on Windows Server (RRAS)](/en/articles/windows-server-l2tp-vpn-guide), and [Comparing L2TP/IPsec to Modern VPN Protocols](/en/articles/vpn-protocols-comparison-guide). The goal is to turn things you read about in theory — "IKE Phase 1 takes 6 round trips," "PPP needs an explicit gateway because it's a point-to-point link," "a PSK is shared across every client" — into first-hand experience via packet captures and a client's actual behavior, the kind of concrete knowledge you can speak to confidently at work or in an interview.
+- **Intended Audience**: This article assumes you've already read the three articles above, have a home virtualization platform like PVE, and want to hands-on verify how L2TP/IPsec actually behaves. It won't re-explain the roles of IKE/ESP/L2TP/PPP, NAT-T, or why IKEv1 is inefficient in depth — read those three articles first if you haven't.
+- **Estimated Reading Time**: About 120 minutes, including setup and verification
 
-**A note on this article**: This series normally devotes its pages to digging into internal mechanics rather than hands-on build steps for physical or virtual environments. This article is a deliberate exception—a practical, hands-on companion piece written specifically to answer a request to "build it myself and verify it."
-
-This article is part of the [Top 1% Series' full article guide](/en/sitemap).
+**About this article**: This series usually spends more pages on internal mechanics than on hands-on build steps for real or virtual environments, but this article is a deliberate exception — practical, hands-on material for readers who want to verify what they've read for themselves. This article is part of the [Top 1% Series' full article guide](/en/sitemap).
 
 ## Prerequisites
 
-- **Basic operation of Proxmox VE (PVE)**: This article assumes you're comfortable uploading an ISO, creating a new VM, and attaching a VM to a network bridge (such as `vmbr0`).
-- **Basic Linux operation**: This article assumes you're comfortable managing packages with `apt`, managing services with `systemctl`, and editing configuration files in a text editor.
-- **Basic L2TP/IPsec terminology**: Along the way, this article gives brief, self-contained explanations of terms like IKE (key exchange), ESP (encryption), L2TP (tunneling), PPP (authentication and IP address assignment), and NAT-T (NAT traversal) as they come up.
+- **Basic PVE (Proxmox VE) operation**: Uploading an ISO, creating a new VM, and attaching a VM to a network bridge (e.g., `vmbr0`).
+- **Basic Linux operation**: Package management with `apt`, service management with `systemctl`, and editing config files in a text editor.
+- **The content of the three prerequisite articles**: Terms like IKE (key exchange), ESP (encryption), L2TP (tunneling), PPP (authentication/address assignment), and NAT-T (NAT traversal), along with why L2TP/IPsec ends up combining these three components, are assumed knowledge covered in [How L2TP/IPsec Works](/en/articles/l2tp-ipsec-guide).
 
 ## Getting the Big Picture
 
-### The Environment You'll Build
+### The three claims this article puts to the test
 
-In this article, you'll stand up a single Linux VM (the server) on PVE and install **strongSwan** (which handles IPsec processing), **xl2tpd** (which handles L2TP tunnel/session processing), and **pppd** (which handles PPP negotiation, invoked internally by xl2tpd) on it, to build a complete L2TP/IPsec server. For the client, you'll use either another VM (Linux) or the built-in VPN feature on your own PC or smartphone.
+Each of the three prerequisite articles made a specific claim. This article verifies each one with your own eyes.
+
+| Source Article | Claim in the Article | How This Article Verifies It |
+|---|---|---|
+| [How L2TP/IPsec Works](/en/articles/l2tp-ipsec-guide) | The connection is established in the order IKE Phase 1 → Phase 2 → L2TP tunnel → PPP negotiation, and behind NAT, a float to UDP 4500 occurs | Capture packets with `tcpdump` and observe the actual sequence and the NAT-T float |
+| [Building L2TP/IPsec VPN on Windows Server (RRAS)](/en/articles/windows-server-l2tp-vpn-guide) | PPP is a point-to-point link, so ARP doesn't work and the client needs an explicit gateway | After connecting a Windows client, inspect the actual virtual interface state with `route print` and `ipconfig /all` |
+| [Comparing L2TP/IPsec to Modern VPN Protocols](/en/articles/vpn-protocols-comparison-guide) | IKEv1's Phase 1 (Main Mode) plus Phase 2 together take 9 round trips, versus 4 for IKEv2 | Count the actual number of message round trips and elapsed time from `tcpdump` timestamps and record it as a concrete measurement |
+
+### The environment you'll build
+
+You'll stand up one Linux VM (the server) on PVE, and install **strongSwan** (handles IPsec processing), **xl2tpd** (handles L2TP tunnel/session processing), and **pppd** (handles PPP negotiation, invoked internally by xl2tpd) to build an L2TP/IPsec server. Two kinds of clients are used depending on what you're verifying:
+
+- **A Linux client (a separate VM)**: Used for packet captures with `tcpdump` and for triggering NAT-T via a PVE-internal NAT.
+- **A Windows client (a PC, or a separate VM)**: Used to confirm, via the actual output of `route print`, the "why is a gateway needed" question covered in the Windows Server (RRAS) article. If you don't have a Windows machine handy, a Windows VM on PVE works fine too (an evaluation ISO is sufficient).
 
 ```mermaid
 graph TB
-    subgraph PVE["PVE (Proxmox VE) host"]
-        subgraph VM["Lab VM (Debian/Ubuntu)"]
+    subgraph PVE["PVE (Proxmox VE) Host"]
+        subgraph VM["Server VM (Debian/Ubuntu)"]
             SS["strongSwan<br/>(IKE/ESP processing)"]
             XL["xl2tpd<br/>(L2TP tunnel/session processing)"]
-            PPPD["pppd<br/>(PPP authentication/IPCP)"]
-            SS -.hands off decrypted<br/>L2TP packets.-> XL
-            XL -.hands off<br/>PPP frames.-> PPPD
+            PPPD["pppd<br/>(PPP auth/IPCP)"]
+            SS -.hands off decrypted L2TP packets.-> XL
+            XL -.hands off PPP frames.-> PPPD
         end
     end
-    Client["Client<br/>(another VM, PC, smartphone, etc.)"] -->|"UDP 500/4500 (IKE)<br/>+ ESP (encrypted data)"| SS
+    LinuxClient["Linux client<br/>(for tcpdump verification)"] -->|"UDP 500/4500 (IKE) + ESP"| SS
+    WinClient["Windows client<br/>(for routing verification)"] -->|"UDP 500/4500 (IKE) + ESP"| SS
 ```
 
-### The Overall Workflow
+### Overall workflow
 
-1. Create a server VM on PVE
-2. Install strongSwan, xl2tpd, and ppp
-3. Configure IPsec (strongSwan) using a pre-shared key
-4. Configure L2TP (xl2tpd)
-5. Configure PPP authentication (chap-secrets)
-6. Configure kernel IP forwarding and the firewall
-7. Start the services and verify their status
-8. Connect from a client
-9. Observe the connection sequence live with `tcpdump`
-10. Deliberately trigger NAT-T by connecting from behind a NAT
+1. Provision the server VM on PVE
+2. Install strongSwan, xl2tpd, and ppp, and bring up the server with a PSK configuration
+3. Connect from the Linux client and use `tcpdump` to measure the IKE → L2TP → PPP sequence and IKEv1's round-trip count
+4. Connect from the Windows client and confirm PPP's gateway problem via `route print`/`ipconfig`
+5. Insert a second NAT layer inside PVE and deliberately trigger NAT-T
+6. Confirm the PSK's weakness from the config files themselves
+7. Record a simple performance baseline with `iperf3` (used again in the next hands-on article)
 
-## Fundamentals, Thoroughly Explained (the Actual Build Steps)
+## Fundamentals, Thoroughly Explained (The Actual Build)
 
-### Step 0: Prepare a VM on PVE
+### Step 0: Prepare the VMs on PVE
 
-From the PVE management UI, upload a Debian 12 (or Ubuntu Server 22.04 or later) ISO and create a new VM. For lab purposes, 1-2 vCPUs, 1-2 GB of memory, and about 8 GB of disk is plenty.
+From the PVE management UI, upload a Debian 12 (or Ubuntu Server 22.04+) ISO and create the server VM. For lab purposes, 1–2 vCPUs, 1–2GB of memory, and about 8GB of disk is plenty. Set up a second VM of similar spec for the Linux client. Only set up a Windows VM if you don't already have a Windows machine to use as the client.
 
-How you connect the network affects how easily you can trigger the NAT-T verification later on.
+How you wire up the network changes how easy it is to trigger NAT-T later.
 
-- **Bridging directly to `vmbr0`**: The VM gets an IP address directly from your home router. If you want to simulate a client connecting over the internet, you'll need to set up port forwarding on your router (UDP 500/4500, IP protocol number 50).
-- **Adding an extra layer of NAT inside PVE**: If you attach the VM to a NAT-mode network, the path becomes client → (NAT) → server, deliberately creating a NAT environment. You'll use this later in "Deliberately Triggering and Observing NAT-T."
+- **A configuration bridged directly to `vmbr0`**: The VM gets an IP address directly from your home router. Start here, testing from within your LAN.
+- **A configuration with an extra layer of NAT inside PVE**: Attaching the client VM to a NAT-mode network gives you a client → (NAT) → server path, deliberately creating a NAT environment. You'll use this in Step 5, "Deliberately Triggering NAT-T."
 
-Start simple: begin your verification from within your LAN, over a directly bridged connection.
+### Step 1: Install the required packages
 
-### Step 1: Install the Required Packages
-
-SSH into the VM and install the necessary packages.
+SSH into the server VM and install the required packages.
 
 ```bash
 sudo apt update
 sudo apt install -y strongswan strongswan-pki libcharon-extra-plugins xl2tpd ppp
 ```
 
-`libcharon-extra-plugins` includes the group of IKE plugins that handle the NAT-D-related processing discussed later.
+`libcharon-extra-plugins` includes the IKE plugins that handle NAT-D processing, among other things.
 
 ### Step 2: Configure IPsec (strongSwan)
 
-You'll start with a simple **pre-shared key (PSK)** setup. Edit `/etc/ipsec.conf` as follows.
+Start with a simple **pre-shared key (PSK)** setup. Edit `/etc/ipsec.conf` as follows.
 
 ```
 config setup
@@ -110,21 +118,21 @@ conn L2TP-PSK
     type=transport
 ```
 
-`type=transport` specifies IPsec's transport mode—"leave the original IP header alone, and encrypt only its payload." Because L2TP itself already provides tunneling, there's no need to stack a second layer of tunnel mode on top of it in IPsec, so transport mode is enough—and this setting directly reflects that design. `leftprotoport=17/1701` says "only apply this IPsec policy to traffic destined for UDP (protocol 17) port 1701," scoping IPsec protection specifically to the port L2TP uses.
+`type=transport` directly reflects the design explained in [How L2TP/IPsec Works](/en/articles/l2tp-ipsec-guide): since L2TP already provides its own tunneling function, there's no need to stack IPsec's tunnel mode on top of it. `leftprotoport=17/1701` scopes this IPsec policy to only traffic destined for UDP (protocol 17) port 1701.
 
-Next, set the pre-shared key in `/etc/ipsec.secrets`.
+Next, set the pre-shared key in `/etc/ipsec.secrets` and lock down its permissions.
 
 ```
 : PSK "set a sufficiently long and complex pre-shared key here"
 ```
 
-Lock down its permissions.
-
 ```bash
 sudo chmod 600 /etc/ipsec.secrets
 ```
 
-### Step 3: Configure L2TP (xl2tpd)
+You'll examine the weakness of this "shared across all clients" PSK in Step 6.
+
+### Step 3: Configure L2TP (xl2tpd) and PPP authentication
 
 Create `/etc/xl2tpd/xl2tpd.conf`.
 
@@ -144,11 +152,9 @@ pppoptfile = /etc/ppp/options.xl2tpd
 length bit = yes
 ```
 
-`ip range` is the range of virtual IP addresses handed out to clients. `local ip` is the virtual gateway address the server itself holds inside this L2TP tunnel.
+`ip range` is the range of virtual IP addresses handed to clients; `local ip` is the server's own virtual gateway address inside the L2TP tunnel. This exact `local ip` value is what you'll see as the gateway when you inspect a Windows client's `route print` output in Step 4.
 
-### Step 4: Configure PPP Authentication
-
-Create `/etc/ppp/options.xl2tpd`.
+Next, create `/etc/ppp/options.xl2tpd`.
 
 ```
 require-mschap-v2
@@ -167,24 +173,20 @@ proxyarp
 connect-delay 5000
 ```
 
-`mtu`/`mru` are capped at around 1410 because the effective MTU shrinks once you stack multiple headers—L2TP, PPP, ESP, and so on—on top of each other (this logic itself is covered in detail elsewhere). `require-mschap-v2` pins the authentication method to MS-CHAPv2.
-
-Next, set a username and password in `/etc/ppp/chap-secrets`.
+`mtu`/`mru` are kept around 1410 because the effective MTU shrinks once L2TP/PPP/ESP headers all stack up. `require-mschap-v2` pins the authentication method to MS-CHAPv2. Set the username/password in `/etc/ppp/chap-secrets`.
 
 ```
 # client        server  secret                    IP addresses
 labuser         L2TPLab "a sufficiently strong password"      *
 ```
 
-Lock down this file's permissions too.
-
 ```bash
 sudo chmod 600 /etc/ppp/chap-secrets
 ```
 
-### Step 5: Configure Kernel IP Forwarding and the Firewall
+### Step 4: Configure kernel IP forwarding and the firewall
 
-So that a connected client can reach the internet or other devices on your LAN using its assigned virtual IP address, enable IP forwarding. Add the following to `/etc/sysctl.conf`.
+Add the following to `/etc/sysctl.conf` and apply it.
 
 ```
 net.ipv4.ip_forward = 1
@@ -192,13 +194,11 @@ net.ipv4.conf.all.accept_redirects = 0
 net.ipv4.conf.all.send_redirects = 0
 ```
 
-Apply it.
-
 ```bash
 sudo sysctl -p
 ```
 
-In your firewall (`nftables` or `iptables`), allow the ports/protocols needed for IKE, NAT-T, ESP, and L2TP, and set up MASQUERADE so the client's virtual IP range can reach the internet (replace `eth0` with the name of your actual WAN-facing interface).
+In the firewall (`iptables`), allow the ports/protocols IKE, NAT-T, ESP, and L2TP need, and set up MASQUERADE so the client's virtual IP range can reach the internet (replace `eth0` with your actual WAN-facing interface name).
 
 ```bash
 sudo iptables -A INPUT -p udp --dport 500 -j ACCEPT
@@ -211,100 +211,120 @@ sudo iptables -t nat -A POSTROUTING -s 10.10.10.0/24 -o eth0 -j MASQUERADE
 ```
 
 <details>
-<summary>Why explicitly allow UDP 1701 too (shouldn't it already be encrypted by ESP)?</summary>
+<summary>Why explicitly allow UDP 1701 too (isn't it already encrypted by ESP)?</summary>
 
-As discussed elsewhere, ESP's transport mode encrypts UDP port 1701 along with everything it carries, so the number "1701" itself is invisible to any firewall or router sitting **somewhere along the path**. This server's own firewall (its `INPUT` chain), however, is a different story. strongSwan's kernel implementation (XFRM) decrypts an incoming ESP packet before handing it off to the OS's networking stack—so, depending on exactly when the `INPUT` chain gets evaluated, it can end up seeing "a plaintext packet destined for UDP 1701" after decryption. Because this behavior can vary by implementation and kernel version, most build guides err on the side of caution and explicitly allow UDP 1701 in the server's own firewall as standard practice.
+ESP's transport mode encrypts the UDP port 1701 header along with everything else, so anything **on the path** — firewalls, routers — can't see the UDP 1701 information at all. But the server's own firewall (the `INPUT` chain) is a different story. strongSwan's kernel implementation (XFRM) decrypts an ESP packet before handing it to the OS's network stack, so depending on when exactly the `INPUT` chain gets evaluated, it may see the already-decrypted "plaintext packet destined for UDP 1701." Since this can vary by implementation and kernel version, most build guides play it safe and explicitly allow UDP 1701 on the server's own firewall too.
 
 </details>
 
-### Step 6: Start the Services and Check Their Status
+Start the services.
 
 ```bash
 sudo systemctl enable --now strongswan-starter xl2tpd
 sudo systemctl status strongswan-starter xl2tpd
-```
-
-You can check the state of IPsec with the following command (before any client connects, you'll see policies that are "loaded but not yet established").
-
-```bash
 sudo ipsec statusall
 ```
 
-### Step 7: Connect from a Client
+## Verification 1: Confirming L2TP/IPsec Theory with a Linux Client and tcpdump
 
-**On Linux (NetworkManager)**, the easiest path is the `network-manager-l2tp` plugin.
+### Connect from the client
+
+For a Linux client (NetworkManager), the `network-manager-l2tp` plugin is the easiest route.
 
 ```bash
 sudo apt install -y network-manager-l2tp network-manager-l2tp-gnome
 ```
 
-From the GUI, choose "Add VPN" → "Layer 2 Tunneling Protocol (L2TP)," and enter the server's IP address as the gateway, the username/password you set in `chap-secrets`, and the pre-shared key you set in `ipsec.secrets`.
+From the GUI, choose "Add VPN" → "Layer 2 Tunneling Protocol (L2TP)," and enter the server's IP address as the gateway, the username/password from `chap-secrets`, and the pre-shared key from `ipsec.secrets`.
 
-**On Windows, macOS, iOS, and Android**, use the OS's built-in VPN settings screen to select "L2TP/IPsec" (or the equivalent type), and enter the same server address, username, password, and pre-shared key.
+### Observe the connection sequence with `tcpdump`
 
-Once connected, you can confirm the established IPsec SA and L2TP tunnel by running the following on the server:
-
-```bash
-sudo ipsec statusall
-sudo journalctl -u xl2tpd -f
-```
-
-### Step 8: Watch the Connection Sequence Live with `tcpdump`
-
-This is the heart of the hands-on exercise. **Before** connecting the client, start a capture on the server:
+**Before** connecting the client, start a capture on the server.
 
 ```bash
 sudo tcpdump -i any 'udp port 500 or udp port 4500 or udp port 1701' -w /tmp/l2tp-capture.pcap
 ```
 
-With the capture running, connect from the client, and once the connection is up, stop the capture with `Ctrl+C`. Open the resulting `l2tp-capture.pcap` in Wireshark (either copy it out via SCP, or use `tcpdump`'s remote-capture feature if you have Wireshark installed locally), and you can observe the following flow as real packets.
+Connect from the client while the capture is running, then stop it with `Ctrl+C` once the connection is up. Opening the resulting `l2tp-capture.pcap` in Wireshark lets you observe the following flow as actual packets.
 
-| What You Can Observe | Example Filter | What It Reveals |
+| What You Can Observe | Example Filter | What It Shows |
 |---|---|---|
-| IKE Phase 1 (Main Mode) | `isakmp` | Key-exchange proposals over UDP 500, the DH key exchange, and the PSK-based authentication exchange (6 round trips of messages) |
-| IKE Phase 2 (Quick Mode) | `isakmp` | The proposal and agreement establishing the IPsec SA (ESP) |
-| L2TP control messages | `l2tp` | SCCRQ/SCCRP/SCCCN (tunnel establishment) and ICRQ/ICRP/ICCN (session establishment)—though once NAT-T is active, these are encrypted by ESP, so Wireshark can't show you the contents without decryption |
-| PPP negotiation | (encapsulated inside L2TP) | LCP, CHAP authentication, and the IPCP exchange (also invisible if encrypted) |
+| IKE Phase 1 (Main Mode) | `isakmp` | UDP 500 key-exchange proposals, DH key exchange, PSK authentication (6 round trips) |
+| IKE Phase 2 (Quick Mode) | `isakmp` | Proposal and agreement for establishing the IPsec SA (ESP) (3 round trips) |
+| L2TP control messages | `l2tp` | SCCRQ/SCCRP/SCCCN (tunnel establishment), ICRQ/ICRP/ICCN (session establishment) — if NAT-T is active, these are encrypted by ESP and Wireshark can't see inside without decryption |
+| PPP negotiation | (encapsulated inside L2TP) | LCP, CHAP authentication, IPCP exchange (also invisible if encrypted) |
 
-**The key thing to actually confirm here** is that the only exchange visible in plaintext is the UDP 500 (IKE) traffic—once encryption via ESP kicks in, both the UDP port 1701 (L2TP) traffic and the PPP exchange carried inside it become unreadable. This is direct, packet-level confirmation of the fact that PPP authentication traffic always takes place over an already-encrypted path. Pairing this with strongSwan's debug log (`sudo journalctl -u strongswan-starter -f`) lets you trace, in more detailed text form, exactly what's happening at each phase of IKE.
+The only thing visible in plaintext is the IKE exchange on UDP 500; once ESP encryption is active, the contents of UDP port 1701 (L2TP) and the PPP exchange inside it become invisible. This packet capture is your direct proof that the PPP authentication exchange — which carries a username and password — always happens over an already-encrypted path.
 
-## The View from the Top 1% (What Experts See)
+### Actually counting IKEv1's "9 round trips"
 
-### Deliberately Triggering and Observing NAT-T
+[Comparing L2TP/IPsec to Modern VPN Protocols](/en/articles/vpn-protocols-comparison-guide) explained that IKEv1 takes 9 round trips total — Phase 1 (Main Mode, 6 round trips) plus Phase 2 (Quick Mode, 3 round trips) — while IKEv2 simplifies this to just 4 round trips in its base exchange. Let's confirm that gap with an actual capture.
 
-Using the "add an extra layer of NAT inside PVE" setup mentioned earlier, you can deliberately trigger and observe NAT-T in action. Attach your client VM to a NAT-mode network (a private network that gets SNAT'd) in PVE, and connect from there to your server VM.
+In Wireshark, apply the `isakmp` filter and, watching the `Time` column, count the packets and elapsed time from the first ISAKMP packet to the last. On the same LAN, the total elapsed time itself should be quite short — tens of milliseconds — but counting the packets should confirm roughly 9 round trips (around 18 packets, give or take depending on retries and implementation details) exactly as the theory predicts. Keep this measurement on hand — you'll compare it against WireGuard's key exchange (about 1 round trip) in the next hands-on article (STEP4).
+
+## Verification 2: Confirming PPP's Gateway Problem with a Windows Client
+
+[Building L2TP/IPsec VPN on Windows Server (RRAS)](/en/articles/windows-server-l2tp-vpn-guide) explained the question "why does the VPN client need an explicit gateway, when the client and internal servers appear to be on the same subnet?" using the fact that PPP is a point-to-point link. Here, you'll confirm that behavior directly on a real Windows client.
+
+From Windows' built-in VPN settings (Settings → Network & Internet → VPN → Add a VPN connection), choose "L2TP/IPsec with pre-shared key" as the type, enter the server address, username, password, and pre-shared key, and connect. Once connected, run the following from a command prompt.
+
+```
+ipconfig /all
+route print
+```
+
+In `ipconfig /all`, you should see the PPP adapter (usually shown with a name like "Ethernet adapter PPP connection") assigned a virtual IP address from the `ip range` in `xl2tpd.conf`. What's worth paying attention to here is that **the subnet mask is `255.255.255.255`.** This is direct evidence that this link is being treated not as a "network" but as a "1-to-1 dedicated link."
+
+Next, check `route print` for the route entry via this PPP adapter. The gateway column should show the value you set as `local ip` in `xl2tpd.conf` (`10.10.10.1` in this article's example). This is the real-world output behind the claim made in the Windows Server (RRAS) article: since ARP doesn't work on a point-to-point link, even addresses that look like they belong to the same range require an explicit gateway entry. You've now confirmed, on your own Windows machine's actual routing table, the reasoning that because this is a /32 link with no broadcast and no ARP, the OS has no choice but to keep a static gateway entry telling it where to throw the next packet.
+
+## Verification 3: Deliberately Triggering NAT-T
+
+Using the "extra layer of NAT inside PVE" setup from Step 0, you can deliberately trigger and observe NAT-T. Attach the Linux client VM to a NAT-mode network (a privately addressed network that gets SNAT'd) in PVE, then connect from there to the server VM.
 
 ```bash
 sudo tcpdump -i any 'udp port 500 or udp port 4500' -w /tmp/nat-t-capture.pcap
 ```
 
-Open this capture in Wireshark, and you'll be able to confirm, as actual packets: that the IKE Phase 1 messages contain a NAT-D (NAT Detection) payload; that the subsequent traffic then **floats from UDP port 500 to UDP port 4500**; and that ESP packets are further encapsulated inside a UDP header. If you're using a Windows client, you can also reproduce and verify the related behavior where the client connection fails when the server itself is also behind a NAT (double NAT), and is resolved by setting the `AssumeUDPEncapsulationContextOnSendRule` registry value on the client side to `2`.
+Checking this capture in Wireshark, you can confirm as real packets: that the IKE Phase 1 messages include a NAT-D (NAT Detection) payload, that subsequent traffic **floats from UDP port 500 to UDP port 4500**, and that ESP packets arrive further encapsulated inside a UDP header. If you're using a Windows client, you can also reproduce and verify the behavior where a client fails to connect when the server itself is also behind NAT (double NAT), and that setting the registry value `AssumeUDPEncapsulationContextOnSendRule` to `2` resolves it.
 
-### Confirming PSK's Operational Weakness in Your Own Config Files
+## Verification 4: Confirming the PSK's Weakness in the Actual Config Files
 
-The pre-shared key you set in `/etc/ipsec.secrets` is **shared by every client that connects**. Even if you set up multiple `chap-secrets` entries (multiple users), take a look at the config files and confirm for yourself that authentication at the IPsec layer is configured so that everyone uses the exact same PSK. This is a real, hands-on look at a configuration that comes up often in practice—"reusing the same PSK across every client"—where the IPsec layer ends up in a state where "anyone can open the tunnel with the same key," and the actual per-user authentication ends up depending entirely on the PPP layer's username and password. Switching to certificate-based authentication resolves this weakness, but it requires separately issuing a CA and client certificates, which raises the build's difficulty (switching to certificate-based authentication is beyond the scope of this article—give it a try separately if you're interested).
+The pre-shared key set in `/etc/ipsec.secrets` is **shared by every client that connects.** Even if you set up multiple entries in `chap-secrets` (multiple users), confirm for yourself, by looking at the config files, that the IPsec-layer authentication is configured so everyone uses the same PSK. This is exactly the "PSK reuse" configuration seen often in practice — in this setup, the IPsec layer becomes "anyone can open a tunnel with the same key," and per-user authentication ends up depending entirely on the PPP layer's username/password. Switching to certificate-based authentication is beyond the scope of this article — that's covered in the next hands-on article (STEP4: migrating to IKEv2/IPsec with certificate authentication).
+
+## The View from the Top 1% (What Experts See): Recording a Performance Baseline
+
+Use `iperf3` to measure and record simple throughput over this L2TP/IPsec tunnel. Run `iperf3 -s` on the server, then run the following from the client (over the tunnel).
+
+```bash
+iperf3 -c <server's virtual IP address> -t 30
+```
+
+Hold onto the resulting throughput (Mbps), along with the IKE negotiation time you observed in Verification 1, for the next hands-on article (STEP4: performance comparison against OpenVPN/WireGuard). L2TP/IPsec can take advantage of IPsec's (ESP's) kernel-space implementation (XFRM), so this becomes your baseline for seeing how the "IPsec-family and WireGuard tend to outperform OpenVPN" trend from [Comparing L2TP/IPsec to Modern VPN Protocols](/en/articles/vpn-protocols-comparison-guide) actually plays out in your own environment.
 
 ## Common Sticking Points (Troubleshooting)
 
-1. **The IKE SA doesn't establish at all**: Check the logs with `sudo journalctl -u strongswan-starter -f` for errors such as `NO_PROPOSAL_CHOSEN`. This usually means the encryption/hash algorithm proposals don't match between client and server, or that UDP 500/4500 is being blocked by a firewall somewhere.
-2. **xl2tpd starts, but PPP negotiation doesn't proceed**: A common cause is a typo in the username/password in `chap-secrets`, or permissions on the file being too restrictive for `pppd` to read it. Check `sudo journalctl -u xl2tpd -f` along with the pppd-related entries in `/var/log/syslog`.
-3. **The connection succeeds, but the client can't reach the internet or other devices on the LAN**: Check whether `net.ipv4.ip_forward` is actually enabled, and whether the MASQUERADE iptables rule points at the correct interface name.
-4. **A Windows client behind NAT can't connect**: If the server itself is also behind a NAT (a double-NAT setup), you'll need to set the `AssumeUDPEncapsulationContextOnSendRule` registry value on the client side.
+1. **The IKE SA never establishes at all**: Check the logs with `sudo journalctl -u strongswan-starter -f` for an error like `NO_PROPOSAL_CHOSEN`. This is usually caused by mismatched cipher/hash proposals between client and server, or a firewall blocking UDP 500/4500.
+2. **xl2tpd starts but PPP negotiation doesn't progress**: A common cause is a typo in the `chap-secrets` username/password, or file permissions locked down so tightly that `pppd` can't read it. Check `sudo journalctl -u xl2tpd -f` and the pppd-related lines in `/var/log/syslog`.
+3. **Connection succeeds, but the client can't reach the internet or other LAN devices**: Check that `net.ipv4.ip_forward` is enabled and that the MASQUERADE iptables rule references the correct interface name.
+4. **The Windows client's `route print` doesn't show a PPP route**: It can take a few seconds to show up right after connecting. First confirm the PPP adapter itself has been created via `ipconfig /all`.
+5. **A Windows client behind NAT can't connect**: If the server itself is also behind NAT (double NAT), you'll need to set the `AssumeUDPEncapsulationContextOnSendRule` registry value on the Windows client.
 
 ## Cleaning Up the Lab Environment
 
-Once you've finished verifying, you can leave the VM as-is to reuse for further experiments (switching to certificate-based authentication, testing scenarios beyond NAT-T, and so on). If you're done with it, either shut down and delete the VM from the PVE management UI, or take a snapshot before making further configuration changes—handy if you plan to iterate on the setup repeatedly.
+Once you're done, you can leave the VMs as-is for reuse in later experiments (building OpenVPN/WireGuard in the next hands-on article, migrating to certificate-based IKEv2 authentication, and so on). If you don't plan to keep using them, shut the VMs down and delete them from the PVE management UI, or take a snapshot of the pre-change state — handy if you plan to keep tweaking the configuration and trying things repeatedly.
 
 ## Summary
 
-- You can build your own L2TP/IPsec server by installing and configuring three separate components: strongSwan (IKE/ESP), xl2tpd (L2TP tunnel/session), and ppp (PPP authentication).
-- Watching IKE Phase 1 and Phase 2 with `tcpdump` lets you confirm, in real packets, that IKE messages over UDP 500 are visible in plaintext, while the L2TP/PPP exchange becomes unreadable once ESP encryption is established.
-- Adding an extra layer of NAT inside PVE lets you deliberately trigger and observe NAT-T's behavior—the float to UDP port 4500 and the NAT-D payload.
-- The weakness of sharing a single pre-shared key (PSK) across every client becomes intuitively clear once you actually look at the configuration files yourself.
+- Installing and configuring three components separately — strongSwan (IKE/ESP), xl2tpd (L2TP tunnel/session), and ppp (PPP authentication) — lets you build your own L2TP/IPsec server.
+- Watching IKE Phase 1 and Phase 2 with `tcpdump` confirms that only the UDP 500 IKE messages are visible in plaintext, and that IKEv1 really does perform 9 round trips of message exchange, exactly as the theory predicts.
+- Checking a Windows client's `route print`/`ipconfig` confirms, on real hardware, that the PPP adapter's subnet mask is `255.255.255.255` and that its gateway matches `local ip` in `xl2tpd.conf` — hard evidence for the claim that "PPP needs an explicit gateway because it's a point-to-point link."
+- Adding an extra layer of NAT inside PVE lets you deliberately trigger and observe NAT-T (the float to UDP port 4500, the NAT-D payload).
+- The weakness of sharing a single pre-shared key (PSK) across every client becomes intuitively obvious once you look at the actual config files.
+- The performance baseline recorded with `iperf3` here gets used again in the next hands-on article (comparing performance against OpenVPN/WireGuard).
 
 **Starting Today**
-1. A connection sequence you've only read about in theory only really counts as "understood" once you've watched it happen with `tcpdump` yourself. If you have a lab environment available, get in the habit of capturing traffic proactively.
-2. Details like PSK handling and file permissions—the kind of thing it's easy to get lax about "since it's just a lab"—are exactly where you build the security instincts that matter in production.
+1. Connection sequences and performance characteristics you've only read about in theory only become "truly understood" once you've observed them yourself with `tcpdump` or `iperf3`. If you have a lab environment available, build the habit of actually capturing numbers.
+2. Things it's easy to get lax about in a lab environment — PSKs, file permissions on config files — are exactly the areas where practicing good security discipline pays off in production.
 
 ## References
 
@@ -312,3 +332,4 @@ Once you've finished verifying, you can leave the VM as-is to reuse for further 
 - [xl2tpd | Linux man-pages](https://man7.org/linux/man-pages/man8/xl2tpd.8.html)
 - [Proxmox VE Administration Guide](https://pve.proxmox.com/pve-docs/)
 - [Configure L2TP/IPsec server behind NAT-T device | Microsoft Learn](https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/configure-l2tp-ipsec-server-behind-nat-t-device)
+- [iPerf - The TCP, UDP and SCTP network bandwidth measurement tool](https://iperf.fr/)
