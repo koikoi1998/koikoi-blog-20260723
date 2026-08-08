@@ -8,7 +8,6 @@ const articles = (await getCollection("articlesEn", ({ data }) => !data.draft)).
 );
 
 const bySeries = Map.groupBy(articles, (a) => a.data.series);
-const allTags = [...new Set(articles.flatMap((a) => a.data.tags as string[]))].sort();
 
 const formatDate = (date: Date) =>
   date.toLocaleDateString("en-US", { year: "numeric", month: "2-digit", day: "2-digit" });
@@ -45,14 +44,6 @@ const formatDate = (date: Date) =>
         </button>
       ))
     }
-    <span class="article-filters-label">Tags:</span>
-    {
-      allTags.map((tag) => (
-        <button type="button" class="filter-chip" data-filter-type="tag" data-filter-value={tag}>
-          #{tag}
-        </button>
-      ))
-    }
   </div>
 
   {
@@ -64,7 +55,7 @@ const formatDate = (date: Date) =>
         </h2>
         <ul class="card-list">
           {items.map((article) => (
-            <li data-tags={article.data.tags.join(" ")}>
+            <li>
               <a class="card" href={`/en/articles/${article.id}`}>
                 <p class="card-title">
                   {article.data.emoji ? `${article.data.emoji} ` : ""}
@@ -111,10 +102,7 @@ const formatDate = (date: Date) =>
         sections.forEach((section) => {
           let sectionHasVisible = false;
           section.querySelectorAll<HTMLLIElement>(".card-list > li").forEach((li) => {
-            const matches =
-              type === "all" ||
-              (type === "series" && section.dataset.series === value) ||
-              (type === "tag" && (li.dataset.tags ?? "").split(" ").includes(value ?? ""));
+            const matches = type === "all" || (type === "series" && section.dataset.series === value);
             li.classList.toggle("is-hidden", !matches);
             if (matches) sectionHasVisible = true;
           });
