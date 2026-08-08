@@ -8,6 +8,7 @@ const articles = (await getCollection("articles", ({ data }) => !data.draft)).so
 );
 
 const bySeries = Map.groupBy(articles, (a) => a.data.series);
+const allTags = [...new Set(articles.flatMap((a) => a.data.tags as string[]))].sort();
 
 const formatDate = (date: Date) =>
   date.toLocaleDateString("ja-JP", { year: "numeric", month: "2-digit", day: "2-digit" }).replaceAll("/", ".");
@@ -28,16 +29,36 @@ const formatDate = (date: Date) =>
     </div>
   </div>
 
+  <div class="article-filters" id="article-filters">
+    <span class="article-filters-label">絞り込み:</span>
+    <button type="button" class="filter-chip filter-chip-reset is-active" data-filter-type="all">すべて</button>
+    {
+      [...bySeries.keys()].map((series) => (
+        <button type="button" class="filter-chip" data-filter-type="series" data-filter-value={series}>
+          {seriesNames[series] ?? series}
+        </button>
+      ))
+    }
+    <span class="article-filters-label">タグ:</span>
+    {
+      allTags.map((tag) => (
+        <button type="button" class="filter-chip" data-filter-type="tag" data-filter-value={tag}>
+          #{tag}
+        </button>
+      ))
+    }
+  </div>
+
   {
     [...bySeries.entries()].map(([series, items]) => (
-      <section class="series-section">
+      <section class="series-section" data-series={series}>
         <h2>
           {seriesNames[series] ?? series}
           <span class="series-count">{items.length}本</span>
         </h2>
         <ul class="card-list">
           {items.map((article) => (
-            <li>
+            <li data-tags={article.data.tags.join(" ")}>
               <a class="card" href={`/articles/${article.id}`}>
                 <p class="card-title">
                   {article.data.emoji ? `${article.data.emoji} ` : ""}
@@ -62,4 +83,41 @@ const formatDate = (date: Date) =>
       </section>
     ))
   }
+
+  <p class="article-filters-empty" id="article-filters-empty">該当する記事が見つかりませんでした。</p>
+
+  <script>
+    const filterBar = document.getElementById("article-filters");
+    const emptyMsg = document.getElementById("article-filters-empty");
+    if (filterBar) {
+      filterBar.addEventListener("click", (e) => {
+        const btn = (e.target as HTMLElement).closest<HTMLButtonElement>(".filter-chip");
+        if (!btn) return;
+
+        filterBar.querySelectorAll(".filter-chip").forEach((c) => c.classList.remove("is-active"));
+        btn.classList.add("is-active");
+
+        const type = btn.dataset.filterType;
+        const value = btn.dataset.filterValue;
+        const sections = document.querySelectorAll<HTMLElement>(".series-section");
+        let visibleCount = 0;
+
+        sections.forEach((section) => {
+          let sectionHasVisible = false;
+          section.querySelectorAll<HTMLLIElement>(".card-list > li").forEach((li) => {
+            const matches =
+              type === "all" ||
+              (type === "series" && section.dataset.series === value) ||
+              (type === "tag" && (li.dataset.tags ?? "").split(" ").includes(value ?? ""));
+            li.classList.toggle("is-hidden", !matches);
+            if (matches) sectionHasVisible = true;
+          });
+          section.classList.toggle("is-hidden", !sectionHasVisible);
+          if (sectionHasVisible) visibleCount++;
+        });
+
+        emptyMsg?.classList.toggle("is-visible", visibleCount === 0);
+      });
+    }
+  </script>
 </BaseLayout>
