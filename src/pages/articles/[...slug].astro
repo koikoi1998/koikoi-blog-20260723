@@ -55,6 +55,9 @@ const hasUpdate = updatedDate && updatedDate.getTime() !== pubDate.getTime();
           <li class="tag">#{tag}</li>
         ))}
       </ul>
+      <button type="button" class="share-btn" data-copied-label="URLをコピーしました" data-default-label="🔗 記事を共有">
+        🔗 記事を共有
+      </button>
     </div>
     <Content />
     {
@@ -80,4 +83,36 @@ const hasUpdate = updatedDate && updatedDate.getTime() !== pubDate.getTime();
       )
     }
   </article>
+
+  <script>
+    document.querySelectorAll<HTMLButtonElement>(".share-btn").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const url = window.location.href;
+        try {
+          if (navigator.clipboard) {
+            await navigator.clipboard.writeText(url);
+          } else {
+            const textarea = document.createElement("textarea");
+            textarea.value = url;
+            textarea.style.position = "fixed";
+            textarea.style.opacity = "0";
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textarea);
+          }
+          const copiedLabel = btn.dataset.copiedLabel ?? "Copied!";
+          const defaultLabel = btn.dataset.defaultLabel ?? btn.textContent ?? "";
+          btn.textContent = copiedLabel;
+          btn.classList.add("is-copied");
+          setTimeout(() => {
+            btn.textContent = defaultLabel;
+            btn.classList.remove("is-copied");
+          }, 2000);
+        } catch {
+          // Clipboard access denied or unavailable; silently ignore.
+        }
+      });
+    });
+  </script>
 </BaseLayout>

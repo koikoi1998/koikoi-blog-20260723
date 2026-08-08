@@ -388,6 +388,33 @@ pre.mermaid {
   border-bottom: 1px solid var(--border);
 }
 
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  margin-left: auto;
+  cursor: pointer;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  padding: 0.4em 0.9em;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--bg-raised);
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+
+.share-btn:hover {
+  border-color: var(--accent);
+  color: var(--fg);
+}
+
+.share-btn.is-copied {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-fg);
+}
+
 /* ---------- prev/next nav ---------- */
 
 .series-nav {
