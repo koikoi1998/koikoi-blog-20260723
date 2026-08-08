@@ -1,7 +1,8 @@
 export const seriesNames: Record<string, string> = {
   idrac: "iDRAC / BMC シリーズ",
   network: "ネットワーク基礎シリーズ",
-  vpn: "VPN/L2TP・IPsecシリーズ",
+  vpn: "リモートアクセスVPN/L2TP・IPsecシリーズ",
+  "site-to-site-vpn": "拠点間VPN(Site-to-Site VPN)シリーズ",
   linux: "Linux/OS基礎シリーズ",
   telephony: "電話網・アクセス回線シリーズ",
   api: "Web / API シリーズ",
@@ -11,7 +12,8 @@ export const seriesNames: Record<string, string> = {
 export const seriesNamesEn: Record<string, string> = {
   idrac: "iDRAC / BMC Series",
   network: "Networking Fundamentals Series",
-  vpn: "VPN / L2TP-IPsec Series",
+  vpn: "Remote-Access VPN / L2TP-IPsec Series",
+  "site-to-site-vpn": "Site-to-Site VPN Series",
   linux: "Linux / OS Fundamentals Series",
   telephony: "Telephony & Access Network Series",
   api: "Web / API Series",

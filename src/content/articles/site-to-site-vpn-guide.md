@@ -1,8 +1,8 @@
 ---
 title: "拠点間VPN(Site-to-Site VPN)を『上位1%』の視点で理解する——CiscoとWatchGuard、異なるベンダー間でIPsecトンネルを組む"
 description: "拠点間VPNはL2TP/IPsecのようなリモートアクセスVPNとどう違うのか。IPsecトンネルモードの内部構造から、日本拠点のCisco機器と海外拠点のWatchGuard機器という異なるベンダー同士でIPsecトンネルを確立する際に押さえるべきポイントまで体系的に理解する。"
-series: "vpn"
-order: 5
+series: "site-to-site-vpn"
+order: 1
 tags: ["network", "vpn", "ipsec", "cisco", "watchguard", "security"]
 emoji: "🌉"
 pubDate: 2026-08-04
