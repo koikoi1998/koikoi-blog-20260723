@@ -1,16 +1,18 @@
 ---
-title: "Understanding Windows Server (RRAS) L2TP/IPsec VPN Setup and IP Address Management from a \"Top 1%\" Perspective — Why Do You Need a Gateway on the Same Subnet?"
-description: "When building an L2TP/IPsec VPN with Windows Server's RRAS (Routing and Remote Access Service), how are the IP address handed out to the VPN client and the multiple IP addresses held by the server itself actually managed? This article answers, from the internal mechanism, the recurring question of \"why do I need to specify a gateway when it's the same subnet,\" which arises from the fact that PPP is a point-to-point link."
+title: "Why Does a VPN Client Need a Gateway on the Same Subnet? — Understanding IP Address Management in Windows Server (RRAS) L2TP/IPsec VPN from a \"Top 1%\" Perspective"
+description: "\"The client's IP and the corporate server's IP are on the same subnet, so why do I need to specify a gateway at all?\" — a question you almost inevitably run into when building and operating an L2TP/IPsec VPN with Windows Server's RRAS (Routing and Remote Access Service). This article answers it from a practical, on-the-job angle, rooted in the fact that PPP is a point-to-point link — a focused piece aimed at resolving a niche, real-world question rather than serving as a general primer."
 series: "vpn"
 order: 2
 tags: ["network", "windows-server", "rras", "vpn", "infra"]
 emoji: "🪟"
 pubDate: 2026-08-01
+updatedDate: 2026-08-08
 ---
 
 ## Introduction
 
-- **What You'll Learn From This Article**: What actually happens with IP address management when you build an L2TP/IPsec VPN with Windows Server's RRAS (Routing and Remote Access Service)—where and how the IP address handed to the VPN client comes from, how many IP addresses the server itself uses internally and for what, and—the question you almost inevitably run into once you actually build one—"why do I need to specify a gateway at all, when the IP address handed to the client appears to be on the same subnet as the corporate LAN?" This article answers that question by examining the nature of the PPP protocol itself.
+- **What You'll Learn From This Article**: "The IP address handed to a VPN client looks like it's on exactly the same segment as the real servers on the corporate LAN — so why do I need to specify a gateway at all?" This article answers that question, which you almost inevitably run into when actually building an L2TP/IPsec VPN with Windows Server's RRAS (Routing and Remote Access Service, Routing and Remote Access Service), by examining the nature of the PPP protocol itself. Along the way, it also covers how RRAS hands out IP addresses to VPN clients (static address pool / DHCP relay) and how the server itself uses multiple internal IP addresses.
+- **Where This Article Fits**: While [Understanding How L2TP/IPsec Works from a "Top 1%" Perspective](/en/articles/l2tp-ipsec-guide) is a general-purpose explanation of the L2TP/IPsec protocol itself, this article **focuses on the more practical, niche questions you only run into while actually building and operating it on Windows Server RRAS**. If you've never touched RRAS and have no plans to, you don't need to force yourself to read this one.
 - **Intended Audience**: This article is aimed at infrastructure engineers who have built or operated an L2TP/IPsec VPN on Windows Server, or are about to, but can't systematically explain the specification for IP addresses handed to clients or how IP addresses are handled internally on the server.
 - **Estimated Reading Time**: About 20 minutes
 
@@ -62,6 +64,17 @@ There are broadly two ways RRAS hands out IP addresses to VPN clients.
 | DHCP relay agent | RRAS relays DHCP requests to a real DHCP server that exists on the corporate LAN, as if it were an intermediary, and passes the address handed out from there to the client | Lets the same DHCP server and scope (address range) used by other devices on the corporate LAN be reused, making centralized address management easier |
 
 Regardless of the method, what ultimately gets configured on the client's PPP virtual adapter is the result of an assignment via IPCP (IP Control Protocol). Given the nature of PPP discussed in the prerequisites, **the IP address the client obtains at this point is, strictly speaking, only the address of "one side" of that single point-to-point link**—it does not directly participate in the physical Ethernet segment of the corporate LAN.
+
+<details>
+<summary>Can specific IP addresses be excluded from the static address pool, and what happens if they overlap with an already-active server?</summary>
+
+Two questions come up often when actually building this.
+
+**First: can specific IP addresses be excluded from assignment?** RRAS's static address pool configuration has no separate "exclusion range" feature like a DHCP server's scope does. However, ranges can be registered as **multiple, non-contiguous entries** (via the "Add" button, or by specifying multiple `StaticAddressPool` entries via PowerShell's `Set-RemoteAccess` or netsh), so an exclusion is effectively achieved by "simply not including the address you want to exclude in any range." For example, if you want to reserve 10.0.20.30 (already in use for something else) out of the range 10.0.20.10–10.0.20.50, you can register it as two ranges — 10.0.20.10–10.0.20.29 and 10.0.20.31–10.0.20.50 — leaving 10.0.20.30 out of assignment.
+
+**Second: what happens if the pool's range includes an IP address already in use by another, currently active server?** This is a point that deserves real attention in practice. RRAS's static address pool **only internally tracks which addresses it has already handed out to VPN clients** — it does not perform the kind of duplicate check a DHCP server does, such as pinging or ARP-probing an address against real devices on the LAN before offering it. In other words, if you include an active server's IP address within the pool's range, RRAS won't notice the overlap and may hand that same address out to a VPN client, causing an IP address conflict. In practice, you should design the static address pool's range as a dedicated block that's guaranteed in advance not to overlap with the DHCP server's scope/exclusion ranges or with any statically-addressed servers.
+
+</details>
 
 ### Why Does the First Address in the Static Address Pool Become the Server's Own Address?
 
@@ -140,7 +153,14 @@ As we've seen in this article, a single RRAS server juggles multiple IP addresse
 
 ### How "Gateway" Is Handled When Using DHCP Relay
 
-Even in a configuration that uses a DHCP relay agent rather than a static address pool, the conclusion about the gateway doesn't change. With DHCP relay, the IP address handed to the client is drawn from a scope managed by a real DHCP server on the corporate network, but **regardless of what gateway (Option 3, Router) is configured to be distributed by that scope, since this is still a PPP link over RRAS, the only thing that actually functions as the gateway is the RRAS server's internal address**. This is a VPN-specific caveat that differs from an ordinary wired LAN client, where the DHCP scope's settings are simply used as-is. In practice, you need to be mindful of whether the gateway setting on the DHCP scope side conflicts with the route that PPP actually makes functional.
+Even in a configuration that uses a DHCP relay agent rather than a static address pool, the conclusion about the gateway doesn't change. Rather than explaining this in the abstract, it's easier to follow with concrete configuration values, so let's walk through an example.
+
+- The real DHCP server on the corporate LAN (10.0.20.5) has scope `10.0.20.0/24` with assignment range `10.0.20.100–10.0.20.200`, and its scope options are configured to **distribute the corporate LAN's actual router (10.0.20.2) as Option 3 (Router)**. This is a perfectly ordinary DHCP scope setting, meant so that regular PCs connected directly to the wired LAN correctly receive 10.0.20.2 as their default gateway.
+- RRAS is configured as a "DHCP relay agent," pointing at this 10.0.20.5 as the relay target. When a VPN client connects, RRAS relays a request to the DHCP server on the client's behalf, and 10.0.20.5 replies as it normally would — with an assigned IP address (say, 10.0.20.150) along with Option 3 (Router = 10.0.20.2) included.
+
+Here's the point that's easy to get wrong: **the value of Option 3 (Router) contained in that DHCP reply never reaches the VPN client at all.** Of everything RRAS receives back from the DHCP server, the only information it can actually configure on the VPN client's PPP virtual adapter is what the IPCP protocol is capable of carrying — and what IPCP (plus Microsoft's extensions to it) can carry is, fundamentally, just **the IP address itself** and **DNS/WINS server addresses**. There is no field in IPCP at all for "carrying a gateway address," the way DHCP's Option 3 (Router) exists. In other words, it's not so much that RRAS "discards" the Option 3 value — it's that **IPCP, the protocol doing the carrying, never had a container for that value in the first place.**
+
+So whatever value the DHCP scope's Option 3 is set to, it's simply irrelevant in the context of this VPN connection — it's never used to begin with. From here, everything works exactly as it did in the static-address-pool case described earlier: **the instant IPCP finishes assigning the address, the OS automatically recognizes the RRAS server's internal address — the peer at the other end of this point-to-point link — as this interface's default gateway.** This isn't the result of some protocol explicitly sending a value that says "here's your gateway" — it's a value the OS derives on its own, from the sheer structural fact that a point-to-point link only ever has exactly one possible peer. In practice, you don't need to worry about what the DHCP scope's Option 3 is set to at all; you only need to confirm that the address range (and options like DNS) the scope hands out are appropriate for VPN clients.
 
 ## Common Misconceptions and Pitfalls
 
