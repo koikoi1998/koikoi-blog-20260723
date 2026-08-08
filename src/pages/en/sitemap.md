@@ -43,49 +43,96 @@ The recommended reading order within each series is noted in that series' descri
 
 ## Recommended Routes by Reader Type
 
-This blog is written for a wide range of readers — from people with no experience aiming to become infrastructure engineers, to top-tier AWS/Google engineers earning the equivalent of ¥50 million or more a year. You don't have to read every article in order, so here are three goal-based routes (route ② assumes you've finished route ①; route ③ assumes you've finished ① and ②).
+This blog is written for a wide range of readers — from people with no experience aiming to become infrastructure engineers, to top-tier AWS/Google engineers earning the equivalent of ¥50 million or more a year. You don't have to read every article in order, so here are five routes matched to career stage. **Pick the tab closest to you below and only that route will show** (route ② assumes ①, ③ assumes ①②, ④ assumes ①②③, ⑤ assumes ①②③④). Niche articles that only matter in a very specific real-world situation aren't force-fit into every route — each one is introduced for the first time in the route where it actually becomes relevant (earlier routes just mention it briefly as optional). This same 5-stage split is also intended to double as the difficulty tiering for hands-on material we plan to add later.
 
-### ① For those aiming to become an infrastructure engineer with no prior experience
-
-A route that covers the foundational way of thinking in each area, without going too deep.
-
-1. [What Is iDRAC? Understanding How It Works from a "Top 1%" Perspective](/en/articles/idrac-guide)
-2. [Understanding the Network Stack from a "Top 1%" Perspective](/en/articles/network-stack-guide)
-3. [Understanding the Differences Between Hubs, Switches (L2SW), L3 Switches, and Routers from a "Top 1%" Perspective](/en/articles/network-devices-guide)
-4. [Understanding How NAT/NAPT Works from a "Top 1%" Perspective](/en/articles/nat-guide)
-5. [Understanding How DNS Works from a "Top 1%" Perspective](/en/articles/dns-guide)
-6. [Understanding the Difference Between Telephone Lines and IP Networks from a "Top 1%" Perspective](/en/articles/circuit-switching-ppp-guide)
-7. [Understanding the Evolution of Access-Line Technology — ADSL, Fiber, and More — from a "Top 1%" Perspective](/en/articles/access-network-guide)
-8. [What Is a RESTful API? Understanding from HTTP/JSON Basics to Practical Design from a "Top 1%" Perspective](/en/articles/restful-api-guide)
-
-### ② For mid-career engineers aiming to go from ¥5M to ¥10M a year
-
-Assumes you've finished route ①. Digs into the VPN, cryptography, and certificate topics that come up most often in practice.
-
-1. [Understanding How L2TP/IPsec Works from a "Top 1%" Perspective](/en/articles/l2tp-ipsec-guide)
-2. [Understanding Windows Server (RRAS) L2TP/IPsec VPN Setup and IP Address Management from a "Top 1%" Perspective](/en/articles/windows-server-l2tp-vpn-guide)
-3. [Understanding PKI and Digital Certificates from a "Top 1%" Perspective](/en/articles/pki-guide)
-4. [Understanding Symmetric Encryption (AES) and HMAC/AEAD from a "Top 1%" Perspective](/en/articles/symmetric-encryption-guide)
-5. [Understanding the Relationship Between TCP/UDP "Sessions" and Port Numbers from a "Top 1%" Perspective](/en/articles/tcp-udp-session-port-guide)
-6. [Comparing L2TP/IPsec to Modern VPN Protocols from a "Top 1%" Perspective](/en/articles/vpn-protocols-comparison-guide)
-7. [Understanding Site-to-Site VPN from a "Top 1%" Perspective](/en/articles/site-to-site-vpn-guide)
-8. [Understanding Japanese Local Government Network Segregation and Security Clouds from a "Top 1%" Perspective](/en/articles/local-gov-network-guide)
-
-### ③ For those aiming to become a top-1% engineer
-
-Assumes you've finished routes ① and ②. Covers every remaining article, reaching into low-level implementation, real hardware builds, and edge cases.
-
-1. [Understanding Server Power Design from a "Top 1%" Perspective](/en/articles/idrac-power-guide)
-2. [Understanding the OS Boot Process After POST from a "Top 1%" Perspective](/en/articles/os-boot-process-guide)
-3. [Understanding NIC Drivers and Linux Kernel Networking from a "Top 1%" Perspective](/en/articles/nic-driver-internals-guide)
-4. [Understanding Virtual IPs (VIPs) and NIC Teaming's Virtual IP from a "Top 1%" Perspective](/en/articles/virtual-ip-guide)
-5. [What Is a Daemon? Understanding Linux Background Processes from a "Top 1%" Perspective](/en/articles/linux-daemon-guide)
-6. [What Is a Library? Understanding Static and Dynamic Linking from a "Top 1%" Perspective](/en/articles/software-library-guide)
-7. [User Space, Kernel Space, and TUN/TAP Devices, Understood from a "Top 1%" Perspective](/en/articles/linux-user-kernel-space-guide)
-8. [Understanding VoIP and SS7 — and the Real Path Your Traffic Takes — from a "Top 1%" Perspective](/en/articles/voip-ss7-guide)
-9. [A "Top 1%" Hands-On Lab: Building Your Own L2TP/IPsec Server on Proxmox VE](/en/articles/l2tp-ipsec-lab-guide)
-
-Finish this route and you'll have read all 25 articles in the series.
+<div class="persona-routes">
+<input type="radio" name="persona-route" id="persona-tab-1" class="persona-input" checked>
+<input type="radio" name="persona-route" id="persona-tab-2" class="persona-input">
+<input type="radio" name="persona-route" id="persona-tab-3" class="persona-input">
+<input type="radio" name="persona-route" id="persona-tab-4" class="persona-input">
+<input type="radio" name="persona-route" id="persona-tab-5" class="persona-input">
+<div class="persona-tabs">
+<label for="persona-tab-1" class="persona-tab"><span class="persona-tab-step">STEP1</span> 🌱 Self-taught, no experience yet</label>
+<label for="persona-tab-2" class="persona-tab"><span class="persona-tab-step">STEP2</span> 🔧 Year 1, entering design/build work</label>
+<label for="persona-tab-3" class="persona-tab"><span class="persona-tab-step">STEP3</span> 💪 On the job, building confidence</label>
+<label for="persona-tab-4" class="persona-tab"><span class="persona-tab-step">STEP4</span> 📈 Aiming for a higher-paying job</label>
+<label for="persona-tab-5" class="persona-tab"><span class="persona-tab-step">STEP5</span> 🏆 Top 1% (¥10M–¥50M+)</label>
+</div>
+<div class="persona-panels">
+<div class="persona-panel persona-panel-1">
+<div class="persona-panel-head">
+<h3>🌱 For those aiming to become an infrastructure engineer with no prior experience</h3>
+<p>A route that builds the foundational way of thinking in each area, without going too deep. These 8 articles are the shared starting point for every other route below.</p>
+</div>
+<ol class="persona-route-list">
+<li><a href="/en/articles/idrac-guide">What Is iDRAC? Understanding How It Works from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/network-stack-guide">Understanding the Network Stack from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/network-devices-guide">Understanding the Differences Between Hubs, Switches (L2SW), L3 Switches, and Routers from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/nat-guide">Understanding How NAT/NAPT Works from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/dns-guide">Understanding How DNS Works from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/circuit-switching-ppp-guide">Understanding the Difference Between Telephone Lines and IP Networks from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/access-network-guide">Understanding the Evolution of Access-Line Technology — ADSL, Fiber, and More — from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/restful-api-guide">What Is a RESTful API? Understanding from HTTP/JSON Basics to Practical Design from a "Top 1%" Perspective</a></li>
+</ol>
+</div>
+<div class="persona-panel persona-panel-2">
+<div class="persona-panel-head">
+<h3>🔧 For infrastructure engineers in year 1, ready to take on design/build work</h3>
+<p>Builds on STEP1 with the VPN, cryptography, and certificate topics that design/build work always ends up touching.</p>
+</div>
+<ol class="persona-route-list">
+<li>STEP1's 8 articles (iDRAC through RESTful API — see that tab above)</li>
+<li><a href="/en/articles/l2tp-ipsec-guide">Understanding How L2TP/IPsec Works from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/pki-guide">Understanding PKI and Digital Certificates from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/symmetric-encryption-guide">Understanding Symmetric Encryption (AES) and HMAC/AEAD from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/tcp-udp-session-port-guide">Understanding the Relationship Between TCP/UDP "Sessions" and Port Numbers from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/vpn-protocols-comparison-guide">Comparing L2TP/IPsec to Modern VPN Protocols from a "Top 1%" Perspective</a></li>
+</ol>
+<div class="persona-bonus">🔍 <strong>If you run into it on the job (optional)</strong>: <a href="/en/articles/windows-server-l2tp-vpn-guide">Windows Server (RRAS) L2TP/IPsec VPN setup</a>, <a href="/en/articles/site-to-site-vpn-guide">site-to-site VPN</a>, and <a href="/en/articles/local-gov-network-guide">Japanese local government network segregation</a> are niche articles for people who actually hit that specific situation. No need to read them now — save them for when a search lands you there, or when curiosity strikes (STEP3 covers them properly).</div>
+</div>
+<div class="persona-panel persona-panel-3">
+<div class="persona-panel-head">
+<h3>💪 For those on the job in design/build work who still don't feel confident</h3>
+<p>This is where "I sort of know this" turns into working knowledge. On top of STEP2, this route adds the niche real-world articles and a hands-on lab to build actual confidence.</p>
+</div>
+<ol class="persona-route-list">
+<li>STEP1 and STEP2's 13 articles (see those tabs above)</li>
+<li><a href="/en/articles/windows-server-l2tp-vpn-guide">Why Does a VPN Client Need a Gateway on the Same Subnet? — Understanding IP Address Management in Windows Server (RRAS) L2TP/IPsec VPN from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/site-to-site-vpn-guide">Understanding Site-to-Site VPN from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/local-gov-network-guide">Understanding Japanese Local Government Network Segregation and Security Clouds from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/virtual-ip-guide">Understanding Virtual IPs (VIPs) and NIC Teaming's Virtual IP from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/l2tp-ipsec-lab-guide">A "Top 1%" Hands-On Lab: Building Your Own L2TP/IPsec Server on Proxmox VE</a></li>
+</ol>
+<div class="persona-bonus">🔍 <strong>If it interests you (optional)</strong>: <a href="/en/articles/voip-ss7-guide">Understanding VoIP and SS7</a> is worth a read once the history behind the telephone network starts to interest you.</div>
+</div>
+<div class="persona-panel persona-panel-4">
+<div class="persona-panel-head">
+<h3>📈 For those studying to move to a higher-paying company</h3>
+<p>Adds the low-level implementation knowledge that sets you apart in interviews and design reviews, on top of everything through STEP3.</p>
+</div>
+<ol class="persona-route-list">
+<li>STEP1 through STEP3's 18 articles (see those tabs above)</li>
+<li><a href="/en/articles/linux-daemon-guide">What Is a Daemon? Understanding Linux Background Processes from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/software-library-guide">What Is a Library? Understanding Static and Dynamic Linking from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/linux-user-kernel-space-guide">User Space, Kernel Space, and TUN/TAP Devices, Understood from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/nic-driver-internals-guide">Understanding NIC Drivers and Linux Kernel Networking from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/idrac-power-guide">Understanding Server Power Design from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/os-boot-process-guide">Understanding the OS Boot Process After POST from a "Top 1%" Perspective</a></li>
+</ol>
+</div>
+<div class="persona-panel persona-panel-5">
+<div class="persona-panel-head">
+<h3>🏆 For those gathering information toward ¥10M, ¥20M, or ¥50M+</h3>
+<p>The complete-conquest route: read all 25 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
+</div>
+<ol class="persona-route-list">
+<li>STEP1 through STEP4's 24 articles (see those tabs above)</li>
+<li><a href="/en/articles/voip-ss7-guide">Understanding VoIP and SS7 — and the Real Path Your Traffic Takes — from a "Top 1%" Perspective</a></li>
+</ol>
+<div class="persona-bonus">🎉 <strong>That's all 25 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
+</div>
+</div>
+</div>
 
 ## Series list
 
@@ -115,7 +162,7 @@ A series covering out-of-band server management. **Recommended order**: ① idra
 **Recommended order**: ① l2tp-ipsec-guide → ② windows-server-l2tp-vpn-guide → ③ vpn-protocols-comparison-guide → ④ l2tp-ipsec-lab-guide → ⑤ site-to-site-vpn-guide.
 
 - [Understanding How L2TP/IPsec Works from a "Top 1%" Perspective](/en/articles/l2tp-ipsec-guide) — Why L2TP and IPsec are combined, the connection-establishment sequence, and a deep dive into NAT traversal.
-- [Understanding Windows Server (RRAS) L2TP/IPsec VPN Setup and IP Address Management from a "Top 1%" Perspective](/en/articles/windows-server-l2tp-vpn-guide) — RRAS's address pool, and why a gateway is needed even though clients look like they're on the same subnet (a Windows Server implementation companion to the L2TP/IPsec article; also readable standalone).
+- [Why Does a VPN Client Need a Gateway on the Same Subnet? — Understanding IP Address Management in Windows Server (RRAS) L2TP/IPsec VPN from a "Top 1%" Perspective](/en/articles/windows-server-l2tp-vpn-guide) — RRAS's address pool, and why a gateway is needed even though clients look like they're on the same subnet (a Windows Server implementation companion to the L2TP/IPsec article; also readable standalone).
 - [Comparing L2TP/IPsec to Modern VPN Protocols from a "Top 1%" Perspective](/en/articles/vpn-protocols-comparison-guide) — A deep dive into the differences in design philosophy, implementation size, and mobile resilience against IKEv2/IPsec, OpenVPN, and WireGuard (spun off to dig into why L2TP/IPsec is called legacy; also readable standalone).
 - [A "Top 1%" Hands-On Lab: Building Your Own L2TP/IPsec Server on Proxmox VE](/en/articles/l2tp-ipsec-lab-guide) — Build an L2TP/IPsec server on Proxmox VE with strongSwan and xl2tpd, and verify the connection sequence with tcpdump (a deliberate exception in this series: a hands-on build guide).
 - [Understanding Site-to-Site VPN from a "Top 1%" Perspective](/en/articles/site-to-site-vpn-guide) — How it differs from remote-access VPN, the mechanics of IPsec tunnel mode and traffic selectors, and the practical considerations for building an IPsec tunnel between different vendors like Cisco and WatchGuard (spun off from the contrast with L2TP/IPsec; also readable standalone).

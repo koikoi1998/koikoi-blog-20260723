@@ -731,3 +731,195 @@ pre.mermaid {
   padding: 0.15em 0.4em;
   border-radius: 4px;
 }
+
+/* ---------- persona route tabs (sitemap) ---------- */
+
+.persona-routes {
+  margin: 1.5rem 0 2rem;
+}
+
+.persona-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.persona-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
+}
+
+.persona-tab {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  cursor: pointer;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  padding: 0.55em 1.1em;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--bg-raised);
+  transition: border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+  user-select: none;
+}
+
+.persona-tab:hover {
+  border-color: var(--accent);
+  color: var(--fg);
+}
+
+.persona-tab .persona-tab-step {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+.persona-panel {
+  display: none;
+}
+
+.persona-panel-head {
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: 10px;
+  background: var(--bg-raised);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.persona-panel-head h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1.05rem;
+}
+
+.persona-panel-head p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.persona-route-list {
+  margin: 0 0 1rem;
+  padding-left: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.persona-route-list li {
+  line-height: 1.6;
+}
+
+.persona-bonus {
+  border: 1px dashed var(--border-strong);
+  border-radius: 10px;
+  padding: 0.9rem 1.1rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+
+.persona-bonus strong {
+  color: var(--fg);
+}
+
+.persona-badge {
+  display: inline-block;
+  margin-left: 0.4em;
+  padding: 0.1em 0.55em;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+  vertical-align: middle;
+}
+
+#persona-tab-1:checked ~ .persona-tabs label[for="persona-tab-1"],
+#persona-tab-2:checked ~ .persona-tabs label[for="persona-tab-2"],
+#persona-tab-3:checked ~ .persona-tabs label[for="persona-tab-3"],
+#persona-tab-4:checked ~ .persona-tabs label[for="persona-tab-4"],
+#persona-tab-5:checked ~ .persona-tabs label[for="persona-tab-5"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-fg);
+  transform: translateY(-1px);
+}
+
+#persona-tab-1:checked ~ .persona-panels .persona-panel-1,
+#persona-tab-2:checked ~ .persona-panels .persona-panel-2,
+#persona-tab-3:checked ~ .persona-panels .persona-panel-3,
+#persona-tab-4:checked ~ .persona-panels .persona-panel-4,
+#persona-tab-5:checked ~ .persona-panels .persona-panel-5 {
+  display: block;
+}
+
+/* ---------- article list filter (homepage) ---------- */
+
+.article-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.6rem;
+  align-items: center;
+  margin: 1.5rem 0 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.article-filters-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-right: 0.2rem;
+}
+
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  padding: 0.4em 0.9em;
+  font-size: 0.82rem;
+  color: var(--muted);
+  background: var(--bg-raised);
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.filter-chip:hover {
+  border-color: var(--accent);
+  color: var(--fg);
+}
+
+.filter-chip.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-fg);
+}
+
+.filter-chip-reset {
+  color: var(--accent);
+  border-style: dashed;
+}
+
+.series-section.is-hidden,
+.card-list > li.is-hidden {
+  display: none;
+}
+
+.article-filters-empty {
+  display: none;
+  color: var(--muted);
+  font-size: 0.9rem;
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.article-filters-empty.is-visible {
+  display: block;
+}

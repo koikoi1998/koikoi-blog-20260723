@@ -45,49 +45,96 @@ graph TB
 
 ## 読者タイプ別のおすすめルート
 
-このブログは、未経験からインフラエンジニアを目指す方から、年収5000万円以上を稼ぐAWS/Googleのトップエンジニアまで、幅広い読者を想定しています。全記事を必ず順番通りに読む必要はないため、目的別に3つのルートを示します(②は①を、③は①②を読了している前提の追加分です)。
+このブログは、未経験からインフラエンジニアを目指す方から、年収5000万円以上を稼ぐAWS/Googleのトップエンジニアまで、幅広い読者を想定しています。全記事を必ず順番通りに読む必要はないため、キャリアの段階に応じた5つのルートを用意しました。**下のタブから自分に近いものを選ぶと、そのルートだけが表示されます**（②は①を、③は①②を、④は①②③を、⑤は①②③④を読了している前提の積み増しです)。実務のごく特定の場面でしか使わないニッチな記事は、無理にロードマップへ詰め込まず、それが実際に必要になる段階のルートで初めて紹介する形にしています(該当しない段階では「任意」として控えめに触れるだけです)。なお、この5段階の切り方は、今後追加予定のハンズオン教材の難易度分けにもそのまま対応させる予定です。
 
-### ① 未経験からインフラエンジニアを目指す方向け
-
-各分野の基礎となる考え方を、深掘りしすぎずに押さえるルートです。
-
-1. [iDRACとは何か？その仕組みを『上位1%』の視点まで理解する](/articles/idrac-guide)
-2. [ネットワークスタックの仕組みを『上位1%』の視点で理解する](/articles/network-stack-guide)
-3. [HUB・スイッチ(L2SW)・L3SW・ルーターの違いを『上位1%』の視点で理解する](/articles/network-devices-guide)
-4. [NAT/NAPTの仕組みを『上位1%』の視点で理解する](/articles/nat-guide)
-5. [DNSの仕組みを『上位1%』の視点で理解する](/articles/dns-guide)
-6. [電話回線とIPネットワークの違いを『上位1%』の視点で理解する](/articles/circuit-switching-ppp-guide)
-7. [ADSL・光回線などアクセス回線の技術変遷を『上位1%』の視点で理解する](/articles/access-network-guide)
-8. [RESTful APIとは何か？HTTP・JSONの基礎から実務設計まで『上位1%』の視点で理解する](/articles/restful-api-guide)
-
-### ② 年収500万円→1000万円を目指す中堅エンジニア向け
-
-①を読了している前提で、実務でよく問われるVPN・暗号・証明書まわりを深掘りするルートです。
-
-1. [L2TP/IPsecの仕組みを『上位1%』の視点で理解する](/articles/l2tp-ipsec-guide)
-2. [Windows Server(RRAS)でのL2TP/IPsec VPN構築とIPアドレス管理を『上位1%』の視点で理解する](/articles/windows-server-l2tp-vpn-guide)
-3. [PKIとデジタル証明書の仕組みを『上位1%』の視点で理解する](/articles/pki-guide)
-4. [共通鍵暗号(AES)とHMAC/AEADの仕組みを『上位1%』の視点で理解する](/articles/symmetric-encryption-guide)
-5. [TCP/UDPの「セッション」とポート番号の関係を『上位1%』の視点で理解する](/articles/tcp-udp-session-port-guide)
-6. [L2TP/IPsecと現代的なVPNプロトコルを『上位1%』の視点で比較する](/articles/vpn-protocols-comparison-guide)
-7. [拠点間VPN(Site-to-Site VPN)を『上位1%』の視点で理解する](/articles/site-to-site-vpn-guide)
-8. [自治体ネットワークの三層分離とセキュリティクラウドを『上位1%』の視点で理解する](/articles/local-gov-network-guide)
-
-### ③ トップエンジニア(上位1%)を目指す方向け
-
-①②を読了している前提で、低レベル実装・実機構築・エッジケースまで踏み込む、残り全記事を読むルートです。
-
-1. [サーバー電源の仕組みを『上位1%』の視点で理解する](/articles/idrac-power-guide)
-2. [POST後のOS起動プロセスを『上位1%』の視点で理解する](/articles/os-boot-process-guide)
-3. [NICドライバとLinuxカーネルのネットワーク処理を『上位1%』の視点で理解する](/articles/nic-driver-internals-guide)
-4. [代表IP(VIP)とNICチーミングの仮想IPの仕組みを『上位1%』の視点で理解する](/articles/virtual-ip-guide)
-5. [デーモン(daemon)とは何か——Linuxのバックグラウンドプロセスを『上位1%』の視点で理解する](/articles/linux-daemon-guide)
-6. [ライブラリ(library)とは何か——静的リンク・動的リンクの仕組みを『上位1%』の視点で理解する](/articles/software-library-guide)
-7. [ユーザー空間とカーネル空間、TUN/TAPデバイスの仕組みを『上位1%』の視点で理解する](/articles/linux-user-kernel-space-guide)
-8. [VoIPとSS7、そして実際の通信経路を『上位1%』の視点で理解する](/articles/voip-ss7-guide)
-9. [PVE上でL2TP/IPsecサーバーを自作する『上位1%』のハンズオン](/articles/l2tp-ipsec-lab-guide)
-
-このルートまで読み終えると、本シリーズの全25記事を読了したことになります。
+<div class="persona-routes">
+<input type="radio" name="persona-route" id="persona-tab-1" class="persona-input" checked>
+<input type="radio" name="persona-route" id="persona-tab-2" class="persona-input">
+<input type="radio" name="persona-route" id="persona-tab-3" class="persona-input">
+<input type="radio" name="persona-route" id="persona-tab-4" class="persona-input">
+<input type="radio" name="persona-route" id="persona-tab-5" class="persona-input">
+<div class="persona-tabs">
+<label for="persona-tab-1" class="persona-tab"><span class="persona-tab-step">STEP1</span> 🌱 未経験から独学で目指す</label>
+<label for="persona-tab-2" class="persona-tab"><span class="persona-tab-step">STEP2</span> 🔧 1年目・設計構築デビュー</label>
+<label for="persona-tab-3" class="persona-tab"><span class="persona-tab-step">STEP3</span> 💪 現場で自信をつけたい</label>
+<label for="persona-tab-4" class="persona-tab"><span class="persona-tab-step">STEP4</span> 📈 高年収企業への転職</label>
+<label for="persona-tab-5" class="persona-tab"><span class="persona-tab-step">STEP5</span> 🏆 上位1%(年収1000万〜5000万)</label>
+</div>
+<div class="persona-panels">
+<div class="persona-panel persona-panel-1">
+<div class="persona-panel-head">
+<h3>🌱 未経験からインフラエンジニアを独学で目指す方へ</h3>
+<p>資格の暗記ではなく、実際の現場で何がどう動いているかという土台を作るルートです。ここで扱う8記事が、他のすべてのルートの共通の出発点になります。</p>
+</div>
+<ol class="persona-route-list">
+<li><a href="/articles/idrac-guide">iDRACとは何か？その仕組みを『上位1%』の視点まで理解する</a></li>
+<li><a href="/articles/network-stack-guide">ネットワークスタックの仕組みを『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/network-devices-guide">HUB・スイッチ(L2SW)・L3SW・ルーターの違いを『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/nat-guide">NAT/NAPTの仕組みを『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/dns-guide">DNSの仕組みを『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/circuit-switching-ppp-guide">電話回線とIPネットワークの違いを『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/access-network-guide">ADSL・光回線などアクセス回線の技術変遷を『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/restful-api-guide">RESTful APIとは何か？HTTP・JSONの基礎から実務設計まで『上位1%』の視点で理解する</a></li>
+</ol>
+</div>
+<div class="persona-panel persona-panel-2">
+<div class="persona-panel-head">
+<h3>🔧 インフラエンジニア1年目で設計構築の現場に挑戦したい方へ</h3>
+<p>STEP1の土台に、設計・構築の現場で必ず問われるVPN・暗号・証明書まわりを積み増すルートです。</p>
+</div>
+<ol class="persona-route-list">
+<li>STEP1の8記事(iDRAC〜RESTful API、上のタブから確認できます)</li>
+<li><a href="/articles/l2tp-ipsec-guide">L2TP/IPsecの仕組みを『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/pki-guide">PKIとデジタル証明書の仕組みを『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/symmetric-encryption-guide">共通鍵暗号(AES)とHMAC/AEADの仕組みを『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/tcp-udp-session-port-guide">TCP/UDPの「セッション」とポート番号の関係を『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/vpn-protocols-comparison-guide">L2TP/IPsecと現代的なVPNプロトコルを『上位1%』の視点で比較する</a></li>
+</ol>
+<div class="persona-bonus">🔍 <strong>現場で出会ったら(任意)</strong>: <a href="/articles/windows-server-l2tp-vpn-guide">Windows Server(RRAS)でのL2TP/IPsec VPN構築</a>や<a href="/articles/site-to-site-vpn-guide">拠点間VPN</a>、<a href="/articles/local-gov-network-guide">自治体ネットワークの三層分離</a>は、実務でその状況に当たった人向けのニッチな記事です。今すぐ読む必要はなく、検索でたどり着いたときや興味が湧いたときに読めば十分です(STEP3で本格的に扱います)。</div>
+</div>
+<div class="persona-panel persona-panel-3">
+<div class="persona-panel-head">
+<h3>💪 設計構築の現場で働いているが、いまいち自信が持てない方へ</h3>
+<p>「知ってるつもり」を実務で使える理解に変える段階です。STEP2までに加え、現場のニッチな疑問を解消する記事と、手を動かすハンズオンで自信をつけます。</p>
+</div>
+<ol class="persona-route-list">
+<li>STEP1・STEP2の13記事(上のタブから確認できます)</li>
+<li><a href="/articles/windows-server-l2tp-vpn-guide">Windows Server(RRAS)でのL2TP/IPsec VPN構築とIPアドレス管理を『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/site-to-site-vpn-guide">拠点間VPN(Site-to-Site VPN)を『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/local-gov-network-guide">自治体ネットワークの三層分離とセキュリティクラウドを『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/virtual-ip-guide">代表IP(VIP)とNICチーミングの仮想IPの仕組みを『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/l2tp-ipsec-lab-guide">PVE上でL2TP/IPsecサーバーを自作する『上位1%』のハンズオン</a></li>
+</ol>
+<div class="persona-bonus">🔍 <strong>興味があれば(任意)</strong>: <a href="/articles/voip-ss7-guide">VoIPとSS7、そして実際の通信経路</a>は、電話網の歴史的経緯に興味が湧いたら読んでみてください。</div>
+</div>
+<div class="persona-panel persona-panel-4">
+<div class="persona-panel-head">
+<h3>📈 より年収の高い企業への転職を目指して勉強している方へ</h3>
+<p>STEP3までの実務知識に、面接や設計レビューで差がつく低レイヤーの実装知識を積み増すルートです。</p>
+</div>
+<ol class="persona-route-list">
+<li>STEP1〜STEP3の18記事(上のタブから確認できます)</li>
+<li><a href="/articles/linux-daemon-guide">デーモン(daemon)とは何か——Linuxのバックグラウンドプロセスを『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/software-library-guide">ライブラリ(library)とは何か——静的リンク・動的リンクの仕組みを『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/linux-user-kernel-space-guide">ユーザー空間とカーネル空間、TUN/TAPデバイスの仕組みを『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/nic-driver-internals-guide">NICドライバとLinuxカーネルのネットワーク処理を『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/idrac-power-guide">サーバー電源の仕組みを『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/os-boot-process-guide">POST後のOS起動プロセスを『上位1%』の視点で理解する</a></li>
+</ol>
+</div>
+<div class="persona-panel persona-panel-5">
+<div class="persona-panel-head">
+<h3>🏆 年収1000万・2000万・5000万を目指して情報収集している方へ</h3>
+<p>全25記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
+</div>
+<ol class="persona-route-list">
+<li>STEP1〜STEP4の24記事(上のタブから確認できます)</li>
+<li><a href="/articles/voip-ss7-guide">VoIPとSS7、そして実際の通信経路を『上位1%』の視点で理解する</a></li>
+</ol>
+<div class="persona-bonus">🎉 <strong>これで全25記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
+</div>
+</div>
+</div>
 
 ## シリーズ一覧
 
