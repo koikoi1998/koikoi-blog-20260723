@@ -1,0 +1,45 @@
+questions:
+  - question: "What does the article say makes a config file actually \"take effect\"?"
+    choices:
+      - "The OS constantly watches the config file itself, and saving it automatically notifies every program"
+      - "A config file has no power on its own — it only takes effect once a \"daemon\" exists that reads it, parses it, and converts it into an internal data structure it actually uses"
+      - "The config file is compiled directly by the kernel into an executable format"
+      - "A config file always runs as a special process with root privileges"
+    answerIndex: 1
+    explanation: "A config file has no power to execute anything by itself — it only \"takes effect\" once a daemon reads it (open()/read()), parses it into an internal data structure, and consults that structure during actual processing."
+
+  - question: "Which statement correctly describes a \"reload\" operation applied to a running daemon?"
+    choices:
+      - "It fully terminates the process and starts a brand-new one"
+      - "It tells the process, via a signal like SIGHUP, to \"re-read the config\" without terminating it — often applying the new config without dropping existing connections"
+      - "It reboots the entire OS"
+      - "It automatically backs up the config file"
+    answerIndex: 1
+    explanation: "A reload doesn't terminate the process — it uses a signal like SIGHUP to tell it to re-read its config. This has the advantage of applying a new config without dropping active connections, though not every setting can be applied via reload."
+
+  - question: "What's the correct description of the difference in how a userspace daemon's config (like ipsec.conf) and a kernel parameter (sysctl) actually get applied?"
+    choices:
+      - "They both go through exactly the same path"
+      - "A userspace daemon's config is applied by the daemon itself updating a data structure in its own process's memory, while sysctl is applied by a command writing to /proc/sys, directly updating a kernel-internal variable"
+      - "sysctl always requires restarting a daemon, while ipsec.conf applies automatically just by being saved"
+      - "A userspace daemon's config can only ever be applied over a network"
+    answerIndex: 1
+    explanation: "ipsec.conf-style userspace daemon config is applied by the daemon itself parsing it and updating a data structure in its own process's memory, while sysctl is applied by a command writing to /proc/sys to directly update a kernel-internal variable — two completely different paths."
+
+  - question: "What happens, for most daemons, if the config file has a syntax error?"
+    choices:
+      - "The daemon automatically ignores just the broken line and starts up normally with the rest of the config"
+      - "It fails during the load-and-parse step of startup, and in most cases aborts startup entirely right there"
+      - "The syntax error is ignored, and default values are silently applied to every setting"
+      - "The entire OS crashes"
+    answerIndex: 1
+    explanation: "A config-file syntax error causes the daemon to fail at the parsing stage of startup, and in most cases it aborts startup right there. A config file only becomes a candidate to take effect once it can be correctly parsed as valid syntax."
+
+  - question: "Per the article, why do so many traditional Linux daemons use their own homegrown config format instead of a general-purpose one like YAML or JSON?"
+    choices:
+      - "General-purpose formats aren't technically supported by the Linux kernel"
+      - "The config parser is part of that daemon's own implementation, so developers are free to choose the format, with the practical benefit of fewer external dependencies and a faster startup"
+      - "Homegrown formats are always deliberately obfuscated to be harder for humans to read"
+      - "General-purpose formats are limited to only one setting per file"
+    answerIndex: 1
+    explanation: "A config file's parser is part of the daemon's own implementation, so developers are free to choose whatever format suits them, with the practical upside of fewer external library dependencies and a faster startup."
