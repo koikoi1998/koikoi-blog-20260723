@@ -1,0 +1,54 @@
+questions:
+  - question: "procfs(/proc)の実体として正しい説明はどれか。"
+    choices:
+      - "ディスク上の専用パーティションに保存された通常のファイル群である"
+      - "ディスク上に実体を持たず、アクセスされた瞬間にカーネルが内容をその場で生成する仮想的なファイルシステムである"
+      - "起動時に一度だけ生成され、以降はキャッシュされた静的なファイルである"
+      - "ユーザーが手動で作成しない限り存在しないディレクトリである"
+    answerIndex: 1
+    explanation: "procfsはディスク上に実体を持たない仮想的なファイルシステムで、アクセスのたびにカーネルの内部状態をその場で反映した内容を生成します。"
+
+  - question: "sysctlキー net.ipv4.ip_forward は、/proc/sys以下のどのパスに対応するか。"
+    choices:
+      - "/proc/sys/ipv4/net/ip_forward"
+      - "/proc/net/ipv4/ip_forward"
+      - "/proc/sys/net/ipv4/ip_forward"
+      - "/proc/ip_forward/net/ipv4"
+    answerIndex: 2
+    explanation: "sysctlキーのドット区切りは/proc/sys以下のパスのスラッシュ区切りにそのまま対応します。net.ipv4.ip_forwardは/proc/sys/net/ipv4/ip_forwardに対応します。"
+
+  - question: "稼働中のサーバーで/etc/sysctl.confを編集して保存しただけでは、なぜカーネルの動作が変わらないのか。"
+    choices:
+      - "編集後に必ずサーバーの再起動が必要な仕様になっているため"
+      - "/etc/sysctl.confはカーネルが直接参照するファイルではなく、sysctlコマンドやsystemd-sysctl.serviceが/proc/sysへ反映するための入力リストに過ぎないため"
+      - "/etc/sysctl.confはroot以外は編集できない仕様になっているため"
+      - "/etc/sysctl.confの変更は7日間のキャッシュ期間を経てから反映される仕様になっているため"
+    answerIndex: 1
+    explanation: "カーネルは/etc/sysctl.confの存在を関知しません。このファイルはsysctl -pやsystemd-sysctl.serviceが読み込んで/proc/sysへ書き込むための入力に過ぎず、明示的な反映操作(sysctl -pの実行や再起動)が別途必要です。"
+
+  - question: "sysctl -pコマンドは何をしているか。"
+    choices:
+      - "現在のカーネルパラメータをすべてデフォルト値にリセットする"
+      - "/etc/sysctl.confを読み込み、その内容を1行ずつ/proc/sys以下の対応するファイルへ書き込む"
+      - "カーネル自体を再起動せずにホットスワップする"
+      - "procfs全体をディスクへバックアップする"
+    answerIndex: 1
+    explanation: "sysctl -pは、/etc/sysctl.confの内容を読み込み、対応する/proc/sys以下のファイルへ1行ずつ書き込んでいく処理をまとめて実行するコマンドです。"
+
+  - question: "net.ipv4.conf.all.accept_redirectsを0に設定する主な理由として、記事内で説明されているものはどれか。"
+    choices:
+      - "ディスク容量を節約するため"
+      - "悪意のあるICMPリダイレクトを信用してルーティングテーブルが書き換えられる、中間者攻撃のリスクを避けるため"
+      - "IPv6通信を無効化するため"
+      - "パケットのMTUサイズを自動調整するため"
+    answerIndex: 1
+    explanation: "accept_redirectsを有効にしたままだと、悪意のある端末が偽のICMPリダイレクトを送りつけることでルーティング経路を乗っ取る攻撃が成立しうるため、0(無効化)にするのが安全側の運用です。"
+
+  - question: "procfsという仕組みを、この記事ではどのような設計思想の実例として位置づけているか。"
+    choices:
+      - "オブジェクト指向プログラミングのカプセル化の実例"
+      - "「すべてはファイルである」というUNIX哲学の実例で、専用ツールなしにファイル操作だけでカーネル内部状態を読み書きできる仕組み"
+      - "クラウドネイティブなマイクロサービス設計の実例"
+      - "リレーショナルデータベースの正規化の実例"
+    answerIndex: 1
+    explanation: "procfsは「読み書き可能なファイルという皮を被ったAPI」であり、cat/echoのような標準的なファイル操作だけでカーネル内部状態を扱えるようにした、UNIX哲学(すべてはファイルである)の実例だと記事内で説明しています。"

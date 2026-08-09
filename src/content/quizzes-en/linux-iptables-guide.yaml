@@ -1,0 +1,54 @@
+questions:
+  - question: "Which statement correctly describes the relationship between the iptables command and netfilter?"
+    choices:
+      - "The iptables command itself stays resident and inspects packets one by one while running"
+      - "iptables is purely a configuration tool that registers rules with the kernel's netfilter; the kernel itself does the actual packet inspection"
+      - "netfilter is the name of a temporary file the iptables command generates"
+      - "iptables and netfilter are completely unrelated, independent features"
+    answerIndex: 1
+    explanation: "The iptables command is purely a configuration tool for registering rules with the kernel's netfilter framework. The kernel itself is what actually inspects each packet and decides ACCEPT/DROP."
+
+  - question: "In the L2TP/IPsec lab, which chain should be used to allow traffic for the client virtual IP range (10.10.10.0/24)?"
+    choices:
+      - "INPUT (wrong — it only handles packets destined for this server itself)"
+      - "FORWARD (right — it handles packets forwarded through this server)"
+      - "OUTPUT (wrong — it only handles locally generated responses)"
+      - "PREROUTING (wrong — it unconditionally handles all packets before the routing decision)"
+    answerIndex: 1
+    explanation: "INPUT only applies to packets destined for this host itself. Client traffic forwarded through the server to somewhere else needs a rule in the FORWARD chain."
+
+  - question: "Which statement correctly describes how iptables rules are evaluated within a chain?"
+    choices:
+      - "All rules are evaluated in parallel, and the strictest verdict wins"
+      - "They're evaluated in random order"
+      - "They're evaluated top to bottom, and the target of the first matching rule decides that packet's fate"
+      - "They're evaluated bottom to top, and the last matching rule takes priority"
+    answerIndex: 2
+    explanation: "iptables rules are evaluated in registration order (typically top to bottom), and the target (ACCEPT/DROP/etc.) of the first matching rule finalizes that packet's handling. Because of this, a broad rule placed earlier can prevent a narrower exception placed later from ever being evaluated."
+
+  - question: "What does the ESTABLISHED state in connection tracking (conntrack) mean?"
+    choices:
+      - "The first packet of this connection, indicating a brand-new connection"
+      - "A packet belonging to an existing connection where two-way traffic is already flowing"
+      - "A malformed packet that doesn't match any tracked connection"
+      - "A connection that the firewall has forcibly terminated"
+    answerIndex: 1
+    explanation: "ESTABLISHED marks a packet as belonging to an existing connection where two-way traffic is already flowing. Using this state enables the stateful decision of \"only allow responses to already-established traffic.\""
+
+  - question: "What's the difference between MASQUERADE and SNAT, according to the article?"
+    choices:
+      - "MASQUERADE is IPv6-only, and SNAT is IPv4-only"
+      - "SNAT specifies the translated source IP explicitly as a fixed value, while MASQUERADE dynamically looks up the outgoing interface's current IP on every packet"
+      - "MASQUERADE only supports TCP, and SNAT only supports UDP"
+      - "They're identical in behavior — just different names for the same thing"
+    answerIndex: 1
+    explanation: "SNAT specifies the translated source IP address explicitly as a fixed value, while MASQUERADE dynamically looks up whatever IP is currently assigned to the outgoing interface, on every packet. MASQUERADE is the better fit when the WAN-side IP might change."
+
+  - question: "What does the article say about how the iptables command actually behaves on many modern distributions?"
+    choices:
+      - "It always processes packets with its own dedicated engine, entirely unrelated to nftables"
+      - "It often goes through a compatibility layer called iptables-nft, which internally converts and registers the rules as an nftables ruleset"
+      - "iptables has been removed and no longer exists in current Linux kernels"
+      - "iptables is a program that runs directly in kernel space rather than user space"
+    answerIndex: 1
+    explanation: "On many modern distributions (Debian 10+, Ubuntu 20.04+, and others), the iptables command goes through the iptables-nft compatibility layer, which internally converts rules and registers them as an nftables ruleset."

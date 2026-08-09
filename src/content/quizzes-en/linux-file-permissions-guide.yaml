@@ -1,0 +1,54 @@
+questions:
+  - question: "What does the number in a command like chmod 600 represent?"
+    choices:
+      - "A single-digit sum of read=4/write=2/execute=1, one digit each for owner, group, and other"
+      - "A timestamp representing when the file was created"
+      - "The maximum number of users allowed to read or write the file"
+      - "A file size limit expressed in KB"
+    answerIndex: 0
+    explanation: "chmod's numeric notation is a single digit per category (owner/group/other), each the sum of read(4)/write(2)/execute(1). 600 means the owner gets rw (4+2), and group/other get no permissions (0)."
+
+  - question: "What does write permission (w) on a directory actually mean?"
+    choices:
+      - "You can directly modify the contents of files inside the directory"
+      - "You can create/delete files inside the directory (independent of the files' own permissions)"
+      - "You can copy the directory to another location"
+      - "You can change the directory's owner"
+    answerIndex: 1
+    explanation: "Write permission on a directory controls whether you can create or delete files inside it. Whether a specific file can be deleted is determined by the parent directory's write permission, not the file's own permissions."
+
+  - question: "What happens when you set the setuid bit on an executable?"
+    choices:
+      - "The file runs faster"
+      - "Regardless of who runs it, the program executes with the privileges of the file's owner"
+      - "The file can no longer be deleted"
+      - "The file's owner is automatically changed to root"
+    answerIndex: 1
+    explanation: "setuid makes a program run with the file owner's privileges, no matter who launched it. Because /usr/bin/passwd is owned by root and has setuid set, ordinary users can modify /etc/shadow only through the fixed validation logic that passwd implements."
+
+  - question: "When does the kernel check a file's permissions?"
+    choices:
+      - "Only once, for all files at once, at OS boot time"
+      - "Only at the moment the file is created; never again after that"
+      - "Every time the file is accessed via a system call like open()/read()/write() — the VFS layer checks it each time"
+      - "Only when a user explicitly runs ls -l"
+    answerIndex: 2
+    explanation: "Permissions aren't a static setting — the kernel's VFS layer dynamically checks them every time a process accesses a file via a system call. This is why the effect of chmod 600 is always in force."
+
+  - question: "Why doesn't setting setuid on a shell script work as intended on most Linux distributions, per the article?"
+    choices:
+      - "Shell scripts don't have inodes"
+      - "Running it becomes an indirect call through the shebang line to the shell binary, making it easy to exploit a race condition for privilege escalation"
+      - "Shell scripts are specified to always run with root privileges"
+      - "setuid only exists on binary files and can't physically be set on text files"
+    answerIndex: 1
+    explanation: "Running a shell script is an indirect call — the kernel reads the shebang, execs the shell binary, and passes the script as an argument — which creates a race-condition window that can be exploited for privilege escalation. The practical rule is to limit setuid to compiled binaries."
+
+  - question: "What's the difference in permission requirements between chown (changing owner) and chgrp (changing group)?"
+    choices:
+      - "Both can be freely run by any ordinary user"
+      - "Changing the owner requires root privileges, but changing the group can be done by the owner, limited to groups they themselves belong to"
+      - "Changing the group requires root privileges, but anyone can change the owner"
+      - "Neither can be done at all without root privileges"
+    answerIndex: 1
+    explanation: "Changing ownership (chown) requires root, since letting any ordinary user freely hand off files to someone else would cause problems. Changing the group can be done by the file's own owner, as long as it's a group they belong to."

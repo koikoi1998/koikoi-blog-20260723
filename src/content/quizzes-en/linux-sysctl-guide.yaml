@@ -1,0 +1,54 @@
+questions:
+  - question: "Which statement correctly describes what procfs (/proc) actually is?"
+    choices:
+      - "A collection of ordinary files stored on a dedicated disk partition"
+      - "A virtual filesystem with no backing on disk — the kernel generates its contents on the spot, the moment they're accessed"
+      - "Files generated once at boot time and cached statically from then on"
+      - "A directory that doesn't exist unless a user manually creates it"
+    answerIndex: 1
+    explanation: "procfs is a virtual filesystem with no real backing on disk. Every access generates content reflecting the kernel's internal state on the spot."
+
+  - question: "Which path under /proc/sys does the sysctl key net.ipv4.ip_forward correspond to?"
+    choices:
+      - "/proc/sys/ipv4/net/ip_forward"
+      - "/proc/net/ipv4/ip_forward"
+      - "/proc/sys/net/ipv4/ip_forward"
+      - "/proc/ip_forward/net/ipv4"
+    answerIndex: 2
+    explanation: "A sysctl key's dot-separated segments map directly to a slash-separated path under /proc/sys. net.ipv4.ip_forward corresponds to /proc/sys/net/ipv4/ip_forward."
+
+  - question: "Why doesn't editing and saving /etc/sysctl.conf on a running server change the kernel's behavior by itself?"
+    choices:
+      - "The server must always be rebooted after any edit, by design"
+      - "/etc/sysctl.conf isn't read directly by the kernel — it's only an input list that the sysctl command or systemd-sysctl.service applies to /proc/sys"
+      - "/etc/sysctl.conf can only be edited by root, by design"
+      - "Changes to /etc/sysctl.conf are designed to take effect only after a 7-day caching period"
+    answerIndex: 1
+    explanation: "The kernel has no awareness of /etc/sysctl.conf's existence. It's purely an input that sysctl -p or systemd-sysctl.service reads and writes into /proc/sys — an explicit apply step (running sysctl -p, or rebooting) is required separately."
+
+  - question: "What does the sysctl -p command actually do?"
+    choices:
+      - "Reset every current kernel parameter to its default value"
+      - "Read /etc/sysctl.conf and write each line into the corresponding file under /proc/sys"
+      - "Hot-swap the kernel itself without a reboot"
+      - "Back up the entire procfs tree to disk"
+    answerIndex: 1
+    explanation: "sysctl -p reads the contents of /etc/sysctl.conf and writes each line into the corresponding file under /proc/sys, all in one batch."
+
+  - question: "What's the main reason, per the article, for setting net.ipv4.conf.all.accept_redirects to 0?"
+    choices:
+      - "To save disk space"
+      - "To avoid the risk of a man-in-the-middle-style attack where trusting a malicious ICMP redirect lets an attacker rewrite the routing table"
+      - "To disable IPv6 traffic"
+      - "To automatically tune the packet MTU size"
+    answerIndex: 1
+    explanation: "Leaving accept_redirects enabled opens the door to an attack where a malicious host sends forged ICMP redirects to hijack the routing path, so setting it to 0 (disabled) is the safe default."
+
+  - question: "What design philosophy does the article frame procfs as a real-world example of?"
+    choices:
+      - "Encapsulation in object-oriented programming"
+      - "The UNIX philosophy that \"everything is a file\" — reading and writing kernel internal state using nothing but ordinary file operations, no dedicated tool required"
+      - "Cloud-native microservices design"
+      - "Normalization in relational databases"
+    answerIndex: 1
+    explanation: "The article frames procfs as \"an API wearing the skin of a readable/writable file\" — a real-world example of the UNIX philosophy (everything is a file), letting you manipulate kernel internal state with nothing but standard file operations like cat/echo."

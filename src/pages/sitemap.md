@@ -119,6 +119,9 @@ graph TB
 <li><a href="/articles/linux-daemon-guide">デーモン(daemon)とは何か——Linuxのバックグラウンドプロセスを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/software-library-guide">ライブラリ(library)とは何か——静的リンク・動的リンクの仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/linux-user-kernel-space-guide">ユーザー空間とカーネル空間、TUN/TAPデバイスの仕組みを『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/linux-file-permissions-guide">パーミッション(chmod)とは何か——Linuxのファイルアクセス制御を『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/linux-sysctl-guide">sysctlと/etc/sysctl.confの仕組みを『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/linux-iptables-guide">iptables(netfilter)の仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/nic-driver-internals-guide">NICドライバとLinuxカーネルのネットワーク処理を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/idrac-power-guide">サーバー電源の仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/os-boot-process-guide">POST後のOS起動プロセスを『上位1%』の視点で理解する</a></li>
@@ -127,13 +130,13 @@ graph TB
 <div class="persona-panel persona-panel-5">
 <div class="persona-panel-head">
 <h3>🏆 年収1000万・2000万・5000万を目指して情報収集している方へ</h3>
-<p>全25記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
+<p>全28記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP4の24記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP4の27記事(上のタブから確認できます)</li>
 <li><a href="/articles/voip-ss7-guide">VoIPとSS7、そして実際の通信経路を『上位1%』の視点で理解する</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>これで全25記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
+<div class="persona-bonus">🎉 <strong>これで全28記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
 </div>
 </div>
 </div>
@@ -178,11 +181,14 @@ graph TB
 
 ### Linux/OS基礎シリーズ
 
-VPNプロトコルの記事などで繰り返し登場する、実行環境レベルの基礎用語を深掘りするシリーズです。**読む順番の目安**: ① linux-daemon-guide → ② software-library-guide → ③ linux-user-kernel-space-guide。
+VPNプロトコルの記事やL2TP/IPsecハンズオンなどで繰り返し登場する、実行環境レベルの基礎用語を深掘りするシリーズです。**読む順番の目安**: ① linux-daemon-guide → ② software-library-guide → ③ linux-user-kernel-space-guide → ④ linux-file-permissions-guide → ⑤ linux-sysctl-guide → ⑥ linux-iptables-guide。
 
 - [デーモン(daemon)とは何か——Linuxのバックグラウンドプロセスを『上位1%』の視点で理解する](/articles/linux-daemon-guide) — 通常のプロセスとの違い、IKEデーモンなどプロトコル処理がデーモンとして実装される理由、systemdによる起動・監視・ログの仕組みまでの深掘り（現代的なVPNプロトコルとの比較の記事のデーモンの話から派生した発展編、単体でも読めます）。
 - [ライブラリ(library)とは何か——静的リンク・動的リンクの仕組みを『上位1%』の視点で理解する](/articles/software-library-guide) — 静的リンクと動的リンク(共有ライブラリ)の違い、シンボル解決の仕組み、ABI互換性が障害要因になる理由までの深掘り（現代的なVPNプロトコルとの比較の記事のOpenSSLの話から派生した発展編、単体でも読めます）。
 - [ユーザー空間とカーネル空間、TUN/TAPデバイスの仕組みを『上位1%』の視点で理解する](/articles/linux-user-kernel-space-guide) — CPUの特権レベルによる空間分離、システムコールとコンテキストスイッチ、OpenVPNが使うTUN/TAPデバイスの仕組みまでの深掘り（現代的なVPNプロトコルとの比較の記事のユーザー空間実装の話から派生した発展編、単体でも読めます）。
+- [パーミッション(chmod)とは何か——Linuxのファイルアクセス制御を『上位1%』の視点で理解する](/articles/linux-file-permissions-guide) — rwxビットと数値表記の対応、setuid/sticky bitといった特殊権限、カーネルがシステムコールのたびにこれを検査する仕組みまでの深掘り（L2TP/IPsecハンズオンのchmod 600から派生した発展編、単体でも読めます）。
+- [sysctlと/etc/sysctl.confの仕組みを『上位1%』の視点で理解する](/articles/linux-sysctl-guide) — procfsという仮想ファイルシステムの正体、/proc/sysとsysctlキーの対応関係、設定ファイルを編集しただけでは反映されない理由までの深掘り（L2TP/IPsecハンズオンのnet.ipv4.ip_forwardから派生した発展編、単体でも読めます）。
+- [iptables(netfilter)の仕組みを『上位1%』の視点で理解する](/articles/linux-iptables-guide) — netfilterのフック点・テーブル・チェーンの構造、ルールの評価順序、connection trackingによるステートフルな判定、MASQUERADEとSNATの違いまでの深掘り（L2TP/IPsecハンズオンのiptablesコマンド群から派生した発展編、単体でも読めます）。
 
 ### 電話網・アクセス回線シリーズ
 
