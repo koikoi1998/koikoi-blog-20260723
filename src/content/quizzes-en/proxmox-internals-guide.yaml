@@ -1,0 +1,45 @@
+questions:
+  - question: "Which statement correctly describes the division of labor between KVM and QEMU, per the article?"
+    choices:
+      - "KVM and QEMU are just two names for the exact same piece of software"
+      - "KVM is a kernel module handling CPU/memory virtualization, while QEMU is a userspace program that software-reproduces everything else"
+      - "KVM only handles networking, and QEMU only handles disks"
+      - "QEMU handles everything, and KVM is merely QEMU's logging feature"
+    answerIndex: 1
+    explanation: "KVM is a kernel module that handles CPU/memory virtualization (actually executing instructions), while QEMU is a userspace program that software-reproduces everything else — the disk controller, NIC, BIOS, and so on."
+
+  - question: "Why does the article classify Proxmox VE as a Type 1 (bare-metal) hypervisor?"
+    choices:
+      - "Because Proxmox VE ships pre-installed by hardware manufacturers"
+      - "Because the Linux kernel itself takes on the hypervisor's role via KVM, rather than running dedicated virtualization software on top of an ordinary host OS"
+      - "Because Proxmox VE can only run one VM at a time"
+      - "Because Proxmox VE has no web management UI"
+    answerIndex: 1
+    explanation: "Because KVM makes the Linux kernel itself act as the hypervisor, it's classified as Type 1 — directly controlling the hardware — unlike a Type 2 setup where dedicated VM software runs on top of an ordinary host OS."
+
+  - question: "What mechanism lets a VM in Proxmox VE join the same segment as the physical LAN, per the article?"
+    choices:
+      - "The VM's virtual NIC appears as a TAP device and connects to the same switch as the physical NIC via a Linux bridge (vmbr)"
+      - "VMs can only ever communicate over the internet, never with other devices on the LAN"
+      - "Proxmox VE uses a proprietary cloud-only network protocol"
+      - "A VM's MAC address is automatically set identical to the physical NIC's"
+    answerIndex: 0
+    explanation: "A VM's virtual NIC shows up on the host side as a TAP device, which connects into a Linux bridge (virtual switch) like vmbr0. Since the physical NIC is plugged into that same bridge, the VM can communicate as if it were physically wired into the LAN."
+
+  - question: "Why can a copy-on-write snapshot be taken quickly, per the article?"
+    choices:
+      - "Because the entire disk's contents are compressed at snapshot time"
+      - "Because only the blocks that change after the snapshot get written to a new location, while the original blocks keep being referenced as-is until they're modified"
+      - "Because a snapshot doesn't actually store any disk contents at all"
+      - "Because the VM is fully shut down and then copied at snapshot time"
+    answerIndex: 1
+    explanation: "Copy-on-write doesn't duplicate the whole disk at snapshot time — only the blocks that change afterward get written to a new location. This is how a several-hundred-GB disk can have a snapshot taken in seconds."
+
+  - question: "What trade-off between a VM and an LXC container does the article describe?"
+    choices:
+      - "A VM has more overhead in exchange for complete hardware-level isolation; an LXC container is lighter because it shares the kernel, but with weaker isolation than a VM"
+      - "VMs and LXC containers are technically identical, just different names for the same thing"
+      - "An LXC container always provides stronger isolation than a VM"
+      - "VMs can't have networking, but LXC containers can"
+    answerIndex: 0
+    explanation: "A VM has strong isolation because each guest gets its own independent kernel, at the cost of more overhead; an LXC container is lighter because it shares the host's kernel, but its isolation is weaker than a VM's."

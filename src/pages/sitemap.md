@@ -105,9 +105,10 @@ graph TB
 <li><a href="/articles/site-to-site-vpn-guide">拠点間VPN(Site-to-Site VPN)を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/local-gov-network-guide">自治体ネットワークの三層分離とセキュリティクラウドを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/virtual-ip-guide">代表IP(VIP)とNICチーミングの仮想IPの仕組みを『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/handson-prep-guide">ハンズオン準備マニュアル:Proxmox VEでのVM作成からOSインストール・初期設定まで</a></li>
 <li><a href="/articles/l2tp-ipsec-lab-guide">L2TP/IPsecサーバーを自作し、理論を自分の目で検証する『上位1%』のハンズオン</a></li>
 </ol>
-<div class="persona-bonus">🔍 <strong>興味があれば(任意)</strong>: <a href="/articles/voip-ss7-guide">VoIPとSS7、そして実際の通信経路</a>は、電話網の歴史的経緯に興味が湧いたら読んでみてください。</div>
+<div class="persona-bonus">🔍 <strong>興味があれば(任意)</strong>: <a href="/articles/voip-ss7-guide">VoIPとSS7、そして実際の通信経路</a>は電話網の歴史的経緯に、<a href="/articles/proxmox-internals-guide">Proxmox VEとは何か</a>はKVM/QEMUの内部動作に興味が湧いたら読んでみてください。</div>
 </div>
 <div class="persona-panel persona-panel-4">
 <div class="persona-panel-head">
@@ -115,7 +116,8 @@ graph TB
 <p>STEP3までの実務知識に、面接や設計レビューで差がつく低レイヤーの実装知識を積み増すルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP3の18記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP3の19記事(上のタブから確認できます)</li>
+<li><a href="/articles/proxmox-internals-guide">Proxmox VEとは何か——KVM/QEMUによる仮想化の仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/linux-daemon-guide">デーモン(daemon)とは何か——Linuxのバックグラウンドプロセスを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/software-library-guide">ライブラリ(library)とは何か——静的リンク・動的リンクの仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/linux-user-kernel-space-guide">ユーザー空間とカーネル空間、TUN/TAPデバイスの仕組みを『上位1%』の視点で理解する</a></li>
@@ -132,13 +134,13 @@ graph TB
 <div class="persona-panel persona-panel-5">
 <div class="persona-panel-head">
 <h3>🏆 年収1000万・2000万・5000万を目指して情報収集している方へ</h3>
-<p>全30記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
+<p>全32記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP4の29記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP4の31記事(上のタブから確認できます)</li>
 <li><a href="/articles/voip-ss7-guide">VoIPとSS7、そして実際の通信経路を『上位1%』の視点で理解する</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>これで全30記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
+<div class="persona-bonus">🎉 <strong>これで全32記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
 </div>
 </div>
 </div>
@@ -180,6 +182,18 @@ graph TB
 リモートアクセスVPN/L2TP・IPsecシリーズの①を読んだ前提の発展シリーズです。**読む順番の目安**: ① site-to-site-vpn-guide。
 
 - [拠点間VPN(Site-to-Site VPN)を『上位1%』の視点で理解する](/articles/site-to-site-vpn-guide) — リモートアクセスVPNとの違い、IPsecトンネルモードとトラフィックセレクタの仕組み、CiscoとWatchGuardという異なるベンダー間でIPsecトンネルを組む際の実務上の注意点までの深掘り（L2TP/IPsecとの対比から派生した発展編、単体でも読めます）。
+
+### ハンズオン準備シリーズ
+
+このブログのハンズオン記事(L2TP/IPsecサーバー自作など)に共通して必要になる、Proxmox VEでのVM作成やLinuxの基本操作をまとめた準備マニュアルです。**読む順番の目安**: ① handson-prep-guide。
+
+- [ハンズオン準備マニュアル:Proxmox VEでのVM作成からOSインストール・初期設定、nano/sudo/apt updateの基本まで](/articles/handson-prep-guide) — Proxmox VEでのVM作成、Ubuntu ServerのISOダウンロードとインストール、apt update/sudo su -/nanoの基本操作、USキーボードレイアウトの注意点までをまとめた操作マニュアル(内部動作の深掘りではなく、初めてハンズオンに取り組む方向けの手順書、単体でも読めます)。
+
+### 仮想化基盤シリーズ
+
+ハンズオンで利用するProxmox VEが、実際には何によって仮想化を実現しているのかを深掘りするシリーズです。**読む順番の目安**: ① proxmox-internals-guide。
+
+- [Proxmox VEとは何か——KVM/QEMUによる仮想化の仕組みを『上位1%』の視点で理解する](/articles/proxmox-internals-guide) — Linuxカーネル自身をハイパーバイザーに変えるKVMと、CPU以外のハードウェアをソフトウェアで再現するQEMUの役割分担、仮想ブリッジ(vmbr)によるVMのネットワーク接続、ストレージ方式とスナップショットの仕組みまでの深掘り（ハンズオン準備マニュアルのProxmox操作から派生した発展編、単体でも読めます）。
 
 ### Linux/OS基礎シリーズ
 

@@ -1,0 +1,45 @@
+questions:
+  - question: "What does sudo apt update actually do, per the article?"
+    choices:
+      - "Updates every installed piece of software to its latest version"
+      - "Fetches the list of available packages and their versions from the repositories and refreshes the local cache — it doesn't install or change anything itself"
+      - "Reinstalls the entire OS"
+      - "Automatically removes unneeded packages"
+    answerIndex: 1
+    explanation: "sudo apt update only queries each repository and refreshes the local cache of the package index (the list of available packages and versions) — it doesn't actually install or update anything."
+
+  - question: "What's the difference between sudo su (no hyphen) and sudo su - (with a hyphen), per the article?"
+    choices:
+      - "They behave exactly the same way"
+      - "With the hyphen, environment variables are reset to match a direct root login and the home directory moves to /root; without it, the original user's environment variables carry over"
+      - "Without the hyphen, you become root with no password required; with the hyphen, a password is required"
+      - "Whether you use the hyphen determines whether you switch to root or to an ordinary user"
+    answerIndex: 1
+    explanation: "sudo su - resets environment variables to match what they'd be for a direct root login and moves the home directory to /root. sudo su without the hyphen switches to root but carries over the original user's environment variables."
+
+  - question: "Why does the article say prefixing individual commands with sudo is preferred over staying in a root shell via sudo su - in practice?"
+    choices:
+      - "Prefixing with sudo every time makes commands run faster"
+      - "Commands run via sudo leave a record of who ran what and when, making auditing much easier"
+      - "sudo su - has a technical security hole and never works"
+      - "Staying in a root shell is designed to automatically shut down the OS"
+    answerIndex: 1
+    explanation: "Commands run via sudo leave a record in places like /var/log/auth.log of who did what and when, making auditing (tracing actions back to a person) much easier — which is why prefixing individual commands with sudo is preferred over sitting in a root shell."
+
+  - question: "What does the article describe as the way to exit nano without saving your changes?"
+    choices:
+      - "Press Ctrl + K to exit"
+      - "Press Ctrl + X to exit, then choose N (No) when asked whether to save"
+      - "Press Ctrl + W to exit"
+      - "The only way is to forcibly close the terminal window"
+    answerIndex: 1
+    explanation: "Pressing Ctrl + X (Exit) attempts to close nano; if there are unsaved changes, you're asked whether to save, and choosing N (No) discards them and exits."
+
+  - question: "What does the article recommend as the most reliable fix for keyboard-layout gotchas under a US layout setting?"
+    choices:
+      - "Launching a separate Japanese input tool just for typing symbols"
+      - "If your physical keyboard has a Japanese layout, matching the OS's keyboard layout setting to \"Japanese\" as well"
+      - "Buying a separate specialty keyboard, since symbol input is technically impossible under a US layout"
+      - "Physically rewiring the keyboard yourself"
+    answerIndex: 1
+    explanation: "The most reliable fix is matching the physical keyboard's layout with the OS's setting for how it interprets keypresses (the logical layout). This can be changed after install with the dpkg-reconfigure keyboard-configuration command."

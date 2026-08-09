@@ -7,6 +7,8 @@ export const seriesNames: Record<string, string> = {
   telephony: "電話網・アクセス回線シリーズ",
   api: "Web / API シリーズ",
   security: "セキュリティ基礎シリーズ",
+  "handson-prep": "ハンズオン準備シリーズ",
+  virtualization: "仮想化基盤シリーズ",
 };
 
 export const seriesNamesEn: Record<string, string> = {
@@ -18,6 +20,8 @@ export const seriesNamesEn: Record<string, string> = {
   telephony: "Telephony & Access Network Series",
   api: "Web / API Series",
   security: "Security Fundamentals Series",
+  "handson-prep": "Hands-On Prep Series",
+  virtualization: "Virtualization Fundamentals Series",
 };
 
 export type Lang = "ja" | "en";
