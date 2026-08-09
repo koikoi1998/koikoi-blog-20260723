@@ -1,0 +1,27 @@
+items:
+  - question: "GUIのデスクトップ環境をインストールしようとしたらディスク容量が足りませんでした"
+    answer: "検証用に確保した8GB程度のディスクでは、ubuntu-desktopのようなフルのデスクトップ環境をインストールしようとすると容量不足になりがちです。VMのディスクを20GB以上に拡張するか、GUIを使わずCLIだけで完結する方法がないか、そのハンズオン記事の手順を確認してください。"
+    link:
+      url: "/articles/l2tp-ipsec-lab-guide"
+      label: "CLIだけで進める構成の実例を見る"
+
+  - question: "sudo apt updateを実行するとエラーが出ます"
+    answer: "多くの場合、VMのネットワーク接続(DHCPでIPアドレスを取得できているか)、またはDNS解決ができているかが原因です。ip aでIPアドレスが割り当てられているか、ping 8.8.8.8で疎通を確認してください。"
+
+  - question: "インストール時にUSキーボードレイアウトを選んでしまいました。設定し直せますか?"
+    answer: "はい。sudo dpkg-reconfigure keyboard-configurationを実行し、対話画面で「Country of origin」を「Japan」に変更すれば、日本語配列のキーボードで印字通りに入力できるようになります。"
+
+  - question: "作成したProxmoxのVMがネットワークにつながりません"
+    answer: "VMの仮想NICが正しいvmbr(仮想ブリッジ)に接続されているか、そのブリッジに物理NICが正しく紐づいているかをProxmoxのネットワーク設定で確認してください。"
+    link:
+      url: "/articles/proxmox-internals-guide"
+      label: "仮想ブリッジ(vmbr)の仕組みを詳しく見る"
+
+  - question: "sudo su -でrootになったまま作業を続けても大丈夫ですか?"
+    answer: "動作上は問題ありませんが、実務では監査(誰が何をしたかの記録)のしやすさから、コマンドごとにsudoを付ける運用が推奨されます。このブログのハンズオン記事もその方針で書かれています。"
+
+  - question: "この記事を読み終えたら、次はどのハンズオンから始めればいいですか?"
+    answer: "現時点ではL2TP/IPsecサーバー自作ハンズオンが、このブログで公開されている実機構築系のハンズオン記事です。"
+    link:
+      url: "/articles/l2tp-ipsec-lab-guide"
+      label: "L2TP/IPsecサーバー自作ハンズオンを見る"

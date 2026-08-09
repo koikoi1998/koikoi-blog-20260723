@@ -26,6 +26,19 @@ const quizSchema = z.object({
     .min(1),
 });
 
+// ハンズオン記事ごとのFAQ。linkがあれば「詳しくはこちらの記事へ」というリンクを併記する。
+const faqSchema = z.object({
+  items: z
+    .array(
+      z.object({
+        question: z.string(),
+        answer: z.string(),
+        link: z.object({ url: z.string(), label: z.string() }).optional(),
+      })
+    )
+    .min(1),
+});
+
 const articles = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/articles" }),
   schema: articleSchema,
@@ -47,4 +60,15 @@ const quizzesEn = defineCollection({
   schema: quizSchema,
 });
 
-export const collections = { articles, quizzes, articlesEn, quizzesEn };
+// FAQファイルはハンズオン記事など一部の記事にのみ存在する(ファイルがなければFAQセクション自体を表示しない)。
+const faqs = defineCollection({
+  loader: glob({ pattern: "**/*.yaml", base: "./src/content/faqs" }),
+  schema: faqSchema,
+});
+
+const faqsEn = defineCollection({
+  loader: glob({ pattern: "**/*.yaml", base: "./src/content/faqs-en" }),
+  schema: faqSchema,
+});
+
+export const collections = { articles, quizzes, articlesEn, quizzesEn, faqs, faqsEn };

@@ -5,6 +5,8 @@ import { seriesNamesEn, ui } from "../../../consts";
 
 export async function getStaticPaths() {
   const articles = await getCollection("articlesEn", ({ data }) => !data.draft);
+  const faqs = await getCollection("faqsEn");
+  const faqById = new Map(faqs.map((f) => [f.id, f]));
   const bySeries = Map.groupBy(articles, (a) => a.data.series);
   for (const items of bySeries.values()) {
     items.sort((a, b) => a.data.order - b.data.order);
@@ -19,12 +21,13 @@ export async function getStaticPaths() {
         article,
         prev: index > 0 ? siblings[index - 1] : undefined,
         next: index < siblings.length - 1 ? siblings[index + 1] : undefined,
+        faq: faqById.get(article.id),
       },
     };
   });
 }
 
-const { article, prev, next } = Astro.props;
+const { article, prev, next, faq } = Astro.props;
 const { Content } = await render(article);
 const t = ui.en;
 
@@ -80,6 +83,27 @@ const hasUpdate = updatedDate && updatedDate.getTime() !== pubDate.getTime();
       )
     }
   </article>
+
+  {
+    faq && (
+      <section class="faq-section">
+        <h2>Frequently Asked Questions (FAQ)</h2>
+        <div class="faq-list">
+          {faq.data.items.map((item) => (
+            <details class="faq-item">
+              <summary>{item.question}</summary>
+              <p>{item.answer}</p>
+              {item.link && (
+                <a class="faq-link" href={item.link.url}>
+                  → {item.link.label}
+                </a>
+              )}
+            </details>
+          ))}
+        </div>
+      </section>
+    )
+  }
 
   <section class="giscus-section">
     <h2>Comments</h2>

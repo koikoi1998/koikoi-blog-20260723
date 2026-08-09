@@ -1,0 +1,27 @@
+items:
+  - question: "I tried installing a GUI desktop environment and ran out of disk space"
+    answer: "On the roughly 8GB of disk typically allocated for a lab VM, installing a full desktop environment like ubuntu-desktop often runs out of space. Either expand the VM's disk to 20GB+, or check the specific hands-on article for a CLI-only path that skips the GUI entirely."
+    link:
+      url: "/en/articles/l2tp-ipsec-lab-guide"
+      label: "See a real example of a CLI-only setup"
+
+  - question: "sudo apt update fails with an error"
+    answer: "This is usually a networking issue (has the VM actually obtained an IP via DHCP?) or a DNS resolution issue. Check with ip a whether an IP address is assigned, and confirm connectivity with ping 8.8.8.8."
+
+  - question: "I accidentally selected a US keyboard layout during install — can I change it?"
+    answer: "Yes. Run sudo dpkg-reconfigure keyboard-configuration and set \"Country of origin\" to \"Japan\" (or your own country) in the interactive prompt, and a keyboard with that physical layout will type exactly what's printed on its keys."
+
+  - question: "The VM I created in Proxmox can't reach the network"
+    answer: "Check, in Proxmox's network settings, whether the VM's virtual NIC is attached to the correct vmbr (virtual bridge), and whether that bridge is correctly linked to the physical NIC."
+    link:
+      url: "/en/articles/proxmox-internals-guide"
+      label: "Learn more about how the virtual bridge (vmbr) works"
+
+  - question: "Is it okay to just stay in a root shell via sudo su - the whole time?"
+    answer: "It works fine technically, but in practice, prefixing individual commands with sudo is recommended for the sake of auditability (a record of who did what, and when). This blog's hands-on articles are written that way for that reason."
+
+  - question: "I've finished this article — which hands-on lab should I start with next?"
+    answer: "As of now, the self-built L2TP/IPsec server lab is this blog's published hands-on lab that involves building real infrastructure."
+    link:
+      url: "/en/articles/l2tp-ipsec-lab-guide"
+      label: "See the self-built L2TP/IPsec server hands-on lab"

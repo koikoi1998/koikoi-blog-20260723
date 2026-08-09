@@ -1,0 +1,36 @@
+items:
+  - question: "chmod 600の「600」という数字はどういう意味ですか?"
+    answer: "所有者(通常root)のみ読み書き可、それ以外のユーザーは読み取りすら不可、という意味です。read=4・write=2・execute=1の合計を所有者/グループ/その他の3区分ぶん並べた数値表記です。"
+    link:
+      url: "/articles/linux-file-permissions-guide"
+      label: "パーミッション(chmod)の仕組みを詳しく見る"
+
+  - question: "Proxmox VEでVMがなかなか起動しない・動作が重いときはどうすればいいですか?"
+    answer: "多くの場合、ホストCPUの仮想化支援機能(Intel VT-x/AMD-V)がBIOS/UEFIで無効化されており、QEMUがソフトウェアエミュレーション(低速)にフォールバックしていることが原因です。BIOS/UEFI設定で該当機能が有効になっているか確認してください。"
+    link:
+      url: "/articles/proxmox-internals-guide"
+      label: "KVM/QEMUの仕組みを詳しく見る"
+
+  - question: "iptablesで許可したルールは、サーバーを再起動しても保持されますか?"
+    answer: "いいえ、netfilterへ登録されたルールはカーネルのメモリ上の状態であり、デフォルトでは再起動すると消えます。iptables-persistentパッケージやiptables-save/iptables-restoreで明示的に永続化する必要があります。"
+    link:
+      url: "/articles/linux-iptables-guide"
+      label: "iptables(netfilter)の仕組みを詳しく見る"
+
+  - question: "net.ipv4.ip_forward = 1を/etc/sysctl.confに書いたのに反映されません"
+    answer: "/etc/sysctl.confはカーネルが直接読むファイルではなく、sysctl -pを実行するか再起動して初めて/proc/sysへ反映されます。ファイルを保存しただけでは稼働中のカーネルには反映されません。"
+    link:
+      url: "/articles/linux-sysctl-guide"
+      label: "sysctlとprocfsの仕組みを詳しく見る"
+
+  - question: "IKEフェーズ1(6往復)・フェーズ2(3往復)という回数は必ず固定ですか?"
+    answer: "理論上の基本的な回数です。実装やリトライ、ネットワーク状況によって前後することがあります。本文の検証1では、実際のキャプチャで理論値通りになっているかを確認する手順を扱っています。"
+
+  - question: "WAN側のインターフェース名(eth0など)がわからないときはどうすればいいですか?"
+    answer: "ip route show defaultを実行すると、default via <ゲートウェイ> dev <インターフェース名>という形式で表示されます。このdevの後ろの値が、iptablesコマンドで置き換えるべきインターフェース名です。"
+
+  - question: "このハンズオンを始める前に何を準備すればいいですか?"
+    answer: "Proxmox VEでのVM作成、OSインストール、sudo apt update・sudo su -・nanoの基本操作に不慣れな場合は、先に準備マニュアルを読んでおくとスムーズです。"
+    link:
+      url: "/articles/handson-prep-guide"
+      label: "ハンズオン準備マニュアルを見る"
