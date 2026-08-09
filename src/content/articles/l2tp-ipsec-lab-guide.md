@@ -130,6 +130,8 @@ conn L2TP-PSK
 sudo chmod 600 /etc/ipsec.secrets
 ```
 
+`chmod 600`は「所有者(root)のみ読み書き可、それ以外のユーザーは読み取りすら不可」にするパーミッション設定です。このファイルには事前共有鍵が平文で書かれているため、もしパーミッションが緩いままだと、同じサーバー上の他の一般ユーザーアカウントから鍵を読み取られてしまいます。実際strongSwanは起動時にこのファイルのパーミッションが緩すぎると警告を出します。
+
 この「全クライアント共有のPSK」が持つ弱点は、Step 6で実際に確認します。
 
 ### Step 3: L2TP(xl2tpd)とPPP認証を設定する
@@ -175,6 +177,16 @@ connect-delay 5000
 
 `mtu`/`mru`を1410程度に抑えているのは、L2TP/PPP/ESPなど複数のヘッダーが重なることで実効MTUが縮小するためです。`require-mschap-v2`で認証方式をMS-CHAPv2に固定しています。ユーザー名・パスワードを`/etc/ppp/chap-secrets`に設定します。
 
+<details>
+<summary>ここまでで触れていない設定項目の意味</summary>
+
+- **`ipsec.conf`の`ikelifetime`/`keylife`/`rekeymargin`/`keyingtries`**: `ikelifetime`はIKE SA(フェーズ1で確立する鍵交換用の管理チャネル)の寿命、`keylife`はIPsec SA(フェーズ2で確立する実際の暗号化通信用の鍵)の寿命です。`rekeymargin`は寿命が切れる何分前から再鍵交換(rekey)を始めるかの猶予時間で、`keyingtries`は鍵交換に失敗したときの再試行回数です。SAの寿命を短くするほど鍵の使い回し期間が減り安全側に倒せますが、再鍵交換の頻度が増えるトレードオフがあります。
+- **`xl2tpd.conf`の`require chap`/`refuse pap`**: PPP認証方式のうち、CHAP(チャレンジレスポンス方式でパスワード自体は流さない)を必須にし、PAP(パスワードをほぼ平文で送る古い方式)を明示的に拒否する設定です。ESPで暗号化された経路の中とはいえ、認証方式自体の強度も下げないための指定です。
+- **`options.xl2tpd`の`nodefaultroute`**: クライアント側でこのPPPリンクを既定のゲートウェイ(デフォルトルート)として自動採用しない設定です。VPN接続時に全トラフィックがVPN経由になる「フルトンネル」を避け、VPN宛のトラフィックだけがこのリンクを通る「スプリットトンネル」にするための指定です。
+- **`options.xl2tpd`の`proxyarp`**: サーバーが、PPPクライアントに払い出した仮想IPアドレス宛のARP要求に対して、サーバー自身のMACアドレスで代理応答する設定です。クライアントの仮想IPは物理LAN上に実在しないため、これがないとLAN上の他機器からクライアント宛の通信が届きません。
+
+</details>
+
 ```
 # client        server  secret                    IP addresses
 labuser         L2TPLab "十分な強度のパスワード"      *
@@ -183,6 +195,8 @@ labuser         L2TPLab "十分な強度のパスワード"      *
 ```bash
 sudo chmod 600 /etc/ppp/chap-secrets
 ```
+
+こちらも`ipsec.secrets`と同じ理由(ユーザー名・パスワードが平文で書かれているため)で、所有者以外は読み取れないようパーミッションを絞っています。
 
 ### Step 4: カーネルのIPフォワーディングとファイアウォールを設定する
 
@@ -198,7 +212,13 @@ net.ipv4.conf.all.send_redirects = 0
 sudo sysctl -p
 ```
 
-ファイアウォール(`iptables`)では、IKE・NAT-T・ESP・L2TPに必要なポート/プロトコルを許可し、クライアントの仮想IPアドレス帯がインターネットに出られるようMASQUERADEを設定します(`eth0`は実際のWAN側インターフェース名に置き換えてください)。
+ファイアウォール(`iptables`)では、IKE・NAT-T・ESP・L2TPに必要なポート/プロトコルを許可し、クライアントの仮想IPアドレス帯がインターネットに出られるようMASQUERADEを設定します(`eth0`は実際のWAN側インターフェース名に置き換えてください)。インターフェース名がわからない場合は、次のコマンドでデフォルトルート(≒WAN側)に使われているインターフェースを確認できます。
+
+```bash
+ip route show default
+```
+
+`default via <ゲートウェイのIP> dev <インターフェース名>`のように表示される`dev`の後ろの値が、置き換え対象のインターフェース名です。`ip a`でも全インターフェースの一覧と状態(IPアドレス・UP/DOWN)は確認できますが、複数のNICがある環境(たとえばStep 0でNAT-T検証用に2つ目のネットワークを追加した場合など)では、どちらがWAN側かを`ip a`の出力だけから判断するのは難しいため、デフォルトルートを直接尋ねる`ip route show default`の方が確実です。
 
 ```bash
 sudo iptables -A INPUT -p udp --dport 500 -j ACCEPT
@@ -229,13 +249,108 @@ sudo ipsec statusall
 
 ### クライアントから接続する
 
-Linuxクライアント(NetworkManager)には、`network-manager-l2tp`プラグインを使うのが簡単です。
+Linuxクライアント(別VM)に、サーバーと同じ**strongSwan**・**xl2tpd**・**ppp**をインストールし、CLIだけで接続します。サーバー構築時にすでに使った知識をそのまま流用できるうえ、後述の理由によりこの方法がおすすめです。
+
+```bash
+sudo apt update
+sudo apt install -y strongswan xl2tpd ppp
+```
+
+<details>
+<summary>NetworkManagerのGUIプラグイン(network-manager-l2tp)を使わない理由</summary>
+
+Ubuntu/DebianのGNOME環境でL2TP/IPsec接続をGUIから設定したい場合、`network-manager-l2tp`(NetworkManager用のL2TP/IPsecプラグイン本体)と`network-manager-l2tp-gnome`(その設定画面を提供するGUIパネル)という2つのパッケージがあります。
 
 ```bash
 sudo apt install -y network-manager-l2tp network-manager-l2tp-gnome
 ```
 
-GUIから「VPNを追加」→「Layer 2 Tunneling Protocol (L2TP)」を選び、ゲートウェイにサーバーのIPアドレス、ユーザー名・パスワードに`chap-secrets`で設定した値、IPsecの事前共有鍵に`ipsec.secrets`で設定した値を入力します。
+ただし`network-manager-l2tp-gnome`はGNOMEのデスクトップ環境一式に依存するため、CLIのみのServer版イメージ(Debian/Ubuntu Server)にこれをインストールしようとすると、`sudo apt install -y ubuntu-desktop`のようなデスクトップ環境そのものが芋づる式に入ってきます。検証用に確保した8GB程度のディスクでは、これだけで容量不足(`No space left on device`)になり失敗するケースがあります。GUIでの接続を試したい場合は、クライアントVMのディスクを20GB以上に拡張するか、`ubuntu-desktop-minimal`のような軽量なデスクトップ環境の利用を検討してください。本記事では、この容量問題を避けられ、かつサーバー構築時の知識をそのまま流用できるCLIでの接続方法を本文の手順として採用しています。
+
+</details>
+
+まず`/etc/ipsec.conf`にクライアント用の接続定義を追記します。サーバー側の`conn L2TP-PSK`とほぼ同じ内容ですが、`right`にサーバーのIPアドレスを指定する点が異なります。
+
+```
+conn L2TP-PSK
+    authby=secret
+    auto=add
+    keyexchange=ikev1
+    ike=aes256-sha1-modp1024,aes128-sha1-modp1024,3des-sha1-modp1024!
+    esp=aes256-sha1,aes128-sha1,3des-sha1!
+    type=transport
+    left=%defaultroute
+    leftprotoport=17/1701
+    right=<サーバーのIPアドレス>
+    rightprotoport=17/1701
+```
+
+`/etc/ipsec.secrets`にも、サーバー側と同じ事前共有鍵を設定します。
+
+```
+: PSK "サーバー側のipsec.secretsに設定したものと同じ事前共有鍵"
+```
+
+```bash
+sudo chmod 600 /etc/ipsec.secrets
+```
+
+次に`/etc/xl2tpd/xl2tpd.conf`に、接続先サーバーを指す`lac`(LAC: L2TP Access Concentrator、L2TPのクライアント側を指す用語。サーバー側の`lns`(L2TP Network Server)と対になります)セクションを追記します。
+
+```
+[lac L2TPLab]
+lns = <サーバーのIPアドレス>
+ppp debug = yes
+pppoptfile = /etc/ppp/options.l2tpd.client
+length bit = yes
+```
+
+pppdのオプションファイル`/etc/ppp/options.l2tpd.client`を作成します。
+
+```
+ipcp-accept-local
+ipcp-accept-remote
+refuse-eap
+require-mschap-v2
+noccp
+noauth
+idle 1800
+mtu 1410
+mru 1410
+defaultroute
+usepeerdns
+debug
+lock
+connect-delay 5000
+name labuser
+```
+
+`name labuser`は、サーバー側の`/etc/ppp/chap-secrets`に登録したユーザー名です。クライアント側にも同じ内容のファイルを用意します(pppdはCHAP認証時にこのファイルを参照して自分の名乗る名前・パスワードを決めます)。
+
+```
+# client        server  secret                    IP addresses
+labuser         L2TPLab "サーバー側と同じパスワード"      *
+```
+
+```bash
+sudo chmod 600 /etc/ppp/chap-secrets
+```
+
+設定が揃ったら、サービスを起動して接続します。
+
+```bash
+sudo systemctl restart strongswan-starter xl2tpd
+sudo ipsec up L2TP-PSK
+sudo xl2tpd-control connect L2TPLab
+```
+
+接続に成功すると、`ppp0`という仮想インターフェースが作成されます。
+
+```bash
+ip a show ppp0
+```
+
+うまく`ppp0`が現れない場合は、`sudo ipsec statusall`でIKE/IPsec SAが確立しているか、`sudo journalctl -u xl2tpd -f`でL2TP/PPPネゴシエーションのログを確認してください。
 
 ### `tcpdump`で接続確立シーケンスを観測する
 

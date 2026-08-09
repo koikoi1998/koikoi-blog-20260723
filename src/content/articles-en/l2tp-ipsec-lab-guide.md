@@ -130,6 +130,8 @@ Next, set the pre-shared key in `/etc/ipsec.secrets` and lock down its permissio
 sudo chmod 600 /etc/ipsec.secrets
 ```
 
+`chmod 600` means "only the owner (root) can read or write; everyone else gets no access at all." This file holds the pre-shared key in plaintext, so if the permissions are left looser than this, any other local user account on the same server could read the key. strongSwan itself will warn you at startup if this file's permissions are too permissive.
+
 You'll examine the weakness of this "shared across all clients" PSK in Step 6.
 
 ### Step 3: Configure L2TP (xl2tpd) and PPP authentication
@@ -175,6 +177,16 @@ connect-delay 5000
 
 `mtu`/`mru` are kept around 1410 because the effective MTU shrinks once L2TP/PPP/ESP headers all stack up. `require-mschap-v2` pins the authentication method to MS-CHAPv2. Set the username/password in `/etc/ppp/chap-secrets`.
 
+<details>
+<summary>Meaning of a few settings not covered above</summary>
+
+- **`ikelifetime`/`keylife`/`rekeymargin`/`keyingtries` in `ipsec.conf`**: `ikelifetime` is the lifetime of the IKE SA (the management channel for key exchange established in Phase 1), and `keylife` is the lifetime of the IPsec SA (the actual encryption key established in Phase 2). `rekeymargin` is how many minutes before expiry a rekey should start, and `keyingtries` is how many times to retry a failed key exchange. Shorter SA lifetimes reduce the window a given key stays in use (safer), at the cost of more frequent rekeying overhead.
+- **`require chap`/`refuse pap` in `xl2tpd.conf`**: Of the PPP authentication methods, this requires CHAP (a challenge-response scheme that never sends the password itself) and explicitly refuses PAP (an older method that sends the password in near-plaintext). Even though everything travels over an ESP-encrypted path, this keeps the authentication method itself from being a weak link.
+- **`nodefaultroute` in `options.xl2tpd`**: Tells the client side not to automatically adopt this PPP link as its default gateway. This avoids "full tunnel" mode (where all traffic goes over the VPN) in favor of "split tunnel" mode, where only traffic destined for the VPN's address range uses this link.
+- **`proxyarp` in `options.xl2tpd`**: Has the server answer ARP requests for the client's virtual IP address on the server's own behalf, using the server's own MAC address. Since the client's virtual IP doesn't actually exist on the physical LAN, other devices on the LAN couldn't reach the client without this.
+
+</details>
+
 ```
 # client        server  secret                    IP addresses
 labuser         L2TPLab "a sufficiently strong password"      *
@@ -183,6 +195,8 @@ labuser         L2TPLab "a sufficiently strong password"      *
 ```bash
 sudo chmod 600 /etc/ppp/chap-secrets
 ```
+
+Same reasoning as `ipsec.secrets`: this file holds a plaintext username and password, so permissions are locked down to the owner only.
 
 ### Step 4: Configure kernel IP forwarding and the firewall
 
@@ -198,7 +212,13 @@ net.ipv4.conf.all.send_redirects = 0
 sudo sysctl -p
 ```
 
-In the firewall (`iptables`), allow the ports/protocols IKE, NAT-T, ESP, and L2TP need, and set up MASQUERADE so the client's virtual IP range can reach the internet (replace `eth0` with your actual WAN-facing interface name).
+In the firewall (`iptables`), allow the ports/protocols IKE, NAT-T, ESP, and L2TP need, and set up MASQUERADE so the client's virtual IP range can reach the internet (replace `eth0` with your actual WAN-facing interface name). If you're not sure of the interface name, the following command shows which interface is used for the default route (effectively, the WAN side).
+
+```bash
+ip route show default
+```
+
+The value after `dev` in output like `default via <gateway IP> dev <interface name>` is the interface name to substitute. `ip a` also lists every interface and its state (IP address, up/down), but on a host with multiple NICs (for example, if you added a second network in Step 0 for NAT-T testing), it's hard to tell which one is the WAN side from `ip a` output alone — asking for the default route directly with `ip route show default` is more reliable.
 
 ```bash
 sudo iptables -A INPUT -p udp --dport 500 -j ACCEPT
@@ -229,13 +249,108 @@ sudo ipsec statusall
 
 ### Connect from the client
 
-For a Linux client (NetworkManager), the `network-manager-l2tp` plugin is the easiest route.
+On the Linux client (a separate VM), install the same **strongSwan**, **xl2tpd**, and **ppp** you already used on the server, and connect entirely from the CLI. This reuses the knowledge you already built up setting up the server, and there's a good reason (below) to prefer it here.
+
+```bash
+sudo apt update
+sudo apt install -y strongswan xl2tpd ppp
+```
+
+<details>
+<summary>Why not use NetworkManager's GUI plugin (network-manager-l2tp)?</summary>
+
+If you want to configure an L2TP/IPsec connection from a GUI on Ubuntu/Debian's GNOME desktop, there are two packages: `network-manager-l2tp` (the L2TP/IPsec plugin itself for NetworkManager) and `network-manager-l2tp-gnome` (the GUI settings panel for it).
 
 ```bash
 sudo apt install -y network-manager-l2tp network-manager-l2tp-gnome
 ```
 
-From the GUI, choose "Add VPN" → "Layer 2 Tunneling Protocol (L2TP)," and enter the server's IP address as the gateway, the username/password from `chap-secrets`, and the pre-shared key from `ipsec.secrets`.
+The problem is that `network-manager-l2tp-gnome` depends on the entire GNOME desktop stack, so installing it on a CLI-only Server image (Debian/Ubuntu Server) drags in a full desktop environment via something like `sudo apt install -y ubuntu-desktop`. On the roughly 8GB of disk allocated for a lab VM, that alone can fail with "No space left on device." If you want to try the GUI route, either expand the client VM's disk to 20GB+ or consider a lighter desktop environment like `ubuntu-desktop-minimal`. This article's main text uses the CLI approach instead, since it sidesteps the disk-space problem and reuses the same tools and knowledge from building the server.
+
+</details>
+
+First, append a client-side connection definition to `/etc/ipsec.conf`. It's nearly identical to the server's `conn L2TP-PSK`, except `right` now points at the server's IP address.
+
+```
+conn L2TP-PSK
+    authby=secret
+    auto=add
+    keyexchange=ikev1
+    ike=aes256-sha1-modp1024,aes128-sha1-modp1024,3des-sha1-modp1024!
+    esp=aes256-sha1,aes128-sha1,3des-sha1!
+    type=transport
+    left=%defaultroute
+    leftprotoport=17/1701
+    right=<server's IP address>
+    rightprotoport=17/1701
+```
+
+Set the same pre-shared key as the server in `/etc/ipsec.secrets`.
+
+```
+: PSK "same pre-shared key as the server's ipsec.secrets"
+```
+
+```bash
+sudo chmod 600 /etc/ipsec.secrets
+```
+
+Next, append a `lac` section (LAC: L2TP Access Concentrator, the term for the client side of L2TP, paired with the server's `lns` — L2TP Network Server) to `/etc/xl2tpd/xl2tpd.conf`, pointing at the server.
+
+```
+[lac L2TPLab]
+lns = <server's IP address>
+ppp debug = yes
+pppoptfile = /etc/ppp/options.l2tpd.client
+length bit = yes
+```
+
+Create the pppd options file `/etc/ppp/options.l2tpd.client`.
+
+```
+ipcp-accept-local
+ipcp-accept-remote
+refuse-eap
+require-mschap-v2
+noccp
+noauth
+idle 1800
+mtu 1410
+mru 1410
+defaultroute
+usepeerdns
+debug
+lock
+connect-delay 5000
+name labuser
+```
+
+`name labuser` is the username registered in the server's `/etc/ppp/chap-secrets`. Set up an identical file on the client (pppd consults it during CHAP authentication to decide which name/password to present).
+
+```
+# client        server  secret                    IP addresses
+labuser         L2TPLab "same password as the server"      *
+```
+
+```bash
+sudo chmod 600 /etc/ppp/chap-secrets
+```
+
+Once everything's in place, start the services and connect.
+
+```bash
+sudo systemctl restart strongswan-starter xl2tpd
+sudo ipsec up L2TP-PSK
+sudo xl2tpd-control connect L2TPLab
+```
+
+On success, a `ppp0` virtual interface appears.
+
+```bash
+ip a show ppp0
+```
+
+If `ppp0` doesn't show up, check `sudo ipsec statusall` to see whether the IKE/IPsec SA came up, and `sudo journalctl -u xl2tpd -f` for the L2TP/PPP negotiation logs.
 
 ### Observe the connection sequence with `tcpdump`
 
