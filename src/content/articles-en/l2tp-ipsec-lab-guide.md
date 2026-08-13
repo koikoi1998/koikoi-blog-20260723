@@ -76,7 +76,26 @@ From the PVE management UI, upload a Debian 12 (or Ubuntu Server 22.04+) ISO and
 How you wire up the network changes how easy it is to trigger NAT-T later.
 
 - **A configuration bridged directly to `vmbr0`**: The VM gets an IP address directly from your home router. Start here, testing from within your LAN.
-- **A configuration with an extra layer of NAT inside PVE**: Attaching the client VM to a NAT-mode network gives you a client → (NAT) → server path, deliberately creating a NAT environment. You'll use this in Step 5, "Deliberately Triggering NAT-T."
+- **A configuration with an extra layer of NAT inside PVE**: Attaching the client VM to a NAT-mode network gives you a client → (NAT) → server path, deliberately creating a NAT environment. You'll use this in Verification 3, "Deliberately Triggering NAT-T."
+
+<details>
+<summary>How to build the extra layer of NAT inside PVE (used in Verification 3)</summary>
+
+Proxmox VE doesn't ship with a ready-made "NAT mode" network the way, say, VirtualBox does. Here, you'll build a simple NAT network by applying the **exact same technique you'll use in Step 4 (`ip_forward` + `iptables MASQUERADE`) to the PVE host itself.**
+
+1. **Create a new Linux bridge with no physical NIC attached**: In the PVE management UI, select your node, then "System" → "Network" → "Create" → "Linux Bridge". Leave `Bridge ports` empty (so it's not connected to a physical NIC — it stays entirely internal to the PVE host), and give the bridge itself an IPv4 address (e.g., `192.168.100.1/24`). Use a name that doesn't collide with `vmbr0` (e.g., `vmbr1`). Reboot the node or run "Apply Configuration" to activate it.
+2. **Enable IP forwarding on the PVE host itself**: From a shell on the PVE host, add `net.ipv4.ip_forward = 1` to `/etc/sysctl.conf` (same as you did for the server VM) and run `sudo sysctl -p`.
+3. **Add a MASQUERADE rule on the PVE host itself**: This rewrites the source address for packets forwarded from the new bridge (`vmbr1`) out through the bridge that actually reaches the WAN (`vmbr0`).
+
+   ```bash
+   sudo iptables -t nat -A POSTROUTING -s 192.168.100.0/24 -o vmbr0 -j MASQUERADE
+   ```
+
+4. **Attach the client VM to the new bridge**: Change the client VM's network device (under "Hardware") to connect to `vmbr1`, and configure a static IP on the VM side (e.g., `192.168.100.10/24`, gateway `192.168.100.1`).
+
+You now have a client VM → (NAT'd by the PVE host) → server VM path, and from the client's perspective, the server is "outside the NAT." Notice that you just applied the exact same two mechanisms — `ip_forward` and `MASQUERADE` — that you'll set up on the server VM in Step 4, only this time on the PVE host itself. Once that clicks, NAT stops looking like some special built-in feature and starts looking like what it actually is: an ordinary mechanism you can bolt onto any Linux host sitting along a path.
+
+</details>
 
 ### Step 1: Install the required packages
 
@@ -120,6 +139,15 @@ conn L2TP-PSK
 
 `type=transport` directly reflects the design explained in [How L2TP/IPsec Works](/en/articles/l2tp-ipsec-guide): since L2TP already provides its own tunneling function, there's no need to stack IPsec's tunnel mode on top of it. `leftprotoport=17/1701` scopes this IPsec policy to only traffic destined for UDP (protocol 17) port 1701.
 
+`left`/`right` don't mean "server" vs. "client" — they mean **"the host reading this config file" (`left`) vs. "the peer it's talking to" (`right`).** For the same tunnel, the server's own `ipsec.conf` sees itself as `left` and the client as `right`, while the client's `ipsec.conf` sees the exact opposite (itself as `left`, the server as `right`). In the server config above, `left=%any`/`right=%any` means "accept a connection from any peer" (any of potentially many clients). The client-side config you'll write in Verification 1 uses asymmetric values instead: `left=%defaultroute` (auto-detect its own WAN address) and `right=<server's IP address>` (explicitly name the peer).
+
+<details>
+<summary>Meaning of a few settings not covered above (ipsec.conf)</summary>
+
+- **`ikelifetime`/`keylife`/`rekeymargin`/`keyingtries`**: `ikelifetime` is the lifetime of the IKE SA (the management channel for key exchange established in Phase 1), and `keylife` is the lifetime of the IPsec SA (the actual encryption key established in Phase 2). `rekeymargin` is how many minutes before expiry a rekey should start, and `keyingtries` is how many times to retry a failed key exchange. Shorter SA lifetimes reduce the window a given key stays in use (safer), at the cost of more frequent rekeying overhead.
+
+</details>
+
 Next, set the pre-shared key in `/etc/ipsec.secrets` and lock down its permissions.
 
 ```
@@ -156,6 +184,13 @@ length bit = yes
 
 `ip range` is the range of virtual IP addresses handed to clients; `local ip` is the server's own virtual gateway address inside the L2TP tunnel. This exact `local ip` value is what you'll see as the gateway when you inspect a Windows client's `route print` output in Step 4.
 
+<details>
+<summary>Meaning of a few settings not covered above (xl2tpd.conf)</summary>
+
+- **`require chap`/`refuse pap`**: Of the PPP authentication methods, this requires CHAP (a challenge-response scheme that never sends the password itself) and explicitly refuses PAP (an older method that sends the password in near-plaintext). Even though everything travels over an ESP-encrypted path, this keeps the authentication method itself from being a weak link.
+
+</details>
+
 Next, create `/etc/ppp/options.xl2tpd`.
 
 ```
@@ -170,7 +205,6 @@ mtu 1410
 mru 1410
 nodefaultroute
 debug
-lock
 proxyarp
 connect-delay 5000
 ```
@@ -178,18 +212,23 @@ connect-delay 5000
 `mtu`/`mru` are kept around 1410 because the effective MTU shrinks once L2TP/PPP/ESP headers all stack up. `require-mschap-v2` pins the authentication method to MS-CHAPv2. Set the username/password in `/etc/ppp/chap-secrets`.
 
 <details>
-<summary>Meaning of a few settings not covered above</summary>
+<summary>Meaning of a few settings not covered above (options.xl2tpd)</summary>
 
-- **`ikelifetime`/`keylife`/`rekeymargin`/`keyingtries` in `ipsec.conf`**: `ikelifetime` is the lifetime of the IKE SA (the management channel for key exchange established in Phase 1), and `keylife` is the lifetime of the IPsec SA (the actual encryption key established in Phase 2). `rekeymargin` is how many minutes before expiry a rekey should start, and `keyingtries` is how many times to retry a failed key exchange. Shorter SA lifetimes reduce the window a given key stays in use (safer), at the cost of more frequent rekeying overhead.
-- **`require chap`/`refuse pap` in `xl2tpd.conf`**: Of the PPP authentication methods, this requires CHAP (a challenge-response scheme that never sends the password itself) and explicitly refuses PAP (an older method that sends the password in near-plaintext). Even though everything travels over an ESP-encrypted path, this keeps the authentication method itself from being a weak link.
-- **`nodefaultroute` in `options.xl2tpd`**: Tells the client side not to automatically adopt this PPP link as its default gateway. This avoids "full tunnel" mode (where all traffic goes over the VPN) in favor of "split tunnel" mode, where only traffic destined for the VPN's address range uses this link.
-- **`proxyarp` in `options.xl2tpd`**: Has the server answer ARP requests for the client's virtual IP address on the server's own behalf, using the server's own MAC address. Since the client's virtual IP doesn't actually exist on the physical LAN, other devices on the LAN couldn't reach the client without this.
+- **`nodefaultroute`**: Tells the client side not to automatically adopt this PPP link as its default gateway. This avoids "full tunnel" mode (where all traffic goes over the VPN) in favor of "split tunnel" mode, where only traffic destined for the VPN's address range uses this link.
+- **`proxyarp`**: Has the server answer ARP requests for the client's virtual IP address on the server's own behalf, using the server's own MAC address. Since the client's virtual IP doesn't actually exist on the physical LAN, other devices on the LAN couldn't reach the client without this.
+
+</details>
+
+<details>
+<summary>Deliberately left out: lock</summary>
+
+`lock` makes pppd create a UUCP-style lock file (`/var/lock/LCK..<device>`) for the serial device it's using, to prevent concurrent access to that device. With a `pppol2tp`-based L2TP connection, though, there's no real serial device to lock in the first place. Including `lock` here makes pppd fail to start in a confusing way — no clear error message, and the `ppp0` interface simply never appears. Leave it out of your L2TP config files.
 
 </details>
 
 ```
 # client        server  secret                    IP addresses
-labuser         L2TPLab "a sufficiently strong password"      *
+labuser         *       "a sufficiently strong password"      *
 ```
 
 ```bash
@@ -197,6 +236,8 @@ sudo chmod 600 /etc/ppp/chap-secrets
 ```
 
 Same reasoning as `ipsec.secrets`: this file holds a plaintext username and password, so permissions are locked down to the owner only.
+
+Each line in `chap-secrets` has four fields: `client-name server-name secret allowed-IPs`. The second field, "server name," is matched against **the name pppd itself is presenting as** when it acts as the authenticator — but exactly what value gets passed in here can vary depending on the caller (xl2tpd vs. a Windows RRAS client, for instance). Hard-coding it to `L2TPLab` means a client that identifies itself differently (a Windows client, as you'll see later) can fail authentication without a clear error in the logs. That's why this article uses `*` (wildcard, match any) from the start.
 
 ### Step 4: Configure kernel IP forwarding and the firewall
 
@@ -212,13 +253,21 @@ net.ipv4.conf.all.send_redirects = 0
 sudo sysctl -p
 ```
 
+Here's what each of these three settings actually does.
+
+| Setting | Meaning |
+|---|---|
+| `net.ipv4.ip_forward = 1` | Enables the kernel's ability to forward (route) packets that aren't addressed to itself, out another interface. This is disabled (`0`) by default; without setting it to `1`, the server can't relay packets from VPN clients out to the internet or LAN. |
+| `net.ipv4.conf.all.accept_redirects = 0` | Prevents the kernel from rewriting its own routing state in response to an ICMP redirect (a packet suggesting "there's a closer router you should use"). This guards against an attacker hijacking your routes via forged ICMP redirects. |
+| `net.ipv4.conf.all.send_redirects = 0` | Conversely, stops this host from sending ICMP redirects of its own. This server is a simple VPN gateway, not a complex router that needs to advise other hosts about better routes. |
+
 In the firewall (`iptables`), allow the ports/protocols IKE, NAT-T, ESP, and L2TP need, and set up MASQUERADE so the client's virtual IP range can reach the internet (replace `eth0` with your actual WAN-facing interface name). If you're not sure of the interface name, the following command shows which interface is used for the default route (effectively, the WAN side).
 
 ```bash
 ip route show default
 ```
 
-The value after `dev` in output like `default via <gateway IP> dev <interface name>` is the interface name to substitute. `ip a` also lists every interface and its state (IP address, up/down), but on a host with multiple NICs (for example, if you added a second network in Step 0 for NAT-T testing), it's hard to tell which one is the WAN side from `ip a` output alone — asking for the default route directly with `ip route show default` is more reliable.
+The value after `dev` in output like `default via <gateway IP> dev <interface name>` is the interface name to substitute. On a host with multiple NICs (for example, if you added a second network in Step 0 for NAT-T testing), it's more reliable to ask for the default route (effectively, the way out to the internet) directly like this than to eyeball a full interface listing and guess which one is the WAN side.
 
 ```bash
 sudo iptables -A INPUT -p udp --dport 500 -j ACCEPT
@@ -305,6 +354,15 @@ pppoptfile = /etc/ppp/options.l2tpd.client
 length bit = yes
 ```
 
+By default, `xl2tpd.conf` ships with a large block of sample lines commented out with `;` (semicolon). **Appending a fresh block as shown above is fine, but if you instead copy and edit an existing sample line (like `; [lac marko]`), make sure you don't forget to strip the leading `;`.** A line left commented out is skipped entirely, and `xl2tpd` never even sees that the section exists.
+
+<details>
+<summary>`[lac L2TPLab]` has no `=` assigning it a value — so how does it get "enabled"?</summary>
+
+An INI-style config file like `xl2tpd.conf` has two kinds of lines: `key = value` settings, and `[section name]` headers. `[lac L2TPLab]` is the latter — the declaration "a LAC section named `L2TPLab` starts here" is itself the information; there's no value being assigned via `=`. xl2tpd's config parser treats any `[lac <name>]` section it finds that isn't commented out as, simply by existing, an active LAC definition to register (there's no separate `enable = yes`-style flag). In other words, the section's mere presence — uncommented — is the on/off switch. For the general approach to investigating errors and using `journalctl`, see [Investigating Error Logs with journalctl](/en/articles/linux-journalctl-guide).
+
+</details>
+
 Create the pppd options file `/etc/ppp/options.l2tpd.client`.
 
 ```
@@ -320,10 +378,11 @@ mru 1410
 defaultroute
 usepeerdns
 debug
-lock
 connect-delay 5000
 name labuser
 ```
+
+Same reasoning as the server side: `lock` is left out, since there's no real device for a `pppol2tp` connection to lock.
 
 `name labuser` is the username registered in the server's `/etc/ppp/chap-secrets`. Set up an identical file on the client (pppd consults it during CHAP authentication to decide which name/password to present).
 
@@ -341,8 +400,10 @@ Once everything's in place, start the services and connect.
 ```bash
 sudo systemctl restart strongswan-starter xl2tpd
 sudo ipsec up L2TP-PSK
-sudo xl2tpd-control connect L2TPLab
+sudo xl2tpd-control connect-lac L2TPLab
 ```
+
+The `xl2tpd-control` subcommand is `connect-lac`, not `connect` (run `xl2tpd-control --help` to see the full list). `connect-lac`/`disconnect-lac` bring a tunnel up/down when you're acting as the LAC (the client side); they're distinct from the LNS-side commands like `add-lns`/`status-lns` you'd use on the server.
 
 On success, a `ppp0` virtual interface appears.
 
@@ -350,17 +411,30 @@ On success, a `ppp0` virtual interface appears.
 ip a show ppp0
 ```
 
-If `ppp0` doesn't show up, check `sudo ipsec statusall` to see whether the IKE/IPsec SA came up, and `sudo journalctl -u xl2tpd -f` for the L2TP/PPP negotiation logs.
+If `ppp0` doesn't show up, check `sudo ipsec statusall` to see whether the IKE/IPsec SA came up, and `sudo journalctl -u xl2tpd -f` for the L2TP/PPP negotiation logs. If xl2tpd's own log shows no errors but `ppp0` still doesn't appear, you need to look at the log from the `pppd` child process xl2tpd launches. `pppd` isn't a systemd unit — it logs under a syslog identifier — so filter with `-t` instead of `-u`.
+
+```bash
+sudo journalctl -t pppd -n 30 --no-pager
+```
+
+### Disconnect
+
+The upcoming `tcpdump` capture is meant to observe the packets exchanged **at the moment** a connection comes up. If you start capturing while `ppp0` from the steps above is still up, you'll only see the periodic keepalive (Hello/ZLB) messages an already-established tunnel sends — not the Main Mode → Quick Mode → L2TP sequence you're looking for. So disconnect first.
+
+```bash
+sudo xl2tpd-control disconnect-lac L2TPLab
+sudo ipsec down L2TP-PSK
+```
 
 ### Observe the connection sequence with `tcpdump`
 
-**Before** connecting the client, start a capture on the server.
+Once disconnected, start a capture on the server **before** connecting the client again.
 
 ```bash
 sudo tcpdump -i any 'udp port 500 or udp port 4500 or udp port 1701' -w /tmp/l2tp-capture.pcap
 ```
 
-Connect from the client while the capture is running, then stop it with `Ctrl+C` once the connection is up. Opening the resulting `l2tp-capture.pcap` in Wireshark lets you observe the following flow as actual packets.
+With the capture running, re-run `ipsec up L2TP-PSK` followed by `xl2tpd-control connect-lac L2TPLab` from above to reconnect, then stop the capture with `Ctrl+C` once the connection is up. Opening the resulting `l2tp-capture.pcap` in Wireshark lets you observe the following flow as actual packets.
 
 | What You Can Observe | Example Filter | What It Shows |
 |---|---|---|
@@ -370,6 +444,13 @@ Connect from the client while the capture is running, then stop it with `Ctrl+C`
 | PPP negotiation | (encapsulated inside L2TP) | LCP, CHAP authentication, IPCP exchange (also invisible if encrypted) |
 
 The only thing visible in plaintext is the IKE exchange on UDP 500; once ESP encryption is active, the contents of UDP port 1701 (L2TP) and the PPP exchange inside it become invisible. This packet capture is your direct proof that the PPP authentication exchange — which carries a username and password — always happens over an already-encrypted path.
+
+<details>
+<summary>If you see L2TP Hello/ZLB messages before Main Mode/Quick Mode</summary>
+
+In theory, `isakmp` (Main Mode, then Quick Mode) should come first, followed by `l2tp` tunnel-establishment messages. If you see `l2tp` `Hello`/`ZLB` messages ahead of any IKE traffic at the start of your capture, it's very likely not a fresh negotiation at all — you probably started capturing while **an existing tunnel was still up** (forgot to disconnect first), and what you're seeing is that tunnel's periodic keepalive. Following the "Disconnect" step above — reliably tearing down with `ipsec down`/`xl2tpd-control disconnect-lac` before you start the capture — gets you the sequence in the order the theory predicts.
+
+</details>
 
 ### Actually counting IKEv1's "9 round trips"
 
@@ -390,7 +471,9 @@ route print
 
 In `ipconfig /all`, you should see the PPP adapter (usually shown with a name like "Ethernet adapter PPP connection") assigned a virtual IP address from the `ip range` in `xl2tpd.conf`. What's worth paying attention to here is that **the subnet mask is `255.255.255.255`.** This is direct evidence that this link is being treated not as a "network" but as a "1-to-1 dedicated link."
 
-Next, check `route print` for the route entry via this PPP adapter. The gateway column should show the value you set as `local ip` in `xl2tpd.conf` (`10.10.10.1` in this article's example). This is the real-world output behind the claim made in the Windows Server (RRAS) article: since ARP doesn't work on a point-to-point link, even addresses that look like they belong to the same range require an explicit gateway entry. You've now confirmed, on your own Windows machine's actual routing table, the reasoning that because this is a /32 link with no broadcast and no ARP, the OS has no choice but to keep a static gateway entry telling it where to throw the next packet.
+Next, check `route print` for the route entry via this PPP adapter. Here's the catch: **the gateway column doesn't literally show the numeric value of `local ip` from `xl2tpd.conf` (`10.10.10.1`).** Instead, the rows for `0.0.0.0/0` (the default route) and `10.10.10.10/32` (your own assigned address) show "On-link" in the gateway column.
+
+This isn't a contradiction — if anything, it's further confirmation of the "point-to-point link" claim. On an ordinary network like Ethernet, there are potentially many destinations reachable within the same segment, so the OS needs an explicit numeric gateway to say "send it here next." A PPP point-to-point link, though, has **exactly one possible next hop, period.** When there's only one candidate destination, forwarding onto the link IS effectively the same as reaching it — so Windows' implementation doesn't bother spelling out `10.10.10.1` as a distinct number. Combined with the "subnet mask is `255.255.255.255`" detail from `ipconfig /all`, this gets you to a deeper understanding: a link with exactly one possible peer needs neither ARP nor a numeric gateway in the first place.
 
 ## Verification 3: Deliberately Triggering NAT-T
 
@@ -418,11 +501,16 @@ Hold onto the resulting throughput (Mbps), along with the IKE negotiation time y
 
 ## Common Sticking Points (Troubleshooting)
 
+This list is organized around "which command should I run first to check this," for the issues that actually come up most often in this hands-on lab. For deeper explanations and case-by-case guidance, see the FAQ section at the end of this article and [Investigating Error Logs with journalctl](/en/articles/linux-journalctl-guide).
+
 1. **The IKE SA never establishes at all**: Check the logs with `sudo journalctl -u strongswan-starter -f` for an error like `NO_PROPOSAL_CHOSEN`. This is usually caused by mismatched cipher/hash proposals between client and server, or a firewall blocking UDP 500/4500.
-2. **xl2tpd starts but PPP negotiation doesn't progress**: A common cause is a typo in the `chap-secrets` username/password, or file permissions locked down so tightly that `pppd` can't read it. Check `sudo journalctl -u xl2tpd -f` and the pppd-related lines in `/var/log/syslog`.
-3. **Connection succeeds, but the client can't reach the internet or other LAN devices**: Check that `net.ipv4.ip_forward` is enabled and that the MASQUERADE iptables rule references the correct interface name.
-4. **The Windows client's `route print` doesn't show a PPP route**: It can take a few seconds to show up right after connecting. First confirm the PPP adapter itself has been created via `ipconfig /all`.
-5. **A Windows client behind NAT can't connect**: If the server itself is also behind NAT (double NAT), you'll need to set the `AssumeUDPEncapsulationContextOnSendRule` registry value on the Windows client.
+2. **A section in `xl2tpd.conf` isn't being recognized**: If `sudo journalctl -u xl2tpd` shows a `parse_config`-related error, check whether the section in question (e.g., `[lac ...]`) still has a leading `;`.
+3. **xl2tpd starts but PPP negotiation doesn't progress**: A common cause is a typo in the `chap-secrets` username/password, or file permissions locked down so tightly that `pppd` can't read it. Check `sudo journalctl -u xl2tpd -f`, and also `sudo journalctl -t pppd -n 30 --no-pager` for pppd's own log (syslog identifier `pppd`).
+4. **The IKE/IPsec and L2TP SAs are up, but `ppp0` never appears**: Often a typo in the options file (`options.xl2tpd`/`options.l2tpd.client`), or an option like `lock` that doesn't work in this environment — check `sudo journalctl -t pppd`.
+5. **`xl2tpd-control` returns `error: no such command`**: The subcommand is `connect-lac`/`disconnect-lac`, not `connect`/`disconnect`.
+6. **Connection succeeds, but the client can't reach the internet or other LAN devices**: Check that `net.ipv4.ip_forward` is enabled and that the MASQUERADE iptables rule references the correct interface name.
+7. **The Windows client's `route print` doesn't show a PPP route**: It can take a few seconds to show up right after connecting. First confirm the PPP adapter itself has been created via `ipconfig /all`. Note that even when everything's working correctly, the gateway column shows "On-link" rather than a number.
+8. **A Windows client behind NAT can't connect**: If the server itself is also behind NAT (double NAT), you'll need to set the `AssumeUDPEncapsulationContextOnSendRule` registry value on the Windows client.
 
 ## Cleaning Up the Lab Environment
 
@@ -432,7 +520,7 @@ Once you're done, you can leave the VMs as-is for reuse in later experiments (bu
 
 - Installing and configuring three components separately — strongSwan (IKE/ESP), xl2tpd (L2TP tunnel/session), and ppp (PPP authentication) — lets you build your own L2TP/IPsec server.
 - Watching IKE Phase 1 and Phase 2 with `tcpdump` confirms that only the UDP 500 IKE messages are visible in plaintext, and that IKEv1 really does perform 9 round trips of message exchange, exactly as the theory predicts.
-- Checking a Windows client's `route print`/`ipconfig` confirms, on real hardware, that the PPP adapter's subnet mask is `255.255.255.255` and that its gateway matches `local ip` in `xl2tpd.conf` — hard evidence for the claim that "PPP needs an explicit gateway because it's a point-to-point link."
+- Checking a Windows client's `route print`/`ipconfig` confirms, on real hardware, that the PPP adapter's subnet mask is `255.255.255.255`, and that the default route's gateway column shows "On-link" rather than a number (because there's only ever one possible next hop) — hard evidence that PPP really is a point-to-point link.
 - Adding an extra layer of NAT inside PVE lets you deliberately trigger and observe NAT-T (the float to UDP port 4500, the NAT-D payload).
 - The weakness of sharing a single pre-shared key (PSK) across every client becomes intuitively obvious once you look at the actual config files.
 - The performance baseline recorded with `iperf3` here gets used again in the next hands-on article (comparing performance against OpenVPN/WireGuard).
