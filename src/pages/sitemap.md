@@ -126,6 +126,7 @@ graph TB
 <li><a href="/articles/linux-iptables-guide">iptables(netfilter)の仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/linux-filesystem-hierarchy-guide">/etcとLinuxのディレクトリ構成(FHS)を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/linux-config-activation-guide">設定ファイルが「効く」までの仕組みを『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/linux-journalctl-guide">journalctlでエラーログを調査する方法を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/nic-driver-internals-guide">NICドライバとLinuxカーネルのネットワーク処理を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/idrac-power-guide">サーバー電源の仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/os-boot-process-guide">POST後のOS起動プロセスを『上位1%』の視点で理解する</a></li>
@@ -197,7 +198,7 @@ graph TB
 
 ### Linux/OS基礎シリーズ
 
-VPNプロトコルの記事やL2TP/IPsecハンズオンなどで繰り返し登場する、実行環境レベルの基礎用語を深掘りするシリーズです。**読む順番の目安**: ① linux-daemon-guide → ② software-library-guide → ③ linux-user-kernel-space-guide → ④ linux-file-permissions-guide → ⑤ linux-sysctl-guide → ⑥ linux-iptables-guide → ⑦ linux-filesystem-hierarchy-guide → ⑧ linux-config-activation-guide。
+VPNプロトコルの記事やL2TP/IPsecハンズオンなどで繰り返し登場する、実行環境レベルの基礎用語を深掘りするシリーズです。**読む順番の目安**: ① linux-daemon-guide → ② software-library-guide → ③ linux-user-kernel-space-guide → ④ linux-file-permissions-guide → ⑤ linux-sysctl-guide → ⑥ linux-iptables-guide → ⑦ linux-filesystem-hierarchy-guide → ⑧ linux-config-activation-guide → ⑨ linux-journalctl-guide。
 
 - [デーモン(daemon)とは何か——Linuxのバックグラウンドプロセスを『上位1%』の視点で理解する](/articles/linux-daemon-guide) — 通常のプロセスとの違い、IKEデーモンなどプロトコル処理がデーモンとして実装される理由、systemdによる起動・監視・ログの仕組みまでの深掘り（現代的なVPNプロトコルとの比較の記事のデーモンの話から派生した発展編、単体でも読めます）。
 - [ライブラリ(library)とは何か——静的リンク・動的リンクの仕組みを『上位1%』の視点で理解する](/articles/software-library-guide) — 静的リンクと動的リンク(共有ライブラリ)の違い、シンボル解決の仕組み、ABI互換性が障害要因になる理由までの深掘り（現代的なVPNプロトコルとの比較の記事のOpenSSLの話から派生した発展編、単体でも読めます）。
@@ -207,6 +208,7 @@ VPNプロトコルの記事やL2TP/IPsecハンズオンなどで繰り返し登�
 - [iptables(netfilter)の仕組みを『上位1%』の視点で理解する](/articles/linux-iptables-guide) — netfilterのフック点・テーブル・チェーンの構造、ルールの評価順序、connection trackingによるステートフルな判定、MASQUERADEとSNATの違いまでの深掘り（L2TP/IPsecハンズオンのiptablesコマンド群から派生した発展編、単体でも読めます）。
 - [/etcとLinuxのディレクトリ構成(FHS)を『上位1%』の視点で理解する](/articles/linux-filesystem-hierarchy-guide) — FHSという設計思想を貫く「ホスト固有か共有可能か」「静的か可変か」という2つの軸、サービスごとのサブディレクトリの慣習、コンテナ時代における意味の変化までの深掘り（L2TP/IPsecハンズオンの/etc/ipsec.conf編集から派生した発展編、単体でも読めます）。
 - [設定ファイルが「効く」までの仕組みを『上位1%』の視点で理解する](/articles/linux-config-activation-guide) — デーモンが設定ファイルをパースして内部データ構造に変換する流れ、reloadと再起動の違い、ユーザー空間デーモンの設定とカーネルパラメータの反映経路の違いまでの深掘り（L2TP/IPsecハンズオンのipsec.conf/xl2tpd.conf編集から派生した発展編、単体でも読めます）。
+- [journalctlでエラーログを調査する方法を『上位1%』の視点で理解する](/articles/linux-journalctl-guide) — systemdジャーナルの正体、-u/-t/-f/-n/--no-pager/-xeの使い分け、IKE→L2TP→PPPのように複数プロセスが連携する構成でどの順番でログを追うかの切り分け方までの深掘り（L2TP/IPsecハンズオンのエラー調査から派生した発展編、単体でも読めます）。
 
 ### 電話網・アクセス回線シリーズ
 

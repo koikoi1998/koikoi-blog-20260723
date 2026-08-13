@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the correct way to distinguish journalctl's -u option from its -t option?"
+    choices:
+      - "-u always shows more information than -t, so you only ever need -u"
+      - "-u filters logs for processes managed as systemd units, while -t filters by tag for processes that aren't systemd units (they log via syslog instead)"
+      - "-u shows past logs and -t shows future logs"
+      - "-u and -t mean exactly the same thing and always produce identical results"
+    answerIndex: 1
+    explanation: "A process managed as a systemd unit, like xl2tpd, can be filtered with -u. But a process that isn't a systemd unit itself — like pppd, which xl2tpd launches internally — needs to be filtered by its syslog identifier (tag) using -t instead."
+
+  - question: "When a failed service suggests running journalctl -xeu <unit name>, what do -x and -e actually mean?"
+    choices:
+      - "-x encrypts the log and -e erases it"
+      - "-e jumps to the end (the most recent entries), and -x additionally shows systemd's own supplementary explanations"
+      - "-x speeds up execution and -e hides errors only"
+      - "Both -x and -e are options that limit how many entries are shown"
+    answerIndex: 1
+    explanation: "-e is a display-position option that jumps to the most recent log entries, while -x appends systemd's own supplementary explanations relevant to the log content, where available."
+
+  - question: "For a setup like the L2TP/IPsec lab, where a connection comes up in the order IKE → L2TP → PPP, what investigation order does the article recommend when a connection fails?"
+    choices:
+      - "Always check pppd's log first, and only check ipsec's log if that looks fine"
+      - "Follow the order things come up in — check ipsec statusall, then journalctl -u xl2tpd, then journalctl -t pppd, in that order"
+      - "It doesn't matter which log you check first, since the result is the same either way"
+      - "Checking the server's logs alone is always enough to know the client's state too"
+    answerIndex: 1
+    explanation: "Since a connection comes up in the order IKE → L2TP → PPP, narrowing down where it's stalling in that same order is the efficient approach. You also need to cross-check logs on both the client and the server, not just one side."
+
+  - question: "For a \"silent failure\" — one that produces no clear error message at all (like the lock-option example) — what hint does the article give for tracking it down?"
+    choices:
+      - "If you run journalctl long enough, an error message will eventually always appear"
+      - "You may need an experimental approach: commenting out suspect settings one at a time and restarting, to narrow down which one, once removed, makes it work"
+      - "A silent failure always means a kernel panic, and reinstalling the OS is the only fix"
+      - "A silent failure can never be detected via journalctl in principle, so it's safe to ignore"
+    answerIndex: 1
+    explanation: "A failure with no clear error message has real limits to how far log searching alone can take you — you may need to combine it with a deliberate binary-search-style experiment, removing suspect settings one at a time and restarting."
+
+  - question: "What does the option combination -n 30 --no-pager mean?"
+    choices:
+      - "Show the last 30 entries, printed directly without an interactive pager"
+      - "Collect logs for 30 seconds, then display them page by page"
+      - "Show logs from 30 units combined, in a paged view"
+      - "Play back the log at 30x speed"
+    answerIndex: 0
+    explanation: "-n 30 limits output to the last 30 entries, and --no-pager skips an interactive pager (like less) and streams straight to stdout instead. This combination is handy when you want to copy or pipe the output."

@@ -34,3 +34,15 @@ items:
     link:
       url: "/en/articles/handson-prep-guide"
       label: "Read the hands-on prep manual"
+
+  - question: "When something breaks, which logs should I check — strongSwan (ipsec), xl2tpd (l2tp), or pppd — and in what order?"
+    answer: "A connection comes up in the order IKE (ipsec) → L2TP tunnel/session (xl2tpd) → PPP authentication (pppd), so troubleshoot in that same order. First run sudo ipsec statusall to see if the IKE/IPsec SA is up; if not, check journalctl -u strongswan-starter. If the SA is up but ppp0 never appears, check journalctl -u xl2tpd next, and if that still doesn't explain it, check journalctl -t pppd (pppd isn't a systemd unit — it logs under a syslog identifier, so filter with -t). The same logic applies on both the server and the client, and lining up logs from both hosts around the same timestamp makes it much easier to pin down the actual cause."
+    link:
+      url: "/en/articles/linux-journalctl-guide"
+      label: "See how to investigate error logs with journalctl"
+
+  - question: "ipsec up gives NO_PROPOSAL_CHOSEN, and removing the spaces from ike= plus restarting the client alone doesn't fix it — why?"
+    answer: "strongSwan's cipher-suite lists (ike=/esp=) are parsed strictly on commas, so a space after a comma gets treated as part of an invalid algorithm name, and that whole proposal gets rejected — hence NO_PROPOSAL_CHOSEN. Two things make this confusing: editing the config file doesn't instantly take effect on the already-running charon daemon, and state from a previously failed negotiation can linger inside the daemon. If you only fix and restart the client, the server may still be holding onto stale state (or an old config), so it fails again — restarting strongSwan on both sides, so both start a clean negotiation from the new config, is what actually resolves it. As a habit, restart strongSwan (sudo ipsec restart, or systemctl restart strongswan-starter) on both ends whenever you edit ipsec.conf, not just the side you changed."
+
+  - question: "Connecting from Windows Server fails with \"The remote computer could not be reached... the port used for this connection is closed\""
+    answer: "If the server's pppd log shows couldn't find any suitable secret (password), the cause is that /etc/ppp/chap-secrets has no matching entry for that user. Since this article's chap-secrets uses * for the server-name field, adding an entry with the correct client name (username) and password lets a Windows client authenticate through the exact same file as the Linux client. Double-check that the username/password you entered in Windows' connection settings matches an entry in chap-secrets."
