@@ -1,0 +1,45 @@
+questions:
+  - question: "In Scenario 1, what's the direct cause of xl2tpd failing to start with a parse_config error?"
+    choices:
+      - "The server's IP address was wrong"
+      - "A leading ; (comment marker) was left on the [lac L2TPLab] line, so the entire section was skipped as an invalid line"
+      - "The xl2tpd version was too old"
+      - "The value of ppp debug = yes was invalid"
+    answerIndex: 1
+    explanation: "With a leading ; left in place, that section is treated as a commented-out, invalid line — xl2tpd's config parser never even registers that the section exists."
+
+  - question: "In Scenario 2, why does including lock in options.xl2tpd make pppd fail to start with no clear error message?"
+    choices:
+      - "lock is an option that doesn't exist for pppd, so it would always error out at startup"
+      - "lock creates a lock file for a serial device, but a pppol2tp-based connection has no real device to lock in the first place"
+      - "The lock option is exclusively for encrypted traffic and can't be used with plaintext connections"
+      - "Using the lock option makes pppd always wait 5 minutes before starting, by design"
+    answerIndex: 1
+    explanation: "lock creates a lock file targeting a serial device, but a pppol2tp-based connection has no real device to lock — that mismatch keeps pppd from starting correctly."
+
+  - question: "In Scenario 4, why might removing the space from ike= and restarting only the client fail to fix the problem?"
+    choices:
+      - "Removing the space never fixes the root cause, so the server always needs to be reinstalled"
+      - "Editing a config file doesn't necessarily take effect on the running charon daemon instantly, and state from a failed negotiation can linger — so you need to restart the server too"
+      - "IKE never reads the client-side configuration at all"
+      - "The ike= value is only meaningful on the server, and the client's value is always ignored"
+    answerIndex: 1
+    explanation: "An edited config isn't guaranteed to take effect on the running daemon instantly, and state from a previously failed negotiation can persist. Only restarting both the client and the server lets both sides start a clean negotiation from the new config."
+
+  - question: "In Scenario 5, what was the root cause of only the Windows client failing to connect?"
+    choices:
+      - "Windows' firewall always blocks all L2TP/IPsec traffic"
+      - "chap-secrets had a hard-coded server-name field that didn't match what the Windows RRAS client presented as its identity, so the secret lookup failed"
+      - "Windows doesn't support CHAP authentication"
+      - "The server's IP address was different for the Linux client and the Windows client"
+    answerIndex: 1
+    explanation: "A hard-coded server-name field (the second field) in chap-secrets can fail to match when different kinds of clients identify themselves differently. Using a wildcard (*) resolves it."
+
+  - question: "What's the general pattern for incident investigation this article presents throughout?"
+    choices:
+      - "Delete every config file and start over from scratch"
+      - "State the symptom precisely, confirm each stage that should normally pass with logs, and if no error appears, run an experiment removing suspect settings one at a time"
+      - "Reinstall the OS the moment any error occurs"
+      - "Never check logs at all — just keep rewriting config files by trial and error"
+    answerIndex: 1
+    explanation: "Precisely stating the symptom, confirming each stage in order with logs, and running an experimental narrowing-down process when no error appears — these three form the investigative pattern this article presents consistently."
