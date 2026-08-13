@@ -35,14 +35,14 @@ questions:
     answerIndex: 1
     explanation: "The PPP adapter's subnet mask ends up as 255.255.255.255 (/32), which is direct evidence that broadcast and ARP don't work on this point-to-point link. That's exactly why an explicit gateway must be specified."
 
-  - question: "What value shows up as the gateway in the PPP-adapter route you can see with `route print`?"
+  - question: "What shows up in the gateway column for the PPP-adapter route you can see with `route print`?"
     choices:
       - "It always shows 0.0.0.0, indicating no gateway exists"
-      - "The value set as `local ip` in xl2tpd.conf — the server's own virtual gateway address"
-      - "The client's own IP address, shown as-is"
+      - "The numeric value set as `local ip` in xl2tpd.conf, shown as-is"
+      - "Not a number — \"On-link,\" because a point-to-point link has only one possible next hop. Running `tracert` confirms the actual first hop really is the server's `local ip`"
       - "The DNS server's IP address"
-    answerIndex: 1
-    explanation: "The gateway column shows the value set as local ip in xl2tpd.conf. This is the real-world output that backs up the claim from the Windows Server (RRAS) article: PPP being a point-to-point link is exactly why an explicit gateway must be specified."
+    answerIndex: 2
+    explanation: "Because a point-to-point link like PPP has only one possible next hop, Windows shows the gateway as \"On-link\" rather than spelling out a number. That doesn't mean there's no gateway, though — running tracert shows the first hop really is the server's local ip, confirming the server genuinely functions as the gateway."
 
   - question: "What does the article say you'll observe in a tcpdump capture when connecting from a client to the server through an extra layer of NAT inside PVE?"
     choices:
