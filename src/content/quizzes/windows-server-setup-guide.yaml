@@ -1,0 +1,36 @@
+questions:
+  - question: "この記事でOpenSSH Serverを有効化する方法として説明されているものはどれか。"
+    choices:
+      - "PowerShellでAdd-WindowsCapabilityコマンドを実行する"
+      - "Server Managerの「Add Roles and Features」ウィザードの「Features」画面から、GUI操作だけでOpenSSH Serverにチェックを入れてインストールする"
+      - "コントロールパネルからは一切有効化できず、必ずインストールメディアが必要になる"
+      - "Windows Server 2025ではOpenSSH Serverを有効化する方法が提供されていない"
+    answerIndex: 1
+    explanation: "本記事はPowerShellコマンドを使わず、Server Managerの「Add Roles and Features」ウィザードのFeatures画面からGUI操作だけでOpenSSH Serverをインストールする手順を解説しています。"
+
+  - question: "OpenSSH Serverの機能をインストールした後、追加で必要な操作として記事内で説明されているものはどれか。"
+    choices:
+      - "何もしなくても自動的にサービスが起動し、自動起動も有効になる"
+      - "Servicesアプリで「OpenSSH SSH Server」のStartup typeをAutomaticに変更し、Startボタンでサービスを起動する"
+      - "サービスの起動にはOSの再インストールが必要になる"
+      - "ファイアウォールを完全に無効化しないとサービスが起動しない"
+    answerIndex: 1
+    explanation: "機能をインストールしただけではサービスは起動していません。ServicesアプリでStartup typeをAutomaticに変更し、Startボタンで起動する必要があります。既定ではManualになっていることが多いです。"
+
+  - question: "OpenSSH Server機能をインストールすると、ファイアウォールに関して通常何が起こるか。"
+    choices:
+      - "ファイアウォールのルールは一切作成されず、手動ですべて設定する必要がある"
+      - "「OpenSSH SSH Server (sshd)」という名前の受信規則が自動的に作成され、TCP 22番ポートが許可された状態になる"
+      - "ファイアウォール自体が完全に無効化される"
+      - "すべてのポートが自動的に開放される"
+    answerIndex: 1
+    explanation: "通常、OpenSSH Serverの機能をインストールすると「OpenSSH SSH Server (sshd)」という受信規則が自動的に作成されます。Windows Defender Firewallの画面から有効になっているか確認できます。"
+
+  - question: "記事内で、リモートデスクトップ(RDP)も有効にしておくと便利だと説明されている理由はどれか。"
+    choices:
+      - "SSHでは一切ファイルを転送できないため"
+      - "SSHはコマンドライン操作が中心になるため、GUI操作が必要な設定作業ではRDP接続を使う場面が出てくるため"
+      - "RDPを有効にしないとOpenSSH Serverがインストールできない仕様になっているため"
+      - "RDPを有効にするとSSHサーバーが自動的に不要になるため"
+    answerIndex: 1
+    explanation: "SSHは主にコマンドライン操作向けであり、RRASの構成ウィザードのようにGUI操作が必要な設定作業ではRDP接続が役立つ場面があります。"

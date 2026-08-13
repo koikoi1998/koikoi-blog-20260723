@@ -1,0 +1,36 @@
+questions:
+  - question: "What packet-capture analysis workflow does this blog's hands-on articles use, according to the article?"
+    choices:
+      - "Run Wireshark directly on the remote server, building a GUI environment on the server side"
+      - "Capture with tcpdump on the server, transfer the file with scp to your own PC, and open it in Wireshark"
+      - "Skip packet capture entirely and rely only on log file analysis"
+      - "Always email yourself the capture taken on the server side"
+    answerIndex: 1
+    explanation: "This workflow avoids needing a GUI environment on the server, and since the capture is a saved file, you can revisit it anytime — hence tcpdump on the server, scp to transfer, and Wireshark on your own PC."
+
+  - question: "What does the trailing ./ mean in scp <username>@<server's IP address>:/tmp/l2tp-capture.pcap ./, according to the article?"
+    choices:
+      - "It deletes the file on the remote side"
+      - "It saves the transferred file into the current directory"
+      - "It switches the SSH connection to an unencrypted mode"
+      - "It compresses the file before transferring"
+    answerIndex: 1
+    explanation: "scp's command structure is scp <source> <destination>, and the trailing ./ specifies the destination as \"the current directory.\""
+
+  - question: "What does the article give as the cause of a \"Permission denied\" error when scp-ing a file captured with sudo tcpdump?"
+    choices:
+      - "The scp command itself has a bug and always fails"
+      - "A file captured with root privileges is owned by root, and the regular user you're SSH-connecting as has no read permission on it"
+      - "The network connection is too slow"
+      - "Wireshark isn't installed"
+    answerIndex: 1
+    explanation: "A file captured via sudo tcpdump is owned by root, so scp fails for a regular SSH user with no read permission on it. The fix is to loosen permissions with chmod, or set the owner at capture time with tcpdump's -Z option."
+
+  - question: "What's the correct distinction between Wireshark's \"display filter\" and \"capture filter,\" according to the article?"
+    choices:
+      - "They're the exact same feature, just with different names"
+      - "A display filter narrows down which already-recorded (or currently recording) packets get shown, while a capture filter narrows down which packets get recorded in the first place at capture time"
+      - "A display filter uses tcpdump's BPF syntax, and a capture filter uses Wireshark's own syntax"
+      - "Display filters are only available in the paid version of Wireshark"
+    answerIndex: 1
+    explanation: "A display filter (syntax like isakmp) narrows down which of the opened/recording packets get displayed. A capture filter (tcpdump's BPF syntax, like udp port 500) narrows down which packets get recorded in the first place at capture start."

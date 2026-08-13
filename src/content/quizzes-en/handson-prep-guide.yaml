@@ -1,45 +1,36 @@
 questions:
-  - question: "What does sudo apt update actually do, per the article?"
+  - question: "What does choosing \"vmbr0\" in the Network tab when creating a VM in Proxmox VE mean, according to the article?"
     choices:
-      - "Updates every installed piece of software to its latest version"
-      - "Fetches the list of available packages and their versions from the repositories and refreshes the local cache — it doesn't install or change anything itself"
-      - "Reinstalls the entire OS"
-      - "Automatically removes unneeded packages"
+      - "It completely isolates the VM from any network"
+      - "It attaches the VM to a bridge connected directly to your home LAN, letting the VM get an IP address straight from your router"
+      - "vmbr0 always means a NAT-mode network"
+      - "vmbr0 is an item for specifying which storage a disk is saved to"
     answerIndex: 1
-    explanation: "sudo apt update only queries each repository and refreshes the local cache of the package index (the list of available packages and versions) — it doesn't actually install or update anything."
+    explanation: "vmbr0 is commonly used as the bridge connected directly to a home LAN — a VM attached to it can get an IP address straight from the router."
 
-  - question: "What's the difference between sudo su (no hyphen) and sudo su - (with a hyphen), per the article?"
+  - question: "What's the correct process for using an OS installation medium (ISO) in Proxmox, according to the article?"
     choices:
-      - "They behave exactly the same way"
-      - "With the hyphen, environment variables are reset to match a direct root login and the home directory moves to /root; without it, the original user's environment variables carry over"
-      - "Without the hyphen, you become root with no password required; with the hyphen, a password is required"
-      - "Whether you use the hyphen determines whether you switch to root or to an ordinary user"
+      - "Assign the ISO file directly as the VM's disk"
+      - "Download the ISO from the distributing site, upload it to Proxmox's \"ISO Images\" storage (or fetch it directly via \"Download from URL\"), then select it when creating the VM"
+      - "The ISO is fetched automatically from the internet, so no prep is needed"
+      - "The ISO file is never used again once the VM has been created"
     answerIndex: 1
-    explanation: "sudo su - resets environment variables to match what they'd be for a direct root login and moves the home directory to /root. sudo su without the hyphen switches to root but carries over the original user's environment variables."
+    explanation: "You download the ISO from the distributing site, upload it to Proxmox's storage (or fetch it directly by URL), and select that ISO on the OS tab when creating the VM."
 
-  - question: "Why does the article say prefixing individual commands with sudo is preferred over staying in a root shell via sudo su - in practice?"
+  - question: "Why does the article strongly recommend checking \"Install OpenSSH server\" during the Ubuntu Server installation?"
     choices:
-      - "Prefixing with sudo every time makes commands run faster"
-      - "Commands run via sudo leave a record of who ran what and when, making auditing much easier"
-      - "sudo su - has a technical security hole and never works"
-      - "Staying in a root shell is designed to automatically shut down the OS"
+      - "Without it, the OS installation itself fails"
+      - "It lets you connect to the VM over SSH once installation finishes, and every hands-on article on this blog assumes an SSH connection from there on"
+      - "Checking it dramatically speeds up the OS's boot time"
+      - "Without an SSH server, network configuration itself becomes impossible"
     answerIndex: 1
-    explanation: "Commands run via sudo leave a record in places like /var/log/auth.log of who did what and when, making auditing (tracing actions back to a person) much easier — which is why prefixing individual commands with sudo is preferred over sitting in a root shell."
+    explanation: "Installing OpenSSH server lets you use an SSH connection, which is easier to copy-paste with than the Console screen. Every hands-on article on this blog assumes an SSH connection from that point on."
 
-  - question: "What does the article describe as the way to exit nano without saving your changes?"
+  - question: "What should you do right after the Ubuntu Server installation finishes, before rebooting, according to the article?"
     choices:
-      - "Press Ctrl + K to exit"
-      - "Press Ctrl + X to exit, then choose N (No) when asked whether to save"
-      - "Press Ctrl + W to exit"
-      - "The only way is to forcibly close the terminal window"
+      - "Nothing — it's fine to just reboot"
+      - "Eject the ISO image from the VM's optical drive (or change the boot order) — forgetting this means the installer boots again every time you reboot"
+      - "You need to increase the VM's memory before rebooting"
+      - "You need to unplug the network cable once"
     answerIndex: 1
-    explanation: "Pressing Ctrl + X (Exit) attempts to close nano; if there are unsaved changes, you're asked whether to save, and choosing N (No) discards them and exits."
-
-  - question: "What does the article recommend as the most reliable fix for keyboard-layout gotchas under a US layout setting?"
-    choices:
-      - "Launching a separate Japanese input tool just for typing symbols"
-      - "If your physical keyboard has a Japanese layout, matching the OS's keyboard layout setting to \"Japanese\" as well"
-      - "Buying a separate specialty keyboard, since symbol input is technically impossible under a US layout"
-      - "Physically rewiring the keyboard yourself"
-    answerIndex: 1
-    explanation: "The most reliable fix is matching the physical keyboard's layout with the OS's setting for how it interprets keypresses (the logical layout). This can be changed after install with the dpkg-reconfigure keyboard-configuration command."
+    explanation: "Forgetting to eject the ISO image means the installer keeps booting from the optical drive on every reboot. You can unmount the ISO from the VM's \"Hardware\" tab in Proxmox."

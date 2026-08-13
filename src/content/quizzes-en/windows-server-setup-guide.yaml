@@ -1,0 +1,36 @@
+questions:
+  - question: "What method does this article describe for enabling OpenSSH Server?"
+    choices:
+      - "Running the Add-WindowsCapability command in PowerShell"
+      - "Checking OpenSSH Server on the \"Features\" screen of Server Manager's \"Add Roles and Features\" wizard, using nothing but the GUI"
+      - "It can't be enabled from the control panel at all — installation media is always required"
+      - "Windows Server 2025 provides no way to enable OpenSSH Server"
+    answerIndex: 1
+    explanation: "This article deliberately avoids PowerShell commands, instead walking through installing OpenSSH Server entirely via the GUI, from the Features screen of Server Manager's Add Roles and Features wizard."
+
+  - question: "What additional step does the article say is needed after installing the OpenSSH Server feature?"
+    choices:
+      - "Nothing — the service starts automatically and auto-start is enabled by default"
+      - "Open the Services app, change \"OpenSSH SSH Server\"'s Startup type to Automatic, and start the service with the Start button"
+      - "Starting the service requires reinstalling the OS"
+      - "The service won't start unless the firewall is completely disabled"
+    answerIndex: 1
+    explanation: "Installing the feature alone doesn't start the service. You need to open the Services app, change Startup type to Automatic, and click Start — it's usually set to Manual by default."
+
+  - question: "What typically happens to the firewall when you install the OpenSSH Server feature?"
+    choices:
+      - "No firewall rule is created at all — everything must be configured manually"
+      - "An inbound rule named \"OpenSSH SSH Server (sshd)\" is automatically created, allowing TCP port 22"
+      - "The firewall itself is completely disabled"
+      - "Every port is automatically opened"
+    answerIndex: 1
+    explanation: "Installing the OpenSSH Server feature usually automatically creates an inbound rule named \"OpenSSH SSH Server (sshd).\" You can confirm it's enabled from the Windows Defender Firewall screen."
+
+  - question: "Why does the article say enabling Remote Desktop (RDP) is also handy?"
+    choices:
+      - "SSH can't transfer files at all"
+      - "SSH is mainly for command-line work, so configuration tasks that need a GUI still call for an RDP connection"
+      - "RDP must be enabled before OpenSSH Server can be installed, by design"
+      - "Enabling RDP automatically makes an SSH server unnecessary"
+    answerIndex: 1
+    explanation: "SSH is primarily oriented toward command-line work, so configuration tasks that need a GUI — like the RRAS configuration wizard — are places an RDP connection comes in handy."

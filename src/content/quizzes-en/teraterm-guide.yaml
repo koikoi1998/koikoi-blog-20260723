@@ -1,0 +1,36 @@
+questions:
+  - question: "Why does the article say you should choose SSH2 for SSH version when creating a new SSH connection in Teraterm?"
+    choices:
+      - "SSH2 is simply faster"
+      - "SSH1 is old and has known vulnerabilities, so it shouldn't be used"
+      - "SSH1 is technically impossible to use on Windows"
+      - "You can't specify a TCP port number unless you choose SSH2"
+    answerIndex: 1
+    explanation: "SSH1 is an old protocol with known vulnerabilities and shouldn't be used — choosing SSH2 is the baseline."
+
+  - question: "What does the article say the \"SECURITY WARNING\" dialog on your first connection actually means?"
+    choices:
+      - "It's a warning that the password is wrong"
+      - "It's a confirmation shown because the target server's host key (public key) hasn't been recorded as trusted yet"
+      - "It's a warning that the network connection is unstable"
+      - "It's a warning that Teraterm's license is invalid on this Windows install"
+    answerIndex: 1
+    explanation: "SECURITY WARNING is a confirmation dialog shown because the target server's host key hasn't yet been recorded as trusted. You trust it after confirming the fingerprint is correct."
+
+  - question: "What fix does the article recommend if Japanese text is garbled in output from a Linux server?"
+    choices:
+      - "Reinstall Teraterm"
+      - "Match the Receive/Transmit character encoding to UTF-8 under \"Setup\" → \"Terminal...\""
+      - "Replace the server's OS with a Japanese-localized version"
+      - "Garbled text is an unfixable known bug"
+    answerIndex: 1
+    explanation: "Since most Linux distributions default to UTF-8, matching Teraterm's Receive/Transmit encoding to UTF-8 as well resolves the garbled text."
+
+  - question: "What does \"Setup\" → \"Save setup...\" let you do, according to the article?"
+    choices:
+      - "Forcibly reset the target server's password"
+      - "Save your current connection, character-encoding, and font settings as a .ini file, making future connections smoother"
+      - "Restart the SSH server on the target host"
+      - "Automatically email the connection log"
+    answerIndex: 1
+    explanation: "Save setup saves your current settings as a .ini file. Pointing a shortcut's arguments at that file lets you launch Teraterm with those same settings applied every time."

@@ -1,0 +1,45 @@
+questions:
+  - question: "What does the sudo apt update command actually do, according to the article?"
+    choices:
+      - "It upgrades every installed piece of software to its latest version"
+      - "It only fetches the list of available packages and their versions from the repositories and refreshes the local cache — it doesn't install or change anything"
+      - "It reinstalls the entire OS"
+      - "It automatically removes unnecessary packages"
+    answerIndex: 1
+    explanation: "sudo apt update only queries each repository and refreshes the local cache of the package index (available packages and versions) — it doesn't actually install or update anything."
+
+  - question: "What's the difference between sudo su (no hyphen) and sudo su - (with hyphen), according to the article?"
+    choices:
+      - "They behave identically"
+      - "With the hyphen, environment variables are reset to the same state as if root had logged in directly, and the home directory changes to /root; without it, the original user's environment variables are kept"
+      - "Without the hyphen, you become root without a password, but with the hyphen, a password is required"
+      - "Whether you add the hyphen determines whether you switch to root or a regular user"
+    answerIndex: 1
+    explanation: "sudo su - resets environment variables to the same state as a direct root login and moves the home directory to /root. sudo su without the hyphen switches to root but keeps the original user's environment variables."
+
+  - question: "What does the article describe as the fix if you forgot to check \"Install OpenSSH server\" during the Ubuntu Server install?"
+    choices:
+      - "There's no option but to reinstall the OS from scratch"
+      - "Log in directly via Proxmox's \"Console\" tab, install it with sudo apt install -y openssh-server, then enable it to start (and auto-start) with sudo systemctl enable --now ssh"
+      - "An SSH server can never be added after the fact"
+      - "Disabling ufw automatically installs an SSH server"
+    answerIndex: 1
+    explanation: "Log in directly from the console, install the openssh-server package, then enable both starting now and auto-starting with enable --now. If you're using ufw, you also need to allow the SSH port."
+
+  - question: "Why does the article say prefixing each command with sudo is recommended in practice, over living in a persistent root shell via sudo su -?"
+    choices:
+      - "Prefixing sudo each time makes commands execute faster"
+      - "Commands run with sudo tend to leave a record of who did what and when, making auditing (tracing who did what) easier"
+      - "sudo su - has a technical security hole and never works reliably"
+      - "Staying in a root shell is designed to automatically shut down the OS"
+    answerIndex: 1
+    explanation: "Commands run with sudo tend to leave a record in places like /var/log/auth.log, making it easier to trace who did what. That's why prefixing individual commands with sudo, rather than staying parked in a root shell, is the recommended practice."
+
+  - question: "What does the article recommend as the most reliable fix for the US-keyboard-layout gotcha?"
+    choices:
+      - "Launch a Japanese input tool every time you need to type a symbol"
+      - "If your physical keyboard has a Japanese layout, match the OS's keyboard layout setting to \"Japanese\" as well"
+      - "Since symbol input is impossible on a US keyboard, buy a separate dedicated keyboard"
+      - "Physically rewire the keyboard yourself"
+    answerIndex: 1
+    explanation: "Matching the OS's interpretation of a keypress (the logical layout) to the keyboard's actual physical layout is the most reliable fix. You can change it after installation with the dpkg-reconfigure keyboard-configuration command."
