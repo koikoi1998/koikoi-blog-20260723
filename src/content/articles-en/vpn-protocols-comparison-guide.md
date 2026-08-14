@@ -94,9 +94,16 @@ This is exactly why so many of the built-in VPN clients on Windows, iOS, macOS, 
 
 ### OpenVPN: A General-Purpose VPN Built on TLS
 
-**OpenVPN** is a piece of VPN software that reuses the same [library](/en/articles/software-library-guide) (OpenSSL) that underpins TLS (SSL), the protocol widely used to secure HTTPS traffic on the web, implementing key exchange, authentication, and encryption as a single, consistent protocol stack. Rather than IPsec's "combination of several separate standards," it's built on a single design based on a TLS handshake, and supports both certificate-based and PSK authentication (why TLS combines key exchange, authentication, and encryption the way it does is covered in [How PKI and Digital Certificates Work](/en/articles/pki-guide); the inner workings of the symmetric-key cryptography that encrypts the actual data are covered in [How Symmetric-Key Encryption (AES) and HMAC/AEAD Work](/en/articles/symmetric-encryption-guide)).
+**OpenVPN** is a piece of VPN software that reuses the same [library](/en/articles/software-library-guide) (OpenSSL) that underpins TLS (SSL), the protocol widely used to secure HTTPS traffic on the web, implementing key exchange, authentication, and encryption as a single, consistent protocol stack. Rather than IPsec's "combination of several separate standards," it's built on a single design based on a TLS handshake, and supports both certificate-based and PSK authentication (why TLS combines key exchange, authentication, and encryption the way it does is covered in [How PKI and Digital Certificates Work](/en/articles/pki-guide); the inner workings of the symmetric-key cryptography that encrypts the actual data are covered in [How Symmetric-Key Encryption (AES) and HMAC/AEAD Work](/en/articles/symmetric-encryption-guide)). (Why "encrypting with TLS" amounts to a VPN connection at all — the Control/Data Channel split, and configuration delivery via the Push mechanism — is covered in depth in [How OpenVPN Works](/en/articles/openvpn-internals-guide).)
 
 TLS was originally built to **encrypt a specific application's communication**, the way it secures HTTP traffic between a browser and a server. What OpenVPN does is take the raw IP packets handed to it by the OS through a TUN virtual network interface (covered below) and pour them straight into a single TLS connection. From TLS's point of view, it has no idea what's inside the connection — it's just a byte stream, and it treats an HTTP request and an IP packet exactly the same way. There's nothing special, spec-wise, about pouring arbitrary data into a TLS-protected connection like this; OpenVPN simply exploits that property to implement its VPN tunnel.
+
+<details>
+<summary>Aside: SSL vs. TLS</summary>
+
+**SSL (Secure Sockets Layer)** was the original protocol for encrypting web traffic, developed by Netscape in the 1990s. The specification was later handed off to the IETF, which standardized **TLS (Transport Layer Security)** in 1999 as SSL's effective successor (early TLS 1.0 was internally referred to at Netscape as "SSL 3.1," underscoring just how continuous the two specs really are). Every version of SSL (2.0, 3.0, and so on) is now deprecated due to known vulnerabilities, and every modern implementation you'll actually encounter in production is TLS (mainly TLS 1.2/1.3 today). Even so, "SSL" persists as the colloquial term out of habit — "SSL certificate," "SSL/TLS," and so on — so whenever you see "SSL" in practice, it's safe to assume it actually means TLS.
+
+</details>
 
 So why didn't the designers of L2TP and IPsec just build a TLS-based VPN from the start? There are three main reasons.
 
@@ -122,7 +129,7 @@ A **TUN/TAP device** is a virtual network interface mechanism provided by the Li
 
 ### WireGuard: A Modern Design Built Around Radical Minimalism
 
-**WireGuard** is a comparatively new VPN protocol and implementation, merged into the Linux kernel proper (5.6) in 2020. Its design philosophy stands in stark contrast to IPsec's and OpenVPN's: it's built on the principle that **"drastically shrinking the number of choosable cryptographic algorithms, and fixing on a single modern, well-proven cipher suite, eliminates the very possibility of misconfiguration or downgrade attacks."**
+**WireGuard** is a comparatively new VPN protocol and implementation, merged into the Linux kernel proper (5.6) in 2020 (the Noise-framework-based handshake and Cryptokey Routing — the mapping between public keys and AllowedIPs — are covered in depth in [How WireGuard Works](/en/articles/wireguard-internals-guide)). Its design philosophy stands in stark contrast to IPsec's and OpenVPN's: it's built on the principle that **"drastically shrinking the number of choosable cryptographic algorithms, and fixing on a single modern, well-proven cipher suite, eliminates the very possibility of misconfiguration or downgrade attacks."**
 
 - **A fixed cipher suite**: Key exchange always uses Curve25519 (elliptic-curve Diffie-Hellman), encryption always uses ChaCha20, integrity verification always uses Poly1305, and the hash function is always BLAKE2s—all fixed in advance, with no alternative choices. Because there's no negotiation step at all (unlike IKE's "agree on which algorithm to use during negotiation"), the risk of ending up with a weak algorithm, and the room for bugs to hide in the negotiation logic itself, are structurally eliminated.
 - **An extremely small implementation**: The core of WireGuard's kernel implementation is said to come in at roughly 4,000 lines, a stark contrast to OpenVPN (said to exceed 100,000 lines) or the similarly large IPsec implementations like strongSwan—giving it a real practical advantage for code review and security auditing.
@@ -150,9 +157,9 @@ VPN implementations broadly split into those running outside the OS kernel (user
   - Cons: Being a user-space implementation carries overhead, putting it at a disadvantage on performance for site-to-site links carrying heavy traffic. Using the TCP-443 configuration always carries the risk of the TCP-over-TCP problem.
 - **WireGuard**
   - Pros: Its radically simple implementation delivers high speed and low latency with few configuration items and low operational overhead, driving rapid adoption in self-hosted VPNs (router OSes like pfSense/OPNsense, or individual/small-organization servers) and in mesh connections between sites or devices. Commercial VPN services have increasingly moved toward WireGuard-based proprietary protocols in recent years too — NordVPN's NordLynx and ExpressVPN's Lightway among them.
-  - Cons: The standard spec includes no username/password login management and no DHCP-like mechanism for dynamically handing out IP addresses per connection. That makes bare WireGuard alone a poor fit for large-scale enterprise access management, and in practice it's usually deployed through a commercial or open-source wrapper — Tailscale, Cloudflare WARP, NetBird, and the like — that uses WireGuard as its internal protocol while layering IdP integration, key distribution, and access-control lists (ACLs) on top.
+  - Cons: The standard spec includes no username/password login management and no DHCP-like mechanism for dynamically handing out IP addresses per connection. That makes bare WireGuard alone a poor fit for large-scale enterprise access management, and in practice it's usually deployed through a commercial or open-source wrapper — [Tailscale](/en/articles/tailscale-internals-guide), Cloudflare WARP, NetBird, and the like — that uses WireGuard as its internal protocol while layering IdP integration, key distribution, and access-control lists (ACLs) on top.
 
-In other words, the real-world choice comes down not to a simple performance comparison but to operational requirements: whether you want to run on OS-native clients, whether connectivity from restrictive networks is a hard requirement, and where user-level access management should live. In recent years, more enterprises have also been migrating toward **ZTNA (Zero Trust Network Access)** services like Zscaler Private Access or Cloudflare Access, on top of these VPN protocols — but the underlying transport for those services is frequently built on IPsec or WireGuard technology too, so understanding the characteristics of each protocol covered here remains directly relevant.
+In other words, the real-world choice comes down not to a simple performance comparison but to operational requirements: whether you want to run on OS-native clients, whether connectivity from restrictive networks is a hard requirement, and where user-level access management should live. In recent years, more enterprises have also been migrating toward **[ZTNA (Zero Trust Network Access)](/en/articles/ztna-guide)** services like Zscaler Private Access or Cloudflare Access, on top of these VPN protocols — but the underlying transport for those services is frequently built on IPsec or WireGuard technology too, so understanding the characteristics of each protocol covered here remains directly relevant.
 
 ### Selection Criteria for Enterprise Deployment
 
@@ -166,6 +173,31 @@ No protocol is "unconditionally the best"—the right answer depends on your req
 | Stuck with an existing commercial VPN appliance that only supports L2TP/IPsec | L2TP/IPsec (certificate-based authentication + Main Mode mandatory) | Keeps existing assets in use while operating in a configuration that avoids the known weaknesses |
 
 **Even if you can't immediately replace an existing L2TP/IPsec environment**, most of its known weaknesses can be mitigated in practice by moving away from a shared pre-shared key toward certificate-based authentication and by pinning IKE Phase 1 to Main Mode. In many cases, hardening the weak points of the current setup takes priority over a wholesale protocol migration.
+
+### The Thought Process for Actually Designing and Proposing a Solution
+
+The table above maps representative conditions to conclusions, but real-world requirements combine several conditions at once, so memorizing the table alone won't help you map an unfamiliar set of requirements onto the right answer. **Working through the following five questions, in this order,** lets you propose a solution backed by requirements-driven reasoning — not "because it's newer" or "because I've heard of it."
+
+1. **Are clients limited to company-issued, managed devices, or do they include personal devices and partner-company PCs too?** If it's the former, IKEv2/IPsec's operational ease — auto-distributing certificates via MDM and SCEP — pays off. If it's the latter, the cost of distributing and version-managing a client app becomes central to the decision.
+2. **Do you need fine-grained, per-user or per-application access control?** If the requirement is granular enough that "this department gets access to only this SaaS app," it's worth considering a ZTNA service (covered in depth in [What Is ZTNA?](/en/articles/ztna-guide)) instead of a bare VPN protocol — it saves you from having to build that ACL logic yourself later.
+3. **Does the set of source networks include restrictive ones that block UDP/ESP?** Hotels, overseas travel, some public Wi-Fi — if these are in scope, OpenVPN's ability to fall back to TCP 443 makes it a strong candidate (the details of how that connection gets established are covered in [How OpenVPN Works Internally](/en/articles/openvpn-internals-guide)).
+4. **What protocols does the existing VPN appliance or firewall actually support?** Even if a newer protocol is technically superior, if the existing assets only support L2TP/IPsec or IKEv2/IPsec, you need to weigh the ROI of a wholesale migration.
+5. **Is performance and low operational overhead in a self-hosted environment the top priority?** For an individual or small organization chasing maximum speed and a minimal setup, WireGuard — or a wrapper product on top of it if you also want IdP integration (covered in [How Tailscale Works](/en/articles/tailscale-internals-guide)) — becomes the first candidate.
+
+```mermaid
+graph TD
+    Start["Designing or revisiting<br/>a remote-access VPN"] --> Q1{"Are clients limited to<br/>company-managed devices?"}
+    Q1 -->|"Yes"| Q2{"Prioritize ease of operation<br/>with OS-native clients?"}
+    Q1 -->|"No (BYOD/partner PCs included)"| Q4{"Need fine-grained<br/>per-user/per-app access control?"}
+    Q2 -->|"Yes"| R1["IKEv2/IPsec<br/>(auto-distribute certs via MDM+SCEP)"]
+    Q2 -->|"No (want max speed, self-hosted)"| R2["WireGuard"]
+    Q4 -->|"Yes"| R3["ZTNA service<br/>(built on IPsec/WireGuard internally)"]
+    Q4 -->|"No"| Q5{"Must connect from restrictive<br/>networks (hotels, public Wi-Fi)?"}
+    Q5 -->|"Yes"| R4["OpenVPN (TCP 443 configuration)"]
+    Q5 -->|"No"| R2
+```
+
+The core of this thought process is **pinning down "who needs access to what, from where" first, and working backward to the protocol** — not starting from "which protocol is technically superior." Choosing based purely on technical merit tends to surface problems later, during operations, that were easy to overlook at the design stage — "we have no way to distribute certificates," or "we can't connect from this one specific site."
 
 ## Common Misconceptions and Pitfalls
 

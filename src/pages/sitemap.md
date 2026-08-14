@@ -26,6 +26,7 @@ graph TB
     Idrac["iDRAC / BMC シリーズ"]
     Network["ネットワーク基礎シリーズ"]
     Vpn["リモートアクセスVPN/L2TP・IPsecシリーズ"]
+    ModernVpn["現代的VPNプロトコル深掘りシリーズ"]
     SiteToSite["拠点間VPN(Site-to-Site VPN)シリーズ"]
     Security["セキュリティ基礎シリーズ"]
     Linux["Linux/OS基礎シリーズ"]
@@ -35,6 +36,7 @@ graph TB
     Idrac --> Network
     Idrac --> Api
     Network --> Vpn
+    Vpn --> ModernVpn
     Vpn --> SiteToSite
     Vpn --> Security
     Vpn --> Linux
@@ -133,6 +135,10 @@ graph TB
 <li><a href="/articles/linux-config-activation-guide">設定ファイルが「効く」までの仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/linux-journalctl-guide">journalctlでエラーログを調査する方法を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/nic-driver-internals-guide">NICドライバとLinuxカーネルのネットワーク処理を『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/openvpn-internals-guide">OpenVPNの仕組みを『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/wireguard-internals-guide">WireGuardの仕組みを『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/tailscale-internals-guide">Tailscaleの仕組みを『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/ztna-guide">ZTNA(ゼロトラストネットワークアクセス)とは何かを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/idrac-power-guide">サーバー電源の仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/os-boot-process-guide">POST後のOS起動プロセスを『上位1%』の視点で理解する</a></li>
 </ol>
@@ -140,13 +146,13 @@ graph TB
 <div class="persona-panel persona-panel-5">
 <div class="persona-panel-head">
 <h3>🏆 年収1000万・2000万・5000万を目指して情報収集している方へ</h3>
-<p>全38記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
+<p>全42記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP4の37記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP4の41記事(上のタブから確認できます)</li>
 <li><a href="/articles/voip-ss7-guide">VoIPとSS7、そして実際の通信経路を『上位1%』の視点で理解する</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>これで全38記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
+<div class="persona-bonus">🎉 <strong>これで全42記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
 </div>
 </div>
 </div>
@@ -183,6 +189,15 @@ graph TB
 - [L2TP/IPsecと現代的なVPNプロトコルを『上位1%』の視点で比較する](/articles/vpn-protocols-comparison-guide) — IKEv2/IPsec・OpenVPN・WireGuardとの設計思想・実装規模・モバイル耐性の違いまでの深掘り（L2TP/IPsecがなぜレガシーと評されるのかを掘り下げた発展編、単体でも読めます）。
 - [L2TP/IPsecサーバーを自作し、理論を自分の目で検証する『上位1%』のハンズオン](/articles/l2tp-ipsec-lab-guide) — Proxmox VE上にstrongSwan+xl2tpdでL2TP/IPsecサーバーを構築し、tcpdumpでの接続シーケンス検証・Windowsクライアントのルーティング確認・NAT-T誘発・性能ベースライン計測までを行う実践編。前提3記事(①②③)を読了済みであることを前提としています(本シリーズでは例外的な実機構築のハンズオン記事です)。
 - [L2TP/IPsecトラブルシューティング演習——自分でエラーログから原因を突き止める『上位1%』のハンズオン](/articles/l2tp-ipsec-troubleshooting-lab) — ハンズオンで実際に発生した5つの障害(コメントアウト解除忘れ・lockオプション・pppoptfileの指定ミス・ike=のスペース・chap-secretsのサーバー名固定)を自力で診断する演習。journalctlの出力だけを手がかりに原因を突き止める実務力を養います(④の環境が前提、単体でも読めます)。
+
+### 現代的VPNプロトコル深掘りシリーズ
+
+リモートアクセスVPN/L2TP・IPsecシリーズの③(vpn-protocols-comparison-guide)で概要を比較した各プロトコルの内部動作を、1つずつ深掘りするシリーズです。**読む順番の目安**: ① openvpn-internals-guide → ② wireguard-internals-guide → ③ tailscale-internals-guide → ④ ztna-guide。
+
+- [OpenVPNの仕組みを『上位1%』の視点で理解する](/articles/openvpn-internals-guide) — TUNデバイスによるパケット捕捉、制御チャネル/データチャネルの分離、Push機構によるルーティング情報の配布まで、「TLSで暗号化する」ことがなぜVPN接続になるのかの深掘り(vpn-protocols-comparison-guideのOpenVPNの節から派生した発展編、単体でも読めます)。
+- [WireGuardの仕組みを『上位1%』の視点で理解する](/articles/wireguard-internals-guide) — Noiseフレームワークに基づくハンドシェイク、公開鍵とAllowedIPsを結びつけるCryptokey Routing、セッション鍵の自動更新までの深掘り(vpn-protocols-comparison-guideのWireGuardの節から派生した発展編、単体でも読めます)。
+- [Tailscaleの仕組みを『上位1%』の視点で理解する](/articles/tailscale-internals-guide) — WireGuardを内部プロトコルとして使いながら、コントロールプレーン(鍵配布・ACL・IdP連携)を分離する設計、NATホールパンチング、DERPリレーまでの深掘り(wireguard-internals-guideで扱った鍵配布問題への解決策として派生した発展編、単体でも読めます)。
+- [ZTNA(ゼロトラストネットワークアクセス)とは何かを『上位1%』の視点で理解する](/articles/ztna-guide) — VPNが前提とする「ネットワークレベルの信頼」との構造的な違い、SDP(Software-Defined Perimeter)モデル、ラテラルムーブメント対策としての意味までの深掘り(vpn-protocols-comparison-guideのZTNAの言及から派生した発展編、単体でも読めます)。
 
 ### 拠点間VPN(Site-to-Site VPN)シリーズ
 

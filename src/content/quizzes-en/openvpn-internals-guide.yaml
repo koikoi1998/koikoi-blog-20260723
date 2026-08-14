@@ -1,0 +1,45 @@
+questions:
+  - question: "Which of the following is NOT described in the article as one of the mechanisms needed between \"encrypting IP packets with TLS\" and \"establishing a VPN connection\"?"
+    choices:
+      - "Capturing the IP packets that need to be carried, via the TUN device"
+      - "Separating the Control Channel from the Data Channel"
+      - "Delivering the virtual IP address and route information via the Push mechanism"
+      - "Implementing a dedicated routing protocol equivalent to IPsec's SPD"
+    answerIndex: 3
+    explanation: "The article names three mechanisms — the TUN device, the Control/Data Channel split, and the Push mechanism — and never mentions implementing an IPsec-SPD-style dedicated routing protocol."
+
+  - question: "According to the article, how is the division of labor between OpenVPN's Control Channel and Data Channel described?"
+    choices:
+      - "The Control Channel handles the TLS handshake and option delivery via the Push mechanism, while the Data Channel handles encrypting and forwarding the actual IP packets"
+      - "The Control Channel only handles encrypted data, while the Data Channel only handles authentication information"
+      - "The Control Channel and Data Channel are always established as two separate TCP/UDP connections"
+      - "The Control Channel exists only on the server side, not on the client side"
+    answerIndex: 0
+    explanation: "The article explains that the Control Channel handles the TLS handshake and Push-based option delivery, while the Data Channel handles encrypting and forwarding the actual IP packets."
+
+  - question: "According to the article, why does OpenVPN in UDP mode implement its own reliability layer specifically for the Control Channel?"
+    choices:
+      - "Because UDP has no acknowledgment, retransmission, or ordering guarantees, while a TLS handshake is designed assuming a reliable transport"
+      - "Because UDP has a smaller maximum packet size than TCP, requiring packets to be split"
+      - "To reduce server load by leaving Control Channel traffic unencrypted"
+      - "So that the TLS handshake itself can be skipped entirely in UDP mode"
+    answerIndex: 0
+    explanation: "The article explains that since a TLS handshake assumes a reliable transport, and UDP provides no acknowledgment or ordering guarantees, OpenVPN implements its own reliability layer specifically for the Control Channel."
+
+  - question: "According to the article, what role does the Push mechanism play?"
+    choices:
+      - "It performs the client's certificate authentication itself"
+      - "It delivers connection configuration — virtual IP address, route information, DNS server, and so on — to a client after authentication succeeds"
+      - "It generates the encryption keys between server and client from scratch"
+      - "It remotely creates the client's TUN device itself"
+    answerIndex: 1
+    explanation: "The article explains that the Push mechanism delivers connection configuration (virtual IP, routes, DNS server) to an already-authenticated client; authentication itself is handled by the Control Channel's TLS handshake."
+
+  - question: "According to the article, which statement correctly describes switching between full tunnel and split tunnel?"
+    choices:
+      - "It can only be switched by rewriting the client-side configuration file"
+      - "Thanks to the Push mechanism, it's fundamentally controlled just by changing what the server pushes, with no need to rewrite the client-side configuration file"
+      - "Full tunnel and split tunnel can't be technically distinguished in OpenVPN"
+      - "This switch requires reissuing the TLS certificate every time"
+    answerIndex: 1
+    explanation: "The article explains that thanks to the Push mechanism, what a client sends over the VPN can be decided dynamically through the server's Push configuration, without needing to rewrite the client-side config file."

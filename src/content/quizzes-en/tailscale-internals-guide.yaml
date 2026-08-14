@@ -1,0 +1,45 @@
+questions:
+  - question: "According to the article, what is the essence of Tailscale's design philosophy?"
+    choices:
+      - "It replaces WireGuard with a proprietary encryption protocol to make it faster"
+      - "It leaves WireGuard's data-plane implementation unchanged and builds a separate control-plane layer responsible for key distribution and ACL management"
+      - "It automatically switches between IPsec and WireGuard depending on the situation"
+      - "It always routes all traffic through Tailscale's own servers"
+    answerIndex: 1
+    explanation: "The article explains that Tailscale leaves WireGuard's data-plane implementation unchanged and solves only its operational weaknesses by adding a new control plane (key distribution, ACL management, IdP integration) in front of it."
+
+  - question: "According to the article, how does Tailscale's NAT hole punching mechanism work?"
+    choices:
+      - "The coordination server always relays all traffic, bypassing NAT entirely"
+      - "Both nodes use a STUN-like mechanism to discover their own post-NAT address, exchange that information, and then send packets to each other simultaneously to punch a hole in NAT"
+      - "It automatically rewrites the firmware of the NAT device to open a hole"
+      - "It disables the effect of NAT entirely by using TCP port 443"
+    answerIndex: 1
+    explanation: "The article explains that each node discovers and exchanges its post-NAT address, then both sides send packets to each other at the same time, exploiting most NATs' behavior of letting through responses to a destination they've previously sent traffic to."
+
+  - question: "According to the article, why is a DERP relay called a \"zero-knowledge relay\"?"
+    choices:
+      - "Because the DERP server doesn't record any communication metadata (who talked to whom, when) at all"
+      - "Because the DERP server holds no WireGuard private keys and simply forwards already-encrypted packets, with no way to decrypt their contents"
+      - "Because the DERP server is an anonymous service that retains no user identity information"
+      - "Because DERP servers are always distributed across multiple countries so no single operator can be identified"
+    answerIndex: 1
+    explanation: "The article explains that a DERP server can't decrypt traffic because it holds no private keys, but it can still observe communication metadata (who talked to whom, and when) — making clear it doesn't provide full anonymity."
+
+  - question: "According to the article, why is Tailscale considered advantageous over bare WireGuard for enterprise adoption?"
+    choices:
+      - "It uses a stronger encryption algorithm than WireGuard"
+      - "IdP integration automates granting and revoking access as employees join and leave, eliminating manual config management"
+      - "Unlike WireGuard, it always runs fast over TCP as well as UDP"
+      - "There's no limit on the number of nodes that can join a single tailnet"
+    answerIndex: 1
+    explanation: "The article explains that simply disabling a user on the IdP side automatically revokes that user's nodes' access across the entire tailnet, contrasted with bare WireGuard's manual config management."
+
+  - question: "According to the article, what's the first step recommended when Tailscale feels slow?"
+    choices:
+      - "Regenerate the WireGuard key pair"
+      - "Check with `tailscale status` or similar whether the connection is direct or going through a relay (DERP)"
+      - "Delete all ACL configuration and recreate it from scratch"
+      - "Move the coordination server to a different region"
+    answerIndex: 1
+    explanation: "The article recommends checking `tailscale status` or `tailscale ping` first to see whether the connection is going through a DERP relay whenever speed drops."

@@ -24,6 +24,7 @@ graph TB
     Idrac["iDRAC / BMC Series"]
     Network["Networking Fundamentals Series"]
     Vpn["Remote-Access VPN / L2TP-IPsec Series"]
+    ModernVpn["Modern VPN Protocol Deep-Dive Series"]
     SiteToSite["Site-to-Site VPN Series"]
     Security["Security Fundamentals Series"]
     Linux["Linux / OS Fundamentals Series"]
@@ -33,6 +34,7 @@ graph TB
     Idrac --> Network
     Idrac --> Api
     Network --> Vpn
+    Vpn --> ModernVpn
     Vpn --> SiteToSite
     Vpn --> Security
     Vpn --> Linux
@@ -131,6 +133,10 @@ This blog is written for a wide range of readers — from people with no experie
 <li><a href="/en/articles/linux-config-activation-guide">How a Config File Actually "Takes Effect," from the "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/linux-journalctl-guide">Investigating Error Logs with journalctl from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/nic-driver-internals-guide">Understanding NIC Drivers and Linux Kernel Networking from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/openvpn-internals-guide">How OpenVPN Works from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/wireguard-internals-guide">How WireGuard Works from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/tailscale-internals-guide">How Tailscale Works from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/ztna-guide">What Is ZTNA (Zero Trust Network Access) from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/idrac-power-guide">Understanding Server Power Design from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/os-boot-process-guide">Understanding the OS Boot Process After POST from a "Top 1%" Perspective</a></li>
 </ol>
@@ -138,13 +144,13 @@ This blog is written for a wide range of readers — from people with no experie
 <div class="persona-panel persona-panel-5">
 <div class="persona-panel-head">
 <h3>🏆 For those gathering information toward ¥10M, ¥20M, or ¥50M+</h3>
-<p>The complete-conquest route: read all 38 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
+<p>The complete-conquest route: read all 42 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP4's 37 articles (see those tabs above)</li>
+<li>STEP1 through STEP4's 41 articles (see those tabs above)</li>
 <li><a href="/en/articles/voip-ss7-guide">Understanding VoIP and SS7 — and the Real Path Your Traffic Takes — from a "Top 1%" Perspective</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>That's all 38 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
+<div class="persona-bonus">🎉 <strong>That's all 42 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
 </div>
 </div>
 </div>
@@ -181,6 +187,15 @@ A series covering out-of-band server management. **Recommended order**: ① idra
 - [Comparing L2TP/IPsec to Modern VPN Protocols from a "Top 1%" Perspective](/en/articles/vpn-protocols-comparison-guide) — A deep dive into the differences in design philosophy, implementation size, and mobile resilience against IKEv2/IPsec, OpenVPN, and WireGuard (spun off to dig into why L2TP/IPsec is called legacy; also readable standalone).
 - [A "Top 1%" Hands-On Lab: Building Your Own L2TP/IPsec Server and Verifying the Theory Yourself](/en/articles/l2tp-ipsec-lab-guide) — Build an L2TP/IPsec server on Proxmox VE with strongSwan and xl2tpd, then verify the connection sequence with tcpdump, a Windows client's routing table, a deliberately triggered NAT-T, and a recorded performance baseline. Assumes you've already read the three prerequisite articles (①②③) (a deliberate exception in this series: a hands-on build guide).
 - [L2TP/IPsec Troubleshooting Lab: Diagnosing Real Failures from Error Logs, a "Top 1%" Hands-On Exercise](/en/articles/l2tp-ipsec-troubleshooting-lab) — A self-diagnosis exercise built around five failures that actually happened during the hands-on lab (a forgotten uncomment, the lock option, a wrong pppoptfile path, a stray space in ike=, a hard-coded chap-secrets server name). Builds the practical skill of tracking down a cause using nothing but journalctl output (assumes the environment from ④; also readable standalone).
+
+### Modern VPN Protocol Deep-Dive Series
+
+A series that digs, one protocol at a time, into the internal mechanics of the protocols compared at a high level in ③ (vpn-protocols-comparison-guide) of the Remote-Access VPN/L2TP-IPsec series. **Recommended order**: ① openvpn-internals-guide → ② wireguard-internals-guide → ③ tailscale-internals-guide → ④ ztna-guide.
+
+- [How OpenVPN Works from a "Top 1%" Perspective](/en/articles/openvpn-internals-guide) — A deep dive into why "encrypting with TLS" amounts to a VPN connection at all: packet capture via the TUN device, the Control/Data Channel split, and delivering routing information via the Push mechanism (spun off from the OpenVPN section of vpn-protocols-comparison-guide; also readable standalone).
+- [How WireGuard Works from a "Top 1%" Perspective](/en/articles/wireguard-internals-guide) — A deep dive into the Noise-framework-based handshake, Cryptokey Routing (the mapping between public keys and AllowedIPs), and automatic session-key rotation (spun off from the WireGuard section of vpn-protocols-comparison-guide; also readable standalone).
+- [How Tailscale Works from a "Top 1%" Perspective](/en/articles/tailscale-internals-guide) — A deep dive into the design that uses WireGuard as its internal protocol while separating out a control plane (key distribution, ACLs, IdP integration), NAT hole punching, and DERP relays (spun off as the solution to the key-distribution problem covered in wireguard-internals-guide; also readable standalone).
+- [What Is ZTNA (Zero Trust Network Access) from a "Top 1%" Perspective](/en/articles/ztna-guide) — A deep dive into its structural difference from the "network-level trust" VPN assumes, the SDP (Software-Defined Perimeter) model, and what it means as a defense against lateral movement (spun off from the ZTNA mention in vpn-protocols-comparison-guide; also readable standalone).
 
 ### Site-to-Site VPN Series
 

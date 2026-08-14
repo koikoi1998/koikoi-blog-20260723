@@ -1,0 +1,45 @@
+questions:
+  - question: "How does the article explain that WireGuard's Cryptokey Routing achieves route control?"
+    choices:
+      - "By using a dedicated rule set separate from public keys, similar to IPsec's SPD"
+      - "The peer configuration itself — a one-to-one mapping of a public key to AllowedIPs — handles authentication and route control at the same time"
+      - "By implementing a routing protocol like BGP internally within WireGuard"
+      - "By querying DNS to determine the route on every connection"
+    answerIndex: 1
+    explanation: "The article explains that WireGuard has no separate matching-rule mechanism; the peer configuration itself, tying a public key to AllowedIPs, handles both authentication and routing at once."
+
+  - question: "According to the article, what does the \"IK\" in the `Noise_IK` pattern that WireGuard's handshake is based on mean?"
+    choices:
+      - "Neither the Initiator nor the Responder knows the other's static key in advance"
+      - "The Initiator's static key is not known in advance, while the Responder's static key is already Known"
+      - "It stands for Internet and Kernel, indicating the handshake is processed in kernel space"
+      - "It indicates a mode compatible with IKEv2"
+    answerIndex: 1
+    explanation: "The article explains that \"I\" means the Initiator's static key isn't known in advance, and \"K\" means the Responder's static key is already Known — a naming convention from the Noise framework."
+
+  - question: "What mechanism does the article describe as giving WireGuard's handshake resistance to DoS attacks?"
+    choices:
+      - "A Responder that receives a burst of handshake requests demands a lightweight cookie first, and only performs the full DH computation for peers that resend the correct cookie"
+      - "Restricting which IP addresses may send handshake requests to a fixed pre-approved list"
+      - "Buffering all handshake requests for a fixed time and processing them together in a batch"
+      - "Skipping DH computation entirely and authenticating solely with a pre-shared key"
+    answerIndex: 0
+    explanation: "The article explains that filtering with a cheap cookie check first lets the Responder handle load from spoofed sources at low cost, before ever reaching the expensive DH computation."
+
+  - question: "According to the article, why is WireGuard resilient to IP address changes (such as switching to a mobile connection)?"
+    choices:
+      - "Because it implements the same dedicated extension protocol as IKEv2's MOBIKE"
+      - "Because the Responder automatically learns the source of the most recently successfully decrypted packet as that peer's current endpoint"
+      - "Because WireGuard doesn't use IP addresses at all and communicates purely by MAC address"
+      - "Because it regenerates a new key pair every time the client's IP address changes"
+    answerIndex: 1
+    explanation: "The article explains that this resilience isn't a dedicated extension feature, but a side effect of the authentication mechanism dynamically learning the endpoint from whichever source successfully decrypts."
+
+  - question: "According to the article, why does bare WireGuard face practical challenges when deployed at large organizational scale?"
+    choices:
+      - "Its encryption algorithms are weak and can't handle high traffic volumes"
+      - "There's no built-in mechanism for automating public-key distribution and revocation, so the operational cost of key management grows with scale"
+      - "WireGuard can only use UDP and cannot communicate over TCP at all"
+      - "Each server can only register a single peer"
+    answerIndex: 1
+    explanation: "Unlike PKI, where a CA centrally manages issuing and revoking keys, bare WireGuard has no built-in mechanism for automating key distribution or revocation — the article describes this as a real operational challenge at large scale."

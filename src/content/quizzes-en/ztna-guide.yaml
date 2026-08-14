@@ -1,0 +1,45 @@
+questions:
+  - question: "According to the article, what is the most fundamental difference between VPN's and ZTNA's trust models?"
+    choices:
+      - "VPN doesn't use encryption, while ZTNA does"
+      - "VPN trusts the entire network segment once authenticated, while ZTNA has no concept of joining a network at all and verifies the user's and device's state on every request"
+      - "VPN only works in the cloud, while ZTNA only works on-premises"
+      - "VPN can only use UDP, while ZTNA can only use TCP"
+    answerIndex: 1
+    explanation: "The article explains that VPN trusts at the network level once authenticated, while ZTNA verifies on every request — a fundamentally different unit of trust."
+
+  - question: "According to the article, why does VPN's structure create a lateral-movement risk?"
+    choices:
+      - "Because VPN's encryption algorithms are weak, making traffic easy to eavesdrop on"
+      - "Because once authentication is breached, an attacker gains network-layer reachability to every other host within that VPN segment too"
+      - "Because a VPN server is always directly accessible from the internet"
+      - "Because VPN doesn't generate a new encryption key for every connection"
+    answerIndex: 1
+    explanation: "The article explains that a VPN connection grants reachability across the whole segment via a virtual IP address and routing table, so that same reachability passes to an attacker the moment authentication is breached."
+
+  - question: "In the SDP (Software-Defined Perimeter) model, what property does SPA (Single Packet Authorization) achieve, according to the article?"
+    choices:
+      - "It prioritizes speeding up traffic for already-authenticated users"
+      - "The gateway doesn't respond at all to traffic on the relevant port until authentication happens, so an outside observer can't even tell whether the port is open"
+      - "It completes authorization for every application using just a single packet"
+      - "It logs every packet the gateway receives, unencrypted"
+    answerIndex: 1
+    explanation: "The article explains that SPA makes the gateway not respond at all to a port scan from an unauthenticated client, making the network's very existence invisible from the outside."
+
+  - question: "According to the article, what characteristic is shared between ZTNA's agent-based and clientless implementations?"
+    choices:
+      - "Both require opening an inbound port on the corporate firewall"
+      - "The connector initiates an outbound connection from inside the corporate network to the cloud, so no inbound connections need to be allowed"
+      - "Both only support access from a web browser"
+      - "Both require installing a dedicated client application"
+    answerIndex: 1
+    explanation: "The article explains that in both approaches, the connector initiates an outbound connection from inside the organization to the cloud, so the corporate firewall never needs to allow inbound connections."
+
+  - question: "According to the article, which statement correctly describes the relationship between ZTNA and Zero Trust?"
+    choices:
+      - "ZTNA and Zero Trust are exactly synonymous and interchangeable"
+      - "ZTNA is just one implementation of the broader Zero Trust principle, applied to the specific scenario of remote access"
+      - "Zero Trust is a registered trademark of a specific vendor that sells ZTNA products"
+      - "Zero Trust is an older concept than ZTNA that has since fallen out of use"
+    answerIndex: 1
+    explanation: "The article explains that Zero Trust is a broad principle defined in documents like NIST SP 800-207, and ZTNA is just one implementation of that principle applied to remote access."
