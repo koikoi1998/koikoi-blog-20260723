@@ -6,7 +6,7 @@ order: 2
 tags: ["network", "windows-server", "rras", "vpn", "infra"]
 emoji: "🪟"
 pubDate: 2026-08-01
-updatedDate: 2026-08-08
+updatedDate: 2026-08-15
 ---
 
 ## Introduction
@@ -73,6 +73,30 @@ Two questions come up often when actually building this.
 **First: can specific IP addresses be excluded from assignment?** RRAS's static address pool configuration has no separate "exclusion range" feature like a DHCP server's scope does. However, ranges can be registered as **multiple, non-contiguous entries** (via the "Add" button, or by specifying multiple `StaticAddressPool` entries via PowerShell's `Set-RemoteAccess` or netsh), so an exclusion is effectively achieved by "simply not including the address you want to exclude in any range." For example, if you want to reserve 10.0.20.30 (already in use for something else) out of the range 10.0.20.10–10.0.20.50, you can register it as two ranges — 10.0.20.10–10.0.20.29 and 10.0.20.31–10.0.20.50 — leaving 10.0.20.30 out of assignment.
 
 **Second: what happens if the pool's range includes an IP address already in use by another, currently active server?** This is a point that deserves real attention in practice. RRAS's static address pool **only internally tracks which addresses it has already handed out to VPN clients** — it does not perform the kind of duplicate check a DHCP server does, such as pinging or ARP-probing an address against real devices on the LAN before offering it. In other words, if you include an active server's IP address within the pool's range, RRAS won't notice the overlap and may hand that same address out to a VPN client, causing an IP address conflict. In practice, you should design the static address pool's range as a dedicated block that's guaranteed in advance not to overlap with the DHCP server's scope/exclusion ranges or with any statically-addressed servers.
+
+</details>
+
+<details>
+<summary>Coexisting a redundant configuration's real server IPs and virtual IP (VIP) with the address pool on the same subnet</summary>
+
+In practice, it's not unusual for the RRAS server itself to be made redundant as an active/standby pair, while the corporate application VPN clients access is also redundant in the same way. In that case, several IP address groups with different purposes end up coexisting on the same `10.0.20.0/24` segment: ① the VPN client address pool, ② the active server's real IP (e.g., 10.0.20.2), ③ the standby server's real IP (e.g., 10.0.20.3), and ④ the virtual IP (VIP) representing both (e.g., 10.0.20.4).
+
+If you simply specify a single range, `10.0.20.1–10.0.20.50`, as the pool without accounting for the behavior discussed below—where the first address of the static address pool is reserved for the RRAS server's own internal interface—the leading address 10.0.20.1 is indeed reserved as RRAS's own internal address, but 10.0.20.2–10.0.20.4 remain inside the pool without being "excluded," and the addresses in use by the active/standby servers or the VIP could end up being handed straight out to a VPN client, causing an IP address conflict.
+
+To avoid this, you can apply the same "split into multiple ranges to exclude addresses" technique covered above. For example, register two separate ranges as StaticAddressPool entries: ① a single-address range containing only 10.0.20.1, and ② a range covering 10.0.20.5–10.0.20.50 (leaving 10.0.20.2–10.0.20.4 out of both ranges). Since RRAS reserves the first address of the first-registered range as its internal address, registering the range containing 10.0.20.1 first ensures the internal address ends up as intended (10.0.20.1); 10.0.20.2–10.0.20.4, belonging to neither range, are never handed out to a VPN client and remain safely reserved for the real servers and the VIP. VPN clients are then assigned addresses from 10.0.20.5 onward.
+
+In short, **a redundant configuration itself has no direct bearing on RRAS's address pool design—it's simply one more example of the exclusion design already discussed: keeping IP addresses that are statically in use for other purposes out of the pool's range.**
+
+</details>
+
+<details>
+<summary>Can a specific VPN client be given the same IP address every time it connects?</summary>
+
+The static address pool and DHCP relay discussed so far are both fundamentally dynamic assignment mechanisms — handing out whichever address happens to be free, in the order clients connect. Neither guarantees that the same client reconnecting will receive the same IP address it got last time.
+
+If you want one particular user to always get a fixed IP address, you use a separate mechanism from these pools: **static IP assignment at the user-account level.** If RRAS authenticates against Active Directory user accounts, you can specify an IP address under that user's properties in "Active Directory Users and Computers," on the **"Dial-in" tab, under "Assign a static IPv4 address."** When that user connects, the specified address takes priority over whatever the static address pool or DHCP relay would otherwise hand out (in a configuration using NPS as a RADIUS server, the equivalent setting is available under a network policy's "IP Settings").
+
+When using this approach, the IP address fixed to a given user must be excluded in advance from the general pool range or DHCP scope's assignment targets. Without that exclusion, while the user with the fixed IP is disconnected, that same address could be handed out dynamically to a different client, resulting in a duplicate assignment.
 
 </details>
 
@@ -148,6 +172,10 @@ Because of this, when a device on the corporate LAN side sends traffic back to a
 ### The Relationship with Virtual IPs in Redundant Configurations
 
 In cases where the server running RRAS is itself made redundant for availability, using an active/standby pair (or more), the destination clients use to establish a VPN connection (or the destination of a corporate application reached through the VPN) is generally not the individual real server's IP address, but a **virtual IP (VIP)**. How this virtual IP is "actually" implemented (via NAT translation, or by having the active server hold the IP address directly) is not something specific to RRAS—it's a mechanism common to redundant configurations in general. This is covered in detail in [Understanding Virtual IPs (VIPs) and NIC Teaming's Virtual IP from a "Top 1%" Perspective](/en/articles/virtual-ip-guide). What matters here is that **the internal address discussed in this article for VPN clients (10.0.20.1 above) and the virtual IP in a redundant configuration are entirely separate IP addresses serving entirely different purposes**. The former is "the counterpart of the VPN's point-to-point link," and the latter is "an abstraction that keeps clients from needing to know which real server is currently active." Both can coexist on the same server (or its NIC) at the same time, each fulfilling its own independent role.
+
+Note that this virtual IP (VIP) is simply one of the destinations that exists on the corporate LAN side — it is never used as the VPN client's own assigned IP address (the address on "its own side" of the point-to-point link). The client receives its own IP address (e.g., 10.0.20.10) as usual, via the static address pool or DHCP relay, and then communicates to the VIP (e.g., 10.0.20.4) as a destination over that point-to-point link. In other words, the VIP is no different from the corporate LAN's real server (10.0.20.2) discussed earlier, in "Why Is a Gateway Needed Even Though It Looks Like the Same Segment?" — it's simply one more routing destination.
+
+Likewise, the individual real servers making up a redundant pair (the active server's and standby server's own real IPs) don't need to be "handed out" to VPN clients at all, so long as no client application communicates directly with those addresses. All that's needed is to reliably exclude those addresses from the pool's assignment targets (the multi-range-split technique described above) — once that's satisfied, RRAS's routing still makes every address on the corporate LAN side reachable, so no additional configuration is required.
 
 As we've seen in this article, a single RRAS server juggles multiple IP addresses—a real LAN IP and an internal RAS address—but this isn't some RRAS-specific quirk. It's one application of the more general fact that **a single physical NIC can hold multiple IP addresses at once.** Why you can publish a web server or application on Windows Server under an IP address other than the one the NIC originally held, and what purposes there are for splitting traffic across physical NICs and cables beyond redundancy, are covered in [Understanding Virtual IPs (VIPs) and NIC Teaming's Virtual IP from a "Top 1%" Perspective](/en/articles/virtual-ip-guide).
 
