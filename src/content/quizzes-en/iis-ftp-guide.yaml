@@ -1,0 +1,45 @@
+questions:
+  - question: "Which statement best matches the article's explanation of the design philosophy expressed by the name IIS (Internet Information Services)?"
+    choices:
+      - "IIS is server software exclusively for HTTP, and the word \"Internet\" in the name is just part of a product name"
+      - "The name IIS itself expresses a design philosophy of providing multiple \"internet services\" in an integrated way, and FTP server functionality can also be added as a role service"
+      - "IIS is server software exclusively for FTP, and HTTP functionality was added later as an extension"
+      - "The name IIS stands for \"Internal Information System,\" not \"Internet Information Services\""
+    answerIndex: 1
+    explanation: "The name IIS (Internet Information Services) itself expresses a design philosophy of providing multiple \"internet services\" in an integrated way. When adding the Web Server (IIS) role in Server Manager, you can individually select and install an FTP Server role service alongside the Web (HTTP) functionality."
+
+  - question: "Which statement best matches the article's explanation of the difference between FTP's active mode and passive mode?"
+    choices:
+      - "In active mode, the server opens a new data-channel connection toward the client, while in passive mode, the client opens the data-channel connection toward the server — and with NAT so widespread today, passive mode has become the practical standard"
+      - "Active mode and passive mode differ only in whether encryption is used"
+      - "Active mode uses only the control channel, and passive mode uses only the data channel"
+      - "Active mode and passive mode are just different names for a transfer-speed setting"
+    answerIndex: 0
+    explanation: "In active mode, the server opens a new data-channel connection toward the client, while in passive mode, the client opens the connection toward the server. In a NAT-heavy environment, a new connection initiated by the server often can't correctly pass through a NAT device, so passive mode is used almost universally in practice."
+
+  - question: "Which statement best matches the article's explanation of the relationship between IIS's FTP functionality and its HTTP functionality?"
+    choices:
+      - "IIS's FTP functionality is implemented as a component that's internally completely independent from HTTP functionality (the HTTP.sys and application pool mechanisms)"
+      - "IIS's FTP functionality reuses ASP.NET's code directly to achieve file transfer"
+      - "Enabling IIS's FTP functionality automatically disables HTTP functionality"
+      - "IIS's FTP functionality and HTTP functionality must always share the same application pool"
+    answerIndex: 0
+    explanation: "IIS's FTP server functionality is implemented as a component that's internally completely independent from HTTP functionality (the HTTP.sys and application pool mechanisms). A dedicated listener/processing pipeline for the FTP service runs separately, with no involvement from ASP.NET or application pool mechanisms at all."
+
+  - question: "Which statement best matches the article's explanation of the difference between FTPS and SFTP?"
+    choices:
+      - "FTPS and SFTP not only sound similar in name but are also implementations of exactly the same protocol"
+      - "FTPS is the FTP protocol with SSL/TLS encryption added, while SFTP is a protocol implemented as an SSH subsystem, from a different lineage than FTP entirely"
+      - "FTPS is an SSH subsystem, and SFTP is FTP's encryption extension (the reverse of the article's explanation)"
+      - "Neither FTPS nor SFTP is supported by IIS at all"
+    answerIndex: 1
+    explanation: "FTPS (FTP over SSL/TLS) is the traditional FTP protocol with SSL/TLS encryption added. SFTP (SSH File Transfer Protocol), despite including \"FTP\" in the name, is actually a file transfer protocol implemented as an SSH subsystem, from a completely different lineage than FTP. IIS's FTP functionality supports FTPS but not SFTP."
+
+  - question: "Which statement best matches the article's explanation of the symptom that can occur if a firewall setting is overlooked in passive mode?"
+    choices:
+      - "The control-channel connection (logging in) succeeds, but only actual directory listings and uploads/downloads fail — a confusing symptom"
+      - "The FTP server itself fails to start at all"
+      - "IIS's entire web server functionality (HTTP) stops"
+      - "Windows Server's license activation becomes invalid"
+    answerIndex: 0
+    explanation: "If the passive-mode port range isn't correctly allowed on the firewall, the control-channel connection (logging in) succeeds, but only actual directory listings and uploads/downloads (operations using the data channel) fail — a confusing symptom."
