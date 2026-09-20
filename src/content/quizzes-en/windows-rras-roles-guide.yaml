@@ -1,0 +1,45 @@
+questions:
+  - question: "Which statement best matches the article's explanation of the structure implied by the name RRAS (Routing and Remote Access Service)?"
+    choices:
+      - "RRAS is a single-purpose service designed solely for VPN access functionality"
+      - "Two distinct sets of functionality with different purposes — one belonging to \"routing\" (NAT, LAN routing, demand-dial access) and one belonging to \"remote access\" (VPN access, dial-up access) — are historically integrated into a single service"
+      - "The name RRAS is an abbreviation for the router manufacturer \"Router and Remote Access Systems\""
+      - "RRAS provides only remote-access functionality and has no routing functionality at all"
+    answerIndex: 1
+    explanation: "As the name itself suggests, two distinct sets of functionality with different purposes — one belonging to \"routing\" (NAT, LAN routing, demand-dial access) and one belonging to \"remote access\" (VPN access, dial-up access) — are historically integrated into a single service, RRAS."
+
+  - question: "Which statement best matches the article's explanation of the essential difference between VPN access and dial-up access?"
+    choices:
+      - "VPN access and dial-up access are exactly the same technology, just with different names"
+      - "VPN access uses an encrypted tunnel over the internet, while dial-up access is a direct PPP connection over a phone line, with no concept of \"the internet\" involved at all"
+      - "VPN access only supports wired LAN, and dial-up access only supports Wi-Fi"
+      - "Dial-up access is a newer successor technology developed after VPN access"
+    answerIndex: 1
+    explanation: "VPN access and dial-up access share the purpose of letting a remote client device join the corporate network, but VPN access uses an encrypted tunnel over the internet, while dial-up access is a direct PPP connection over a phone line, with no concept of \"the internet\" involved at all."
+
+  - question: "Which statement best matches the article's explanation of demand-dial access's defining characteristic?"
+    choices:
+      - "It keeps a persistent connection active at all times, regardless of whether traffic occurs"
+      - "It establishes the connection on demand only when traffic actually destined for the other site occurs, and automatically disconnects if no traffic occurs for a while"
+      - "Demand-dial access is a capability dedicated exclusively to connections between a client device and a server"
+      - "Demand-dial access technically cannot function unless a VPN protocol is used"
+    answerIndex: 1
+    explanation: "Demand-dial access's defining characteristic is establishing the connection on demand only when traffic actually destined for the other site occurs, and automatically disconnecting if no traffic occurs for a while. This reflects the design philosophy of controlling costs from the era of metered lines."
+
+  - question: "Which statement best matches the article's explanation of the relationship between demand-dial access and VPN protocols?"
+    choices:
+      - "Demand-dial access technically cannot function unless a VPN protocol is used"
+      - "The control logic of \"establish and disconnect the connection on demand\" and \"which protocol is actually used for the connection\" are independent, separate design elements, and historically this mechanism was also used over an actual dial-up line"
+      - "Demand-dial access is a brand-new feature that first appeared after 2020"
+      - "Demand-dial access and VPN access are just two names for exactly the same functionality"
+    answerIndex: 1
+    explanation: "The \"connect on demand\" control logic that demand-dial refers to is a connection-method-independent mechanism. Historically, this mechanism was also used over an actual analog phone line or ISDN dial-up connection. Today, using a VPN connection as its connection method is the mainstream configuration."
+
+  - question: "Which statement best matches the article's explanation of the LAN routing role?"
+    choices:
+      - "LAN routing is the most complex of the five roles and encompasses all of VPN, NAT, and demand-dial functionality"
+      - "LAN routing is the simplest of the five roles — it performs none of VPN, dial-up, NAT, or demand-dial, and simply relays IP packets between multiple network interfaces connected to the server"
+      - "LAN routing is a capability for encrypting an internet connection"
+      - "LAN routing can only be achieved with dedicated hardware, not with Windows Server"
+    answerIndex: 1
+    explanation: "LAN routing is the simplest of the five roles, performing none of VPN, dial-up, NAT, or demand-dial — it's purely a router capability that simply relays IP packets between multiple network interfaces (multiple LAN segments) connected to the server."
