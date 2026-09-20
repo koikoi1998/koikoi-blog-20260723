@@ -1,0 +1,45 @@
+questions:
+  - question: "Which statement best matches the article's explanation of the administrative shares C$, IPC$, and ADMIN$?"
+    choices:
+      - "These are shares specific to AD DS or DCs and don't exist on an ordinary Windows Server"
+      - "These aren't specific to AD DS or DCs — they're administrative shares automatically created by default across Windows Server generally"
+      - "These shares never exist at all unless an administrator manually creates them"
+      - "IPC$ is a special shared folder for storing actual files"
+    answerIndex: 1
+    explanation: "C$, IPC$, and ADMIN$ aren't specific to AD DS or DCs — they're administrative shares always automatically created by default on any ordinary Windows Server. IPC$ isn't a folder with actual content — it's a named pipe for inter-process communication."
+
+  - question: "Which statement best matches the article's explanation of the basis on which Windows's SMB client connection cache is managed?"
+    choices:
+      - "Connections are cached and managed separately, keyed by the string used to specify the destination (an IP address or a hostname)"
+      - "The connection cache is managed based solely on that server's physical MAC address"
+      - "The connection cache is designed so there's always exactly one entry per server"
+      - "What gets cached is decided completely at random, depending on the Windows version"
+    answerIndex: 0
+    explanation: "Windows's file sharing client (the SMB redirector) caches and manages connections separately, keyed by the string used to specify the destination (an IP address string or a hostname string). Even when they point to the same physical server, an IP address and a hostname are treated as separate connections."
+
+  - question: "In the case diagnosed in the article, which statement best matches the explanation for why only access via \\\\IPaddress\\SpecificFolder failed?"
+    choices:
+      - "Stopping the C drive's share (C$) on the server side directly removed permissions on that specific folder"
+      - "The old connection state, keyed by that IP address and cached when \\\\IPaddress\\c$ was accessed earlier, conflicted with the new connection to \\\\IPaddress\\SpecificFolder"
+      - "The specific folder's NTFS permissions were configured to technically prohibit access via IP address specifically"
+      - "Access via IP address is always slower than access via hostname, by Windows Server's design"
+    answerIndex: 1
+    explanation: "The moment \\\\IPaddress\\c$ was first accessed, an SMB connection keyed by the IP address string gets cached on the client. Even after the C$ share is stopped, this old cached connection lingers on the client side, so the new connection attempt to \\\\IPaddress\\SpecificFolder conflicts with that old state and fails."
+
+  - question: "Which statement best matches the article's explanation of why access via \\\\hostname\\SpecificFolder succeeded without issue?"
+    choices:
+      - "Access via hostname is treated as an entirely new connection, keyed by a string different from the IP address, so it connects cleanly, unaffected by the old cache"
+      - "Access via hostname is always automatically authenticated with administrator privileges"
+      - "Access via hostname is designed to skip the share permission check entirely"
+      - "Access via hostname is never affected by NTFS permissions at all"
+    answerIndex: 0
+    explanation: "Access using a hostname is treated as an entirely new connection, keyed by a string different from the IP address. This means it connects cleanly, unaffected by the old connection cache lingering for the IP address."
+
+  - question: "Which statement best matches the article's explanation of the practical fix for the \"fails via IP address but succeeds via hostname\" phenomenon?"
+    choices:
+      - "There's no fix at all — the only solution is to completely rebuild the server"
+      - "Check the current list of connections with the net use command, explicitly disconnect the relevant destination with net use /delete, and try accessing it again"
+      - "It's resolved by repurchasing the Windows Server license"
+      - "It's avoided by randomly changing the server's IP address every time"
+    answerIndex: 1
+    explanation: "Checking the connections cached on the client side with net use, explicitly disconnecting the relevant destination with net use /delete, and then accessing it again resolves this kind of phenomenon in most cases."
