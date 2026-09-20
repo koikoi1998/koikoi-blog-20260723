@@ -251,9 +251,10 @@ graph TB
 
 ### 仮想化基盤シリーズ
 
-ハンズオンで利用するProxmox VEが、実際には何によって仮想化を実現しているのかを深掘りするシリーズです。**読む順番の目安**: ① proxmox-internals-guide。
+ハンズオンで利用するProxmox VEが、実際には何によって仮想化を実現しているのかを深掘りするシリーズです。**読む順番の目安**: ① proxmox-internals-guide → ② hyperv-capacity-guide。
 
 - [Proxmox VEとは何か——KVM/QEMUによる仮想化の仕組みを『上位1%』の視点で理解する](/articles/proxmox-internals-guide) — Linuxカーネル自身をハイパーバイザーに変えるKVMと、CPU以外のハードウェアをソフトウェアで再現するQEMUの役割分担、仮想ブリッジ(vmbr)によるVMのネットワーク接続、ストレージ方式とスナップショットの仕組みまでの深掘り（ハンズオン準備マニュアルのProxmox操作から派生した発展編、単体でも読めます）。
+- [Hyper-Vの仮想マシンリソース設計を『上位1%』の視点で理解する](/articles/hyperv-capacity-guide) — CPUとメモリでオーバーコミットの許容度が異なる理由、動的メモリ(Startup/Minimum/Maximum RAM)の仕組み、NUMAを意識した設計までの深掘り(単体でも読めます)。
 
 ### Linux/OS基礎シリーズ
 

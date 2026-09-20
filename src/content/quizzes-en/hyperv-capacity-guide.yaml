@@ -1,0 +1,45 @@
+questions:
+  - question: "Which statement best matches the article's explanation of why CPU overcommit is widely accepted?"
+    choices:
+      - "Because CPU is a resource shared by dividing time, and since it's rare in practice for every virtual machine to demand 100% at the same time, running short just means slower speed"
+      - "Because CPU is a resource that can be physically increased infinitely, so a shortage never actually occurs"
+      - "Because CPU overcommit, like memory, immediately triggers swapping when it runs short"
+      - "Because CPU overcommit is a design technique legally mandated by regulation"
+    answerIndex: 0
+    explanation: "CPU is a resource shared by having multiple virtual machines' vCPUs take turns using a physical core's execution time in extremely short time slices. Since it's rare in practice for every virtual machine to demand 100% CPU at the same time, running short just means slower speed, which is why overcommit is widely accepted."
+
+  - question: "Which statement best matches the article's explanation of why memory overcommit requires more careful design than CPU?"
+    choices:
+      - "Because memory is always physically more expensive than CPU"
+      - "Because when memory runs short, the OS evicts infrequently used data to a page file on disk (swapping), and the slowness of disk access causes the entire system's responsiveness to degrade dramatically"
+      - "Because memory is a resource shared by dividing time and has a more complex mechanism than CPU"
+      - "Because memory overcommit isn't technically supported at all on Hyper-V"
+    answerIndex: 1
+    explanation: "When memory runs short, the OS evicts infrequently used data to a page file on disk (swapping). Disk access is orders of magnitude slower than memory access, so once memory swapping occurs, the entire system's responsiveness degrades dramatically. This asymmetry is why memory overcommit requires more careful design than CPU."
+
+  - question: "Which statement best matches the article's explanation of how Hyper-V's Dynamic Memory works?"
+    choices:
+      - "Dynamic Memory continuously monitors a virtual machine's actual memory usage and dynamically increases or decreases its allocation within the range set by Startup RAM, Minimum RAM, and Maximum RAM"
+      - "Dynamic Memory is a fixed mechanism where the memory amount assigned at boot can never be changed while running"
+      - "Dynamic Memory is a feature that automatically adds physical memory to the host itself while running"
+      - "Dynamic Memory is a feature for dynamically changing the CPU's clock frequency"
+    answerIndex: 0
+    explanation: "Dynamic Memory sets three values — Startup RAM (the initial allocation at boot), Minimum RAM (the minimum it can shrink to), and Maximum RAM (the maximum it can grow to) — and continuously monitors how much memory is actually being used within the virtual machine, dynamically increasing or decreasing its allocation as needed within that range."
+
+  - question: "Which statement best matches the article's explanation of the risk of setting Minimum RAM too low?"
+    choices:
+      - "Setting Minimum RAM too low has no performance impact at all"
+      - "The virtual machine's genuinely needed memory amount may not be guaranteed, risking swapping"
+      - "Setting Minimum RAM too low automatically raises that host's CPU utilization"
+      - "Minimum RAM only affects a virtual machine's boot speed and is unrelated to runtime performance"
+    answerIndex: 1
+    explanation: "Setting Minimum RAM too low carries the risk that a virtual machine won't be guaranteed the memory it genuinely needs, potentially triggering swapping. Even when using Dynamic Memory, it's important to correctly estimate each virtual machine's actual minimum memory requirement."
+
+  - question: "Which statement best matches the article's explanation of why designing with NUMA (Non-Uniform Memory Access) in mind matters?"
+    choices:
+      - "Because if the vCPU/memory assigned to a virtual machine crosses the boundary of a single NUMA node, it may need to access memory belonging to a different CPU socket, causing extra latency and degraded performance"
+      - "Because NUMA is a mechanism for limiting the number of virtual machine licenses"
+      - "Because NUMA has no performance impact at all and can be safely ignored"
+      - "Because NUMA is a mechanism for controlling network bandwidth"
+    answerIndex: 0
+    explanation: "Large physical servers use an architecture called NUMA, where each CPU socket has a dedicated region of memory. If the vCPU/memory assigned to a virtual machine crosses the boundary of a single NUMA node, it may need to access memory belonging to a different CPU socket, causing extra access latency and degraded performance."

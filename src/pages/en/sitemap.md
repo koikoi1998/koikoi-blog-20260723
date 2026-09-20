@@ -249,9 +249,10 @@ A group of prep manuals covering what this blog's hands-on articles (like the se
 
 ### Virtualization Fundamentals Series
 
-A series that digs into what actually implements the virtualization behind Proxmox VE, the platform used in the hands-on labs. **Recommended order**: ① proxmox-internals-guide.
+A series that digs into what actually implements the virtualization behind Proxmox VE, the platform used in the hands-on labs. **Recommended order**: ① proxmox-internals-guide → ② hyperv-capacity-guide.
 
 - [What Is Proxmox VE? Understanding KVM/QEMU Virtualization from the "Top 1%" Perspective](/en/articles/proxmox-internals-guide) — The division of labor between KVM (which turns the Linux kernel itself into a hypervisor) and QEMU (which reproduces everything besides the CPU in software), how a virtual bridge (vmbr) connects a VM to the network, and how storage backends and snapshots work (spun off from the Proxmox operations covered in the hands-on prep manual; also readable standalone).
+- [Understanding Hyper-V Virtual Machine Resource Design from a "Top 1%" Perspective](/en/articles/hyperv-capacity-guide) — A deep dive into why CPU and memory differ in their tolerance for overcommit, how Dynamic Memory (Startup/Minimum/Maximum RAM) works, and designing with NUMA in mind (also readable standalone).
 
 ### Linux / OS Fundamentals Series
 
