@@ -1,0 +1,45 @@
+questions:
+  - question: "Which statement best matches the article's explanation of the difference in what a firewall and a proxy control?"
+    choices:
+      - "A firewall and a proxy provide exactly identical functionality, so there's no point distinguishing them"
+      - "A firewall mainly judges whether to pass traffic through based on IP address and port number, while a proxy understands the content of an application-layer protocol like HTTP itself to relay and control it"
+      - "A firewall understands application-layer content, while a proxy only looks at IP address and port number (the reverse of the article's explanation)"
+      - "Both a firewall and a proxy are devices that control the physical-layer cable itself"
+    answerIndex: 1
+    explanation: "A firewall is a mechanism that controls traffic — allowing or blocking it — mainly based on IP address and port number. A proxy is a mechanism that actually understands the content of an application-layer protocol like HTTP itself, relaying, transforming, or controlling it based on that content."
+
+  - question: "Which statement best matches the article's explanation of the difference between an explicit proxy and a transparent proxy?"
+    choices:
+      - "An explicit proxy is configured on the client with the proxy server's address explicitly specified; a transparent proxy has network equipment automatically redirect traffic to the proxy, with the client unaware it exists"
+      - "An explicit proxy and a transparent proxy differ only in encryption strength"
+      - "A transparent proxy must always use a physically transparent (see-through) chassis"
+      - "An explicit proxy is free, and a transparent proxy requires a paid license"
+    answerIndex: 0
+    explanation: "An explicit proxy has the proxy server's address explicitly specified in the client's (browser's) configuration, so the client is aware it's going through a proxy. A transparent proxy requires no configuration change on the client, with network equipment automatically redirecting traffic to the proxy, leaving the client unaware it exists."
+
+  - question: "Which statement best matches the article's explanation of the background behind cloud proxies (SWG) becoming important?"
+    choices:
+      - "It became necessary to apply a consistent security policy regardless of location, as employees gained more opportunities to access the internet directly from outside the office"
+      - "On-premises proxy servers have been technically discontinued entirely"
+      - "Cloud proxies are deliberately chosen because they're always slower than traditional proxies"
+      - "Cloud proxies were developed with the purpose of completely replacing firewalls"
+    answerIndex: 0
+    explanation: "The background is the growing number of opportunities for employees to access the internet directly from outside the office (home, while traveling). A cloud proxy routes an employee's device through the cloud-hosted proxy first, no matter where they are, letting a consistent security policy apply regardless of location."
+
+  - question: "Which statement best matches the article's explanation of the relationship between a cloud proxy (SWG), ZTNA, and SASE?"
+    choices:
+      - "SWG handles protecting outbound traffic to the internet, ZTNA mainly handles access to internal applications (more inbound-oriented), and the broader concept integrating both is SASE"
+      - "SWG, ZTNA, and SASE all refer to exactly the same technology, just under different names"
+      - "SWG is the old name for ZTNA, and the term SWG is no longer used today"
+      - "SASE is a completely unrelated technology from a different field than SWG or ZTNA"
+    answerIndex: 0
+    explanation: "SWG (a cloud proxy) handles protecting access to resources on the internet (more outbound-oriented), while ZTNA mainly handles access to internal applications (more inbound-oriented). The broader concept integrating both is SASE (Secure Access Service Edge)."
+
+  - question: "Which statement best matches the article's explanation of the technology needed for a proxy to inspect the content of HTTPS traffic?"
+    choices:
+      - "HTTPS traffic isn't encrypted, so no additional technology is needed at all"
+      - "SSL inspection (decrypting traffic once, inspecting it, then re-encrypting it) is needed, and realizing it requires configuring the client side to trust the certificate the proxy uses"
+      - "HTTPS content can be automatically inspected just by changing the firewall's configuration"
+      - "Inspecting HTTPS traffic requires physically replacing the client's CPU"
+    answerIndex: 1
+    explanation: "Because most communication today is HTTPS (encrypted), a proxy wanting to inspect the content of communication needs SSL inspection (decrypting the traffic once, inspecting it, then re-encrypting it). This requires configuring the client side to trust the certificate the proxy uses (installing that certificate)."

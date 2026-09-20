@@ -34,6 +34,7 @@ graph TB
     WindowsClient["Windows Client Operations Series"]
     WindowsServer["Windows Server Operations Series"]
     Storage["Storage Fundamentals Series"]
+    WebProxy["Web Proxy / Caching Fundamentals Series"]
 
     Idrac --> Network
     Idrac --> Api
@@ -47,6 +48,7 @@ graph TB
     ActiveDirectory --> WindowsClient
     ActiveDirectory --> WindowsServer
     WindowsServer --> Storage
+    Network --> WebProxy
 ```
 
 **The basic path**: Start with the iDRAC article, branch into the Networking Fundamentals and Web/API series, follow the L2TP/IPsec article's thread from Networking Fundamentals into the Remote-Access VPN/L2TP-IPsec series, and dig deeper from there into the Site-to-Site VPN series, Security Fundamentals, Linux/OS Fundamentals, and Telephony. That's the main line of derivation between articles. That said, every article is written to be **fully readable on its own**, so feel free to start with whichever series or article interests you. Note also that some articles in the Networking Fundamentals series (NAT/NAPT, virtual IPs, TCP/UDP sessions, DNS) actually branch off from the L2TP/IPsec article in the Remote-Access VPN series — the series don't form a strict one-way tree; some cross-reference each other. The remote-access and site-to-site VPN articles used to be bundled into a single "VPN/L2TP-IPsec Series," but since they serve different audiences and use cases, they've since been split into two separate series. The Active Directory series is a new series digging into questions that come up constantly in real AD migration and DC operation work, and assumes you've read the Networking Fundamentals series (especially DNS).
@@ -319,6 +321,12 @@ A series digging into storage fundamentals — RAID, disk management, storage co
 
 - [Understanding the Relationship Between RAID and Windows Disk Management from a "Top 1%" Perspective](/en/articles/disk-raid-fundamentals-guide) — A deep dive into the relationship between the two independent layers of RAID and OS disk management, why the C drive works right away while the D drive needs initialization, the difference between MBR/GPT, the difference between a partition and a volume, and what formatting does (also readable standalone).
 - [Understanding the Difference Between Fibre Channel and LAN Connections from a "Top 1%" Perspective](/en/articles/fc-san-fundamentals-guide) — A deep dive into how FC identifies and controls the other end of a connection via WWN and zoning instead of an IP address, the difference from SAS, and the criteria for choosing between FC, SAS, and LAN (also readable standalone).
+
+### Web Proxy / Caching Fundamentals Series
+
+A series digging into the fundamentals of controlling and speeding up web traffic — proxies, firewalls, caching, and CDNs. **Recommended order**: ① proxy-firewall-guide (more articles on the relationship between HTTPS, caching, and CDNs, and related topics, are planned).
+
+- [Understanding When to Use a Proxy vs. a Firewall from a "Top 1%" Perspective](/en/articles/proxy-firewall-guide) — A deep dive into the difference in the layer and granularity each controls, explicit vs. transparent proxies, the relationship between a cloud proxy (SWG) and ZTNA/SASE, and SSL inspection (also readable standalone).
 
 ## What's next
 
