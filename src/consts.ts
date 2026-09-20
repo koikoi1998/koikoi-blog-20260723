@@ -15,6 +15,7 @@ export const seriesNames: Record<string, string> = {
   "windows-server": "Windows Server運用シリーズ",
   storage: "ストレージ基礎シリーズ",
   "web-proxy": "Webプロキシ/キャッシュ基礎シリーズ",
+  "aws-basics": "AWS基礎シリーズ",
 };
 
 export const seriesNamesEn: Record<string, string> = {
@@ -34,6 +35,7 @@ export const seriesNamesEn: Record<string, string> = {
   "windows-server": "Windows Server Operations Series",
   storage: "Storage Fundamentals Series",
   "web-proxy": "Web Proxy / Caching Fundamentals Series",
+  "aws-basics": "AWS Fundamentals Series",
 };
 
 export type Lang = "ja" | "en";

@@ -35,6 +35,7 @@ graph TB
     WindowsServer["Windows Server Operations Series"]
     Storage["Storage Fundamentals Series"]
     WebProxy["Web Proxy / Caching Fundamentals Series"]
+    AwsBasics["AWS Fundamentals Series"]
 
     Idrac --> Network
     Idrac --> Api
@@ -49,6 +50,7 @@ graph TB
     ActiveDirectory --> WindowsServer
     WindowsServer --> Storage
     Network --> WebProxy
+    SiteToSite --> AwsBasics
 ```
 
 **The basic path**: Start with the iDRAC article, branch into the Networking Fundamentals and Web/API series, follow the L2TP/IPsec article's thread from Networking Fundamentals into the Remote-Access VPN/L2TP-IPsec series, and dig deeper from there into the Site-to-Site VPN series, Security Fundamentals, Linux/OS Fundamentals, and Telephony. That's the main line of derivation between articles. That said, every article is written to be **fully readable on its own**, so feel free to start with whichever series or article interests you. Note also that some articles in the Networking Fundamentals series (NAT/NAPT, virtual IPs, TCP/UDP sessions, DNS) actually branch off from the L2TP/IPsec article in the Remote-Access VPN series — the series don't form a strict one-way tree; some cross-reference each other. The remote-access and site-to-site VPN articles used to be bundled into a single "VPN/L2TP-IPsec Series," but since they serve different audiences and use cases, they've since been split into two separate series. The Active Directory series is a new series digging into questions that come up constantly in real AD migration and DC operation work, and assumes you've read the Networking Fundamentals series (especially DNS).
@@ -328,6 +330,12 @@ A series digging into the fundamentals of controlling and speeding up web traffi
 
 - [Understanding When to Use a Proxy vs. a Firewall from a "Top 1%" Perspective](/en/articles/proxy-firewall-guide) — A deep dive into the difference in the layer and granularity each controls, explicit vs. transparent proxies, the relationship between a cloud proxy (SWG) and ZTNA/SASE, and SSL inspection (also readable standalone).
 - [Understanding the Rise of HTTPS and the End of Proxy Caching from a "Top 1%" Perspective](/en/articles/http-caching-cdn-guide) — A deep dive into the difference between the three layers of proxy caching, browser caching, and CDNs, why HTTPS adoption neutralized only proxy caching, and the historical handoff of shared caching from the consumer side to the provider side via CDNs (a follow-on from [proxy-firewall-guide](/en/articles/proxy-firewall-guide), also readable standalone).
+
+### AWS Fundamentals Series
+
+A series digging into the basic questions that come up constantly when using AWS — EC2, VPC, and more. **Recommended order**: ① aws-ec2-networking-basics-guide.
+
+- [Understanding EC2 Key Pairs (.pem/.ppk) and Reserved Subnet IPs from a "Top 1%" Perspective](/en/articles/aws-ec2-networking-basics-guide) — A deep dive into why .pem and .ppk are different file formats for the same private key, and why the first four and last one IP addresses on an AWS subnet are reserved, and what each is used for (also readable standalone).
 
 ## What's next
 

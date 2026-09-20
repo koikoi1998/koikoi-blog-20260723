@@ -4,7 +4,7 @@ import { glob } from "astro/loaders";
 const articleSchema = z.object({
   title: z.string(),
   description: z.string(),
-  series: z.enum(["idrac", "network", "vpn", "modern-vpn", "site-to-site-vpn", "linux", "telephony", "api", "security", "handson-prep", "virtualization", "active-directory", "windows-client", "windows-server", "storage", "web-proxy"]),
+  series: z.enum(["idrac", "network", "vpn", "modern-vpn", "site-to-site-vpn", "linux", "telephony", "api", "security", "handson-prep", "virtualization", "active-directory", "windows-client", "windows-server", "storage", "web-proxy", "aws-basics"]),
   order: z.number(),
   tags: z.array(z.string()),
   emoji: z.string().optional(),

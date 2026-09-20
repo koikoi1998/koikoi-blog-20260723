@@ -1,0 +1,45 @@
+questions:
+  - question: "Which statement best matches the article's explanation of the difference between .pem and .ppk?"
+    choices:
+      - "The two are different file formats storing the same private key information, with no difference in the key's own encryption algorithm or security"
+      - ".pem has high cryptographic strength and .ppk has low cryptographic strength — they're clearly different kinds of keys"
+      - ".pem is exclusive to Linux and .ppk is exclusive to macOS, incompatible key formats"
+      - ".pem refers to a public key and .ppk refers to a private key — entirely different concepts"
+    answerIndex: 0
+    explanation: ".pem and .ppk represent the same private key information in different file formats. There's no difference in the encryption algorithm the key itself uses, or in the key's own security — converting with PuTTYgen is simply re-encoding the same key information into a different format."
+
+  - question: "Which statement best matches the article's explanation of the default key pair format AWS lets you download, and the work needed to connect with PuTTY?"
+    choices:
+      - "AWS only provides .ppk format by default, requiring conversion when connecting with OpenSSH"
+      - "The format AWS lets you download when creating an EC2 key pair is .pem by default, and if you want to connect with PuTTY, you need to convert it to .ppk format with PuTTYgen"
+      - "AWS lets you download both .pem and .ppk simultaneously, with no conversion needed at all"
+      - "PuTTY can directly read a .pem-format file, so no conversion work is needed at all"
+    answerIndex: 1
+    explanation: "The format AWS lets you download when creating an EC2 key pair is .pem by default. PuTTY can't directly read any format other than its own (.ppk), so if you want to connect with PuTTY, you need to convert the .pem file to .ppk format using PuTTYgen."
+
+  - question: "Which statement best matches the article's explanation of the total number, and breakdown, of reserved IP addresses on an AWS subnet?"
+    choices:
+      - "A total of five are reserved: the first four (network address, router, DNS server, future reservation) and the last one (broadcast address)"
+      - "Only two are reserved: the first one and the last one"
+      - "Every IP address in the subnet is reserved, leaving no actual assignable IP addresses at all"
+      - "The number of reserved IP addresses changes randomly every time, depending on the subnet size"
+    answerIndex: 0
+    explanation: "On an AWS subnet, a total of five IP addresses are reserved and unavailable for assignment: the first four (the network address, reserved for the VPC router, reserved for the Amazon DNS server, and reserved for future use) and the last one (the network broadcast address)."
+
+  - question: "Which statement best matches the article's explanation of the purpose of the IP address 10.0.0.2 within a subnet?"
+    choices:
+      - "It's reserved for storing that subnet's administrator login password"
+      - "It functions as the address of the Amazon-provided DNS server (Route 53 Resolver) that instances within the VPC query for name resolution"
+      - "It's a configuration value indicating the maximum number of instances that can connect to that subnet"
+      - "10.0.0.2 isn't reserved at all on an AWS subnet and can be freely assigned"
+    answerIndex: 1
+    explanation: "10.0.0.2 is reserved to function as the address of the Amazon-provided DNS server (Route 53 Resolver) that instances within the VPC query for name resolution."
+
+  - question: "Which statement best matches the article's explanation of what to watch out for when designing a subnet's size?"
+    choices:
+      - "The CIDR range's host count is exactly how many instances can be assigned, so there's no need to consider reserved IPs"
+      - "The actual number of assignable IP addresses is the CIDR range's host count minus the five reserved addresses, so this impact becomes proportionally larger for an overly small subnet"
+      - "A subnet's size must always be fixed at /24 and can never be changed"
+      - "The number of reserved IP addresses varies by region, so there's no need to check it ahead of time"
+    answerIndex: 1
+    explanation: "The actual number of assignable IP addresses is the CIDR range's host count minus the five reserved addresses. A design creating many overly small subnets (such as /28) sees this impact become proportionally larger, potentially leading to running out of IP addresses sooner than expected."

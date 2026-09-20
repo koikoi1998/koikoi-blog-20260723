@@ -37,6 +37,7 @@ graph TB
     WindowsServer["Windows Server運用シリーズ"]
     Storage["ストレージ基礎シリーズ"]
     WebProxy["Webプロキシ/キャッシュ基礎シリーズ"]
+    AwsBasics["AWS基礎シリーズ"]
 
     Idrac --> Network
     Idrac --> Api
@@ -51,6 +52,7 @@ graph TB
     ActiveDirectory --> WindowsServer
     WindowsServer --> Storage
     Network --> WebProxy
+    SiteToSite --> AwsBasics
 ```
 
 **基本的な読み方**: iDRACの記事を起点に、ネットワーク基礎シリーズとWeb/APIシリーズへ進み、ネットワーク基礎シリーズのL2TP/IPsecの記事からリモートアクセスVPN/L2TP・IPsecシリーズへ、そこから拠点間VPNシリーズ・セキュリティ基礎・Linux/OS基礎・電話網シリーズへと深掘りしていく、というのが記事同士の主な派生の流れです。ただし各記事は**すべて単体でも読める**ように書かれているため、興味のあるシリーズ・記事から読み始めて問題ありません。なお、ネットワーク基礎シリーズの一部記事(NAT/NAPT・代表IP・TCP/UDPセッション・DNS)はリモートアクセスVPN/L2TP・IPsecシリーズのL2TP/IPsecの記事から派生しており、シリーズ同士は一方向のツリーではなく一部相互に関係している点に注意してください。以前はリモートアクセスVPNと拠点間VPNを同じ「VPN/L2TP・IPsecシリーズ」にまとめていましたが、対象読者・用途が異なるため2つのシリーズに分割しました。Active Directoryシリーズは、AD移行・DC運用の実務で直面する疑問を深掘りする新シリーズで、ネットワーク基礎シリーズ(特にDNS)の知識を前提にしています。
@@ -330,6 +332,12 @@ RAID・ディスク管理・ストレージ接続方式など、ストレージ�
 
 - [プロキシとファイアウォールの使い分けを『上位1%』の視点で理解する](/articles/proxy-firewall-guide) — 両者が制御する通信の階層・単位の違い、明示的プロキシと透過型プロキシ、クラウドプロキシ(SWG)とZTNA・SASEの関係、SSLインスペクションまでの深掘り(単体でも読めます)。
 - [HTTPSの普及とプロキシキャッシュの終焉を『上位1%』の視点で理解する](/articles/http-caching-cdn-guide) — プロキシキャッシュ・ブラウザキャッシュ・CDNという3つのレイヤーの違い、HTTPS化がプロキシキャッシュだけを無力化した理由、CDNが利用者側から提供者側へと共有キャッシュの主体を引き継いだ歴史的経緯までの深掘り([proxy-firewall-guide](/articles/proxy-firewall-guide)の発展編、単体でも読めます)。
+
+### AWS基礎シリーズ
+
+EC2・VPCなど、AWSを使ううえで必ず直面する基礎的な疑問を深掘りするシリーズです。**読む順番の目安**: ① aws-ec2-networking-basics-guide。
+
+- [EC2のキーペア(.pem/.ppk)とサブネットの予約IPを『上位1%』の視点で理解する](/articles/aws-ec2-networking-basics-guide) — .pemと.ppkが同じ秘密鍵の異なるファイル形式である理由、AWSサブネットで先頭4つ・末尾1つのIPアドレスが予約されている理由と用途までの深掘り(単体でも読めます)。
 
 ## 今後の展開予定
 
