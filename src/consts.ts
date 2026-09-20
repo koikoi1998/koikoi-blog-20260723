@@ -12,6 +12,7 @@ export const seriesNames: Record<string, string> = {
   virtualization: "仮想化基盤シリーズ",
   "active-directory": "Active Directoryシリーズ",
   "windows-client": "Windowsクライアント運用シリーズ",
+  "windows-server": "Windows Server運用シリーズ",
 };
 
 export const seriesNamesEn: Record<string, string> = {
@@ -28,6 +29,7 @@ export const seriesNamesEn: Record<string, string> = {
   virtualization: "Virtualization Fundamentals Series",
   "active-directory": "Active Directory Series",
   "windows-client": "Windows Client Operations Series",
+  "windows-server": "Windows Server Operations Series",
 };
 
 export type Lang = "ja" | "en";

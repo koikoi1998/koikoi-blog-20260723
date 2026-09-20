@@ -1,0 +1,45 @@
+questions:
+  - question: "Which statement best matches the article's explanation of the main difference between the Standard and Datacenter editions?"
+    choices:
+      - "There's no functional difference at all between the two editions — they differ only in price"
+      - "The main difference is the number of virtual machines a single license can run (virtualization rights) and Datacenter-exclusive features, not simply how much functionality each has"
+      - "Standard is 32-bit only, and Datacenter is 64-bit only"
+      - "The Datacenter edition can't be installed on a physical server and only ever runs inside a virtual machine"
+    answerIndex: 1
+    explanation: "The biggest difference between Standard and Datacenter is the number of virtual machines a single license can run (virtualization rights). Standard can run up to 2 VMs, while Datacenter can run an unlimited number. Datacenter also has exclusive features like Storage Spaces Direct."
+
+  - question: "Which statement best matches the article's explanation of core-based licensing since Windows Server 2016?"
+    choices:
+      - "Licenses are billed based on the number of physical (or virtual) cores rather than the number of servers, with a rule requiring at least 16 cores' worth of licensing per physical server"
+      - "Licenses are billed based on the number of countries where that server is deployed"
+      - "Licenses are billed based on the number of monitors connected to the server"
+      - "Core-based licensing is a still-experimental mechanism first introduced with Windows Server 2025"
+    answerIndex: 0
+    explanation: "Since Windows Server 2016, licenses are billed based on the number of physical cores (or virtual cores assigned to a VM), not the number of servers. There's a rule requiring licensing for at least 16 cores per physical server."
+
+  - question: "Which statement best matches the article's explanation of what an OEM license actually is and its constraints?"
+    choices:
+      - "An OEM license is a licensing form provided bundled with the hardware when purchasing a server, valid only on that specific hardware, and it can't be transferred as-is to different, new hardware"
+      - "An OEM license is a special licensing form usable free of charge indefinitely"
+      - "An OEM license is a higher-tier version offering additional functionality beyond an ordinary license"
+      - "An OEM license is a licensing form designed exclusively for cloud environments and can't be used on-premises"
+    answerIndex: 0
+    explanation: "An OEM (Original Equipment Manufacturer) license is a licensing form provided bundled with the hardware when you buy a server. It's valid only on that specific hardware you purchased, and it can't be transferred as-is to different, new hardware, even within the same organization."
+
+  - question: "Which statement best matches the article's explanation of why volume licensing is considered more flexible than an OEM license?"
+    choices:
+      - "Volume licensing can be contracted with license mobility (the right to transfer a license to different hardware), giving greater flexibility when swapping hardware or migrating to the cloud"
+      - "Volume licensing is always cheaper than an OEM license"
+      - "Volume licensing offers more OS functionality than an OEM license"
+      - "Volume licensing can only ever be purchased as a single license at a time"
+    answerIndex: 0
+    explanation: "Volume licensing can typically be contracted with license mobility (the right to transfer a license to different hardware) included, giving greater flexibility when swapping server hardware or migrating from on-premises to the cloud. This is the main difference from an OEM license."
+
+  - question: "Which statement best matches the article's explanation of the decision point when considering switching from Standard to Datacenter?"
+    choices:
+      - "Switching to Datacenter always lowers cost, so you should switch immediately regardless of VM count"
+      - "The practical decision point is comparing the cost of buying additional Standard licenses per VM against the cost of upgrading to Datacenter, based on the current VM count"
+      - "Standard and Datacenter can't be converted between each other, and once chosen, an edition can never be changed"
+      - "VM count has no effect at all on edition choice"
+    answerIndex: 1
+    explanation: "As VM count grows, the practical decision point is comparing the cost of buying additional Standard licenses against the cost of upgrading to Datacenter, based on the current VM count. If significant future growth is expected, choosing Datacenter from the start is often advantageous."

@@ -32,6 +32,7 @@ graph TB
     Api["Web / API Series"]
     ActiveDirectory["Active Directory Series"]
     WindowsClient["Windows Client Operations Series"]
+    WindowsServer["Windows Server Operations Series"]
 
     Idrac --> Network
     Idrac --> Api
@@ -43,6 +44,7 @@ graph TB
     Vpn --> Telephony
     Network --> ActiveDirectory
     ActiveDirectory --> WindowsClient
+    ActiveDirectory --> WindowsServer
 ```
 
 **The basic path**: Start with the iDRAC article, branch into the Networking Fundamentals and Web/API series, follow the L2TP/IPsec article's thread from Networking Fundamentals into the Remote-Access VPN/L2TP-IPsec series, and dig deeper from there into the Site-to-Site VPN series, Security Fundamentals, Linux/OS Fundamentals, and Telephony. That's the main line of derivation between articles. That said, every article is written to be **fully readable on its own**, so feel free to start with whichever series or article interests you. Note also that some articles in the Networking Fundamentals series (NAT/NAPT, virtual IPs, TCP/UDP sessions, DNS) actually branch off from the L2TP/IPsec article in the Remote-Access VPN series — the series don't form a strict one-way tree; some cross-reference each other. The remote-access and site-to-site VPN articles used to be bundled into a single "VPN/L2TP-IPsec Series," but since they serve different audiences and use cases, they've since been split into two separate series. The Active Directory series is a new series digging into questions that come up constantly in real AD migration and DC operation work, and assumes you've read the Networking Fundamentals series (especially DNS).
@@ -82,7 +84,7 @@ This blog is written for a wide range of readers — from people with no experie
 <li><a href="/en/articles/access-network-guide">Understanding the Evolution of Access-Line Technology — ADSL, Fiber, and More — from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/restful-api-guide">What Is a RESTful API? Understanding from HTTP/JSON Basics to Practical Design from a "Top 1%" Perspective</a></li>
 </ol>
-<div class="persona-bonus">🔍 <strong>If it interests you (optional)</strong>: <a href="/en/articles/windows-defender-guide">Understanding How Microsoft Defender Works</a> and the rest of the Windows Client Operations Series tackle the questions that come up in day-to-day PC operations. Once that series has grown, it'll be folded properly into one of the steps.</div>
+<div class="persona-bonus">🔍 <strong>If it interests you (optional)</strong>: <a href="/en/articles/windows-defender-guide">Understanding How Microsoft Defender Works</a> and the rest of the Windows Client Operations Series tackle the questions that come up in day-to-day PC operations. <a href="/en/articles/windows-server-licensing-guide">Understanding Windows Server Licensing</a> and the rest of the Windows Server Operations Series tackle the questions that come up in server procurement and operations. Once each series has grown, it'll be folded properly into one of the steps.</div>
 </div>
 <div class="persona-panel persona-panel-2">
 <div class="persona-panel-head">
@@ -298,6 +300,12 @@ A series digging into the "why is it built this way" questions that come up in d
 - [Understanding the Difference Between Processes, Tasks, and Threads in Windows from a "Top 1%" Perspective](/en/articles/windows-process-task-guide) — A deep dive into the hierarchy between process/task/thread, what a zombie process really is, and the mechanism (EDID) behind a monitor's layout settings being restored (also readable standalone).
 - [Why Do Files With Identical-Looking Names Have Different Character Counts in Windows?](/en/articles/unicode-filename-normalization-guide) — A deep dive into how Unicode normalization (NFC/NFD) works, why Windows (NTFS) doesn't normalize, and why cloud storage services like BOX, which compare after normalizing, fail during migration (also readable standalone).
 - [Understanding the Difference Between x64 and x86 Installers from a "Top 1%" Perspective](/en/articles/windows-install-media-guide) — A deep dive into the behavior difference between applications and drivers via WoW64, why it still isn't unified today, and what "mounting" an ISO file actually does (also readable standalone).
+
+### Windows Server Operations Series
+
+A series digging into the questions that come up constantly in Windows Server procurement and operations. **Recommended order**: ① windows-server-licensing-guide (more articles on NTP server configuration, IIS/ASP.NET, SMB shares, and related topics are planned).
+
+- [Understanding Windows Server Licensing (OEM, Datacenter, Standard) from a "Top 1%" Perspective](/en/articles/windows-server-licensing-guide) — A deep dive into why the main Standard/Datacenter difference is virtualization rights, how core-based licensing works, and why an OEM license is tied to specific hardware (also readable standalone).
 
 ## What's next
 

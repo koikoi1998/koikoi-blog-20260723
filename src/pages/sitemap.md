@@ -34,6 +34,7 @@ graph TB
     Api["Web/APIシリーズ"]
     ActiveDirectory["Active Directoryシリーズ"]
     WindowsClient["Windowsクライアント運用シリーズ"]
+    WindowsServer["Windows Server運用シリーズ"]
 
     Idrac --> Network
     Idrac --> Api
@@ -45,6 +46,7 @@ graph TB
     Vpn --> Telephony
     Network --> ActiveDirectory
     ActiveDirectory --> WindowsClient
+    ActiveDirectory --> WindowsServer
 ```
 
 **基本的な読み方**: iDRACの記事を起点に、ネットワーク基礎シリーズとWeb/APIシリーズへ進み、ネットワーク基礎シリーズのL2TP/IPsecの記事からリモートアクセスVPN/L2TP・IPsecシリーズへ、そこから拠点間VPNシリーズ・セキュリティ基礎・Linux/OS基礎・電話網シリーズへと深掘りしていく、というのが記事同士の主な派生の流れです。ただし各記事は**すべて単体でも読める**ように書かれているため、興味のあるシリーズ・記事から読み始めて問題ありません。なお、ネットワーク基礎シリーズの一部記事(NAT/NAPT・代表IP・TCP/UDPセッション・DNS)はリモートアクセスVPN/L2TP・IPsecシリーズのL2TP/IPsecの記事から派生しており、シリーズ同士は一方向のツリーではなく一部相互に関係している点に注意してください。以前はリモートアクセスVPNと拠点間VPNを同じ「VPN/L2TP・IPsecシリーズ」にまとめていましたが、対象読者・用途が異なるため2つのシリーズに分割しました。Active Directoryシリーズは、AD移行・DC運用の実務で直面する疑問を深掘りする新シリーズで、ネットワーク基礎シリーズ(特にDNS)の知識を前提にしています。
@@ -84,7 +86,7 @@ graph TB
 <li><a href="/articles/access-network-guide">ADSL・光回線などアクセス回線の技術変遷を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/restful-api-guide">RESTful APIとは何か？HTTP・JSONの基礎から実務設計まで『上位1%』の視点で理解する</a></li>
 </ol>
-<div class="persona-bonus">🔍 <strong>興味があれば(任意)</strong>: <a href="/articles/windows-defender-guide">Microsoft Defenderの仕組み</a>など、Windowsクライアント運用シリーズは日々のPC運用で出会う疑問を扱った記事群です。シリーズが育ってきたら、いずれかのSTEPで本格的に扱う予定です。</div>
+<div class="persona-bonus">🔍 <strong>興味があれば(任意)</strong>: <a href="/articles/windows-defender-guide">Microsoft Defenderの仕組み</a>など、Windowsクライアント運用シリーズは日々のPC運用で出会う疑問を扱った記事群です。<a href="/articles/windows-server-licensing-guide">Windows Serverのライセンス</a>など、Windows Server運用シリーズはサーバーの調達・運用で出会う疑問を扱います。いずれもシリーズが育ってきたら、どこかのSTEPで本格的に扱う予定です。</div>
 </div>
 <div class="persona-panel persona-panel-2">
 <div class="persona-panel-head">
@@ -300,6 +302,12 @@ AD移行・ドメインコントローラー(DC)の構築・運用の実務で�
 - [Windowsのプロセス・タスク・スレッドの違いを『上位1%』の視点で理解する](/articles/windows-process-task-guide) — プロセス/タスク/スレッドの階層関係、ゾンビプロセスの正体、モニターの配置設定が復元される仕組み(EDID)までの深掘り(単体でも読めます)。
 - [見た目が同じなのに文字数が異なるファイル名が存在する理由を『上位1%』の視点で理解する](/articles/unicode-filename-normalization-guide) — Unicode正規化(NFC/NFD)の仕組み、Windows(NTFS)が正規化を行わない理由、BOXなどのクラウドストレージが正規化した上で比較するために移行が失敗する理由までの深掘り(単体でも読めます)。
 - [インストーラのx64とx86の違いを『上位1%』の視点で理解する](/articles/windows-install-media-guide) — WoW64によるアプリケーションとドライバの挙動の違い、なぜ今も統一されないのか、ISOファイルの「マウント」が実際に行っていることまでの深掘り(単体でも読めます)。
+
+### Windows Server運用シリーズ
+
+Windows Serverの調達・運用で必ず直面する疑問を深掘りするシリーズです。**読む順番の目安**: ① windows-server-licensing-guide(以降、NTPサーバー設定・IIS/ASP.NET・SMB共有等のテーマを追加予定)。
+
+- [Windows Serverのライセンス(OEM・Datacenter・Standard)を『上位1%』の視点で理解する](/articles/windows-server-licensing-guide) — Standard/Datacenterの主な違いが仮想化権利である理由、コアベースライセンシングの仕組み、OEMライセンスがハードウェアに紐づく理由までの深掘り(単体でも読めます)。
 
 ## 今後の展開予定
 
