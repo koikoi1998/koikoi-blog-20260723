@@ -1,0 +1,45 @@
+questions:
+  - question: "Which statement best matches the article's explanation of the relationship between OpenShift and Kubernetes?"
+    choices:
+      - "OpenShift is a competing product that replaces Kubernetes, and you have to choose one or the other"
+      - "OpenShift is a derivative product (a distribution) built on top of Kubernetes, bundling in functionality enterprises need for real-world operation on top of that core"
+      - "OpenShift and Kubernetes are completely unrelated technologies, independently developed by different companies"
+      - "Kubernetes is the name of a private, internal module used within OpenShift"
+    answerIndex: 1
+    explanation: "OpenShift is a container platform provided by Red Hat, built on top of Kubernetes. It's not a competing product that replaces Kubernetes — it's a derivative product (a distribution) that bundles in many features enterprises need for real-world operation, on top of the Kubernetes core."
+
+  - question: "Which statement best matches the article's explanation of the difference between a virtual machine and a container?"
+    choices:
+      - "A virtual machine is a technology that reproduces the hardware and runs an entire guest OS, while a container shares the OS kernel and isolates the environment at the process level"
+      - "A virtual machine and a container are exactly the same mechanism, just called by different names"
+      - "A container is always slower and less resource-efficient than a virtual machine"
+      - "A virtual machine is a backward-compatible technology that runs inside a container"
+    answerIndex: 0
+    explanation: "A virtual machine is a technology that reproduces the hardware itself in software and runs an entire guest OS on top of it. A container takes a different approach, sharing just one OS kernel while isolating the execution environment at the process level, making it faster to start with lower resource overhead."
+
+  - question: "Which statement best matches the article's explanation of what plain Kubernetes alone provides?"
+    choices:
+      - "Plain Kubernetes only provides the core of how to place and manage containers — surrounding functionality like a registry, CI/CD, monitoring, and security policy needs to be separately combined"
+      - "Plain Kubernetes alone comes with every piece of functionality needed for enterprise operation (registry, CI/CD, monitoring, and so on) fully built in"
+      - "Plain Kubernetes is software whose only purpose is providing web server functionality"
+      - "Plain Kubernetes is software whose only purpose is creating virtual machines"
+    answerIndex: 0
+    explanation: "Plain Kubernetes only provides the \"core\" of how to place and manage containers. To actually operate a container platform in an enterprise, you need to individually select and integrate many surrounding pieces of functionality — a registry, CI/CD, monitoring, security policy, and more."
+
+  - question: "Which statement best matches the article's explanation of what Kubernetes concept OpenShift's Route corresponds to?"
+    choices:
+      - "Route is OpenShift's own implementation, equivalent to Kubernetes's Ingress (a mechanism routing traffic from outside the cluster to a Service)"
+      - "Route is a concept equivalent to Kubernetes's Pod (the unit of container execution)"
+      - "Route is a completely unrelated, OpenShift-only concept that doesn't exist in Kubernetes at all"
+      - "Route is a concept equivalent to Kubernetes's Node (the machine on which execution happens)"
+    answerIndex: 0
+    explanation: "Route is OpenShift's own implementation, equivalent to Kubernetes's Ingress (a mechanism routing traffic from outside the cluster to a Service). It supports TLS termination by default and routes to different applications by host name."
+
+  - question: "Which statement best matches the article's explanation of why enterprises choose OpenShift over plain Kubernetes?"
+    choices:
+      - "Because OpenShift is always free, unlike plain Kubernetes"
+      - "Because OpenShift pre-integrates the surrounding functionality (registry, CI/CD, monitoring, security policy, and so on) that would otherwise need to be combined individually with plain Kubernetes, providing it alongside a support contract from Red Hat"
+      - "Because using OpenShift lets you avoid using container technology at all"
+      - "Because using plain Kubernetes in an enterprise is legally prohibited"
+    answerIndex: 1
+    explanation: "Using plain Kubernetes requires individually selecting surrounding functionality and combining it while checking compatibility, demanding specialized knowledge and effort. OpenShift already does this integration work ahead of time, providing it alongside a support contract from Red Hat, offering the option to \"buy a finished car and start using it right away.\""

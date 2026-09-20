@@ -1,0 +1,45 @@
+questions:
+  - question: "OpenShift Localを起動するために必要な、Red Hatアカウントで取得する認証情報の名称は何か。"
+    choices:
+      - "プルシークレット(pull secret)"
+      - "APIキー"
+      - "SSH秘密鍵"
+      - "kubeconfig"
+    answerIndex: 0
+    explanation: "OpenShift Localでクラスタを起動する`crc start`コマンドには、コンテナイメージを取得するための認証情報である「プルシークレット」を、無料のRed Hatアカウントから取得して渡す必要があります。"
+
+  - question: "`oc new-app nodejs~https://github.com/...`のように、Gitリポジトリを指定するだけでコンテナイメージがビルド・デプロイされる仕組みの名称は何か。"
+    choices:
+      - "Source-to-Image(S2I)"
+      - "Ingress Controller"
+      - "Helmチャート"
+      - "DaemonSet"
+    answerIndex: 0
+    explanation: "Source-to-Image(S2I)は、Gitリポジトリ上のソースコードの内容を検知し、対応するビルダーイメージを使って自動的にコンテナイメージをビルドする仕組みです。開発者はビルド手順自体を意識せずに済みます。"
+
+  - question: "デプロイしたアプリケーションを外部(クラスタ外)からアクセスできるようにするために、記事内で作成したリソースは何か。"
+    choices:
+      - "Route"
+      - "PersistentVolume"
+      - "ConfigMap"
+      - "Secret"
+    answerIndex: 0
+    explanation: "デプロイしたアプリケーションは既定でクラスタ内部からしかアクセスできません。`oc expose service`でRouteを作成することで、ホスト名ベースで外部からアクセスできるようになります。"
+
+  - question: "`oc scale deployment/hello-node --replicas=3`を実行した後、いずれかのPodを手動で削除するとどうなるか、記事の説明に最も合致するものはどれか。"
+    choices:
+      - "新しいPodが自動的に1つ補充され、常に3つの状態が維持される"
+      - "残りのPodも含めてすべて削除され、アプリケーションが完全に停止する"
+      - "削除したPodの分だけ複製数が2に減り、そのまま2つの状態が維持される"
+      - "Deploymentそのものが削除され、再作成が必要になる"
+    answerIndex: 0
+    explanation: "Deploymentは「複製数3」という望ましい状態を宣言的に管理しているため、手動でPodを1つ削除しても、実際の状態が宣言と一致するよう自動的に新しいPodが補充され、常に3つの状態が維持されます。"
+
+  - question: "この記事が体験を通じて示している、Kubernetes・OpenShiftの中核的な設計思想は何か。"
+    choices:
+      - "宣言した状態を、実際の状態が常に一致するよう自動的に維持するという設計思想"
+      - "すべての操作を管理者が手動で行うことを前提とした設計思想"
+      - "1つのPodには必ず1つのコンテナしか含められないという設計思想"
+      - "アプリケーションは常に単一のレプリカでのみ稼働させるべきという設計思想"
+    answerIndex: 0
+    explanation: "`oc scale`による複製数の変更や、Pod削除後の自動補充を通じて体験できるのは、「宣言した状態(Desired State)を、実際の状態(Actual State)が常に一致するよう自動的に維持する」という、Kubernetes・OpenShiftの中核的な設計思想です。"

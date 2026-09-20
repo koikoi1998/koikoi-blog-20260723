@@ -1,0 +1,45 @@
+questions:
+  - question: "What is the name of the credential, obtained through a Red Hat account, that's required to start OpenShift Local?"
+    choices:
+      - "A pull secret"
+      - "An API key"
+      - "An SSH private key"
+      - "A kubeconfig"
+    answerIndex: 0
+    explanation: "Starting a cluster with OpenShift Local's `crc start` command requires a \"pull secret\" — authentication credentials for retrieving container images — obtained from a free Red Hat account."
+
+  - question: "What's the name of the mechanism that automatically builds and deploys a container image just by specifying a Git repository, as in `oc new-app nodejs~https://github.com/...`?"
+    choices:
+      - "Source-to-Image (S2I)"
+      - "An Ingress Controller"
+      - "A Helm chart"
+      - "A DaemonSet"
+    answerIndex: 0
+    explanation: "Source-to-Image (S2I) detects the content of the source code in a Git repository and automatically builds a container image using the corresponding builder image. Developers don't need to think about the build process itself."
+
+  - question: "What resource did the article create to make the deployed application accessible from outside the cluster?"
+    choices:
+      - "A Route"
+      - "A PersistentVolume"
+      - "A ConfigMap"
+      - "A Secret"
+    answerIndex: 0
+    explanation: "By default, a deployed application is only accessible from within the cluster. Creating a Route with `oc expose service` makes it accessible from outside, based on hostname."
+
+  - question: "According to the article, what happens if you manually delete one of the Pods after running `oc scale deployment/hello-node --replicas=3`?"
+    choices:
+      - "A new Pod is automatically replenished, always maintaining a count of 3"
+      - "All the remaining Pods are also deleted, and the application stops completely"
+      - "The replica count drops to 2, and it stays at 2"
+      - "The Deployment itself is deleted, requiring you to recreate it"
+    answerIndex: 0
+    explanation: "Since a Deployment declaratively manages the desired state of \"3 replicas,\" manually deleting one Pod doesn't stick — a new Pod is automatically replenished so that the actual state keeps matching the declared state, always maintaining a count of 3."
+
+  - question: "What core design philosophy of Kubernetes and OpenShift does this hands-on lab demonstrate through its exercises?"
+    choices:
+      - "Automatically maintaining the actual state to always match the declared state"
+      - "The assumption that every operation must be performed manually by an administrator"
+      - "The rule that a single Pod can never contain more than one container"
+      - "The principle that an application should always run with only a single replica"
+    answerIndex: 0
+    explanation: "Changing the replica count with `oc scale` and watching a Pod get automatically replenished after manual deletion both demonstrate the core design philosophy of Kubernetes and OpenShift: automatically maintaining the actual state (Actual State) to always match the declared state (Desired State)."
