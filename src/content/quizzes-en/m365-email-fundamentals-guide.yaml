@@ -1,0 +1,45 @@
+questions:
+  - question: "Which statement best matches the article's explanation of the relationship between \"domain\" for email and a website's domain?"
+    choices:
+      - "The two are managed by entirely separate DNS zones and are unrelated, independent systems"
+      - "The two exist as the same domain name within the same DNS zone, with website access routed via an A record and mail delivery routed via an MX record, each to a different server"
+      - "An email domain must always have more characters than a website's domain"
+      - "An email domain is managed by an entirely separate protocol, unrelated to DNS"
+    answerIndex: 1
+    explanation: "The domain part of an email address exists as the same domain name, within the same DNS zone, as a website. Website access is routed (in most cases) to a specific IP address via an A record, while mail delivery is routed via an MX record to the server that receives mail addressed to that domain — each a different record type."
+
+  - question: "Which statement best matches the article's explanation of the priority mechanism in an MX record?"
+    choices:
+      - "There's no concept of priority in an MX record — it can only ever specify a single server"
+      - "Multiple mail servers can be specified along with a priority, and the sender first tries delivering to the highest-priority (lowest-numbered) server, trying the next-priority one if there's no response, achieving redundancy"
+      - "A server with a higher priority number gets tried first for delivery"
+      - "An MX record's priority is a value indicating that mail's importance (urgency)"
+    answerIndex: 1
+    explanation: "An MX record can specify multiple mail servers, each with a priority (lower numbers are higher priority). The sending mail server first tries the highest-priority (lowest-numbered) server, trying the next-priority server if there's no response — this is how mail server redundancy is achieved."
+
+  - question: "Which statement best matches the article's explanation of the role an Exchange server handles?"
+    choices:
+      - "An Exchange server only handles mail relaying (SMTP relay) and has no mailbox storage functionality at all"
+      - "An Exchange server handles two roles — mail relaying (SMTP relay) and mailbox storage — and the on-premises edition is closely tied to Active Directory"
+      - "An Exchange server is software specialized exclusively for website hosting"
+      - "An Exchange server is software that completely replaces DNS server functionality"
+    answerIndex: 1
+    explanation: "An Exchange server's role broadly splits into two: mail relaying (SMTP relay) and mailbox storage (storing the actual mail, calendar, and contacts data). An on-premises Exchange Server is closely tied to Active Directory, associating an AD user account with a mailbox to manage it."
+
+  - question: "Which statement best matches the article's explanation of what migrating to M365 (Exchange Online) concretely switches over?"
+    choices:
+      - "It's work combining migrating existing mailbox data and switching the MX record — the address of the server receiving mail addressed to that domain"
+      - "Migrating to M365 requires no DNS configuration change at all"
+      - "Migrating to M365 means completely changing existing email addresses to entirely different ones"
+      - "Migrating to M365 is exactly identical to changing a website's domain name"
+    answerIndex: 0
+    explanation: "Migrating to M365 combines copying the mailbox data previously held by the on-premises Exchange Server over to Exchange Online, and, once the migration completes, rewriting the MX record from the on-premises address to the Exchange Online address."
+
+  - question: "Which statement best matches the article's explanation of the typical reason a hybrid configuration is chosen?"
+    choices:
+      - "A hybrid configuration is legally mandated for every organization to adopt"
+      - "It's chosen due to time/bandwidth constraints when migrating a large number of mailboxes at once, or a need to keep some mailboxes on-premises due to a compliance requirement"
+      - "A hybrid configuration is a setup that always guarantees doubling mail send/receive speed"
+      - "A hybrid configuration completely eliminates the need for the concept of an MX record"
+    answerIndex: 1
+    explanation: "Typical reasons you can't or don't want to migrate every mailbox at once include time/bandwidth constraints when migrating a large number at once, and a specific business or compliance requirement requiring some mailboxes to stay on-premises. A hybrid configuration is a realistic option for achieving this kind of staged migration or permanent coexistence."
