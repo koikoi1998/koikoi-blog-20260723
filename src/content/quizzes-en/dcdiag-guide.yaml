@@ -1,0 +1,45 @@
+questions:
+  - question: "Which statement best matches the article's explanation of the nature of the dcdiag tool?"
+    choices:
+      - "It's a tool that runs, in one pass, a large number of independent tests required for a DC to function correctly, reporting each as PASS/FAIL — not an all-powerful single check"
+      - "It's the only official tool for modifying the AD DS schema"
+      - "dcdiag always has the side effect of rebooting the entire network, so it can only be run outside business hours"
+      - "dcdiag runs only a single test, and passing it guarantees the entire AD environment is completely healthy"
+    answerIndex: 0
+    explanation: "dcdiag runs, in one pass, a large number of independent test items required for a DC to function correctly, reporting each as PASS/FAIL/warning. Each test checks a different aspect, so it shouldn't be treated as an all-powerful single check."
+
+  - question: "Which statement best matches the article's explanation of the extra information added when running dcdiag with the /v option?"
+    choices:
+      - "Adding /v dramatically speeds up how fast the tests run"
+      - "Even for tests that passed, it outputs the detailed information underlying that judgment, making it much harder to overlook a borderline state"
+      - "Adding /v hides the results of any tests that failed"
+      - "/v is an option that automatically upgrades AD DS to the latest version"
+    answerIndex: 1
+    explanation: "The /v (verbose) option outputs, even for tests that passed, the detailed information underlying that judgment (the content of records checked, response times, and so on), letting you confirm what grounds were used to reach a PASS, making a borderline state much harder to overlook."
+
+  - question: "Which statement best matches the article's explanation of what to do if Replications, NetLogons, Services, or KnowsOfRoleHolders fails?"
+    choices:
+      - "These are minor tests, so it's fine to ignore them and proceed with the next step"
+      - "These concern a DC's core functionality (replication, authentication, awareness of FSMO information), so you shouldn't proceed with AD migration work until you've identified and resolved the cause"
+      - "If any of these fail, the OS must always be reinstalled"
+      - "These tests were discontinued starting with Windows Server 2025"
+    answerIndex: 1
+    explanation: "NetLogons, Replications, Services, and KnowsOfRoleHolders concern a DC's core functionality itself. If any of these fail, you shouldn't proceed with AD migration work — such as FSMO transfer or demoting a DC — until you've identified and resolved the cause."
+
+  - question: "Which statement best matches the article's basic principle for judging whether a dcdiag /v warning or error can be ignored?"
+    choices:
+      - "If there are 5 or fewer warnings, it's fine to ignore them regardless of content"
+      - "Judge individually based on whether the warning/error is caused by a transient or expected event, and whether it belongs to a core test that directly affects the work you're about to perform"
+      - "Whether all warnings can be ignored is automatically determined by the day of the week they occurred"
+      - "Warnings are clearly color-coded by severity (red/yellow/green), so you can judge just by looking at the color"
+    answerIndex: 1
+    explanation: "Rather than the count of warnings, it's important to judge individually based on whether the warning/error is caused by a transient or expected event, and whether it belongs to a core test (Replications, NetLogons, Services, KnowsOfRoleHolders) that directly affects the work about to be performed (FSMO transfer, demoting a DC, and so on)."
+
+  - question: "Which statement best matches the article's explanation of the purpose of running dcdiag /v repeatedly at multiple stages of an AD migration?"
+    choices:
+      - "Running the same command repeatedly improves AD DS's performance"
+      - "Comparing the results at each stage lets you distinguish \"warnings that existed before the migration\" from \"warnings newly caused by the migration work\""
+      - "dcdiag is specified to never return correct results on a single run, so it must always be run multiple times"
+      - "Running it only once invalidates dcdiag's license"
+    answerIndex: 1
+    explanation: "Saving and comparing results at each stage of the migration (before migration, after adding a new DC, after FSMO transfer, after removing the old DC) lets you isolate a pre-existing problem from one newly caused by the work. A single run doesn't allow for this comparison."
