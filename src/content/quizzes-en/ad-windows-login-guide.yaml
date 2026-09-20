@@ -1,0 +1,54 @@
+questions:
+  - question: "Which statement best matches the article's explanation of why the first logon with a domain account requires corporate network connectivity?"
+    choices:
+      - "Because Windows Update must be forcibly run only on the first logon"
+      - "Because verifying the credentials requires a mandatory query to the DC, and because a new local profile must be created for that user, who doesn't have one on that PC yet"
+      - "Because a connection to a license activation server is only required on the first logon"
+      - "Because the BIOS/UEFI settings must always be updated on the first logon"
+    answerIndex: 1
+    explanation: "On the first logon, the client PC holds nothing that lets it judge whether the entered username and password are correct, so a query to the DC is mandatory. In addition, since a local profile dedicated to that user doesn't exist yet, one must be newly created."
+
+  - question: "Which statement best matches the article's explanation of what cached credentials can be used for?"
+    choices:
+      - "They allow exactly the same things as a normal logon, including access to other resources like network file servers"
+      - "They can only be used to judge whether a local logon on that PC itself should be allowed — they can't be used to obtain the Kerberos ticket needed to access network resources"
+      - "They store the user's password itself in plaintext and can be restored at any time"
+      - "They can be reused as-is for logging on to other PCs"
+    answerIndex: 1
+    explanation: "Cached credentials don't store the password itself; they're used solely to judge whether a local logon on that PC should be allowed. The proper Kerberos ticket needed to access network resources can't be obtained without reaching a DC."
+
+  - question: "Which statement best matches the article's explanation of the nature of a local user profile in a default Windows domain logon?"
+    choices:
+      - "The same content is automatically carried over no matter which PC the user logs into"
+      - "Because the profile is created on that PC's local disk, logging into a different PC creates an entirely new, empty profile"
+      - "The profile is always stored only on the AD server and never on the PC itself"
+      - "Once created, there's no way to ever delete a profile"
+    answerIndex: 1
+    explanation: "Because a local user profile is created on that PC's local disk, by default, when the same user logs into a different PC, no profile exists there yet, so an entirely new, empty profile is created."
+
+  - question: "Which statement best matches the article's explanation of the roaming profile mechanism and its practical challenges?"
+    choices:
+      - "The profile is downloaded from a network share at logon and uploaded at logoff, and simultaneous logons on multiple PCs can trigger a problem where whichever PC logs off later overwrites the other's changes"
+      - "Roaming profiles always log on at a constant speed regardless of profile size"
+      - "Roaming profiles are designed with simultaneous logons on multiple PCs in mind, and merge automatically without conflicts"
+      - "Roaming profiles are mounted directly over the network as a virtual disk file (VHD/VHDX)"
+    answerIndex: 0
+    explanation: "Roaming profiles work via a simple mechanism of downloading from a network share at logon and uploading at logoff, so simultaneous logons on multiple PCs can trigger a \"last write wins\" problem where whichever PC logs off later overwrites the other's content. Logon/logoff speed also degrades as the profile grows larger. Direct mounting as a VHD/VHDX is FSLogix's approach."
+
+  - question: "Which statement best matches the article's explanation of how FSLogix (profile containers) differs from roaming profiles?"
+    choices:
+      - "FSLogix copies the profile file by file, one at a time, making it slower than roaming profiles"
+      - "FSLogix holds each user's entire profile as a single virtual disk file mounted directly over the network, so logon time stays roughly constant even as profile size grows"
+      - "FSLogix is a feature only available with persistent VDI, not non-persistent VDI"
+      - "FSLogix is unrelated to roaming profiles and is a completely separate encryption technology"
+    answerIndex: 1
+    explanation: "FSLogix holds each user's entire profile as a single virtual disk file (VHD/VHDX) on a network share, mounted as-is at logon. Unlike roaming profiles, which copy files one at a time, logon time stays roughly constant even as profile size grows, and it's widely adopted as a countermeasure against logon storms in VDI environments."
+
+  - question: "Which statement best matches the article's explanation of the difference in profile management between persistent and non-persistent VDI?"
+    choices:
+      - "In persistent VDI, the profile continues to exist on a dedicated virtual machine's local disk just like an ordinary physical PC, while in non-persistent VDI, the virtual machine is discarded each session, requiring a mechanism to manage the profile externally"
+      - "Both persistent and non-persistent VDI always require FSLogix-based profile management"
+      - "In non-persistent VDI, a dedicated virtual machine is always continuously assigned to each user"
+      - "The only difference between persistent and non-persistent VDI is how screen resolution is configured"
+    answerIndex: 0
+    explanation: "In persistent VDI, each user is assigned a dedicated virtual machine, and the profile stays intact on its local disk. In non-persistent VDI, a virtual machine is freshly generated each time from a shared master image and discarded after the session ends, so a mechanism to manage the profile externally, over the network (roaming profiles or FSLogix), is needed."
