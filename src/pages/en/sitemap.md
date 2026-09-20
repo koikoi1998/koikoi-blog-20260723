@@ -203,10 +203,11 @@ A series that digs, one protocol at a time, into the internal mechanics of the p
 
 ### Site-to-Site VPN Series
 
-A follow-on series that assumes you've read ① from the Remote-Access VPN/L2TP-IPsec series. **Recommended order**: ① site-to-site-vpn-guide → ② site-to-site-vpn-aws-guide.
+A follow-on series that assumes you've read ① from the Remote-Access VPN/L2TP-IPsec series. **Recommended order**: ① site-to-site-vpn-guide → ② site-to-site-vpn-aws-guide → ③ sdwan-edge-router-guide.
 
 - [Understanding Site-to-Site VPN from a "Top 1%" Perspective](/en/articles/site-to-site-vpn-guide) — How it differs from remote-access VPN, the mechanics of IPsec tunnel mode and traffic selectors, and the practical considerations for building an IPsec tunnel between different vendors like Cisco and WatchGuard (spun off from the contrast with L2TP/IPsec; also readable standalone).
 - [Understanding Site-to-Site VPN with AWS from a "Top 1%" Perspective](/en/articles/site-to-site-vpn-aws-guide) — A deep dive into the difference in role between IGW, VGW, CGW, and TGW, whether traffic really travels over the internet and how that relates to Direct Connect, and the typical flow of the build process (a follow-on from ①, also readable standalone).
+- [Understanding SD-WAN and Edge Router Selection from a "Top 1%" Perspective](/en/articles/sdwan-edge-router-guide) — A deep dive into separating two often-conflated concepts, SD-WAN (traffic control) and cloud management (centralized operations), and the differences between and how to choose among FortiGate, Yamaha, and Meraki (also readable standalone).
 
 ### Hands-On Prep Series
 

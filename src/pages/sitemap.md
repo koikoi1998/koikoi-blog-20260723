@@ -205,10 +205,11 @@ graph TB
 
 ### 拠点間VPN(Site-to-Site VPN)シリーズ
 
-リモートアクセスVPN/L2TP・IPsecシリーズの①を読んだ前提の発展シリーズです。**読む順番の目安**: ① site-to-site-vpn-guide → ② site-to-site-vpn-aws-guide。
+リモートアクセスVPN/L2TP・IPsecシリーズの①を読んだ前提の発展シリーズです。**読む順番の目安**: ① site-to-site-vpn-guide → ② site-to-site-vpn-aws-guide → ③ sdwan-edge-router-guide。
 
 - [拠点間VPN(Site-to-Site VPN)を『上位1%』の視点で理解する](/articles/site-to-site-vpn-guide) — リモートアクセスVPNとの違い、IPsecトンネルモードとトラフィックセレクタの仕組み、CiscoとWatchGuardという異なるベンダー間でIPsecトンネルを組む際の実務上の注意点までの深掘り（L2TP/IPsecとの対比から派生した発展編、単体でも読めます）。
 - [AWSとの拠点間VPN(Site-to-Site VPN)を『上位1%』の視点で理解する](/articles/site-to-site-vpn-aws-guide) — IGW・VGW・CGW・TGWそれぞれの役割の違い、通信が本当にインターネットを経由するのかDirect Connectとの関係、想定される構築手順までの深掘り(①の発展編、単体でも読めます)。
+- [SD-WANとエッジルーター選定を『上位1%』の視点で理解する](/articles/sdwan-edge-router-guide) — SD-WAN(トラフィック制御)とクラウド管理(運用管理の一元化)という混同されやすい2つの概念の切り分け、FortiGate・YAMAHA・Merakiの違いと選び方までの深掘り(単体でも読めます)。
 
 ### ハンズオン準備シリーズ
 

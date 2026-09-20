@@ -1,0 +1,45 @@
+questions:
+  - question: "Which statement best matches the article's explanation of the relationship between SD-WAN and cloud management?"
+    choices:
+      - "SD-WAN and cloud management are exactly the same functionality and don't need to be distinguished"
+      - "SD-WAN is a traffic-control technology that dynamically uses multiple links based on communication quality, while cloud management is a mechanism for centralizing the configuration, monitoring, and operation of multi-site devices — they're separate concepts, but easy to conflate since many products offer both at once"
+      - "Cloud management is the old name for SD-WAN and is no longer used today"
+      - "SD-WAN technically cannot function at all unless it's always used together with cloud management"
+    answerIndex: 1
+    explanation: "SD-WAN is a traffic-control technology that dynamically uses multiple links based on the communication quality needed per application. Cloud management is an operational mechanism for centrally handling the configuration, monitoring, and operation of many site devices from a single dashboard — a separate concept from SD-WAN. They're just easy to conflate because many products offer both at once."
+
+  - question: "Which statement best matches the article's explanation of the problem SD-WAN tries to solve compared to a traditional MPLS dedicated line?"
+    choices:
+      - "It solves the problem that MPLS has no bandwidth guarantee and unstable quality"
+      - "It addresses MPLS's high circuit procurement cost and long lead time by combining it with cheaper, faster-to-provision broadband and mobile links, dynamically using whichever fits"
+      - "It's a technology that only adds encryption functionality to solve the problem that MPLS is insecure"
+      - "SD-WAN uses the exact same physical line as MPLS, so there's no problem for it to solve in the first place"
+    answerIndex: 1
+    explanation: "While MPLS is highly reliable, it comes with the challenges of high circuit procurement cost and long lead time. SD-WAN addresses this by simultaneously aggregating a dedicated line like MPLS with cheaper, faster-to-provision broadband and mobile links, dynamically selecting whichever offers the best quality for each type of traffic."
+
+  - question: "Which statement best matches the article's explanation of the respective strengths of FortiGate, Yamaha, and Meraki?"
+    choices:
+      - "FortiGate's strength is combining security functionality (UTM) with SD-WAN; Yamaha's is cost-performance and a simple configuration; Meraki's is ease of cloud management"
+      - "All three products use the exact same OS and have no functional differences"
+      - "Yamaha is a cloud-management-only product with no local configuration capability at all"
+      - "Meraki requires no subscription and can be used permanently with only an upfront cost"
+    answerIndex: 0
+    explanation: "FortiGate's strength is its comprehensive security functionality by integrating UTM with SD-WAN; Yamaha's is high cost-performance and simple VPN/routing functionality; Meraki's is ease of centralized multi-site management via its cloud dashboard."
+
+  - question: "Which statement best matches the article's explanation of why dependence on cloud management can be a risk?"
+    choices:
+      - "A site's device is specified to shut down completely and immediately if communication with the cloud management console is cut off"
+      - "Many products can keep processing traffic based on the existing configuration, but lose the ability to make new configuration changes or perform real-time monitoring once the cloud connection drops — so the availability of the management path itself needs to be considered"
+      - "Cloud management is legally required to maintain a 24/7 connection at all times"
+      - "A cloud management console is specified to never be reachable by any method other than over the internet"
+    answerIndex: 1
+    explanation: "Many products are designed so that traffic processing based on the existing configuration continues even if the cloud connection drops, but new configuration changes and real-time monitoring aren't possible until it's restored. This shows the need to consider the availability of the management path itself, through the same lens as out-of-band management."
+
+  - question: "Which statement best matches the article's explanation of the term SASE (Secure Access Service Edge)?"
+    choices:
+      - "SASE is the old name for SD-WAN, and the two are exactly synonymous"
+      - "SASE is a broader concept that integrates SD-WAN with cloud-based security functionality such as secure web gateways and ZTNA"
+      - "SASE is a dedicated product name referring to one of Yamaha's product lines"
+      - "SASE is a term referring to the feature for switching the display language of a cloud management console"
+    answerIndex: 1
+    explanation: "SASE is a broader concept that integrates SD-WAN with cloud-based security functionality (secure web gateways, ZTNA, and so on) — an umbrella term that has come up frequently in recent years."
