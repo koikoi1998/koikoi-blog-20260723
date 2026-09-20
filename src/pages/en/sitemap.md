@@ -315,9 +315,10 @@ A series digging into the questions that come up constantly in Windows Server pr
 
 ### Storage Fundamentals Series
 
-A series digging into storage fundamentals — RAID, disk management, storage connection methods, and more. **Recommended order**: ① disk-raid-fundamentals-guide (more articles on FC cabling/SAS and related topics are planned).
+A series digging into storage fundamentals — RAID, disk management, storage connection methods, and more. **Recommended order**: ① disk-raid-fundamentals-guide → ② fc-san-fundamentals-guide.
 
 - [Understanding the Relationship Between RAID and Windows Disk Management from a "Top 1%" Perspective](/en/articles/disk-raid-fundamentals-guide) — A deep dive into the relationship between the two independent layers of RAID and OS disk management, why the C drive works right away while the D drive needs initialization, the difference between MBR/GPT, the difference between a partition and a volume, and what formatting does (also readable standalone).
+- [Understanding the Difference Between Fibre Channel and LAN Connections from a "Top 1%" Perspective](/en/articles/fc-san-fundamentals-guide) — A deep dive into how FC identifies and controls the other end of a connection via WWN and zoning instead of an IP address, the difference from SAS, and the criteria for choosing between FC, SAS, and LAN (also readable standalone).
 
 ## What's next
 

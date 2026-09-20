@@ -317,9 +317,10 @@ Windows Serverの調達・運用で必ず直面する疑問を深掘りするシ
 
 ### ストレージ基礎シリーズ
 
-RAID・ディスク管理・ストレージ接続方式など、ストレージまわりの基礎を深掘りするシリーズです。**読む順番の目安**: ① disk-raid-fundamentals-guide(以降、FCケーブル/SASなどのテーマを追加予定)。
+RAID・ディスク管理・ストレージ接続方式など、ストレージまわりの基礎を深掘りするシリーズです。**読む順番の目安**: ① disk-raid-fundamentals-guide → ② fc-san-fundamentals-guide。
 
 - [RAIDとWindowsのディスク管理の関係を『上位1%』の視点で理解する](/articles/disk-raid-fundamentals-guide) — RAIDとOSのディスク管理という2つの独立したレイヤーの関係、Cドライブはすぐ使えるのにDドライブは初期化が必要な理由、MBR/GPTの違い、パーティションとボリュームの違い、フォーマットが行っていることまでの深掘り(単体でも読めます)。
+- [FCケーブル接続とLANケーブル接続の違いを『上位1%』の視点で理解する](/articles/fc-san-fundamentals-guide) — FCがIPアドレスを使わずWWNとゾーニングで通信相手を認識・制御する仕組み、SASとの違い、FC・SAS・LANの使い分けの基準までの深掘り(単体でも読めます)。
 
 ## 今後の展開予定
 

@@ -1,0 +1,45 @@
+questions:
+  - question: "Which statement best matches the article's explanation of the difference between FC, SAS, and LAN?"
+    choices:
+      - "The three are simply different types of cable, with completely identical internal communication methods"
+      - "Each of the three is a technology with a distinct design philosophy, assuming a different connection scope and purpose"
+      - "FC and SAS are the same standard, and only LAN is a different technology"
+      - "All three communicate using the same IP address mechanism"
+    answerIndex: 1
+    explanation: "FC, SAS, and LAN aren't simply different types of cable — SAS assumes direct connections within a chassis or over a very short distance, FC assumes a SAN connecting multiple servers and storage devices within a data center, and LAN assumes a general-purpose network — each a technology with a distinct design philosophy for a different connection scope and purpose."
+
+  - question: "Which statement best matches the article's explanation of how FC recognizes the other end of a connection without using an IP address?"
+    choices:
+      - "FC doesn't identify the other end at all and indiscriminately sends data to every connected device"
+      - "Every device on an FC network is assigned a globally unique identifier called a WWN (World Wide Name), used as the basis for identifying the other end"
+      - "FC just uses numbers in exactly the same format as IP addresses, under a different name"
+      - "FC identifies the other end based on the date of purchase, not a device's serial number"
+    answerIndex: 1
+    explanation: "FC doesn't use the concept of an IP address at all. Instead, every device on an FC network (a server's FC HBA, a storage device's port, and so on) is assigned a globally unique identifier called a WWN (World Wide Name) at manufacture, serving as the conceptual equivalent of an Ethernet MAC address for identifying the other end."
+
+  - question: "Which statement best matches the article's explanation of what \"you don't need to worry about the segment\" actually means?"
+    choices:
+      - "FC has no access control mechanism at all, and anyone can freely access any device"
+      - "Rather than dividing access scope by the concept of subnets/segments as in an IP network, FC performs access control through zoning, which directly specifies which devices can communicate with each other, based on WWN"
+      - "The concept of a segment exists in FC, but it doesn't need attention because the configuration work is completely automated"
+      - "FC is specified to automatically fix every IP address's subnet mask to 255.255.255.255"
+    answerIndex: 1
+    explanation: "FC has no concept of subnets/segments like an IP network — access control is performed through zoning, a mechanism that directly specifies which devices can communicate with each other, based on WWN. This is the true explanation behind \"you don't need to worry about the segment.\""
+
+  - question: "Which statement best matches the article's explanation of SAS's basic idea?"
+    choices:
+      - "SAS, like FC, has network-like mechanisms such as a fabric and zoning, and can communicate freely with multiple destinations"
+      - "SAS's basic idea is a direct one-to-one connection (or one-to-many via an expander), with no network-like mechanism such as a fabric or zoning, unlike FC"
+      - "SAS is a standard exclusively for wireless communication, using no physical cable at all"
+      - "SAS is a cloud-exclusive storage connection standard usable only over the internet"
+    answerIndex: 1
+    explanation: "SAS's basic idea is strictly a direct one-to-one connection (or one-to-many via a relay device called an expander), with no network-like mechanism of its own, such as FC's \"fabric\" or zoning. It's used for connecting HDDs/SSDs built into a server, or a directly attached external disk enclosure."
+
+  - question: "Which statement best matches the article's explanation of why FC continues to be chosen in large-scale enterprise environments today?"
+    choices:
+      - "FC requires no additional dedicated equipment at all and can directly reuse existing LAN equipment"
+      - "It's due to the maturity of its bandwidth guarantees, low latency, and congestion control, stemming from being a dedicated communication method completely independent from IP networks"
+      - "FC's physical cabling is always cheaper than SAS or LAN"
+      - "FC comes bundled free by default with a Windows Server license"
+    answerIndex: 1
+    explanation: "The reason FC continues to be chosen in enterprise environments today is the maturity of its bandwidth guarantees, low latency, and congestion control, stemming from being a dedicated communication method completely independent from IP networks. LAN-based iSCSI, on the other hand, offers a cost advantage by reusing existing infrastructure."
