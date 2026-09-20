@@ -1,0 +1,45 @@
+questions:
+  - question: "Which statement best matches the article's explanation of the division of labor between IIS and ASP.NET?"
+    choices:
+      - "IIS and ASP.NET are exactly the same software, just called by different names"
+      - "IIS is the web server software itself, accepting HTTP requests, while ASP.NET is one of the application execution frameworks for .NET that runs on top of it"
+      - "ASP.NET is the web server software itself, and IIS is the application execution framework that runs on top of it"
+      - "IIS is exclusive to Linux, and ASP.NET is exclusive to Windows"
+    answerIndex: 1
+    explanation: "IIS is the web server software itself, accepting and processing HTTP requests, while ASP.NET is one of the frameworks for running dynamic web applications that runs on top of that IIS foundation. IIS is a general-purpose foundation that doesn't depend on any particular kind of application."
+
+  - question: "Which statement best matches the article's explanation of the role of isolation via IIS application pools?"
+    choices:
+      - "It isolates multiple websites/applications at the process level, so that an abnormality in one application pool doesn't affect other websites running in a different application pool"
+      - "An application pool is a setting for unifying a website's design (appearance)"
+      - "An application pool is a database for storing users' login passwords"
+      - "An application pool is a feature for managing the number of IIS licenses"
+    answerIndex: 0
+    explanation: "An application pool is a \"box\" for separating multiple websites/applications at the process level. If an abnormality occurs (a crash, a memory leak) in one application pool, other websites running in a different application pool aren't affected."
+
+  - question: "Which statement best matches the article's explanation of the nature of the Default Web Site?"
+    choices:
+      - "The Default Web Site is a special entity essential to the system's operation and must never be deleted"
+      - "The Default Web Site is simply one of the ordinary website entries provided from the start, and can freely be stopped, deleted, or modified as requirements dictate"
+      - "The Default Web Site is a special, restricted site that can never run ASP.NET code at all"
+      - "The Default Web Site automatically remains even after uninstalling IIS"
+    answerIndex: 1
+    explanation: "The Default Web Site is simply the \"first website\" slot IIS comes with from the start — it isn't a special, reserved mechanism. Some configurations use it as-is, while others stop or delete it and run only a custom website."
+
+  - question: "Which statement best matches the article's explanation of name-based virtual hosting in binding configuration?"
+    choices:
+      - "Requests can be routed to different websites based on the value of the Host header in an HTTP request, even with the same IP address and the same port number"
+      - "Name-based virtual hosting always requires a separate IP address to run multiple sites"
+      - "Name-based virtual hosting is technically impossible to use with HTTPS at all"
+      - "Binding configuration is a feature for specifying a website's database connection string"
+    answerIndex: 0
+    explanation: "A binding is defined by the combination of IP address, port number, and host name (the Host header), so requests can be routed to different websites based on host name even with the same IP address and port number. This is the basic mechanism of name-based virtual hosting, achieved for HTTPS via the SNI extension."
+
+  - question: "Which statement best matches the article's explanation of adding and changing HTTP response headers in IIS?"
+    choices:
+      - "There's no way to add or change HTTP response headers other than modifying the application's code"
+      - "IIS Manager's configuration alone lets you add security-related headers or change/remove server-identifying information, per website or per application"
+      - "HTTP response headers are automatically determined by Windows Server's license activation status"
+      - "Changing HTTP response headers is impossible unless you downgrade the IIS version"
+    answerIndex: 1
+    explanation: "IIS Manager lets you add or change custom headers included in the HTTP response, per website or per application. This is achievable purely through IIS-side configuration, separate from modifying the application's code, and is used for adding security-related headers or changing/removing server-identifying information."
