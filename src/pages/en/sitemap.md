@@ -37,6 +37,7 @@ graph TB
     WebProxy["Web Proxy / Caching Fundamentals Series"]
     AwsBasics["AWS Fundamentals Series"]
     Messaging["Messaging Fundamentals Series"]
+    Protocol["Protocol Fundamentals Series"]
 
     Idrac --> Network
     Idrac --> Api
@@ -53,6 +54,7 @@ graph TB
     Network --> WebProxy
     SiteToSite --> AwsBasics
     Network --> Messaging
+    Network --> Protocol
 ```
 
 **The basic path**: Start with the iDRAC article, branch into the Networking Fundamentals and Web/API series, follow the L2TP/IPsec article's thread from Networking Fundamentals into the Remote-Access VPN/L2TP-IPsec series, and dig deeper from there into the Site-to-Site VPN series, Security Fundamentals, Linux/OS Fundamentals, and Telephony. That's the main line of derivation between articles. That said, every article is written to be **fully readable on its own**, so feel free to start with whichever series or article interests you. Note also that some articles in the Networking Fundamentals series (NAT/NAPT, virtual IPs, TCP/UDP sessions, DNS) actually branch off from the L2TP/IPsec article in the Remote-Access VPN series — the series don't form a strict one-way tree; some cross-reference each other. The remote-access and site-to-site VPN articles used to be bundled into a single "VPN/L2TP-IPsec Series," but since they serve different audiences and use cases, they've since been split into two separate series. The Active Directory series is a new series digging into questions that come up constantly in real AD migration and DC operation work, and assumes you've read the Networking Fundamentals series (especially DNS).
@@ -112,6 +114,8 @@ This blog is written for a wide range of readers — from people with no experie
 <li><a href="/en/articles/windows-install-media-guide">Understanding the Difference Between x64 and x86 Installers from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/proxy-firewall-guide">Understanding When to Use a Proxy vs. a Firewall from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/http-caching-cdn-guide">Understanding the Rise of HTTPS and the End of Proxy Caching from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/protocol-design-guide">Understanding What a Protocol Actually Is From a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/icmp-guide">Understanding How ICMP Works From a "Top 1%" Perspective</a></li>
 </ol>
 <div class="persona-bonus">🔍 <strong>If you run into it on the job (optional)</strong>: <a href="/en/articles/windows-server-l2tp-vpn-guide">Windows Server (RRAS) L2TP/IPsec VPN setup</a>, <a href="/en/articles/site-to-site-vpn-guide">site-to-site VPN</a>, and <a href="/en/articles/local-gov-network-guide">Japanese local government network segregation</a> are niche articles for people who actually hit that specific situation. No need to read them now — save them for when a search lands you there, or when curiosity strikes (STEP3 covers them properly).</div>
 </div>
@@ -121,7 +125,7 @@ This blog is written for a wide range of readers — from people with no experie
 <p>This is where "I sort of know this" turns into working knowledge. On top of STEP2, this route adds the niche real-world articles and a hands-on lab to build actual confidence.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 and STEP2's 20 articles (see those tabs above)</li>
+<li>STEP1 and STEP2's 22 articles (see those tabs above)</li>
 <li><a href="/en/articles/windows-server-l2tp-vpn-guide">Why Does a VPN Client Need a Gateway on the Same Subnet? — Understanding IP Address Management in Windows Server (RRAS) L2TP/IPsec VPN from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/site-to-site-vpn-guide">Understanding Site-to-Site VPN from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/local-gov-network-guide">Understanding Japanese Local Government Network Segregation and Security Clouds from a "Top 1%" Perspective</a></li>
@@ -164,7 +168,7 @@ This blog is written for a wide range of readers — from people with no experie
 <p>Adds the low-level implementation knowledge that sets you apart in interviews and design reviews, on top of everything through STEP3.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP3's 53 articles (see those tabs above)</li>
+<li>STEP1 through STEP3's 55 articles (see those tabs above)</li>
 <li><a href="/en/articles/proxmox-internals-guide">What Is Proxmox VE? Understanding KVM/QEMU Virtualization from the "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/linux-daemon-guide">What Is a Daemon? Understanding Linux Background Processes from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/software-library-guide">What Is a Library? Understanding Static and Dynamic Linking from a "Top 1%" Perspective</a></li>
@@ -188,13 +192,13 @@ This blog is written for a wide range of readers — from people with no experie
 <div class="persona-panel persona-panel-5">
 <div class="persona-panel-head">
 <h3>🏆 For those gathering information toward ¥10M, ¥20M, or ¥50M+</h3>
-<p>The complete-conquest route: read all 72 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
+<p>The complete-conquest route: read all 74 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP4's 71 articles (see those tabs above)</li>
+<li>STEP1 through STEP4's 73 articles (see those tabs above)</li>
 <li><a href="/en/articles/voip-ss7-guide">Understanding VoIP and SS7 — and the Real Path Your Traffic Takes — from a "Top 1%" Perspective</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>That's all 72 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
+<div class="persona-bonus">🎉 <strong>That's all 74 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
 </div>
 </div>
 </div>
@@ -360,6 +364,13 @@ A series digging into the basic questions that come up constantly when using AWS
 A series digging into the fundamentals of messaging infrastructure — what domain means for email, Exchange servers, migrating to M365, and more. **Recommended order**: ① m365-email-fundamentals-guide.
 
 - [Understanding Email Migration to M365 from a "Top 1%" Perspective](/en/articles/m365-email-fundamentals-guide) — A deep dive into how an email domain's delivery destination is decided separately from a website's via the MX record, the two roles an Exchange server handles, what an M365 migration concretely switches over, and hybrid configurations (a follow-on from [dns-guide](/en/articles/dns-guide), also readable standalone).
+
+### Protocol Fundamentals Series
+
+A series digging into the concept of a protocol itself. **Recommended order**: ① protocol-design-guide → ② icmp-guide.
+
+- [Understanding What a Protocol Actually Is From a "Top 1%" Perspective](/en/articles/protocol-design-guide) — A deep dive into the three elements a protocol is made of (syntax, semantics, timing), the difference between text-based and binary protocols, why you can design your own custom protocol, and the analysis risk an unencrypted custom protocol carries (also readable standalone).
+- [Understanding How ICMP Works From a "Top 1%" Perspective](/en/articles/icmp-guide) — A deep dive into why ICMP, unlike TCP/UDP, has no port number, major message types like Destination Unreachable/Time Exceeded, how traceroute works, and the pitfall where blocking ICMP on a firewall breaks PMTUD (a follow-on from [protocol-design-guide](/en/articles/protocol-design-guide), also readable standalone).
 
 ## What's next
 

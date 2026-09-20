@@ -1,0 +1,45 @@
+questions:
+  - question: "Which statement best matches the article's explanation of the three elements a protocol is made of?"
+    choices:
+      - "Syntax (the data's representation format), semantics (what each field means), and timing (the order and state transitions of the exchange)"
+      - "IP address, port number, and MAC address"
+      - "Sender, receiver, and relay — the three people involved in communication"
+      - "Hardware, software, and firmware"
+    answerIndex: 0
+    explanation: "A protocol's agreement can be broken down into three elements: syntax (what byte sequence/format represents the data), semantics (what each field/message means), and timing (in what order messages may be exchanged)."
+
+  - question: "Which statement best matches the article's explanation of the difference between text-based and binary protocols?"
+    choices:
+      - "Text-based protocols are easy for humans to use and extend, while binary protocols can be represented in fewer bytes and parsed faster — each has a different advantage"
+      - "Text-based protocols are technically never used at all today"
+      - "A binary protocol is always slower in communication speed than a text-based protocol"
+      - "There's no functional difference at all between text-based and binary protocols"
+    answerIndex: 0
+    explanation: "A text-based protocol is easy for a human to visually inspect, debug, and extend, while a binary protocol can represent the same information in fewer bytes and be parsed much faster. Which to prioritize is a design decision determined by that protocol's intended use."
+
+  - question: "Which statement best matches the article's explanation of the nature of a protocol's layered structure (encapsulation)?"
+    choices:
+      - "The layered structure is an absolute necessity like a physical law, and every protocol follows it without exception"
+      - "The layered structure is a design choice for divide-and-conquer of complexity, and protocols like ICMP, ESP, and AH exist that don't fit neatly into the layering"
+      - "The layered structure is an old concept discontinued in the 1990s and no longer applies to any protocol today"
+      - "The layered structure only applies to text-based protocols, not binary ones"
+    answerIndex: 1
+    explanation: "The layered structure (encapsulation) isn't an absolute necessity like a physical law — it's a design choice for divide-and-conquer of complexity. Many protocols, such as ICMP, ESP, AH, and GRE, operate directly under IP without going through the transport layer, not fitting neatly into the layering."
+
+  - question: "Which statement best matches the article's explanation of why you can design your own custom protocol?"
+    choices:
+      - "Because no communication can technically succeed at all without formal approval from a standards body like the IETF, so a custom protocol is always used only after obtaining such approval"
+      - "Because a protocol is an agreement that holds as long as three elements — syntax, semantics, timing — match between the two communicating parties, and formal standardization isn't a required condition for that"
+      - "Because there's a legal requirement that a custom protocol must always be a partial modification of an existing standard protocol like HTTP"
+      - "Because a custom protocol technically never functions at all and isn't actually used in practice"
+    answerIndex: 1
+    explanation: "A protocol is an agreement that holds as long as syntax, semantics, and timing match between the two communicating parties. Formal standardization is just one means of ensuring worldwide interoperability, not a required condition, so an unpublished, custom protocol functions just as legitimately, technically."
+
+  - question: "Which statement best matches the article's explanation of the security of an unencrypted custom protocol?"
+    choices:
+      - "Because a custom protocol's syntax and semantics are unpublished, there's no risk at all of its content being read even without encryption"
+      - "Whether a custom protocol's syntax and semantics are unpublished, and whether the communication is encrypted, are entirely separate matters — without encryption, there's a risk of its content being analyzed via reverse engineering"
+      - "Analyzing a custom protocol is legally prohibited under any circumstances"
+      - "A custom protocol technically can't even traverse a network unless it has a built-in encryption algorithm"
+    answerIndex: 1
+    explanation: "Whether a custom protocol's syntax and semantics are unpublished, and whether the communication is encrypted, are entirely separate matters. Without encryption, there's a risk of it being reverse-engineered through techniques like observing differences around known operations or analyzing recurring patterns."

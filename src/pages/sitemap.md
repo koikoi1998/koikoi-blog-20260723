@@ -39,6 +39,7 @@ graph TB
     WebProxy["Webプロキシ/キャッシュ基礎シリーズ"]
     AwsBasics["AWS基礎シリーズ"]
     Messaging["メール基盤シリーズ"]
+    Protocol["プロトコル基礎シリーズ"]
 
     Idrac --> Network
     Idrac --> Api
@@ -55,6 +56,7 @@ graph TB
     Network --> WebProxy
     SiteToSite --> AwsBasics
     Network --> Messaging
+    Network --> Protocol
 ```
 
 **基本的な読み方**: iDRACの記事を起点に、ネットワーク基礎シリーズとWeb/APIシリーズへ進み、ネットワーク基礎シリーズのL2TP/IPsecの記事からリモートアクセスVPN/L2TP・IPsecシリーズへ、そこから拠点間VPNシリーズ・セキュリティ基礎・Linux/OS基礎・電話網シリーズへと深掘りしていく、というのが記事同士の主な派生の流れです。ただし各記事は**すべて単体でも読める**ように書かれているため、興味のあるシリーズ・記事から読み始めて問題ありません。なお、ネットワーク基礎シリーズの一部記事(NAT/NAPT・代表IP・TCP/UDPセッション・DNS)はリモートアクセスVPN/L2TP・IPsecシリーズのL2TP/IPsecの記事から派生しており、シリーズ同士は一方向のツリーではなく一部相互に関係している点に注意してください。以前はリモートアクセスVPNと拠点間VPNを同じ「VPN/L2TP・IPsecシリーズ」にまとめていましたが、対象読者・用途が異なるため2つのシリーズに分割しました。Active Directoryシリーズは、AD移行・DC運用の実務で直面する疑問を深掘りする新シリーズで、ネットワーク基礎シリーズ(特にDNS)の知識を前提にしています。
@@ -114,6 +116,8 @@ graph TB
 <li><a href="/articles/windows-install-media-guide">インストーラのx64とx86の違いを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/proxy-firewall-guide">プロキシとファイアウォールの使い分けを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/http-caching-cdn-guide">HTTPSの普及とプロキシキャッシュの終焉を『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/protocol-design-guide">プロトコルとは何かを『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/icmp-guide">ICMPの仕組みを『上位1%』の視点で理解する</a></li>
 </ol>
 <div class="persona-bonus">🔍 <strong>現場で出会ったら(任意)</strong>: <a href="/articles/windows-server-l2tp-vpn-guide">Windows Server(RRAS)でのL2TP/IPsec VPN構築</a>や<a href="/articles/site-to-site-vpn-guide">拠点間VPN</a>、<a href="/articles/local-gov-network-guide">自治体ネットワークの三層分離</a>は、実務でその状況に当たった人向けのニッチな記事です。今すぐ読む必要はなく、検索でたどり着いたときや興味が湧いたときに読めば十分です(STEP3で本格的に扱います)。</div>
 </div>
@@ -123,7 +127,7 @@ graph TB
 <p>「知ってるつもり」を実務で使える理解に変える段階です。STEP2までに加え、現場のニッチな疑問を解消する記事と、手を動かすハンズオンで自信をつけます。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1・STEP2の20記事(上のタブから確認できます)</li>
+<li>STEP1・STEP2の22記事(上のタブから確認できます)</li>
 <li><a href="/articles/windows-server-l2tp-vpn-guide">Windows Server(RRAS)でのL2TP/IPsec VPN構築とIPアドレス管理を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/site-to-site-vpn-guide">拠点間VPN(Site-to-Site VPN)を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/local-gov-network-guide">自治体ネットワークの三層分離とセキュリティクラウドを『上位1%』の視点で理解する</a></li>
@@ -166,7 +170,7 @@ graph TB
 <p>STEP3までの実務知識に、面接や設計レビューで差がつく低レイヤーの実装知識を積み増すルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP3の53記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP3の55記事(上のタブから確認できます)</li>
 <li><a href="/articles/proxmox-internals-guide">Proxmox VEとは何か——KVM/QEMUによる仮想化の仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/linux-daemon-guide">デーモン(daemon)とは何か——Linuxのバックグラウンドプロセスを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/software-library-guide">ライブラリ(library)とは何か——静的リンク・動的リンクの仕組みを『上位1%』の視点で理解する</a></li>
@@ -190,13 +194,13 @@ graph TB
 <div class="persona-panel persona-panel-5">
 <div class="persona-panel-head">
 <h3>🏆 年収1000万・2000万・5000万を目指して情報収集している方へ</h3>
-<p>全72記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
+<p>全74記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP4の71記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP4の73記事(上のタブから確認できます)</li>
 <li><a href="/articles/voip-ss7-guide">VoIPとSS7、そして実際の通信経路を『上位1%』の視点で理解する</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>これで全72記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
+<div class="persona-bonus">🎉 <strong>これで全74記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
 </div>
 </div>
 </div>
@@ -362,6 +366,13 @@ EC2・VPCなど、AWSを使ううえで必ず直面する基礎的な疑問を�
 メールにおけるドメイン・Exchangeサーバー・M365への移行といった、メール基盤の基礎を深掘りするシリーズです。**読む順番の目安**: ① m365-email-fundamentals-guide。
 
 - [M365へのメール移行を『上位1%』の視点で理解する](/articles/m365-email-fundamentals-guide) — メールのドメインがMXレコードによってWebサイトのドメインと別々に配送先を決められている仕組み、Exchangeサーバーの2つの役割、M365移行で具体的に何を切り替えるのか、ハイブリッド構成までの深掘り([dns-guide](/articles/dns-guide)の発展編、単体でも読めます)。
+
+### プロトコル基礎シリーズ
+
+プロトコルという概念そのものを深掘りするシリーズです。**読む順番の目安**: ① protocol-design-guide → ② icmp-guide。
+
+- [プロトコルとは何かを『上位1%』の視点で理解する](/articles/protocol-design-guide) — プロトコルを構成する構文・意味論・タイミングの3要素、テキストベースとバイナリの違い、なぜ独自のプロトコルを自作できるのか、暗号化されていない独自プロトコルの解析リスクまでの深掘り(単体でも読めます)。
+- [ICMPの仕組みを『上位1%』の視点で理解する](/articles/icmp-guide) — ICMPがTCP/UDPと異なりポート番号を持たない理由、Destination Unreachable/Time Exceededといった主要メッセージタイプ、tracerouteの原理、ファイアウォールでのICMP遮断がPMTUDを壊す落とし穴までの深掘り([protocol-design-guide](/articles/protocol-design-guide)の発展編、単体でも読めます)。
 
 ## 今後の展開予定
 

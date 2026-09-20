@@ -1,0 +1,45 @@
+questions:
+  - question: "Which statement best matches the article's explanation of the fundamental reason ICMP has no port number?"
+    choices:
+      - "Because ICMP is a mechanism for reporting the IP network's own state, not for delivering data to an application, so there's no need to route to a destination application"
+      - "Because ICMP was developed too long ago, before the concept of a port number even existed"
+      - "Because ICMP is specified to automatically use all 65536 port numbers at once"
+      - "Because ICMP is implemented as part of TCP and directly reuses TCP's port numbers"
+    answerIndex: 0
+    explanation: "Unlike TCP/UDP, which carries application data, ICMP is a mechanism for reporting the IP network's own delivery status. Since the concept of routing to a destination application isn't needed at all, there's no port number field in the first place."
+
+  - question: "Which statement best matches the article's explanation of how traceroute uses ICMP to visualize a path?"
+    choices:
+      - "It uses a dedicated, encrypted protocol of its own to communicate directly with routers along the path and retrieve information"
+      - "It sends packets with the IP packet's TTL incremented by 1 starting from 1, and visualizes the path by recording the source IP address of the Time Exceeded message each router along the path returns once its TTL runs out"
+      - "traceroute communicates with dedicated software pre-installed on every router along the path"
+      - "traceroute queries a DNS server directly to retrieve the list of routers along the path"
+    answerIndex: 1
+    explanation: "traceroute keeps sending packets to the same destination, incrementing the TTL by 1 starting from 1. Each router along the path that discards the packet once its TTL runs out sends back a Time Exceeded message, so recording that message's source IP address visualizes the routers along the path."
+
+  - question: "Which statement best matches the article's explanation of the role Destination Unreachable's Fragmentation Needed notification plays?"
+    choices:
+      - "It underpins Path MTU Discovery (PMTUD), telling the source to reduce packet size when a packet exceeds the MTU somewhere along the path"
+      - "This notification is only used to measure the response speed of the ping command"
+      - "This notification is used to convey that a DNS server's IP address has changed"
+      - "This notification is used to convey that a Windows Update needs to be applied"
+    answerIndex: 0
+    explanation: "Destination Unreachable Code 4 (Fragmentation Needed) notifies that a packet exceeds the MTU along the path, and since the don't-fragment flag is set, asks the source to resend at a smaller size. This mechanism is called Path MTU Discovery (PMTUD)."
+
+  - question: "Which statement best matches the article's explanation of the problem that can occur when a firewall blocks \"all\" ICMP?"
+    choices:
+      - "Fragmentation Needed notifications stop getting through, breaking PMTUD, leading to a hard-to-diagnose issue where small packets get through fine but only communication involving data beyond a certain size hangs for no apparent reason"
+      - "Blocking ICMP makes TCP communication itself completely impossible"
+      - "Blocking ICMP has no effect on network operation at all"
+      - "Blocking ICMP causes every DNS server query to fail"
+    answerIndex: 0
+    explanation: "Blanket-blocking ICMP also blocks Destination Unreachable's Fragmentation Needed notification, breaking Path MTU Discovery. This leads to a hard-to-diagnose issue where small packets get through fine, but only communication trying to send data beyond a certain size hangs for no apparent reason."
+
+  - question: "Which statement best matches the article's explanation of ICMPv6's role in IPv6?"
+    choices:
+      - "ICMPv6 has absorbed functionality equivalent to ARP (NDP), which was a separate protocol in the IPv4 era, giving ICMP a larger role than it had in IPv4"
+      - "ICMPv6 was completely discontinued in IPv6, and ARP is used on its own instead"
+      - "ICMPv6 only provides ping functionality and has no other role at all"
+      - "ICMPv6 has exactly the same specification as IPv4's ICMP, just under a different name"
+    answerIndex: 0
+    explanation: "In IPv6, functionality equivalent to ARP (a separate protocol resolving an IP address to a MAC address) is integrated as NDP (Neighbor Discovery Protocol), one of ICMPv6's message types. Router advertisement and solicitation are also integrated into ICMPv6, giving ICMP a larger role than it had in IPv4."

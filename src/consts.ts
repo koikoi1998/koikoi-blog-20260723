@@ -17,6 +17,9 @@ export const seriesNames: Record<string, string> = {
   "web-proxy": "Webプロキシ/キャッシュ基礎シリーズ",
   "aws-basics": "AWS基礎シリーズ",
   messaging: "メール基盤シリーズ",
+  "protocol-fundamentals": "プロトコル基礎シリーズ",
+  openshift: "OpenShiftシリーズ",
+  ansible: "Ansibleシリーズ",
 };
 
 export const seriesNamesEn: Record<string, string> = {
@@ -38,6 +41,9 @@ export const seriesNamesEn: Record<string, string> = {
   "web-proxy": "Web Proxy / Caching Fundamentals Series",
   "aws-basics": "AWS Fundamentals Series",
   messaging: "Messaging Fundamentals Series",
+  "protocol-fundamentals": "Protocol Fundamentals Series",
+  openshift: "OpenShift Series",
+  ansible: "Ansible Series",
 };
 
 export type Lang = "ja" | "en";
