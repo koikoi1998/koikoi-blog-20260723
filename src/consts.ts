@@ -11,6 +11,7 @@ export const seriesNames: Record<string, string> = {
   "handson-prep": "ハンズオン準備シリーズ",
   virtualization: "仮想化基盤シリーズ",
   "active-directory": "Active Directoryシリーズ",
+  "windows-client": "Windowsクライアント運用シリーズ",
 };
 
 export const seriesNamesEn: Record<string, string> = {
@@ -26,6 +27,7 @@ export const seriesNamesEn: Record<string, string> = {
   "handson-prep": "Hands-On Prep Series",
   virtualization: "Virtualization Fundamentals Series",
   "active-directory": "Active Directory Series",
+  "windows-client": "Windows Client Operations Series",
 };
 
 export type Lang = "ja" | "en";

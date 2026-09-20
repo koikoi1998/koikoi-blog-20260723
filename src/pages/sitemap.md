@@ -33,6 +33,7 @@ graph TB
     Telephony["電話網・アクセス回線シリーズ"]
     Api["Web/APIシリーズ"]
     ActiveDirectory["Active Directoryシリーズ"]
+    WindowsClient["Windowsクライアント運用シリーズ"]
 
     Idrac --> Network
     Idrac --> Api
@@ -43,6 +44,7 @@ graph TB
     Vpn --> Linux
     Vpn --> Telephony
     Network --> ActiveDirectory
+    ActiveDirectory --> WindowsClient
 ```
 
 **基本的な読み方**: iDRACの記事を起点に、ネットワーク基礎シリーズとWeb/APIシリーズへ進み、ネットワーク基礎シリーズのL2TP/IPsecの記事からリモートアクセスVPN/L2TP・IPsecシリーズへ、そこから拠点間VPNシリーズ・セキュリティ基礎・Linux/OS基礎・電話網シリーズへと深掘りしていく、というのが記事同士の主な派生の流れです。ただし各記事は**すべて単体でも読める**ように書かれているため、興味のあるシリーズ・記事から読み始めて問題ありません。なお、ネットワーク基礎シリーズの一部記事(NAT/NAPT・代表IP・TCP/UDPセッション・DNS)はリモートアクセスVPN/L2TP・IPsecシリーズのL2TP/IPsecの記事から派生しており、シリーズ同士は一方向のツリーではなく一部相互に関係している点に注意してください。以前はリモートアクセスVPNと拠点間VPNを同じ「VPN/L2TP・IPsecシリーズ」にまとめていましたが、対象読者・用途が異なるため2つのシリーズに分割しました。Active Directoryシリーズは、AD移行・DC運用の実務で直面する疑問を深掘りする新シリーズで、ネットワーク基礎シリーズ(特にDNS)の知識を前提にしています。
@@ -274,6 +276,12 @@ AD移行・ドメインコントローラー(DC)の構築・運用の実務で�
 - [DCの正常性確認を『上位1%』の視点で理解する](/articles/dc-health-check-guide) — repadmin /showreplで確認できる5つのパーティション、「成功」表示の本当の意味、net shareに表示されるC$/IPC$/ADMIN$/NETLOGON/SYSVOLの違い、SysvolReadyレジストリ値までの深掘り(単体でも読めます)。
 - [dcdiag /vの読み方を『上位1%』の視点で理解する](/articles/dcdiag-guide) — dcdiagが何をテストしているツールなのか、主要なテスト項目の意味、警告・エラーを無視してよい根拠と無視できない根拠、AD移行の各段階での実行タイミングまでの深掘り(単体でも読めます)。
 - [AD移行後のクリーンアップを『上位1%』の視点で理解する](/articles/ad-migration-cleanup-guide) — dsa.msc・dssite.msc・adsiedit.msc・dnsmgmt.mscがそれぞれ管理しているAD DSのパーティション、ドメイン脱退後もコンピューターアカウントが残り続ける理由、4つのコンソールすべての確認が本当に必要になる場面までの深掘り(単体でも読めます)。
+
+### Windowsクライアント運用シリーズ
+
+日々のPC運用で遭遇する「なぜこうなっているのか」を深掘りするシリーズです。**読む順番の目安**: ① windows-defender-guide(以降、インストーラ/ライセンス・プロセス管理・ファイル名の正規化等のテーマを追加予定)。
+
+- [Microsoft Defenderの仕組みを『上位1%』の視点で理解する](/articles/windows-defender-guide) — リアルタイム保護とオンデマンドスキャンの違い、クイックスキャン/フルスキャンの対象範囲、フルスキャン合格が保証する範囲としない範囲、クラウドドライブ(BoxDrive/GoogleDrive)のファイルがスキャン対象になるのかまでの深掘り(単体でも読めます)。
 
 ## 今後の展開予定
 

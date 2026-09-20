@@ -1,0 +1,45 @@
+questions:
+  - question: "Which statement best matches the article's explanation of Microsoft Defender's overall structure?"
+    choices:
+      - "Defender consists of only two features: quick scan and full scan"
+      - "It's a combination of multiple defense layers — real-time protection, on-demand scanning, cloud protection, and behavior monitoring — of which quick scan/full scan are just one component (on-demand scanning)"
+      - "Defender has no protective functionality at all unless you purchase the paid edition"
+      - "Defender only runs in the cloud and never runs on the local PC at all"
+    answerIndex: 1
+    explanation: "Microsoft Defender is a combination of multiple defense layers: real-time protection, on-demand scanning, cloud protection, and behavior monitoring. Quick scan and full scan are just one component of that — on-demand scanning — while day-to-day protection is primarily carried by real-time protection."
+
+  - question: "Which statement best matches the article's explanation of why a quick scan's scope is limited?"
+    choices:
+      - "A quick scan is specified to inspect only a randomly chosen set of files"
+      - "Because most malware leaves some trace in auto-run settings triggered at OS boot or in the memory of a currently running process, limiting the scan to these known locations achieves a fast check"
+      - "A quick scan is a feature that inspects only a single folder specified by the user"
+      - "A quick scan inspects only files that aren't connected to the internet"
+    answerIndex: 1
+    explanation: "Most malware leaves some trace, in some form, in auto-run settings triggered at OS boot (startup items, registry auto-run keys, and so on) or in the memory of a currently running process. A quick scan achieves a fast check by limiting itself to these known locations."
+
+  - question: "Which statement best matches the article's explanation of what passing a full scan before connecting to production guarantees?"
+    choices:
+      - "It guarantees that PC will never become infected with malware, forever into the future"
+      - "It only guarantees the fact that, based on Defender's detection capability at the time the scan was run, no file matching a known threat pattern was found"
+      - "It guarantees that every piece of software installed on that PC is up to date"
+      - "It guarantees that PC's hardware has no physical faults"
+    answerIndex: 1
+    explanation: "Passing a full scan only guarantees the fact that, based on Defender's detection capability at the time (signatures, heuristics, cloud lookups), no file matching a known threat pattern was found. It doesn't guarantee protection against zero-day threats, detection-evasion techniques, or content outside the scan's scope."
+
+  - question: "Which statement best matches the article's explanation of why an organization deploys a separate security product even though Defender is built in?"
+    choices:
+      - "Because Defender has no detection functionality whatsoever"
+      - "Reasons include EDR and centralized management functionality, organizational security policy/compliance requirements, and unified management of a mixed-OS environment"
+      - "Because Defender is specified to only run on certain days of the week"
+      - "Because Windows's terms of use legally prohibit operating with Defender alone"
+    answerIndex: 1
+    explanation: "Defender frequently scores highly in independent testing, so being free and having weaker performance aren't directly linked. Reasons organizations still deploy a separate product include EDR/centralized management functionality, organizational security policy/compliance requirements, and unified management of a mixed-OS environment."
+
+  - question: "Which statement best matches the article's explanation of whether files in a folder integrated with BoxDrive or Google Drive are scanned by Defender?"
+    choices:
+      - "Every file shown in File Explorer is always subject to a full scan, regardless of whether its actual content exists locally"
+      - "A placeholder file whose actual content exists only in the cloud isn't subject to scanning until it's actually downloaded, and even a full scan doesn't normally inspect the content of an undownloaded cloud file"
+      - "Files integrated with a cloud drive are permanently excluded from Defender's scan by design"
+      - "Cloud drive files are automatically and fully downloaded to local disk the moment they're uploaded"
+    answerIndex: 1
+    explanation: "Because Defender's real-time protection hooks I/O that occurs on the local file system, the content of a placeholder file that hasn't yet been downloaded isn't inspected until it's actually downloaded. Even running a full scan doesn't normally inspect the content of a file that exists only in the cloud and hasn't been downloaded."

@@ -31,6 +31,7 @@ graph TB
     Telephony["Telephony & Access Network Series"]
     Api["Web / API Series"]
     ActiveDirectory["Active Directory Series"]
+    WindowsClient["Windows Client Operations Series"]
 
     Idrac --> Network
     Idrac --> Api
@@ -41,6 +42,7 @@ graph TB
     Vpn --> Linux
     Vpn --> Telephony
     Network --> ActiveDirectory
+    ActiveDirectory --> WindowsClient
 ```
 
 **The basic path**: Start with the iDRAC article, branch into the Networking Fundamentals and Web/API series, follow the L2TP/IPsec article's thread from Networking Fundamentals into the Remote-Access VPN/L2TP-IPsec series, and dig deeper from there into the Site-to-Site VPN series, Security Fundamentals, Linux/OS Fundamentals, and Telephony. That's the main line of derivation between articles. That said, every article is written to be **fully readable on its own**, so feel free to start with whichever series or article interests you. Note also that some articles in the Networking Fundamentals series (NAT/NAPT, virtual IPs, TCP/UDP sessions, DNS) actually branch off from the L2TP/IPsec article in the Remote-Access VPN series — the series don't form a strict one-way tree; some cross-reference each other. The remote-access and site-to-site VPN articles used to be bundled into a single "VPN/L2TP-IPsec Series," but since they serve different audiences and use cases, they've since been split into two separate series. The Active Directory series is a new series digging into questions that come up constantly in real AD migration and DC operation work, and assumes you've read the Networking Fundamentals series (especially DNS).
@@ -272,6 +274,12 @@ A series digging into the questions that come up constantly in real-world AD mig
 - [Understanding DC Health Checks from a "Top 1%" Perspective](/en/articles/dc-health-check-guide) — A deep dive into the five partitions visible in repadmin /showrepl, what a "successful" indicator really means, the difference between the C$/IPC$/ADMIN$/NETLOGON/SYSVOL shares shown by net share, and the SysvolReady registry value (also readable standalone).
 - [Reading dcdiag /v from a "Top 1%" Perspective](/en/articles/dcdiag-guide) — A deep dive into what dcdiag actually tests, what its major test items mean, grounds for ignoring (or not ignoring) a warning or error, and when to run it at each stage of an AD migration (also readable standalone).
 - [Understanding Post-Migration AD Cleanup from a "Top 1%" Perspective](/en/articles/ad-migration-cleanup-guide) — A deep dive into which AD DS partition each of dsa.msc/dssite.msc/adsiedit.msc/dnsmgmt.msc manages, why a computer account lingers even after leaving the domain, and when checking all four consoles truly matters (also readable standalone).
+
+### Windows Client Operations Series
+
+A series digging into the "why is it built this way" questions that come up in day-to-day PC operations. **Recommended order**: ① windows-defender-guide (more articles on installers/licensing, process management, filename normalization, and related topics are planned).
+
+- [Understanding How Microsoft Defender Works from a "Top 1%" Perspective](/en/articles/windows-defender-guide) — A deep dive into the difference between real-time protection and on-demand scanning, the scope of a quick scan vs. a full scan, what passing a full scan does and doesn't guarantee, and whether cloud drive (BoxDrive/Google Drive) files get scanned (also readable standalone).
 
 ## What's next
 
