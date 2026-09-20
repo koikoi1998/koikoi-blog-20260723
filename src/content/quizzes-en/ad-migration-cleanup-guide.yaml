@@ -1,0 +1,54 @@
+questions:
+  - question: "Which statement best matches the article's explanation of the relationship between the four consoles dsa.msc, dssite.msc, adsiedit.msc, and dnsmgmt.msc?"
+    choices:
+      - "The four are completely unrelated, separate database products"
+      - "They're different windows onto the same single database, AD DS — dsa.msc, dssite.msc, and dnsmgmt.msc are each dedicated to a specific partition, while adsiedit.msc is a general-purpose editor that can access any partition directly"
+      - "All four consoles display exactly the same content, just in different languages (Japanese, English, and so on)"
+      - "adsiedit.msc is the successor tool that replaced the other three, which have been completely discontinued"
+    answerIndex: 1
+    explanation: "dsa.msc, dssite.msc, and dnsmgmt.msc are dedicated consoles that each manage a specific, different partition (domain, configuration, DNS zones) within the same single database, AD DS. adsiedit.msc alone isn't dedicated to any particular partition — it's a general-purpose LDAP editor that can directly access any partition in AD DS."
+
+  - question: "Which statement best matches the article's explanation of why information keeps lingering in dsa.msc's Computers container even after a PC is removed from the domain?"
+    choices:
+      - "The operation of leaving the domain on the PC side and the operation of deleting the computer account on the AD DS side are entirely separate operations, and the AD DS-side account keeps existing unless an administrator explicitly deletes it"
+      - "It's a Windows bug scheduled to be automatically fixed in the next Windows Update"
+      - "Information about leaving the domain is legally required to be retained for 7 years"
+      - "dsa.msc's display is simply cached, and the object has actually already been deleted from AD DS"
+    answerIndex: 0
+    explanation: "The PC-side action of \"leaving the domain\" is just a local configuration change that stops that PC from using the domain's credentials — it doesn't automatically request deletion of the computer account on the AD DS side. The AD DS-side computer account keeps existing unless an administrator explicitly deletes it."
+
+  - question: "Which statement best matches the article's explanation of why dssite.msc matters for post-AD-migration cleanup checks?"
+    choices:
+      - "dssite.msc is the only tool that can list the passwords of every user in the domain"
+      - "A properly demoted DC also has its server object and NTDS Settings object automatically deleted, so a lingering old DC server object means the demotion process wasn't fully completed"
+      - "dssite.msc is the only console that can directly edit DNS records"
+      - "dssite.msc is a dedicated console for checking Windows Server license activation status"
+    answerIndex: 1
+    explanation: "A properly demoted DC also has its server object and NTDS Settings object in dssite.msc automatically deleted. If an old DC's server object still remains in dssite.msc, that means the demotion process wasn't fully completed, and stale replication configuration information is still lingering."
+
+  - question: "Which statement best matches the article's explanation of the difference between dsa.msc and dssite.msc?"
+    choices:
+      - "dsa.msc is the window for managing \"what exists in the domain,\" while dssite.msc is the window for managing \"where DCs physically and network-wise are, and how they replicate with each other\""
+      - "dsa.msc and dssite.msc display exactly the same content and are just different names for the same tool"
+      - "dsa.msc is exclusive to Linux servers, and dssite.msc is exclusive to Windows Server"
+      - "dssite.msc is a dedicated tool used only for resetting user account passwords"
+    answerIndex: 0
+    explanation: "dsa.msc is the window for managing \"what exists in the domain\" (who belongs to which group, in which OU), while dssite.msc is the window for managing \"where DCs physically and network-wise are, and how they replicate with each other.\" Day-to-day user and group management is fully covered by dsa.msc, but dssite.msc becomes the primary battleground for adding/removing a DC or confirming the replication topology."
+
+  - question: "Which statement best matches the article's positioning of adsiedit.msc?"
+    choices:
+      - "adsiedit.msc has the same safety mechanisms (confirmation dialogs, dependency checks) as other GUI tools, making it suitable for everyday operations too"
+      - "adsiedit.msc is a powerful tool that writes directly to AD DS data, bypassing many safety mechanisms, and should be positioned as a last resort used only in limited situations other GUI tools can't handle"
+      - "adsiedit.msc is a read-only tool that can never modify or delete data"
+      - "adsiedit.msc only handles DNS server settings, not AD DS"
+    answerIndex: 1
+    explanation: "adsiedit.msc bypasses many of the safety mechanisms that appear during operations in a tool like dsa.msc — confirmation prompts, dependency checks, and so on — writing directly to AD DS's data. Because a wrong operation can have serious consequences, it should be positioned as a last resort for limited situations other tools can't handle, not an everyday operational tool."
+
+  - question: "Which statement best matches the article's explanation of when manually checking all four consoles particularly matters?"
+    choices:
+      - "Every Monday morning, regardless of the reason, all four consoles must always be checked"
+      - "When the old DC had already failed or been lost and forced metadata cleanup via ntdsutil was performed, and when verifying whether automatic cleanup after a proper demotion truly completed fully"
+      - "All four consoles must be checked every single time a new user account is created"
+      - "Checking all four consoles is only needed right after changing Windows Server's language setting"
+    answerIndex: 1
+    explanation: "A proper, graceful demotion handles much of the cleanup automatically. Manually checking all four consoles one by one really matters when the old DC failed or was lost and forced metadata cleanup via ntdsutil was performed, and when verifying whether automatic cleanup after a proper demotion truly completed fully."
