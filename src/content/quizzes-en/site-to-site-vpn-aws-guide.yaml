@@ -1,0 +1,45 @@
+questions:
+  - question: "Which statement best matches the article's explanation of what AWS's CGW (Customer Gateway) actually is?"
+    choices:
+      - "The CGW is a new physical VPN termination device provisioned within AWS"
+      - "The CGW isn't a physical device — it's configuration information (a resource) registering the on-premises VPN device's public IP address and BGP ASN with AWS"
+      - "The CGW is an authentication gateway used by on-premises users to log into AWS"
+      - "The CGW is a term referring to AWS's global backbone network itself"
+    answerIndex: 1
+    explanation: "The CGW's actual identity is just configuration information (a resource) — the physical device that actually performs VPN termination is on-premises. The CGW is like a registration ledger the AWS side keeps of the partner on-premises device's IP address and ASN."
+
+  - question: "Which statement best matches the article's explanation of the difference in role between IGW and VGW?"
+    choices:
+      - "IGW and VGW play exactly the same role and are just two names for the same thing"
+      - "IGW is a gateway for a VPC's direct internet connection, unrelated to VPN, while VGW is the AWS-side gateway that terminates a VPN connection"
+      - "IGW is dedicated to VPN connections, and VGW is dedicated to internet connections"
+      - "Both IGW and VGW are physical devices installed on-premises"
+    answerIndex: 1
+    explanation: "IGW (Internet Gateway) is a gateway letting resources within a VPC communicate directly with the ordinary internet, unrelated to VPN. VGW (Virtual Private Gateway) is the window on the AWS side that receives an IPsec VPN connection from on-premises."
+
+  - question: "Which statement best matches the article's explanation of the site-to-site VPN communication path?"
+    choices:
+      - "A standard Site-to-Site VPN's traffic travels over the ordinary internet between the on-premises device and AWS's VGW/TGW, but AWS separately offers a dedicated-line service called Direct Connect too"
+      - "VPN communication with AWS never goes through the internet at all and only travels over a dedicated AWS physical line"
+      - "Building a Site-to-Site VPN automatically lays down a new dedicated line identical to Direct Connect"
+      - "Communication between AWS Regions always travels over the ordinary internet"
+    answerIndex: 0
+    explanation: "In a standard AWS Site-to-Site VPN, traffic between the on-premises device and AWS's VGW/TGW travels as encrypted IPsec packets over the ordinary internet. AWS also offers a separate service, Direct Connect, providing a dedicated physical connection that bypasses the internet."
+
+  - question: "Which statement best matches the article's explanation of when to use VGW versus TGW?"
+    choices:
+      - "VGW is a simple configuration tied to a single VPC in a one-to-one relationship, while TGW serves as the consolidation point when you want to connect multiple VPCs or accounts together"
+      - "VGW and TGW have exactly identical functionality and are just different names"
+      - "TGW can only connect to a single VPC, while VGW can connect to multiple VPCs"
+      - "VGW is a paid gateway and TGW is a free gateway"
+    answerIndex: 0
+    explanation: "VGW is a simple configuration tied to a single VPC in a one-to-one relationship. If you want to connect multiple VPCs or AWS accounts together, preparing a separate VGW per VPC increases what you manage, so TGW is used to consolidate multiple VPCs, VPN connections, and Direct Connect into a single hub."
+
+  - question: "Which statement best matches the practical caveat the article raises about redundancy across the two tunnels?"
+    choices:
+      - "Once AWS configures two tunnels, both are automatically established and maintained without needing to check the on-premises configuration"
+      - "AWS configures two tunnels by default for redundancy, but depending on the on-premises device's configuration, only one may actually end up established — so you need to confirm both tunnels' status is \"UP\" after building the connection"
+      - "One of the two tunnels should always be kept disabled"
+      - "The number of tunnels is automatically decided as one or two based on the on-premises device's vendor"
+    answerIndex: 1
+    explanation: "AWS's Site-to-Site VPN connection is configured with two tunnels by default for redundancy, but in practice, it's far from rare for an on-premises device's configuration to result in only one tunnel actually being established. It's important to build the habit of confirming both tunnels' status is \"UP\" after the build."
