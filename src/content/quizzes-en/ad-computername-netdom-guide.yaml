@@ -1,0 +1,54 @@
+questions:
+  - question: "Which statement best matches the article's explanation of the mechanism difference between renaming via sysdm.cpl and renaming via netdom computername?"
+    choices:
+      - "Both work through exactly the same mechanism and only differ in their UI"
+      - "sysdm.cpl performs a simple rename that replaces the old name with the new one on the spot, while netdom computername relies on a mechanism that lets a single computer hold multiple names (a primary plus alternates)"
+      - "sysdm.cpl can only be run from the command line, while netdom computername can only be run from the GUI"
+      - "netdom computername always treats both the old and new names as primary simultaneously"
+    answerIndex: 1
+    explanation: "sysdm.cpl performs a simple rename that replaces the old name with the new one on the spot. netdom computername, on the other hand, is a management command for letting a single computer hold multiple names (a primary name plus alternate names), and /makeprimary merely switches which of those is treated as primary."
+
+  - question: "Why does taking over an existing hostname with netdom computername require the two-step process of adding it as an alternate name with /add and then promoting it with /makeprimary? Which statement best matches the article's explanation?"
+    choices:
+      - "It's a Windows bug, and a single step should really be enough"
+      - "Only a name that's already registered can be promoted to primary, which ensures SPN and DNS registration consistency is confirmed before that name is allowed to function as the primary identity"
+      - "It's a security specification designed to prevent typos by forcing the same command to be run twice"
+      - "Without running /add first, the computer can't be rebooted at all"
+    answerIndex: 1
+    explanation: "There's a constraint that only a name already registered as an alternate via /add can be promoted to primary. This is a safeguard that ensures SPN and DNS registration consistency has been confirmed before letting that name function as the primary identity anchoring authentication."
+
+  - question: "What does \"primary host name\" refer to? Which statement best matches the article's explanation?"
+    choices:
+      - "A collective term for every name registered on that computer"
+      - "The main name that the OS itself manages as \"its own name\" — the one that anchors the default SPN and actively registers and updates DNS records"
+      - "A special kind of name that a network administrator must register individually and manually on the DNS server"
+      - "A temporary name that changes randomly every time the computer boots"
+    answerIndex: 1
+    explanation: "The primary host name is the main name the OS itself actively manages as \"its own name\" — it anchors the default SPN (such as HOST/<primary name>) and is the one that actively registers and updates the DNS forward-lookup record. Alternate names also function as SPNs and DNS records, but only the primary name is actively managed by the OS."
+
+  - question: "In the AD migration incident diagnosed in the article, what was the true explanation for how DC① was able to join the domain despite sharing the same hostname? Which statement best matches the article's explanation?"
+    choices:
+      - "Windows's domain-join process has no mechanism at all for detecting duplicate names"
+      - "The join succeeded by \"reusing\" the existing same-named computer account (DC②'s own account), and that account's password (the secure channel's shared secret) got overwritten with the value from DC① instead"
+      - "DC① and DC② were on the same physical network segment, so the duplicate name wasn't an issue"
+      - "The DNS server was unable to correctly recognize either DC①'s or DC②'s IP address"
+    answerIndex: 1
+    explanation: "When the domain-join process detects an existing same-named computer account, it can offer to \"reuse\" it — and approving that overwrites the existing account's (in this case DC②'s own) password with the new value from DC①'s side. This is why the join succeeded without an error, and it's also what broke DC②'s own authentication infrastructure."
+
+  - question: "What was the direct cause of the logon failures in the case above? Which statement best matches the article's explanation?"
+    choices:
+      - "DC①'s DNS settings incorrectly pointed to DC②'s IP address"
+      - "DC②'s own computer-account password was overwritten, so DC② could no longer maintain a proper secure channel and its Netlogon processing became unstable"
+      - "The password on the newly created domain account was entered incorrectly"
+      - "DC①'s hostname exceeded 15 characters and couldn't be registered as a NetBIOS name"
+    answerIndex: 1
+    explanation: "Because DC②'s own computer-account password was overwritten with the value from DC①, DC② ended up with a mismatch between its own authentication credentials and what AD DS recorded, and could no longer maintain a proper secure channel. This destabilized the Netlogon service, making it unable to process logon requests. Note that the DNS settings themselves were correct."
+
+  - question: "When planning a migration that hands a DC's name over to a new server, which order does the article recommend?"
+    choices:
+      - "Rename the new DC to the old DC's name first, then demote and rename the old DC"
+      - "Demote the old DC; if its machine will be repurposed, first rename it to a new, unique name, then rename the new DC to the old DC's name, and finally rejoin the renamed old machine to the domain under its new name"
+      - "Rename both the old and new DCs to the same name simultaneously, then delete one of them afterward"
+      - "Avoid name takeover entirely — a new DC should always be given a completely new name"
+    answerIndex: 1
+    explanation: "After formally demoting and removing the old DC, if its machine will be repurposed, first rename that machine's computer name to a new, unique name, then rename the new DC to the old DC's former name, and finally rejoin the renamed old machine to the domain under its new name. Following this order eliminates the moment where a name collision could ever occur."

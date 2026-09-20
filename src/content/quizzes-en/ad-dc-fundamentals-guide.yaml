@@ -1,0 +1,72 @@
+questions:
+  - question: "Which statement best matches the article's explanation of the relationship between AD DS (Active Directory Domain Services) and a DC (domain controller)?"
+    choices:
+      - "AD DS and DC are simply two different names for the exact same thing, with no meaningful distinction"
+      - "AD DS is the mechanism and data structure itself that manages an organization's information, while a DC is the server that actually runs it and holds a replica"
+      - "A DC refers to the software mechanism, while AD DS refers to the hardware that runs it"
+      - "AD DS can only exist on a single DC and can never be shared across multiple DCs"
+    answerIndex: 1
+    explanation: "AD DS is the mechanism and data structure itself that centrally manages an organization's users, computers, groups, and so on, while a DC is the server that actually holds a replica of that AD DS and responds to queries and authentication requests. These are two clearly distinct conceptual layers."
+
+  - question: "Which statement best matches the article's explanation of the replication scope of AD DS's domain partition, configuration partition, and schema partition?"
+    choices:
+      - "Every partition is replicated to all DCs in the forest"
+      - "The domain partition replicates only among DCs within the same domain, while the configuration and schema partitions replicate among all DCs in the forest"
+      - "Every partition replicates only among DCs within the same domain"
+      - "Only the schema partition replicates forest-wide, while the configuration partition stays confined to the domain"
+    answerIndex: 1
+    explanation: "The domain partition holds objects belonging to that domain and replicates only among DCs within the same domain. The configuration and schema partitions, on the other hand, are forest-wide configuration information and type definitions, and replicate among all DCs in the forest."
+
+  - question: "Which statement best matches the article's explanation of the relationship between domains, trees, and forests?"
+    choices:
+      - "Every tree in a forest must share a contiguous DNS namespace"
+      - "A tree is a collection of domains sharing a contiguous DNS namespace, while a forest — which can also contain trees with non-contiguous namespaces — is the topmost security boundary in AD DS"
+      - "Splitting into separate domains fully isolates you from privileges that affect the entire forest"
+      - "A single forest can only ever contain exactly one tree and one domain"
+    answerIndex: 1
+    explanation: "A tree is a collection of domains sharing a contiguous DNS namespace, such as `example.com` and `child.example.com`. A forest can contain multiple trees (including ones with non-contiguous namespaces) and is the topmost security boundary in AD DS, where forest-wide privileges such as Schema Admins and Enterprise Admins are partitioned."
+
+  - question: "Which statement best matches the article's explanation of why functional levels (Domain/Forest Functional Level) exist?"
+    choices:
+      - "They exist to limit the number of DCs"
+      - "Because a forest or domain can contain a mix of DCs running different OS versions, functional levels constrain the range of features that can be safely processed to what the oldest DC's version supports"
+      - "They exist to control CPU usage on DCs"
+      - "They exist to determine the number of global catalogs"
+    answerIndex: 1
+    explanation: "A functional level is a domain/forest-wide feature control whose ceiling is set by the oldest DC's OS version present. This mechanism exists because new features can't be safely enabled unless every DC is running a version capable of understanding and processing them."
+
+  - question: "Which statement best matches the article's explanation of the practical considerations around raising a functional level?"
+    choices:
+      - "Functional levels can be freely raised and lowered at any time with no practical considerations at all"
+      - "Because some features enabled after raising the level aren't restored simply by lowering it again, it's safest in practice to plan the operation as a one-way decision"
+      - "Once raised, DCs running any OS version can freely join the domain going forward"
+      - "Raising a functional level never takes effect without rebooting every DC"
+    answerIndex: 1
+    explanation: "In many versions it's technically possible to lower a functional level again, but some features enabled after raising it aren't restored simply by lowering it, so it's considered safest in practice to plan raising the level as a one-way decision. Also, once raised, DCs running an OS below that level can no longer newly join."
+
+  - question: "Which statement best matches the article's explanation of the items automatically proposed when you add the AD DS role in Server Manager?"
+    choices:
+      - "Every item shown is new, AD DS-specific functionality that would never be enabled without installing AD DS"
+      - "Some items, such as File and Storage Services and .NET Framework 4.8, are baseline features Windows Server already has rather than AD DS-specific dependencies — what's actually newly enabled is mainly the Group Policy Management Console and AD DS management tools (RSAT)"
+      - "The DNS server feature must always be selected at this stage, or promotion to a DC becomes impossible"
+      - "Every item shown is optional, and the AD DS role functions normally even if nothing else is added"
+    answerIndex: 1
+    explanation: "Items such as File and Storage Services and .NET Framework 4.8 are baseline features Windows Server already has from the start, not AD DS-specific dependencies. What's actually newly enabled by adding the AD DS role is mainly the Group Policy Management Console (GPMC) and the full set of AD DS management tools (RSAT)."
+
+  - question: "Which statement best matches the article's explanation of why you don't need to select the DNS server on the \"Server Roles\" screen?"
+    choices:
+      - "Because Windows Server doesn't have a DNS server feature"
+      - "Because the wizard for promoting this server to a domain controller has its own, independent \"Install DNS server\" checkbox"
+      - "Because AD DS never requires DNS server functionality under any circumstances"
+      - "Because DNS server functionality must be downloaded separately and manually from Windows Update"
+    answerIndex: 1
+    explanation: "The operation of actually promoting this DC to a domain controller has its own independent \"Install DNS server\" checkbox, so even without pre-selecting DNS server on the role-selection screen, the DNS server role can end up installed once the promotion completes."
+
+  - question: "Which statement best matches the article's explanation of when splitting into multiple domains is actually considered in practice?"
+    choices:
+      - "You should always split into domains, even for a requirement as simple as wanting to separate management by department"
+      - "It's considered when there's a clear requirement that justifies a costly decision — such as letting an acquired company's existing AD environment coexist after a merger, or isolating a department with substantially different password-policy or audit requirements"
+      - "Splitting into domains doesn't change the overall complexity of the forest, so it can be done casually"
+      - "A single forest must always contain multiple domains"
+    answerIndex: 1
+    explanation: "Adding a domain is a costly decision that reliably increases the complexity of the entire forest (more trust relationships to manage, more objects for the GC to replicate, more DCs to operate), so it's considered when there's a clear requirement — such as a merger/acquisition or a department with substantially different password-policy or audit requirements. For a requirement as simple as separating management, OUs, Group Policy, and delegation are usually sufficient."

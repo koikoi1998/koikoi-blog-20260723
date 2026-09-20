@@ -10,6 +10,7 @@ export const seriesNames: Record<string, string> = {
   security: "セキュリティ基礎シリーズ",
   "handson-prep": "ハンズオン準備シリーズ",
   virtualization: "仮想化基盤シリーズ",
+  "active-directory": "Active Directoryシリーズ",
 };
 
 export const seriesNamesEn: Record<string, string> = {
@@ -24,6 +25,7 @@ export const seriesNamesEn: Record<string, string> = {
   security: "Security Fundamentals Series",
   "handson-prep": "Hands-On Prep Series",
   virtualization: "Virtualization Fundamentals Series",
+  "active-directory": "Active Directory Series",
 };
 
 export type Lang = "ja" | "en";
