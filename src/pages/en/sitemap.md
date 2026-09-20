@@ -303,9 +303,10 @@ A series digging into the "why is it built this way" questions that come up in d
 
 ### Windows Server Operations Series
 
-A series digging into the questions that come up constantly in Windows Server procurement and operations. **Recommended order**: ① windows-server-licensing-guide (more articles on NTP server configuration, IIS/ASP.NET, SMB shares, and related topics are planned).
+A series digging into the questions that come up constantly in Windows Server procurement and operations. **Recommended order**: ① windows-server-licensing-guide → ② windows-ntp-server-guide (more articles on IIS/ASP.NET, SMB shares, and related topics are planned).
 
 - [Understanding Windows Server Licensing (OEM, Datacenter, Standard) from a "Top 1%" Perspective](/en/articles/windows-server-licensing-guide) — A deep dive into why the main Standard/Datacenter difference is virtualization rights, how core-based licensing works, and why an OEM license is tied to specific hardware (also readable standalone).
+- [Understanding the Configuration Values for Building an NTP Server on Windows Server from a "Top 1%" Perspective](/en/articles/windows-ntp-server-guide) — A deep dive into the concept of Stratum, why only the forest root PDC emulator needs an explicit sync to an external time source, and what each bit of AnnounceFlags controls (a follow-on from [fsmo-guide](/en/articles/fsmo-guide), also readable standalone).
 
 ## What's next
 

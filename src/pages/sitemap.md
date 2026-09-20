@@ -305,9 +305,10 @@ AD移行・ドメインコントローラー(DC)の構築・運用の実務で�
 
 ### Windows Server運用シリーズ
 
-Windows Serverの調達・運用で必ず直面する疑問を深掘りするシリーズです。**読む順番の目安**: ① windows-server-licensing-guide(以降、NTPサーバー設定・IIS/ASP.NET・SMB共有等のテーマを追加予定)。
+Windows Serverの調達・運用で必ず直面する疑問を深掘りするシリーズです。**読む順番の目安**: ① windows-server-licensing-guide → ② windows-ntp-server-guide(以降、IIS/ASP.NET・SMB共有等のテーマを追加予定)。
 
 - [Windows Serverのライセンス(OEM・Datacenter・Standard)を『上位1%』の視点で理解する](/articles/windows-server-licensing-guide) — Standard/Datacenterの主な違いが仮想化権利である理由、コアベースライセンシングの仕組み、OEMライセンスがハードウェアに紐づく理由までの深掘り(単体でも読めます)。
+- [Windows ServerでNTPサーバーを構築する際の設定値を『上位1%』の視点で理解する](/articles/windows-ntp-server-guide) — Stratum(階層)の考え方、フォレストルートのPDCエミュレータだけが外部時刻源への明示的な同期を必要とする理由、AnnounceFlagsの各ビットが制御する動作までの深掘り([fsmo-guide](/articles/fsmo-guide)の発展編、単体でも読めます)。
 
 ## 今後の展開予定
 

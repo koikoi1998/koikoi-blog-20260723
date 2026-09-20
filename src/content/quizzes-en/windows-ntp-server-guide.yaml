@@ -1,0 +1,45 @@
+questions:
+  - question: "Which statement best matches the article's explanation of the relationship between NTP's Stratum and AD DS's time synchronization structure?"
+    choices:
+      - "The concept of Stratum doesn't exist in AD DS at all — it's an unrelated term"
+      - "The Stratum number expresses a time source's trustworthiness and hierarchical position, and it corresponds to the time synchronization hierarchy anchored by the PDC emulator in AD DS"
+      - "Stratum is a number representing the speed of the network that server is connected to"
+      - "The Stratum value is automatically determined by the DC's physical location (country/region)"
+    answerIndex: 1
+    explanation: "Stratum expresses a time source's trustworthiness and hierarchical position via a number, starting from Stratum 0 (the reference time source itself) through Stratum 1, 2, and beyond. Within an AD domain, this hierarchy corresponds to the time synchronization hierarchy anchored by the PDC emulator."
+
+  - question: "Which statement best matches the article's explanation of why only the forest root PDC emulator needs an explicit sync configuration to an external time source?"
+    choices:
+      - "Because the forest root PDC emulator has no higher DC left to rely on, no matter how far up the domain hierarchy you go"
+      - "Because the forest root PDC emulator has lower CPU performance than other DCs, making external sync mandatory"
+      - "Because it's legally mandated that the forest root PDC emulator must always sync to an external time source"
+      - "Because DCs other than the forest root PDC emulator don't have time synchronization functionality at all"
+    answerIndex: 0
+    explanation: "Every machine other than the forest root domain's PDC emulator functions using the default NT5DS scheme (automatically relying on a higher DC following AD DS's hierarchy), but the forest root PDC emulator itself has no higher DC left to rely on, no matter how far up the hierarchy you go, so it needs an explicit sync configuration to an external, authoritative time source."
+
+  - question: "Which statement best matches the article's explanation of the behavior controlled by AnnounceFlags's default value (0x0A)?"
+    choices:
+      - "That machine always unconditionally acts as a time server and reliable time source"
+      - "It's a conditional behavior: the machine automatically acts as a time server and reliable time source if it's the forest root PDC emulator, and doesn't otherwise — and the new PDC emulator automatically inherits this role after an FSMO transfer"
+      - "That machine never has any time server functionality under any circumstances"
+      - "AnnounceFlags's default value dynamically changes based on Windows Server's license activation status"
+    answerIndex: 1
+    explanation: "The default value 0x0A (0x02 + 0x08) is a conditional behavior: the machine automatically acts as a time server and reliable time source if it's the forest root PDC emulator, and doesn't otherwise. Thanks to this default, when an FSMO transfer moves the PDC emulator role, the new PDC emulator automatically inherits this role."
+
+  - question: "Which statement best matches the article's explanation of the effect of setting AnnounceFlags to 0?"
+    choices:
+      - "That machine's security improves and it becomes immune to external attacks entirely"
+      - "That machine stops advertising itself as \"a time source available for use\" to clients entirely, breaking the time synchronization hierarchy itself"
+      - "That machine's time synchronization accuracy actually improves"
+      - "Setting AnnounceFlags to 0 has no actual effect at all"
+    answerIndex: 1
+    explanation: "Setting AnnounceFlags to 0 makes that machine stop advertising itself as \"a time source available for use\" to clients entirely. This is a configuration change that breaks the time synchronization hierarchy itself and generally shouldn't be done."
+
+  - question: "Which statement best matches the article's explanation of the effect of time synchronization accuracy on Kerberos authentication?"
+    choices:
+      - "Kerberos authentication has no relationship to time accuracy at all, and drift never affects authentication"
+      - "Because Kerberos authentication fails outright if the clock drift between a client and a DC exceeds the default tolerance (5 minutes), time synchronization accuracy is directly tied to the stability of authentication across the entire domain"
+      - "Kerberos authentication is more likely to fail the more accurate the clock is"
+      - "Time synchronization accuracy only affects NTLM authentication, not Kerberos"
+    answerIndex: 1
+    explanation: "Kerberos authentication is extremely strict about clock accuracy — authentication fails outright if the clock drift between a client and a DC exceeds the default tolerance (5 minutes). If accuracy degrades at the PDC emulator, which anchors the time synchronization hierarchy, the effect ripples across the entire domain."
