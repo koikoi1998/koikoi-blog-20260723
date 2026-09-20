@@ -258,12 +258,13 @@ VPNプロトコルの記事やL2TP/IPsecハンズオンなどで繰り返し登�
 
 ### Active Directoryシリーズ
 
-AD移行・ドメインコントローラー(DC)の構築・運用の実務で必ず直面する疑問を深掘りするシリーズです。DNSの基礎([dns-guide](/articles/dns-guide))を読了している前提で書いています。**読む順番の目安**: ① ad-dc-fundamentals-guide → ② ad-computername-netdom-guide → ③ ad-windows-login-guide → ④ ad-dns-guide(以降、DNSゾーン/レコード・FSMO・DC正常性確認・移行後クリーンアップ等のテーマを追加予定)。
+AD移行・ドメインコントローラー(DC)の構築・運用の実務で必ず直面する疑問を深掘りするシリーズです。DNSの基礎([dns-guide](/articles/dns-guide))を読了している前提で書いています。**読む順番の目安**: ① ad-dc-fundamentals-guide → ② ad-computername-netdom-guide → ③ ad-windows-login-guide → ④ ad-dns-guide → ⑤ dns-zones-records-guide(以降、FSMO・DC正常性確認・移行後クリーンアップ等のテーマを追加予定)。
 
 - [ADとDC、ドメインとフォレストの違いを『上位1%』の視点で理解する](/articles/ad-dc-fundamentals-guide) — AD DS(仕組み)とDC(サーバー)の役割分担、ドメイン・ツリー・フォレストという3階層の境界線、機能レベルが何を制約しているか、AD DSの役割追加時に何が一緒にインストールされるのかまでの深掘り。
 - [sysdm.cplとnetdom computernameは何が違うのか——「プライマリホスト名」とAD移行のホスト名重複事故を『上位1%』の視点で理解する](/articles/ad-computername-netdom-guide) — sysdm.cplとnetdomのコンピューター名変更の仕組みの違い、なぜ/add→/makeprimaryという2段階が必要なのか、そして実際のAD移行で発生したホスト名重複による認証障害の事例診断までの深掘り(①の発展編、単体でも読めます)。
 - [Windowsのログインとユーザープロファイルの仕組みを『上位1%』の視点で理解する](/articles/ad-windows-login-guide) — 初回ログインになぜ社内ネットワーク接続が必要か、キャッシュされた資格情報の正体、ローミングプロファイル、VDI(永続型/非永続型)とFSLogixによるプロファイル管理までの深掘り(単体でも読めます)。
 - [AD環境のDNSはなぜこう設計されているのか——フォワーダー・プライマリ/セカンダリの挙動・127.0.0.1指定の理由を『上位1%』の視点で理解する](/articles/ad-dns-guide) — 「ping 8.8.8.8は通るのに検索できない」の正体、DNSサーバーのフォワーダー、プライマリ/セカンダリが自動フェイルオーバーしない理由、127.0.0.1指定のメリットと副作用、ipconfig /registerdnsまでの深掘り([dns-guide](/articles/dns-guide)の発展編、単体でも読めます)。
+- [DNSゾーンとレコードの読み方を『上位1%』の視点で理解する](/articles/dns-zones-records-guide) — 前方参照ゾーン・後方参照ゾーンの違い、_msdcsゾーンがフォレスト全体でレプリケーションされる理由、SRVレコードとGUID名のCNAMEレコードの役割、DNSマネージャーの実務的な見方までの深掘り([dns-guide](/articles/dns-guide)の発展編、単体でも読めます)。
 
 ## 今後の展開予定
 

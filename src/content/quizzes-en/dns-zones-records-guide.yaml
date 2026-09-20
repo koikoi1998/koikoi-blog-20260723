@@ -1,0 +1,54 @@
+questions:
+  - question: "Which statement best matches the article's explanation of the relationship between forward and reverse lookup zones?"
+    choices:
+      - "Adding an A record to a forward lookup zone always automatically creates the corresponding PTR record in the reverse lookup zone too"
+      - "Forward and reverse lookup zones are independently managed and registered pieces of data, and no corresponding PTR record exists unless the reverse lookup zone itself has been created and configured"
+      - "A reverse lookup zone is simply a backup copy of a forward lookup zone"
+      - "Forward and reverse lookup zones only function if they're always created simultaneously on the same server"
+    answerIndex: 1
+    explanation: "Forward and reverse lookup zones are separate, independently managed and registered pieces of data. If dynamic updates are enabled for both, they're usually both registered, but if the reverse lookup zone itself hasn't been created, no corresponding PTR record exists — this asymmetry can be a source of trouble."
+
+  - question: "Which statement best matches the article's explanation of why the _msdcs zone is created as its own independent forward lookup zone in most environments, and replicated over a wider scope than an ordinary domain zone?"
+    choices:
+      - "_msdcs is separated purely as a matter of administrator preference, with no particular technical reason"
+      - "Because _msdcs's records need to be referenceable by clients in any domain in the forest, they're stored in a forest-wide replicated partition called ForestDnsZones"
+      - "Because _msdcs is extremely large in size, it needs to be stored on a separate disk from the ordinary domain zone"
+      - "Because _msdcs is encrypted data requiring a special security mechanism different from an ordinary domain zone"
+    answerIndex: 1
+    explanation: "_msdcs's records need to be referenceable by clients in other domains within the forest when they look up DCs or global catalogs, so they're stored in the ForestDnsZones partition, which replicates over a wider scope (across all DCs in the forest) than the domain partition."
+
+  - question: "Which statement best matches the article's explanation of the role of the GUID-named CNAME records directly under the _msdcs zone?"
+    choices:
+      - "They only function when that DC's IP address changes, and don't handle hostname changes at all"
+      - "They let references such as replication-partner lookups permanently identify a DC by GUID rather than hostname, so that references correctly land on the new A record even after that DC's hostname changes"
+      - "They're records used to store that DC's password hash in encrypted form"
+      - "They're records used to hold a list of every user account in the domain"
+    answerIndex: 1
+    explanation: "Because a GUID never changes once issued, a reference that goes through a GUID-based CNAME record will automatically and correctly land on the A record for the new hostname even if that DC's hostname is later changed."
+
+  - question: "Which statement best matches the article's explanation of the role of SRV records?"
+    choices:
+      - "An SRV record is just another name for an A record, with no functional difference"
+      - "An SRV record is used to find a server providing a specific service by role rather than by name, with priority and weight controlling selection and load balancing among multiple servers"
+      - "SRV records are a record type exclusive to AD environments and are never used for any other purpose"
+      - "An SRV record is a record that holds all the subnet information in a domain at once"
+    answerIndex: 1
+    explanation: "An SRV record answers the question \"which server provides this specific service.\" The priority and weight fields express the order of preference and the load-balancing ratio among multiple servers holding the same role. It's a general-purpose record type also widely used outside AD, such as for SIP and XMPP."
+
+  - question: "Which statement best matches the article's explanation of why site-aware (_sites-suffixed) SRV records exist?"
+    choices:
+      - "To let a client preferentially find a DC that's geographically and network-wise close by (belonging to the same AD site), preventing delays from querying a distant DC every time"
+      - "Because a different domain name must be assigned to each AD site"
+      - "_sites-suffixed SRV records are a special record type used only for raising the forest functional level"
+      - "The concept of an AD site is unrelated to SRV records and just happens to appear in the name"
+    answerIndex: 0
+    explanation: "Site-aware SRV records let a client preferentially find a DC that's geographically and network-wise close by (in the same AD site). Without this, a client at a remote location would query a distant DC every time, causing significant delays on every authentication or policy application."
+
+  - question: "Which statement best matches the article's explanation of what the dnslint /ad tool is used for?"
+    choices:
+      - "A tool for completely wiping a DNS server's zone data"
+      - "A tool that checks, in one pass against a specified DC, whether the key SRV records under _msdcs register and resolve as expected, and outputs a report"
+      - "An administrator-only tool for modifying the AD DS schema"
+      - "A tool for checking the Windows Server license activation status"
+    answerIndex: 1
+    explanation: "dnslint /ad checks, in one pass against a specified DC, whether the key SRV records under _msdcs register and resolve as expected, and outputs a report in HTML format. It's used for verification in large-scale environments rather than eyeballing the DNS Manager screen one item at a time."
