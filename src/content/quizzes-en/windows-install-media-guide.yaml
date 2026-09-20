@@ -1,0 +1,45 @@
+questions:
+  - question: "Which statement best matches the article's explanation of the relationship between x64 and x86?"
+    choices:
+      - "x64 is exactly the same instruction set as x86, just a product name difference for a higher clock speed"
+      - "x64 is a distinct operating mode differing in register width, address space, and instruction encoding — not simply a difference in speed"
+      - "x64 and x86 are completely unrelated, incompatible products sold exclusively by different companies (Intel and AMD)"
+      - "x64 is an architecture exclusive to mobile devices, and x86 is exclusive to servers"
+    answerIndex: 1
+    explanation: "x64 is a distinct operating mode extending x86's instruction set, differing in register width, address space, and instruction encoding. It isn't simply a \"faster version\" — the actual sequence of machine-code bytes the CPU reads is different."
+
+  - question: "Which statement best matches the article's explanation of what happens when trying to install an x86 driver on an x64 OS?"
+    choices:
+      - "It works fine, just like an ordinary application, via the WoW64 compatibility layer"
+      - "Because no WoW64-equivalent compatibility layer exists for drivers running in kernel mode, the installation itself is generally refused, or the driver fails to load"
+      - "Drivers are always designed to work regardless of architecture"
+      - "An x86 driver is automatically converted to x64 the moment it's installed on an x64 OS"
+    answerIndex: 1
+    explanation: "An ordinary user-mode application typically runs as-is via the WoW64 compatibility layer, but no such layer exists for drivers running in kernel mode — if the OS's bitness and the driver's bitness don't match, the installation itself is generally refused, or the driver fails to load."
+
+  - question: "Which statement best matches the article's explanation of why x64/x86 still get distributed unresolved today?"
+    choices:
+      - "There's no technical way to unify them, so it's fundamentally impossible"
+      - "The technology to bundle both architectures' programs into a single installer exists, but it's a matter of whether the publisher has invested the effort and accepted the increased file size"
+      - "Various countries' laws require x64 and x86 installers to be distributed separately"
+      - "x64 and x86 are trademarks of competing companies, and including both in the same file is legally prohibited"
+    answerIndex: 1
+    explanation: "Bundling both architectures' programs into a single installer file (a universal installer) is technically possible, but it increases file size, so many publishers haven't invested the effort and cost to do so. Many recent consumer apps absorb this via a bootstrapper format, but tools carrying forward an older distribution convention still present an explicit choice."
+
+  - question: "Which statement best matches the article's explanation of what right-clicking an ISO file and choosing \"Mount\" actually does?"
+    choices:
+      - "It actually unpacks and copies the ISO file's content to another location on disk"
+      - "It makes the ISO file's content recognized as a virtual, read-only drive, exactly as if a disc had actually been inserted into a physical optical drive"
+      - "It completely deletes the ISO file itself and converts it into a new executable file"
+      - "It automatically uploads the ISO file's content to a cloud server over the internet"
+    answerIndex: 1
+    explanation: "Mounting is an operation that makes the ISO file's content recognized as a virtual, read-only drive, exactly as if a disc had actually been inserted into a physical optical drive. It doesn't actually unpack or copy the content elsewhere — unmounting makes the virtual drive disappear, leaving the original ISO file untouched."
+
+  - question: "Which statement best matches the article's explanation of why update utilities are often distributed as an ISO?"
+    choices:
+      - "An ISO format always results in a smaller file size than an executable"
+      - "The convention of originally being designed for distribution and booting via physical CD/DVD media has carried forward, and an ISO can also be burned onto physical media to boot a server as installation media"
+      - "Windows license activation doesn't work correctly unless it's in ISO format"
+      - "The ISO format is adopted to evade detection by antivirus software"
+    answerIndex: 1
+    explanation: "The background behind server firmware/driver update utilities being distributed as an ISO is that the convention of originally being designed for distribution and boot via physical CD/DVD media has carried forward. An ISO can also be burned onto physical media to boot a server as installation media, giving the practical advantage of being able to perform an update even on a server that can't boot its own OS."

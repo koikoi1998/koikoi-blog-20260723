@@ -292,11 +292,12 @@ A series digging into the questions that come up constantly in real-world AD mig
 
 ### Windows Client Operations Series
 
-A series digging into the "why is it built this way" questions that come up in day-to-day PC operations. **Recommended order**: ① windows-defender-guide → ② windows-process-task-guide → ③ unicode-filename-normalization-guide (more articles on installers/licensing and related topics are planned).
+A series digging into the "why is it built this way" questions that come up in day-to-day PC operations. **Recommended order**: ① windows-defender-guide → ② windows-process-task-guide → ③ unicode-filename-normalization-guide → ④ windows-install-media-guide.
 
 - [Understanding How Microsoft Defender Works from a "Top 1%" Perspective](/en/articles/windows-defender-guide) — A deep dive into the difference between real-time protection and on-demand scanning, the scope of a quick scan vs. a full scan, what passing a full scan does and doesn't guarantee, and whether cloud drive (BoxDrive/Google Drive) files get scanned (also readable standalone).
 - [Understanding the Difference Between Processes, Tasks, and Threads in Windows from a "Top 1%" Perspective](/en/articles/windows-process-task-guide) — A deep dive into the hierarchy between process/task/thread, what a zombie process really is, and the mechanism (EDID) behind a monitor's layout settings being restored (also readable standalone).
 - [Why Do Files With Identical-Looking Names Have Different Character Counts in Windows?](/en/articles/unicode-filename-normalization-guide) — A deep dive into how Unicode normalization (NFC/NFD) works, why Windows (NTFS) doesn't normalize, and why cloud storage services like BOX, which compare after normalizing, fail during migration (also readable standalone).
+- [Understanding the Difference Between x64 and x86 Installers from a "Top 1%" Perspective](/en/articles/windows-install-media-guide) — A deep dive into the behavior difference between applications and drivers via WoW64, why it still isn't unified today, and what "mounting" an ISO file actually does (also readable standalone).
 
 ## What's next
 

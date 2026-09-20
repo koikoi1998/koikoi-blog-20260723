@@ -294,11 +294,12 @@ AD移行・ドメインコントローラー(DC)の構築・運用の実務で�
 
 ### Windowsクライアント運用シリーズ
 
-日々のPC運用で遭遇する「なぜこうなっているのか」を深掘りするシリーズです。**読む順番の目安**: ① windows-defender-guide → ② windows-process-task-guide → ③ unicode-filename-normalization-guide(以降、インストーラ/ライセンス等のテーマを追加予定)。
+日々のPC運用で遭遇する「なぜこうなっているのか」を深掘りするシリーズです。**読む順番の目安**: ① windows-defender-guide → ② windows-process-task-guide → ③ unicode-filename-normalization-guide → ④ windows-install-media-guide。
 
 - [Microsoft Defenderの仕組みを『上位1%』の視点で理解する](/articles/windows-defender-guide) — リアルタイム保護とオンデマンドスキャンの違い、クイックスキャン/フルスキャンの対象範囲、フルスキャン合格が保証する範囲としない範囲、クラウドドライブ(BoxDrive/GoogleDrive)のファイルがスキャン対象になるのかまでの深掘り(単体でも読めます)。
 - [Windowsのプロセス・タスク・スレッドの違いを『上位1%』の視点で理解する](/articles/windows-process-task-guide) — プロセス/タスク/スレッドの階層関係、ゾンビプロセスの正体、モニターの配置設定が復元される仕組み(EDID)までの深掘り(単体でも読めます)。
 - [見た目が同じなのに文字数が異なるファイル名が存在する理由を『上位1%』の視点で理解する](/articles/unicode-filename-normalization-guide) — Unicode正規化(NFC/NFD)の仕組み、Windows(NTFS)が正規化を行わない理由、BOXなどのクラウドストレージが正規化した上で比較するために移行が失敗する理由までの深掘り(単体でも読めます)。
+- [インストーラのx64とx86の違いを『上位1%』の視点で理解する](/articles/windows-install-media-guide) — WoW64によるアプリケーションとドライバの挙動の違い、なぜ今も統一されないのか、ISOファイルの「マウント」が実際に行っていることまでの深掘り(単体でも読めます)。
 
 ## 今後の展開予定
 
