@@ -1,0 +1,54 @@
+questions:
+  - question: "Which statement best matches the article's explanation of why enabling Wi-Fi while plugging in a wired LAN cable can make devices on the wired LAN unreachable?"
+    choices:
+      - "Wi-Fi and wired LAN are specified to never be physically usable at the same time"
+      - "Depending on the interface metric assigned to each adapter, if the Wi-Fi adapter's metric is lower (higher priority) than the wired LAN's, traffic gets sent toward the Wi-Fi side's default gateway instead of the intended wired LAN route"
+      - "The wired LAN cable is specified to be physically unpowered while Wi-Fi is enabled"
+      - "Windows always automatically disables whichever adapter was connected most recently"
+    answerIndex: 1
+    explanation: "Each network adapter has an interface metric — a priority value where a lower value means higher priority. If the Wi-Fi adapter's metric is lower than the wired LAN's, traffic bound for the wired LAN side can end up sent toward the Wi-Fi side's default gateway instead, so the intended route doesn't get used."
+
+  - question: "Which statement best matches the article's explanation of Windows's automatic metric calculation?"
+    choices:
+      - "The automatic metric is calculated mechanically based on that adapter's link speed, and has nothing to do with whether that adapter is actually the right route to the network you want to reach"
+      - "The automatic metric is calculated based on how often the user has used that network in the past"
+      - "The automatic metric always assigns the same value to every adapter"
+      - "The automatic metric is calculated based on what time of day Windows was booted"
+    answerIndex: 0
+    explanation: "Under Windows's default setting (automatic metric), the interface metric is calculated mechanically based on that adapter's link speed. This has nothing to do with whether that adapter is actually the right route to the network you want to reach, so it needs to be set manually if the resulting priority doesn't match your intent."
+
+  - question: "Which statement best matches the article's explanation of how the network profile (Domain/Private/Public) is determined?"
+    choices:
+      - "The network profile is decided as a single value for the whole PC, and the same profile is applied to every adapter"
+      - "The network profile is determined individually per adapter by a service called NLA, and the Windows Firewall profile is also applied on a per-adapter basis"
+      - "The network profile changes randomly every time the user logs in"
+      - "The network profile is automatically determined based on CPU utilization"
+    answerIndex: 1
+    explanation: "The network profile is determined individually per adapter by the NLA (Network Location Awareness) service. It's entirely normal for multiple adapters on the same PC to each hold a different profile (Domain/Private/Public), and Windows Firewall also applies profiles on a per-adapter basis."
+
+  - question: "In the NIC teaming + multiple logical NIC incident described, why was only the logical NIC with a gateway individually recognized as \"Ethernet 4\"?"
+    choices:
+      - "Because only that logical NIC was physically connected to a different cable"
+      - "Because an adapter with a gateway configured makes actual reachability checks easy to establish clearly, so NLA more readily judges \"this is a distinct network I can tell apart from the others\""
+      - "Because the name \"Ethernet 4\" is automatically and permanently assigned to the fourth logical NIC created"
+      - "Because only that logical NIC was created while logged in with administrator privileges"
+    answerIndex: 1
+    explanation: "NLA identifies a network's uniqueness by verifying actual reachability from that adapter. An adapter with a gateway configured makes this reachability check easy to establish clearly, so NLA more readily judges it as \"a distinct network I can tell apart from the others.\""
+
+  - question: "Which statement best matches the article's explanation of why all the logical NICs reverted to \"unidentified network\" after the server rebooted?"
+    choices:
+      - "A server reboot is specified to always reset every network setting to factory defaults"
+      - "A timing gap between the initialization of the multiple logical NICs/team and when actual reachability checks become possible can cause NLA to finalize a provisional \"unidentified network\" state without completing its proper judgment"
+      - "Windows license activation expires on every reboot, restricting networking functionality"
+      - "Windows is specified to treat everything as unidentified once the number of logical NICs exceeds four"
+    answerIndex: 1
+    explanation: "At server startup, there can be some timing gap before the initialization of multiple logical NICs and the team itself completes and reachability checks become possible. Due to this subtle timing mismatch, NLA can end up finalizing its state as the provisional \"unidentified network\" without ever completing its proper judgment."
+
+  - question: "Which statement best matches the article's explanation of why restarting the logical NIC itself (disable then re-enable), rather than restarting the NLA service, resolved the problem?"
+    choices:
+      - "Disabling and re-enabling a logical NIC generates a fresh connection event for that adapter, which prompts NLA to re-run its network identification process from scratch"
+      - "Disabling and re-enabling a logical NIC automatically changes that adapter's MAC address"
+      - "Disabling and re-enabling a logical NIC completely rebuilds the teaming configuration itself"
+      - "Disabling and re-enabling a logical NIC doesn't actually change anything — it was purely a coincidence of timing"
+    answerIndex: 0
+    explanation: "The NLA service itself often can't simply be restarted due to dependency constraints. Disabling and re-enabling a logical NIC, on the other hand, generates a fresh connection event for that adapter, and this new connection event triggers NLA to re-run its network identification process for that adapter from scratch."
