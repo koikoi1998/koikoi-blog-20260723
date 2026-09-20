@@ -1,0 +1,63 @@
+questions:
+  - question: "Which statement best matches the article's explanation of why FSMO (Operations Master) roles exist?"
+    choices:
+      - "FSMO handles every single AD DS operation as a single master, and multi-master replication doesn't actually exist as a mechanism"
+      - "To restrict specific kinds of operations, where conflicts could arise if multiple DCs performed them simultaneously, to a single DC within the forest or domain"
+      - "FSMO exists solely to measure a DC's hardware performance"
+      - "FSMO exists to manage license activation for client PCs"
+    answerIndex: 1
+    explanation: "Ordinary AD DS changes are fundamentally handled by multi-master replication, but certain kinds of operations (such as schema changes or SID numbering) can't be correctly reconciled by a simple approach if performed simultaneously on multiple DCs. FSMO prevents this by restricting such operations to a single DC."
+
+  - question: "Which two of the five FSMO roles are held by a single DC across the entire forest?"
+    choices:
+      - "RID Master and PDC Emulator"
+      - "Schema Master and Domain Naming Master"
+      - "Infrastructure Master and PDC Emulator"
+      - "All five exist once per domain"
+    answerIndex: 1
+    explanation: "The Schema Master and Domain Naming Master are held by a single DC across the entire forest. The remaining three (RID Master, PDC Emulator, Infrastructure Master) each exist once per domain."
+
+  - question: "Which statement best matches the article's explanation of the RID Master's role?"
+    choices:
+      - "Every DC queries the RID Master to obtain one RID at a time, every single time it creates an object"
+      - "It pre-allocates a block of RIDs within a fixed range to each DC ahead of time, letting each DC freely number RIDs within its own block without coordinating with other DCs, preventing SID collisions"
+      - "The RID Master centrally manages the passwords of every user in the domain"
+      - "The RID Master centrally manages every DNS record in the domain"
+    answerIndex: 1
+    explanation: "The RID Master pre-allocates a block of RIDs (500 by default) to each DC ahead of time. Each DC can freely number RIDs within its own block without coordinating with other DCs, and requests the next block from the RID Master when it's about to run out. This avoids needing to query a single master on every operation while still preventing SID duplication."
+
+  - question: "Which statement best matches the article's explanation of the practical roles the PDC Emulator handles?"
+    choices:
+      - "It combines multiple roles: the anchor for time synchronization within the domain, the destination for immediate propagation of password changes, and the default target for Group Policy edits"
+      - "The PDC Emulator is a leftover from the Windows NT4 era and serves no function at all in modern Windows Server"
+      - "The PDC Emulator's only role is managing the list of printers in the domain"
+      - "The PDC Emulator is the sole DC in the forest that performs schema changes"
+    answerIndex: 0
+    explanation: "The PDC Emulator combines several practical roles: the anchor for time synchronization (the Windows Time service) within the domain, the destination for immediate propagation of password changes, and the default target for Group Policy edits — making it the FSMO with the broadest practical impact among the five. Schema changes are handled by the Schema Master."
+
+  - question: "Which statement best matches the article's explanation of the placement caveat for the Infrastructure Master?"
+    choices:
+      - "The Infrastructure Master must always be placed on the same DC as a global catalog (GC)"
+      - "A DC holding the Infrastructure Master role should, in principle, not also serve as a GC (unless every DC in the forest is a GC), because a GC also holds partial replicas of objects in other domains, making it unable to detect stale references (phantom objects)"
+      - "The Infrastructure Master/GC placement constraint must always be strictly observed even in a single-domain forest"
+      - "The Infrastructure Master can only be placed on a DC that also holds the DNS server role"
+    answerIndex: 1
+    explanation: "Because a GC also holds a partial replica of objects in other domains in the forest, it can always see the current state of a referenced object, so it can never detect the stale references (phantom objects) the Infrastructure Master is supposed to find. So the Infrastructure Master shouldn't be co-located with a GC unless every DC in the forest also serves as a GC."
+
+  - question: "Which statement best matches the article's explanation of the difference between FSMO transfer and seizure?"
+    choices:
+      - "Transfer and seizure are exactly the same operation, just called by different names"
+      - "Transfer is a proper procedure performed while the old holder is still running normally, while seizure is a forced measure used when the old holder is completely lost and unrecoverable — and after a seizure, the old DC must never be brought back online as-is"
+      - "Seizure should be performed more frequently than transfer, as a routine maintenance task"
+      - "A transfer can never be performed unless a seizure has already been done first"
+    answerIndex: 1
+    explanation: "A transfer is a proper procedure performed while the old holder (old DC) is still running normally. A seizure is a forced measure used when the old DC is completely lost and unrecoverable — if the old DC comes back onto the network after a seizure, two DCs could end up believing they simultaneously hold the same role, causing serious consistency problems, so the old DC must be fully wiped before being reused."
+
+  - question: "Which statement best matches the article's explanation of whether all FSMO roles should be consolidated on one DC or spread out?"
+    choices:
+      - "All five should always be consolidated on a single DC — spreading them out is technically impossible"
+      - "Since different roles carry different placement considerations, there's no simple universal answer of always consolidating or always spreading out — the design needs to account for the number of domains, GC placement, and availability requirements"
+      - "AD DS won't function correctly unless all five are always spread across five separate DCs"
+      - "Once FSMO placement is decided, it can never be changed again"
+    answerIndex: 1
+    explanation: "Consolidation is common in single-domain forests, while multi-domain forests or availability-focused large environments may deliberately spread the roles out. Because different roles carry different considerations — as with the Infrastructure Master/GC placement constraint — there's no simple universal answer."
