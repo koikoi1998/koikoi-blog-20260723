@@ -35,6 +35,7 @@ graph TB
     ActiveDirectory["Active Directoryシリーズ"]
     WindowsClient["Windowsクライアント運用シリーズ"]
     WindowsServer["Windows Server運用シリーズ"]
+    Storage["ストレージ基礎シリーズ"]
 
     Idrac --> Network
     Idrac --> Api
@@ -47,6 +48,7 @@ graph TB
     Network --> ActiveDirectory
     ActiveDirectory --> WindowsClient
     ActiveDirectory --> WindowsServer
+    WindowsServer --> Storage
 ```
 
 **基本的な読み方**: iDRACの記事を起点に、ネットワーク基礎シリーズとWeb/APIシリーズへ進み、ネットワーク基礎シリーズのL2TP/IPsecの記事からリモートアクセスVPN/L2TP・IPsecシリーズへ、そこから拠点間VPNシリーズ・セキュリティ基礎・Linux/OS基礎・電話網シリーズへと深掘りしていく、というのが記事同士の主な派生の流れです。ただし各記事は**すべて単体でも読める**ように書かれているため、興味のあるシリーズ・記事から読み始めて問題ありません。なお、ネットワーク基礎シリーズの一部記事(NAT/NAPT・代表IP・TCP/UDPセッション・DNS)はリモートアクセスVPN/L2TP・IPsecシリーズのL2TP/IPsecの記事から派生しており、シリーズ同士は一方向のツリーではなく一部相互に関係している点に注意してください。以前はリモートアクセスVPNと拠点間VPNを同じ「VPN/L2TP・IPsecシリーズ」にまとめていましたが、対象読者・用途が異なるため2つのシリーズに分割しました。Active Directoryシリーズは、AD移行・DC運用の実務で直面する疑問を深掘りする新シリーズで、ネットワーク基礎シリーズ(特にDNS)の知識を前提にしています。
@@ -312,6 +314,12 @@ Windows Serverの調達・運用で必ず直面する疑問を深掘りするシ
 - [IISとASP.NETの仕組みを『上位1%』の視点で理解する](/articles/iis-fundamentals-guide) — IISとASP.NETの役割分担、HTTP.sys/アプリケーションプール/ワーカープロセスという3層構造、Default Web Siteの正体、バインド設定とSNI、HTTP応答ヘッダーの追加までの深掘り(単体でも読めます)。
 - [IISとFTPの関係を『上位1%』の視点で理解する](/articles/iis-ftp-guide) — IISという名前が表す統合基盤という設計思想、FTPの制御チャネル/データチャネルとアクティブ/パッシブモード、FTPSとSFTPの違いまでの深掘り([iis-fundamentals-guide](/articles/iis-fundamentals-guide)の発展編、単体でも読めます)。
 - [Windows ServerのSMB共有を『上位1%』の視点で理解する](/articles/smb-file-sharing-guide) — C$/IPC$/ADMIN$という管理共有の役割、SMBクライアントの接続キャッシュがIPアドレスとホスト名を別々の「サーバー」として扱う理由、IPアドレスでは失敗しホスト名では成功する現象の診断までの深掘り(単体でも読めます)。
+
+### ストレージ基礎シリーズ
+
+RAID・ディスク管理・ストレージ接続方式など、ストレージまわりの基礎を深掘りするシリーズです。**読む順番の目安**: ① disk-raid-fundamentals-guide(以降、FCケーブル/SASなどのテーマを追加予定)。
+
+- [RAIDとWindowsのディスク管理の関係を『上位1%』の視点で理解する](/articles/disk-raid-fundamentals-guide) — RAIDとOSのディスク管理という2つの独立したレイヤーの関係、Cドライブはすぐ使えるのにDドライブは初期化が必要な理由、MBR/GPTの違い、パーティションとボリュームの違い、フォーマットが行っていることまでの深掘り(単体でも読めます)。
 
 ## 今後の展開予定
 

@@ -1,0 +1,45 @@
+questions:
+  - question: "Which statement best matches the article's explanation of the relationship between RAID and OS disk management?"
+    choices:
+      - "Building a RAID array eliminates the need for OS-side partition, volume, and file system management entirely"
+      - "RAID is an abstraction layer making multiple physical disks appear as one; OS disk management is a separate layer managing partitions, volumes, and file systems on top of it, and the two are completely independent"
+      - "OS disk management is a feature that automatically rewrites the RAID controller's configuration"
+      - "RAID and OS disk management must always be operated together from the exact same single settings screen"
+    answerIndex: 1
+    explanation: "RAID is an abstraction layer that bundles multiple physical disks and makes them appear to the OS as a single physical disk. OS disk management is a separate layer that manages the content of this \"disk that appears as one\" through partitions, volumes, and file systems — the two are completely independent."
+
+  - question: "Which statement best matches the article's explanation of why the RAID volume intended for the D drive stays uninitialized while the C drive works right away after an OS install?"
+    choices:
+      - "The OS installer automatically completes partition creation, initialization, and formatting only for the disk selected as the installation target, so an additional RAID volume not selected stays uninitialized"
+      - "The D drive is physically broken, so it always requires initialization"
+      - "Only the C drive is a special kind of disk at the hardware level, operating on a different mechanism than the D drive"
+      - "The OS license mandates manual initialization for any disk beyond the first one"
+    answerIndex: 0
+    explanation: "The OS installer automatically completes partition creation, initialization, and formatting, as part of the install process, only for the disk selected as the installation target (usually the first disk, becoming the C drive). An additional RAID volume not selected as the installation target is never touched by this process and stays uninitialized."
+
+  - question: "Which statement best matches the article's explanation of what the disk initialization operation concretely does?"
+    choices:
+      - "It completely erases all data on the disk, making it permanently unrecoverable"
+      - "It newly writes a partition table (MBR or GPT) to the beginning of that disk"
+      - "It changes the disk's physical rotation speed"
+      - "It automatically backs up the disk to a cloud server over the network"
+    answerIndex: 1
+    explanation: "Disk initialization is the operation of newly writing a partition table (MBR or GPT) to the beginning of that disk. This creates the foundation of management information recording \"which range of this disk is used as which partition.\""
+
+  - question: "Which statement best matches the article's explanation of why MBR has a 2TB capacity ceiling?"
+    choices:
+      - "MBR format manages a partition's starting position and size using a 32-bit sector number, and for a typical disk with 512-byte sectors, 2^32 × 512 bytes = 2TB is the maximum this addressing can express"
+      - "Microsoft has deliberately imposed a 2TB licensing restriction on MBR-format disk capacity"
+      - "It's physically impossible to manufacture a disk larger than 2TB"
+      - "MBR format doesn't support encryption, so its capacity is limited for security reasons"
+    answerIndex: 0
+    explanation: "MBR manages a partition's starting position and size using a 32-bit sector number. For a typical disk with 512-byte sectors, 2^32 × 512 bytes = 2TB is the maximum expressible with this 32-bit addressing. GPT, unconstrained by this limit, is today's standard choice for large-capacity disks."
+
+  - question: "Which statement best matches the article's explanation of the difference between a partition and a volume?"
+    choices:
+      - "A partition and a volume always refer to exactly the same thing"
+      - "A partition refers to a physically demarcated region on the disk itself, while a volume refers to the logical unit the OS assigns a drive letter to and makes accessible via a file system"
+      - "A partition is a software concept and a volume is a hardware concept, and the two are unrelated"
+      - "A volume must always be physically larger in size than a partition"
+    answerIndex: 1
+    explanation: "A partition refers to a physically demarcated region on the disk itself. A volume is the logical unit the OS assigns a drive letter to and makes accessible via a file system, on top of that partition (or, on a dynamic disk, multiple partitions or physical disks bundled together). These often map one-to-one on a basic disk, but can differ on a dynamic disk."

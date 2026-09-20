@@ -13,6 +13,7 @@ export const seriesNames: Record<string, string> = {
   "active-directory": "Active Directoryシリーズ",
   "windows-client": "Windowsクライアント運用シリーズ",
   "windows-server": "Windows Server運用シリーズ",
+  storage: "ストレージ基礎シリーズ",
 };
 
 export const seriesNamesEn: Record<string, string> = {
@@ -30,6 +31,7 @@ export const seriesNamesEn: Record<string, string> = {
   "active-directory": "Active Directory Series",
   "windows-client": "Windows Client Operations Series",
   "windows-server": "Windows Server Operations Series",
+  storage: "Storage Fundamentals Series",
 };
 
 export type Lang = "ja" | "en";
