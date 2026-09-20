@@ -1,0 +1,45 @@
+questions:
+  - question: "Which statement best matches the article's explanation of why two identical-looking filenames can return different character counts in PowerShell?"
+    choices:
+      - "PowerShell's .Length property has a bug and always returns an inaccurate value"
+      - "A character with a dakuten or accent mark can be represented as a single-code-point precomposed form (NFC) or as a combination of multiple code points in decomposed form (NFD) — identical on screen, but different in code point count"
+      - "How a character's length is counted changes completely randomly depending on the Windows version"
+      - "A filename's character count always matches that file's actual data size in bytes"
+    answerIndex: 1
+    explanation: "A character with a dakuten or accent mark has two representations: a precomposed form (NFC) as a single code point, and a decomposed form (NFD) as a combination of a base character and a combining character. The on-screen glyph looks identical, but the internal code point count differs, so the .Length property returns a different value too."
+
+  - question: "Which statement best matches the article's explanation of why identically-named files in precomposed and decomposed form can coexist as separate files on Windows (NTFS)?"
+    choices:
+      - "NTFS compares filenames case-insensitively, but doesn't perform Unicode normalization (unifying precomposed and decomposed forms)"
+      - "NTFS is specified to be completely unable to store Japanese filenames at all"
+      - "Windows is specified to never be able to store more than one file in a single folder"
+      - "NTFS never compares filenames at all and always treats every file as distinct"
+    answerIndex: 0
+    explanation: "NTFS does compare filenames case-insensitively, but it doesn't perform the Unicode normalization that would treat differing code-point sequences from a precomposed and a decomposed form as \"the same name.\" So even completely identical-looking filenames can coexist as separate files within the same folder."
+
+  - question: "Which statement best matches the article's explanation of why a \"file with this name already exists\" error occurs during a migration to cloud storage like BOX?"
+    choices:
+      - "BOX's servers have hit a storage capacity limit that makes them unable to store any uploaded file content at all"
+      - "Cloud storage services like BOX typically compare filenames after Unicode-normalizing them, so files that coexisted separately on Windows get judged as the same string after normalization"
+      - "BOX technically doesn't support uploading Japanese filenames at all"
+      - "All the files on the Windows side get automatically deleted, leaving files only on the BOX side"
+    answerIndex: 1
+    explanation: "Cloud storage services like BOX typically compare filenames after applying Unicode normalization during upload/sync. Since normalization converts a filename encoded in either precomposed or decomposed form to the same form (usually NFC), files that coexisted separately on Windows get judged as \"the same name,\" causing a collision and failure."
+
+  - question: "Which statement best matches the article's explanation of the typical cause behind decomposed-form filenames appearing in the first place?"
+    choices:
+      - "Decomposed-form filenames are generated randomly every time Windows Update runs"
+      - "The file system macOS traditionally used (HFS+ and others) had a historical specification of normalizing and saving filenames in decomposed form, so this form is often encountered in files that originated on Mac"
+      - "A decomposed-form filename is always direct evidence of a virus infection"
+      - "Whether a filename is in decomposed form is determined by that file's access permission settings"
+    answerIndex: 1
+    explanation: "The file system macOS traditionally used (HFS+ and others) had a historical specification of normalizing and saving filenames in decomposed form (NFD), and traces of this remain in some workflows even today. Organizations that frequently copy or share files between Mac and Windows environments face a particularly high risk of running into this problem."
+
+  - question: "Which statement best matches the article's explanation of a practical measure to prevent this kind of trouble before a migration?"
+    choices:
+      - "No countermeasure exists — you can only handle each failed migration manually, one at a time"
+      - "Build a script that uses PowerShell's .Normalize() method to scan the entire target folder, detecting and fixing files with an inconsistent normalization form ahead of time, into the pre-migration checklist"
+      - "Unify the normalization form by physically printing every file once and scanning it back in"
+      - "The only option is installing an application that forcibly renames every file to alphanumeric characters only"
+    answerIndex: 1
+    explanation: "Building a script that uses PowerShell's .Normalize() method to scan the entire target folder, detecting and fixing files with an inconsistent normalization form ahead of time, into the pre-migration checklist significantly reduces the risk of a failed migration. This can't be caught visually, so mechanical detection via a script is essential in practice."
