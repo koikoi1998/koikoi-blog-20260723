@@ -1,0 +1,45 @@
+questions:
+  - question: "Which statement best matches the article's explanation of what AH (Authentication Header) provides?"
+    choices:
+      - "AH provides both integrity (tamper detection) and confidentiality (encryption)"
+      - "AH provides only integrity (tamper detection) and has no confidentiality (encryption) functionality at all"
+      - "AH provides only confidentiality (encryption) and has no integrity functionality at all"
+      - "AH is a protocol for managing IP address assignment"
+    answerIndex: 1
+    explanation: "AH is a protocol that adds only integrity (proof that a packet hasn't been tampered with) to an IP packet — unlike ESP, it has no confidentiality (encryption) functionality at all."
+
+  - question: "Which statement best matches the article's explanation of the structural difference between AH and ESP?"
+    choices:
+      - "AH covers only the payload for integrity verification, while ESP encrypts the entire IP header"
+      - "AH includes most of the IP header (including source and destination IP addresses) within its integrity verification scope, while ESP doesn't include this range"
+      - "AH and ESP are exactly identical mechanisms, just with different names"
+      - "AH only supports UDP, and ESP only supports TCP"
+    answerIndex: 1
+    explanation: "AH includes not just the payload but most of the IP header (including source and destination IP addresses, excluding mutable fields) within the scope of its integrity verification. This is the structural difference from ESP, and it's the direct cause of the NAT incompatibility discussed later."
+
+  - question: "Which statement best matches the article's explanation of the historical reason AH was designed with no encryption functionality?"
+    choices:
+      - "Back in the 1990s, strong cryptographic technology was subject to export controls (as dual-use technology), and AH — lacking confidentiality — was less likely to be caught up by these controls"
+      - "Implementing encryption would have made AH's header size physically too large"
+      - "The organization that developed AH didn't hold any patents related to cryptographic technology"
+      - "AH was originally designed to only handle public information that didn't need encryption in the first place"
+    answerIndex: 0
+    explanation: "Back in the 1990s, strong cryptographic technology was subject to export controls as dual-use technology, just like military technology. AH, lacking confidentiality (encryption) functionality, doesn't conceal the content of communications, so it was less likely to be caught up by these export controls — giving it value as a means of achieving at least integrity protection even in countries or organizations with strict regulations."
+
+  - question: "Which statement best matches the article's explanation of the most direct, decisive reason AH is almost never used in practice today?"
+    choices:
+      - "AH's processing speed is extremely slower than ESP's, making it impractical"
+      - "AH's design of including the IP header itself (source and destination IP addresses) within its integrity verification scope is structurally incompatible with NAT's rewriting of the IP header"
+      - "AH only works on specific operating systems"
+      - "AH only works in an IPv6 environment and can't be used at all in IPv4"
+    answerIndex: 1
+    explanation: "Because AH includes the IP header itself within its integrity verification scope, when a NAT device rewrites the source/destination IP address in the IP header, the receiving side's recalculated hash no longer matches, causing the packet to be judged tampered and discarded. This structural incompatibility is the decisive reason AH is almost never used today, in an environment where NAT is extremely widespread."
+
+  - question: "Which statement best matches the article's explanation of whether ESP alone can satisfy the integrity-only requirement AH used to provide?"
+    choices:
+      - "ESP has no integrity verification functionality at all, so it can't substitute for AH"
+      - "Configuring ESP's encryption algorithm as NULL (no encryption) while keeping only its integrity verification enabled (ESP-NULL) can satisfy the requirement of wanting integrity without needing confidentiality"
+      - "ESP always encrypts the entire IP header, so it can only provide stricter integrity protection than AH"
+      - "ESP and AH are prohibited from being used together, so only one or the other can be chosen"
+    answerIndex: 1
+    explanation: "ESP can be configured with its encryption algorithm set to NULL while keeping only its integrity verification functionality enabled (ESP-NULL). Unlike AH, ESP's integrity verification doesn't include the entire outer IP header, so it causes no problem in a NAT environment either, and can substitute for the functional value AH used to provide."
