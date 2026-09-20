@@ -1,0 +1,54 @@
+questions:
+  - question: "Which statement best matches the article's explanation of the difference between what repadmin /showrepl and net share each check?"
+    choices:
+      - "Both check exactly the same thing, so running just one is enough"
+      - "repadmin /showrepl checks the replication status of the AD DS data itself, while net share checks whether things like SYSVOL are actually being provided as file shares — the two check different layers of health"
+      - "repadmin /showrepl checks hardware temperature, and net share checks CPU utilization"
+      - "net share is the only way to check the replication status of AD DS data"
+    answerIndex: 1
+    explanation: "repadmin /showrepl checks whether the AD DS data itself is being correctly replicated between DCs, while net share checks whether things like SYSVOL are actually being correctly provided as file shares. The two check different layers of health."
+
+  - question: "Which statement best matches the article's explanation of the five partitions visible in repadmin /showrepl?"
+    choices:
+      - "They're the three basic partitions (domain, configuration, schema) plus the two DNS-specific ones (DomainDnsZones and ForestDnsZones)"
+      - "All five partitions are replicated over the exact same scope across every DC in the forest"
+      - "New partitions are added every time the number of DCs increases"
+      - "All five partitions are replicated only among DCs within the domain and never extend to the entire forest"
+    answerIndex: 0
+    explanation: "The five partitions typically shown in a single-domain forest are the three basic partitions (domain, configuration, schema) plus DomainDnsZones and ForestDnsZones, which are specific to AD-integrated DNS zones. Each has a different replication scope (within the domain, or across the entire forest)."
+
+  - question: "Which statement best matches the article's explanation of what a \"successful\" indicator in repadmin /showrepl's output means?"
+    choices:
+      - "It guarantees that replication with that partner has never failed, ever"
+      - "It only means the most recently attempted replication completed correctly — it doesn't rule out the possibility that replication had been stalled for a long time before that"
+      - "It guarantees that the entirety of AD DS is completely healthy"
+      - "It also guarantees that SYSVOL sharing is healthy at the same time"
+    answerIndex: 1
+    explanation: "A \"successful\" indicator only means the most recent replication attempt with that partner completed correctly. It doesn't rule out the possibility that replication had been stalled for a long time before that, so you also need to check the failure count and the last-success timestamp."
+
+  - question: "Which statement best matches the article's explanation of the difference in nature between the C$, IPC$, ADMIN$ shares and the NETLOGON, SYSVOL shares shown by net share?"
+    choices:
+      - "All five are specific to AD DS and don't exist on any Windows Server that isn't a DC"
+      - "C$, IPC$, and ADMIN$ aren't specific to AD DS or DCs — they're administrative shares created by default on Windows Server generally — while NETLOGON and SYSVOL are proof that the server is functioning correctly as a DC"
+      - "NETLOGON and SYSVOL are administrative shares created by default on Windows Server generally, unrelated to whether the machine is a DC"
+      - "IPC$ is a folder with actual file content, sharing an entire drive just like C$ and ADMIN$"
+    answerIndex: 1
+    explanation: "C$, IPC$, and ADMIN$ aren't specific to AD DS or DCs — they're administrative shares always created by default on ordinary Windows Server. NETLOGON and SYSVOL, on the other hand, are only created once SYSVOL replication has completed successfully, making them proof that the server is functioning correctly as a DC."
+
+  - question: "Which statement best matches the article's explanation of the SysvolReady registry value?"
+    choices:
+      - "A value indicating whether that DC's IP address is correctly configured"
+      - "A value set to 1 by the Netlogon service once it judges that SYSVOL replication has completed and it's safe to start sharing, letting you judge SYSVOL's readiness more reliably than eyeballing net share"
+      - "A value indicating the maximum number of users allowed in the domain"
+      - "A value indicating who currently holds each FSMO role"
+    answerIndex: 1
+    explanation: "SysvolReady is a registry value set to 1 by the Netlogon service once it judges SYSVOL replication has completed and it's safe to start sharing. Checking this value, beyond eyeballing net share's output, lets you more reliably distinguish \"the share is just temporarily not showing\" from \"replication genuinely hasn't finished yet.\""
+
+  - question: "Which statement best matches the article's explanation of how to confirm via repadmin that no trace remains of a DC demoted during an AD migration?"
+    choices:
+      - "If the output of repadmin /replsummary or repadmin /showrepl * still lists the name of an old DC that should already have been removed, as a replication partner, that means the demotion process wasn't complete and stale references remain"
+      - "It's technically impossible to check for leftover traces of an old DC using repadmin"
+      - "Whether the old DC's name has disappeared can only be judged from net share's output"
+      - "An old DC's information is specified to remain in repadmin's output for exactly 30 days after demotion, by design"
+    answerIndex: 0
+    explanation: "If the output of repadmin /replsummary or repadmin /showrepl * still lists the name of an old DC that should already have been removed, as a replication partner, that means the demotion process wasn't complete and stale references (metadata) remain in AD DS. This should be treated as a criterion for judging whether an AD migration is truly complete."
