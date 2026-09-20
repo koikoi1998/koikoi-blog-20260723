@@ -1,0 +1,45 @@
+questions:
+  - question: "Which statement best matches the article's explanation of the relationship between process, thread, and task?"
+    choices:
+      - "All three are exactly the same concept, just called by different names"
+      - "Task is a unit of work from the user's perspective, process is a unit of resource management the OS handles, and thread is the smallest unit of processing executed within a process — distinct concepts related in a hierarchy"
+      - "A thread is a larger concept than a process, and a single thread contains multiple processes"
+      - "Task is the name of a hardware component in the CPU"
+    answerIndex: 1
+    explanation: "Task refers to \"one piece of work\" from the user's perspective, process is the independent unit of memory space and resources the OS allocates to a running program, and thread is the smallest unit of processing executed within that process. These are distinct concepts related in a hierarchy."
+
+  - question: "Which statement best matches the article's explanation of the origin and original meaning of the term \"zombie process\"?"
+    choices:
+      - "It originates from the process model of Unix-family OSes, referring to a state where a child process's actual work has finished, but only its management information lingers because the parent process hasn't yet retrieved its exit status"
+      - "Zombie process is a technical term referring to a type of computer virus"
+      - "Zombie process is a term referring to a state where the CPU's temperature has become abnormally high"
+      - "The term zombie process is a trademark uniquely defined internally by Windows"
+    answerIndex: 0
+    explanation: "The term zombie process originates from the process model of Unix-family OSes. It refers to a state where a child process's actual work (its executable code and most of its memory) has already been released, but its process table entry lingers on until the parent process retrieves its exit status via an operation called wait()."
+
+  - question: "Which statement best matches the article's explanation of the phenomenon where Google Drive disappears from File Explorer and killing its process in Task Manager fixes it?"
+    choices:
+      - "If its main display/response handling crashes or hangs for some reason, the process itself may not fully terminate right away and can linger in a half-finished state — killing it manually lets the OS correctly release its resources"
+      - "Google Drive is specified to always automatically crash every 24 hours"
+      - "Killing the process in Task Manager deletes the Google Drive account itself"
+      - "This phenomenon can never happen, regardless of the Windows version"
+    answerIndex: 0
+    explanation: "A background program like a cloud storage client can, if its main display/response handling crashes or hangs for some reason, fail to fully terminate right away and linger in a half-finished state. Manually killing it in Task Manager lets the OS correctly release its resources so it can start cleanly again after a restart."
+
+  - question: "Which caveat does the article raise about killing a process in Task Manager as a fix?"
+    choices:
+      - "Killing the process also automatically resolves the root cause that caused that state (a bug, a deadlock, and so on)"
+      - "Killing a process is just a way to force the OS to reclaim a lingering process's resources — it doesn't resolve the root cause itself, so if it happens frequently, investigating the root cause is needed"
+      - "Killing a process automatically changes that PC's hardware configuration"
+      - "Killing a process is an operation that invalidates Windows license activation"
+    answerIndex: 1
+    explanation: "Killing a process in Task Manager is just a way to force the OS to reclaim the resources of a lingering process — it doesn't resolve the root cause that caused that state (a bug, a deadlock, and so on). If it happens frequently, investigating the root cause — updating the application, checking its logs — is needed."
+
+  - question: "Which statement best matches the article's explanation of the mechanism behind a monitor's layout settings being restored just by plugging in a cable?"
+    choices:
+      - "The monitor conveys its EDID (unique identifying information) to the PC when connected, and Windows uses that information (particularly its serial number and model) to recognize a previously connected monitor and restore settings saved in the registry"
+      - "Every monitor shares identical settings from the factory, so there's no need to restore anything in the first place"
+      - "A monitor's layout settings are physically stored in the HDMI cable itself"
+      - "A monitor's layout settings are fetched by querying Microsoft's servers over the internet every single time"
+    answerIndex: 0
+    explanation: "A monitor conveys its EDID (Extended Display Identification Data) — unique identifying information such as manufacturer, model, and serial number — to the PC when connected. Windows uses this information to recognize a previously connected monitor and restore the layout, resolution, and orientation settings saved in the registry."
