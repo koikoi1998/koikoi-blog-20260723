@@ -1,0 +1,63 @@
+questions:
+  - question: "Which statement best matches the article's explanation of why a DC so often doubles as a DNS server?"
+    choices:
+      - "Windows Server licensing requires DNS server to always be installed on the same machine as a DC"
+      - "DC locator functionality depends on DNS SRV records, and AD-integrated zones let record replication piggyback on AD DS's own replication"
+      - "DNS server is lighter-weight than AD DS and cannot run on any hardware other than a DC"
+      - "Separating the DNS server onto a different machine doubles the Windows Server licensing cost"
+    answerIndex: 1
+    explanation: "The DC locator functionality that lets clients find a DC depends on querying DNS SRV records. Also, having the DC itself hold the DNS server role with an AD-integrated zone lets record replication piggyback on AD DS's own multi-master replication, eliminating the need to separately manage zone transfers."
+
+  - question: "Which statement best matches the article's explanation of the cause behind \"ping 8.8.8.8 works, but I can't search\"?"
+    choices:
+      - "The ping command itself temporarily disconnects the internet connection"
+      - "Ping directly targets an IP address and never goes through DNS at all, so it only confirms reachability — the actual cause is most likely a misconfigured forwarder on the DNS server, breaking external name resolution only"
+      - "The IP address 8.8.8.8 is configured to block access from browsers"
+      - "The DNS server itself has stopped completely, so all name resolution is failing"
+    answerIndex: 1
+    explanation: "Ping 8.8.8.8 targets an IP address directly and never goes through DNS at all — it only confirms routing reachability. Since a browser search always requires DNS, a misconfigured forwarder on the DNS server causes only external name resolution to fail, producing this symptom. Internal domain name resolution keeps working because the server answers it directly as the authoritative server."
+
+  - question: "Which statement best matches the article's explanation of Windows's default behavior when the primary DNS server fails to resolve a name?"
+    choices:
+      - "It automatically queries the secondary DNS server both when a response times out and when a response comes back but isn't the desired result"
+      - "It only queries the secondary when no response comes back at all (a timeout); if a response does come back (even with incorrect content), it accepts that as the final result"
+      - "It always queries both the primary and secondary simultaneously and uses whichever responds first"
+      - "The secondary DNS server is never used unless the primary is completely removed"
+    answerIndex: 1
+    explanation: "A DNS client only queries the secondary DNS server when no response comes back at all (a timeout). If a response does come back, the client has no way to judge whether its content is correct, so it accepts it as the final result and doesn't switch to the secondary."
+
+  - question: "Regarding the idea \"shouldn't a client automatically ask the sub DNS server when the main DNS can't resolve a name,\" which statement best matches the article's reasoning for why it's better not to do this?"
+    choices:
+      - "Sub DNS servers are slow, and always using them would slow down the entire network"
+      - "If a client could freely hop to a different DNS server just because it didn't like a response's content, which server's answer gets trusted for the same name would vary by circumstance, making name resolution unpredictable"
+      - "Sub DNS servers are legally prohibited from being used except in emergencies"
+      - "Sub DNS servers only ever store stale cached data"
+    answerIndex: 1
+    explanation: "If a client could freely hop to a different DNS server just because it disliked a response's content, which server's answer is trusted for the same name would vary by circumstance, making name resolution results unpredictable. It would also risk treating a correct answer like NXDOMAIN as a \"failure\" and searching endlessly."
+
+  - question: "Which statement best matches the article's explanation of why it's recommended to set 127.0.0.1 as a DC's own DNS setting?"
+    choices:
+      - "127.0.0.1 is a special global IP address reachable from any network in the world"
+      - "It reliably lets the DC reference its own DNS service regardless of the state of the network stack's initialization at boot time, and avoids circular dependencies from multiple DCs referencing each other's real IPs"
+      - "Setting 127.0.0.1 theoretically makes the DNS server's processing speed infinite"
+      - "127.0.0.1 is a mandatory requirement for Windows Server license activation"
+    answerIndex: 1
+    explanation: "Pointing at 127.0.0.1 (loopback) makes it easier to reliably reference your own DNS service regardless of the overall network stack's initialization state, and it also avoids circular startup-time dependencies that can occur when multiple DCs reference each other's real IP addresses."
+
+  - question: "Which statement best matches the article's explanation of the side effect of configuring 127.0.0.1 as the DNS setting?"
+    choices:
+      - "There is no side effect at all; it's unconditionally recommended in every environment"
+      - "If your own DNS service degrades partially (not a complete outage), always querying yourself means you lose the opportunity to detect that degradation and automatically fail over to another healthy DC"
+      - "Setting 127.0.0.1 makes that DC stop functioning as a domain controller entirely"
+      - "Setting 127.0.0.1 completely halts replication with other DCs"
+    answerIndex: 1
+    explanation: "If the DNS setting always points at itself (loopback), then even if your own DNS service degrades partially, the behavior where the secondary is only used if the primary doesn't respond at all means you lose the opportunity to detect that degradation and fail over to another healthy DC. Specifying another healthy DC as the secondary is the practical middle ground."
+
+  - question: "Which statement best matches the article's explanation of what ipconfig /registerdns does?"
+    choices:
+      - "It completely wipes the DNS server's zone data, deleting every record"
+      - "It performs, right now without waiting, the automatic DNS record re-registration/refresh that normally happens roughly every 24 hours by default"
+      - "It automatically changes that PC's own DNS server setting (IP address) to the optimal one"
+      - "It executes the domain controller promotion process itself"
+    answerIndex: 1
+    explanation: "A client (or the DC itself) automatically re-registers and refreshes the record for its own hostname and IP address roughly every 24 hours by default. ipconfig /registerdns is a command that redoes this dynamic DNS update right now, without waiting for that automatic refresh."
