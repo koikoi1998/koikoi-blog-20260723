@@ -92,7 +92,6 @@ This blog is written for a wide range of readers — from people with no experie
 <li><a href="/en/articles/access-network-guide">Understanding the Evolution of Access-Line Technology — ADSL, Fiber, and More — from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/restful-api-guide">What Is a RESTful API? Understanding from HTTP/JSON Basics to Practical Design from a "Top 1%" Perspective</a></li>
 </ol>
-<div class="persona-bonus">🔍 <strong>If it interests you (optional)</strong>: <a href="/en/articles/windows-defender-guide">Understanding How Microsoft Defender Works</a> and the rest of the Windows Client Operations Series tackle the questions that come up in day-to-day PC operations. <a href="/en/articles/windows-server-licensing-guide">Understanding Windows Server Licensing</a> and the rest of the Windows Server Operations Series tackle the questions that come up in server procurement and operations. Once each series has grown, it'll be folded properly into one of the steps.</div>
 </div>
 <div class="persona-panel persona-panel-2">
 <div class="persona-panel-head">
@@ -107,6 +106,12 @@ This blog is written for a wide range of readers — from people with no experie
 <li><a href="/en/articles/tcp-udp-session-port-guide">Understanding the Relationship Between TCP/UDP "Sessions" and Port Numbers from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/vpn-protocols-comparison-guide">Comparing L2TP/IPsec to Modern VPN Protocols from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/ipsec-ah-guide">Understanding IPsec's AH (Authentication Header) from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/windows-defender-guide">Understanding How Microsoft Defender Works from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/windows-process-task-guide">Understanding the Difference Between Processes, Tasks, and Threads in Windows from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/unicode-filename-normalization-guide">Why Do Files With Identical-Looking Names Have Different Character Counts in Windows?</a></li>
+<li><a href="/en/articles/windows-install-media-guide">Understanding the Difference Between x64 and x86 Installers from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/proxy-firewall-guide">Understanding When to Use a Proxy vs. a Firewall from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/http-caching-cdn-guide">Understanding the Rise of HTTPS and the End of Proxy Caching from a "Top 1%" Perspective</a></li>
 </ol>
 <div class="persona-bonus">🔍 <strong>If you run into it on the job (optional)</strong>: <a href="/en/articles/windows-server-l2tp-vpn-guide">Windows Server (RRAS) L2TP/IPsec VPN setup</a>, <a href="/en/articles/site-to-site-vpn-guide">site-to-site VPN</a>, and <a href="/en/articles/local-gov-network-guide">Japanese local government network segregation</a> are niche articles for people who actually hit that specific situation. No need to read them now — save them for when a search lands you there, or when curiosity strikes (STEP3 covers them properly).</div>
 </div>
@@ -116,7 +121,7 @@ This blog is written for a wide range of readers — from people with no experie
 <p>This is where "I sort of know this" turns into working knowledge. On top of STEP2, this route adds the niche real-world articles and a hands-on lab to build actual confidence.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 and STEP2's 14 articles (see those tabs above)</li>
+<li>STEP1 and STEP2's 20 articles (see those tabs above)</li>
 <li><a href="/en/articles/windows-server-l2tp-vpn-guide">Why Does a VPN Client Need a Gateway on the Same Subnet? — Understanding IP Address Management in Windows Server (RRAS) L2TP/IPsec VPN from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/site-to-site-vpn-guide">Understanding Site-to-Site VPN from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/local-gov-network-guide">Understanding Japanese Local Government Network Segregation and Security Clouds from a "Top 1%" Perspective</a></li>
@@ -141,6 +146,15 @@ This blog is written for a wide range of readers — from people with no experie
 <li><a href="/en/articles/dc-health-check-guide">Understanding DC Health Checks from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/dcdiag-guide">Reading dcdiag /v from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/ad-migration-cleanup-guide">Understanding Post-Migration AD Cleanup from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/windows-server-licensing-guide">Understanding Windows Server Licensing (OEM, Datacenter, Standard) from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/windows-ntp-server-guide">Understanding the Configuration Values for Building an NTP Server on Windows Server from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/iis-fundamentals-guide">Understanding How IIS and ASP.NET Work from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/iis-ftp-guide">Understanding the Relationship Between IIS and FTP from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/smb-file-sharing-guide">Understanding Windows Server SMB File Sharing from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/disk-raid-fundamentals-guide">Understanding the Relationship Between RAID and Windows Disk Management from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/fc-san-fundamentals-guide">Understanding the Difference Between Fibre Channel and LAN Connections from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/aws-ec2-networking-basics-guide">Understanding EC2 Key Pairs (.pem/.ppk) and Reserved Subnet IPs from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/m365-email-fundamentals-guide">Understanding Email Migration to M365 from a "Top 1%" Perspective</a></li>
 </ol>
 <div class="persona-bonus">🔍 <strong>If it interests you (optional)</strong>: <a href="/en/articles/voip-ss7-guide">Understanding VoIP and SS7</a> is worth a read once the history behind the telephone network starts to interest you, and <a href="/en/articles/proxmox-internals-guide">What Is Proxmox VE?</a> is worth a read once KVM/QEMU's internals start to interest you.</div>
 </div>
@@ -150,7 +164,7 @@ This blog is written for a wide range of readers — from people with no experie
 <p>Adds the low-level implementation knowledge that sets you apart in interviews and design reviews, on top of everything through STEP3.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP3's 38 articles (see those tabs above)</li>
+<li>STEP1 through STEP3's 53 articles (see those tabs above)</li>
 <li><a href="/en/articles/proxmox-internals-guide">What Is Proxmox VE? Understanding KVM/QEMU Virtualization from the "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/linux-daemon-guide">What Is a Daemon? Understanding Linux Background Processes from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/software-library-guide">What Is a Library? Understanding Static and Dynamic Linking from a "Top 1%" Perspective</a></li>
@@ -168,18 +182,19 @@ This blog is written for a wide range of readers — from people with no experie
 <li><a href="/en/articles/ztna-guide">What Is ZTNA (Zero Trust Network Access) from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/idrac-power-guide">Understanding Server Power Design from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/os-boot-process-guide">Understanding the OS Boot Process After POST from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/hyperv-capacity-guide">Understanding Hyper-V Virtual Machine Resource Design from a "Top 1%" Perspective</a></li>
 </ol>
 </div>
 <div class="persona-panel persona-panel-5">
 <div class="persona-panel-head">
 <h3>🏆 For those gathering information toward ¥10M, ¥20M, or ¥50M+</h3>
-<p>The complete-conquest route: read all 56 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
+<p>The complete-conquest route: read all 72 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP4's 55 articles (see those tabs above)</li>
+<li>STEP1 through STEP4's 71 articles (see those tabs above)</li>
 <li><a href="/en/articles/voip-ss7-guide">Understanding VoIP and SS7 — and the Real Path Your Traffic Takes — from a "Top 1%" Perspective</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>That's all 56 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
+<div class="persona-bonus">🎉 <strong>That's all 72 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
 </div>
 </div>
 </div>
@@ -348,4 +363,4 @@ A series digging into the fundamentals of messaging infrastructure — what doma
 
 ## What's next
 
-Once the iDRAC-related series reaches a good stopping point, we plan to add a new series on a different theme (TBD). When a new series is added, this page will be updated too.
+Three large themes are currently under consideration: ① a hands-on lab for building a custom protocol and header format from scratch, ② OpenShift (hands-on included), and ③ Ansible (hands-on included). Each is expected to become a new series on a different scale from the existing ones, so timing is still being worked out. When a new series is added, its theme gets written into the `templates/article-prompt-template.md` template before drafting begins, and once complete, both this page and "Recommended routes by reader type" get updated.

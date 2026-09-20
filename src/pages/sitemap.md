@@ -94,7 +94,6 @@ graph TB
 <li><a href="/articles/access-network-guide">ADSL・光回線などアクセス回線の技術変遷を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/restful-api-guide">RESTful APIとは何か？HTTP・JSONの基礎から実務設計まで『上位1%』の視点で理解する</a></li>
 </ol>
-<div class="persona-bonus">🔍 <strong>興味があれば(任意)</strong>: <a href="/articles/windows-defender-guide">Microsoft Defenderの仕組み</a>など、Windowsクライアント運用シリーズは日々のPC運用で出会う疑問を扱った記事群です。<a href="/articles/windows-server-licensing-guide">Windows Serverのライセンス</a>など、Windows Server運用シリーズはサーバーの調達・運用で出会う疑問を扱います。いずれもシリーズが育ってきたら、どこかのSTEPで本格的に扱う予定です。</div>
 </div>
 <div class="persona-panel persona-panel-2">
 <div class="persona-panel-head">
@@ -109,6 +108,12 @@ graph TB
 <li><a href="/articles/tcp-udp-session-port-guide">TCP/UDPの「セッション」とポート番号の関係を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/vpn-protocols-comparison-guide">L2TP/IPsecと現代的なVPNプロトコルを『上位1%』の視点で比較する</a></li>
 <li><a href="/articles/ipsec-ah-guide">IPsecのAH(Authentication Header)とは何かを『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/windows-defender-guide">Microsoft Defenderの仕組みを『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/windows-process-task-guide">Windowsのプロセス・タスク・スレッドの違いを『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/unicode-filename-normalization-guide">見た目が同じなのに文字数が異なるファイル名が存在する理由を『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/windows-install-media-guide">インストーラのx64とx86の違いを『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/proxy-firewall-guide">プロキシとファイアウォールの使い分けを『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/http-caching-cdn-guide">HTTPSの普及とプロキシキャッシュの終焉を『上位1%』の視点で理解する</a></li>
 </ol>
 <div class="persona-bonus">🔍 <strong>現場で出会ったら(任意)</strong>: <a href="/articles/windows-server-l2tp-vpn-guide">Windows Server(RRAS)でのL2TP/IPsec VPN構築</a>や<a href="/articles/site-to-site-vpn-guide">拠点間VPN</a>、<a href="/articles/local-gov-network-guide">自治体ネットワークの三層分離</a>は、実務でその状況に当たった人向けのニッチな記事です。今すぐ読む必要はなく、検索でたどり着いたときや興味が湧いたときに読めば十分です(STEP3で本格的に扱います)。</div>
 </div>
@@ -118,7 +123,7 @@ graph TB
 <p>「知ってるつもり」を実務で使える理解に変える段階です。STEP2までに加え、現場のニッチな疑問を解消する記事と、手を動かすハンズオンで自信をつけます。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1・STEP2の14記事(上のタブから確認できます)</li>
+<li>STEP1・STEP2の20記事(上のタブから確認できます)</li>
 <li><a href="/articles/windows-server-l2tp-vpn-guide">Windows Server(RRAS)でのL2TP/IPsec VPN構築とIPアドレス管理を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/site-to-site-vpn-guide">拠点間VPN(Site-to-Site VPN)を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/local-gov-network-guide">自治体ネットワークの三層分離とセキュリティクラウドを『上位1%』の視点で理解する</a></li>
@@ -143,6 +148,15 @@ graph TB
 <li><a href="/articles/dc-health-check-guide">DCの正常性確認を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/dcdiag-guide">dcdiag /vの読み方を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/ad-migration-cleanup-guide">AD移行後のクリーンアップを『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/windows-server-licensing-guide">Windows Serverのライセンス(OEM・Datacenter・Standard)を『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/windows-ntp-server-guide">Windows ServerでNTPサーバーを構築する際の設定値を『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/iis-fundamentals-guide">IISとASP.NETの仕組みを『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/iis-ftp-guide">IISとFTPの関係を『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/smb-file-sharing-guide">Windows ServerのSMB共有を『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/disk-raid-fundamentals-guide">RAIDとWindowsのディスク管理の関係を『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/fc-san-fundamentals-guide">FCケーブル接続とLANケーブル接続の違いを『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/aws-ec2-networking-basics-guide">EC2のキーペア(.pem/.ppk)とサブネットの予約IPを『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/m365-email-fundamentals-guide">M365へのメール移行を『上位1%』の視点で理解する</a></li>
 </ol>
 <div class="persona-bonus">🔍 <strong>興味があれば(任意)</strong>: <a href="/articles/voip-ss7-guide">VoIPとSS7、そして実際の通信経路</a>は電話網の歴史的経緯に、<a href="/articles/proxmox-internals-guide">Proxmox VEとは何か</a>はKVM/QEMUの内部動作に興味が湧いたら読んでみてください。</div>
 </div>
@@ -152,7 +166,7 @@ graph TB
 <p>STEP3までの実務知識に、面接や設計レビューで差がつく低レイヤーの実装知識を積み増すルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP3の38記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP3の53記事(上のタブから確認できます)</li>
 <li><a href="/articles/proxmox-internals-guide">Proxmox VEとは何か——KVM/QEMUによる仮想化の仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/linux-daemon-guide">デーモン(daemon)とは何か——Linuxのバックグラウンドプロセスを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/software-library-guide">ライブラリ(library)とは何か——静的リンク・動的リンクの仕組みを『上位1%』の視点で理解する</a></li>
@@ -170,18 +184,19 @@ graph TB
 <li><a href="/articles/ztna-guide">ZTNA(ゼロトラストネットワークアクセス)とは何かを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/idrac-power-guide">サーバー電源の仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/os-boot-process-guide">POST後のOS起動プロセスを『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/hyperv-capacity-guide">Hyper-Vの仮想マシンリソース設計を『上位1%』の視点で理解する</a></li>
 </ol>
 </div>
 <div class="persona-panel persona-panel-5">
 <div class="persona-panel-head">
 <h3>🏆 年収1000万・2000万・5000万を目指して情報収集している方へ</h3>
-<p>全56記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
+<p>全72記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP4の55記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP4の71記事(上のタブから確認できます)</li>
 <li><a href="/articles/voip-ss7-guide">VoIPとSS7、そして実際の通信経路を『上位1%』の視点で理解する</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>これで全56記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
+<div class="persona-bonus">🎉 <strong>これで全72記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
 </div>
 </div>
 </div>
@@ -350,4 +365,4 @@ EC2・VPCなど、AWSを使ううえで必ず直面する基礎的な疑問を�
 
 ## 今後の展開予定
 
-iDRAC関連のシリーズが一区切りついたあとは、別テーマ（未定）のシリーズを追加していく予定です。新しいシリーズを追加したら、`templates/article-prompt-template.md`のテーマ欄を書き換えて執筆に入り、完成したらこのページにも追記します。
+現時点で構想している大型テーマは、①オリジナルのプロトコル・ヘッダーを自作するハンズオン、②OpenShift(ハンズオン含む)、③Ansible(ハンズオン含む)の3つです。いずれも既存のシリーズとは規模の異なる新シリーズになる見込みのため、着手時期は別途検討します。新しいシリーズを追加したら、`templates/article-prompt-template.md`のテーマ欄を書き換えて執筆に入り、完成したらこのページと「読者タイプ別のおすすめルート」の両方に追記します。
