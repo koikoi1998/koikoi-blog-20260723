@@ -39,6 +39,7 @@ graph TB
     Messaging["Messaging Fundamentals Series"]
     Protocol["Protocol Fundamentals Series"]
     OpenShift["OpenShift Series"]
+    Ansible["Ansible Series"]
 
     Idrac --> Network
     Idrac --> Api
@@ -57,6 +58,7 @@ graph TB
     Network --> Messaging
     Network --> Protocol
     Network --> OpenShift
+    Network --> Ansible
 ```
 
 **The basic path**: Start with the iDRAC article, branch into the Networking Fundamentals and Web/API series, follow the L2TP/IPsec article's thread from Networking Fundamentals into the Remote-Access VPN/L2TP-IPsec series, and dig deeper from there into the Site-to-Site VPN series, Security Fundamentals, Linux/OS Fundamentals, and Telephony. That's the main line of derivation between articles. That said, every article is written to be **fully readable on its own**, so feel free to start with whichever series or article interests you. Note also that some articles in the Networking Fundamentals series (NAT/NAPT, virtual IPs, TCP/UDP sessions, DNS) actually branch off from the L2TP/IPsec article in the Remote-Access VPN series — the series don't form a strict one-way tree; some cross-reference each other. The remote-access and site-to-site VPN articles used to be bundled into a single "VPN/L2TP-IPsec Series," but since they serve different audiences and use cases, they've since been split into two separate series. The Active Directory series is a new series digging into questions that come up constantly in real AD migration and DC operation work, and assumes you've read the Networking Fundamentals series (especially DNS).
@@ -163,6 +165,8 @@ This blog is written for a wide range of readers — from people with no experie
 <li><a href="/en/articles/m365-email-fundamentals-guide">Understanding Email Migration to M365 from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/openshift-guide">Understanding What OpenShift Actually Is From a "Top 1%" Perspective — Its Relationship to Kubernetes</a></li>
 <li><a href="/en/articles/openshift-handson-guide">A "Top 1%" Hands-On Lab: Running a Container Application on OpenShift Local</a></li>
+<li><a href="/en/articles/ansible-guide">Understanding What Ansible Actually Is From a "Top 1%" Perspective — Configuration Management and the Agentless Model</a></li>
+<li><a href="/en/articles/ansible-handson-guide">A "Top 1%" Hands-On Lab: Automating Configuration Across Multiple Servers with Ansible</a></li>
 </ol>
 <div class="persona-bonus">🔍 <strong>If it interests you (optional)</strong>: <a href="/en/articles/voip-ss7-guide">Understanding VoIP and SS7</a> is worth a read once the history behind the telephone network starts to interest you, and <a href="/en/articles/proxmox-internals-guide">What Is Proxmox VE?</a> is worth a read once KVM/QEMU's internals start to interest you.</div>
 </div>
@@ -172,7 +176,7 @@ This blog is written for a wide range of readers — from people with no experie
 <p>Adds the low-level implementation knowledge that sets you apart in interviews and design reviews, on top of everything through STEP3.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP3's 57 articles (see those tabs above)</li>
+<li>STEP1 through STEP3's 59 articles (see those tabs above)</li>
 <li><a href="/en/articles/proxmox-internals-guide">What Is Proxmox VE? Understanding KVM/QEMU Virtualization from the "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/linux-daemon-guide">What Is a Daemon? Understanding Linux Background Processes from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/software-library-guide">What Is a Library? Understanding Static and Dynamic Linking from a "Top 1%" Perspective</a></li>
@@ -196,13 +200,13 @@ This blog is written for a wide range of readers — from people with no experie
 <div class="persona-panel persona-panel-5">
 <div class="persona-panel-head">
 <h3>🏆 For those gathering information toward ¥10M, ¥20M, or ¥50M+</h3>
-<p>The complete-conquest route: read all 76 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
+<p>The complete-conquest route: read all 78 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP4's 75 articles (see those tabs above)</li>
+<li>STEP1 through STEP4's 77 articles (see those tabs above)</li>
 <li><a href="/en/articles/voip-ss7-guide">Understanding VoIP and SS7 — and the Real Path Your Traffic Takes — from a "Top 1%" Perspective</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>That's all 76 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
+<div class="persona-bonus">🎉 <strong>That's all 78 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
 </div>
 </div>
 </div>
@@ -383,6 +387,13 @@ A series digging into container/Kubernetes fundamentals and what OpenShift adds 
 - [Understanding What OpenShift Actually Is From a "Top 1%" Perspective — Its Relationship to Kubernetes](/en/articles/openshift-guide) — A deep dive into the difference between a virtual machine and a container, why OpenShift is a derivative of Kubernetes rather than a competitor, and the functionality OpenShift bundles in by default — Route, Build/S2I, Operator, SCC, and more (also readable standalone).
 - [A "Top 1%" Hands-On Lab: Running a Container Application on OpenShift Local](/en/articles/openshift-handson-guide) — Hands-on experience setting up OpenShift Local, deploying a sample application via S2I, exposing it externally with a Route, and scaling it with `oc scale` (a practical follow-on to [openshift-guide](/en/articles/openshift-guide)).
 
+### Ansible Series
+
+A series digging into configuration management fundamentals through to actually automating configuration across multiple servers, split into an overview article and a hands-on lab. **Recommended order**: ① ansible-guide → ② ansible-handson-guide.
+
+- [Understanding What Ansible Actually Is From a "Top 1%" Perspective — Configuration Management and the Agentless Model](/en/articles/ansible-guide) — A deep dive into the difference between agent-based tools (Puppet, Chef, and so on) and the agentless model, the core concepts of Inventory, Playbook, Task, Module, and Role, and the core design principle of idempotency (also readable standalone).
+- [A "Top 1%" Hands-On Lab: Automating Configuration Across Multiple Servers with Ansible](/en/articles/ansible-handson-guide) — Hands-on experience installing Ansible on a control node, setting up SSH key authentication, writing an Inventory and a Playbook, automating installing/starting/configuring Nginx, and running the same Playbook twice to confirm idempotency (`changed=0`) (a practical follow-on to [ansible-guide](/en/articles/ansible-guide)).
+
 ## What's next
 
-Two large themes are currently under consideration: ① a hands-on lab for building a custom protocol and header format from scratch, and ② Ansible (hands-on included). Each is expected to become a new series on a different scale from the existing ones, so timing is still being worked out. When a new series is added, its theme gets written into the `templates/article-prompt-template.md` template before drafting begins, and once complete, both this page and "Recommended routes by reader type" get updated.
+One large theme is currently under consideration: a hands-on lab for building a custom protocol and header format from scratch. It'll be added if it turns out to be needed for understanding, but if the two articles in the [Protocol Fundamentals Series](#series-list) already provide enough understanding on their own, work on it may not start at all. When a new series is added, its theme gets written into the `templates/article-prompt-template.md` template before drafting begins, and once complete, both this page and "Recommended routes by reader type" get updated.

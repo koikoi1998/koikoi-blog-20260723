@@ -1,0 +1,45 @@
+questions:
+  - question: "この記事でSSH鍵認証を設定した理由について、記事の説明に最も合致するものはどれか。"
+    choices:
+      - "実行のたびにパスワードを手入力するのは非効率かつ自動化に適さないため"
+      - "SSH鍵認証を設定しないと、Ansibleは一切起動できない仕様になっているため"
+      - "SSH鍵認証を使うと、管理対象へのPythonのインストールが不要になるため"
+      - "SSH鍵認証は、Inventoryファイルの記法を簡略化するための機能だから"
+    answerIndex: 0
+    explanation: "Ansibleは既定でSSH接続を使いますが、実行のたびにパスワードを手入力するのは非効率かつ自動化に適さないため、SSH鍵認証を設定して、パスワード入力なしにログインできる状態を用意します。"
+
+  - question: "`ansible all -i inventory.ini -m ping`を実行した際の`-m ping`が指しているものはどれか。"
+    choices:
+      - "SSH接続とPython実行環境が正常か確認するための、Ansible独自のpingモジュール"
+      - "ICMPのpingコマンドをそのまま実行するオプション"
+      - "管理対象サーバーの物理的なネットワーク帯域を測定する機能"
+      - "InventoryファイルのIPアドレス表記が正しいかを検証する機能"
+    answerIndex: 0
+    explanation: "-m pingは、ICMPのpingコマンドではなく、Ansible独自のpingモジュールを指定するオプションです。SSH接続とPythonの実行が正常に行えるかどうかを確認するためのモジュールです。"
+
+  - question: "この記事のPlaybookで`become: true`と記述した理由は何か。"
+    choices:
+      - "Task全体を管理者権限(sudo)で実行することを宣言するため"
+      - "Playbookの実行結果をファイルへ自動的に保存するため"
+      - "管理対象サーバーへのSSH接続を暗号化するため"
+      - "Playbookを冪等に実行するために必須のオプションだから"
+    answerIndex: 0
+    explanation: "become: trueは、そのPlay内のTask全体を管理者権限(sudo)で実行することを宣言するオプションです。パッケージのインストールやサービスの起動など、通常sudoが必要な操作を行うために設定します。"
+
+  - question: "同じPlaybookを2回連続で実行した際、記事の説明に最も合致する結果はどれか。"
+    choices:
+      - "1回目はTaskが`changed`として報告され、2回目は同じTaskが`ok`(changed=0)として報告される"
+      - "1回目と2回目で、常に同じ`changed`の数が報告される"
+      - "2回目の実行では、Ansibleがエラーを出して実行が拒否される"
+      - "2回目の実行では、1回目に作成したファイルがすべて自動的に削除される"
+    answerIndex: 0
+    explanation: "Ansibleの各Moduleは冪等性を内部で担保しているため、1回目はまだ望ましい状態になっていないTaskが`changed`として報告されますが、2回目は同じTaskがすでに望ましい状態にあるとして`ok`(changed=0)で報告されます。"
+
+  - question: "記事内の補足で、`shell`モジュールでファイルへ追記するTaskを追加した場合に起きることとして説明されているものはどれか。"
+    choices:
+      - "Ansibleが「すでに望ましい状態か」を判断できないため、何度実行しても毎回`changed`として報告される"
+      - "そのTaskは自動的に冪等になり、2回目以降は必ず`ok`として報告される"
+      - "Playbook全体の実行がエラーで中断され、他のTaskも実行されなくなる"
+      - "shellモジュールはAnsibleには存在しないため、そもそも記述できない"
+    answerIndex: 0
+    explanation: "shellモジュールは生のシェルコマンドを実行するため、Ansibleは「すでに望ましい状態かどうか」を判断できません。そのため、ファイルへの追記のような操作は、何度実行しても毎回changedとして報告され、実行するたびに内容が増えていきます。"

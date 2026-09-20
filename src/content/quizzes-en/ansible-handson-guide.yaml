@@ -1,0 +1,45 @@
+questions:
+  - question: "According to the article, why did this hands-on lab set up SSH key authentication?"
+    choices:
+      - "Because manually typing a password every run isn't efficient and doesn't suit automation"
+      - "Because Ansible is designed to refuse to start at all without SSH key authentication configured"
+      - "Because SSH key authentication removes the need to install Python on managed nodes"
+      - "Because SSH key authentication is a feature for simplifying Inventory file syntax"
+    answerIndex: 0
+    explanation: "Ansible uses an SSH connection by default, but manually typing a password every run isn't efficient and doesn't suit automation, so SSH key authentication is set up to allow logging in without a password."
+
+  - question: "What does `-m ping` refer to in the command `ansible all -i inventory.ini -m ping`?"
+    choices:
+      - "Ansible's own ping module, used to confirm the SSH connection and Python runtime are working"
+      - "An option that runs the ICMP ping command as-is"
+      - "A feature that measures the physical network bandwidth of managed servers"
+      - "A feature that validates whether the IP address syntax in the Inventory file is correct"
+    answerIndex: 0
+    explanation: "-m ping specifies Ansible's own ping module, not the ICMP ping command. It's a module used to confirm that the SSH connection and Python execution are working correctly."
+
+  - question: "Why did this article's Playbook include `become: true`?"
+    choices:
+      - "To declare that the whole set of Tasks should run with administrator (sudo) privileges"
+      - "To automatically save the Playbook's execution result to a file"
+      - "To encrypt the SSH connection to the managed server"
+      - "Because it's a mandatory option for running a Playbook idempotently"
+    answerIndex: 0
+    explanation: "become: true is an option that declares the whole set of Tasks in that Play should run with administrator (sudo) privileges. It's set to perform operations — like installing packages or starting services — that normally require sudo."
+
+  - question: "According to the article, what result should you expect when running the same Playbook twice in a row?"
+    choices:
+      - "The first run reports the Tasks as `changed`, and the second run reports the same Tasks as `ok` (changed=0)"
+      - "The first and second runs always report the same number of `changed` Tasks"
+      - "The second run makes Ansible throw an error and refuse to execute"
+      - "The second run automatically deletes every file created by the first run"
+    answerIndex: 0
+    explanation: "Because each of Ansible's Modules internally guarantees idempotency, the first run reports Tasks not yet in the desired state as `changed`, while the second run reports the same Tasks — now already in the desired state — as `ok` (changed=0)."
+
+  - question: "According to the article's aside, what happens if you add a Task that uses the `shell` module to append to a file?"
+    choices:
+      - "Since Ansible can't judge whether the desired state is already in place, it gets reported as `changed` every single time it runs"
+      - "The Task automatically becomes idempotent, and gets reported as `ok` on every run after the first"
+      - "The whole Playbook execution aborts with an error, and no other Tasks run"
+      - "The shell module doesn't exist in Ansible, so this Task can't be written at all"
+    answerIndex: 0
+    explanation: "The shell module runs a raw shell command, so Ansible has no way to judge whether the desired state is already in place. As a result, an operation like appending to a file gets reported as changed every time it runs, growing the file's content a little more each time."

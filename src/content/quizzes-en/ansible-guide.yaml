@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the biggest architectural difference between Ansible and an agent-based configuration management tool like Puppet or Chef?"
+    choices:
+      - "Ansible is agentless — no resident agent is needed on managed nodes, and the control node pushes configuration over SSH"
+      - "Ansible requires a mandatory resident agent on every managed node"
+      - "Ansible works purely through periodic pulls initiated by managed nodes, and never pushes anything"
+      - "Ansible uses exactly the same architecture as Puppet and Chef"
+    answerIndex: 0
+    explanation: "Ansible is an agentless configuration management tool — there's no need to install a dedicated resident agent on managed nodes. The control node connects to each managed node over SSH and pushes configuration to it each time."
+
+  - question: "What does a server managed by Ansible need to have running, on the managed side, for Ansible to work?"
+    choices:
+      - "An SSH server and Python"
+      - "Dedicated resident agent software for Ansible"
+      - "A feature that periodically reaches out to a management server (Master) on its own"
+      - "A Docker runtime"
+    answerIndex: 0
+    explanation: "Ansible is agentless — all a managed node needs is an SSH server and Python, which Ansible uses to actually execute its logic. No dedicated agent software is required."
+
+  - question: "Which Ansible term refers to \"a file that organizes the list of managed servers into groups\"?"
+    choices:
+      - "Inventory"
+      - "Module"
+      - "Role"
+      - "Task"
+    answerIndex: 0
+    explanation: "An Inventory is a file defining the list of managed servers (by IP address or hostname), organized into groups by role."
+
+  - question: "According to the article, what does writing `state: present` in a Playbook actually mean?"
+    choices:
+      - "It's not an instruction to run an install command — it's a declaration that the target should be in an installed state"
+      - "It's an instruction to forcibly uninstall the target package"
+      - "It's an instruction to reboot the target server"
+      - "It's an instruction to output Ansible's execution log in verbose mode"
+    answerIndex: 0
+    explanation: "A Playbook declares what final state you want, rather than the steps to take. `state: present` is a declaration that the target should be in an installed state — it's not an instruction describing a step."
+
+  - question: "According to the article, what is the design principle of idempotency?"
+    choices:
+      - "The property that running the same Playbook any number of times produces the same end result, achieved because each Module internally checks whether the desired state is already in place"
+      - "A caching mechanism for speeding up Playbook execution"
+      - "A feature for running tasks against multiple managed nodes in parallel"
+      - "A mechanism for encrypting and storing Ansible's execution results"
+    answerIndex: 0
+    explanation: "Idempotency is the property that running the same operation once, or a hundred times, produces the same end result. Each of Ansible's Modules has a built-in check for whether the desired state is already in place, which is what makes running the same Playbook any number of times safe."

@@ -41,6 +41,7 @@ graph TB
     Messaging["メール基盤シリーズ"]
     Protocol["プロトコル基礎シリーズ"]
     OpenShift["OpenShiftシリーズ"]
+    Ansible["Ansibleシリーズ"]
 
     Idrac --> Network
     Idrac --> Api
@@ -59,6 +60,7 @@ graph TB
     Network --> Messaging
     Network --> Protocol
     Network --> OpenShift
+    Network --> Ansible
 ```
 
 **基本的な読み方**: iDRACの記事を起点に、ネットワーク基礎シリーズとWeb/APIシリーズへ進み、ネットワーク基礎シリーズのL2TP/IPsecの記事からリモートアクセスVPN/L2TP・IPsecシリーズへ、そこから拠点間VPNシリーズ・セキュリティ基礎・Linux/OS基礎・電話網シリーズへと深掘りしていく、というのが記事同士の主な派生の流れです。ただし各記事は**すべて単体でも読める**ように書かれているため、興味のあるシリーズ・記事から読み始めて問題ありません。なお、ネットワーク基礎シリーズの一部記事(NAT/NAPT・代表IP・TCP/UDPセッション・DNS)はリモートアクセスVPN/L2TP・IPsecシリーズのL2TP/IPsecの記事から派生しており、シリーズ同士は一方向のツリーではなく一部相互に関係している点に注意してください。以前はリモートアクセスVPNと拠点間VPNを同じ「VPN/L2TP・IPsecシリーズ」にまとめていましたが、対象読者・用途が異なるため2つのシリーズに分割しました。Active Directoryシリーズは、AD移行・DC運用の実務で直面する疑問を深掘りする新シリーズで、ネットワーク基礎シリーズ(特にDNS)の知識を前提にしています。
@@ -165,6 +167,8 @@ graph TB
 <li><a href="/articles/m365-email-fundamentals-guide">M365へのメール移行を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/openshift-guide">OpenShiftとは何かを『上位1%』の視点で理解する——Kubernetesとの関係</a></li>
 <li><a href="/articles/openshift-handson-guide">OpenShift Localでコンテナアプリケーションを動かす『上位1%』のハンズオン</a></li>
+<li><a href="/articles/ansible-guide">Ansibleとは何かを『上位1%』の視点で理解する——構成管理とエージェントレスの仕組み</a></li>
+<li><a href="/articles/ansible-handson-guide">Ansibleで複数サーバーへの設定投入を自動化する『上位1%』のハンズオン</a></li>
 </ol>
 <div class="persona-bonus">🔍 <strong>興味があれば(任意)</strong>: <a href="/articles/voip-ss7-guide">VoIPとSS7、そして実際の通信経路</a>は電話網の歴史的経緯に、<a href="/articles/proxmox-internals-guide">Proxmox VEとは何か</a>はKVM/QEMUの内部動作に興味が湧いたら読んでみてください。</div>
 </div>
@@ -174,7 +178,7 @@ graph TB
 <p>STEP3までの実務知識に、面接や設計レビューで差がつく低レイヤーの実装知識を積み増すルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP3の57記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP3の59記事(上のタブから確認できます)</li>
 <li><a href="/articles/proxmox-internals-guide">Proxmox VEとは何か——KVM/QEMUによる仮想化の仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/linux-daemon-guide">デーモン(daemon)とは何か——Linuxのバックグラウンドプロセスを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/software-library-guide">ライブラリ(library)とは何か——静的リンク・動的リンクの仕組みを『上位1%』の視点で理解する</a></li>
@@ -198,13 +202,13 @@ graph TB
 <div class="persona-panel persona-panel-5">
 <div class="persona-panel-head">
 <h3>🏆 年収1000万・2000万・5000万を目指して情報収集している方へ</h3>
-<p>全76記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
+<p>全78記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP4の75記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP4の77記事(上のタブから確認できます)</li>
 <li><a href="/articles/voip-ss7-guide">VoIPとSS7、そして実際の通信経路を『上位1%』の視点で理解する</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>これで全76記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
+<div class="persona-bonus">🎉 <strong>これで全78記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
 </div>
 </div>
 </div>
@@ -385,6 +389,13 @@ EC2・VPCなど、AWSを使ううえで必ず直面する基礎的な疑問を�
 - [OpenShiftとは何かを『上位1%』の視点で理解する——Kubernetesとの関係](/articles/openshift-guide) — 仮想マシンとコンテナの違い、OpenShiftがKubernetesの競合ではなく派生製品である理由、Route・Build/S2I・Operator・SCCなどOpenShiftが標準搭載している機能までの深掘り(単体でも読めます)。
 - [OpenShift Localでコンテナアプリケーションを動かす『上位1%』のハンズオン](/articles/openshift-handson-guide) — OpenShift Localのセットアップから、サンプルアプリケーションのS2Iデプロイ、Routeでの外部公開、`oc scale`によるスケール体験までを実際に手を動かして体験([openshift-guide](/articles/openshift-guide)の実践編)。
 
+### Ansibleシリーズ
+
+構成管理の基礎から、実際に複数サーバーへの設定投入を自動化するまでを概要編とハンズオン編で深掘りするシリーズです。**読む順番の目安**: ① ansible-guide → ② ansible-handson-guide。
+
+- [Ansibleとは何かを『上位1%』の視点で理解する——構成管理とエージェントレスの仕組み](/articles/ansible-guide) — エージェント型(Puppet・Chefなど)とエージェントレスの違い、Inventory・Playbook・Task・Module・Roleという基本概念、そして冪等性(idempotency)という中核的な設計思想までの深掘り(単体でも読めます)。
+- [Ansibleで複数サーバーへの設定投入を自動化する『上位1%』のハンズオン](/articles/ansible-handson-guide) — 制御ノードへのAnsibleインストールから、SSH鍵認証の設定、InventoryとPlaybookの作成、Nginxのインストール・起動・設定投入の自動化、同じPlaybookを2回実行して冪等性(`changed=0`)を確認するまでを実際に手を動かして体験([ansible-guide](/articles/ansible-guide)の実践編)。
+
 ## 今後の展開予定
 
-現時点で構想している大型テーマは、①オリジナルのプロトコル・ヘッダーを自作するハンズオン、②Ansible(ハンズオン含む)の2つです。いずれも既存のシリーズとは規模の異なる新シリーズになる見込みのため、着手時期は別途検討します。新しいシリーズを追加したら、`templates/article-prompt-template.md`のテーマ欄を書き換えて執筆に入り、完成したらこのページと「読者タイプ別のおすすめルート」の両方に追記します。
+現時点で構想している大型テーマは、①オリジナルのプロトコル・ヘッダーを自作するハンズオンの1つです。理解のために必要であれば追加しますが、[プロトコル基礎シリーズ](#シリーズ一覧)の2記事で十分な理解が得られた場合は、着手を見送る可能性もあります。新しいシリーズを追加したら、`templates/article-prompt-template.md`のテーマ欄を書き換えて執筆に入り、完成したらこのページと「読者タイプ別のおすすめルート」の両方に追記します。
