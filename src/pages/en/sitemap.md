@@ -324,9 +324,10 @@ A series digging into storage fundamentals — RAID, disk management, storage co
 
 ### Web Proxy / Caching Fundamentals Series
 
-A series digging into the fundamentals of controlling and speeding up web traffic — proxies, firewalls, caching, and CDNs. **Recommended order**: ① proxy-firewall-guide (more articles on the relationship between HTTPS, caching, and CDNs, and related topics, are planned).
+A series digging into the fundamentals of controlling and speeding up web traffic — proxies, firewalls, caching, and CDNs. **Recommended order**: ① proxy-firewall-guide → ② http-caching-cdn-guide.
 
 - [Understanding When to Use a Proxy vs. a Firewall from a "Top 1%" Perspective](/en/articles/proxy-firewall-guide) — A deep dive into the difference in the layer and granularity each controls, explicit vs. transparent proxies, the relationship between a cloud proxy (SWG) and ZTNA/SASE, and SSL inspection (also readable standalone).
+- [Understanding the Rise of HTTPS and the End of Proxy Caching from a "Top 1%" Perspective](/en/articles/http-caching-cdn-guide) — A deep dive into the difference between the three layers of proxy caching, browser caching, and CDNs, why HTTPS adoption neutralized only proxy caching, and the historical handoff of shared caching from the consumer side to the provider side via CDNs (a follow-on from [proxy-firewall-guide](/en/articles/proxy-firewall-guide), also readable standalone).
 
 ## What's next
 

@@ -1,0 +1,45 @@
+questions:
+  - question: "Which statement best matches the article's explanation of how proxy caching worked in the HTTP era?"
+    choices:
+      - "A proxy could read the content of a passing HTTP response and reuse content it had already retrieved for requests to the same URL from different users"
+      - "A proxy always saved every piece of content exclusively to a cloud server, never to local disk"
+      - "Proxy caching never functioned at all, even in the HTTP era"
+      - "Proxy caching was a mechanism confined entirely to a single user's own device"
+    answerIndex: 0
+    explanation: "In the era of HTTP (unencrypted communication), a proxy could read the content of a passing HTTP response as-is (the URL, response body, Cache-Control header, and so on), functioning as a shared cache that reused content retrieved once for requests to the same URL from different users."
+
+  - question: "Which statement best matches the article's explanation of why the rise of HTTPS broke proxy caching?"
+    choices:
+      - "Because HTTPS encrypts the entire communication, a typical proxy without SSL inspection can't read a response's content and can't even determine whether it's cacheable"
+      - "Because HTTPS communication became physically, drastically slower than HTTP"
+      - "Because going through a proxy server at all became technically impossible under HTTPS"
+      - "Because the rise of HTTPS caused browser caching functionality to be completely discontinued"
+    answerIndex: 0
+    explanation: "Because HTTPS encrypts the entire communication, a typical proxy configuration without SSL inspection can't read the content of the encrypted traffic at all. It can't even determine whether a response is cacheable or which URL it responds to, so its role as a shared cache has effectively stopped functioning."
+
+  - question: "Which statement best matches the article's explanation of why the browser cache is unaffected by the rise of HTTPS?"
+    choices:
+      - "Because a browser cache only works in an environment with no internet connection at all"
+      - "Because the browser itself is the endpoint terminating (decrypting) the HTTPS connection, letting it read the response's content in its plaintext state after decryption"
+      - "Because a browser cache, unlike a proxy, saves encrypted data as-is without decrypting it"
+      - "Because a browser cache is always centrally managed on the server side and never saved on the client side at all"
+    answerIndex: 1
+    explanation: "The browser itself is the endpoint terminating (decrypting) the HTTPS connection, so it can read the response's content, after decryption, in its plaintext state. It continues to interpret the Cache-Control header and save that content to local disk as a cache, unchanged by HTTPS."
+
+  - question: "Which statement best matches the article's explanation of why a CDN can cache and deliver content just fine in an HTTPS environment?"
+    choices:
+      - "Because a CDN always forcibly performs SSL inspection"
+      - "Because a CDN is a mechanism contracted and managed by the content provider itself, which handles the legitimate TLS termination as the entity managing both the content and the TLS certificate"
+      - "Because a CDN automatically downgrades HTTPS traffic to HTTP before processing it"
+      - "Because a CDN is legally granted a special encryption exemption that a proxy doesn't have"
+    answerIndex: 1
+    explanation: "A CDN is a mechanism where the content provider (the website operator) contracts for the service and pre-caches its own content onto edge servers. Because the provider itself manages the content and the TLS certificate, handling the legitimate TLS termination, it can cache and deliver content in an HTTPS environment with no technical obstacle."
+
+  - question: "Which statement best matches the article's explanation of the relationship between the end of proxy caching and the rise of CDNs?"
+    choices:
+      - "The end of proxy caching and the rise of CDNs are completely unrelated coincidences"
+      - "It can be understood as a historical shift where the role of speeding things up and saving bandwidth via caching moved from \"a shared cache built by the consumer side\" (a proxy) to \"a shared cache built by the provider side\" (a CDN), across the boundary marked by the rise of HTTPS"
+      - "CDNs becoming widespread is what caused proxy caching to stop functioning"
+      - "Proxy caching and CDNs are mutually dependent and only function when used together at the same time"
+    answerIndex: 1
+    explanation: "The end of proxy caching and the rise of CDNs are two sides of the same coin. HTTPS adoption broke the consumer-side proxy's caching, while the provider-side CDN took over a similar role of speeding things up and saving bandwidth — a historical transition."
