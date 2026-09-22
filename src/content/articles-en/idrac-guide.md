@@ -43,6 +43,7 @@ The motherboard isn't just passive wiring; it also carries many active component
 In other words, a "motherboard" isn't a "leading actor" like the CPU or memory — it's easiest to picture it as the "stage machinery" that connects those components with the correct wiring and drives them at the correct voltage. Even if you've never seen one in person, if you've watched a PC teardown video and seen a green or black board densely packed with small components (capacitors, VRM coils) around the CPU socket, that's the motherboard.
 
 </details>
+
 - **IPMI (Intelligent Platform Management Interface)**: A long-established, industry-standard protocol for operating a BMC.
 - **Redfish**: A RESTful API standard that has become widespread as IPMI's successor, exchanging JSON-formatted data over HTTPS.
 - **Out-of-Band Management**: A management approach that reaches the server through a path separate from the OS (a separate NIC, a separate processor) rather than through the OS's own network stack. This is the essence of what iDRAC is.

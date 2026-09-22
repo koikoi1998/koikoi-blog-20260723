@@ -85,14 +85,14 @@ sequenceDiagram
 
 ### Path MTU Discovery(PMTUD)と、ファイアウォールでのICMP遮断が招く落とし穴
 
-**Destination UnreachableのCode 4(Fragmentation Needed、要フラグメント化)**は、実務で特に注意が必要なメッセージです。これは、**「このパケットは大きすぎて、途中の経路のMTU(一度に送れる最大データサイズ)を超えているが、フラグメント化(分割)禁止のフラグが立っているため、送信元でパケットサイズを小さくして送り直してほしい」**という通知です。この仕組みは**Path MTU Discovery(PMTUD)**と呼ばれ、送信元が適切なパケットサイズを動的に把握するために使われています。
+<strong>Destination UnreachableのCode 4(Fragmentation Needed、要フラグメント化)</strong>は、実務で特に注意が必要なメッセージです。これは、<strong>「このパケットは大きすぎて、途中の経路のMTU(一度に送れる最大データサイズ)を超えているが、フラグメント化(分割)禁止のフラグが立っているため、送信元でパケットサイズを小さくして送り直してほしい」</strong>という通知です。この仕組みは<strong>Path MTU Discovery(PMTUD)</strong>と呼ばれ、送信元が適切なパケットサイズを動的に把握するために使われています。
 
 **ファイアウォールでICMPを安易に「すべて遮断」してしまうと、このFragmentation Needed通知も届かなくなり、PMTUDが機能しなくなります。** その結果、**小さなパケット(TCP接続確立時のSYNパケットなど)は問題なく通るのに、ある程度の大きさを超えるデータを送ろうとした通信だけが、原因不明のまま応答なしでハングする**、という診断の難しい障害につながります。
 
 <details>
 <summary>IPv6でのICMPv6の拡大した役割</summary>
 
-IPv6では、ICMPの役割がさらに拡大し、**ICMPv6**として、IPv4時代には別のプロトコルだった機能まで統合されています。代表的なものが**NDP(Neighbor Discovery Protocol、近隣探索プロトコル)**で、IPv4におけるARP(IPアドレスからMACアドレスを解決する、IPとは別のプロトコル)に相当する機能を、ICMPv6のメッセージタイプの1つとして実現しています。IPv6では、この他にもルーター広告・ルーター要請といった機能もICMPv6に統合されており、ICMPが担う役割はIPv4の時代よりも大きくなっています。
+IPv6では、ICMPの役割がさらに拡大し、**ICMPv6**として、IPv4時代には別のプロトコルだった機能まで統合されています。代表的なものが<strong>NDP(Neighbor Discovery Protocol、近隣探索プロトコル)</strong>で、IPv4におけるARP(IPアドレスからMACアドレスを解決する、IPとは別のプロトコル)に相当する機能を、ICMPv6のメッセージタイプの1つとして実現しています。IPv6では、この他にもルーター広告・ルーター要請といった機能もICMPv6に統合されており、ICMPが担う役割はIPv4の時代よりも大きくなっています。
 
 </details>
 

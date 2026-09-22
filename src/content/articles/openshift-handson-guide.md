@@ -63,7 +63,7 @@ oc project
 
 ## Step 2: サンプルアプリケーションのデプロイ(Source-to-Image)
 
-[OpenShiftとは何かを『上位1%』の視点で理解する](/articles/openshift-guide)で扱った**Source-to-Image(S2I)**の仕組みを、実際に体験します。ここでは、公開されているサンプルのNode.jsアプリケーションのリポジトリを例に使います。
+[OpenShiftとは何かを『上位1%』の視点で理解する](/articles/openshift-guide)で扱った<strong>Source-to-Image(S2I)</strong>の仕組みを、実際に体験します。ここでは、公開されているサンプルのNode.jsアプリケーションのリポジトリを例に使います。
 
 ```bash
 # 作業用のProject(Namespace)を新規作成

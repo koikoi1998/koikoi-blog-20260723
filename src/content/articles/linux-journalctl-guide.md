@@ -50,7 +50,7 @@ sudo journalctl -u xl2tpd
 
 ### `-t`: syslog識別子(タグ)で見る——systemdユニットではないプロセスのログ
 
-ここで見落としやすい落とし穴があります。`xl2tpd`はsystemdユニットとして管理されていますが、`xl2tpd`が内部的に呼び出す**`pppd`はsystemdユニットではありません**(`systemctl status pppd`のようなユニットは存在しません)。`pppd`はsyslog経由でログを出力するだけの、通常のプロセスです。このような場合は、`-u`ではなく、syslogの識別子(プログラム名のタグ)で絞り込む`-t`を使います。
+ここで見落としやすい落とし穴があります。`xl2tpd`はsystemdユニットとして管理されていますが、`xl2tpd`が内部的に呼び出す`pppd`**はsystemdユニットではありません**(`systemctl status pppd`のようなユニットは存在しません)。`pppd`はsyslog経由でログを出力するだけの、通常のプロセスです。このような場合は、`-u`ではなく、syslogの識別子(プログラム名のタグ)で絞り込む`-t`を使います。
 
 ```bash
 sudo journalctl -t pppd -n 30 --no-pager

@@ -23,7 +23,7 @@ pubDate: 2026-09-20
 
 ## ハンズオンの前提条件
 
-- **Ubuntu Server VMが2台**: [ハンズオン準備マニュアル:Proxmox VEでのVM作成からOSインストールまで](/articles/handson-prep-guide)と[ハンズオン準備マニュアル:Ubuntuサーバーの初期セットアップ](/articles/ubuntu-server-setup-guide)の手順で、SSHサーバーが有効なUbuntu Server VMを**2台**用意してください。1台を**制御ノード(以下`control`)**、もう1台を**管理対象(以下`node1`)**として使います。まだ1台しか作っていない場合は、同じ手順を1回繰り返すだけで2台目を作れます。
+- **Ubuntu Server VMが2台**: [ハンズオン準備マニュアル:Proxmox VEでのVM作成からOSインストールまで](/articles/handson-prep-guide)と[ハンズオン準備マニュアル:Ubuntuサーバーの初期セットアップ](/articles/ubuntu-server-setup-guide)の手順で、SSHサーバーが有効なUbuntu Server VMを**2台**用意してください。1台を**制御ノード(以下`control`)**、もう1台を<strong>管理対象(以下`node1`)</strong>として使います。まだ1台しか作っていない場合は、同じ手順を1回繰り返すだけで2台目を作れます。
 - **各VMのIPアドレス**: `ip a`コマンドで確認した、`control`と`node1`それぞれのIPアドレスを控えておいてください。以降、`<controlのIP>`・`<node1のIP>`と表記します。
 - **各VMへのSSHログイン**: [Teraterm(ターミナルソフト)の使い方](/articles/teraterm-guide)などを使い、まず`control`へSSHでログインしておきます(以降の作業はすべて`control`上で行います)。
 
