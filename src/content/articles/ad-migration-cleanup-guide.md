@@ -2,7 +2,7 @@
 title: "AD移行後のクリーンアップを『上位1%』の視点で理解する——dsa.msc・dssite.msc・adsiedit.msc・dnsmgmt.mscの役割分担"
 description: "AD移行でDCを撤去した後、dsa.msc・dssite.msc・adsiedit.msc・dnsmgmt.mscという4つのコンソールを確認すると思うが、それぞれ何を管理しており、なぜそこを確認・削除する必要があるのか。dsa.mscのcomputersに退役した端末の情報が残り続けるのはなぜか、dsa.mscとdssite.mscの違いは何かまでを体系的に理解する。"
 series: "active-directory"
-order: 9
+order: 10
 tags: ["windows-server", "active-directory", "infra", "troubleshooting"]
 emoji: "🧹"
 pubDate: 2026-09-20
@@ -14,7 +14,7 @@ pubDate: 2026-09-20
 - **対象読者**: AD移行の手順書に沿ってこれら4つのコンソールを確認したことはあるものの、それぞれが何を管理しているコンソールなのか、なぜそこを確認する必要があるのかを整理できていない方を想定しています。
 - **読むのにかかる想定時間**: 約19分
 
-この記事は[『上位1%』シリーズ 全記事ガイド](/sitemap)の一部、[Active Directoryシリーズ](/sitemap#シリーズ一覧)の9本目です。パーティションの種類は[ADとDC、ドメインとフォレストの違いを『上位1%』の視点で理解する](/articles/ad-dc-fundamentals-guide)、DNSレコードの詳細は[DNSゾーンとレコードの読み方を『上位1%』の視点で理解する](/articles/dns-zones-records-guide)を前提にしています。
+この記事は[『上位1%』シリーズ 全記事ガイド](/sitemap)の一部、[Active Directoryシリーズ](/sitemap#シリーズ一覧)の10本目です。パーティションの種類は[ADとDC、ドメインとフォレストの違いを『上位1%』の視点で理解する](/articles/ad-dc-fundamentals-guide)、DNSレコードの詳細は[DNSゾーンとレコードの読み方を『上位1%』の視点で理解する](/articles/dns-zones-records-guide)を前提にしています。
 
 ## 前提知識
 

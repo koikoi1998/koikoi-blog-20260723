@@ -2,7 +2,7 @@
 title: "dcdiag /vの読み方を『上位1%』の視点で理解する——エラーを無視してよい根拠・無視できない根拠"
 description: "dcdiag /vは項目数が多く、AD移行の現場では警告やエラーが大量に表示されがちで、何が本当に危険で何が無視してよいのか判断に迷う。dcdiagが何をテストしているツールなのか、主要なテスト項目がそれぞれ何を検証しているのか、そして結果を見てどう判断すればよいのかを体系的に理解する。"
 series: "active-directory"
-order: 8
+order: 9
 tags: ["windows-server", "active-directory", "infra", "troubleshooting"]
 emoji: "🔬"
 pubDate: 2026-09-20
@@ -14,7 +14,7 @@ pubDate: 2026-09-20
 - **対象読者**: `dcdiag /v`を実行したことはあるものの、項目数の多さと出力の長さに圧倒され、警告が出ていても「よくあることだから」と流してしまっている、あるいは逆にすべての警告を過剰に恐れてしまっている方を想定しています。
 - **読むのにかかる想定時間**: 約20分
 
-この記事は[『上位1%』シリーズ 全記事ガイド](/sitemap)の一部、[Active Directoryシリーズ](/sitemap#シリーズ一覧)の8本目です。[DCの正常性確認を『上位1%』の視点で理解する](/articles/dc-health-check-guide)で扱った`repadmin`・`net share`とあわせて、DCの正常性確認の主要な手段の1つです。
+この記事は[『上位1%』シリーズ 全記事ガイド](/sitemap)の一部、[Active Directoryシリーズ](/sitemap#シリーズ一覧)の9本目です。[DCの正常性確認を『上位1%』の視点で理解する](/articles/dc-health-check-guide)で扱った`repadmin`・`net share`とあわせて、DCの正常性確認の主要な手段の1つです。
 
 ## 前提知識
 

@@ -2,7 +2,7 @@
 title: "Reading dcdiag /v from a \"Top 1%\" Perspective — Which Errors You Can Ignore, and Which You Can't"
 description: "dcdiag /v has so many test items that real-world AD environments tend to show a flood of warnings and errors, leaving you unsure what's genuinely dangerous and what's safe to ignore. This article systematically explains what dcdiag actually tests, what its major test items each verify, and how to judge its results."
 series: "active-directory"
-order: 8
+order: 9
 tags: ["windows-server", "active-directory", "infra", "troubleshooting"]
 emoji: "🔬"
 pubDate: 2026-09-20
@@ -14,7 +14,7 @@ pubDate: 2026-09-20
 - **Intended Audience**: This article is aimed at engineers who've run `dcdiag /v` but felt overwhelmed by the sheer number of test items and the length of the output — either brushing off warnings as "that's normal" or, conversely, panicking over every single warning.
 - **Estimated Reading Time**: About 20 minutes
 
-This article is part of the [Top 1% Series' full article guide](/en/sitemap), and the eighth article in the [Active Directory series](/en/sitemap#series-list). Together with `repadmin` and `net share`, covered in [Understanding DC Health Checks from a "Top 1%" Perspective](/en/articles/dc-health-check-guide), this is one of the primary tools for confirming DC health.
+This article is part of the [Top 1% Series' full article guide](/en/sitemap), and the ninth article in the [Active Directory series](/en/sitemap#series-list). Together with `repadmin` and `net share`, covered in [Understanding DC Health Checks from a "Top 1%" Perspective](/en/articles/dc-health-check-guide), this is one of the primary tools for confirming DC health.
 
 ## Prerequisites
 

@@ -2,7 +2,7 @@
 title: "Understanding Post-Migration AD Cleanup from a \"Top 1%\" Perspective — The Division of Labor Between dsa.msc, dssite.msc, adsiedit.msc, and dnsmgmt.msc"
 description: "After decommissioning a DC in an AD migration, you're supposed to check four consoles: dsa.msc, dssite.msc, adsiedit.msc, and dnsmgmt.msc. What does each one actually manage, and why do you need to check and clean up there? This article systematically explains why a retired machine's information lingers in dsa.msc's Computers container, and what the difference is between dsa.msc and dssite.msc."
 series: "active-directory"
-order: 9
+order: 10
 tags: ["windows-server", "active-directory", "infra", "troubleshooting"]
 emoji: "🧹"
 pubDate: 2026-09-20
@@ -14,7 +14,7 @@ pubDate: 2026-09-20
 - **Intended Audience**: This article is aimed at engineers who've checked these four consoles while following an AD migration procedure, but haven't quite organized in their heads what each console manages or why checking it matters.
 - **Estimated Reading Time**: About 19 minutes
 
-This article is part of the [Top 1% Series' full article guide](/en/sitemap), and the ninth article in the [Active Directory series](/en/sitemap#series-list). It assumes you understand partition types from [Understanding the Difference Between AD and DC, and Domains vs. Forests, from a "Top 1%" Perspective](/en/articles/ad-dc-fundamentals-guide), and DNS record details from [Reading DNS Zones and Records from a "Top 1%" Perspective](/en/articles/dns-zones-records-guide).
+This article is part of the [Top 1% Series' full article guide](/en/sitemap), and the tenth article in the [Active Directory series](/en/sitemap#series-list). It assumes you understand partition types from [Understanding the Difference Between AD and DC, and Domains vs. Forests, from a "Top 1%" Perspective](/en/articles/ad-dc-fundamentals-guide), and DNS record details from [Reading DNS Zones and Records from a "Top 1%" Perspective](/en/articles/dns-zones-records-guide).
 
 ## Prerequisites
 

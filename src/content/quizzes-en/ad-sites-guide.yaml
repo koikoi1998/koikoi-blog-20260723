@@ -1,0 +1,45 @@
+questions:
+  - question: "According to the article, what is the substance of a \"Site\" in AD DS?"
+    choices:
+      - "A mechanism representing an authentication/security boundary, just like a domain or forest"
+      - "A mapping representing the boundary of a location connected by a low-bandwidth link — a collection of IP subnets together with the list of DCs tied to those subnets"
+      - "A mechanism for grouping DCs by hardware performance"
+      - "A mechanism for representing which department a user account belongs to"
+    answerIndex: 1
+    explanation: "A site is a logical grouping that tells AD DS where the boundary of a location connected by a low-bandwidth, slow link lies. Its substance is a mapping: a collection of IP subnets together with the list of DCs tied to those subnets. It has nothing to do with an authentication/security boundary like a domain or forest."
+
+  - question: "If a subnet isn't registered to any site, how are clients and DCs belonging to that subnet treated?"
+    choices:
+      - "They can no longer connect to AD DS at all"
+      - "They are treated as belonging to the default site, Default-First-Site-Name"
+      - "The nearest site is automatically created and they are assigned to it"
+      - "They get an error and can't log on until it's manually fixed"
+    answerIndex: 1
+    explanation: "If a subnet isn't registered to any site, clients and DCs on that subnet are treated as belonging to the default site, Default-First-Site-Name. This leads to a common real-world problem where clients preferentially query a distant DC instead of the DC that's actually closest to them."
+
+  - question: "According to the article, what is the difference between intra-site and inter-site replication?"
+    choices:
+      - "Both operate on the same change-notification basis, with no difference in speed"
+      - "Intra-site replication is change-notification based and near-instant, while inter-site replication is schedule-based by default (a minimum 15-minute interval) — a deliberate design difference"
+      - "Inter-site replication is designed to be faster than intra-site replication"
+      - "Neither intra-site nor inter-site replication occurs unless an administrator manually triggers sync every time"
+    answerIndex: 1
+    explanation: "Intra-site replication is change-notification based: about 15 seconds to the first partner, then a 3-second interval to subsequent partners — essentially near-instant. Inter-site replication, by default, is schedule-based with a minimum interval of 15 minutes — a deliberately throttled design to avoid saturating the link."
+
+  - question: "According to the article, what roles do the KCC, ISTG, and bridgehead servers play?"
+    choices:
+      - "All of these must be manually configured by an administrator; nothing is automated"
+      - "The KCC automatically calculates the replication topology, and across sites, a bridgehead server elected by the ISTG represents each location in replication, keeping inter-location link load down"
+      - "The ISTG manages user account password policies"
+      - "A bridgehead server is the only DC in the forest allowed to hold FSMO roles"
+    answerIndex: 1
+    explanation: "The KCC automatically calculates the replication topology. Across sites, the ISTG calculates the replication path based on site link cost and automatically elects bridgehead servers. Rather than every DC in a location individually communicating with other locations, only the bridgehead server represents that location, keeping inter-location link load down."
+
+  - question: "According to the article, how should \"site link cost\" be used when multiple paths connect two locations?"
+    choices:
+      - "A higher cost value is preferred and chosen as the replication path"
+      - "A lower cost value is preferred, and the basic policy is to assign a lower cost to faster, more stable links"
+      - "Site link cost is purely informational and isn't actually used to determine the replication path"
+      - "Only one site link cost can be set per site"
+    answerIndex: 1
+    explanation: "A lower site link cost is preferred, and the ISTG uses this value to calculate the path that reaches every site at minimum total cost. The basic policy is to assign lower cost to faster, more stable links — for example, a low cost for a dedicated line and a higher cost for a backup VPN path, so the backup path is only used automatically when the dedicated line fails."
