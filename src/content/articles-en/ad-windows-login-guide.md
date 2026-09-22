@@ -18,8 +18,8 @@ This article is part of the [Top 1% Series' full article guide](/en/sitemap), an
 
 ## Prerequisites
 
-- **Kerberos authentication**: The default authentication protocol within an AD domain. A client requests a ticket from a domain controller (DC) for each authentication.
-- **SID (Security Identifier)**: A value that uniquely identifies a user or computer. Windows's permission management is based on this SID, not on the username string.
+- **Kerberos authentication**: The default authentication protocol within an AD domain. A client requests a ticket from a domain controller (DC) for each authentication. The mechanics behind this ticket exchange are covered thoroughly in [Understanding Kerberos Authentication from a "Top 1%" Perspective](/en/articles/ad-kerberos-guide).
+- **SID (Security Identifier)**: A value that uniquely identifies a user or computer. Windows's permission management is based on this SID, not on the username string. How a SID is actually used inside real authentication processing clicks into place alongside the PAC (Privilege Attribute Certificate), covered in [Understanding Kerberos Authentication](/en/articles/ad-kerberos-guide).
 - **Local user profile**: The collection of that user's desktop settings, documents, application settings, and so on, stored under `C:\Users\<username>`.
 - **How does a PC find its DC in the first place?**: This article focuses on the substance of Kerberos authentication (the ticket exchange itself), but many readers will naturally wonder, as a prerequisite question, how a PC even knows which DC to query in the first place. To give away the short answer: **a PC uses DNS SRV records to search for a DC.** That means it's essential for the PC's DNS configuration to point at your internal DNS (a DNS server integrated with AD) — either distributed via DHCP during kitting, or set statically if you're on fixed IPs. The detailed mechanics of DC discovery (the DC locator) are covered in [Understanding DNS Zones and Records from a "Top 1%" Perspective](/en/articles/dns-zones-records-guide); reading that first, if you haven't already, will make this article easier to follow.
 

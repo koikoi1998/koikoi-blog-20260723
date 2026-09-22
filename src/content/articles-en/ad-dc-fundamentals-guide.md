@@ -21,7 +21,7 @@ This article is part of the [Top 1% Series' full article guide](/en/sitemap). It
 - **Directory service**: A mechanism that centrally manages information about an organization's "people and things" — users, computers, groups — as a structured, hierarchical database that can be searched and used for authentication. It's the same idea as a phone directory letting you look up a phone number from a name: AD DS lets you look up a user's attributes (group memberships, password hash, expiration date, and so on) from their username.
 - **LDAP (Lightweight Directory Access Protocol)**: The standard protocol for searching, adding, modifying, and deleting entries in a directory service. AD DS accepts queries over LDAP.
 - **Domains vs. workgroups**: In a workgroup, each PC holds only its own local user account information, with no central administrator. In a domain, authentication information is centralized in one place (AD DS), and every PC that has joined the domain queries that central store.
-- **Kerberos authentication**: The default authentication protocol within an AD domain. This article focuses on the structure of AD DS itself, so it doesn't get into the internal workings of the authentication protocol.
+- **Kerberos authentication**: The default authentication protocol within an AD domain. This article focuses on the structure of AD DS itself, so it doesn't get into the internal workings of the authentication protocol. Its inner workings are covered thoroughly in [Understanding Kerberos Authentication from a "Top 1%" Perspective](/en/articles/ad-kerberos-guide).
 
 ## Getting the Big Picture
 

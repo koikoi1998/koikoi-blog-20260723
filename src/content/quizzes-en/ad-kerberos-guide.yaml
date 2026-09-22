@@ -1,0 +1,45 @@
+questions:
+  - question: "According to the article, how does Kerberos authentication verify identity without sending the password itself over the network?"
+    choices:
+      - "It re-hashes the password with a stronger algorithm each time before sending it"
+      - "The client and the KDC can each independently derive the same key from the user's password, and by sending a timestamp encrypted with that key, they exchange only \"proof of holding that key\" rather than the password itself"
+      - "It encrypts the password once and sends it, then never sends it again afterward"
+      - "The KDC doesn't store the password at all, and always asks the user for it directly"
+    answerIndex: 1
+    explanation: "The client encrypts the current timestamp with a key derived from the password and sends it; the KDC independently derives the same key from the password hash it holds and attempts to decrypt. Successful decryption is itself the proof of identity, and the password hash itself never travels over the network."
+
+  - question: "According to the article, what is true about the TGT (Ticket-Granting Ticket)?"
+    choices:
+      - "It stores the user's password itself in plaintext"
+      - "It's encrypted with the KDC's own key (derived from the krbtgt account's password), so the client itself can't decrypt and read its contents"
+      - "It's a self-signed certificate the client creates by encrypting it with its own key"
+      - "It's disposable data that must be sent back to the KDC every single time the client accesses a service"
+    answerIndex: 1
+    explanation: "The TGT is encrypted with the KDC's own key (derived from the password of the special krbtgt account), so the client itself can't decrypt and read its contents. To the client, it's like a sealed piece of evidence it presents to the KDC the next time it requests a service ticket, to prove it's already been authenticated."
+
+  - question: "According to the article, what is the relationship between the PAC (Privilege Attribute Certificate) and SIDs?"
+    choices:
+      - "The PAC contains only the user's password hash and has nothing to do with SIDs"
+      - "The PAC contains the user's own SID along with the SIDs of every group that user belongs to, letting the service side verify authorization information just by inspecting it, without querying AD DS each time"
+      - "The PAC contains no SIDs at all — just the username string"
+      - "The PAC is a data structure used in an unrelated protocol, with nothing to do with Kerberos authentication"
+    answerIndex: 1
+    explanation: "The PAC contains the user's own SID, along with the SIDs of every group that user belongs to. The service side can determine \"who this user is and what groups they belong to\" just by extracting the PAC from the ticket, without querying AD DS each time — this is the concrete mechanism behind Windows's SID-based permission management."
+
+  - question: "According to the article, what's the difference between Kerberos and NTLM authentication?"
+    choices:
+      - "NTLM is always faster and also supports delegation (double-hop authentication)"
+      - "Kerberos is ticket-based, so the service side doesn't need to query the DC each time, and it also supports mutual authentication and delegation; NTLM is challenge-response based, requiring a DC check on every authentication, and fundamentally can't support delegation"
+      - "Kerberos and NTLM are essentially the exact same mechanism, just with different names"
+      - "NTLM is a newer protocol than Kerberos and is planned to eventually replace it"
+    answerIndex: 1
+    explanation: "Kerberos is ticket-based — the service side can complete verification just by validating the ticket with its own key, without querying the DC each time — and it also supports mutual authentication and delegation. NTLM, by contrast, is challenge-response based, requires the server to check with the DC on every authentication, and fundamentally can't support delegation."
+
+  - question: "According to the article, what is the \"token bloat\" problem?"
+    choices:
+      - "A user belonging to an extremely large number of groups causes the list of SIDs in the PAC to keep growing, and once it exceeds the MaxTokenSize limit, some group information gets left out of the token — leading to inability to access resources you should have access to, or unstable authentication"
+      - "A problem that occurs when a user's password is too long"
+      - "A problem where the AD DS database itself grows too large due to insufficient disk space on the DC"
+      - "A purely theoretical problem that never actually happens in practice"
+    answerIndex: 0
+    explanation: "Because the PAC contains the SIDs of every group a user belongs to, a user in an extremely large number of groups causes the PAC's size to keep growing. Once it exceeds the MaxTokenSize limit (roughly 48KB by default), some group information gets left out of the token, leading to inaccessible resources or unstable authentication."
