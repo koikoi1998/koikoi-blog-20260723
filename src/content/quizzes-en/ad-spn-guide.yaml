@@ -1,0 +1,45 @@
+questions:
+  - question: "What does an SPN (Service Principal Name) actually point at, according to the article?"
+    choices:
+      - "The IP address of the server the service runs on"
+      - "The account running the service — the security context for that service, not the server's name"
+      - "The list of users allowed to connect to the service"
+      - "Only the port number the service uses"
+    answerIndex: 1
+    explanation: "An SPN doesn't point at the server itself — it points at the account running the service. The KDC searches for the account whose servicePrincipalName attribute holds the SPN the client presented, and encrypts the service ticket with that account's key."
+
+  - question: "According to the article, what is the purpose of the HOST/computer-name SPN registered by default on a computer account?"
+    choices:
+      - "So that many basic services running on that computer (file sharing, printing, remote administration, and so on) can all authenticate by piggybacking off this one shared SPN"
+      - "A special flag indicating that computer is a domain controller"
+      - "An SPN for registering that computer's IP address in DNS"
+      - "A setting that restricts the hours a user is allowed to log on to that computer"
+    answerIndex: 0
+    explanation: "The HOST/computer-name SPN is registered by default on a computer account so that many of the basic services running on that computer can all authenticate by piggybacking off this one shared SPN."
+
+  - question: "If you change a service's execution account to a dedicated service account, what do you need to do about its SPN?"
+    choices:
+      - "Nothing — the SPN migrates to the new account automatically"
+      - "Just add the SPN to the new account; the old account's SPN is automatically deactivated"
+      - "Add the SPN to the new account, and also explicitly remove the SPN still sitting on the old account (forgetting this causes a duplicate-SPN error)"
+      - "Changing an SPN requires raising the domain functional level first"
+    answerIndex: 2
+    explanation: "Adding and removing an SPN are completely independent operations. If you add the SPN to the new account without removing it from the old one, the same SPN ends up on both accounts, causing a KDC_ERR_PRINCIPAL_NOT_UNIQUE error."
+
+  - question: "According to the article, what's the difference between `setspn -A` and `setspn -S`?"
+    choices:
+      - "They're identical — just two names for the same option"
+      - "-A simply adds the given SPN without checking for duplicates, while -S is the safer option that checks the entire forest for duplicates before adding"
+      - "-A is for user accounts, -S is for computer accounts"
+      - "-A removes an SPN, while -S adds one"
+    answerIndex: 1
+    explanation: "-A simply adds the given SPN as-is, without checking whether the same SPN is already registered on another account elsewhere in the forest. -S, the safer option, searches the entire forest for duplicates before adding."
+
+  - question: "According to the article, what can happen if an SPN isn't correctly registered, or is a duplicate that can't be resolved?"
+    choices:
+      - "A clear error message always appears, so the user notices the problem immediately"
+      - "Windows can (depending on configuration) silently give up on Kerberos and fall back to NTLM authentication, which is easy to miss because authentication still appears to succeed"
+      - "That computer gets automatically removed from the domain"
+      - "Replication stops across all of AD DS"
+    answerIndex: 1
+    explanation: "If an SPN isn't correctly registered or can't be resolved due to a duplicate, Windows can, depending on configuration, silently fall back from Kerberos to NTLM. This doesn't surface as a clear error — it looks like it's working, since authentication still succeeds, which makes it an easy problem to miss in practice."

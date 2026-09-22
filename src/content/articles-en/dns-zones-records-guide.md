@@ -129,7 +129,7 @@ Microsoft provides a command-line tool called `dnslint` to comprehensively verif
 
 ### Practical Problems Caused by the Asymmetry Between Forward and Reverse Lookup Zones
 
-As noted, forward and reverse lookup zones are independent data. This asymmetry can occasionally affect real-world operation in the form of **the use of reverse lookups in Kerberos authentication.** Some applications and services (particularly legacy implementations) use reverse lookups (PTR records) for SPN validation or logging purposes, and in an environment where the reverse lookup zone isn't correctly configured, or dynamic updates aren't enabled, this can lead to a puzzling symptom: name resolution itself works fine, yet only a specific service throws authentication errors or suffers degraded performance.
+As noted, forward and reverse lookup zones are independent data. This asymmetry can occasionally affect real-world operation in the form of **the use of reverse lookups in Kerberos authentication.** Some applications and services (particularly legacy implementations) use reverse lookups (PTR records) for [SPN](/en/articles/ad-spn-guide) validation or logging purposes, and in an environment where the reverse lookup zone isn't correctly configured, or dynamic updates aren't enabled, this can lead to a puzzling symptom: name resolution itself works fine, yet only a specific service throws authentication errors or suffers degraded performance.
 
 ## Common Misconceptions and Pitfalls
 
