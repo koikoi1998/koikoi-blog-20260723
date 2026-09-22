@@ -74,7 +74,9 @@ DC=corp,DC=example,DC=com
             Last attempt @ <timestamp> was successful.
 ```
 
-The most important thing to check here is **whether the most recently attempted replication with each partner reads `was successful`, and whether that timestamp falls within a reasonable window relative to the current time (typically, within the last few hours).** **"Successful" only means that the most recent replication attempt with that partner completed correctly — it doesn't rule out the possibility that replication had been stalled for a long time before that.** Rather than being reassured by looking at just the most recent attempt, you also need to check whether the consecutive failure count is 0, and whether the last-success timestamp isn't abnormally old.
+The single most important thing to get right when reading this output is **not mixing up who is "receiving from" whom.** The example above was run on `DC1`, and as the `INBOUND NEIGHBORS` heading indicates, this is the state of replication in the direction of "**DC1 pulling in changes from DC2**." `repadmin /showrepl` always shows the state **with the DC you ran the command on as the subject (the receiver) — only the side of what that DC is receiving from other DCs.** If you want to check the picture from DC2's side — "is what DC2 sent actually arriving correctly at DC1?" — you need to run the same command on DC2 itself, or check across multiple DCs at once with `repadmin /replsummary`, covered below. A mismatch like "`showrepl` on DC1 showed success, but DC2 showed a different error" is a classic pitfall that's easy to miss if you don't understand this inbound-only nature of the command.
+
+With that established, the most important thing to check here is **whether the most recently attempted replication with each partner reads `was successful`, and whether that timestamp falls within a reasonable window relative to the current time (typically, within the last few hours).** **"Successful" only means that the most recent replication attempt with that partner completed correctly — it doesn't rule out the possibility that replication had been stalled for a long time before that.** Rather than being reassured by looking at just the most recent attempt, you also need to check whether the consecutive failure count is 0, and whether the last-success timestamp isn't abnormally old.
 
 <details>
 <summary>What a failure looks like</summary>
@@ -106,9 +108,39 @@ Running the `net share` command on a DC (or on Windows Server in general) shows,
 
 **Of these, C$, IPC$, and ADMIN$ aren't specific to AD DS or DCs at all — they're administrative shares always created by default on any ordinary Windows (Server) machine.** **NETLOGON and SYSVOL, on the other hand, are proof that the server is functioning correctly as a DC**, and hold particular significance for DC health checks.
 
+<details>
+<summary>Do C$, ADMIN$, and IPC$ exist for RDP connections?</summary>
+
+A common misconception in practice: **these three administrative shares have nothing to do with RDP (Remote Desktop) connections themselves.** An RDP connection is an entirely separate mechanism that streams that server's desktop screen to you remotely (the RDP protocol, default TCP port 3389) — the reason you can see the C drive or the desktop once you've logged in via RDP is **simply that you're operating the OS in exactly the same state as if you were sitting directly at that server; it has nothing to do with going through the C$ share.**
+
+The real purpose of these administrative shares is to **directly access the file system or services over the network, without opening a full desktop session like RDP.**
+
+- **C$**: Accessing it directly as a UNC path in the form `\\server-name\C$` lets a remote administrator browse and operate on that server's C drive contents directly from Explorer or the command line — without logging in via RDP every time. Backup software and operational scripts that push files out to many servers at once routinely rely on this path.
+- **ADMIN$**: This maps to `C:\Windows` (`%SYSTEMROOT%`), and many remote management tools (remote service installation, remote execution tools like `PsExec`, and so on) use it internally to transfer an executable temporarily or register it as a service. It isn't "a special share only usable when you've RDP'd in as an administrator" — it's **a share dedicated to the Windows folder, directly accessible remotely by any account with administrator privileges, without going through RDP at all.**
+- **IPC$**: Rather than a file share with actual content, this is **a communication-only channel for carrying remote procedure calls (RPC) or named-pipe communication over SMB.** Many remote-management API calls — editing the remote registry, listing/starting/stopping services, enumerating shared folders — go over this IPC$ channel. It isn't for placing or retrieving files; it's more accurate to picture it as **"the pipe you send administrative commands and queries to this server through."**
+
+In short, C$, ADMIN$, and IPC$ are all **"paths for directly operating files or services remotely without logging in via RDP,"** and RDP is a completely separate, independent mechanism from these.
+
+</details>
+
+### NETLOGON and SYSVOL, and Why You Need Both
+
+As the table above shows, the `NETLOGON` share's actual target is the `scripts` subfolder inside the `SYSVOL` folder. In other words, **the NETLOGON share is simply re-exposing, under a different name, part of the same tree that the SYSVOL share already exposes** — it isn't separate, independent data. Both trace back to the same SYSVOL folder on the DC, and **both are accessed by clients and DCs alike** (it isn't a split of "SYSVOL is DC-to-DC only, NETLOGON is client-only").
+
+It's a fair question to ask, "if the entire SYSVOL folder is already shared, why is a separate NETLOGON share needed at all?" — and the reason it still exists as an independent share today is **historical compatibility**. Before AD DS and SYSVOL were introduced in Windows 2000, domains running Windows NT 4.0 and earlier had a convention of placing logon scripts at a fixed path, `\\server-name\netlogon\script-name`, and many logon scripts and tools simply assumed that path outright. Even after SYSVOL was introduced, `NETLOGON` was kept around as an alias-like share pointing at the `scripts` subfolder, so that this familiar, short path — `\\domain-name\netlogon\...` — could keep working. In practice, it's worth understanding the division of labor this way: the traditional short `NETLOGON` path is used to reference logon scripts, while the broader `SYSVOL` path is used to access the GPO configuration files themselves (under the `Policies` folder).
+
 ### Why the Presence of NETLOGON and SYSVOL Shares Constitutes a DC Health Check
 
 The NETLOGON and SYSVOL shares are only automatically created once replication of the SYSVOL folder (via DFSR, or the legacy FRS) has completed successfully, and the Netlogon service has judged its content ready to distribute. **Right after promoting a DC, or when there's a problem with SYSVOL replication, these two shares may not exist (or may temporarily disappear).** If running `net share` doesn't show these two shares, that DC likely can't apply Group Policy or distribute logon scripts, and in practice, should be judged as not fully functioning as a DC.
+
+<details>
+<summary>With multiple DCs, which DC's SYSVOL does a client actually consult?</summary>
+
+Because the actual GPO and logon-script files are replicated **to every DC** via DFSR (or the legacy FRS), a client can in principle reach the same content by consulting any DC's SYSVOL. So which DC does a client actually pick? It's **the same DC that client itself uses for Kerberos authentication at logon time.** At startup and logon, a client uses DNS SRV records to look up **the closest DC in its own site (location)**, and from then on, generally directs its authentication, GPO retrieval, and logon-script retrieval at that same DC. Unless you've explicitly configured a DC to be used, this isn't something an administrator manually assigns per client. The detailed mechanics of this DC selection (the DC locator) are covered, using the DNS SRV records involved, in [Understanding DNS Zones and Records from a "Top 1%" Perspective](/en/articles/dns-zones-records-guide), and in [Understanding AD "Sites" and Replication Topology from a "Top 1%" Perspective](/en/articles/ad-sites-guide).
+
+It's worth remembering that, because of this mechanism, **at a moment when replication of a change hasn't yet completed across all DCs, a mix of "already applied" and "not yet applied" GPO states can temporarily coexist, depending on which DC a given client happens to consult.** A GPO change doesn't take effect on every client the instant you make it — it depends on both the propagation of replication and the timing of each client's own GPO re-application cycle (by default, every 90 minutes plus a random offset for clients; every 5 minutes for DCs).
+
+</details>
 
 A command that makes this judgment more reliable is checking a registry value with `reg query`:
 
@@ -134,6 +166,18 @@ If the output of these commands **still lists the name of an old DC that should 
 ### Thoroughly Checking Across Multiple DCs and Partners
 
 `repadmin /showrepl` shows the state of inbound replication with the running DC itself as the receiver. **In an environment with multiple DCs, it's important not to stop at checking just one — run this command on each DC and confirm that replication is functioning correctly across every combination of DCs.** `repadmin /replsummary` lets you get a consolidated overview of failing replication across every DC in the forest in one view, which helps make health checks efficient in large-scale environments.
+
+Beyond `/showrepl`, `repadmin` has a handful of other subcommands you'll actually reach for in DC build and migration work. Some representative ones:
+
+| Subcommand | Purpose |
+|---|---|
+| `repadmin /replsummary` | Get a one-view overview of replication failures across every DC in the forest (covered above) |
+| `repadmin /showrepl * /csv` | Bulk-export the `/showrepl` results for every DC in CSV format, easy to work with in Excel — handy for periodic audits of environments with many DCs |
+| `repadmin /syncall <DC name> /AdeP` | Starting from the given DC, force synchronization with every partner **right now**, without waiting for the replication schedule. Used right after building a DC, or when verifying a migration where you want a change propagated to every DC immediately (`/A` = all partitions, `/d` = display servers by distinguished name (DN) rather than GUID for readability, `/e` = extend to every site in the forest, `/P` = push changes out from this DC to the others) |
+| `repadmin /kcc <DC name>` | Have that DC's KCC (Knowledge Consistency Checker, the mechanism that automatically calculates replication topology) immediately recalculate the topology. Used right after changing site configuration, for example |
+| `repadmin /queue <DC name>` | Check the queue of outbound replication requests still waiting to be sent. Used to check whether replication has backed up right after a large volume of changes |
+
+These aren't something you check every time the way you do with `/showrepl` — think of them as tools for **immediate propagation right after a build, or targeted investigation when a change is in doubt.** For day-to-day health checks, `/showrepl` and `/replsummary` are enough on their own.
 
 ## Common Misconceptions and Pitfalls
 

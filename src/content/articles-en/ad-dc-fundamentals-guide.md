@@ -55,15 +55,31 @@ The reason this terminology is confusing is that the word "AD" gets used ambiguo
 
 AD DS is a directory service implemented by Microsoft, based on X.500, an international standard for directory services. In substance, it's a **hierarchically structured database** organized according to a **schema** (a rulebook that defines the types of objects it can hold — users, computers, groups — and their attributes), searchable and updatable from the outside via the LDAP protocol, using Kerberos (and NTLM for compatibility) for authentication.
 
-The contents of this database are divided into three main **partitions (naming contexts)**:
+<details>
+<summary>Understanding the schema through a concrete example</summary>
+
+The schema is a set of definitions organized into two layers: "object types" and "attributes." For example, the `user` object type (class) defines attributes like `sAMAccountName` (logon name), `mail` (email address), and `memberOf` (group membership). When you actually create a new user in Active Directory Users and Computers, under the hood that corresponds to "generating one object that conforms to the `user` class, and writing the entered values into each of its attributes." Having a schema lets AD DS consistently enforce, at the database level, which attributes a given object type can or can't have and which attributes are required versus optional — and it guarantees that when one DC creates an object and another DC replicates it, both interpret it by the exact same rules.
+
+</details>
+
+The contents of this database are divided into three main **partitions** (naming contexts):
 
 | Partition | What it holds | Replication scope |
 |---|---|---|
 | Domain partition | Objects belonging to that domain — users, computers, groups, and so on | Only among DCs within the same domain |
-| Configuration partition | Forest-wide configuration information such as site topology and replication topology | Among all DCs in the forest |
+| Configuration partition | Forest-wide configuration information, including the configuration of **sites** (a physical-network grouping representing locations separated by low-bandwidth links) and the replication topology governing how replication happens between those sites | Among all DCs in the forest |
 | Schema partition | The object type definitions themselves | Among all DCs in the forest |
 
 This split — where only the domain partition stays confined to the domain, while the configuration and schema partitions are shared across the entire forest — is the key to understanding what the domain and forest boundaries discussed later actually mean.
+
+<details>
+<summary>Do you need a separate DB server, like SQL Server, to install AD DS?</summary>
+
+No, you don't. **AD DS has its own dedicated, built-in database engine (ESE/JET, the Extensible Storage Engine), which gets set up automatically the moment you install AD DS.** In practice this database is a file called `NTDS.dit` sitting on each DC's local disk — there's no need to install a separate DB server product (like SQL Server) or configure a connection to another server at all.
+
+This is different from how a business application (like ApexOne) separately requires Microsoft SQL Server. A business application is designed with "the application itself" and "the DB that stores its data" as separate products — since it doesn't include a DB of its own, you need to provision an RDBMS product like SQL Server on the side. AD DS, on the other hand, is designed around an assumption specific to directory-service workloads — extremely read-heavy, write-light access — and ships as a product that already bundles its own dedicated database engine, optimized for hierarchical structure (an LDAP namespace) rather than the general-purpose relational model SQL Server uses.
+
+</details>
 
 ### What Is a DC (Domain Controller)?
 
@@ -72,7 +88,9 @@ A DC is a Windows Server role that holds an actual replica of the AD DS database
 <details>
 <summary>The exception of RODCs (Read-Only Domain Controllers)</summary>
 
-Besides ordinary (writable) DCs, there's also a type called an **RODC (Read-Only Domain Controller)**. An RODC holds only a read-only replica of the AD DS database and, by default, caches no password hashes at all (an administrator can designate specific accounts whose hashes may be cached). RODCs are used at sites where physical security can't be fully guaranteed (such as branch offices), so that even if the DC is stolen or compromised, the attacker can't obtain write access or the password hashes of every account. Unless otherwise noted, the rest of this article — and this series — assumes an ordinary, writable DC.
+Besides ordinary (writable) DCs, there's also a type called an **RODC (Read-Only Domain Controller)**. An RODC holds only a read-only replica of the AD DS database and, by default, caches no password hashes at all (an administrator can designate specific accounts whose hashes may be cached). RODCs are used at sites where physical security can't be fully guaranteed (such as branch offices), so that even if the DC is stolen or compromised, the attacker can't obtain write access or the password hashes of every account.
+
+In practice, the typical setting where an RODC gets chosen is a **branch office, factory, or retail location connected to HQ over a thin link**. These sites often lack HQ-level physical lock-and-key discipline, so the risk of unauthorized access to (or outright theft of) a server rack is relatively elevated — while there's still a desire to keep a DC locally, to keep authentication and name resolution fast within the site. With an RODC, even if it's stolen, there's no writable AD DS database or forest-wide password hashes to leak — the blast radius is limited to, at most, the password hashes of the users who routinely logged on at that site. RODCs also carry an operational benefit in environments like overseas sites, where link quality to HQ is unstable and replication delays or conflicts are more likely: since an RODC never accepts writes, there's no complex replication-conflict resolution to worry about. Unless otherwise noted, the rest of this article — and this series — assumes an ordinary, writable DC.
 
 </details>
 
@@ -119,7 +137,9 @@ The reason the forest is treated as the topmost boundary is that **powerful priv
 <details>
 <summary>What is a global catalog (GC)?</summary>
 
-A forest typically has one or more DCs playing the role of **global catalog (GC)**. A GC holds a full, writable replica with every attribute for the domain it belongs to, while holding a **partial replica containing only a subset of commonly searched attributes** for every other domain in the forest. This lets forest-wide searches — such as "I want the email address of a user in a different domain" — be resolved with a single query to the GC, rather than querying that domain's own DCs one at a time. Confirming membership in universal groups (groups that can include members from any domain in the forest) also requires querying a GC, meaning that even a single-domain forest can, in certain steps of the logon process, require reachability to a GC. The relationship between GCs and FSMO (particularly the infrastructure master) will be covered in the article dedicated to FSMO.
+A forest typically has one or more DCs playing the role of **global catalog (GC)**. A GC holds a full, writable replica with every attribute for the domain it belongs to, while holding a **partial replica containing only a subset of commonly searched attributes** for every other domain in the forest.
+
+A common misconception here is to think of a GC as some ad-hoc "cache of frequently-needed info jotted down in advance." In reality, the partial replica a GC holds for other domains is a **fully-fledged replica, kept continuously in sync through AD DS's ordinary replication mechanism** — not a temporary cache. Limiting it to a subset of attributes is purely a design optimization: "restrict it to just the attributes that get referenced frequently in forest-wide search scenarios, to keep the amount of data being replicated down." This lets forest-wide searches — such as "I want the email address of a user in a different domain" — be resolved with a single query to the GC, rather than querying that domain's own DCs one at a time. Confirming membership in universal groups (groups that can include members from any domain in the forest) also requires querying a GC, meaning that even a single-domain forest can, in certain steps of the logon process, require reachability to a GC. The relationship between GCs and FSMO (particularly the infrastructure master) will be covered in the article dedicated to FSMO.
 
 </details>
 
@@ -140,7 +160,15 @@ graph LR
     DC2025 -.same as above.-> FL
 ```
 
-Raising the functional level itself must be done explicitly, via Active Directory Administrative Center or PowerShell (`Set-ADDomainMode` / `Set-ADForestMode`), and it also affects **whether older-OS DCs can be added going forward** (once you raise the level, DCs running an older OS than that level can no longer newly join). In many versions it's technically possible to lower the functional level again, but some features enabled after raising it aren't restored simply by lowering it — so in practice, it's safest to **plan the operation as a one-way decision**.
+To get a concrete sense of "what actually changes when you raise the functional level" in practice, here are some representative examples:
+
+| Functional level | A change that comes up often in practice |
+|---|---|
+| Domain functional level: Windows Server 2008 | **Fine-Grained Password Policy** becomes available, letting you set different password policies per user or group |
+| Forest functional level: Windows Server 2008 R2 | The **Active Directory Recycle Bin** can be enabled, letting you restore accidentally deleted objects (meeting the functional level alone doesn't turn it on automatically — it still needs to be explicitly enabled separately) |
+| Domain functional level: Windows Server 2012 R2 | **Authentication policies and authentication policy silos** become available, letting you restrict which machines a given privileged account is allowed to log on to |
+
+In other words, raising the functional level is really about "satisfying the prerequisite for using a new AD management or security feature" — raising it doesn't suddenly change existing behavior on its own. Raising the functional level itself must be done explicitly, via Active Directory Administrative Center or PowerShell (`Set-ADDomainMode` / `Set-ADForestMode`), and it also affects **whether older-OS DCs can be added going forward** (once you raise the level, DCs running an older OS than that level can no longer newly join). In many versions it's technically possible to lower the functional level again, but some features enabled after raising it aren't restored simply by lowering it — so in practice, it's safest to **plan the operation as a one-way decision**.
 
 <details>
 <summary>The relationship between domain functional level and forest functional level</summary>
@@ -157,7 +185,7 @@ When you select "Active Directory Domain Services" in the "Add Roles and Feature
 |---|---|---|
 | Active Directory Domain Services | Role | The actual role you wanted to install |
 | File and Storage Services (Storage Services) | Role | Not an AD DS-specific dependency — it's simply **a baseline role that's always enabled by default on any Windows Server**. Once this DC is later promoted to a domain controller, it hosts the SYSVOL share (which stores Group Policy templates and scripts, and is replicated between DCs via DFSR) on top of the file-sharing mechanism this role provides |
-| Group Policy Management (GPMC) | Feature | The management console for Group Policy, one of AD DS's primary use cases. Added as an accompanying tool when the AD DS role is selected |
+| Group Policy Management (GPMC) | Feature | The management console for **Group Policy (GPO, Group Policy Object)** — a mechanism for bulk-distributing and enforcing OS and application settings across a domain or OU — which is one of AD DS's primary use cases. GPO's own creation/application rules and its relationship to SYSVOL are covered in more depth in a separate article in the Windows Server series. Added as an accompanying tool when the AD DS role is selected |
 | Remote Server Administration Tools → Role Administration Tools → AD DS and AD LDS Tools (AD module, Active Directory Administrative Center, AD DS Snap-Ins and Command-Line Tools, etc.) | Feature (management tools) | The standard tool set for managing this DC — and other DCs — from the GUI or PowerShell |
 | .NET Framework 4.8 Features (including WCF Services and TCP Port Sharing) | Feature | Not AD DS-specific — it's a **baseline feature enabled by default** that many of Windows Server's management tools and PowerShell modules rely on as their runtime |
 
@@ -182,7 +210,7 @@ Beyond the items noted above as "enabled by default regardless of AD DS," Window
 | Windows PowerShell (5.1) | The standard shell for management and automation. Nearly every management tool depends on it |
 | Wireless LAN Service | The service that controls Wi-Fi adapters. Even on servers that never physically use Wi-Fi, this component is bundled in by default |
 | WoW64 Support | The compatibility layer that lets 32-bit applications run on 64-bit Windows. The difference between x64 and x86 itself, from a practical installer-selection standpoint, is planned for a separate article |
-| XPS Viewer | A viewer for documents in XPS format |
+| XPS Viewer | A viewer for documents in XPS format (XPS stands for "XML Paper Specification," a document format Microsoft devised as a competitor to PDF that preserves print layout as-is. "Microsoft XPS Document Writer," which shows up as a destination in the Print dialog, is the virtual printer that writes files out in this format — you won't run into it often in practice, but it still shows up today as the print-log format for some legacy applications and as an output format for line-of-business reporting in some systems) |
 
 These are provided as part of Windows Server's baseline, independent of adding or removing roles — they're not "features that increased because AD DS was installed." Keeping this distinction in mind reduces the confusion of scanning Server Manager's feature list.
 

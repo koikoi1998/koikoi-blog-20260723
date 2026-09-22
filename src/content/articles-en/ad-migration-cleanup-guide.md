@@ -18,7 +18,7 @@ This article is part of the [Top 1% Series' full article guide](/en/sitemap), an
 
 ## Prerequisites
 
-- **MMC (Microsoft Management Console) snap-ins**: Management consoles like `dsa.msc` and `dssite.msc` are both "snap-ins" built on the common MMC framework. Understanding that each one shows a different part of a single database — AD DS — with a different look and set of operations makes the rest of this article easier to follow.
+- **MMC (Microsoft Management Console) snap-ins**: Many of Windows's management tools (`dsa.msc`, `dssite.msc`, and so on) aren't each built as an independent standalone application — instead, **they're "plugged into" a common GUI shell called MMC as pieces that add functionality to it.** This "pluggable piece" is called a **snap-in**. The `.msc` file extension itself derives from this same mechanism — it stands for **"Microsoft Saved Console"** (an MMC configuration file that saves which snap-in(s) to load ahead of time). So double-clicking `dsa.msc` actually amounts to "launch MMC, and restore the state where the 'Active Directory Users and Computers' snap-in is loaded." This mechanism is also what lets you build your own custom console that brings several snap-ins together into a single MMC screen. Understanding that each `.msc` file shows a different part of a single database — AD DS — with a different look and set of operations makes the rest of this article easier to follow.
 
 ## Getting the Big Picture
 

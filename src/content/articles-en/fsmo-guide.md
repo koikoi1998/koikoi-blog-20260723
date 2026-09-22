@@ -52,7 +52,7 @@ The **Schema Master** is the sole DC in the forest that can make changes to the 
 
 ### One Per Forest: Domain Naming Master
 
-The **Domain Naming Master** is the sole DC in the forest that can add or remove domains from the forest (and add or remove certain application partitions). Guaranteeing that domain names are globally unique within the forest requires a single point of management for tracking "what domain names are already in use," and this role handles that job.
+The **Domain Naming Master** is the sole DC in the forest that can add or remove domains from the forest (and add or remove certain application partitions). "Globally unique" here doesn't mean **unique across the entire internet worldwide — it means unique within your own forest, and only that.** Even if multiple different organizations (each in their own separate forest) all happen to use a commonly-recycled internal name like `test.local`, that's not a problem at all, since the forests are separate. What the Domain Naming Master manages and guarantees is strictly **preventing the accident of two domains with the same name ending up inside your own forest** — it has no involvement with, or even any means of knowing about, domain names that exist out in the world beyond your forest.
 
 ### One Per Domain: RID Master
 
@@ -72,6 +72,16 @@ Because RIDs have a theoretical upper limit (a 32-bit value range), **RID pool e
 The **PDC Emulator** is, in effect, the role that shoulders the most practical responsibilities among the five FSMOs — a sort of "face of the domain."
 
 - **Authority as the time server**: Time synchronization within a domain (the Windows Time service) is hierarchical — each DC synchronizes to the PDC Emulator's clock, and ordinary domain-joined PCs synchronize to their DC's clock. Kerberos authentication is strict about clock drift, and if the drift exceeds the allowed tolerance (5 minutes by default), authentication itself fails outright — so the PDC Emulator's clock accuracy is directly tied to the stability of authentication across the entire domain.
+
+<details>
+<summary>What does the PDC Emulator itself synchronize its time against?</summary>
+
+If you haven't explicitly configured an upstream time source above the PDC Emulator, the Windows Time service **free-runs off the PDC Emulator's own local hardware clock (the CMOS clock)** as its time source. Because every other DC and client in the domain synchronizes to this same PDC Emulator, **there's no relative time drift within the domain** — meaning that not syncing with an external NTP source doesn't immediately break Kerberos authentication.
+
+That said, this isn't a recommended configuration. CMOS clocks generally have poor accuracy and are prone to drift accumulating over the long term, and as the absolute gap versus true external time (UTC) gradually widens, problems start to surface in areas outside authentication — certificate expiration checks, correlating log timestamps, or time synchronization if you ever establish a cross-forest trust with another organization. Even in an environment where the internal segment has no connectivity to the internet, the standard practice is to **explicitly configure a high-precision time source located somewhere inside your own network (such as a GPS-equipped NTP appliance) as the PDC Emulator's sync target**; if even that isn't available, at minimum, the people operating the environment should be aware that "this PDC Emulator is free-running off its CMOS clock" and periodically check for drift.
+
+</details>
+
 - **Immediate propagation of password changes**: Ordinary AD DS changes propagate through multi-master replication (with some lag), but **password changes** get special treatment. When a password is changed on any DC, that DC **immediately forwards the change to the PDC Emulator**, without waiting for the usual replication order. This means that if a logon request happens to land on a different DC that hasn't yet received the replicated change right after a password change, that DC can rescue the situation by "checking with the PDC Emulator for the latest password if authentication fails against its own local copy" — reducing the chance of a legitimate user getting mistakenly locked out right after changing their password.
 - **The default target for Group Policy edits**: When editing a policy in the Group Policy Management Console (GPMC), the edit is always directed at the PDC Emulator by default. If multiple administrators edited a policy against different DCs at the same time, it could lead to conflicts or overwrites — centralizing the edit operation itself onto a single DC avoids this.
 
@@ -80,6 +90,15 @@ The **PDC Emulator** is, in effect, the role that shoulders the most practical r
 The **Infrastructure Master** is responsible for **updating reference information when an object in another domain that's referenced by an object in this domain (for example, a user in a different domain who's a member of a group in this domain) gets renamed or moved.**
 
 This FSMO has a **placement caveat** that's particularly important to keep in mind in practice. **A DC holding the Infrastructure Master role should, in principle, not also serve as a global catalog (GC)** (unless every DC in the forest also serves as a GC). The reason is that, as explained in [Understanding the Difference Between AD and DC, and Domains vs. Forests, from a "Top 1%" Perspective](/en/articles/ad-dc-fundamentals-guide), a GC also holds a partial replica of objects in other domains in the forest — meaning **the GC itself can always see what the referenced object actually looks like now, so it can never detect the "stale references (so-called phantom objects)" the Infrastructure Master is supposed to find.** As a result, co-locating the Infrastructure Master on the same DC as a GC can lead to a bug where a rename of an object in another domain fails to be correctly reflected in this domain's references (such as a group member's displayed name).
+
+<details>
+<summary>Does a GC need a FSMO-style "transfer" too?</summary>
+
+In short, no — a GC is a fundamentally different kind of role from FSMO. **FSMO is a single-master role that only one DC in the entire forest or domain can hold at a time, whereas GC is more like a multi-master role that can be given to as many DCs as you want.** Turning a DC into (or out of) a GC is done simply by toggling the "Global Catalog" checkbox on that DC's NTDS Settings object properties — there's no procedure like a FSMO transfer, where you explicitly hand the role off from the current holder to the next. By default, only the **first DC of each domain (the very first DC in the forest)** holds a GC; every other DC doesn't hold one unless an administrator explicitly adds it.
+
+So why would you deliberately give a GC to only some DCs in a multi-domain forest? Every additional GC you stand up means that DC now **continuously replicates a partial attribute set from every other domain in the forest** — so the more domains a forest has, the more directly adding GCs drives up replication traffic. This matters especially in configurations spanning thin inter-site WAN links, where the choice becomes a tradeoff between availability and network cost: "put a GC locally to prioritize that site's logon and search performance," versus "keep GCs consolidated on the DCs at a central site to keep link load down."
+
+</details>
 
 ## FSMO Transfer: Safely Moving a Role
 
@@ -101,6 +120,15 @@ sequenceDiagram
 <summary>The difference between transfer and seizure</summary>
 
 By contrast, **seizure (forced role transfer)** is used when the old DC has been **completely lost — to a disaster, hardware failure, and so on — and can never be recovered.** It's an operation, performed via `ntdsutil`, that forcibly assigns the role to a different DC without a proper exchange with the old DC. **Seizure is positioned as a last resort, used only after confirming the old DC is truly unrecoverable.** If the old DC actually turns out to still be alive and later comes back online, you can end up in a state where two DCs simultaneously believe they hold the same role — which can lead to serious consistency problems, particularly for the Schema, Domain Naming, or RID Master roles. So **after a seizure, the old DC must never be brought back onto the network as-is; it must be fully wiped (such as by reinstalling the OS) before being reused.**
+
+</details>
+
+<details>
+<summary>What actually happens if you demote a DC without remembering to transfer its roles first?</summary>
+
+If you try to demote a FSMO-holding DC through the normal procedure (the "Remove Roles and Features" wizard in Server Manager, or `Uninstall-ADDSDomainController`) while other DCs still exist in the domain, **the wizard itself checks whether that DC holds any FSMO roles and, where possible, automatically transfers them to another DC in the same domain/forest before completing the demotion.** In other words, "I forgot to transfer and just demoted it normally, and now no DC anywhere holds that role" essentially can't happen through an ordinary demotion (one that doesn't use a force flag).
+
+Things are different if this automatic transfer fails, or if you deliberately skip the safety checks using an option like `-Force` to force the demotion through. In that case, you end up in the same situation as a seizure described above — **the record in AD DS still points to "that DC is the holder," but that DC no longer actually exists.** The same applies if there are no other DCs left in the domain at all (a lone remaining DC, meaning not a single surviving DC holds that FSMO role). The remedy is to run a seizure via `ntdsutil` against a remaining DC (or a newly promoted one, if none remain), explicitly overwriting that role's holder information in AD DS.
 
 </details>
 

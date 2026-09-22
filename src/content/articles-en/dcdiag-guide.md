@@ -58,6 +58,20 @@ graph TB
 | **FrsEvent/DFSREvent** | Whether errors have been logged in the event log related to SYSVOL replication (legacy FRS or DFSR) | SYSVOL replication may be functioning now, but a record of a past error still remains |
 | **DNS** | Whether the DNS records a DC needs (the SRV record set mentioned above, and so on) are correctly registered | A DNS registration gap, or a zone misconfiguration |
 
+<details>
+<summary>How exactly does the Connectivity test confirm "reachability"?</summary>
+
+The `Connectivity` test isn't a single simple check — it runs four checks in sequence:
+
+1. **DNS name resolution**: Can the target DC's hostname be correctly resolved via DNS?
+2. **ICMP ping response**: Does a ping actually get through to the resolved IP address?
+3. **LDAP bind**: Can you actually connect to (bind to) the target DC's AD DS over the LDAP protocol?
+4. **RPC bind**: Can you connect to the AD DS RPC interface using the `DsBindWithCred` API?
+
+Only once all four succeed does the `Connectivity` test pass. Regardless of whether the command prompt running `dcdiag /v` is on the target DC itself or a different machine, what's common across the board is that it's verifying **whether this entire chain of reachability — DNS resolution → ping → LDAP → RPC — holds, as seen from the machine running the command.** Note also that the `Connectivity` test is a prerequisite for every other test: for any target DC where it fails, none of the subsequent tests are run (running them wouldn't produce a meaningful result anyway).
+
+</details>
+
 ### What the Extra Information Added by the `/v` Option Means
 
 Running `dcdiag` without `/v` shows only a one-line PASS/FAIL for each test, like `passed test Connectivity`. With `/v`, **even for tests that passed, it outputs the detailed information underlying that judgment** (the content of records checked, response times, internal verification steps, and so on). This lets you confirm not just that a test "passed," but **what grounds it used to reach that PASS**, making it much harder to overlook a borderline state (barely passing, with no margin).

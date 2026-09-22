@@ -54,7 +54,7 @@ When queried about a name outside the corporate domain (such as `www.google.com`
 - **Resolve it recursively on its own**: As explained in [Understanding How DNS Works from a "Top 1%" Perspective](/en/articles/dns-guide), this means working through the hierarchy starting from the root servers.
 - **Forward it to a forwarder**: Rather than resolving it itself, it simply **forwards** the query as-is to a specific, pre-configured DNS server (such as an ISP's DNS server or a public DNS service), and relays whatever result comes back straight to the client.
 
-In practice, it's common for firewall policy not to allow direct queries to the root servers (over UDP/TCP port 53), so configuring a forwarder is the typical setup. In DNS Manager, you can specify one or more forwarding destination IP addresses under the target server's properties, on the "Forwarders" tab.
+In practice, it's common for firewall policy not to allow direct queries to the root servers (a set of 13 server systems worldwide that manage the very top of the DNS namespace, `.` — the starting point of DNS's recursive resolution, from which you work down to the servers managing `.com` or `.jp`) over UDP/TCP port 53, so configuring a forwarder is the typical setup. In DNS Manager, you can specify one or more forwarding destination IP addresses under the target server's properties, on the "Forwarders" tab.
 
 ```mermaid
 sequenceDiagram
@@ -79,6 +79,10 @@ This symptom is precisely explained by a misconfigured forwarder. **`ping 8.8.8.
 <summary>Conditional forwarding: combining forwarders and root hints</summary>
 
 DNS Manager also has a **conditional forwarding** feature that forwards queries for a specific domain name (say, `partner.example.com`) to a specific forwarder. This is used when name resolution needs to work between two organizations' AD environments — for example, over a site-to-site VPN, or when a trust relationship has been established between two ADs. When troubleshooting forwarder issues, it's worth checking not just regular forwarder settings but also whether any conditional forwarders are misconfigured.
+
+In terms of resolution priority, **a conditional forwarder that matches a more specific condition takes priority over a regular forwarder** (the default destination used for every other query). For a name that neither applies to, and where the regular forwarders also don't respond at all (or none are configured in the first place), it falls back to recursive resolution on its own using root hints (assuming the default of "use root hints if forwarders are unavailable" is enabled on the server's properties).
+
+One more point that matters from an AD-migration angle: **these two default to different storage locations.** A regular forwarder is always stored locally (in the registry) on a per-DNS-server basis — there's no option to store it in AD DS for automatic replication across DCs in the first place. A conditional forwarder, on the other hand, has a checkbox at creation time — "Store this conditional forwarder in Active Directory, and replicate as follows" (off, i.e. local storage, by default) — and enabling it means it gets automatically replicated across DCs via AD DS. In other words, it's not that "only conditional forwarders sync automatically" — the accurate understanding is that **a conditional forwarder *can* replicate if you explicitly opt into storing it in AD DS, while a regular forwarder has no such option at all and always needs to be configured individually on each DC**. When planning an AD migration or adding a new DC, you need to assume regular forwarders will need to be manually reconfigured on the new DC as well.
 
 </details>
 
@@ -118,6 +122,15 @@ A practical middle ground is to **always specify another, healthy DC's real IP a
 A client (or the DC itself) automatically re-registers and refreshes the record for its own hostname and IP address on a default schedule of roughly every 24 hours. `ipconfig /registerdns` is a command that **redoes this dynamic DNS update right now, without waiting for that automatic refresh.**
 
 It's true that right after changing DNS settings (such as the DNS server's IP address), manually deleting or fixing a DNS record, or changing an IP address, "waiting for the next automatic update will eventually settle things into a correct state." However, there's a practical gap in the meantime: **the old (or missing) DNS record information stays in place until that automatic update actually runs.** Understanding `ipconfig /registerdns` as a practical command for confirmation and recovery — one that eliminates this waiting period and immediately reflects the change in DNS — makes it much easier to judge when to reach for it.
+
+<details>
+<summary>Why things often get reflected without running `/registerdns`, without a reboot or waiting 24 hours</summary>
+
+There are two separate things to untangle here. The first is "`ipconfig /all` shows the latest IP address and DNS servers" — this is simply **displaying the local network configuration the PC itself holds**, and has nothing to do with the DNS server's own records; it always shows the latest state the instant you change a setting. The second is "you can actually reach the target server" — and this genuinely does require that the DNS server's own record has been correctly updated.
+
+On top of that, dynamic DNS updates fire **not just on the 24-hour periodic schedule, but also event-drivenly whenever the network configuration changes** — an IP address change, obtaining a new DHCP lease, enabling a network adapter, and so on. The reason it often feels like "it gets reflected eventually even without running `/registerdns`" in practice is that this change-triggered automatic registration is already working correctly. You need `/registerdns` for the cases where this automatic registration fails or gets skipped for some reason (unreachable DNS server, insufficient permissions, an inconsistency in the authoritative zone on the DNS server side, and so on), leaving the DNS server's record stuck at a stale value. Leaving the record un-re-registered can lead to real problems: **traffic destined for that PC/server keeps getting sent to the old IP address, or name resolution itself starts failing outright.**
+
+</details>
 
 ## The View From the Top 1% Perspective
 

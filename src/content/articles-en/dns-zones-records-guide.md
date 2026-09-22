@@ -21,8 +21,13 @@ This article is part of the [Top 1% Series' full article guide](/en/sitemap), an
 - **Zone**: In DNS, the unit of data that a given server (or set of servers) holds authoritative responsibility for, covering a specific portion of the namespace.
 - **A records and SRV records**: An A record is the basic record type that converts a hostname to an IPv4 address. An SRV record is a more sophisticated record type indicating "which server provides a specific service" — covered in detail in this article.
 - **AD-integrated zones and replication partitions**: AD-integrated zone data may be managed separately from the ordinary domain partition. This distinction is the key to understanding the special treatment of the `_msdcs` zone, covered below.
+- **Forest root domain**: The first domain ever created within a forest. As covered in [The Difference Between Domains, Trees, and Forests](/en/articles/ad-dc-fundamentals-guide), a forest can be made up of multiple domains (trees), but the very first one built gets special treatment — it's the default home for forest-wide groups like Enterprise Admins and Schema Admins, and it also appears as part of the `_msdcs` zone's name, covered in this article. "Forest" and "forest root domain" are distinct things: the latter is just one (albeit special) domain among the many that make up the forest.
 
 ## Getting the Big Picture
+
+### The Layout of the DNS Manager Screen
+
+This article is centered on learning to read the screen of **DNS Manager** (`dnsmgmt.msc`, also reachable from Server Manager's "Tools" menu), the Windows Server management tool. Opening DNS Manager shows the connected DNS server's name in a tree on the left, with folders such as "Forward Lookup Zones," "Reverse Lookup Zones," and "Conditional Forwarders" underneath it. Expanding a zone's folder lists the individual records registered in that zone (A records, SRV records, and so on), and right-clicking lets you add a new record or check the zone's properties. In practice, "open DNS Manager and check" means walking this tree to find the relevant zone or record.
 
 ### Forward Lookup Zones and Reverse Lookup Zones
 
@@ -60,6 +65,8 @@ This design is exactly the same idea applied from what was explained in [Underst
 <details>
 <summary>GUID-based CNAME records: how a DC is never lost even when its name changes</summary>
 
+As background: a **GUID** (Globally Unique Identifier) is the general term for an identifier generated from a 128-bit value, designed so collisions essentially never happen. In AD DS, essentially every object — users, computers, DCs themselves — gets assigned one such GUID at the moment it's created, and **that GUID never changes for as long as the object exists, even if its name changes.** A **CNAME record**, meanwhile, is a type of DNS record that registers one name as an "alias" pointing to another name. For example, if you register a CNAME record for `www.example.com` pointing to `web01.example.com`, a query for `www.example.com` automatically ends up looking at `web01.example.com`'s A record. The basic use of a CNAME is that you can later swap out just the forwarding target (`web01.example.com` in this example) without touching the reference point (`www.example.com`) itself.
+
 Directly under the `_msdcs` zone, instead of ordinary hostnames, there's a **CNAME record named after each DC's unique NTDS Settings object GUID** (such as `a1b2c3d4-....`), one per DC. Each of these CNAME records forwards that GUID to that DC's actual A record (hostname).
 
 This mechanism exists because **references between replication partners, and some client-side processing, permanently identify a DC by this GUID rather than by hostname.** As we saw in [What's the Difference Between sysdm.cpl and netdom computername?](/en/articles/ad-computername-netdom-guide), a DC's computer name (hostname) can change, but its GUID, once issued, never does. As long as a reference goes through this GUID-based CNAME record, **even if that DC's hostname is later changed, the reference automatically and correctly ends up at the A record for the new hostname, as long as the GUID itself hasn't changed.** This is one reason internal consistency doesn't easily break even when a computer name is changed after demoting a DC.
@@ -87,6 +94,16 @@ Here are the representative SRV records actually registered in an AD environment
 | `_kerberos._tcp.dc._msdcs.corp.example.com` | Locate a KDC for Kerberos authentication (usually also served by a DC) |
 
 The **priority** and **weight** fields represent the order of preference and the load-balancing ratio for choosing among multiple servers holding the same role. A client tries to connect to one server chosen at random from the group with the lowest priority value, with a probability proportional to its weight.
+
+Let's work through a concrete example. Suppose the following three SRV records are registered for a given service:
+
+| Target | Priority | Weight |
+|---|---|---|
+| dc01.corp.example.com | 0 | 50 |
+| dc02.corp.example.com | 0 | 50 |
+| dc03.corp.example.com | 10 | 100 |
+
+In this case, the client first narrows its candidates to **the group with the lowest priority (0)** — `dc01` and `dc02` (`dc03`, at priority 10, is a backup used only if neither `dc01` nor `dc02` can be reached). Since `dc01` and `dc02` have equal weights of 50:50, **each has roughly an even chance of being picked.** If `dc01`'s weight were 80 and `dc02`'s were 20, **dc01 would be picked roughly 80% of the time and dc02 roughly 20%, in proportion to the weight ratio.** In other words, priority controls "which group is preferred," while weight controls "the split within that same priority" — and in practice, it's common to combine the two: use priority to distinguish in-site from out-of-site DCs, and use weight to balance load according to differences in server specs.
 
 <details>
 <summary>Why site-aware DC location matters</summary>

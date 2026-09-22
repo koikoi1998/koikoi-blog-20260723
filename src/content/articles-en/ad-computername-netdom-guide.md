@@ -20,7 +20,8 @@ This article is part of the [Top 1% Series' full article guide](/en/sitemap), an
 
 - **NetBIOS name and DNS host name**: A Windows computer traditionally has two kinds of names: a short (up to 15 character) **NetBIOS name**, and a **DNS host name (FQDN)** such as `hostname.example.com`. Today, the DNS host name is used for most purposes, but the NetBIOS name continues to coexist for legacy compatibility.
 - **SPN (Service Principal Name)**: In Kerberos authentication, this is an identifier that binds "a service invoked under this name responds as this account." An SPN in the form `HOST/computer-name` is registered on a computer account by default.
-- **Computer account**: A dedicated account (object) created in AD DS for each device that joins the domain. Like a user account, it has a password (in practice, a random value the computer itself periodically rotates automatically), which it uses to establish a trust relationship (secure channel) with the domain.
+- **Computer account**: A dedicated account (object) created in AD DS for each device that joins the domain. Like a user account, it has a password (in practice, a random value the computer itself periodically rotates automatically, by default every 30 days).
+- **Secure channel**: The encrypted Netlogon-based communication channel a computer establishes by using this password to authenticate itself to a DC. The substance of a "healthy" secure channel is simply "the computer can correctly present the password AD DS has on record for it" — if AD DS's record and the computer's own locally-held record fall out of sync, the secure channel breaks. The detailed mechanics of the secure channel and the Netlogon service are covered in a separate article.
 
 ## Getting the Big Picture
 
@@ -107,7 +108,16 @@ Here's how this trouble can be untangled step by step:
 2. **On the other hand, the OS-level computer name of the demoted DC① itself isn't automatically changed just by the demotion process.** Demotion is strictly the operation of removing the DC role; renaming the computer is a separate, independent operation. As a result, DC① ended up with **the exact same computer name, as a separate entity**, as the name DC② now carried after being renamed to take over DC①'s original identity.
 3. **When DC① then attempted to join the domain under this state, Windows' domain-join process detects that a computer account with the same name already exists in AD DS.** In many cases, the domain-join dialog presents a prompt to the effect of "An account with this name already exists. Do you want to reuse this account?" — and if you approve it, **the password (the secure channel's shared secret) of the existing same-named computer account — in this case, the computer account belonging to DC² itself, the domain controller — gets reset and overwritten with the new value from the joining DC① side.** This is the true explanation for "it was possible to join the domain despite the identical hostname" — rather than being rejected as an error, the join succeeds by effectively **hijacking** the existing account.
 4. **With DC②'s own computer-account password overwritten, DC② ends up with a mismatch between its own authentication credentials and what's recorded in AD DS, and can no longer maintain its secure channel properly.** The domain controller's own authentication and logon processing (the Netlogon service) itself becomes unstable, and logon attempts using the newly created domain account fail with the error "there are currently no logon servers available to service the logon request." The reason logins failed despite DNS correctly pointing to DC②'s IP address had nothing to do with name resolution — **it was the breakdown of the authentication infrastructure itself.**
-5. The remedy actually applied — "change the hostname, revert to a workgroup, then rejoin the domain" — lines up precisely with this diagnosis. Renaming DC① resolves the name collision; reverting to a workgroup completely discards the half-broken domain-join state; and rejoining under the new, distinct name creates an entirely new computer account, separate from DC②'s. This leaves DC②'s own computer account untouched, restoring normal logon behavior.
+5. The remedy actually applied — "change the hostname, revert to a workgroup, then rejoin the domain" — lines up precisely with this diagnosis. Renaming DC① resolves the name collision; reverting to a workgroup completely discards the half-broken domain-join state; and rejoining under the new, distinct name creates an entirely new computer account, separate from DC②'s. This means **DC②'s own computer account no longer gets touched going forward**, which at minimum stops the ongoing incident of "DC① keeps overwriting DC②'s password."
+
+<details>
+<summary>Note: does this operation alone "automatically" fix the damage on DC②'s side?</summary>
+
+There's a misconception worth flagging here. Reverting DC① to a workgroup and rejoining under a new name does **not** roll DC②'s computer-account password back to "the value before it was overwritten." DC①'s side of the fix is aimed purely at "no longer touching DC②'s account going forward" — it has no effect that undoes the overwrite that already happened.
+
+Given that, why did logons recover in this case at all? It's likely because AD DS has a mechanism for computer-account (trust-account) passwords where **not just the latest value, but the previous generation's value too, remains valid for a certain grace period.** DC②, unaware its password had been overwritten, kept attempting Netlogon authentication with the (now one-generation-old) password it holds locally, and as long as this stayed within that grace window, authentication happened to keep succeeding by coincidence. This is **strictly a temporary, incidental reprieve** — not a real fix. If you run into this kind of incident in practice, don't sit back and hope it self-heals; the reliable fix is to run `Test-ComputerSecureChannel -Repair` (or `netdom resetpwd`) on DC② itself, explicitly resynchronizing its local credentials with what AD DS has on record.
+
+</details>
 
 <details>
 <summary>Should you ever approve reusing an existing same-named account during a domain join?</summary>
@@ -128,6 +138,15 @@ The root cause of the incident above wasn't the design decision itself — "have
 
 With this ordering, there's never a moment where the name collision could occur, so the kind of computer-account hijack incident described above structurally can't happen.
 
+### So Which Should You Actually Use: `sysdm.cpl` or `netdom computername`?
+
+When carrying out step 4 above — "rename the new DC to the name the old DC used to hold" — both `sysdm.cpl` and `netdom computername` end up correctly updating the computer account's SPN, DNS record, and NetBIOS name either way. **For a one-off change where you can tolerate some downtime, either tool gets you to the same result.** Even so, `netdom computername` tends to be the one recommended in practice, for two reasons:
+
+1. **It lets you "overlap" the cutover moment**: `sysdm.cpl` performs the old-to-new swap atomically in a single reboot, so the moment that reboot completes, the old name stops responding entirely. `netdom`, by contrast, lets you register the new name as an alternate via `/add` first, creating **a window where the old name keeps working while the new name is simultaneously reachable too**. This is exactly what makes it possible to migrate client DNS caches and hardcoded application targets over to the new name gradually, with close to zero downtime.
+2. **It can be run remotely, without interactive prompts**: `sysdm.cpl` assumes GUI interaction, but `netdom computername <target computer name> /add:...` lets you **explicitly name the target and run it from the command line**. For AD migrations where you're methodically renaming multiple machines, this also makes it much easier to script and automate.
+
+In short: "either tool gets you to the same final result (SPN, DNS, and NetBIOS name all correctly updated), but `netdom` is what gives you the 'overlap' and 'automation' that migration work actually needs."
+
 ## Common Misconceptions and Pitfalls
 
 - **Misconception 1: "netdom computername is just a more advanced rename command than sysdm.cpl"**
@@ -141,7 +160,7 @@ With this ordering, there's never a moment where the name collision could occur,
 
 For AD issues related to computer names, the core question to ask is: **"does the computer account in AD DS actually correspond one-to-one with the device currently claiming that name?"**
 
-1. **A specific domain controller suddenly starts throwing a flood of Netlogon-related errors, or its secure channel keeps dropping**: Suspect that that DC's own computer-account password may have been unintentionally changed or reset. Run `Test-ComputerSecureChannel` on the affected computer to check the state of its secure channel.
+1. **A specific domain controller suddenly starts throwing a flood of Netlogon-related errors, or its secure channel keeps dropping**: Suspect that that DC's own computer-account password may have been unintentionally changed or reset. Run `Test-ComputerSecureChannel` on the affected computer to check the state of its secure channel, and `Test-ComputerSecureChannel -Repair` (or `netdom resetpwd`) to explicitly resynchronize its local credentials with what AD DS has on record. Note that `-Repair` doesn't work on a domain controller itself, though — for a DC, use `repadmin` (covered in a later article) or, if needed, rebuild the DC.
 2. **A domain-join operation shows a prompt saying "an account with this name already exists"**: Don't casually approve it — always check Active Directory Users and Computers or the list of domain controllers to confirm the name isn't currently in use by some other running server (especially a domain controller).
 3. **After handing a DC's name over to a new server, something breaks after the old (now-demoted) server is repurposed for another use**: Check whether the old server's computer name has actually been changed to something new (and confirm it isn't a duplicate).
 
