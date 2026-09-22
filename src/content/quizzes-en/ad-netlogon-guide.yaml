@@ -1,0 +1,45 @@
+questions:
+  - question: "What is the \"secure channel\" provided by the Netlogon service, according to the article?"
+    choices:
+      - "A VPN tunnel that encrypts internet-bound traffic"
+      - "An authenticated, encrypted communication path between a member computer (or a DC) and a DC, keyed by the computer account's password"
+      - "The screen where a user types their password"
+      - "A mechanism for protecting communication with a DNS server"
+    answerIndex: 1
+    explanation: "The secure channel is an authenticated, encrypted communication path established on top of NRPC (Netlogon Remote Protocol), keyed by the computer account's password. It functions correctly only as long as both sides know the same password."
+
+  - question: "By default, how often does a computer account's password automatically rotate?"
+    choices:
+      - "Every hour"
+      - "Every day"
+      - "Roughly every 30 days"
+      - "Once a year"
+    answerIndex: 2
+    explanation: "By default, a computer account's password automatically rotates to a new value roughly every 30 days, driven by the computer itself."
+
+  - question: "According to the article, why can restoring a VM snapshot to an old state trigger a \"trust relationship failure\" error?"
+    choices:
+      - "Because the snapshot feature itself is incompatible with Active Directory"
+      - "Because after the snapshot was taken, the computer account password rotated automatically and AD DS's record moved forward to the new value, while restoring the snapshot rolls only the VM's local memory of the password back in time — leaving the two out of sync"
+      - "Because a VM's MAC address changes with every snapshot"
+      - "Because restoring a snapshot resets the DNS server settings"
+    answerIndex: 1
+    explanation: "Even after a snapshot is taken, AD DS keeps updating the password based on the instance that kept running. Restoring the snapshot rolls back only the VM's local memory of the password, so the two sides end up disagreeing and the secure channel fails to establish."
+
+  - question: "According to the article, what does `Test-ComputerSecureChannel -Repair` do?"
+    choices:
+      - "It explicitly rebuilds just the secure channel (resynchronizing both the local and AD DS passwords) without needing to rejoin the domain; it works on a member computer but not on a DC"
+      - "It's a command exclusive to domain controllers, and can't be used on a member computer"
+      - "Running it forcibly removes that computer from the domain"
+      - "It's a command that forces AD DS-wide replication to restart"
+    answerIndex: 0
+    explanation: "-Repair explicitly rebuilds just the secure channel, without the much heavier procedure of rejoining the domain. It only works on a member computer — it can't be used on a DC."
+
+  - question: "According to the article, what did the Zerologon (CVE-2020-1472) vulnerability demonstrate?"
+    choices:
+      - "That Netlogon is just \"some background service that helps with logon,\" with minimal impact on AD DS as a whole"
+      - "That an attacker with no credentials at all could reset a DC's own computer account password to an empty string over the network, a severe vulnerability that could lead to a complete takeover of the entire AD environment — an event that symbolized how Netlogon underpins the entire foundation of trust in AD DS"
+      - "That this vulnerability only affected client PCs and had no impact on DCs whatsoever"
+      - "That this vulnerability has still not been fixed and no mitigation currently exists"
+    answerIndex: 1
+    explanation: "Zerologon was an extremely severe vulnerability that let a credential-less attacker reset a DC's own computer account password to an empty string over the network. Losing a DC's computer account password is effectively equivalent to losing administrative control of the entire domain — an event that showed Netlogon isn't just a background helper but the foundation of trust for all of AD DS. It was fixed in the August 2020 security update."
