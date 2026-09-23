@@ -53,7 +53,7 @@ For these reasons, many AD environments don't run DNS server functionality on an
 When queried about a name outside the corporate domain (such as `www.google.com`), an AD-integrated DNS server broadly has two options:
 
 - **Resolve it recursively on its own**: As explained in [Understanding How DNS Works from a "Top 1%" Perspective](/en/articles/dns-guide), this means working through the hierarchy starting from the root servers.
-- **Forward it to a forwarder**: Rather than resolving it itself, it simply **forwards** the query as-is to a specific, pre-configured DNS server (such as an ISP's DNS server or a public DNS service), and relays whatever result comes back straight to the client.
+- **Forward it to a forwarder**: Rather than resolving it itself, it simply **forwards** the query as-is to a specific, pre-configured DNS server (such as an ISP's DNS server or a public DNS service), and relays whatever result comes back straight to the client. What an ISP itself actually is and does is covered in depth in [Understanding What an ISP Is](/en/articles/ad-isp-guide).
 
 In practice, it's common for firewall policy not to allow direct queries to the root servers (a set of 13 server systems worldwide that manage the very top of the DNS namespace, `.` — the starting point of DNS's recursive resolution, from which you work down to the servers managing `.com` or `.jp`) over UDP/TCP port 53, so configuring a forwarder is the typical setup. In DNS Manager, you can specify one or more forwarding destination IP addresses under the target server's properties, on the "Forwarders" tab.
 

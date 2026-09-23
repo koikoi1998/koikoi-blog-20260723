@@ -1,0 +1,45 @@
+questions:
+  - question: "According to the article, which statement best describes what an ISP (Internet Service Provider) actually provides?"
+    choices:
+      - "Only the access line itself, with no other services included"
+      - "Beyond the access line, it typically bundles in additional services like global IP address assignment and a DNS recursive resolver as part of the same contract"
+      - "It specializes exclusively in providing DNS servers, while a separate company provides the line itself"
+      - "An ISP deals only in TV broadcasting and has nothing to do with internet access"
+    answerIndex: 1
+    explanation: "An ISP connects a subscriber's access line to the internet, and beyond just lending the line, it often bundles in additional services as part of the same line contract — global IP address assignment and a DNS recursive resolver among them."
+
+  - question: "According to the article, which statement best describes the Tier 1/Tier 2/Tier 3 ISP hierarchy?"
+    choices:
+      - "It's simply a three-way classification of operator revenue, unrelated to how they connect"
+      - "Tier 1 reaches the entire world through peering alone, Tier 2 peers but also buys some transit, and Tier 3 connects to the internet almost entirely by purchasing transit"
+      - "Tier 1 is the lowest tier, and Tier 3 refers to the topmost backbone operators"
+      - "This hierarchy is a classification unique to ISPs within Japan only"
+    answerIndex: 1
+    explanation: "Tier 1 operators can reach every route on the internet through peering (free, mutual interconnection) alone. Tier 2 operators also peer, but buy the shortfall as transit (paid); Tier 3 operators connect to the internet almost entirely by purchasing transit."
+
+  - question: "According to the article, why does a cable TV company often also act as an ISP in Japan?"
+    choices:
+      - "Because the law requires every cable TV company to also offer internet access"
+      - "Because it had already laid transmission lines like coaxial cable to nearly every building in its service area for TV broadcasting, and could repurpose that asset to enter the internet access business at relatively low cost"
+      - "Because cable TV companies built an entirely new, dedicated fiber network just for internet access, from scratch"
+      - "Because TV broadcasting and internet access naturally use completely separate frequency bands, so they're naturally offered as one service"
+    answerIndex: 1
+    explanation: "A cable TV company had already laid transmission lines to nearly every building in its area for TV broadcasting. Given the huge cost of laying a new line (the last-mile problem), repurposing that existing asset — carrying data signals in frequency bands TV wasn't using — let it enter the internet access business at relatively low cost."
+
+  - question: "According to the article, why does corporate DNS's forwarder often end up pointed at an ISP's DNS server?"
+    choices:
+      - "Because it's technically impossible to configure a forwarder to point anywhere except an ISP's DNS server"
+      - "Because the default value handed over through the router's configuration (via PPPoE or DHCP) at contract time just keeps being used unless someone deliberately changes it — an operational artifact"
+      - "Because an ISP's DNS server is guaranteed to always outperform public DNS"
+      - "Because AD DS's specification requires forwarders to point at an ISP's DNS server"
+    answerIndex: 1
+    explanation: "When a company contracts a new internet line, the ISP's DNS server IP gets handed over as a default value through the router's configuration. In many real-world environments, that default just keeps being used as the forwarder unless someone deliberately changes it — an operational artifact, not a technical necessity."
+
+  - question: "According to the article, which is the better choice for a forwarder: an ISP's DNS server, or public DNS?"
+    choices:
+      - "An ISP's DNS server is always inferior, so only public DNS should be used"
+      - "Understand the tradeoffs of each (an ISP's DNS server tends to respond faster due to geographic proximity; public DNS offers high availability through distributed anycast infrastructure) and combine multiple providers to avoid depending on a single ISP"
+      - "Public DNS can't be used from within Japan, so only an ISP's DNS server should be used"
+      - "There's no difference whatsoever between the two, so it doesn't matter which one you configure"
+    answerIndex: 1
+    explanation: "An ISP's DNS server tends to be geographically and topologically close to its own subscribers, often meaning faster responses. Public DNS runs on a highly available, globally distributed anycast infrastructure, independent of any single ISP's outages. A top-1% engineer understands both tradeoffs and deliberately combines multiple providers to avoid depending on a single ISP."
