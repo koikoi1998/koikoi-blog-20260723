@@ -70,12 +70,12 @@ Many cloud storage services (BOX and others), on the other hand, typically **per
 ```mermaid
 sequenceDiagram
     participant Ntfs as Windows (NTFS)
-    participant Box as BOX
+    participant CloudStorage as BOX
 
     Note over Ntfs: "が.txt" (NFC form) and<br/>"が.txt" (NFD form)<br/>coexist as separate files
-    Ntfs->>Box: Both files are uploaded
-    Note over Box: At upload time, filenames are normalized to NFC and compared
-    Box-xNtfs: Judged as "a file with this name already exists" — one collides and fails
+    Ntfs->>CloudStorage: Both files are uploaded
+    Note over CloudStorage: At upload time, filenames are normalized to NFC and compared
+    CloudStorage-xNtfs: Judged as "a file with this name already exists" — one collides and fails
 ```
 
 ### Where Does a Decomposed-Form Filename Actually Come From?

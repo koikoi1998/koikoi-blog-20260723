@@ -70,12 +70,12 @@ Get-ChildItem | Select-Object Name, @{Name="Length"; Expression={$_.Name.Length}
 ```mermaid
 sequenceDiagram
     participant Ntfs as Windows(NTFS)
-    participant Box as BOX
+    participant CloudStorage as BOX
 
     Note over Ntfs: 「が.txt」(NFC形式)と<br/>「が.txt」(NFD形式)が<br/>別々のファイルとして共存
-    Ntfs->>Box: 両方のファイルをアップロード
-    Note over Box: アップロード時にファイル名をNFCへ正規化して比較
-    Box-xNtfs: 「同じ名前のファイルが既に存在する」と判定され、片方が衝突・失敗
+    Ntfs->>CloudStorage: 両方のファイルをアップロード
+    Note over CloudStorage: アップロード時にファイル名をNFCへ正規化して比較
+    CloudStorage-xNtfs: 「同じ名前のファイルが既に存在する」と判定され、片方が衝突・失敗
 ```
 
 ### なぜ分解形式のファイル名がそもそも生まれるのか

@@ -37,7 +37,7 @@ const formatDate = (date: Date) =>
       読む順番やシリーズ間のつながりは<a href="/sitemap">サイトマップ</a>にまとめています。
     </p>
     <div class="hero-stats">
-      <div><strong>{articles.length}</strong><span>本の記事</span></div>
+      <div><strong id="hero-article-count" data-total={articles.length}>{articles.length}</strong><span>本の記事</span></div>
       <div><strong>{bySeries.size}</strong><span>シリーズ</span></div>
     </div>
   </div>
@@ -80,7 +80,7 @@ const formatDate = (date: Date) =>
       <section class="series-section" data-series={series}>
         <h2>
           {seriesNames[series] ?? series}
-          <span class="series-count">{items.length}本</span>
+          <span class="series-count" data-total={items.length}>{items.length}本</span>
         </h2>
         <ul class="card-list">
           {items.map((article) => (
@@ -116,28 +116,42 @@ const formatDate = (date: Date) =>
     const filterBar = document.getElementById("article-filters");
     const subFilterBar = document.getElementById("article-subfilters");
     const emptyMsg = document.getElementById("article-filters-empty");
+    const heroCount = document.getElementById("hero-article-count");
 
     let activeSeries = "all";
     let activeSub = "all";
 
     function applyFilter() {
       const sections = document.querySelectorAll<HTMLElement>(".series-section");
-      let visibleCount = 0;
+      let visibleSectionCount = 0;
+      let visibleArticleCount = 0;
 
       sections.forEach((section) => {
         const isActiveSeries = activeSeries === "all" || section.dataset.series === activeSeries;
-        let sectionHasVisible = false;
+        let sectionVisibleCount = 0;
         section.querySelectorAll<HTMLLIElement>(".card-list > li").forEach((li) => {
           const subMatches = activeSeries === "all" || activeSub === "all" || li.dataset.subSeries === activeSub;
           const matches = isActiveSeries && subMatches;
           li.classList.toggle("is-hidden", !matches);
-          if (matches) sectionHasVisible = true;
+          if (matches) sectionVisibleCount++;
         });
-        section.classList.toggle("is-hidden", !sectionHasVisible);
-        if (sectionHasVisible) visibleCount++;
+        section.classList.toggle("is-hidden", sectionVisibleCount === 0);
+        if (sectionVisibleCount > 0) visibleSectionCount++;
+        visibleArticleCount += sectionVisibleCount;
+
+        const countEl = section.querySelector<HTMLElement>(".series-count");
+        if (countEl) {
+          const total = countEl.dataset.total ?? String(sectionVisibleCount);
+          countEl.textContent = isActiveSeries && activeSub !== "all" ? `${sectionVisibleCount}/${total}本` : `${total}本`;
+        }
       });
 
-      emptyMsg?.classList.toggle("is-visible", visibleCount === 0);
+      if (heroCount) {
+        const total = heroCount.dataset.total ?? String(visibleArticleCount);
+        heroCount.textContent = activeSeries === "all" ? total : String(visibleArticleCount);
+      }
+
+      emptyMsg?.classList.toggle("is-visible", visibleSectionCount === 0);
 
       // 選択中のシリーズに対応するサブフィルタ行だけを表示する
       subFilterBar?.querySelectorAll<HTMLElement>(".subfilter-group").forEach((group) => {
