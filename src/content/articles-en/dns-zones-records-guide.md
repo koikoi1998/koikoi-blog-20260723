@@ -2,6 +2,7 @@
 title: "Reading DNS Zones and Records from a \"Top 1%\" Perspective — The Practical Meaning of Forward Lookup Zones, _msdcs, and SRV Records"
 description: "What are the forward lookup zones and reverse lookup zones you see in DNS Manager? What's the true identity of the oddly named _msdcs zone that always appears inside an AD zone? What are SRV records for, and how are they actually used in an AD environment? This article systematically explains the DNS zone structure specific to AD environments, and how to actually read the DNS Manager screen."
 series: "active-directory"
+subSeries: "main"
 order: 5
 tags: ["windows-server", "active-directory", "dns", "infra"]
 emoji: "🗂️"

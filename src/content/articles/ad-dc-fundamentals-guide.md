@@ -2,6 +2,7 @@
 title: "ADとDC、ドメインとフォレストの違いを『上位1%』の視点で理解する——Active Directoryの全体構造と機能レベル"
 description: "「ADとDCの違いが日本語の説明ではよくわからない」を出発点に、AD DS(ディレクトリサービス)とDC(それを実行するサーバー)の役割分担、ドメイン・ツリー・フォレストという3階層の境界線の意味、機能レベルが何を制約しているのか、そしてAD DSの役割を追加すると何が一緒にインストールされるのかまでを体系的に理解する。"
 series: "active-directory"
+subSeries: "main"
 order: 1
 tags: ["windows-server", "active-directory", "dc", "infra", "identity"]
 emoji: "🏛️"

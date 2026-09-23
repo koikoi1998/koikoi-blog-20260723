@@ -2,6 +2,7 @@
 title: "DNSゾーンとレコードの読み方を『上位1%』の視点で理解する——前方参照ゾーン・_msdcs・SRVレコードの実務的な見方"
 description: "DNSマネージャーに表示される前方参照ゾーン・後方参照ゾーンとは何か。ADのDNSゾーンの中に必ず現れる_msdcsという名前の正体は何か。SRVレコードは何のために存在し、AD環境ではどう使われているのか。DNSマネージャーの画面を実際にどう読み解けばよいのかまで、AD環境のDNSゾーン構造を体系的に理解する。"
 series: "active-directory"
+subSeries: "main"
 order: 5
 tags: ["windows-server", "active-directory", "dns", "infra"]
 emoji: "🗂️"

@@ -2,6 +2,7 @@
 title: "Understanding Kerberos Authentication from a \"Top 1%\" Perspective — Why It Can Verify Your Identity Without Ever Sending Your Password Over the Network"
 description: "Why can Kerberos authentication verify a user's identity without ever transmitting the password itself over the network? This article systematically explains what pre-authentication, the TGT, and the service ticket exchange (AS-REQ/AS-REP, TGS-REQ/TGS-REP, AP-REQ) actually prove. It also covers the relationship between the PAC (Privilege Attribute Certificate) embedded in tickets and SIDs, the difference from NTLM, and the token-bloat problem."
 series: "active-directory"
+subSeries: "supplementary"
 order: 13
 tags: ["windows-server", "active-directory", "kerberos", "sid", "infra", "identity"]
 emoji: "🎫"

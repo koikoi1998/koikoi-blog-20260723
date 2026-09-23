@@ -2,6 +2,7 @@
 title: "Understanding the Netlogon Service and the Secure Channel from a \"Top 1%\" Perspective — Why Rolling Back a VM Snapshot Triggers a \"Trust Relationship\" Failure"
 description: "What does the Netlogon service actually do? This article systematically explains the true nature of the secure channel, the mechanism by which a machine account password rotates automatically every 30 days by default, and why restoring a VM to an old snapshot triggers the error \"The trust relationship between this workstation and the primary domain failed.\" It also covers diagnosis and recovery with Test-ComputerSecureChannel and nltest, and an overview of the Zerologon vulnerability that exploited Netlogon."
 series: "active-directory"
+subSeries: "supplementary"
 order: 12
 tags: ["windows-server", "active-directory", "netlogon", "infra", "identity", "troubleshooting"]
 emoji: "🔐"

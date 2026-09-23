@@ -2,6 +2,7 @@
 title: "ADの「サイト」とレプリケーショントポロジーを『上位1%』の視点で理解する——拠点をまたぐDC配置とKCCの仕組み"
 description: "dssite.mscを開くと必ず登場する「サイト」とは何か。なぜサブネットをサイトに関連付ける必要があるのか。同じサイト内のDC同士と、拠点をまたぐDC同士とで、レプリケーションの速さや仕組みがなぜ違うのか。KCC・ISTG・ブリッジヘッドサーバー・サイトリンクコストといった専門用語を、実際にクライアントがどのDCを選ぶかという実務的な視点から体系的に理解する。"
 series: "active-directory"
+subSeries: "main"
 order: 8
 tags: ["windows-server", "active-directory", "sites", "infra", "replication"]
 emoji: "🗺️"

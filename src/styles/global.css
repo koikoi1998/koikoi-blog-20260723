@@ -926,7 +926,10 @@ pre.mermaid {
 #persona-tab-2:checked ~ .persona-tabs label[for="persona-tab-2"],
 #persona-tab-3:checked ~ .persona-tabs label[for="persona-tab-3"],
 #persona-tab-4:checked ~ .persona-tabs label[for="persona-tab-4"],
-#persona-tab-5:checked ~ .persona-tabs label[for="persona-tab-5"] {
+#persona-tab-5:checked ~ .persona-tabs label[for="persona-tab-5"],
+#persona-tab-6:checked ~ .persona-tabs label[for="persona-tab-6"],
+#persona-tab-7:checked ~ .persona-tabs label[for="persona-tab-7"],
+#persona-tab-8:checked ~ .persona-tabs label[for="persona-tab-8"] {
   background: var(--accent);
   border-color: var(--accent);
   color: var(--accent-fg);
@@ -937,7 +940,10 @@ pre.mermaid {
 #persona-tab-2:checked ~ .persona-panels .persona-panel-2,
 #persona-tab-3:checked ~ .persona-panels .persona-panel-3,
 #persona-tab-4:checked ~ .persona-panels .persona-panel-4,
-#persona-tab-5:checked ~ .persona-panels .persona-panel-5 {
+#persona-tab-5:checked ~ .persona-panels .persona-panel-5,
+#persona-tab-6:checked ~ .persona-panels .persona-panel-6,
+#persona-tab-7:checked ~ .persona-panels .persona-panel-7,
+#persona-tab-8:checked ~ .persona-panels .persona-panel-8 {
   display: block;
 }
 
@@ -1004,4 +1010,27 @@ pre.mermaid {
 
 .article-filters-empty.is-visible {
   display: block;
+}
+
+.article-subfilters {
+  margin-top: -1rem;
+}
+
+.subfilter-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.6rem;
+  align-items: center;
+  margin: 0 0 1.5rem 1.2rem;
+  padding: 0.7rem 0 0.7rem 0.9rem;
+  border-left: 2px solid var(--border-strong);
+}
+
+.subfilter-group[hidden] {
+  display: none;
+}
+
+.subfilter-group .filter-chip {
+  font-size: 0.78rem;
+  padding: 0.3em 0.8em;
 }

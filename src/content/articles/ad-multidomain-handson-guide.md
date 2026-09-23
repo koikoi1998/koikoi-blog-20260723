@@ -2,6 +2,7 @@
 title: "マルチドメイン・マルチツリーのADフォレストを構築するハンズオン——ツリーとフォレストの境界を自分の目で確認する"
 description: "example.comをフォレストルートとして構築し、その配下にchild.example.comという子ドメイン(同一ツリー)と、example.netという別ツリーを追加する、3台構成のハンズオン。ドメインパーティションは分離される一方、設定パーティションとスキーマパーティションはフォレスト全体で共有されること、親子ドメイン間・ツリールート間で自動的に信頼関係が結ばれること、グローバルカタログとFSMOの配置がドメイン単位/フォレスト単位でどう変わるのかを、実際にADUC・netdom・repadminのコマンドで確認する。"
 series: "active-directory"
+subSeries: "handson"
 order: 14
 tags: ["windows-server", "active-directory", "infra", "identity", "handson"]
 emoji: "🛠️"

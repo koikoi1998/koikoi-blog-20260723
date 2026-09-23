@@ -2,6 +2,7 @@
 title: "旧DCから新DCへのAD移行(リプレース)ハンズオン——FSMO転送・降格・ホスト名引き継ぎを実際にやってみる"
 description: "1台の既存DCが稼働するドメインに新しいDCを追加し、repadmin/dcdiagでレプリケーションの健全性を確認したうえで5つのFSMOロールをすべて転送し、旧DCを正式に降格・撤去する、実際の現場を想定したAD移行ハンズオン。降格後のクリーンアップ確認(dsa.msc/dssite.msc/adsiedit.msc/dnsmgmt.msc)、新DCへの旧DC名の引き継ぎ、そしてdcdiagであえて警告を発生させて読み解く演習までを扱う、シリーズの集大成。"
 series: "active-directory"
+subSeries: "handson"
 order: 15
 tags: ["windows-server", "active-directory", "infra", "identity", "handson", "troubleshooting"]
 emoji: "🔁"

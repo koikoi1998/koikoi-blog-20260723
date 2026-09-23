@@ -2,6 +2,7 @@
 title: "Hands-On: Building a Multi-Domain, Multi-Tree AD Forest — Seeing the Boundary Between Trees and Forests With Your Own Eyes"
 description: "A three-machine hands-on lab: build example.com as the forest root domain, then add child.example.com as a child domain (same tree) and example.net as a separate tree in the same forest. See for yourself, using actual ADUC, netdom, and repadmin commands, how the domain partition stays isolated while the configuration and schema partitions are shared forest-wide, how a trust relationship is automatically established between parent-child domains and between tree roots, and how global catalog and FSMO placement differ between the per-domain and forest-wide levels."
 series: "active-directory"
+subSeries: "handson"
 order: 14
 tags: ["windows-server", "active-directory", "infra", "identity", "handson"]
 emoji: "🛠️"

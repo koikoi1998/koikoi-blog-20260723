@@ -2,6 +2,7 @@
 title: "SPN(サービスプリンシパル名)の仕組みを『上位1%』の視点で理解する——Kerberos認証がサービスとアカウントを紐づける方法"
 description: "SPNとは何なのか、なぜコンピューターアカウントにHOST/コンピューター名というSPNが既定で登録されているのか。Kerberos認証のチケット要求(TGS-REQ)の中でSPNが実際にどう使われ、KDCがどのアカウントの鍵でチケットを暗号化するかをどう決めているのかを体系的に理解する。setspnコマンドの使い方、SPN重複エラーの正体、SQL Serverでよくある「Kerberosが通らずNTLMに降格する」トラブルの診断まで扱う。"
 series: "active-directory"
+subSeries: "supplementary"
 order: 11
 tags: ["windows-server", "active-directory", "kerberos", "spn", "infra", "identity"]
 emoji: "🔑"

@@ -1,13 +1,27 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { seriesNamesEn } from "../../consts";
+import { seriesNamesEn, subSeriesNamesEn } from "../../consts";
 
 const articles = (await getCollection("articlesEn", ({ data }) => !data.draft)).sort(
   (a, b) => a.data.series.localeCompare(b.data.series) || a.data.order - b.data.order
 );
 
 const bySeries = Map.groupBy(articles, (a) => a.data.series);
+
+// サブシリーズの表示順(main → supplementary → handson → それ以外はconsts.tsの登場順)
+const subSeriesOrder = Object.keys(subSeriesNamesEn);
+const subSeriesOf = (series: string) => {
+  const values = new Set((bySeries.get(series) ?? []).map((a) => a.data.subSeries).filter((v): v is string => !!v));
+  return [...values].sort((a, b) => {
+    const ia = subSeriesOrder.indexOf(a);
+    const ib = subSeriesOrder.indexOf(b);
+    if (ia === -1 && ib === -1) return a.localeCompare(b);
+    if (ia === -1) return 1;
+    if (ib === -1) return -1;
+    return ia - ib;
+  });
+};
 
 const formatDate = (date: Date) =>
   date.toLocaleDateString("en-US", { year: "numeric", month: "2-digit", day: "2-digit" });
@@ -46,6 +60,27 @@ const formatDate = (date: Date) =>
     }
   </div>
 
+  <div class="article-subfilters" id="article-subfilters">
+    {
+      [...bySeries.keys()]
+        .map((series) => ({ series, subs: subSeriesOf(series) }))
+        .filter(({ subs }) => subs.length > 1)
+        .map(({ series, subs }) => (
+          <div class="subfilter-group" data-parent-series={series} hidden>
+            <span class="article-filters-label">↳ Narrow down within {seriesNamesEn[series] ?? series}:</span>
+            <button type="button" class="filter-chip filter-chip-reset is-active" data-filter-type="sub-all" data-parent-series={series}>
+              All
+            </button>
+            {subs.map((sub) => (
+              <button type="button" class="filter-chip" data-filter-type="sub-series" data-parent-series={series} data-filter-value={sub}>
+                {subSeriesNamesEn[sub] ?? sub}
+              </button>
+            ))}
+          </div>
+        ))
+    }
+  </div>
+
   {
     [...bySeries.entries()].map(([series, items]) => (
       <section class="series-section" data-series={series}>
@@ -55,7 +90,7 @@ const formatDate = (date: Date) =>
         </h2>
         <ul class="card-list">
           {items.map((article) => (
-            <li>
+            <li data-sub-series={article.data.subSeries ?? ""}>
               <a class="card" href={`/en/articles/${article.id}`}>
                 <p class="card-title">
                   {article.data.emoji ? `${article.data.emoji} ` : ""}
@@ -85,33 +120,65 @@ const formatDate = (date: Date) =>
 
   <script>
     const filterBar = document.getElementById("article-filters");
+    const subFilterBar = document.getElementById("article-subfilters");
     const emptyMsg = document.getElementById("article-filters-empty");
-    if (filterBar) {
-      filterBar.addEventListener("click", (e) => {
-        const btn = (e.target as HTMLElement).closest<HTMLButtonElement>(".filter-chip");
-        if (!btn) return;
 
-        filterBar.querySelectorAll(".filter-chip").forEach((c) => c.classList.remove("is-active"));
-        btn.classList.add("is-active");
+    let activeSeries = "all";
+    let activeSub = "all";
 
-        const type = btn.dataset.filterType;
-        const value = btn.dataset.filterValue;
-        const sections = document.querySelectorAll<HTMLElement>(".series-section");
-        let visibleCount = 0;
+    function applyFilter() {
+      const sections = document.querySelectorAll<HTMLElement>(".series-section");
+      let visibleCount = 0;
 
-        sections.forEach((section) => {
-          let sectionHasVisible = false;
-          section.querySelectorAll<HTMLLIElement>(".card-list > li").forEach((li) => {
-            const matches = type === "all" || (type === "series" && section.dataset.series === value);
-            li.classList.toggle("is-hidden", !matches);
-            if (matches) sectionHasVisible = true;
-          });
-          section.classList.toggle("is-hidden", !sectionHasVisible);
-          if (sectionHasVisible) visibleCount++;
+      sections.forEach((section) => {
+        const isActiveSeries = activeSeries === "all" || section.dataset.series === activeSeries;
+        let sectionHasVisible = false;
+        section.querySelectorAll<HTMLLIElement>(".card-list > li").forEach((li) => {
+          const subMatches = activeSeries === "all" || activeSub === "all" || li.dataset.subSeries === activeSub;
+          const matches = isActiveSeries && subMatches;
+          li.classList.toggle("is-hidden", !matches);
+          if (matches) sectionHasVisible = true;
         });
+        section.classList.toggle("is-hidden", !sectionHasVisible);
+        if (sectionHasVisible) visibleCount++;
+      });
 
-        emptyMsg?.classList.toggle("is-visible", visibleCount === 0);
+      emptyMsg?.classList.toggle("is-visible", visibleCount === 0);
+
+      // Only show the sub-filter row for the currently selected series
+      subFilterBar?.querySelectorAll<HTMLElement>(".subfilter-group").forEach((group) => {
+        group.hidden = group.dataset.parentSeries !== activeSeries;
       });
     }
+
+    filterBar?.addEventListener("click", (e) => {
+      const btn = (e.target as HTMLElement).closest<HTMLButtonElement>(".filter-chip");
+      if (!btn) return;
+
+      filterBar.querySelectorAll(".filter-chip").forEach((c) => c.classList.remove("is-active"));
+      btn.classList.add("is-active");
+
+      activeSeries = btn.dataset.filterType === "series" ? (btn.dataset.filterValue ?? "all") : "all";
+      activeSub = "all";
+
+      // Reset the newly selected series's sub-filter row back to "All"
+      subFilterBar?.querySelectorAll<HTMLElement>(`.subfilter-group[data-parent-series="${activeSeries}"] .filter-chip`).forEach((c) => {
+        c.classList.toggle("is-active", c.getAttribute("data-filter-type") === "sub-all");
+      });
+
+      applyFilter();
+    });
+
+    subFilterBar?.addEventListener("click", (e) => {
+      const btn = (e.target as HTMLElement).closest<HTMLButtonElement>(".filter-chip");
+      if (!btn) return;
+
+      const group = btn.closest<HTMLElement>(".subfilter-group");
+      group?.querySelectorAll(".filter-chip").forEach((c) => c.classList.remove("is-active"));
+      btn.classList.add("is-active");
+
+      activeSub = btn.dataset.filterType === "sub-series" ? (btn.dataset.filterValue ?? "all") : "all";
+      applyFilter();
+    });
   </script>
 </BaseLayout>

@@ -2,6 +2,7 @@
 title: "Kerberos認証の仕組みを『上位1%』の視点で理解する——パスワードを一度もネットワークに送らずに本人確認できる理由"
 description: "Kerberos認証はなぜユーザーのパスワードそのものを一度もネットワークへ送信せずに本人確認できるのか。事前認証・TGT・サービスチケットという3種類のやり取り(AS-REQ/AS-REP、TGS-REQ/TGS-REP、AP-REQ)が実際に何を証明しているのかを体系的に理解する。あわせて、チケットに埋め込まれるPAC(特権属性証明書)とSIDの関係、NTLMとの違い、トークン肥大化問題まで扱う。"
 series: "active-directory"
+subSeries: "supplementary"
 order: 13
 tags: ["windows-server", "active-directory", "kerberos", "sid", "infra", "identity"]
 emoji: "🎫"

@@ -2,6 +2,7 @@
 title: "Understanding AD \"Sites\" and Replication Topology from a \"Top 1%\" Perspective — DC Placement Across Locations and How the KCC Works"
 description: "What exactly is a \"Site,\" the concept you always run into when opening dssite.msc? Why do you need to associate subnets with sites? Why does replication speed and mechanism differ between DCs in the same site versus DCs across locations? This article systematically explains terms like KCC, ISTG, bridgehead servers, and site link cost from the practical angle of which DC a client actually chooses."
 series: "active-directory"
+subSeries: "main"
 order: 8
 tags: ["windows-server", "active-directory", "sites", "infra", "replication"]
 emoji: "🗺️"

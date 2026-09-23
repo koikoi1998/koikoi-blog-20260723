@@ -2,6 +2,7 @@
 title: "Understanding SPNs (Service Principal Names) from a \"Top 1%\" Perspective — How Kerberos Authentication Binds a Service to an Account"
 description: "What exactly is an SPN, and why is a computer account registered with a HOST/computer-name SPN by default? This article systematically explains how an SPN is actually used inside a Kerberos service-ticket request (TGS-REQ), and how the KDC decides which account's key to encrypt a ticket with. It also covers how to use the setspn command, what a duplicate SPN error really means, and how to diagnose the common SQL Server problem of authentication silently falling back from Kerberos to NTLM."
 series: "active-directory"
+subSeries: "supplementary"
 order: 11
 tags: ["windows-server", "active-directory", "kerberos", "spn", "infra", "identity"]
 emoji: "🔑"

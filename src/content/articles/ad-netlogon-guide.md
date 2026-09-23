@@ -2,6 +2,7 @@
 title: "Netlogonサービスとセキュアチャネルの仕組みを『上位1%』の視点で理解する——VMスナップショットで「信頼関係の障害」が起こる理由"
 description: "Netlogonサービスとは何をしているサービスなのか。セキュアチャネルの正体、マシンアカウントパスワードが既定30日ごとに自動更新される仕組み、そしてVMのスナップショットを古い状態に戻すとなぜ「このワークステーションとプライマリドメインの信頼関係に失敗しました」というエラーが起きるのかを体系的に理解する。Test-ComputerSecureChannelやnltestコマンドでの診断・復旧、Netlogonが悪用されたZerologon脆弱性の概要まで扱う。"
 series: "active-directory"
+subSeries: "supplementary"
 order: 12
 tags: ["windows-server", "active-directory", "netlogon", "infra", "identity", "troubleshooting"]
 emoji: "🔐"

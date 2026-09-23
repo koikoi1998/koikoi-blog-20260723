@@ -2,6 +2,7 @@
 title: "Understanding FSMO (Operations Master) Roles from a \"Top 1%\" Perspective — The Five Roles and How FSMO Transfer Works"
 description: "AD DS is built on multi-master replication, so why can only certain operations be performed by a single DC? What does each of the five FSMO roles — Schema, Domain Naming, RID, PDC Emulator, and Infrastructure — actually handle, and why does that particular role need a single master? This article systematically explains FSMO transfer versus forced FSMO seizure."
 series: "active-directory"
+subSeries: "main"
 order: 6
 tags: ["windows-server", "active-directory", "fsmo", "infra", "identity"]
 emoji: "👑"

@@ -2,6 +2,7 @@
 title: "Why Is DNS in an AD Environment Designed This Way? — Understanding Forwarders, Primary/Secondary Behavior, and Why 127.0.0.1 Is Recommended, from a \"Top 1%\" Perspective"
 description: "Why can `ping 8.8.8.8` succeed while browsing the internet fails? Why doesn't Windows automatically fall back to a secondary DNS server when the primary one can't resolve a name? Why is a DC often told to point its own DNS setting at 127.0.0.1 instead of its own real IP address? And why does a DC so often double as a DNS server in the first place? This article systematically explains the DNS design specific to AD environments."
 series: "active-directory"
+subSeries: "main"
 order: 4
 tags: ["windows-server", "active-directory", "dns", "infra", "troubleshooting"]
 emoji: "📡"

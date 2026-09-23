@@ -2,6 +2,7 @@
 title: "Understanding the Difference Between AD and DC, and Domains vs. Forests, from a \"Top 1%\" Perspective — The Overall Structure of Active Directory and Functional Levels"
 description: "Starting from the basic question \"the difference between AD and DC never quite clicks for me\", this article systematically explains the division of labor between AD DS (a directory service) and DC (the server that runs it), what each of the three boundary layers — domain, tree, and forest — actually separates, what functional levels constrain, and what gets installed alongside AD DS when you add the role."
 series: "active-directory"
+subSeries: "main"
 order: 1
 tags: ["windows-server", "active-directory", "dc", "infra", "identity"]
 emoji: "🏛️"

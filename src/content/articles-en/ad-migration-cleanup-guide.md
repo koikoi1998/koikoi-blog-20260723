@@ -2,6 +2,7 @@
 title: "Understanding Post-Migration AD Cleanup from a \"Top 1%\" Perspective — The Division of Labor Between dsa.msc, dssite.msc, adsiedit.msc, and dnsmgmt.msc"
 description: "After decommissioning a DC in an AD migration, you're supposed to check four consoles: dsa.msc, dssite.msc, adsiedit.msc, and dnsmgmt.msc. What does each one actually manage, and why do you need to check and clean up there? This article systematically explains why a retired machine's information lingers in dsa.msc's Computers container, and what the difference is between dsa.msc and dssite.msc."
 series: "active-directory"
+subSeries: "main"
 order: 10
 tags: ["windows-server", "active-directory", "infra", "troubleshooting"]
 emoji: "🧹"

@@ -2,6 +2,7 @@
 title: "DCの正常性確認を『上位1%』の視点で理解する——repadmin /showreplとnet shareの読み方"
 description: "AD移行の各段階で必ず実行する repadmin /showrepl と net share。それぞれの出力が何を表しており、どう読めば「正常」と判断できるのか。repadmin /showreplで確認できる5つのパーティションとは何か、net shareに表示されるC$・IPC$・ADMIN$・NETLOGON・SYSVOLとは何か、SysvolReadyレジストリ値の意味まで、DCの正常性確認を体系的に理解する。"
 series: "active-directory"
+subSeries: "main"
 order: 7
 tags: ["windows-server", "active-directory", "infra", "troubleshooting"]
 emoji: "🩺"

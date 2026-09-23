@@ -2,6 +2,7 @@
 title: "Windowsのログインとユーザープロファイルの仕組みを『上位1%』の視点で理解する——初回ログインになぜ社内ネットワーク接続が必要なのか、VDIとの違いまで"
 description: "ドメインアカウントでの初回ログインに社内ネットワーク接続が必要なのはなぜか。2回目以降のログインでは裏側で何が起きているのか。キャッシュされた資格情報とローカルユーザープロファイルの生成、そしてVDI(仮想デスクトップ)がどうやってどのPCからでも同じデスクトップにアクセスできるようにしているのかまでを体系的に理解する。"
 series: "active-directory"
+subSeries: "main"
 order: 3
 tags: ["windows-server", "active-directory", "windows", "vdi", "identity"]
 emoji: "🔑"

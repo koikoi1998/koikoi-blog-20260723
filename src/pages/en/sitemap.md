@@ -67,7 +67,7 @@ The recommended reading order within each series is noted in that series' descri
 
 ## Recommended Routes by Reader Type
 
-This blog is written for a wide range of readers — from people with no experience aiming to become infrastructure engineers, to top-tier AWS/Google engineers earning the equivalent of ¥50 million or more a year. You don't have to read every article in order, so here are five routes matched to career stage. **Pick the tab closest to you below and only that route will show** (route ② assumes ①, ③ assumes ①②, ④ assumes ①②③, ⑤ assumes ①②③④). Niche articles that only matter in a very specific real-world situation aren't force-fit into every route — each one is introduced for the first time in the route where it actually becomes relevant (earlier routes just mention it briefly as optional). This same 5-stage split is also intended to double as the difficulty tiering for hands-on material we plan to add later.
+This blog is written for a wide range of readers — from people with no experience aiming to become infrastructure engineers, to top-tier AWS/Google engineers earning the equivalent of ¥50 million or more a year. You don't have to read every article in order, so here are eight routes matched to career stage. **Pick the tab closest to you below and only that route will show** (route ② and beyond each assume every STEP before it). Niche articles that only matter in a very specific real-world situation aren't force-fit into every route — each one is introduced for the first time in the route where it actually becomes relevant (earlier routes just mention it briefly as optional). To keep any single STEP from becoming an overwhelming pile of articles, a STEP gets split further once its theme grows large enough to deserve its own step — this split will keep being revisited as more articles are added.
 
 <div class="persona-routes">
 <input type="radio" name="persona-route" id="persona-tab-1" class="persona-input" checked>
@@ -75,12 +75,18 @@ This blog is written for a wide range of readers — from people with no experie
 <input type="radio" name="persona-route" id="persona-tab-3" class="persona-input">
 <input type="radio" name="persona-route" id="persona-tab-4" class="persona-input">
 <input type="radio" name="persona-route" id="persona-tab-5" class="persona-input">
+<input type="radio" name="persona-route" id="persona-tab-6" class="persona-input">
+<input type="radio" name="persona-route" id="persona-tab-7" class="persona-input">
+<input type="radio" name="persona-route" id="persona-tab-8" class="persona-input">
 <div class="persona-tabs">
 <label for="persona-tab-1" class="persona-tab"><span class="persona-tab-step">STEP1</span> 🌱 Self-taught, no experience yet</label>
 <label for="persona-tab-2" class="persona-tab"><span class="persona-tab-step">STEP2</span> 🔧 Year 1, entering design/build work</label>
 <label for="persona-tab-3" class="persona-tab"><span class="persona-tab-step">STEP3</span> 💪 On the job, building confidence</label>
-<label for="persona-tab-4" class="persona-tab"><span class="persona-tab-step">STEP4</span> 📈 Aiming for a higher-paying job</label>
-<label for="persona-tab-5" class="persona-tab"><span class="persona-tab-step">STEP5</span> 🏆 Top 1% (¥10M–¥50M+)</label>
+<label for="persona-tab-4" class="persona-tab"><span class="persona-tab-step">STEP4</span> 🏢 Mastering Active Directory</label>
+<label for="persona-tab-5" class="persona-tab"><span class="persona-tab-step">STEP5</span> 🖥️ Windows Server, storage & cloud</label>
+<label for="persona-tab-6" class="persona-tab"><span class="persona-tab-step">STEP6</span> 🐳 Containers & config-mgmt automation</label>
+<label for="persona-tab-7" class="persona-tab"><span class="persona-tab-step">STEP7</span> 📈 Aiming for a higher-paying job</label>
+<label for="persona-tab-8" class="persona-tab"><span class="persona-tab-step">STEP8</span> 🏆 Top 1% (¥10M–¥50M+)</label>
 </div>
 <div class="persona-panels">
 <div class="persona-panel persona-panel-1">
@@ -145,6 +151,15 @@ This blog is written for a wide range of readers — from people with no experie
 <li><a href="/en/articles/windows-rras-roles-guide">Understanding the Differences Between VPN Access, Dial-Up Access, Demand-Dial Access, NAT, and LAN Routing in Windows Server RRAS from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/site-to-site-vpn-aws-guide">Understanding Site-to-Site VPN with AWS from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/sdwan-edge-router-guide">Understanding SD-WAN and Edge Router Selection from a "Top 1%" Perspective</a></li>
+</ol>
+</div>
+<div class="persona-panel persona-panel-4">
+<div class="persona-panel-head">
+<h3>🏢 For those given ownership of AD migration/DC operations and who want to understand it systematically</h3>
+<p>Covers all 15 articles of the Active Directory series in one step, from fundamentals, through deep dives on sites/SPN/Netlogon/Kerberos, to hands-on labs. It's a large enough theme that it gets its own dedicated step, independent of the others.</p>
+</div>
+<ol class="persona-route-list">
+<li>STEP1 through STEP3's 37 articles (see those tabs above)</li>
 <li><a href="/en/articles/ad-dc-fundamentals-guide">Understanding the Difference Between AD and DC, and Domains vs. Forests, from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/ad-computername-netdom-guide">What's the Difference Between sysdm.cpl and netdom computername?</a></li>
 <li><a href="/en/articles/ad-windows-login-guide">Understanding Windows Logon and User Profiles from a "Top 1%" Perspective</a></li>
@@ -152,8 +167,23 @@ This blog is written for a wide range of readers — from people with no experie
 <li><a href="/en/articles/dns-zones-records-guide">Reading DNS Zones and Records from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/fsmo-guide">Understanding FSMO (Operations Master) Roles from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/dc-health-check-guide">Understanding DC Health Checks from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/ad-sites-guide">Understanding AD "Sites" and Replication Topology from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/dcdiag-guide">Reading dcdiag /v from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/ad-migration-cleanup-guide">Understanding Post-Migration AD Cleanup from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/ad-spn-guide">Understanding SPNs (Service Principal Names) from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/ad-netlogon-guide">Understanding the Netlogon Service and the Secure Channel from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/ad-kerberos-guide">Understanding Kerberos Authentication from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/ad-multidomain-handson-guide">Hands-On: Building a Multi-Domain, Multi-Tree AD Forest</a></li>
+<li><a href="/en/articles/ad-migration-handson-guide">Hands-On: Migrating From an Old DC to a New One</a></li>
+</ol>
+</div>
+<div class="persona-panel persona-panel-5">
+<div class="persona-panel-head">
+<h3>🖥️ For those looking to extend their Windows Server chops beyond AD</h3>
+<p>Adds the topics that come up constantly in Windows Server operations outside of AD itself: licensing, NTP, IIS, file sharing, storage connectivity, and cloud-adjacent knowledge.</p>
+</div>
+<ol class="persona-route-list">
+<li>STEP1 through STEP4's 52 articles (see those tabs above)</li>
 <li><a href="/en/articles/windows-server-licensing-guide">Understanding Windows Server Licensing (OEM, Datacenter, Standard) from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/windows-ntp-server-guide">Understanding the Configuration Values for Building an NTP Server on Windows Server from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/iis-fundamentals-guide">Understanding How IIS and ASP.NET Work from a "Top 1%" Perspective</a></li>
@@ -163,6 +193,15 @@ This blog is written for a wide range of readers — from people with no experie
 <li><a href="/en/articles/fc-san-fundamentals-guide">Understanding the Difference Between Fibre Channel and LAN Connections from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/aws-ec2-networking-basics-guide">Understanding EC2 Key Pairs (.pem/.ppk) and Reserved Subnet IPs from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/m365-email-fundamentals-guide">Understanding Email Migration to M365 from a "Top 1%" Perspective</a></li>
+</ol>
+</div>
+<div class="persona-panel persona-panel-6">
+<div class="persona-panel-head">
+<h3>🐳 For those who want some exposure to container platforms and config-management automation too</h3>
+<p>Covers OpenShift (a container platform) and Ansible (configuration-management automation), each as an overview article paired with a hands-on lab.</p>
+</div>
+<ol class="persona-route-list">
+<li>STEP1 through STEP5's 61 articles (see those tabs above)</li>
 <li><a href="/en/articles/openshift-guide">Understanding What OpenShift Actually Is From a "Top 1%" Perspective — Its Relationship to Kubernetes</a></li>
 <li><a href="/en/articles/openshift-handson-guide">A "Top 1%" Hands-On Lab: Running a Container Application on OpenShift Local</a></li>
 <li><a href="/en/articles/ansible-guide">Understanding What Ansible Actually Is From a "Top 1%" Perspective — Configuration Management and the Agentless Model</a></li>
@@ -170,13 +209,13 @@ This blog is written for a wide range of readers — from people with no experie
 </ol>
 <div class="persona-bonus">🔍 <strong>If it interests you (optional)</strong>: <a href="/en/articles/voip-ss7-guide">Understanding VoIP and SS7</a> is worth a read once the history behind the telephone network starts to interest you, and <a href="/en/articles/proxmox-internals-guide">What Is Proxmox VE?</a> is worth a read once KVM/QEMU's internals start to interest you.</div>
 </div>
-<div class="persona-panel persona-panel-4">
+<div class="persona-panel persona-panel-7">
 <div class="persona-panel-head">
 <h3>📈 For those studying to move to a higher-paying company</h3>
-<p>Adds the low-level implementation knowledge that sets you apart in interviews and design reviews, on top of everything through STEP3.</p>
+<p>Adds the low-level implementation knowledge that sets you apart in interviews and design reviews, on top of everything through STEP6.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP3's 59 articles (see those tabs above)</li>
+<li>STEP1 through STEP6's 65 articles (see those tabs above)</li>
 <li><a href="/en/articles/proxmox-internals-guide">What Is Proxmox VE? Understanding KVM/QEMU Virtualization from the "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/linux-daemon-guide">What Is a Daemon? Understanding Linux Background Processes from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/software-library-guide">What Is a Library? Understanding Static and Dynamic Linking from a "Top 1%" Perspective</a></li>
@@ -197,16 +236,16 @@ This blog is written for a wide range of readers — from people with no experie
 <li><a href="/en/articles/hyperv-capacity-guide">Understanding Hyper-V Virtual Machine Resource Design from a "Top 1%" Perspective</a></li>
 </ol>
 </div>
-<div class="persona-panel persona-panel-5">
+<div class="persona-panel persona-panel-8">
 <div class="persona-panel-head">
 <h3>🏆 For those gathering information toward ¥10M, ¥20M, or ¥50M+</h3>
-<p>The complete-conquest route: read all 78 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
+<p>The complete-conquest route: read all 84 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP4's 77 articles (see those tabs above)</li>
+<li>STEP1 through STEP7's 83 articles (see those tabs above)</li>
 <li><a href="/en/articles/voip-ss7-guide">Understanding VoIP and SS7 — and the Real Path Your Traffic Takes — from a "Top 1%" Perspective</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>That's all 78 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
+<div class="persona-bonus">🎉 <strong>That's all 84 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
 </div>
 </div>
 </div>

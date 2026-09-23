@@ -2,6 +2,7 @@
 title: "sysdm.cplとnetdom computernameは何が違うのか——「プライマリホスト名」とAD移行のホスト名重複事故を『上位1%』の視点で理解する"
 description: "コンピューター名の変更には、システムのプロパティ(sysdm.cpl)からの変更とnetdom computernameコマンドの2つの手段がある。両者は何が違い、なぜnetdomでは/addで別名を追加してから/makeprimaryでプライマリ化するという2段階を踏む必要があるのか。そして「プライマリホスト名」とは何を指しているのかを、実際のAD移行で発生したホスト名重複による認証障害の事例を通して理解する。"
 series: "active-directory"
+subSeries: "main"
 order: 2
 tags: ["windows-server", "active-directory", "dns", "infra", "identity"]
 emoji: "🏷️"

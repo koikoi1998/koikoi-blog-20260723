@@ -2,6 +2,7 @@
 title: "FSMO(操作マスター)とは何かを『上位1%』の視点で理解する——5つの役割とFSMO転送の仕組み"
 description: "AD DSはマルチマスターレプリケーションが基本なのに、なぜ一部の操作だけは単一のDCしか実行できないのか。スキーマ・ドメイン名前付け・RID・PDCエミュレータ・インフラストラクチャという5つのFSMO役割がそれぞれ何を担い、なぜその役割だけは単一マスターでなければならないのか。FSMO転送とFSMOの強制委譲(シージ)の違いまでを体系的に理解する。"
 series: "active-directory"
+subSeries: "main"
 order: 6
 tags: ["windows-server", "active-directory", "fsmo", "infra", "identity"]
 emoji: "👑"

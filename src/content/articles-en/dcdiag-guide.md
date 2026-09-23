@@ -2,6 +2,7 @@
 title: "Reading dcdiag /v from a \"Top 1%\" Perspective — Which Errors You Can Ignore, and Which You Can't"
 description: "dcdiag /v has so many test items that real-world AD environments tend to show a flood of warnings and errors, leaving you unsure what's genuinely dangerous and what's safe to ignore. This article systematically explains what dcdiag actually tests, what its major test items each verify, and how to judge its results."
 series: "active-directory"
+subSeries: "main"
 order: 9
 tags: ["windows-server", "active-directory", "infra", "troubleshooting"]
 emoji: "🔬"

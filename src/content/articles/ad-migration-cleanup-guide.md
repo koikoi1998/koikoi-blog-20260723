@@ -2,6 +2,7 @@
 title: "AD移行後のクリーンアップを『上位1%』の視点で理解する——dsa.msc・dssite.msc・adsiedit.msc・dnsmgmt.mscの役割分担"
 description: "AD移行でDCを撤去した後、dsa.msc・dssite.msc・adsiedit.msc・dnsmgmt.mscという4つのコンソールを確認すると思うが、それぞれ何を管理しており、なぜそこを確認・削除する必要があるのか。dsa.mscのcomputersに退役した端末の情報が残り続けるのはなぜか、dsa.mscとdssite.mscの違いは何かまでを体系的に理解する。"
 series: "active-directory"
+subSeries: "main"
 order: 10
 tags: ["windows-server", "active-directory", "infra", "troubleshooting"]
 emoji: "🧹"

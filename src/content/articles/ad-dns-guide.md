@@ -2,6 +2,7 @@
 title: "AD環境のDNSはなぜこう設計されているのか——フォワーダー・プライマリ/セカンダリの挙動・127.0.0.1指定の理由を『上位1%』の視点で理解する"
 description: "「ping 8.8.8.8は通るのにインターネット検索ができない」という症状はなぜ起きるのか。プライマリDNSで名前解決できないとき、なぜセカンダリDNSに自動で聞きに行かないのか。ADサーバーが自分のIPではなく127.0.0.1をDNSに指定すべきと言われる理由は何か。ADサーバーがDNSサーバーを兼任することが多い理由まで、AD環境特有のDNS設計を体系的に理解する。"
 series: "active-directory"
+subSeries: "main"
 order: 4
 tags: ["windows-server", "active-directory", "dns", "infra", "troubleshooting"]
 emoji: "📡"

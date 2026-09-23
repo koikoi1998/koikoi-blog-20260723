@@ -46,6 +46,20 @@ export const seriesNamesEn: Record<string, string> = {
   ansible: "Ansible Series",
 };
 
+// シリーズ内をさらに絞り込むためのサブカテゴリの表示名。
+// キー(main/supplementary/handsonなど)は各記事のフロントマターのsubSeriesと対応する。
+export const subSeriesNames: Record<string, string> = {
+  main: "メイン記事",
+  supplementary: "補足・深掘り記事",
+  handson: "ハンズオン記事",
+};
+
+export const subSeriesNamesEn: Record<string, string> = {
+  main: "Main Articles",
+  supplementary: "Supplementary Deep-Dives",
+  handson: "Hands-On",
+};
+
 export type Lang = "ja" | "en";
 
 export const ui = {

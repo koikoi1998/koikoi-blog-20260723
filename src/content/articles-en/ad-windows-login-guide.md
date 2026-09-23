@@ -2,6 +2,7 @@
 title: "Understanding Windows Logon and User Profiles from a \"Top 1%\" Perspective — Why the First Logon Needs Corporate Network Connectivity, and How VDI Differs"
 description: "Why does the very first logon with a domain account require connectivity to the corporate network? What happens behind the scenes on subsequent logons? This article systematically explains cached credentials and the creation of a local user profile, and how VDI (virtual desktop infrastructure) manages to let you reach the same desktop from any PC."
 series: "active-directory"
+subSeries: "main"
 order: 3
 tags: ["windows-server", "active-directory", "windows", "vdi", "identity"]
 emoji: "🔑"

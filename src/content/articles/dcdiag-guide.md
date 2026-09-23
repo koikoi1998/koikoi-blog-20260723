@@ -2,6 +2,7 @@
 title: "dcdiag /vの読み方を『上位1%』の視点で理解する——エラーを無視してよい根拠・無視できない根拠"
 description: "dcdiag /vは項目数が多く、AD移行の現場では警告やエラーが大量に表示されがちで、何が本当に危険で何が無視してよいのか判断に迷う。dcdiagが何をテストしているツールなのか、主要なテスト項目がそれぞれ何を検証しているのか、そして結果を見てどう判断すればよいのかを体系的に理解する。"
 series: "active-directory"
+subSeries: "main"
 order: 9
 tags: ["windows-server", "active-directory", "infra", "troubleshooting"]
 emoji: "🔬"

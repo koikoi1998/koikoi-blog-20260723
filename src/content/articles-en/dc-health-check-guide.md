@@ -2,6 +2,7 @@
 title: "Understanding DC Health Checks from a \"Top 1%\" Perspective — Reading repadmin /showrepl and net share"
 description: "Every AD migration procedure calls for repadmin /showrepl and net share. What does each command's output actually represent, and by what criteria can it be judged \"healthy\"? This article systematically explains the five partitions visible in repadmin /showrepl, what the C$, IPC$, ADMIN$, NETLOGON, and SYSVOL shares shown by net share mean, and what the SysvolReady registry value indicates."
 series: "active-directory"
+subSeries: "main"
 order: 7
 tags: ["windows-server", "active-directory", "infra", "troubleshooting"]
 emoji: "🩺"

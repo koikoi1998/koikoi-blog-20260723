@@ -2,6 +2,7 @@
 title: "What's the Difference Between sysdm.cpl and netdom computername? — Understanding \"Primary Host Name\" and a Real AD-Migration Hostname Collision Incident from a \"Top 1%\" Perspective"
 description: "There are two ways to change a computer name in Windows: through System Properties (sysdm.cpl), and through the netdom computername command. What's actually different about how each achieves the change, and why does netdom require the two-step process of adding an alternate name with /add and then promoting it with /makeprimary? This article digs into what \"primary host name\" really means, then applies that understanding to diagnose a real authentication outage caused by a hostname collision during an AD migration."
 series: "active-directory"
+subSeries: "main"
 order: 2
 tags: ["windows-server", "active-directory", "dns", "infra", "identity"]
 emoji: "🏷️"

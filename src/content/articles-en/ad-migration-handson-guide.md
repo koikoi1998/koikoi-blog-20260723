@@ -2,6 +2,7 @@
 title: "Hands-On: Migrating From an Old DC to a New One — FSMO Transfer, Demotion, and Hostname Takeover in Practice"
 description: "A real-world-scenario hands-on lab: add a new DC to a domain currently running on a single existing DC, verify replication health with repadmin/dcdiag, transfer all five FSMO roles, and formally demote and remove the old DC. Covers post-demotion cleanup verification (dsa.msc/dssite.msc/adsiedit.msc/dnsmgmt.msc), handing the old DC's name over to the new one, and an exercise in deliberately triggering and reading a dcdiag warning — a capstone for the series."
 series: "active-directory"
+subSeries: "handson"
 order: 15
 tags: ["windows-server", "active-directory", "infra", "identity", "handson", "troubleshooting"]
 emoji: "🔁"
