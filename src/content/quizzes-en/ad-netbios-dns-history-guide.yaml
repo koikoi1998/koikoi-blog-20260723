@@ -1,0 +1,45 @@
+questions:
+  - question: "According to the article, which statement best describes the relationship between a NetBIOS name and a DNS hostname?"
+    choices:
+      - "A NetBIOS name is just a DNS hostname shortened to 15 characters — the same mechanism, abbreviated"
+      - "NetBIOS is an entirely separate protocol from DNS, designed in an earlier era around a flat, non-hierarchical namespace"
+      - "A NetBIOS name and a DNS hostname must always be exactly the same string, by specification"
+      - "A DNS hostname is derived from NetBIOS — one of NetBIOS's own extended specifications"
+    answerIndex: 1
+    explanation: "NetBIOS was designed for 1980s LANs, before DNS became widespread, around a flat naming scheme with no hierarchy — it comes from a completely different era and design philosophy than a DNS hostname."
+
+  - question: "According to the article, why is a computer name capped at 15 characters?"
+    choices:
+      - "Because the DNS hostname label spec limits it to 15 characters"
+      - "Because a NetBIOS name is, by spec, always a fixed 16 bytes — the first 15 bytes are the name, and the 16th byte is reserved to indicate the service type"
+      - "Because the Windows file system can't handle names longer than 15 characters"
+      - "Because the Active Directory schema limits the computer-name attribute to 15 characters"
+    answerIndex: 1
+    explanation: "A NetBIOS name is by spec always a fixed 16 bytes: the first 15 bytes are the name an administrator or user can specify, and the 16th byte (the NetBIOS suffix) is reserved to indicate what kind of service that computer offers."
+
+  - question: "According to the article, what role did WINS (Windows Internet Name Service) play?"
+    choices:
+      - "It was just another name for a DNS server that maps DNS hostnames to IP addresses"
+      - "It centrally managed a NetBIOS-name-to-IP-address mapping table, enabling NetBIOS name resolution even across routers beyond the reach of a broadcast — functioning as 'DNS for NetBIOS'"
+      - "It was one of Active Directory's FSMO roles, with exactly one instance per forest"
+      - "It was a dedicated server for issuing Kerberos authentication tickets"
+    answerIndex: 1
+    explanation: "WINS maintained a NetBIOS-name-to-IP-address mapping table on a single centralized server. Clients could query that server directly instead of relying on a broadcast, enabling NetBIOS name resolution across routers — functioning, in effect, as 'DNS for NetBIOS.'"
+
+  - question: "According to the article, what is the current status of WINS?"
+    choices:
+      - "It has already been fully removed from every Windows Server release and no longer exists"
+      - "It was deprecated as of Windows Server 2022, and Windows Server 2025 is the last LTSC release to include the WINS server role — full removal is planned for every release after it"
+      - "It will continue to be supported indefinitely, with no plans for removal"
+      - "WINS was originally a Linux-only feature and was never used on Windows Server"
+    answerIndex: 1
+    explanation: "WINS was deprecated as of Windows Server 2022, and Windows Server 2025 will be the last LTSC (Long-Term Servicing Channel) release to include the WINS server role. Every release after it is slated to fully remove the WINS server role, its management MMC snap-in, and its associated APIs."
+
+  - question: "According to the article, what does the down-level logon name `DOMAIN\\username` actually represent?"
+    choices:
+      - "Just an old-fashioned habit with no real technical meaning"
+      - "A formal authentication-name format premised on a NetBIOS domain name — living proof that NetBIOS's old naming rules still persist inside the authentication mechanism today"
+      - "A modern authentication-name format premised on a DNS hostname"
+      - "A format that's scheduled to stop working starting with Windows Server 2025"
+    answerIndex: 1
+    explanation: "The DOMAIN\\username notation (the down-level logon name) is a formal authentication-name format premised on a NetBIOS domain name. It isn't just a convention — it's evidence that NetBIOS's old naming rules still live on inside the authentication mechanism."
