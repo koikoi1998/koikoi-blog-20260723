@@ -1,0 +1,45 @@
+questions:
+  - question: "According to the article, what is a GPO (Group Policy Object) actually made of?"
+    choices:
+      - "It's stored entirely as a single object within AD DS"
+      - "It's the combination of two independent parts: the GPC (the configuration skeleton) in AD DS, and the GPT (the actual configuration files) in SYSVOL"
+      - "It's stored only in SYSVOL and has nothing to do with AD DS"
+      - "It's created independently and separately on the local disk of every DC"
+    answerIndex: 1
+    explanation: "A GPO is made up of two independent parts: the GPC (Group Policy Container — the skeleton and version number) in AD DS, and the GPT (Group Policy Template — the actual configuration files) in SYSVOL."
+
+  - question: "According to the article, why do the GPC and GPT replicate via two different mechanisms?"
+    choices:
+      - "Because the GPC is an ordinary AD DS object and replicates via AD DS replication, while the GPT is a file and replicates via DFSR as part of SYSVOL"
+      - "It's purely a historical accident with no real technical reason"
+      - "The GPC and GPT actually use the exact same replication mechanism"
+      - "The GPT is deliberately designed to replicate before the GPC, by design"
+    answerIndex: 0
+    explanation: "The GPC is an ordinary AD DS object, so it replicates as part of the domain partition via ordinary AD DS replication. The GPT is a file, so it replicates as part of the SYSVOL file share, via the dedicated file-replication mechanism DFSR."
+
+  - question: "According to the article, what's the decisive difference between DFSR and FRS?"
+    choices:
+      - "FRS replicates only the blocks that changed, while DFSR replicates the entire file every time"
+      - "FRS replicates the entire file the moment even a single byte changes, while DFSR uses a technology called RDC to replicate only the changed blocks"
+      - "DFSR and FRS use the exact same file-transfer mechanism, just with different implementations"
+      - "FRS is newer than DFSR and was developed as its successor"
+    answerIndex: 1
+    explanation: "FRS replicated an entire file to every partner whenever even a single byte changed. DFSR, by contrast, uses RDC (Remote Differential Compression) to replicate only the blocks that actually changed."
+
+  - question: "According to the article, why can a GPO version mismatch (a drift between the GPC and GPT version numbers) occur?"
+    choices:
+      - "The GPC and GPT are always perfectly synchronized, so a version mismatch can't theoretically happen"
+      - "Because AD DS replication (the GPC side) and DFSR replication (the GPT side) each complete over independent paths and timings, one can temporarily finish before the other catches up"
+      - "The GPC and GPT always stay out of sync permanently unless manually synchronized"
+      - "A version mismatch can never happen in a domain that uses DFSR"
+    answerIndex: 1
+    explanation: "The GPC replicates via AD DS replication and the GPT via DFSR replication — each on its own independent path and timing — so one can temporarily finish first while the other hasn't caught up yet. That's the true nature of a GPO version mismatch."
+
+  - question: "According to the article, what does the `dfsrdiag` command do?"
+    choices:
+      - "It checks the replication state of AD DS data itself, playing the same role as repadmin"
+      - "It's a dedicated command for checking the replication state of the SYSVOL file share (DFSR) — a separate layer from AD DS data"
+      - "It's a command for editing the content of a Group Policy's settings"
+      - "It's a command for promoting or demoting a domain controller"
+    answerIndex: 1
+    explanation: "Where repadmin looks at the replication state of AD DS data itself, dfsrdiag is a dedicated command for looking at the replication state of the SYSVOL file share (DFSR). For GPO troubleshooting, checking both lets you accurately pin down whether the GPC or the GPT is the one lagging."
