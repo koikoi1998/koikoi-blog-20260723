@@ -1,0 +1,45 @@
+questions:
+  - question: "According to the article, which statement best describes the relationship between the five roles that carry the 'Active Directory' name (AD DS/AD CS/AD FS/AD LDS/AD RMS)?"
+    choices:
+      - "They are progressively extended versions of AD DS, forming an upward-compatible hierarchy"
+      - "They share a common design philosophy and brand — directory services — but are independent products with completely different purposes and implementations"
+      - "All five are the same LDAP directory under different names, with identical implementations"
+      - "Installing AD DS automatically enables all four of the other roles"
+    answerIndex: 1
+    explanation: "These aren't variations of one technology — they're five independent products that share a common design philosophy and brand (directory services) while having completely different purposes and implementations. What connects them is the shared pattern of using information in AD DS as a root of trust."
+
+  - question: "According to the article, what is the key difference that sets AD LDS apart from AD DS?"
+    choices:
+      - "AD LDS is a stripped-down version of AD DS with fully overlapping use cases"
+      - "AD LDS requires no domain or forest membership at all, and lets multiple instances with independent schemas run side by side on a single server"
+      - "AD LDS doesn't use the LDAP protocol — it's a completely different directory technology"
+      - "AD LDS is designed as an upgraded version of AD DS for larger organizations"
+    answerIndex: 1
+    explanation: "AD LDS is an independent directory instance that requires no domain or forest membership whatsoever. A single server can run multiple independent instances side by side, one per application, each with its own schema."
+
+  - question: "According to the article, how does AD FS differ from an AD DS forest trust?"
+    choices:
+      - "They're the exact same mechanism under two different names"
+      - "A forest trust extends the range of trust within the same Kerberos/NTLM authentication world, whereas AD FS converts authentication into a different standard, such as SAML or OAuth/OIDC, before handing it off outside the organization"
+      - "AD FS is strictly an on-premises technology and cannot federate with external SaaS applications"
+      - "A forest trust is a newer, more capable technology than AD FS"
+    answerIndex: 1
+    explanation: "A forest trust only extends the range of trust within the same Kerberos/NTLM authentication world. AD FS, by contrast, converts authentication into a different standard like SAML or OAuth/OIDC before handing it off outside the organization, so the other party doesn't even need to be running Active Directory."
+
+  - question: "According to the article, where do AD FS and AD RMS currently sit in Microsoft's product strategy?"
+    choices:
+      - "Both are flagship Microsoft products slated for further feature investment"
+      - "AD FS's new-feature investment has shifted to Microsoft Entra ID, and AD RMS is legacy, with migration to Microsoft Purview Information Protection recommended"
+      - "AD FS has been fully discontinued and can no longer be used"
+      - "AD RMS is newer than AD FS and was developed as its successor"
+    answerIndex: 1
+    explanation: "AD FS remains supported, but new-feature investment is concentrated on Microsoft Entra ID. AD RMS is positioned as legacy with no new features planned, and migration to the cloud-based Microsoft Purview Information Protection is recommended."
+
+  - question: "According to the article, what problem does AD RMS solve?"
+    choices:
+      - "Controlling who can log into AD — it's an authentication mechanism itself"
+      - "Controlling what someone is allowed to do with a file once access is granted (such as printing, forwarding, or copying), embedding that rule into the file itself so it stays in effect even after the file leaves the network"
+      - "Issuing certificates used to encrypt communications"
+      - "Running multiple directory instances side by side on a single server"
+    answerIndex: 1
+    explanation: "AD RMS controls not who can access a file, but what they're allowed to do once they have access. It encrypts the file and embeds rules like whether printing, forwarding, or copying is allowed directly into it, so the rule stays in effect even after the file leaves the internal network."

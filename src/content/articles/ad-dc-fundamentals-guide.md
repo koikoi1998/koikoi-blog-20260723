@@ -192,6 +192,8 @@ graph LR
 
 ここで重要なのは、**「AD DSの役割を追加した結果、実際に新規で有効化されるもの」と「Windows Server自体が最初から持っているベース機能」を混同しないこと**です。上表で「AD DS固有の依存ではなく」と注記した項目(ファイルサービスとストレージサービス、.NET Framework 4.8など)は、AD DSを入れていなくても最初から有効になっているものであり、AD DSと一緒に**新たに**有効化されるのは、実質的にはグループポリシー管理コンソールとAD DS向けの管理ツール群(RSAT)だけです。
 
+なお、この役割の追加画面には「Active Directory 証明書サービス」「Active Directory フェデレーションサービス」など、同じ「Active Directory」を名乗る似た役割がいくつも並んでいます。これらがAD DSと何が違うのかは[AD DS・AD CS・AD FS・AD LDS・AD RMSの違い](/articles/ad-family-overview-guide)で整理しています。
+
 <details>
 <summary>なぜ「サーバーの役割の選択」画面でDNSサーバーを選ぶ必要がないのか</summary>
 

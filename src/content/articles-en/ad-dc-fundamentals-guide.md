@@ -192,6 +192,8 @@ When you select "Active Directory Domain Services" in the "Add Roles and Feature
 
 The key point here is **not to conflate "what's newly enabled as a result of adding the AD DS role" with "baseline functionality Windows Server already has from the start."** For items annotated above as "not an AD DS-specific dependency" (File and Storage Services, .NET Framework 4.8, and so on), those are already enabled even without AD DS installed — what's actually **newly** enabled alongside AD DS is, in practice, essentially just the Group Policy Management Console and the AD DS management tool set (RSAT).
 
+This same role-selection screen also lists several similarly named roles carrying the "Active Directory" name — "Active Directory Certificate Services," "Active Directory Federation Services," and others. How these differ from AD DS is sorted out in [Understanding AD DS, AD CS, AD FS, AD LDS, and AD RMS](/en/articles/ad-family-overview-guide).
+
 <details>
 <summary>Why you don't need to select the DNS server on the "Server Roles" screen</summary>
 
