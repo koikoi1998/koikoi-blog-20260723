@@ -43,3 +43,21 @@ questions:
       - "FC comes bundled free by default with a Windows Server license"
     answerIndex: 1
     explanation: "The reason FC continues to be chosen in enterprise environments today is the maturity of its bandwidth guarantees, low latency, and congestion control, stemming from being a dedicated communication method completely independent from IP networks. LAN-based iSCSI, on the other hand, offers a cost advantage by reusing existing infrastructure."
+
+  - question: "Which statement best matches the article's explanation of a direct (point-to-point) connection between a server and storage with no FC switch?"
+    choices:
+      - "Communication itself can't work in this configuration — a dedicated FC switch is always required"
+      - "The administrator never needs to manually specify a WWN — through the FLOGI/PLOGI login procedure, the ports automatically exchange each other's WWN and start communicating"
+      - "In this configuration, the concept of a WWN isn't used at all, and identification switches over to IP addresses"
+      - "This configuration requires manually configuring zoning ahead of time, or no communication is possible at all"
+    answerIndex: 1
+    explanation: "An FC port automatically goes through a login procedure once a link comes up. In a direct connection with no fabric present, nothing responds to FLOGI, so the port concludes it's in a point-to-point configuration and performs PLOGI directly against the other device, exchanging WWNs. This happens automatically and isn't something an administrator explicitly configures."
+
+  - question: "Which statement best matches the article's explanation of how SAS identifies the other end of a connection?"
+    choices:
+      - "SAS has no mechanism at all for identifying devices — it judges the other end purely by connection order"
+      - "SAS devices also carry a globally unique identifier assigned at manufacture, called a SAS address, and identify the other end using essentially the same idea as FC's WWN"
+      - "SAS identifies the other end by the color of the cable connected"
+      - "SAS identifies the other end by using an IP address directly"
+    answerIndex: 1
+    explanation: "Just as FC identifies devices by WWN, SAS devices (an HBA, a disk, an expander port, and so on) also each carry a globally unique identifier, assigned at manufacture, called a SAS address. In a more complex configuration, a discovery procedure runs via SMP (Serial Management Protocol)."

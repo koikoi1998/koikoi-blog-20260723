@@ -1,0 +1,45 @@
+questions:
+  - question: "According to the article, what's the relationship between a \"file\" and a \"folder\" in NTFS?"
+    choices:
+      - "Files and folders are managed by completely separate mechanisms, and a folder lives in a special area unrelated to the MFT"
+      - "Both a file and a folder are, in reality, nothing more than a single record inside the MFT, and the only difference is whether that record holds its own data or an index pointing to other records"
+      - "A folder is always created on a contiguous region of disk before any of its files"
+      - "Files are recorded in the MFT, but folders are recorded in the registry"
+    answerIndex: 1
+    explanation: "In NTFS, both a file and a folder are, in reality, nothing more than a single record inside the MFT, sitting on exactly the same footing. The only difference is whether that record holds its own data (a file) or holds an index pointing to other records (a folder)."
+
+  - question: "According to the article, what best describes a \"resident attribute\"?"
+    choices:
+      - "Every file's data is always treated as a resident attribute, regardless of size"
+      - "When the $DATA attribute is small enough to fit within the MFT record's remaining capacity, the data gets stored directly inside that MFT record"
+      - "A resident attribute refers to a program permanently installed at a fixed location on disk"
+      - "A resident attribute always requires more disk accesses than a non-resident attribute"
+    answerIndex: 1
+    explanation: "When the $DATA attribute is small enough to fit within the record's remaining capacity, NTFS stores that data directly inside the MFT record itself. This is a resident attribute, and reading a small file becomes essentially the same operation as reading its one MFT record."
+
+  - question: "According to the article, what is fragmentation?"
+    choices:
+      - "A phenomenon where the MFT record itself splits into multiple versions"
+      - "The growing number of \"runs\" (start-cluster-and-length pairs) that reference a non-resident file's actual data"
+      - "A phenomenon where a folder's index data gets corrupted and can no longer be searched"
+      - "A phenomenon that only ever happens to files with resident attributes"
+    answerIndex: 1
+    explanation: "When a file is too large to fit inside its MFT record, the $DATA attribute becomes non-resident, and its data gets referenced through a mapping called a run. Fragmentation — where a file ends up scattered across multiple non-contiguous regions — refers to exactly this: the growing number of runs."
+
+  - question: "According to the article, what is a folder's actual substance in NTFS?"
+    choices:
+      - "A folder is the actual container that physically holds a file's data"
+      - "A folder is a special MFT record holding a B-tree index that records the names of the files and subfolders directly beneath it and their corresponding MFT record numbers"
+      - "A folder is never recorded in the MFT at all — it's managed separately in the registry"
+      - "A folder's index data always stays a fixed size, no matter how many files it contains"
+    answerIndex: 1
+    explanation: "In NTFS, a folder is a special MFT record holding index data, built as a B-tree, that records the names of the files and subfolders directly beneath it and the MFT record number each one corresponds to. A file's actual substance always lives in its own independent MFT record."
+
+  - question: "According to the article, how significant is the role the MFT plays?"
+    choices:
+      - "The MFT is merely auxiliary information, and its corruption has no effect on access to files or folders"
+      - "The MFT is, in effect, the table of contents for the entire volume, and corruption of part of it risks making all information tied to that record completely unreachable — which is why chkdsk focuses heavily on verifying the MFT's structure"
+      - "An MFT record is created exactly once per file and is never updated again after that"
+      - "MFT corruption is completely eliminated by the $LogFile journaling mechanism"
+    answerIndex: 1
+    explanation: "The MFT is, in effect, the table of contents for the entire volume. If part of it gets corrupted, there's a real risk that all information tied to that record becomes completely unreachable. chkdsk focuses heavily on verifying the MFT's own structure because the MFT serves as the entry point to every piece of data on the volume."

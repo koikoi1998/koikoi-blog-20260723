@@ -48,6 +48,8 @@ graph TB
 
 This happens because **the OS installer itself automatically completes partition creation, initialization, and formatting, as part of the install process, only for the disk you selected as the installation target** (usually the first disk, which becomes the C drive). **An additional RAID volume you didn't select as the installation target (such as a separately configured RAID array intended for the D drive), on the other hand, is never touched by the OS installer.** So by the time the OS install completes, the RAID volume meant to become the D drive is still in a **"raw state, physically recognized by the OS but with no partition information written at all."** Opening Disk Management (`diskmgmt.msc`) shows this uninitialized disk with an "Uninitialized" status, requiring a manual initialization step.
 
+How this installer itself boots after POST, and how control gets handed from firmware to the OS, is covered in depth in [Understanding the OS Boot Process After POST](/en/articles/os-boot-process-guide); what an ISO file — the actual substance of install media — really is is covered in [Understanding the Difference Between x64 and x86 Installers](/en/articles/windows-install-media-guide).
+
 ### What Disk Initialization Concretely Does
 
 **Disk initialization is the operation of newly writing a partition table (MBR or GPT) to the beginning of that disk.** A partition table is, in effect, **the disk's table of contents (management information)**, recording "which range of this disk is used as which partition." A disk before initialization has no such table of contents at all, so while the OS can recognize that the disk exists, it can't determine "where and how to lay out data," and **the disk simply can't be used as-is.**
@@ -92,6 +94,17 @@ In many common configurations (basic disks), **a single partition is treated as 
 ### Choosing Between Hardware RAID and the OS's Software RAID Functionality
 
 Windows Server itself also offers **OS-level mirroring (equivalent to software RAID) via dynamic disk functionality**, but in practice, using a dedicated RAID controller (hardware RAID) is the common configuration. **Hardware RAID has the advantage that redundancy is already active from a stage before the OS even boots, and RAID-related computation (such as parity calculation) is offloaded to a dedicated processor, so it doesn't strain the OS/CPU side.** Software RAID, on the other hand, can be advantageous cost-wise, since it doesn't require additional dedicated hardware. Which layer to implement redundancy at is chosen based on requirements.
+
+**Using hardware RAID requires a dedicated physical component — a RAID controller — actually installed in that server.** Most enterprise rack servers (Dell PowerEdge, HPE ProLiant, and the like) either ship with a RAID controller built into the motherboard, or support adding one as a PCIe expansion card, and you need to select that RAID controller at purchase time (or add one afterward). On a server with no RAID controller installed, hardware RAID simply isn't an option at all — if redundancy is needed, you fall back to the OS's software RAID functionality (dynamic disks, and so on).
+
+<details>
+<summary>How to tell, in practice, whether you're looking at hardware RAID or software RAID</summary>
+
+The most reliable way to tell is whether **a dedicated RAID configuration screen — an independent utility running as part of the BIOS/UEFI boot sequence, before the OS even starts — appears right after the server powers on.** On a Dell server's `PERC` (PowerEdge RAID Controller), you'd hit `Ctrl+R` at boot, or on newer models, reach the RAID configuration utility from the UEFI setup screen. If you've built a RAID array (a virtual disk) on that screen, the OS sees that **configured virtual disk as a single physical disk**, regardless of how many physical drives actually back it.
+
+On a server with no such pre-boot RAID configuration screen at all (or with a controller that's a simple pass-through HBA), opening Disk Management in the OS shows the actual number of physical disks, displayed individually, exactly as they are. Converting those disks to a **dynamic disk** and creating a mirrored or RAID-5 volume from there is what software RAID on the Windows side looks like. Checking these two things — whether you went through a dedicated RAID setup screen at boot, and whether the disk count shown in Disk Management matches the actual number of physical disks — lets you tell which approach the server in front of you is actually using.
+
+</details>
 
 ## Common Misconceptions and Pitfalls
 

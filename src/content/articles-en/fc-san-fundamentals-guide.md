@@ -62,6 +62,10 @@ Dedicated FC switches (a network made up of multiple FC switches is called a **f
 
 </details>
 
+### Even in a direct connection with no FC switch, WWN identification still happens automatically
+
+There's also a configuration called **point-to-point**, where a server and a storage device are connected directly by cable, without an FC switch. In this case, the administrator never has to manually specify the other end's WWN. **When a link comes up, an FC port automatically goes through a procedure called "login."** It first sends a `FLOGI` (Fabric Login) request, to check whether the other end is an FC switch (a fabric). In a direct connection with no fabric present, nothing responds to that `FLOGI`, so the port concludes "I'm in a point-to-point configuration" and instead **performs `PLOGI` (N_Port Login) directly against the other device itself, exchanging WWNs with it before starting communication.** In other words, exactly the way two directly connected devices on an IP network automatically learn each other's MAC address via ARP, **identifying the other end by WWN is something the FC protocol itself does automatically the moment the cable is connected — it isn't something an administrator configures explicitly.** Zoning only exists to enforce access control in an environment where multiple servers and multiple storage devices coexist through a fabric; in a direct connection where there's only ever one possible communication partner to begin with, the very concept of zoning has no meaning, so no configuration is needed.
+
 ### FC's Physical Layer: Completely Independent Wiring and Equipment From LAN
 
 FC differs not only in its logical communication method — it's also **completely independent from an existing LAN (Ethernet) in terms of physical wiring and equipment.** On the server side, a dedicated adapter called an **FC HBA (Host Bus Adapter)**, separate from an ordinary NIC, connects via dedicated fiber-optic cable (copper in a small number of environments) to a dedicated FC switch. This entire set of wiring and equipment is built as an entirely separate network from the existing Ethernet LAN cables and switches.
@@ -79,6 +83,17 @@ In recent years, a technology called **FCoE (Fibre Channel over Ethernet)** has 
 
 **SAS's basic idea is strictly a "direct one-to-one connection (or one-to-many via a relay device called an expander)," and it has no network-like mechanism of its own — no "fabric" or zoning, unlike FC.** It's easiest to understand as the most basic storage connection method, used for connecting HDDs/SSDs built into a server, or an external disk enclosure directly attached to a server.
 
+### How does SAS identify the other end of a connection?
+
+Just as FC identifies devices by WWN, **SAS devices (an HBA, a disk, an expander port, and so on) also each carry a globally unique identifier, assigned at manufacture, called a `SAS address`.** You can think of this as essentially the same idea as FC's WWN. In a somewhat more complex configuration, with multiple disks connected in a tree via expanders, a management protocol called **SMP (Serial Management Protocol)** is used to run a discovery procedure, querying which SAS-addressed device is attached to which port.
+
+<details>
+<summary>Does SAS have anything equivalent to zoning?</summary>
+
+It doesn't come up in a basic one-to-one direct connection, but in more advanced enterprise SAS configurations — where multiple servers (initiators) share the same disk enclosure — a mechanism called **SAS zoning**, similar in spirit to FC's zoning, is sometimes used. Zoning configuration gets applied to the expander via SMP, restricting which disks are visible to which specific initiator. This is an advanced use of SAS, though, and isn't something you need to think about for a simple direct connection within a server chassis or over a short distance.
+
+</details>
+
 ## The View From the Top 1% Perspective
 
 ### Criteria for Choosing: By Connection Scope and Requirements
@@ -90,6 +105,16 @@ The choice between the three methods can be organized by the following criteria:
 | **SAS** | A very short-distance connection within a server chassis, or to a directly attached external disk enclosure | A simple direct connection where the very concept of a network isn't needed |
 | **FC** | Building a SAN connecting multiple servers and multiple storage devices within a data center | Mature bandwidth guarantees, low latency, and congestion control via a dedicated network completely independent from IP. Traditionally chosen in large-scale enterprise environments |
 | **LAN (iSCSI, and so on)** | Wanting to build a SAN-equivalent configuration by reusing existing IP network/Ethernet equipment | Advantageous cost-wise since no additional dedicated equipment (an FC switch, an FC HBA) is needed. Traditionally considered to fall short of FC's low latency and bandwidth guarantees, though the gap has narrowed with the spread of high-speed Ethernet |
+
+Comparing them on more concrete numbers — throughput and transmission distance — looks like this:
+
+| Item | SAS | FC |
+|---|---|---|
+| Speed by generation | SAS-1 (3Gbps) → SAS-2 (6Gbps) → SAS-3 (12Gbps) → SAS-4 (24Gbps), roughly doubling each generation | 8G → 16G → 32G → 64G → 128G, roughly doubling each generation |
+| Transmission distance | Fundamentally a copper-cable direct connection, on the order of a few meters (somewhat extendable with active cables or expanders) | Fundamentally fiber optic, reaching up to roughly 10 km depending on generation — capable of long-distance connections such as between data centers |
+| Connection topology | One-to-one, or a one-to-many tree via an expander | A full-scale network (fabric) buildable via FC switches |
+
+As this table shows, **SAS and FC are fundamentally aimed at different scenarios: "short distance, low cost" versus "long distance, large-scale networking."** SAS's per-generation speed has climbed to a level that holds its own against FC, but the difference in transmission distance and topological flexibility means one doesn't simply replace the other's use case.
 
 **The reason FC continues to be chosen in enterprise environments today is the maturity of its bandwidth guarantees, low latency, and congestion control, stemming from being a dedicated communication method completely independent from IP networks.** On the other hand, LAN-based options like iSCSI are also widely used, thanks to being able to reuse existing IP network infrastructure and avoid additional dedicated-equipment investment. Which to choose is a trade-off judgment based on **existing network investment, the operations team's skill set, and the required performance level.**
 
