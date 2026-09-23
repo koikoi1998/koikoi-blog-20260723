@@ -175,6 +175,7 @@ This blog is written for a wide range of readers — from people with no experie
 <li><a href="/en/articles/ad-kerberos-guide">Understanding Kerberos Authentication from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/ad-multidomain-handson-guide">Hands-On: Building a Multi-Domain, Multi-Tree AD Forest</a></li>
 <li><a href="/en/articles/ad-migration-handson-guide">Hands-On: Migrating From an Old DC to a New One</a></li>
+<li><a href="/en/articles/ad-audio-review-guide">[Listen] The Active Directory Series, Fully Recapped</a></li>
 </ol>
 </div>
 <div class="persona-panel persona-panel-5">
@@ -183,7 +184,7 @@ This blog is written for a wide range of readers — from people with no experie
 <p>Adds the topics that come up constantly in Windows Server operations outside of AD itself: licensing, NTP, IIS, file sharing, storage connectivity, and cloud-adjacent knowledge.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP4's 52 articles (see those tabs above)</li>
+<li>STEP1 through STEP4's 53 articles (see those tabs above)</li>
 <li><a href="/en/articles/windows-server-licensing-guide">Understanding Windows Server Licensing (OEM, Datacenter, Standard) from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/windows-ntp-server-guide">Understanding the Configuration Values for Building an NTP Server on Windows Server from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/iis-fundamentals-guide">Understanding How IIS and ASP.NET Work from a "Top 1%" Perspective</a></li>
@@ -201,7 +202,7 @@ This blog is written for a wide range of readers — from people with no experie
 <p>Covers OpenShift (a container platform) and Ansible (configuration-management automation), each as an overview article paired with a hands-on lab.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP5's 61 articles (see those tabs above)</li>
+<li>STEP1 through STEP5's 62 articles (see those tabs above)</li>
 <li><a href="/en/articles/openshift-guide">Understanding What OpenShift Actually Is From a "Top 1%" Perspective — Its Relationship to Kubernetes</a></li>
 <li><a href="/en/articles/openshift-handson-guide">A "Top 1%" Hands-On Lab: Running a Container Application on OpenShift Local</a></li>
 <li><a href="/en/articles/ansible-guide">Understanding What Ansible Actually Is From a "Top 1%" Perspective — Configuration Management and the Agentless Model</a></li>
@@ -215,7 +216,7 @@ This blog is written for a wide range of readers — from people with no experie
 <p>Adds the low-level implementation knowledge that sets you apart in interviews and design reviews, on top of everything through STEP6.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP6's 65 articles (see those tabs above)</li>
+<li>STEP1 through STEP6's 66 articles (see those tabs above)</li>
 <li><a href="/en/articles/proxmox-internals-guide">What Is Proxmox VE? Understanding KVM/QEMU Virtualization from the "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/linux-daemon-guide">What Is a Daemon? Understanding Linux Background Processes from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/software-library-guide">What Is a Library? Understanding Static and Dynamic Linking from a "Top 1%" Perspective</a></li>
@@ -239,13 +240,13 @@ This blog is written for a wide range of readers — from people with no experie
 <div class="persona-panel persona-panel-8">
 <div class="persona-panel-head">
 <h3>🏆 For those gathering information toward ¥10M, ¥20M, or ¥50M+</h3>
-<p>The complete-conquest route: read all 84 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
+<p>The complete-conquest route: read all 85 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP7's 83 articles (see those tabs above)</li>
+<li>STEP1 through STEP7's 84 articles (see those tabs above)</li>
 <li><a href="/en/articles/voip-ss7-guide">Understanding VoIP and SS7 — and the Real Path Your Traffic Takes — from a "Top 1%" Perspective</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>That's all 84 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
+<div class="persona-bonus">🎉 <strong>That's all 85 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
 </div>
 </div>
 </div>
@@ -355,7 +356,7 @@ A series that takes execution-environment-level terms that keep showing up in th
 
 ### Active Directory Series
 
-A series digging into the questions that come up constantly in real-world AD migration and domain controller (DC) build/operation work. Written assuming you've read the DNS fundamentals article ([dns-guide](/en/articles/dns-guide)). **Recommended order**: ① ad-dc-fundamentals-guide → ② ad-computername-netdom-guide → ③ ad-windows-login-guide → ④ ad-dns-guide → ⑤ dns-zones-records-guide → ⑥ fsmo-guide → ⑦ dc-health-check-guide → ⑧ ad-sites-guide → ⑨ dcdiag-guide → ⑩ ad-migration-cleanup-guide → ⑪ ad-spn-guide → ⑫ ad-netlogon-guide → ⑬ ad-kerberos-guide → ⑭ ad-multidomain-handson-guide → ⑮ ad-migration-handson-guide.
+A series digging into the questions that come up constantly in real-world AD migration and domain controller (DC) build/operation work. Written assuming you've read the DNS fundamentals article ([dns-guide](/en/articles/dns-guide)). **Recommended order**: ① ad-dc-fundamentals-guide → ② ad-computername-netdom-guide → ③ ad-windows-login-guide → ④ ad-dns-guide → ⑤ dns-zones-records-guide → ⑥ fsmo-guide → ⑦ dc-health-check-guide → ⑧ ad-sites-guide → ⑨ dcdiag-guide → ⑩ ad-migration-cleanup-guide → ⑪ ad-spn-guide → ⑫ ad-netlogon-guide → ⑬ ad-kerberos-guide → ⑭ ad-multidomain-handson-guide → ⑮ ad-migration-handson-guide → ⑯ ad-audio-review-guide (for reviewing by ear after finishing all 15).
 
 - [Understanding the Difference Between AD and DC, and Domains vs. Forests, from a "Top 1%" Perspective](/en/articles/ad-dc-fundamentals-guide) — A deep dive into the division of labor between AD DS (the mechanism) and DC (the server), the three-layer boundary of domain/tree/forest, what functional levels constrain, and what gets installed alongside the AD DS role.
 - [What's the Difference Between sysdm.cpl and netdom computername?](/en/articles/ad-computername-netdom-guide) — A deep dive into the mechanism difference between sysdm.cpl and netdom for changing a computer name, why the two-step /add → /makeprimary process is required, and a diagnosis of a real authentication outage caused by a hostname collision during an AD migration (a follow-on from article ①, also readable standalone).
@@ -372,6 +373,7 @@ A series digging into the questions that come up constantly in real-world AD mig
 - [Understanding Kerberos Authentication from a "Top 1%" Perspective](/en/articles/ad-kerberos-guide) — A deep dive into why identity can be verified without ever sending the password over the network, the TGT and service-ticket exchange (AS-REQ/AS-REP, TGS-REQ/TGS-REP, AP-REQ), the relationship between the PAC (Privilege Attribute Certificate) and SIDs, the difference from NTLM, and the token-bloat problem (also readable standalone).
 - [Hands-On: Building a Multi-Domain, Multi-Tree AD Forest](/en/articles/ad-multidomain-handson-guide) — Build example.com as the forest root, child.example.com as a child domain, and example.net as a separate tree, then confirm domain partition isolation, configuration partition sharing, automatic trust relationships, GC search scope, and FSMO placement with real commands (a capstone for the series, assumes you've read the earlier articles).
 - [Hands-On: Migrating From an Old DC to a New One](/en/articles/ad-migration-handson-guide) — A real-world-scenario AD migration hands-on covering adding a new DC, verifying replication health with repadmin/dcdiag, the FSMO transfer, formally demoting the old DC, post-demotion cleanup verification, handing the old DC's name to the new one, and an exercise in deliberately triggering and reading a dcdiag warning (a capstone for the series, assumes you've read the earlier articles).
+- [\[Listen\] The Active Directory Series, Fully Recapped](/en/articles/ad-audio-review-guide) — An audio-learning article for anyone who's finished all 15 articles in the series: no tables, diagrams, or bullet points, just spoken-style narration built to be listened to via your browser's read-aloud feature (assumes you've read the whole series).
 
 ### Windows Client Operations Series
 

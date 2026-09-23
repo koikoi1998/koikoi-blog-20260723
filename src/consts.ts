@@ -52,12 +52,14 @@ export const subSeriesNames: Record<string, string> = {
   main: "メイン記事",
   supplementary: "補足・深掘り記事",
   handson: "ハンズオン記事",
+  audio: "音声復習記事",
 };
 
 export const subSeriesNamesEn: Record<string, string> = {
   main: "Main Articles",
   supplementary: "Supplementary Deep-Dives",
   handson: "Hands-On",
+  audio: "Audio Review",
 };
 
 export type Lang = "ja" | "en";

@@ -197,6 +197,8 @@ Uninstall-ADDSDomainController -LastDomainControllerInDomain -DemoteOperationMas
 - Most of a demotion's cleanup happens automatically, but you shouldn't skip the final verification via `dsa.msc`, `dssite.msc`, `dnsmgmt.msc`, and `repadmin /replsummary`.
 - What matters with `dcdiag /v` warnings isn't the count — it's whether you can work backward from the output to figure out exactly which mechanism is broken.
 
+That's all 15 articles in the Active Directory series. If you'd like to review the whole thing by ear during a commute or while doing chores, check out [\[Listen\] The Active Directory Series, Fully Recapped](/en/articles/ad-audio-review-guide).
+
 ## References
 
 - [Install-ADDSDomainController | Microsoft Learn](https://learn.microsoft.com/en-us/powershell/module/addsdeployment/install-addsdomaincontroller)

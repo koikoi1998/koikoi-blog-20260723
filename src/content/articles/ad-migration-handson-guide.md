@@ -197,6 +197,8 @@ Uninstall-ADDSDomainController -LastDomainControllerInDomain -DemoteOperationMas
 - 降格処理の多くは自動的にクリーンアップされますが、`dsa.msc`・`dssite.msc`・`dnsmgmt.msc`・`repadmin /replsummary`での最終確認を省略すべきではありません。
 - `dcdiag /v`の警告は、件数ではなく、具体的にどの仕組みが壊れているのかを出力内容から逆算できるかどうかが実務上の分かれ目です。
 
+これでActive Directoryシリーズ全15記事が完了です。通勤中や家事をしながら内容を振り返りたい場合は、耳だけで復習できる[【音声で聴く】Active Directoryシリーズ総復習](/articles/ad-audio-review-guide)もあわせてどうぞ。
+
 ## 参考文献
 
 - [Install-ADDSDomainController | Microsoft Learn](https://learn.microsoft.com/en-us/powershell/module/addsdeployment/install-addsdomaincontroller)
