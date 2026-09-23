@@ -1,0 +1,45 @@
+questions:
+  - question: "According to the article, what best describes schema extension?"
+    choices:
+      - "Replacing AD DS's own database engine with a different, higher-performance product"
+      - "The operation of adding new object classes or attributes to the standard set AD DS already has"
+      - "Adding hardware resources (CPU/memory) to a domain controller"
+      - "Changing the password policy for existing user accounts"
+    answerIndex: 1
+    explanation: "Schema extension is the operation of adding new object classes or attributes to the standard set AD DS already has. It happens when deploying products, like Exchange or Skype for Business, that borrow AD DS as their data store."
+
+  - question: "According to the article, why does schema extension affect the entire forest?"
+    choices:
+      - "The schema is stored only in a specific domain and has no effect whatsoever on other domains"
+      - "The schema, as part of the schema partition, is data replicated to every DC across the entire forest, not just a single domain"
+      - "Performing a schema extension automatically installs the product on every domain in the forest"
+      - "Schema extension automatically raises the forest functional level"
+    answerIndex: 1
+    explanation: "The schema is data replicated to every DC across the entire forest, as part of the schema partition — not confined to a single domain. So an extension performed in one domain also replicates to DCs in every other domain in the forest."
+
+  - question: "According to the article, what happens to an object class or attribute definition once it's been added to the schema?"
+    choices:
+      - "It can be freely deleted at any time, fully restoring the original state"
+      - "It can never be deleted — the only option is to mark it defunct (disabled) so it isn't used going forward"
+      - "It automatically expires and gets deleted after 30 days"
+      - "Restarting the Schema Master automatically reverts it"
+    answerIndex: 1
+    explanation: "An object class or attribute definition, once added, can't be deleted afterward — because it's impossible to fully rule out that the attribute or class is already in use somewhere in the forest. The only alternative to deletion is marking it defunct."
+
+  - question: "According to the article, how should the Schema Admins group be handled?"
+    choices:
+      - "Membership should be kept permanently granted to administrator accounts for day-to-day admin work"
+      - "Because it's a powerful permission capable of destructive, forest-wide operations, the standard practice is to grant and revoke membership only temporarily, around work that actually requires schema extension"
+      - "Schema Admins is a permission group used only for resetting user account passwords"
+      - "Schema Admins membership is granted per-device rather than per-domain"
+    answerIndex: 1
+    explanation: "Changing the schema requires an account with Schema Admins and Enterprise Admins privileges. Because that's a powerful permission capable of destructive operations affecting the entire forest, it shouldn't be granted on an ongoing basis — the recommended practice is temporary grant/revoke around the work itself."
+
+  - question: "According to the article, what's the recommended sequence for safely performing a schema extension in practice?"
+    choices:
+      - "Try it directly in production and handle any problems as they come up"
+      - "Try the extension first in an isolated test forest, confirm every DC is online and able to replicate normally, and then perform it during a low-impact time window"
+      - "Schema extension has minimal impact, so no advance testing is really necessary"
+      - "Schema extension only affects the Schema Master itself, so there's no need to check the state of other DCs"
+    answerIndex: 1
+    explanation: "Top-1% engineers try the extension first in an isolated test forest, confirm beforehand that every DC in the forest is online and able to replicate normally, and then perform the extension during a low-impact window when replication can be expected to complete promptly."

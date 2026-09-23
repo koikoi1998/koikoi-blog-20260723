@@ -180,6 +180,7 @@ This blog is written for a wide range of readers — from people with no experie
 <li><a href="/en/articles/ad-family-overview-guide">Understanding AD DS, AD CS, AD FS, AD LDS, and AD RMS from a Top-1% Perspective</a></li>
 <li><a href="/en/articles/ad-ldap-protocol-guide">Understanding the LDAP Protocol from a Top-1% Perspective</a></li>
 <li><a href="/en/articles/ad-netbios-dns-history-guide">Understanding Why NetBIOS Names and DNS Hostnames Coexist from a Top-1% Perspective</a></li>
+<li><a href="/en/articles/ad-schema-extension-guide">Understanding AD Schema Extension from a Top-1% Perspective</a></li>
 </ol>
 </div>
 <div class="persona-panel persona-panel-5">
@@ -188,7 +189,7 @@ This blog is written for a wide range of readers — from people with no experie
 <p>Adds the topics that come up constantly in Windows Server operations outside of AD itself: licensing, NTP, IIS, file sharing, storage connectivity, and cloud-adjacent knowledge.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP4's 57 articles (see those tabs above)</li>
+<li>STEP1 through STEP4's 58 articles (see those tabs above)</li>
 <li><a href="/en/articles/windows-server-licensing-guide">Understanding Windows Server Licensing (OEM, Datacenter, Standard) from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/windows-ntp-server-guide">Understanding the Configuration Values for Building an NTP Server on Windows Server from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/iis-fundamentals-guide">Understanding How IIS and ASP.NET Work from a "Top 1%" Perspective</a></li>
@@ -206,7 +207,7 @@ This blog is written for a wide range of readers — from people with no experie
 <p>Covers OpenShift (a container platform) and Ansible (configuration-management automation), each as an overview article paired with a hands-on lab.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP5's 66 articles (see those tabs above)</li>
+<li>STEP1 through STEP5's 67 articles (see those tabs above)</li>
 <li><a href="/en/articles/openshift-guide">Understanding What OpenShift Actually Is From a "Top 1%" Perspective — Its Relationship to Kubernetes</a></li>
 <li><a href="/en/articles/openshift-handson-guide">A "Top 1%" Hands-On Lab: Running a Container Application on OpenShift Local</a></li>
 <li><a href="/en/articles/ansible-guide">Understanding What Ansible Actually Is From a "Top 1%" Perspective — Configuration Management and the Agentless Model</a></li>
@@ -220,7 +221,7 @@ This blog is written for a wide range of readers — from people with no experie
 <p>Adds the low-level implementation knowledge that sets you apart in interviews and design reviews, on top of everything through STEP6.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP6's 70 articles (see those tabs above)</li>
+<li>STEP1 through STEP6's 71 articles (see those tabs above)</li>
 <li><a href="/en/articles/proxmox-internals-guide">What Is Proxmox VE? Understanding KVM/QEMU Virtualization from the "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/linux-daemon-guide">What Is a Daemon? Understanding Linux Background Processes from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/software-library-guide">What Is a Library? Understanding Static and Dynamic Linking from a "Top 1%" Perspective</a></li>
@@ -244,13 +245,13 @@ This blog is written for a wide range of readers — from people with no experie
 <div class="persona-panel persona-panel-8">
 <div class="persona-panel-head">
 <h3>🏆 For those gathering information toward ¥10M, ¥20M, or ¥50M+</h3>
-<p>The complete-conquest route: read all 89 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
+<p>The complete-conquest route: read all 90 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP7's 88 articles (see those tabs above)</li>
+<li>STEP1 through STEP7's 89 articles (see those tabs above)</li>
 <li><a href="/en/articles/voip-ss7-guide">Understanding VoIP and SS7 — and the Real Path Your Traffic Takes — from a "Top 1%" Perspective</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>That's all 89 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
+<div class="persona-bonus">🎉 <strong>That's all 90 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
 </div>
 </div>
 </div>
@@ -360,7 +361,7 @@ A series that takes execution-environment-level terms that keep showing up in th
 
 ### Active Directory Series
 
-A series digging into the questions that come up constantly in real-world AD migration and domain controller (DC) build/operation work. Written assuming you've read the DNS fundamentals article ([dns-guide](/en/articles/dns-guide)). **Recommended order**: ① ad-dc-fundamentals-guide → ② ad-computername-netdom-guide → ③ ad-windows-login-guide → ④ ad-dns-guide → ⑤ dns-zones-records-guide → ⑥ fsmo-guide → ⑦ dc-health-check-guide → ⑧ ad-sites-guide → ⑨ dcdiag-guide → ⑩ ad-migration-cleanup-guide → ⑪ ad-spn-guide → ⑫ ad-netlogon-guide → ⑬ ad-kerberos-guide → ⑭ ad-multidomain-handson-guide → ⑮ ad-migration-handson-guide → ⑯ ad-audio-review-guide (for reviewing by ear after finishing all 15) → ⑰ ad-sysvol-dfsr-gpo-guide → ⑱ ad-family-overview-guide → ⑲ ad-ldap-protocol-guide → ⑳ ad-netbios-dns-history-guide (all added as further deep dives after the audio review).
+A series digging into the questions that come up constantly in real-world AD migration and domain controller (DC) build/operation work. Written assuming you've read the DNS fundamentals article ([dns-guide](/en/articles/dns-guide)). **Recommended order**: ① ad-dc-fundamentals-guide → ② ad-computername-netdom-guide → ③ ad-windows-login-guide → ④ ad-dns-guide → ⑤ dns-zones-records-guide → ⑥ fsmo-guide → ⑦ dc-health-check-guide → ⑧ ad-sites-guide → ⑨ dcdiag-guide → ⑩ ad-migration-cleanup-guide → ⑪ ad-spn-guide → ⑫ ad-netlogon-guide → ⑬ ad-kerberos-guide → ⑭ ad-multidomain-handson-guide → ⑮ ad-migration-handson-guide → ⑯ ad-audio-review-guide (for reviewing by ear after finishing all 15) → ⑰ ad-sysvol-dfsr-gpo-guide → ⑱ ad-family-overview-guide → ⑲ ad-ldap-protocol-guide → ⑳ ad-netbios-dns-history-guide → ㉑ ad-schema-extension-guide (all added as further deep dives after the audio review).
 
 - [Understanding the Difference Between AD and DC, and Domains vs. Forests, from a "Top 1%" Perspective](/en/articles/ad-dc-fundamentals-guide) — A deep dive into the division of labor between AD DS (the mechanism) and DC (the server), the three-layer boundary of domain/tree/forest, what functional levels constrain, and what gets installed alongside the AD DS role.
 - [What's the Difference Between sysdm.cpl and netdom computername?](/en/articles/ad-computername-netdom-guide) — A deep dive into the mechanism difference between sysdm.cpl and netdom for changing a computer name, why the two-step /add → /makeprimary process is required, and a diagnosis of a real authentication outage caused by a hostname collision during an AD migration (a follow-on from article ①, also readable standalone).
@@ -382,6 +383,7 @@ A series digging into the questions that come up constantly in real-world AD mig
 - [Understanding AD DS, AD CS, AD FS, AD LDS, and AD RMS from a Top-1% Perspective](/en/articles/ad-family-overview-guide) — A deep dive into why five roles sharing the "Active Directory" name have completely different implementations and purposes: certificate issuance (AD CS), cross-organization SSO (AD FS), a domain-independent lightweight directory (AD LDS), file-level rights management (AD RMS), and where AD FS/AD RMS currently sit in Microsoft's product strategy (also readable standalone).
 - [Understanding the LDAP Protocol from a Top-1% Perspective](/en/articles/ad-ldap-protocol-guide) — A deep dive into what LDAP itself actually does behind AD DS's queries: its data model (DN, attributes, search filters), its operations (Bind, Search, Add/Modify/Delete), how ports 389/636/3268/3269 are used differently, and the practically important security settings of LDAP signing and LDAP channel binding (also readable standalone).
 - [Understanding Why NetBIOS Names and DNS Hostnames Coexist from a Top-1% Perspective](/en/articles/ad-netbios-dns-history-guide) — A deep dive into why a computer name is capped at 15 characters, the historical origin of NetBIOS, the role WINS played, and the practically important current state: Windows Server 2025 is the last LTSC release to include WINS before it's removed entirely (also readable standalone).
+- [Understanding AD Schema Extension from a Top-1% Perspective](/en/articles/ad-schema-extension-guide) — A deep dive into what actually happens during the schema extension that inevitably occurs when deploying Exchange or Skype for Business, why it affects the entire forest, why it's essentially irreversible once done, how the Schema Admins group should be handled, and how to proceed safely in practice (also readable standalone).
 
 ### Windows Client Operations Series
 

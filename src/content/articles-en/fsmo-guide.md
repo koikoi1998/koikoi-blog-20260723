@@ -49,7 +49,7 @@ There are five FSMO roles in total: two are held by a single DC **across the ent
 
 ### One Per Forest: Schema Master
 
-The **Schema Master** is the sole DC in the forest that can make changes to the AD DS schema (the object type definitions). The schema is information shared across the entire forest, and if multiple DCs made conflicting changes to it at the same time (such as adding the same attribute name with different definitions), it could break the consistency of the object structure across the entire forest. Schema changes themselves happen only occasionally — typically when deploying certain products like Exchange Server or SCCM — and aren't something performed frequently in day-to-day operations.
+The **Schema Master** is the sole DC in the forest that can make changes to the AD DS schema (the object type definitions). The schema is information shared across the entire forest, and if multiple DCs made conflicting changes to it at the same time (such as adding the same attribute name with different definitions), it could break the consistency of the object structure across the entire forest. Schema changes themselves happen only occasionally — typically when deploying certain products like Exchange Server or SCCM — and aren't something performed frequently in day-to-day operations. What actually happens when the schema is extended, and why it's essentially irreversible, is covered in depth in [Understanding AD Schema Extension](/en/articles/ad-schema-extension-guide).
 
 ### One Per Forest: Domain Naming Master
 
