@@ -2,6 +2,7 @@
 title: "ハンズオン準備マニュアル:Teraterm(ターミナルソフト)の使い方——SSH接続の作成から文字化け対策・ログ保存まで"
 description: "WindowsからLinux/Windows Serverへリモート接続する際に広く使われるターミナルソフト「Teraterm」の基本操作を解説する準備マニュアル。新規SSH接続の作成、初回接続時のホスト鍵確認、文字コード設定による文字化け対策、接続設定の保存、操作ログの記録までをカバーする。"
 series: "handson-prep"
+subSeries: "handson"
 order: 4
 tags: ["teraterm", "ssh", "handson", "beginner", "infrastructure"]
 emoji: "💻"

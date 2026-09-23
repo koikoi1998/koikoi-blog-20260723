@@ -2,6 +2,7 @@
 title: "journalctlでエラーログを調査する方法を『上位1%』の視点で理解する——「動かない」から「原因」にたどり着くまでの追い方"
 description: "systemdのジャーナルとは何か、journalctlの-u/-t/-f/-n/--no-pager/-xeといった主要オプションの使い分け、そしてL2TP/IPsecハンズオンを題材に「ipsec・xl2tpd・pppdのどのレイヤーのログをどの順番で見るべきか」という実務的な切り分けの考え方までを体系的に理解する。"
 series: "linux"
+subSeries: "main"
 order: 9
 tags: ["linux", "journalctl", "systemd", "troubleshooting", "infrastructure"]
 emoji: "🔍"
@@ -129,6 +130,8 @@ graph TB
 **今日から意識すべきこと**
 1. エラーに遭遇したら、まず`systemctl status`の案内通り`-xeu`で概要をつかみ、次に関係するプロセスを洗い出して、systemdユニットかどうかで`-u`/`-t`を使い分ける、という手順を型として持っておきましょう。
 2. 複数ホスト・複数プロセスが絡む障害では、「どの順番で確立されるはずか」という設計知識が、ログをどこから見るべきかの地図になります。
+
+これでLinux/OS基礎シリーズ全9記事が完了です。通勤中や家事をしながら内容を振り返りたい場合は、耳だけで復習できる[【音声で聴く】Linux/OS基礎シリーズ総復習](/articles/linux-audio-review-guide)もあわせてどうぞ。
 
 ## 参考文献
 

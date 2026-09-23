@@ -2,6 +2,7 @@
 title: "Hands-On Prep Manual: Setting Up an Ubuntu Server for the First Time — Post-Login Basics and Enabling SSH"
 description: "A prep manual covering the basic operations you'll reach for right after your first login to an Ubuntu Server VM built on Proxmox VE: what sudo apt update actually does, switching to root with sudo su -, the basics of the nano editor, the US-keyboard-layout gotcha, and how to check for and install an OpenSSH server."
 series: "handson-prep"
+subSeries: "handson"
 order: 2
 tags: ["ubuntu", "linux", "handson", "beginner", "ssh", "infrastructure"]
 emoji: "🐧"

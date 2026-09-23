@@ -2,6 +2,7 @@
 title: "IISとFTPの関係を『上位1%』の視点で理解する"
 description: "IISはWebサーバーだと思っていたら、FTPサーバーとしての役割サービスも追加できることに気づいた。IISとFTPはどのような関係にあるのか。なぜ同じ管理基盤に統合されているのか。FTPのアクティブモード/パッシブモードの違いや、FTPSとSFTPの違いまであわせて体系的に理解する。"
 series: "windows-server"
+subSeries: "main"
 order: 4
 tags: ["windows-server", "iis", "ftp", "infra"]
 emoji: "📁"

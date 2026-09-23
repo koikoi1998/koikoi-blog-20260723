@@ -2,6 +2,7 @@
 title: "ハンズオン準備マニュアル:Ubuntuサーバーの初期セットアップ——初回ログイン後の基本操作とSSHサーバーの有効化"
 description: "Proxmox VE上に作成したUbuntu ServerのVMへ初回ログインした後によく使う基本操作を解説する準備マニュアル。sudo apt updateの意味、sudo su -でのroot切り替え、nanoエディタの基本操作、USキーボードレイアウトの注意点、そしてOpenSSHサーバーの確認・インストール手順までをカバーする。"
 series: "handson-prep"
+subSeries: "handson"
 order: 2
 tags: ["ubuntu", "linux", "handson", "beginner", "ssh", "infrastructure"]
 emoji: "🐧"

@@ -2,6 +2,7 @@
 title: "What Are Permissions (chmod)? Understanding Linux File Access Control from the \"Top 1%\" Perspective"
 description: "Why does a number like chmod 600 control access to a file? A systematic look at the rwx bits, the owner/group/other split, numeric vs. symbolic notation, special permissions like setuid and the sticky bit, and how the kernel actually enforces all of this on every system call."
 series: "linux"
+subSeries: "main"
 order: 4
 tags: ["linux", "os", "security", "permissions", "infrastructure"]
 emoji: "🔐"

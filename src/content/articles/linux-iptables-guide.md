@@ -2,6 +2,7 @@
 title: "iptables(netfilter)の仕組みを『上位1%』の視点で理解する——パケットが辿る5つの関門とMASQUERADEの正体"
 description: "sudo iptables -A INPUT -p udp --dport 500 -j ACCEPTのようなコマンドが、実際にはLinuxカーネルのどこに何を登録しているのか。netfilterのフック点・テーブル・チェーンの構造、ルールの評価順序、connection trackingによるステートフルな判定、MASQUERADEとSNATの違いまでを体系的に理解する。"
 series: "linux"
+subSeries: "main"
 order: 6
 tags: ["linux", "os", "networking", "security", "infrastructure"]
 emoji: "🧱"

@@ -2,6 +2,7 @@
 title: "Comparing L2TP/IPsec to Modern VPN Protocols from a \"Top 1%\" Perspective — How It Differs from IKEv2/IPsec, OpenVPN, and WireGuard"
 description: "What's the concrete technical basis for calling L2TP/IPsec \"legacy\"? A systematic comparison of design philosophy, implementation size, mobile resilience, and performance against the VPN protocols in widespread use today: IKEv2/IPsec, OpenVPN, and WireGuard."
 series: "vpn"
+subSeries: "main"
 order: 3
 tags: ["network", "vpn", "wireguard", "openvpn", "ipsec", "security"]
 emoji: "🛡️"

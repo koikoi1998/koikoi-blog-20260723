@@ -2,6 +2,7 @@
 title: "Understanding the Configuration Values for Building an NTP Server on Windows Server from a \"Top 1%\" Perspective — What Is AnnounceFlags?"
 description: "When configuring NTP server functionality on Windows Server, what settings like AnnounceFlags are actually needed? This article systematically explains the concept of Stratum, why the forest root PDC emulator specifically needs an explicit sync configuration to an external time source, and what each bit of AnnounceFlags controls."
 series: "windows-server"
+subSeries: "main"
 order: 2
 tags: ["windows-server", "ntp", "active-directory", "infra"]
 emoji: "⏰"

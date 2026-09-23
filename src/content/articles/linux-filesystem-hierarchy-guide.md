@@ -2,6 +2,7 @@
 title: "/etcとLinuxのディレクトリ構成(FHS)を『上位1%』の視点で理解する——なぜ設定ファイルは/etcに置かれるのか"
 description: "/etc・/var・/usr・/bin・/homeといったLinuxのトップレベルディレクトリが、なぜその名前・その場所に存在するのか。FHS(Filesystem Hierarchy Standard)という設計思想、「ホスト固有か・共有可能か」「可変か・不変か」という2つの軸、/etc/xl2tpdのようなサービスごとのサブディレクトリの慣習までを体系的に理解する。"
 series: "linux"
+subSeries: "main"
 order: 7
 tags: ["linux", "os", "filesystem", "infrastructure"]
 emoji: "🗂️"

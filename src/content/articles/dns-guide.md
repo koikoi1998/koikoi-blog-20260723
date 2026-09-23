@@ -2,6 +2,7 @@
 title: "DNSの仕組みを『上位1%』の視点で理解する——名前解決の階層構造から複数DNSサーバーの使い分けまで"
 description: "DNSはなぜ必要で、どういう階層構造で名前解決を行っているのか。再帰リゾルバと権威サーバーの役割分担、キャッシュとTTL、そしてWindows/Linuxで複数のDNSサーバーが登録されている場合にどちらが使われるのか、VPN接続時のDNS解決がどう変わるのかまで体系的に理解する。"
 series: "network"
+subSeries: "main"
 order: 8
 tags: ["network", "dns", "windows", "linux", "vpn"]
 emoji: "🧭"

@@ -2,6 +2,7 @@
 title: "ネットワークスタックの仕組みを『上位1%』の視点で理解する——NICドライバからTCP/UDP、アプリケーションまで"
 description: "NICドライバ・IP・TCP/UDP・アプリケーションという「ネットワークスタック」の各階層が何をしているのかを体系的に理解する。"
 series: "network"
+subSeries: "main"
 order: 1
 tags: ["network", "tcpip", "infra", "linux", "osi"]
 emoji: "🌐"

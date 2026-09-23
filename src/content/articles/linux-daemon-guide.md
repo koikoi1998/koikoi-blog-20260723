@@ -2,6 +2,7 @@
 title: "デーモン(daemon)とは何か——Linuxのバックグラウンドプロセスを『上位1%』の視点で理解する"
 description: "「なんとなくソフトウェアの裏側で動いているもの」というイメージから一歩進み、デーモンが通常のプロセスと何が違うのか、なぜプロトコル処理をデーモンとして実装するのか、systemdによる起動・監視・ログの仕組みまでを体系的に理解する。"
 series: "linux"
+subSeries: "main"
 order: 1
 tags: ["linux", "os", "systemd", "process", "infrastructure"]
 emoji: "🧩"

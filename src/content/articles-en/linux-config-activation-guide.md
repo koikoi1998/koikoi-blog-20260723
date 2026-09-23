@@ -2,6 +2,7 @@
 title: "How a Config File Actually \"Takes Effect,\" from the \"Top 1%\" Perspective: How Does a Daemon Read ipsec.conf?"
 description: "Why does writing human-readable text into /etc/ipsec.conf actually change real communication behavior? A systematic look at how a daemon parses a config file at startup, holds it as an internal data structure, and sometimes hands it further down to the kernel — and why editing the file alone doesn't apply until you reload or restart."
 series: "linux"
+subSeries: "main"
 order: 8
 tags: ["linux", "os", "networking", "infrastructure"]
 emoji: "⚙️"

@@ -2,6 +2,7 @@
 title: "Understanding the Relationship Between IIS and FTP from a \"Top 1%\" Perspective"
 description: "You thought IIS was just a web server, then noticed you could also add an FTP server role service. What's the actual relationship between IIS and FTP, and why are they integrated into the same management platform? This article systematically explains it, along with the difference between FTP's active/passive modes and the difference between FTPS and SFTP."
 series: "windows-server"
+subSeries: "main"
 order: 4
 tags: ["windows-server", "iis", "ftp", "infra"]
 emoji: "📁"

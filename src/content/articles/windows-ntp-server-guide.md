@@ -2,6 +2,7 @@
 title: "Windows ServerでNTPサーバーを構築する際の設定値を『上位1%』の視点で理解する——AnnounceFlagsとは何か"
 description: "Windows ServerでNTPサーバー機能を構成する際、AnnounceFlagsなどどのような設定項目が必要になるのか。Stratum(階層)という考え方、フォレストルートのPDCエミュレータがなぜ外部の時刻源への明示的な同期設定を必要とするのか、AnnounceFlagsの各ビットが何を制御しているのかまでを体系的に理解する。"
 series: "windows-server"
+subSeries: "main"
 order: 2
 tags: ["windows-server", "ntp", "active-directory", "infra"]
 emoji: "⏰"

@@ -2,6 +2,7 @@
 title: "A \"Top 1%\" Hands-On Lab: Building Your Own L2TP/IPsec Server and Verifying the Theory Yourself — strongSwan + xl2tpd, Windows Client Routing, and a Performance Baseline"
 description: "For readers who've finished the How L2TP/IPsec Works, Windows Server implementation, and modern-protocol-comparison articles: build a real L2TP/IPsec server on Proxmox VE (PVE), verify the connection sequence with tcpdump, inspect a Windows client's routing table, trigger NAT-T, examine the PSK weakness, and record a performance baseline — all in one hands-on session."
 series: "vpn"
+subSeries: "handson"
 order: 4
 tags: ["network", "vpn", "l2tp", "ipsec", "proxmox", "windows", "handson"]
 emoji: "🧪"

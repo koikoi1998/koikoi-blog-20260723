@@ -2,6 +2,7 @@
 title: "What Is a Daemon? Understanding Linux Background Processes from a \"Top 1%\" Perspective"
 description: "Moving beyond the vague image of \"something running behind the scenes,\" this article systematically explains how a daemon differs from a regular process, why protocol handling is implemented as a daemon, and how systemd starts, monitors, and logs daemons."
 series: "linux"
+subSeries: "main"
 order: 1
 tags: ["linux", "os", "systemd", "process", "infrastructure"]
 emoji: "🧩"

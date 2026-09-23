@@ -2,6 +2,7 @@
 title: "Hands-On Prep Manual: How to Use Wireshark — Opening Capture Files and Transferring Them with scp"
 description: "A prep manual for the full workflow of taking a packet capture file (pcap) you recorded on a remote Linux server with tcpdump, transferring it to your own PC with the scp command, and opening it in Wireshark to analyze it. Also covers the basics of display filters."
 series: "handson-prep"
+subSeries: "handson"
 order: 5
 tags: ["wireshark", "tcpdump", "scp", "handson", "beginner", "infrastructure"]
 emoji: "🦈"
@@ -86,6 +87,8 @@ Clicking a packet shows its protocol layers stacked from bottom to top (Ethernet
 - This blog's hands-on articles capture with `tcpdump` on the server side, transfer the file to your own PC with `scp`, and then open it in Wireshark.
 - `scp <username>@<server's IP address>:<source path> ./` transfers a remote file into your current directory. Watch for permission errors on files captured with `sudo`.
 - Typing a condition like `isakmp` or `ip.addr == ...` into the Filter field at the top of the screen (a display filter) narrows a huge packet list down to just what you want to look at.
+
+That's all 5 articles in the Hands-On Prep series. If you'd like to review the whole thing by ear during a commute or while doing chores, check out [[Listen] The Hands-On Prep Series, Fully Recapped](/en/articles/handson-prep-audio-review-guide).
 
 ## References
 

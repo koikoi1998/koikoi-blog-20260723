@@ -2,6 +2,7 @@
 title: "Why Does a VPN Client Need a Gateway on the Same Subnet? — Understanding IP Address Management in Windows Server (RRAS) L2TP/IPsec VPN from a \"Top 1%\" Perspective"
 description: "\"The client's IP and the corporate server's IP are on the same subnet, so why do I need to specify a gateway at all?\" — a question you almost inevitably run into when building and operating an L2TP/IPsec VPN with Windows Server's RRAS (Routing and Remote Access Service). This article answers it from a practical, on-the-job angle, rooted in the fact that PPP is a point-to-point link — a focused piece aimed at resolving a niche, real-world question rather than serving as a general primer."
 series: "vpn"
+subSeries: "main"
 order: 2
 tags: ["network", "windows-server", "rras", "vpn", "infra"]
 emoji: "🪟"

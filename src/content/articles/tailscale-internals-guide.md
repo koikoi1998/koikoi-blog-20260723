@@ -2,6 +2,7 @@
 title: "Tailscaleの仕組みを『上位1%』の視点で理解する——コントロールプレーンとデータプレーンの分離、NAT越え、DERPリレー"
 description: "TailscaleがWireGuardを内部プロトコルとして使いながら、なぜ「設定ファイルを手で書かなくてもVPNメッシュが組める」のか。コントロールプレーン(鍵配布・ACL・IdP連携)とデータプレーン(WireGuard)の分離、NATホールパンチング、DERPリレーの仕組みまでを体系的に理解する。"
 series: "modern-vpn"
+subSeries: "main"
 order: 3
 tags: ["vpn", "tailscale", "wireguard", "networking", "nat"]
 emoji: "🕸️"

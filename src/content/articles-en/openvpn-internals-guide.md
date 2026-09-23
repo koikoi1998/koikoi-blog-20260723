@@ -2,6 +2,7 @@
 title: "How OpenVPN Works Internally from a \"Top 1%\" Perspective — Why Encrypting IP Packets with TLS Becomes a VPN Connection"
 description: "Understanding that OpenVPN \"encrypts IP packets with TLS\" is one thing; understanding why that actually amounts to a VPN connection is another. A systematic look at the internal mechanics of how OpenVPN actually establishes a connection: the separation of the control channel and data channel, packet capture via the TUN device, and delivering the virtual IP and routes through the Push mechanism."
 series: "modern-vpn"
+subSeries: "main"
 order: 1
 tags: ["vpn", "openvpn", "tls", "networking", "security"]
 emoji: "🔐"

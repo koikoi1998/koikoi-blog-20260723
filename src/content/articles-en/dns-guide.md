@@ -2,6 +2,7 @@
 title: "Understanding How DNS Works from a \"Top 1%\" Perspective — From the Hierarchy of Name Resolution to Juggling Multiple DNS Servers"
 description: "Why does DNS need to exist, and what hierarchy does it use to resolve names? A systematic look at the division of labor between recursive resolvers and authoritative servers, caching and TTL, how Windows and Linux decide which DNS server to use when several are registered, and how DNS resolution changes over a VPN connection."
 series: "network"
+subSeries: "main"
 order: 8
 tags: ["network", "dns", "windows", "linux", "vpn"]
 emoji: "🧭"

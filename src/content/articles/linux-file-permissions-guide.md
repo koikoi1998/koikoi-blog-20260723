@@ -2,6 +2,7 @@
 title: "パーミッション(chmod)とは何か——Linuxのファイルアクセス制御を『上位1%』の視点で理解する"
 description: "chmod 600のような数字がなぜファイルへのアクセスを制御できるのか。rwxビットと所有者/グループ/その他という3つの区分、数値表記と記号表記、setuid/sticky bitといった特殊権限、そしてカーネルがシステムコールのたびにこれをどう検査しているのかまでを体系的に理解する。"
 series: "linux"
+subSeries: "main"
 order: 4
 tags: ["linux", "os", "security", "permissions", "infrastructure"]
 emoji: "🔐"

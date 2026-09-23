@@ -2,6 +2,7 @@
 title: "Understanding the Network Stack from a \"Top 1%\" Perspective — From the NIC Driver to TCP/UDP and the Application Layer"
 description: "A systematic look at what each layer of the \"network stack\" — the NIC driver, IP, TCP/UDP, and the application layer — actually does."
 series: "network"
+subSeries: "main"
 order: 1
 tags: ["network", "tcpip", "infra", "linux", "osi"]
 emoji: "🌐"

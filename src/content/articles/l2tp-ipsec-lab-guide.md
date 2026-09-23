@@ -2,6 +2,7 @@
 title: "L2TP/IPsecサーバーを自作し、理論を自分の目で検証する『上位1%』のハンズオン——strongSwan+xl2tpdの構築から、Windowsクライアントのルーティング確認、性能ベースライン計測まで"
 description: "L2TP/IPsecの仕組み・Windows Server実装・現代的プロトコルとの比較という3記事を読み終えた読者向けに、Proxmox VE(PVE)上に実際にL2TP/IPsecサーバーを構築し、tcpdumpでの接続シーケンス検証、Windowsクライアントのルーティングテーブル確認、NAT-Tの誘発、PSK運用の弱点、性能ベースライン計測までを一気通貫で行うハンズオン教材。"
 series: "vpn"
+subSeries: "handson"
 order: 4
 tags: ["network", "vpn", "l2tp", "ipsec", "proxmox", "windows", "handson"]
 emoji: "🧪"

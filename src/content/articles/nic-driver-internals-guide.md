@@ -2,6 +2,7 @@
 title: "NICドライバとLinuxカーネルのネットワーク処理を『上位1%』の視点で理解する——割り込み処理・DMA・オフロード・カーネルバイパスまで"
 description: "NICドライバとLinuxカーネルのネットワーク処理——割り込み処理・DMA・オフロード機能・カーネルバイパスまでを最深部から理解する。"
 series: "network"
+subSeries: "main"
 order: 2
 tags: ["network", "linux", "kernel", "nic", "performance"]
 emoji: "⚙️"

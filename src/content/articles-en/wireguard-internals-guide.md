@@ -2,6 +2,7 @@
 title: "How WireGuard Works Internally from a \"Top 1%\" Perspective — the Noise Framework, Cryptokey Routing, and the Handshake"
 description: "Beyond \"a minimal design with a fixed cipher suite,\" a systematic look at how WireGuard's Noise-framework-based handshake actually establishes keys, how Cryptokey Routing ties public keys to AllowedIPs, and how session keys keep rotating automatically."
 series: "modern-vpn"
+subSeries: "main"
 order: 2
 tags: ["vpn", "wireguard", "cryptography", "networking", "security"]
 emoji: "⚡"

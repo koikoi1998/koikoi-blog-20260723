@@ -2,6 +2,7 @@
 title: "Understanding the Differences Between VPN Access, Dial-Up Access, Demand-Dial Access, NAT, and LAN Routing in Windows Server RRAS from a \"Top 1%\" Perspective"
 description: "Enabling RRAS (Routing and Remote Access) on Windows Server lets you choose from five roles: VPN access, dial-up access, demand-dial access, NAT, and LAN routing. What does each one actually achieve, and when should you use which? This article systematically explains why they're all bundled under a single feature called \"Routing and Remote Access.\""
 series: "vpn"
+subSeries: "main"
 order: 7
 tags: ["windows-server", "rras", "network", "infra"]
 emoji: "🧭"
@@ -141,6 +142,8 @@ The basic approach to RRAS trouble is to **check whether a role you don't think 
 **What to Keep in Mind From Today**
 1. When reviewing an RRAS configuration, check which of the five roles are actually enabled against the intended purpose.
 2. Periodically check whether roles other than "VPN access" (particularly NAT or demand-dial) have been unintentionally enabled.
+
+That's all 7 articles in the Remote-Access VPN / L2TP-IPsec series. If you'd like to review the whole thing by ear during a commute or while doing chores, check out [[Listen] The Remote-Access VPN / L2TP-IPsec Series, Fully Recapped](/en/articles/vpn-audio-review-guide).
 
 ## References
 

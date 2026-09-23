@@ -2,6 +2,7 @@
 title: "What Is a Library? Understanding Static and Dynamic Linking from a \"Top 1%\" Perspective"
 description: "Moving beyond the vague image of \"a convenient bundle of routines a program calls,\" this article systematically explains the difference between static linking and dynamic linking (shared libraries), how symbol resolution works, and why ABI compatibility becomes a real operational failure mode."
 series: "linux"
+subSeries: "main"
 order: 2
 tags: ["linux", "os", "library", "compiler", "infrastructure"]
 emoji: "📦"

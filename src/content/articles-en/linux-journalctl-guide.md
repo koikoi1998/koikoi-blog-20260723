@@ -2,6 +2,7 @@
 title: "Investigating Error Logs with journalctl from a \"Top 1%\" Perspective — Getting from \"It's Not Working\" to the Actual Cause"
 description: "What the systemd journal actually is, how to use journalctl's main options (-u/-t/-f/-n/--no-pager/-xe), and — using the L2TP/IPsec hands-on lab as a worked example — a practical method for deciding which layer's logs (ipsec, xl2tpd, pppd) to check, and in what order."
 series: "linux"
+subSeries: "main"
 order: 9
 tags: ["linux", "journalctl", "systemd", "troubleshooting", "infrastructure"]
 emoji: "🔍"
@@ -129,6 +130,8 @@ When you get a specific error message, like `unrecognized option 'crtscts'`, sea
 **Starting Today**
 1. When you hit an error, start with the `-xeu` overview `systemctl status` suggests, then identify the processes actually involved and decide `-u` vs. `-t` based on whether each one is a systemd unit — keep that as a repeatable routine.
 2. For failures spanning multiple hosts and processes, knowing the order components are supposed to come up in is your map for where to start looking.
+
+That's all 9 articles in the Linux/OS Fundamentals series. If you'd like to review the whole thing by ear during a commute or while doing chores, check out [[Listen] The Linux/OS Fundamentals Series, Fully Recapped](/en/articles/linux-audio-review-guide).
 
 ## References
 

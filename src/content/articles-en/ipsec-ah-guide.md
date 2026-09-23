@@ -2,6 +2,7 @@
 title: "Understanding IPsec's AH (Authentication Header) from a \"Top 1%\" Perspective — How It Differs From ESP, and Why It's Almost Never Used in Practice"
 description: "Besides ESP, IPsec has another protocol called AH (Authentication Header). What does AH protect, and how does it differ from ESP? AH's lack of encryption is said to be related to export restrictions in certain countries — what does that actually mean? And why is AH almost never used today, and fundamentally incompatible with NAT? This article systematically explains all of it."
 series: "vpn"
+subSeries: "main"
 order: 6
 tags: ["network", "ipsec", "security", "infra"]
 emoji: "🛡️"

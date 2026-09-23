@@ -2,6 +2,7 @@
 title: "L2TP/IPsecと現代的なVPNプロトコルを『上位1%』の視点で比較する——IKEv2/IPsec・OpenVPN・WireGuardとの違い"
 description: "L2TP/IPsecが「レガシー」と評される具体的な技術的根拠は何か。IKEv2/IPsec・OpenVPN・WireGuardという現在主流のVPNプロトコルとの設計思想・実装規模・モバイル耐性・パフォーマンスの違いを体系的に理解する。"
 series: "vpn"
+subSeries: "main"
 order: 3
 tags: ["network", "vpn", "wireguard", "openvpn", "ipsec", "security"]
 emoji: "🛡️"

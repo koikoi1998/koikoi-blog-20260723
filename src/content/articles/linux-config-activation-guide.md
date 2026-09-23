@@ -2,6 +2,7 @@
 title: "設定ファイルが「効く」までの仕組みを『上位1%』の視点で理解する——デーモンはどうやってipsec.confを読んでいるのか"
 description: "/etc/ipsec.confに人間が読めるテキストで設定を書くだけで、なぜそれが実際の通信の挙動を変えるのか。デーモンが起動時に設定ファイルをパースし、内部データ構造として保持し、必要に応じてさらにカーネルへ伝える、という一連の流れと、なぜ編集しただけでは反映されずreload/restartが必要なのかまでを体系的に理解する。"
 series: "linux"
+subSeries: "main"
 order: 8
 tags: ["linux", "os", "networking", "infrastructure"]
 emoji: "⚙️"

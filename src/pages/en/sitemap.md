@@ -140,9 +140,11 @@ This blog is written for a wide range of readers — from people with no experie
 <li><a href="/en/articles/windows-server-setup-guide">Hands-On Prep Manual: Setting Up Windows Server 2025 for the First Time and Enabling SSH (GUI Only)</a></li>
 <li><a href="/en/articles/teraterm-guide">Hands-On Prep Manual: How to Use Teraterm (a Terminal Client)</a></li>
 <li><a href="/en/articles/wireshark-guide">Hands-On Prep Manual: How to Use Wireshark</a></li>
+<li><a href="/en/articles/handson-prep-audio-review-guide">[Listen] The Hands-On Prep Series, Fully Recapped</a></li>
 <li><a href="/en/articles/l2tp-ipsec-lab-guide">A "Top 1%" Hands-On Lab: Building Your Own L2TP/IPsec Server and Verifying the Theory Yourself</a></li>
 <li><a href="/en/articles/l2tp-ipsec-troubleshooting-lab">L2TP/IPsec Troubleshooting Lab: Diagnosing Real Failures from Error Logs, a "Top 1%" Hands-On Exercise</a></li>
 <li><a href="/en/articles/windows-rras-roles-guide">Understanding the Differences Between VPN Access, Dial-Up Access, Demand-Dial Access, NAT, and LAN Routing in Windows Server RRAS from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/vpn-audio-review-guide">[Listen] The Remote-Access VPN / L2TP-IPsec Series, Fully Recapped</a></li>
 <li><a href="/en/articles/site-to-site-vpn-aws-guide">Understanding Site-to-Site VPN with AWS from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/sdwan-edge-router-guide">Understanding SD-WAN and Edge Router Selection from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/ad-dc-fundamentals-guide">Understanding the Difference Between AD and DC, and Domains vs. Forests, from a "Top 1%" Perspective</a></li>
@@ -173,6 +175,7 @@ This blog is written for a wide range of readers — from people with no experie
 <li><a href="/en/articles/iis-fundamentals-guide">Understanding How IIS and ASP.NET Work from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/iis-ftp-guide">Understanding the Relationship Between IIS and FTP from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/smb-file-sharing-guide">Understanding Windows Server SMB File Sharing from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/windows-server-audio-review-guide">[Listen] The Windows Server Operations Series, Fully Recapped</a></li>
 <li><a href="/en/articles/disk-raid-fundamentals-guide">Understanding the Relationship Between RAID and Windows Disk Management from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/fc-san-fundamentals-guide">Understanding the Difference Between Fibre Channel and LAN Connections from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/aws-ec2-networking-basics-guide">Understanding EC2 Key Pairs (.pem/.ppk) and Reserved Subnet IPs from a "Top 1%" Perspective</a></li>
@@ -190,7 +193,7 @@ This blog is written for a wide range of readers — from people with no experie
 <p>Adds the low-level implementation knowledge that sets you apart in interviews and design reviews, on top of everything through STEP3.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP3's 73 articles (see those tabs above)</li>
+<li>STEP1 through STEP3's 76 articles (see those tabs above)</li>
 <li><a href="/en/articles/proxmox-internals-guide">What Is Proxmox VE? Understanding KVM/QEMU Virtualization from the "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/linux-daemon-guide">What Is a Daemon? Understanding Linux Background Processes from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/software-library-guide">What Is a Library? Understanding Static and Dynamic Linking from a "Top 1%" Perspective</a></li>
@@ -201,11 +204,14 @@ This blog is written for a wide range of readers — from people with no experie
 <li><a href="/en/articles/linux-filesystem-hierarchy-guide">/etc and the Linux Directory Layout (FHS) from the "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/linux-config-activation-guide">How a Config File Actually "Takes Effect," from the "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/linux-journalctl-guide">Investigating Error Logs with journalctl from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/linux-audio-review-guide">[Listen] The Linux/OS Fundamentals Series, Fully Recapped</a></li>
 <li><a href="/en/articles/nic-driver-internals-guide">Understanding NIC Drivers and Linux Kernel Networking from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/network-audio-review-guide">[Listen] The Networking Fundamentals Series, Fully Recapped</a></li>
 <li><a href="/en/articles/openvpn-internals-guide">How OpenVPN Works from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/wireguard-internals-guide">How WireGuard Works from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/tailscale-internals-guide">How Tailscale Works from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/ztna-guide">What Is ZTNA (Zero Trust Network Access) from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/modern-vpn-audio-review-guide">[Listen] The Modern VPN Protocol Deep-Dive Series, Fully Recapped</a></li>
 <li><a href="/en/articles/idrac-power-guide">Understanding Server Power Design from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/os-boot-process-guide">Understanding the OS Boot Process After POST from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/hyperv-capacity-guide">Understanding Hyper-V Virtual Machine Resource Design from a "Top 1%" Perspective</a></li>
@@ -214,13 +220,13 @@ This blog is written for a wide range of readers — from people with no experie
 <div class="persona-panel persona-panel-5">
 <div class="persona-panel-head">
 <h3>🏆 For those gathering information toward ¥10M, ¥20M, or ¥50M+</h3>
-<p>The complete-conquest route: read all 92 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
+<p>The complete-conquest route: read all 98 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP4's 91 articles (see those tabs above)</li>
+<li>STEP1 through STEP4's 97 articles (see those tabs above)</li>
 <li><a href="/en/articles/voip-ss7-guide">Understanding VoIP and SS7 — and the Real Path Your Traffic Takes — from a "Top 1%" Perspective</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>That's all 92 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
+<div class="persona-bonus">🎉 <strong>That's all 98 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
 </div>
 </div>
 </div>
@@ -237,7 +243,7 @@ A series covering out-of-band server management. **Recommended order**: ① idra
 
 ### Networking Fundamentals Series
 
-**Recommended order**: ① network-stack-guide → ② nic-driver-internals-guide → ③ network-devices-guide → ④ local-gov-network-guide → ⑤ virtual-ip-guide → ⑥ nat-guide → ⑦ tcp-udp-session-port-guide → ⑧ dns-guide → ⑨ windows-network-adapter-guide.
+**Recommended order**: ① network-stack-guide → ② nic-driver-internals-guide → ③ network-devices-guide → ④ local-gov-network-guide → ⑤ virtual-ip-guide → ⑥ nat-guide → ⑦ tcp-udp-session-port-guide → ⑧ dns-guide → ⑨ windows-network-adapter-guide → ⑩ network-audio-review-guide (for reviewing by ear after finishing all 9).
 
 - [Understanding the Network Stack from a "Top 1%" Perspective](/en/articles/network-stack-guide) — A deep dive into the layered structure of the NIC driver, IP, TCP/UDP, and the application layer.
 - [Understanding NIC Drivers and Linux Kernel Networking from a "Top 1%" Perspective](/en/articles/nic-driver-internals-guide) — A further deep dive into interrupt handling, DMA, offloading, and kernel bypass.
@@ -248,10 +254,11 @@ A series covering out-of-band server management. **Recommended order**: ① idra
 - [Understanding the Relationship Between TCP/UDP "Sessions" and Port Numbers from a "Top 1%" Perspective](/en/articles/tcp-udp-session-port-guide) — What a TCP connection's state machine really is, how it differs from a NAT/firewall's pseudo-session, and why protocol numbers and port numbers aren't a 1:1 mapping (spun off from the L2TP/IPsec article's discussion of ESP and port numbers; also readable standalone).
 - [Understanding How DNS Works from a "Top 1%" Perspective](/en/articles/dns-guide) — The hierarchy of name resolution, the division of labor between recursive resolvers and authoritative servers, how Windows and Linux prioritize among multiple DNS servers, and DNS resolution over a VPN connection (spun off from the L2TP/IPsec article's DNS server assignment via IPCP; also readable standalone).
 - [Understanding Windows Multi-Adapter Networking and Network Location Awareness from a "Top 1%" Perspective](/en/articles/windows-network-adapter-guide) — A deep dive into gateway priority (interface metrics) when using Wi-Fi and wired LAN together, network profile detection via NLA, and why an "unidentified network" gets lumped together in a NIC teaming + VLAN environment (also readable standalone).
+- [[Listen] The Networking Fundamentals Series, Fully Recapped](/en/articles/network-audio-review-guide) — An audio-learning article for anyone who's finished all 9 articles, reviewable by ear alone. No tables, diagrams, or bullet points — just spoken-style prose meant to be read aloud by a browser's text-to-speech feature (assumes you've finished the series).
 
 ### Remote-Access VPN / L2TP-IPsec Series
 
-**Recommended order**: ① l2tp-ipsec-guide → ② windows-server-l2tp-vpn-guide → ③ vpn-protocols-comparison-guide → ④ l2tp-ipsec-lab-guide → ⑤ l2tp-ipsec-troubleshooting-lab → ⑥ ipsec-ah-guide → ⑦ windows-rras-roles-guide.
+**Recommended order**: ① l2tp-ipsec-guide → ② windows-server-l2tp-vpn-guide → ③ vpn-protocols-comparison-guide → ④ l2tp-ipsec-lab-guide → ⑤ l2tp-ipsec-troubleshooting-lab → ⑥ ipsec-ah-guide → ⑦ windows-rras-roles-guide → ⑧ vpn-audio-review-guide (for reviewing by ear after finishing all 7).
 
 - [Understanding How L2TP/IPsec Works from a "Top 1%" Perspective](/en/articles/l2tp-ipsec-guide) — Why L2TP and IPsec are combined, the connection-establishment sequence, and a deep dive into NAT traversal.
 - [Why Does a VPN Client Need a Gateway on the Same Subnet? — Understanding IP Address Management in Windows Server (RRAS) L2TP/IPsec VPN from a "Top 1%" Perspective](/en/articles/windows-server-l2tp-vpn-guide) — RRAS's address pool, and why a gateway is needed even though clients look like they're on the same subnet (a Windows Server implementation companion to the L2TP/IPsec article; also readable standalone).
@@ -260,15 +267,17 @@ A series covering out-of-band server management. **Recommended order**: ① idra
 - [L2TP/IPsec Troubleshooting Lab: Diagnosing Real Failures from Error Logs, a "Top 1%" Hands-On Exercise](/en/articles/l2tp-ipsec-troubleshooting-lab) — A self-diagnosis exercise built around five failures that actually happened during the hands-on lab (a forgotten uncomment, the lock option, a wrong pppoptfile path, a stray space in ike=, a hard-coded chap-secrets server name). Builds the practical skill of tracking down a cause using nothing but journalctl output (assumes the environment from ④; also readable standalone).
 - [Understanding IPsec's AH (Authentication Header) from a "Top 1%" Perspective](/en/articles/ipsec-ah-guide) — A deep dive into why AH provides only integrity and no confidentiality, its structural difference from ESP, the historical background of cryptographic export controls, and why it's structurally incompatible with NAT (also readable standalone).
 - [Understanding the Differences Between VPN Access, Dial-Up Access, Demand-Dial Access, NAT, and LAN Routing in Windows Server RRAS from a "Top 1%" Perspective](/en/articles/windows-rras-roles-guide) — A deep dive into why five capabilities are bundled into one service, the difference between each role, and why demand-dial access reflects the design philosophy of the metered-line era (also readable standalone).
+- [[Listen] The Remote-Access VPN / L2TP-IPsec Series, Fully Recapped](/en/articles/vpn-audio-review-guide) — An audio-learning article for anyone who's finished all 7 articles, reviewable by ear alone. No tables, diagrams, or bullet points — just spoken-style prose meant to be read aloud by a browser's text-to-speech feature (assumes you've finished the series).
 
 ### Modern VPN Protocol Deep-Dive Series
 
-A series that digs, one protocol at a time, into the internal mechanics of the protocols compared at a high level in ③ (vpn-protocols-comparison-guide) of the Remote-Access VPN/L2TP-IPsec series. **Recommended order**: ① openvpn-internals-guide → ② wireguard-internals-guide → ③ tailscale-internals-guide → ④ ztna-guide.
+A series that digs, one protocol at a time, into the internal mechanics of the protocols compared at a high level in ③ (vpn-protocols-comparison-guide) of the Remote-Access VPN/L2TP-IPsec series. **Recommended order**: ① openvpn-internals-guide → ② wireguard-internals-guide → ③ tailscale-internals-guide → ④ ztna-guide → ⑤ modern-vpn-audio-review-guide (for reviewing by ear after finishing all 4).
 
 - [How OpenVPN Works from a "Top 1%" Perspective](/en/articles/openvpn-internals-guide) — A deep dive into why "encrypting with TLS" amounts to a VPN connection at all: packet capture via the TUN device, the Control/Data Channel split, and delivering routing information via the Push mechanism (spun off from the OpenVPN section of vpn-protocols-comparison-guide; also readable standalone).
 - [How WireGuard Works from a "Top 1%" Perspective](/en/articles/wireguard-internals-guide) — A deep dive into the Noise-framework-based handshake, Cryptokey Routing (the mapping between public keys and AllowedIPs), and automatic session-key rotation (spun off from the WireGuard section of vpn-protocols-comparison-guide; also readable standalone).
 - [How Tailscale Works from a "Top 1%" Perspective](/en/articles/tailscale-internals-guide) — A deep dive into the design that uses WireGuard as its internal protocol while separating out a control plane (key distribution, ACLs, IdP integration), NAT hole punching, and DERP relays (spun off as the solution to the key-distribution problem covered in wireguard-internals-guide; also readable standalone).
 - [What Is ZTNA (Zero Trust Network Access) from a "Top 1%" Perspective](/en/articles/ztna-guide) — A deep dive into its structural difference from the "network-level trust" VPN assumes, the SDP (Software-Defined Perimeter) model, and what it means as a defense against lateral movement (spun off from the ZTNA mention in vpn-protocols-comparison-guide; also readable standalone).
+- [[Listen] The Modern VPN Protocol Deep-Dive Series, Fully Recapped](/en/articles/modern-vpn-audio-review-guide) — An audio-learning article for anyone who's finished all 4 articles, reviewable by ear alone. No tables, diagrams, or bullet points — just spoken-style prose meant to be read aloud by a browser's text-to-speech feature (assumes you've finished the series).
 
 ### Site-to-Site VPN Series
 
@@ -280,13 +289,14 @@ A follow-on series that assumes you've read ① from the Remote-Access VPN/L2TP-
 
 ### Hands-On Prep Series
 
-A group of prep manuals covering what this blog's hands-on articles (like the self-built L2TP/IPsec server lab) need in common — creating a VM in Proxmox VE, initial OS setup, and using an SSH client and a packet-capture tool — split into focused, per-theme articles. **Recommended order**: ① handson-prep-guide → ② ubuntu-server-setup-guide → ③ windows-server-setup-guide → ④ teraterm-guide → ⑤ wireshark-guide.
+A group of prep manuals covering what this blog's hands-on articles (like the self-built L2TP/IPsec server lab) need in common — creating a VM in Proxmox VE, initial OS setup, and using an SSH client and a packet-capture tool — split into focused, per-theme articles. **Recommended order**: ① handson-prep-guide → ② ubuntu-server-setup-guide → ③ windows-server-setup-guide → ④ teraterm-guide → ⑤ wireshark-guide → ⑥ handson-prep-audio-review-guide (for reviewing by ear after finishing all 5).
 
 - [Hands-On Prep Manual: From Creating a VM in Proxmox VE to Installing an OS](/en/articles/handson-prep-guide) — An operations manual covering each tab of Proxmox VE's VM creation wizard, downloading/uploading the Ubuntu Server ISO, and the OS install flow (a step-by-step guide for readers doing a hands-on lab for the first time, not an internals deep dive; also readable standalone).
 - [Hands-On Prep Manual: Setting Up an Ubuntu Server for the First Time](/en/articles/ubuntu-server-setup-guide) — An operations manual covering post-first-login basics (apt update/sudo su -/nano), the US-keyboard-layout gotcha, and checking for/installing an OpenSSH server (also readable standalone).
 - [Hands-On Prep Manual: Setting Up Windows Server 2025 for the First Time and Enabling SSH (GUI Only)](/en/articles/windows-server-setup-guide) — An operations manual covering computer name/IP address/time zone setup entirely through Server Manager's GUI, enabling OpenSSH Server via "Add Roles and Features," and confirming the firewall's inbound rule (no PowerShell commands; also readable standalone).
 - [Hands-On Prep Manual: How to Use Teraterm (a Terminal Client)](/en/articles/teraterm-guide) — An operations manual covering creating a new SSH connection, confirming the host key on first connect, fixing garbled text via character-encoding settings, saving connection settings, and recording session logs (also readable standalone).
 - [Hands-On Prep Manual: How to Use Wireshark](/en/articles/wireshark-guide) — An operations manual covering transferring a tcpdump capture file to your own PC with scp, then opening it in Wireshark and narrowing it down with display filters (also readable standalone).
+- [[Listen] The Hands-On Prep Series, Fully Recapped](/en/articles/handson-prep-audio-review-guide) — An audio-learning article for anyone who's finished all 5 articles, reviewable by ear alone. No tables, diagrams, or bullet points — just spoken-style prose meant to be read aloud by a browser's text-to-speech feature (assumes you've finished the series).
 
 ### Virtualization Fundamentals Series
 
@@ -297,7 +307,7 @@ A series that digs into what actually implements the virtualization behind Proxm
 
 ### Linux / OS Fundamentals Series
 
-A series that takes execution-environment-level terms that keep showing up in the VPN protocol articles and the L2TP/IPsec hands-on lab, and gives each one a standalone deep dive. **Recommended order**: ① linux-daemon-guide → ② software-library-guide → ③ linux-user-kernel-space-guide → ④ linux-file-permissions-guide → ⑤ linux-sysctl-guide → ⑥ linux-iptables-guide → ⑦ linux-filesystem-hierarchy-guide → ⑧ linux-config-activation-guide → ⑨ linux-journalctl-guide.
+A series that takes execution-environment-level terms that keep showing up in the VPN protocol articles and the L2TP/IPsec hands-on lab, and gives each one a standalone deep dive. **Recommended order**: ① linux-daemon-guide → ② software-library-guide → ③ linux-user-kernel-space-guide → ④ linux-file-permissions-guide → ⑤ linux-sysctl-guide → ⑥ linux-iptables-guide → ⑦ linux-filesystem-hierarchy-guide → ⑧ linux-config-activation-guide → ⑨ linux-journalctl-guide → ⑩ linux-audio-review-guide (for reviewing by ear after finishing all 9).
 
 - [What Is a Daemon? Understanding Linux Background Processes from a "Top 1%" Perspective](/en/articles/linux-daemon-guide) — How a daemon differs from a regular process, why protocol-handling software like an IKE daemon is implemented as one, and how systemd starts, monitors, and logs it (spun off from the daemon discussion in the modern-VPN-protocols comparison article; also readable standalone).
 - [What Is a Library? Understanding Static and Dynamic Linking from a "Top 1%" Perspective](/en/articles/software-library-guide) — The difference between static linking and dynamic linking (shared libraries), how symbol resolution works, and why ABI compatibility becomes a real failure mode (spun off from the OpenSSL discussion in the modern-VPN-protocols comparison article; also readable standalone).
@@ -308,6 +318,7 @@ A series that takes execution-environment-level terms that keep showing up in th
 - [/etc and the Linux Directory Layout (FHS) from the "Top 1%" Perspective](/en/articles/linux-filesystem-hierarchy-guide) — The two axes running through the FHS design philosophy ("host-specific vs. shareable," "static vs. mutable"), the convention of per-service subdirectories, and how the meaning shifts in the container era (spun off from editing `/etc/ipsec.conf` in the L2TP/IPsec hands-on lab; also readable standalone).
 - [How a Config File Actually "Takes Effect," from the "Top 1%" Perspective](/en/articles/linux-config-activation-guide) — How a daemon parses a config file into an internal data structure, the difference between reload and restart, and how a userspace daemon's config differs from a kernel parameter in how it actually applies (spun off from editing `ipsec.conf`/`xl2tpd.conf` in the L2TP/IPsec hands-on lab; also readable standalone).
 - [Investigating Error Logs with journalctl from a "Top 1%" Perspective](/en/articles/linux-journalctl-guide) — What the systemd journal actually is, how to use -u/-t/-f/-n/--no-pager/-xe, and how to decide which order to check logs in when several processes (like IKE → L2TP → PPP) work together (spun off from debugging errors in the L2TP/IPsec hands-on lab; also readable standalone).
+- [[Listen] The Linux/OS Fundamentals Series, Fully Recapped](/en/articles/linux-audio-review-guide) — An audio-learning article for anyone who's finished all 9 articles, reviewable by ear alone. No tables, diagrams, or bullet points — just spoken-style prose meant to be read aloud by a browser's text-to-speech feature (assumes you've finished the series).
 
 ### Telephony & Access Network Series
 
@@ -367,13 +378,14 @@ A series digging into the "why is it built this way" questions that come up in d
 
 ### Windows Server Operations Series
 
-A series digging into the questions that come up constantly in Windows Server procurement and operations. **Recommended order**: ① windows-server-licensing-guide → ② windows-ntp-server-guide → ③ iis-fundamentals-guide → ④ iis-ftp-guide → ⑤ smb-file-sharing-guide.
+A series digging into the questions that come up constantly in Windows Server procurement and operations. **Recommended order**: ① windows-server-licensing-guide → ② windows-ntp-server-guide → ③ iis-fundamentals-guide → ④ iis-ftp-guide → ⑤ smb-file-sharing-guide → ⑥ windows-server-audio-review-guide (for reviewing by ear after finishing all 5).
 
 - [Understanding Windows Server Licensing (OEM, Datacenter, Standard) from a "Top 1%" Perspective](/en/articles/windows-server-licensing-guide) — A deep dive into why the main Standard/Datacenter difference is virtualization rights, how core-based licensing works, and why an OEM license is tied to specific hardware (also readable standalone).
 - [Understanding the Configuration Values for Building an NTP Server on Windows Server from a "Top 1%" Perspective](/en/articles/windows-ntp-server-guide) — A deep dive into the concept of Stratum, why only the forest root PDC emulator needs an explicit sync to an external time source, and what each bit of AnnounceFlags controls (a follow-on from [fsmo-guide](/en/articles/fsmo-guide), also readable standalone).
 - [Understanding How IIS and ASP.NET Work from a "Top 1%" Perspective](/en/articles/iis-fundamentals-guide) — A deep dive into the division of labor between IIS and ASP.NET, the three-layer structure of HTTP.sys/application pools/worker processes, the true identity of the Default Web Site, binding configuration and SNI, and adding HTTP response headers (also readable standalone).
 - [Understanding the Relationship Between IIS and FTP from a "Top 1%" Perspective](/en/articles/iis-ftp-guide) — A deep dive into the integrated-platform philosophy behind the name IIS, FTP's control/data channels and active/passive modes, and the difference between FTPS and SFTP (a follow-on from [iis-fundamentals-guide](/en/articles/iis-fundamentals-guide), also readable standalone).
 - [Understanding Windows Server SMB File Sharing from a "Top 1%" Perspective](/en/articles/smb-file-sharing-guide) — A deep dive into the role of the C$/IPC$/ADMIN$ administrative shares, why the SMB client's connection cache treats an IP address and a hostname as separate "servers," and diagnosing the phenomenon where access fails via IP address but succeeds via hostname (also readable standalone).
+- [[Listen] The Windows Server Operations Series, Fully Recapped](/en/articles/windows-server-audio-review-guide) — An audio-learning article for anyone who's finished all 5 articles, reviewable by ear alone. No tables, diagrams, or bullet points — just spoken-style prose meant to be read aloud by a browser's text-to-speech feature (assumes you've finished the series).
 
 ### Storage Fundamentals Series
 

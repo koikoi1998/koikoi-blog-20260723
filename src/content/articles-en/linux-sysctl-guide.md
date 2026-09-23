@@ -2,6 +2,7 @@
 title: "sysctl and /etc/sysctl.conf from the \"Top 1%\" Perspective: procfs, a \"Living File\""
 description: "Why does writing one line, net.ipv4.ip_forward = 1, actually change the kernel's routing behavior? A systematic look at procfs (a virtual filesystem), how /proc/sys maps to sysctl keys, and why editing /etc/sysctl.conf alone doesn't take effect."
 series: "linux"
+subSeries: "main"
 order: 5
 tags: ["linux", "os", "kernel", "networking", "infrastructure"]
 emoji: "🎛️"

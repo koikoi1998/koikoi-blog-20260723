@@ -2,6 +2,7 @@
 title: "ユーザー空間とカーネル空間、TUN/TAPデバイスの仕組みを『上位1%』の視点で理解する"
 description: "Linuxがなぜメモリ空間を「ユーザー空間」と「カーネル空間」に分離しているのか、システムコールとコンテキストスイッチの内部動作、そしてユーザー空間のプログラムが仮想ネットワークインターフェースを作れるTUN/TAPデバイスの仕組みまでを体系的に理解する。"
 series: "linux"
+subSeries: "main"
 order: 3
 tags: ["linux", "os", "kernel", "networking", "infrastructure"]
 emoji: "🧱"

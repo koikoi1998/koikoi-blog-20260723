@@ -2,6 +2,7 @@
 title: "ハンズオン準備マニュアル:Windows Server 2025の初期セットアップとSSHサーバーの有効化(GUI操作)"
 description: "Proxmox VE上に作成したWindows Server 2025のVMに対し、GUI(設定画面)だけを使って初期設定を行い、OpenSSHサーバーを有効化してTeratermなどのSSHクライアントから接続できるようにするまでの手順を解説する準備マニュアル。PowerShellのコマンドではなく、Server Managerの画面操作で完結させる。"
 series: "handson-prep"
+subSeries: "handson"
 order: 3
 tags: ["windows-server", "handson", "beginner", "ssh", "infrastructure"]
 emoji: "🪟"

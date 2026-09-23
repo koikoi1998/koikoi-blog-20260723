@@ -2,6 +2,7 @@
 title: "Understanding How IIS and ASP.NET Work from a \"Top 1%\" Perspective — Default Web Site and Binding Configuration"
 description: "What does IIS actually do, and what does ASP.NET do? What is the Default Web Site that always shows up in IIS Manager? This article systematically explains the binding configuration and HTTP response header mechanisms needed to run multiple websites on a single IIS server."
 series: "windows-server"
+subSeries: "main"
 order: 3
 tags: ["windows-server", "iis", "web", "infra"]
 emoji: "🌐"

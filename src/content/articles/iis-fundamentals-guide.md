@@ -2,6 +2,7 @@
 title: "IISとASP.NETの仕組みを『上位1%』の視点で理解する——Default Web Siteとバインド設定"
 description: "IISとASP.NETはそれぞれ何をしているソフトウェアなのか。IISマネージャーに表示されるDefault Web Siteとは何なのか。1台のIISサーバーで複数のWebサイトを運用する際のバインド設定やHTTP応答ヘッダーの仕組みまでを体系的に理解する。"
 series: "windows-server"
+subSeries: "main"
 order: 3
 tags: ["windows-server", "iis", "web", "infra"]
 emoji: "🌐"

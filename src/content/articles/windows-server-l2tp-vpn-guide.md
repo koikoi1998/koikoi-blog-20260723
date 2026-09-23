@@ -2,6 +2,7 @@
 title: "なぜ同一セグメントなのにVPNクライアントにゲートウェイが必要なのか——Windows Server(RRAS)のL2TP/IPsec VPNにおけるIPアドレス管理を『上位1%』の視点で理解する"
 description: "「クライアントのIPも社内サーバーのIPも同じサブネットなのに、なぜゲートウェイの指定が要るのか」——Windows ServerのRRAS(ルーティングとリモートアクセス)でL2TP/IPsec VPNを構築・運用すると必ずぶつかるこの疑問に、PPPが点対点リンクであるという性質から実務目線で答える、現場のニッチな疑問解消に特化した記事。"
 series: "vpn"
+subSeries: "main"
 order: 2
 tags: ["network", "windows-server", "rras", "vpn", "infra"]
 emoji: "🪟"

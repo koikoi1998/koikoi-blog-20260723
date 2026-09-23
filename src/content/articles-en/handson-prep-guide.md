@@ -2,6 +2,7 @@
 title: "Hands-On Prep Manual: From Creating a VM in Proxmox VE to Installing an OS"
 description: "An entry point organizing the prep this blog's hands-on articles have in common into separate, focused articles. This article covers creating a VM in Proxmox VE and installing an OS; the basics after your first login, Teraterm, Wireshark, and Windows Server's initial setup each get their own dedicated article."
 series: "handson-prep"
+subSeries: "handson"
 order: 1
 tags: ["proxmox", "linux", "handson", "beginner", "infrastructure"]
 emoji: "🧰"

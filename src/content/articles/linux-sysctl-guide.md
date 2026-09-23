@@ -2,6 +2,7 @@
 title: "sysctlと/etc/sysctl.confの仕組みを『上位1%』の視点で理解する——procfsという「生きたファイル」"
 description: "net.ipv4.ip_forward = 1という1行を書くだけでカーネルのルーティング動作が変わるのはなぜか。procfsという仮想ファイルシステムの正体、/proc/sysとsysctlコマンドの対応関係、/etc/sysctl.confを編集しただけでは反映されない理由までを体系的に理解する。"
 series: "linux"
+subSeries: "main"
 order: 5
 tags: ["linux", "os", "kernel", "networking", "infrastructure"]
 emoji: "🎛️"

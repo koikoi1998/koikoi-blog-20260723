@@ -2,6 +2,7 @@
 title: "Understanding Windows Server Licensing (OEM, Datacenter, Standard) from a \"Top 1%\" Perspective"
 description: "Windows Server has two editions, Standard and Datacenter, and comes in purchase channels like OEM, volume licensing, and retail. What's actually different between them, and how should you choose? What does an OEM license concretely mean? This article systematically explains it all, alongside how core-based licensing works."
 series: "windows-server"
+subSeries: "main"
 order: 1
 tags: ["windows-server", "licensing", "infra"]
 emoji: "📄"

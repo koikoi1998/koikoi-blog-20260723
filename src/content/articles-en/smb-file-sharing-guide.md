@@ -2,6 +2,7 @@
 title: "Understanding Windows Server SMB File Sharing from a \"Top 1%\" Perspective — Why Access Results Differ Between an IP Address and a Hostname"
 description: "After stopping the share for the entire C drive, accessing \\\\IPaddress\\SpecificFolder from another server stopped working, but \\\\hostname\\SpecificFolder still worked fine. Why would this happen? This article systematically explains it through the SMB client's connection caching mechanism, and why an IP address and a hostname get treated as entirely different \"servers.\""
 series: "windows-server"
+subSeries: "main"
 order: 5
 tags: ["windows-server", "smb", "infra", "troubleshooting"]
 emoji: "🗄️"
@@ -128,6 +129,8 @@ For SMB share-related issues, the basic approach is to **isolate whether the pro
 **What to Keep in Mind From Today**
 1. When you run into a phenomenon where access results differ between an IP address and a hostname, first suspect the client-side connection cache (`net use`) rather than the server side.
 2. Before and after making a major change to a sharing configuration, clear the client-side cached connections before verifying it works.
+
+That's all 5 articles in the Windows Server Operations series. If you'd like to review the whole thing by ear during a commute or while doing chores, check out [[Listen] The Windows Server Operations Series, Fully Recapped](/en/articles/windows-server-audio-review-guide).
 
 ## References
 

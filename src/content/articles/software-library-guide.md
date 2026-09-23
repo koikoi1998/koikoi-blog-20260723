@@ -2,6 +2,7 @@
 title: "ライブラリ(library)とは何か——静的リンク・動的リンクの仕組みを『上位1%』の視点で理解する"
 description: "「プログラムが呼び出す、決まった処理をまとめた便利なもの」というイメージから一歩進み、静的リンクと動的リンク(共有ライブラリ)の違い、シンボル解決の仕組み、ABI互換性がなぜ実務上の障害要因になるのかまでを体系的に理解する。"
 series: "linux"
+subSeries: "main"
 order: 2
 tags: ["linux", "os", "library", "compiler", "infrastructure"]
 emoji: "📦"

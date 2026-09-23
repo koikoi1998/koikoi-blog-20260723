@@ -2,6 +2,7 @@
 title: "ハンズオン準備マニュアル:Wiresharkの使い方——パケットキャプチャファイルの開き方とscpによるファイル転送"
 description: "リモートのLinuxサーバーでtcpdumpを使って取得したパケットキャプチャファイル(pcap)を、scpコマンドで手元のPCへ転送し、Wiresharkで開いて解析するまでの一連の流れを解説する準備マニュアル。表示フィルタの基本的な使い方も扱う。"
 series: "handson-prep"
+subSeries: "handson"
 order: 5
 tags: ["wireshark", "tcpdump", "scp", "handson", "beginner", "infrastructure"]
 emoji: "🦈"
@@ -86,6 +87,8 @@ Wiresharkには、開いた(または録っている)全パケットの中から
 - 本ブログのハンズオン記事では、サーバー側で`tcpdump`によりキャプチャを取得し、`scp`で手元のPCへ転送してからWiresharkで開く構成を採っています。
 - `scp <ユーザー名>@<サーバーのIPアドレス>:<転送元のパス> ./`で、リモートのファイルをカレントディレクトリに転送できます。`sudo`で取得したキャプチャファイルは、権限エラーに注意してください。
 - 画面上部のFilter欄に`isakmp`や`ip.addr == ...`のような条件を入力する表示フィルタで、大量のパケットから見たいものだけに絞り込めます。
+
+これでハンズオン準備シリーズ全5記事が完了です。通勤中や家事をしながら内容を振り返りたい場合は、耳だけで復習できる[【音声で聴く】ハンズオン準備シリーズ総復習](/articles/handson-prep-audio-review-guide)もあわせてどうぞ。
 
 ## 参考文献
 

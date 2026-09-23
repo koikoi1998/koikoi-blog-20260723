@@ -2,6 +2,7 @@
 title: "Hands-On Prep Manual: How to Use Teraterm (a Terminal Client) — From Creating an SSH Connection to Fixing Garbled Text and Saving Logs"
 description: "A prep manual for the basics of Teraterm, a terminal client widely used to remotely connect from Windows to Linux/Windows Server hosts. Covers creating a new SSH connection, confirming the host key on first connect, fixing garbled text via character-encoding settings, saving connection settings, and recording session logs."
 series: "handson-prep"
+subSeries: "handson"
 order: 4
 tags: ["teraterm", "ssh", "handson", "beginner", "infrastructure"]
 emoji: "💻"

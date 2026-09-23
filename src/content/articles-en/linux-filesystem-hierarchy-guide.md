@@ -2,6 +2,7 @@
 title: "/etc and the Linux Directory Layout (FHS) from the \"Top 1%\" Perspective: Why Config Files Live in /etc"
 description: "Why do Linux's top-level directories — /etc, /var, /usr, /bin, /home — exist where they do, with the names they have? A systematic look at the FHS (Filesystem Hierarchy Standard) design philosophy, the two axes of \"host-specific vs. shareable\" and \"static vs. mutable,\" and the convention of per-service subdirectories like /etc/xl2tpd."
 series: "linux"
+subSeries: "main"
 order: 7
 tags: ["linux", "os", "filesystem", "infrastructure"]
 emoji: "🗂️"

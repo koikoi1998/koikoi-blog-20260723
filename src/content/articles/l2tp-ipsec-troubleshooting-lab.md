@@ -2,6 +2,7 @@
 title: "L2TP/IPsecトラブルシューティング演習——自分でエラーログから原因を突き止める『上位1%』のハンズオン"
 description: "L2TP/IPsecサーバー自作ハンズオンの環境を使い、実際によく起こる5つの障害をわざと再現し、journalctlの出力だけを手がかりに自力で原因を診断・修正する演習教材。答えを見る前に自分で調査する体験を通じて、要件通りに動かない設定に出会ったときの実務的な調査力を養う。"
 series: "vpn"
+subSeries: "handson"
 order: 5
 tags: ["network", "vpn", "l2tp", "ipsec", "troubleshooting", "handson"]
 emoji: "🩺"

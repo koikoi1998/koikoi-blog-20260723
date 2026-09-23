@@ -2,6 +2,7 @@
 title: "Windows Serverのライセンス(OEM・Datacenter・Standard)を『上位1%』の視点で理解する"
 description: "Windows ServerにはStandardとDatacenterという2つのエディションがあり、OEM・ボリュームライセンス・リテールという購入形態がある。それぞれ何が違い、どう選ぶべきなのか。OEMライセンスとは具体的に何を意味しているのか。コアベースライセンシングの仕組みとあわせて体系的に理解する。"
 series: "windows-server"
+subSeries: "main"
 order: 1
 tags: ["windows-server", "licensing", "infra"]
 emoji: "📄"

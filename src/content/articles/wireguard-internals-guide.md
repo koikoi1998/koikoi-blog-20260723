@@ -2,6 +2,7 @@
 title: "WireGuardの仕組みを『上位1%』の視点で理解する——Noiseフレームワーク・Cryptokey Routing・ハンドシェイクの内部動作"
 description: "WireGuardが「暗号アルゴリズムを固定した最小構成」であることの先にある、Noiseフレームワークに基づくハンドシェイクの内部動作、公開鍵とAllowedIPsを結びつけるCryptokey Routingという設計、セッション鍵の自動更新の仕組みまでを体系的に理解する。"
 series: "modern-vpn"
+subSeries: "main"
 order: 2
 tags: ["vpn", "wireguard", "cryptography", "networking", "security"]
 emoji: "⚡"

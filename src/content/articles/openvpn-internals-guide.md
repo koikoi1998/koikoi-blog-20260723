@@ -2,6 +2,7 @@
 title: "OpenVPNの仕組みを『上位1%』の視点で理解する——なぜTLSでIPパケットを暗号化するだけでVPN接続になるのか"
 description: "「IPパケットをTLSで暗号化している」ということはわかっても、それがなぜVPN接続として成立するのかは別の話です。制御チャネルとデータチャネルの分離、TUNデバイスによるパケット捕捉、Push機構による仮想IP・ルートの配布まで、OpenVPNが実際に接続を確立する内部動作を体系的に理解する。"
 series: "modern-vpn"
+subSeries: "main"
 order: 1
 tags: ["vpn", "openvpn", "tls", "networking", "security"]
 emoji: "🔐"

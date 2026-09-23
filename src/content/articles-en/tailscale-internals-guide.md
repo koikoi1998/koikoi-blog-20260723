@@ -2,6 +2,7 @@
 title: "How Tailscale Works from a \"Top 1%\" Perspective — Separating the Control Plane from the Data Plane, NAT Traversal, and DERP Relays"
 description: "Tailscale uses WireGuard as its internal protocol — so why can you get a VPN mesh working across multiple devices almost automatically, without hand-writing config files? A systematic look at separating the control plane (key distribution, ACLs, IdP integration) from the data plane (WireGuard), NAT hole punching, and DERP relays."
 series: "modern-vpn"
+subSeries: "main"
 order: 3
 tags: ["vpn", "tailscale", "wireguard", "networking", "nat"]
 emoji: "🕸️"

@@ -2,6 +2,7 @@
 title: "Hands-On Prep Manual: Setting Up Windows Server 2025 for the First Time and Enabling SSH (GUI Only)"
 description: "A prep manual for a Windows Server 2025 VM built on Proxmox VE: initial setup using nothing but the GUI, then enabling the OpenSSH server so you can connect with an SSH client like Teraterm. Everything is done through Server Manager's screens rather than PowerShell commands."
 series: "handson-prep"
+subSeries: "handson"
 order: 3
 tags: ["windows-server", "handson", "beginner", "ssh", "infrastructure"]
 emoji: "🪟"

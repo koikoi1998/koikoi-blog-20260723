@@ -2,6 +2,7 @@
 title: "ハンズオン準備マニュアル:Proxmox VEでのVM作成からOSインストールまで"
 description: "このブログのハンズオン記事に共通して必要になる準備を、テーマ別の記事群として整理した入り口。Proxmox VEでの仮想マシン(VM)作成とOSインストールを本記事で扱い、初回ログイン後の基本操作・Teraterm・Wiresharkの使い方・Windows Serverの初期セットアップはそれぞれ専用の記事に分けている。"
 series: "handson-prep"
+subSeries: "handson"
 order: 1
 tags: ["proxmox", "linux", "handson", "beginner", "infrastructure"]
 emoji: "🧰"

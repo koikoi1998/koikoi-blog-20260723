@@ -2,6 +2,7 @@
 title: "What Is ZTNA (Zero Trust Network Access) from a \"Top 1%\" Perspective — Its Structural Difference from VPN and the SDP Model"
 description: "\"ZTNA is just a newer version of VPN\" isn't quite accurate. A systematic look at the difference in trust model itself — VPN's assumption of \"network-level trust\" versus ZTNA's assumption of \"continuous, per-request verification\" — the Software-Defined Perimeter (SDP) architecture, implementation approaches, and what it actually means as a defense against lateral movement."
 series: "modern-vpn"
+subSeries: "main"
 order: 4
 tags: ["security", "ztna", "zero-trust", "vpn", "networking"]
 emoji: "🛂"
@@ -140,6 +141,8 @@ Troubleshooting a ZTNA access failure starts with isolating **which stage the de
 **Things to Keep in Mind Starting Today**
 1. When you hit a ZTNA access failure, first isolate which stage the denial is happening at — authentication, device posture, or authorization — using the admin console's logs.
 2. When evaluating a new remote-access requirement, don't frame it as a binary "VPN or ZTNA" choice — judge the scope based on whether per-user authentication is possible and whether the target can be scoped to the web or a specific application.
+
+That's all 4 articles in the Modern VPN Protocol Deep-Dive series. If you'd like to review the whole thing by ear during a commute or while doing chores, check out [[Listen] The Modern VPN Protocol Deep-Dive Series, Fully Recapped](/en/articles/modern-vpn-audio-review-guide).
 
 ## References
 

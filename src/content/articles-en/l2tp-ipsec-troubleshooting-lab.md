@@ -2,6 +2,7 @@
 title: "L2TP/IPsec Troubleshooting Lab: Diagnosing Real Failures from Error Logs, a \"Top 1%\" Hands-On Exercise"
 description: "Using the environment from the L2TP/IPsec hands-on lab, this exercise deliberately reproduces five real-world failures and asks you to diagnose and fix each one yourself, using nothing but journalctl output as your guide. Practicing the process of investigating before looking at the answer builds the practical debugging skill you need when a config doesn't behave the way requirements say it should."
 series: "vpn"
+subSeries: "handson"
 order: 5
 tags: ["network", "vpn", "l2tp", "ipsec", "troubleshooting", "handson"]
 emoji: "🩺"

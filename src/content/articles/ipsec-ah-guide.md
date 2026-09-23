@@ -2,6 +2,7 @@
 title: "IPsecのAH(Authentication Header)とは何かを『上位1%』の視点で理解する——ESPとの違いとなぜ実務でほぼ使われないのか"
 description: "IPsecにはESPのほかにAH(Authentication Header)というプロトコルがある。AHは何を保護しており、ESPと何が違うのか。AHが暗号化機能を持たない設計は、特定の国での輸出規制と関係があると言われるがそれはどういう意味か。そしてなぜAHは現在ほとんど使われず、NATと決定的に相性が悪いのかまでを体系的に理解する。"
 series: "vpn"
+subSeries: "main"
 order: 6
 tags: ["network", "ipsec", "security", "infra"]
 emoji: "🛡️"

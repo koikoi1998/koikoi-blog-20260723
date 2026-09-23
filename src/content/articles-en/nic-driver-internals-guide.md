@@ -2,6 +2,7 @@
 title: "Understanding NIC Drivers and Linux Kernel Networking from a \"Top 1%\" Perspective — Interrupts, DMA, Offloading, and Kernel Bypass"
 description: "A deep, ground-up look at NIC drivers and Linux kernel networking — interrupt handling, DMA, offload features, and kernel bypass."
 series: "network"
+subSeries: "main"
 order: 2
 tags: ["network", "linux", "kernel", "nic", "performance"]
 emoji: "⚙️"

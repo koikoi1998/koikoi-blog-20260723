@@ -2,6 +2,7 @@
 title: "User Space, Kernel Space, and TUN/TAP Devices, Understood from a \"Top 1%\" Perspective"
 description: "Why does Linux separate memory into 'user space' and 'kernel space'? A systematic look at how system calls and context switches actually work, and how the TUN/TAP device lets a user-space program act as though it owns a physical network card."
 series: "linux"
+subSeries: "main"
 order: 3
 tags: ["linux", "os", "kernel", "networking", "infrastructure"]
 emoji: "🧱"

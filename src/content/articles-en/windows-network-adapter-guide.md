@@ -2,6 +2,7 @@
 title: "Understanding Windows Multi-Adapter Networking and Network Location Awareness from a \"Top 1%\" Perspective — Gateway Priority and NLA"
 description: "Why can enabling Wi-Fi while also plugging in a wired LAN cable sometimes make it impossible to reach devices on the wired LAN? This article systematically explains interface metrics — how Windows decides which route to prioritize when multiple network adapters are active at once — network profile detection via NLA (Network Location Awareness), and why an \"unidentified network\" gets treated as one lump group in a NIC teaming + VLAN environment."
 series: "network"
+subSeries: "main"
 order: 9
 tags: ["network", "windows", "nic", "infra", "troubleshooting"]
 emoji: "🔀"
@@ -130,6 +131,8 @@ Networking trouble in a multi-adapter environment is best approached by **isolat
 **What to Keep in Mind From Today**
 1. When you run into a routing question in an environment with multiple active adapters, check the interface metric and actual priority with `route print`.
 2. If a network profile isn't being individualized as intended, first check whether that adapter has a gateway (or some means of confirming reachability) configured.
+
+That's all 9 articles in the Networking Fundamentals series. If you'd like to review the whole thing by ear during a commute or while doing chores, check out [[Listen] The Networking Fundamentals Series, Fully Recapped](/en/articles/network-audio-review-guide).
 
 ## References
 

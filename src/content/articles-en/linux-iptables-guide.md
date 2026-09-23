@@ -2,6 +2,7 @@
 title: "iptables (netfilter) from the \"Top 1%\" Perspective: The 5 Checkpoints Every Packet Passes Through, and What MASQUERADE Really Does"
 description: "What is a command like sudo iptables -A INPUT -p udp --dport 500 -j ACCEPT actually registering, and where, inside the Linux kernel? A systematic look at netfilter's hook points, tables, and chains, the order in which rules are evaluated, stateful decisions via connection tracking, and the difference between MASQUERADE and SNAT."
 series: "linux"
+subSeries: "main"
 order: 6
 tags: ["linux", "os", "networking", "security", "infrastructure"]
 emoji: "🧱"
