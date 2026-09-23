@@ -318,7 +318,7 @@ VPNプロトコルの記事やL2TP/IPsecハンズオンなどで繰り返し登�
 
 ### Active Directoryシリーズ
 
-AD移行・ドメインコントローラー(DC)の構築・運用の実務で必ず直面する疑問を深掘りするシリーズです。DNSの基礎([dns-guide](/articles/dns-guide))を読了している前提で書いています。**読む順番の目安**: ① ad-dc-fundamentals-guide → ② ad-computername-netdom-guide → ③ ad-windows-login-guide → ④ ad-dns-guide → ⑤ dns-zones-records-guide → ⑥ fsmo-guide → ⑦ dc-health-check-guide → ⑧ ad-sites-guide → ⑨ dcdiag-guide → ⑩ ad-migration-cleanup-guide → ⑪ ad-spn-guide → ⑫ ad-netlogon-guide → ⑬ ad-kerberos-guide。
+AD移行・ドメインコントローラー(DC)の構築・運用の実務で必ず直面する疑問を深掘りするシリーズです。DNSの基礎([dns-guide](/articles/dns-guide))を読了している前提で書いています。**読む順番の目安**: ① ad-dc-fundamentals-guide → ② ad-computername-netdom-guide → ③ ad-windows-login-guide → ④ ad-dns-guide → ⑤ dns-zones-records-guide → ⑥ fsmo-guide → ⑦ dc-health-check-guide → ⑧ ad-sites-guide → ⑨ dcdiag-guide → ⑩ ad-migration-cleanup-guide → ⑪ ad-spn-guide → ⑫ ad-netlogon-guide → ⑬ ad-kerberos-guide → ⑭ ad-multidomain-handson-guide。
 
 - [ADとDC、ドメインとフォレストの違いを『上位1%』の視点で理解する](/articles/ad-dc-fundamentals-guide) — AD DS(仕組み)とDC(サーバー)の役割分担、ドメイン・ツリー・フォレストという3階層の境界線、機能レベルが何を制約しているか、AD DSの役割追加時に何が一緒にインストールされるのかまでの深掘り。
 - [sysdm.cplとnetdom computernameは何が違うのか——「プライマリホスト名」とAD移行のホスト名重複事故を『上位1%』の視点で理解する](/articles/ad-computername-netdom-guide) — sysdm.cplとnetdomのコンピューター名変更の仕組みの違い、なぜ/add→/makeprimaryという2段階が必要なのか、そして実際のAD移行で発生したホスト名重複による認証障害の事例診断までの深掘り(①の発展編、単体でも読めます)。
@@ -333,6 +333,7 @@ AD移行・ドメインコントローラー(DC)の構築・運用の実務で�
 - [SPN(サービスプリンシパル名)の仕組みを『上位1%』の視点で理解する](/articles/ad-spn-guide) — SPNがサーバーではなく「サービスを実行しているアカウント」を指す識別子であること、Kerberosのチケット要求の中での役割、setspnコマンドの使い方、SPN重複エラーの正体、NTLMへの静かな降格の診断までの深掘り(単体でも読めます)。
 - [Netlogonサービスとセキュアチャネルの仕組みを『上位1%』の視点で理解する](/articles/ad-netlogon-guide) — セキュアチャネルの正体、マシンアカウントパスワードが既定30日ごとに自動更新される仕組み、VMスナップショットを古い状態に戻すと「信頼関係の障害」が起きる理由、Test-ComputerSecureChannelでの復旧、Zerologon脆弱性の概要までの深掘り(単体でも読めます)。
 - [Kerberos認証の仕組みを『上位1%』の視点で理解する](/articles/ad-kerberos-guide) — パスワードを一度もネットワークに送らずに本人確認できる理由、TGT・サービスチケットのやり取り(AS-REQ/AS-REP、TGS-REQ/TGS-REP、AP-REQ)、PAC(特権属性証明書)とSIDの関係、NTLMとの違い、トークン肥大化問題までの深掘り(単体でも読めます)。
+- [マルチドメイン・マルチツリーのADフォレストを構築するハンズオン](/articles/ad-multidomain-handson-guide) — example.comをフォレストルート、child.example.comを子ドメイン、example.netを別ツリーとして構築し、ドメインパーティションの分離・設定パーティションの共有・自動的な信頼関係・GCの検索範囲・FSMOの配置を実際のコマンドで確認するハンズオン(シリーズの集大成、これまでの記事を読んでいる前提)。
 
 ### Windowsクライアント運用シリーズ
 

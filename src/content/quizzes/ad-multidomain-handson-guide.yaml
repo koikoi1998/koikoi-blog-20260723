@@ -1,0 +1,45 @@
+questions:
+  - question: "このハンズオンの検証1(ドメインパーティションの分離)で確認する内容について、記事の説明に最も合致するものはどれか。"
+    choices:
+      - "example.comで作成したユーザーが、child.example.comやexample.netのADUCにも自動的に表示される"
+      - "example.comで作成したユーザーは、child.example.comやexample.netには一切表示されない(ドメインパーティションは同一ドメイン内のDC間だけで複製されるため)"
+      - "example.comで作成したユーザーは、フォレスト内のどのドメインでもパスワードなしでログオンできるようになる"
+      - "ユーザー作成後、手動でchild.example.comへコピーする操作が必要になる"
+    answerIndex: 1
+    explanation: "ドメインパーティションは同一ドメイン内のDC間だけで複製され、他のドメインへは一切複製されません。そのためexample.comで作成したユーザーは、child.example.comやexample.netには一切表示されないことが確認できます。"
+
+  - question: "検証2で、DC1に新しいサイト(Test-Site)を作成した後、DC2・DC3でも確認できることについて、記事の説明に最も合致するものはどれか。"
+    choices:
+      - "サイト情報は設定パーティションに属するため、しばらく待つ(あるいは強制同期する)とDC2・DC3の両方に反映される"
+      - "サイト情報はドメインパーティションに属するため、DC1でしか確認できない"
+      - "サイト情報は各DCのローカルにのみ保存され、他のDCには一切共有されない"
+      - "サイトを作成すると、自動的にフォレスト内の全ドメインが1つに統合される"
+    answerIndex: 0
+    explanation: "サイト情報は設定パーティションに属するため、フォレスト内のすべてのDCへ複製されます。ユーザーオブジェクト(ドメインパーティション、検証1)とは対照的に、DC1で作成したTest-SiteはDC2・DC3の両方に反映されます。"
+
+  - question: "Install-ADDSDomainコマンドで、子ドメイン(ChildDomain)と別ツリー(TreeDomain)を作成する際の-NewDomainNameパラメーターの指定方法の違いについて、記事の説明に最も合致するものはどれか。"
+    choices:
+      - "両方とも完全修飾名を指定する必要があり、違いはない"
+      - "子ドメインの場合は単一ラベル(例: child)を、別ツリーの場合は完全修飾名(例: example.net)を指定する"
+      - "子ドメインの場合は完全修飾名を、別ツリーの場合は単一ラベルを指定する"
+      - "-NewDomainNameパラメーター自体が別ツリーの作成には存在しない"
+    answerIndex: 1
+    explanation: "子ドメイン(-DomainType ChildDomain)の場合、-NewDomainNameには単一ラベル(例: child)を指定し、-ParentDomainNameで親ドメインの完全修飾名を指定します。別ツリー(-DomainType TreeDomain)の場合は、-NewDomainNameに完全修飾名(例: example.net)を指定します。"
+
+  - question: "検証3(netdom query trust)で確認できる内容について、記事の説明に最も合致するものはどれか。"
+    choices:
+      - "example.comとchild.example.com、example.comとexample.netの間には、手動で構成しなくても自動的に双方向・推移的な信頼関係が存在する"
+      - "信頼関係は常に手動で明示的に構成しなければならず、自動的に作られることはない"
+      - "信頼関係はexample.comとchild.example.comの間にのみ存在し、example.netとの間には一切存在しない"
+      - "信頼関係は一方向のみで、child.example.comからexample.comへのアクセスはできるが逆はできない"
+    answerIndex: 0
+    explanation: "子ドメインとの親子の信頼関係、および別ツリーとのツリールート間の信頼関係は、どちらも手動で構成しなくても自動的に(かつ双方向・推移的に)確立されます。"
+
+  - question: "検証5(netdom query fsmo)で確認できる、FSMOの配置について、記事の説明に最も合致するものはどれか。"
+    choices:
+      - "5つのFSMOすべてが、フォレスト内のいずれか1台のDCに集約されている"
+      - "スキーママスターとドメイン名前付けマスターはフォレストで最初に構築されたDC(DC1)だけが保持し、RID・PDCエミュレータ・インフラストラクチャマスターは各ドメイン(DC1・DC2・DC3)にそれぞれ独立して存在する"
+      - "5つのFSMOすべてが、各ドメインに1つずつ独立して存在する"
+      - "FSMOの配置はランダムに決まり、予測することはできない"
+    answerIndex: 1
+    explanation: "スキーママスターとドメイン名前付けマスターはフォレスト全体で1台(この場合はDC1)だけが保持します。一方RID・PDCエミュレータ・インフラストラクチャマスターは、example.com・child.example.com・example.netのそれぞれに独立して存在します。"

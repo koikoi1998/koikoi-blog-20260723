@@ -1,0 +1,45 @@
+questions:
+  - question: "According to the article, what does Verification 1 (domain partition isolation) confirm?"
+    choices:
+      - "A user created in example.com automatically shows up in child.example.com's and example.net's ADUC too"
+      - "A user created in example.com doesn't show up at all in child.example.com or example.net (because the domain partition only replicates among DCs within the same domain)"
+      - "A user created in example.com can log on to any domain in the forest without a password"
+      - "After creating a user, you need to manually copy it to child.example.com"
+    answerIndex: 1
+    explanation: "The domain partition only replicates among DCs within the same domain, and never replicates to any other domain. So a user created in example.com doesn't show up at all in child.example.com or example.net."
+
+  - question: "According to the article, what can you confirm on DC2 and DC3 after creating a new site (Test-Site) on DC1 in Verification 2?"
+    choices:
+      - "Because site information belongs to the configuration partition, it shows up on both DC2 and DC3 after a wait (or forced sync)"
+      - "Because site information belongs to the domain partition, it can only be seen on DC1"
+      - "Site information is stored only locally on each DC and is never shared with other DCs"
+      - "Creating a site automatically merges every domain in the forest into one"
+    answerIndex: 0
+    explanation: "Site information belongs to the configuration partition, so it replicates to every DC in the forest. In contrast to the user object (the domain partition, Verification 1), the Test-Site created on DC1 shows up on both DC2 and DC3."
+
+  - question: "According to the article, what's the difference in how you specify -NewDomainName when creating a child domain (ChildDomain) versus a separate tree (TreeDomain) with Install-ADDSDomain?"
+    choices:
+      - "Both require a fully qualified name — there's no difference"
+      - "For a child domain, you specify a single label (e.g., child); for a separate tree, you specify a fully qualified name (e.g., example.net)"
+      - "For a child domain, you specify a fully qualified name; for a separate tree, you specify a single label"
+      - "The -NewDomainName parameter doesn't exist at all for creating a separate tree"
+    answerIndex: 1
+    explanation: "For a child domain (-DomainType ChildDomain), -NewDomainName takes a single label (e.g., child), with -ParentDomainName specifying the parent's fully qualified name. For a separate tree (-DomainType TreeDomain), -NewDomainName takes the fully qualified name (e.g., example.net)."
+
+  - question: "According to the article, what does Verification 3 (netdom query trust) confirm?"
+    choices:
+      - "A bidirectional, transitive trust relationship automatically exists between example.com and child.example.com, and between example.com and example.net, without any manual configuration"
+      - "A trust relationship must always be manually and explicitly configured — it's never created automatically"
+      - "A trust relationship exists only between example.com and child.example.com, and not with example.net at all"
+      - "The trust relationship is one-directional only — child.example.com can access example.com, but not the reverse"
+    answerIndex: 0
+    explanation: "Both the parent-child trust with the child domain and the tree-root trust with the separate tree are established automatically (and bidirectionally, transitively) without any manual configuration."
+
+  - question: "According to the article, what does Verification 5 (netdom query fsmo) confirm about FSMO placement?"
+    choices:
+      - "All five FSMO roles are consolidated on a single DC in the forest"
+      - "The Schema Master and Domain Naming Master are held solely by the first DC built in the forest (DC1), while the RID Master, PDC Emulator, and Infrastructure Master each exist independently in every domain (DC1, DC2, DC3)"
+      - "All five FSMO roles exist independently, once per domain"
+      - "FSMO placement is decided randomly and can't be predicted"
+    answerIndex: 1
+    explanation: "The Schema Master and Domain Naming Master are held by only one DC (DC1, in this case) across the entire forest. The RID Master, PDC Emulator, and Infrastructure Master, on the other hand, exist independently in example.com, child.example.com, and example.net respectively."
