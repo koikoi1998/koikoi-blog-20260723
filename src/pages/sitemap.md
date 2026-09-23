@@ -69,7 +69,7 @@ graph TB
 
 ## 読者タイプ別のおすすめルート
 
-このブログは、未経験からインフラエンジニアを目指す方から、年収5000万円以上を稼ぐAWS/Googleのトップエンジニアまで、幅広い読者を想定しています。全記事を必ず順番通りに読む必要はないため、キャリアの段階に応じた8つのルートを用意しました。**下のタブから自分に近いものを選ぶと、そのルートだけが表示されます**(②以降は、それより前のすべてのSTEPを読了している前提の積み増しです)。実務のごく特定の場面でしか使わないニッチな記事は、無理にロードマップへ詰め込まず、それが実際に必要になる段階のルートで初めて紹介する形にしています(該当しない段階では「任意」として控えめに触れるだけです)。記事数が増えて1つのSTEPに詰め込みすぎないよう、テーマのまとまりが大きくなった段階でSTEPを分割する方針にしており、この段階の切り方は今後も記事が増えるたびに見直していきます。
+このブログは、未経験からインフラエンジニアを目指す方から、年収5000万円以上を稼ぐAWS/Googleのトップエンジニアまで、幅広い読者を想定しています。全記事を必ず順番通りに読む必要はないため、キャリアの段階に応じた5つのルートを用意しました。**下のタブから自分に近いものを選ぶと、そのルートだけが表示されます**(②以降は、それより前のすべてのSTEPを読了している前提の積み増しです)。実務のごく特定の場面でしか使わないニッチな記事は、無理にロードマップへ詰め込まず、それが実際に必要になる段階のルートで初めて紹介する形にしています(該当しない段階では「任意」として控えめに触れるだけです)。このルートは**読者のレベル・習熟度・年収帯**で区切ったものであり、特定の分野(Active Directory・コンテナ基盤など)だけをまとめて読みたい場合は、次の「シリーズ一覧」またはトップページの絞り込み機能をご利用ください。
 
 <div class="persona-routes">
 <input type="radio" name="persona-route" id="persona-tab-1" class="persona-input" checked>
@@ -77,18 +77,12 @@ graph TB
 <input type="radio" name="persona-route" id="persona-tab-3" class="persona-input">
 <input type="radio" name="persona-route" id="persona-tab-4" class="persona-input">
 <input type="radio" name="persona-route" id="persona-tab-5" class="persona-input">
-<input type="radio" name="persona-route" id="persona-tab-6" class="persona-input">
-<input type="radio" name="persona-route" id="persona-tab-7" class="persona-input">
-<input type="radio" name="persona-route" id="persona-tab-8" class="persona-input">
 <div class="persona-tabs">
 <label for="persona-tab-1" class="persona-tab"><span class="persona-tab-step">STEP1</span> 🌱 未経験から独学で目指す</label>
 <label for="persona-tab-2" class="persona-tab"><span class="persona-tab-step">STEP2</span> 🔧 1年目・設計構築デビュー</label>
 <label for="persona-tab-3" class="persona-tab"><span class="persona-tab-step">STEP3</span> 💪 現場で自信をつけたい</label>
-<label for="persona-tab-4" class="persona-tab"><span class="persona-tab-step">STEP4</span> 🏢 Active Directory運用を極める</label>
-<label for="persona-tab-5" class="persona-tab"><span class="persona-tab-step">STEP5</span> 🖥️ Windows Server・ストレージ・クラウド周辺</label>
-<label for="persona-tab-6" class="persona-tab"><span class="persona-tab-step">STEP6</span> 🐳 コンテナ・構成管理の自動化</label>
-<label for="persona-tab-7" class="persona-tab"><span class="persona-tab-step">STEP7</span> 📈 高年収企業への転職</label>
-<label for="persona-tab-8" class="persona-tab"><span class="persona-tab-step">STEP8</span> 🏆 上位1%(年収1000万〜5000万)</label>
+<label for="persona-tab-4" class="persona-tab"><span class="persona-tab-step">STEP4</span> 📈 高年収企業への転職</label>
+<label for="persona-tab-5" class="persona-tab"><span class="persona-tab-step">STEP5</span> 🏆 上位1%(年収1000万〜5000万)</label>
 </div>
 <div class="persona-panels">
 <div class="persona-panel persona-panel-1">
@@ -134,7 +128,7 @@ graph TB
 <div class="persona-panel persona-panel-3">
 <div class="persona-panel-head">
 <h3>💪 設計構築の現場で働いているが、いまいち自信が持てない方へ</h3>
-<p>「知ってるつもり」を実務で使える理解に変える段階です。STEP2までに加え、現場のニッチな疑問を解消する記事と、手を動かすハンズオンで自信をつけます。</p>
+<p>「知ってるつもり」を実務で使える理解に変える段階です。STEP2までに加え、現場のニッチな疑問を解消する記事、手を動かすハンズオン、AD移行・DC運用の実務、Windows Server運用の周辺知識、コンテナ基盤・構成管理の自動化まで、実務で幅広く問われるテーマをまとめて積み増します。特定の分野だけをまとめて読みたい場合は、トップページの絞り込み機能をご利用ください。</p>
 </div>
 <ol class="persona-route-list">
 <li>STEP1・STEP2の22記事(上のタブから確認できます)</li>
@@ -153,15 +147,6 @@ graph TB
 <li><a href="/articles/windows-rras-roles-guide">Windows Server RRASのVPNアクセス・ダイヤルアップ・デマンドダイヤル・NAT・LANルーティングの違いを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/site-to-site-vpn-aws-guide">AWSとの拠点間VPN(Site-to-Site VPN)を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/sdwan-edge-router-guide">SD-WANとエッジルーター選定を『上位1%』の視点で理解する</a></li>
-</ol>
-</div>
-<div class="persona-panel persona-panel-4">
-<div class="persona-panel-head">
-<h3>🏢 AD移行・DC運用の実務を任され、体系的に理解したい方へ</h3>
-<p>Active Directoryシリーズ全15記事を、基礎理解→サイト/SPN/Netlogon/Kerberosの深掘り→実際に手を動かすハンズオンの順に、まるごと1ステップで踏破します。記事数が多いテーマなので、他のSTEPから独立させています。</p>
-</div>
-<ol class="persona-route-list">
-<li>STEP1〜STEP3の37記事(上のタブから確認できます)</li>
 <li><a href="/articles/ad-dc-fundamentals-guide">ADとDC、ドメインとフォレストの違いを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/ad-computername-netdom-guide">sysdm.cplとnetdom computernameは何が違うのか</a></li>
 <li><a href="/articles/ad-windows-login-guide">Windowsのログインとユーザープロファイルの仕組みを『上位1%』の視点で理解する</a></li>
@@ -185,15 +170,6 @@ graph TB
 <li><a href="/articles/ad-schema-extension-guide">ADのスキーマ拡張を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/ad-dotnet-powershell-guide">.NET FrameworkとPowerShellの関係を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/ad-isp-guide">ISP(インターネットサービスプロバイダー)とは何かを『上位1%』の視点で理解する</a></li>
-</ol>
-</div>
-<div class="persona-panel persona-panel-5">
-<div class="persona-panel-head">
-<h3>🖥️ Windows Serverの運用範囲をAD以外にも広げたい方へ</h3>
-<p>ライセンス・NTP・IIS・ファイル共有・ストレージ接続・クラウド周辺知識など、AD以外でWindows Server運用の現場でよく問われるテーマをまとめて積み増します。</p>
-</div>
-<ol class="persona-route-list">
-<li>STEP1〜STEP4の60記事(上のタブから確認できます)</li>
 <li><a href="/articles/windows-server-licensing-guide">Windows Serverのライセンス(OEM・Datacenter・Standard)を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/windows-ntp-server-guide">Windows ServerでNTPサーバーを構築する際の設定値を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/iis-fundamentals-guide">IISとASP.NETの仕組みを『上位1%』の視点で理解する</a></li>
@@ -203,29 +179,20 @@ graph TB
 <li><a href="/articles/fc-san-fundamentals-guide">FCケーブル接続とLANケーブル接続の違いを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/aws-ec2-networking-basics-guide">EC2のキーペア(.pem/.ppk)とサブネットの予約IPを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/m365-email-fundamentals-guide">M365へのメール移行を『上位1%』の視点で理解する</a></li>
-</ol>
-</div>
-<div class="persona-panel persona-panel-6">
-<div class="persona-panel-head">
-<h3>🐳 コンテナ基盤や構成管理の自動化にも触れておきたい方へ</h3>
-<p>OpenShift(コンテナ基盤)とAnsible(構成管理の自動化)を、それぞれ概要記事とハンズオンのセットで押さえるステップです。</p>
-</div>
-<ol class="persona-route-list">
-<li>STEP1〜STEP5の69記事(上のタブから確認できます)</li>
 <li><a href="/articles/openshift-guide">OpenShiftとは何かを『上位1%』の視点で理解する——Kubernetesとの関係</a></li>
 <li><a href="/articles/openshift-handson-guide">OpenShift Localでコンテナアプリケーションを動かす『上位1%』のハンズオン</a></li>
 <li><a href="/articles/ansible-guide">Ansibleとは何かを『上位1%』の視点で理解する——構成管理とエージェントレスの仕組み</a></li>
 <li><a href="/articles/ansible-handson-guide">Ansibleで複数サーバーへの設定投入を自動化する『上位1%』のハンズオン</a></li>
 </ol>
-<div class="persona-bonus">🔍 <strong>興味があれば(任意)</strong>: <a href="/articles/voip-ss7-guide">VoIPとSS7、そして実際の通信経路</a>は電話網の歴史的経緯に、<a href="/articles/proxmox-internals-guide">Proxmox VEとは何か</a>はKVM/QEMUの内部動作に興味が湧いたら読んでみてください。</div>
+<div class="persona-bonus">🔍 <strong>興味があれば(任意)</strong>: <a href="/articles/voip-ss7-guide">VoIPとSS7、そして実際の通信経路</a>は電話網の歴史的経緯に、<a href="/articles/proxmox-internals-guide">Proxmox VEとは何か</a>はKVM/QEMUの内部動作に興味が湧いたら読んでみてください(STEP4で本格的に扱います)。</div>
 </div>
-<div class="persona-panel persona-panel-7">
+<div class="persona-panel persona-panel-4">
 <div class="persona-panel-head">
 <h3>📈 より年収の高い企業への転職を目指して勉強している方へ</h3>
-<p>STEP6までの実務知識に、面接や設計レビューで差がつく低レイヤーの実装知識を積み増すルートです。</p>
+<p>STEP3までの実務知識に、面接や設計レビューで差がつく低レイヤーの実装知識を積み増すルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP6の73記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP3の73記事(上のタブから確認できます)</li>
 <li><a href="/articles/proxmox-internals-guide">Proxmox VEとは何か——KVM/QEMUによる仮想化の仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/linux-daemon-guide">デーモン(daemon)とは何か——Linuxのバックグラウンドプロセスを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/software-library-guide">ライブラリ(library)とは何か——静的リンク・動的リンクの仕組みを『上位1%』の視点で理解する</a></li>
@@ -246,13 +213,13 @@ graph TB
 <li><a href="/articles/hyperv-capacity-guide">Hyper-Vの仮想マシンリソース設計を『上位1%』の視点で理解する</a></li>
 </ol>
 </div>
-<div class="persona-panel persona-panel-8">
+<div class="persona-panel persona-panel-5">
 <div class="persona-panel-head">
 <h3>🏆 年収1000万・2000万・5000万を目指して情報収集している方へ</h3>
 <p>全92記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP7の91記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP4の91記事(上のタブから確認できます)</li>
 <li><a href="/articles/voip-ss7-guide">VoIPとSS7、そして実際の通信経路を『上位1%』の視点で理解する</a></li>
 </ol>
 <div class="persona-bonus">🎉 <strong>これで全92記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
