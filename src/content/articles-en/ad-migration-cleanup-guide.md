@@ -82,7 +82,7 @@ In short: **`dsa.msc` is the window for managing "what exists in the domain" (wh
 
 ### `adsiedit.msc` (ADSI Edit): Direct Access to Every Partition
 
-`adsiedit.msc` is a **general-purpose editor that can directly read and write raw LDAP attributes** across every partition in AD DS (domain, configuration, schema, DomainDnsZones, and ForestDnsZones included). Unlike the purpose-built, easy-to-use GUIs of `dsa.msc` or `dssite.msc`, it displays the object hierarchy and attribute values almost as-is, in raw form.
+`adsiedit.msc` is a **general-purpose editor that can directly read and write raw LDAP attributes** across every partition in AD DS (domain, configuration, schema, DomainDnsZones, and ForestDnsZones included). Unlike the purpose-built, easy-to-use GUIs of `dsa.msc` or `dssite.msc`, it displays the object hierarchy and attribute values almost as-is, in raw form. The structure of LDAP itself — DNs and attributes — is covered in [Understanding the LDAP Protocol](/en/articles/ad-ldap-protocol-guide).
 
 `adsiedit.msc` becomes necessary in AD migration cleanup mainly when **demotion couldn't complete normally (because the old DC had already failed or been lost, for example), and forced metadata cleanup via `ntdsutil` had to be used instead.** In that case, some of the object deletion and tidying that a normal demotion would have handled automatically can be left incomplete — leaving behind leftover objects that don't show up in `dsa.msc` or `dssite.msc`'s GUI, or can't be deleted through normal operations. In these cases, you identify and delete the object in question directly from `adsiedit.msc`.
 

@@ -1,0 +1,45 @@
+questions:
+  - question: "According to the article, which statement best describes the relationship between LDAP and AD DS?"
+    choices:
+      - "LDAP was developed exclusively for AD DS and is used only by AD DS"
+      - "LDAP isn't AD DS-specific — it's a general-purpose standard protocol also used by other directory services like OpenLDAP, and AD DS is simply one implementation that accepts queries in this common language"
+      - "LDAP is the name of AD DS's internal database engine (ESE/Jet) itself"
+      - "LDAP is a newer authentication protocol that replaces Kerberos"
+    answerIndex: 1
+    explanation: "LDAP is the standard protocol for searching, adding, modifying, and deleting entries in a hierarchical directory, and it isn't a technology exclusive to AD DS. AD DS is simply one implementation that accepts queries in this common language."
+
+  - question: "According to the article, how should a DN (Distinguished Name) be read?"
+    choices:
+      - "The leftmost elements are closest to the root of the directory, and the rightmost elements are closest to the object itself"
+      - "The rightmost elements are closest to the root of the directory, and the leftmost elements are closest to the object itself (the leaf)"
+      - "The order of the elements in a DN carries no meaning — it reads the same either way"
+      - "A DN is always displayed sorted alphabetically"
+    answerIndex: 1
+    explanation: "A DN lists several comma-separated components (RDNs), ordered so that the rightmost elements are closest to the root of the directory, and the leftmost elements are closest to the object itself (the leaf)."
+
+  - question: "According to the article, what's the difference between port 389 and port 3268?"
+    choices:
+      - "A query to port 389 is scoped only to the domain partition that DC is responsible for, while a query to port 3268 can search across every domain in the forest against attributes replicated into the global catalog"
+      - "Port 389 is exclusively for encrypted traffic, while port 3268 is exclusively for plaintext"
+      - "Port 389 and port 3268 have exactly the same function and are simply redundant backups of each other"
+      - "Port 3268 is a special port supported by only one specific domain controller"
+    answerIndex: 0
+    explanation: "A query to port 389 only covers objects within the domain partition that DC is responsible for, but a query to port 3268 (the global catalog) can search across every domain in the forest, limited to attributes replicated into the global catalog."
+
+  - question: "According to the article, what best describes Microsoft's security advisory ADV190023 and what followed it?"
+    choices:
+      - "Immediately after the 2019 advisory, LDAP signing and channel binding were forcibly enabled on all existing domain controllers"
+      - "In 2019, Microsoft recommended requiring LDAP signing, among other things, but in March 2020 reversed course on forcing it onto existing environments; Windows Server 2025 later strengthened the defaults only for newly built domain controllers"
+      - "ADV190023 is a completely unrelated advisory that has nothing to do with LDAP signing"
+      - "LDAP channel binding has been automatically enabled on all environments, including existing ones, since Windows Server 2025"
+    answerIndex: 1
+    explanation: "The August 2019 ADV190023 advisory recommended requiring LDAP signing, among other things, but in March 2020 Microsoft reversed course out of concern for compatibility impact and did not force it onto existing environments. Windows Server 2025 strengthened the defaults only for newly built domain controllers."
+
+  - question: "According to the article, what is the respective role of LDAP signing and LDAP channel binding?"
+    choices:
+      - "They're the same feature, and configuring just one of them is sufficient"
+      - "LDAP signing's primary purpose is detecting tampering in transit; preventing relay attacks themselves requires also enabling LDAP channel binding, which ties the authentication to the TLS layer"
+      - "Both settings apply only to Kerberos authentication"
+      - "LDAP signing performs the encryption itself, converting plaintext traffic into encrypted traffic"
+    answerIndex: 1
+    explanation: "LDAP signing's primary purpose is detecting tampering. Preventing relay attacks like NTLM relay requires also enabling LDAP channel binding, which ties the TLS layer to the LDAP authentication — the two settings should be considered as a pair."
