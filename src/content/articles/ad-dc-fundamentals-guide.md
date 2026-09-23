@@ -188,7 +188,7 @@ graph LR
 | ファイルサービスとストレージサービス(ストレージサービス) | 役割 | AD DS固有の依存ではなく、**Windows Serverであれば既定で常に有効になっているベースの役割**。後にこのDCがDCへ昇格すると、この役割が提供するファイル共有の仕組みの上でSYSVOL共有(グループポリシーのテンプレート・スクリプトを格納し、DFSRでDC間複製される共有フォルダー)がホストされることになる |
 | グループポリシーの管理(GPMC) | 機能 | AD DSの主要な用途の1つである**グループポリシー**(GPO、Group Policy Object)——OSやアプリケーションの設定をドメイン・OU単位で一括配布・強制するための仕組み——を管理するための管理コンソール。GPO自体の作成・適用ルールやSYSVOLとの関係は[SYSVOL・DFSR・グループポリシーの仕組み](/articles/ad-sysvol-dfsr-gpo-guide)で詳しく扱います。AD DS役割選択時の付随ツールとして追加される |
 | リモートサーバー管理ツール → 役割管理ツール → AD DSおよびAD LDSツール(ADモジュール、Active Directory管理センター、AD DSスナップインおよびコマンドラインツールなど) | 機能(管理ツール) | このDCおよび他のDCをGUI/PowerShellから管理するための標準ツール一式 |
-| .NET Framework 4.8の機能(WCFサービス、TCPポート共有を含む) | 機能 | AD DS固有ではなく、Windows Serverの多くの管理ツール・PowerShellモジュールが動作基盤として利用する、**既定で有効なベース機能** |
+| .NET Framework 4.8の機能(WCFサービス、TCPポート共有を含む) | 機能 | AD DS固有ではなく、Windows Serverの多くの管理ツール・PowerShellモジュールが動作基盤として利用する、**既定で有効なベース機能**。.NET FrameworkとPowerShellの関係そのものは[.NET FrameworkとPowerShellの関係](/articles/ad-dotnet-powershell-guide)で深掘りします |
 
 ここで重要なのは、**「AD DSの役割を追加した結果、実際に新規で有効化されるもの」と「Windows Server自体が最初から持っているベース機能」を混同しないこと**です。上表で「AD DS固有の依存ではなく」と注記した項目(ファイルサービスとストレージサービス、.NET Framework 4.8など)は、AD DSを入れていなくても最初から有効になっているものであり、AD DSと一緒に**新たに**有効化されるのは、実質的にはグループポリシー管理コンソールとAD DS向けの管理ツール群(RSAT)だけです。
 

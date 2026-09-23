@@ -1,0 +1,45 @@
+questions:
+  - question: "According to the article, which statement best describes the relationship between .NET Framework and PowerShell?"
+    choices:
+      - ".NET Framework and PowerShell are just two names for the same thing, essentially identical technologies"
+      - ".NET Framework is a general-purpose execution platform for running applications on Windows, and PowerShell is one shell/scripting language built using its functionality"
+      - "PowerShell predates .NET Framework, and .NET Framework was developed as PowerShell's successor"
+      - ".NET Framework was developed exclusively for running PowerShell and has no other use"
+    answerIndex: 1
+    explanation: ".NET Framework is a set of an execution engine (runtime) and class library for running applications on Windows, used broadly — for ASP.NET, among other things. PowerShell is just one application built using that functionality."
+
+  - question: "According to the article, what fundamentally sets PowerShell's pipeline apart from a text-based shell like bash?"
+    choices:
+      - "PowerShell's pipe also passes plain text (strings) between commands, just like bash"
+      - "PowerShell's pipe passes the .NET object itself, with its attributes, between commands (cmdlets), before it's ever formatted into a string"
+      - "PowerShell has no concept of a pipe at all"
+      - "PowerShell's pipe only passes data over a network connection"
+    answerIndex: 1
+    explanation: "A bash pipe passes a string that the receiving command has to parse, often with regular expressions. PowerShell's pipe takes a fundamentally different approach: it passes the .NET object itself, with its attributes, before it's ever formatted into a string."
+
+  - question: "According to the article, what's the difference between Windows PowerShell 5.1 and PowerShell 7?"
+    choices:
+      - "They're exactly the same product, just under different names"
+      - "Windows PowerShell 5.1 is built on the traditional .NET Framework and is in a maintenance phase, while PowerShell 7 is built on the successor .NET, is cross-platform, and is the current focus of development"
+      - "Installing PowerShell 7 automatically uninstalls and replaces Windows PowerShell 5.1"
+      - "Windows PowerShell 5.1 is a newer successor version, developed after PowerShell 7"
+    answerIndex: 1
+    explanation: "Windows PowerShell 5.1 is built on the traditional .NET Framework and ships with Windows by default, but is in a maintenance phase with no further feature development. PowerShell 7 is built on the successor .NET (formerly .NET Core), runs cross-platform on Windows, Linux, and macOS, and is the current focus of development."
+
+  - question: "According to the article, why do .NET Framework 4.8 features get enabled alongside the AD DS role?"
+    choices:
+      - "It's purely coincidental — there's no real technical connection"
+      - "Because many AD DS-related management tools and PowerShell modules rely on the .NET Framework class library as their runtime foundation"
+      - ".NET Framework 4.8 is a dedicated feature developed specifically as part of the AD DS role itself"
+      - "Adding the AD DS role automatically installs PowerShell 7"
+    answerIndex: 1
+    explanation: "Because many AD DS-related management tools and PowerShell modules rely on the .NET Framework class library (such as WCF services) as their runtime foundation, .NET Framework 4.8 features get enabled alongside the AD DS role."
+
+  - question: "According to the article, what's the first thing a top-1% engineer checks when troubleshooting PowerShell?"
+    choices:
+      - "Whether the network cable is properly connected"
+      - "Running `$PSVersionTable` to confirm whether the affected environment is running the Windows PowerShell 5.1 lineage or the PowerShell 7 lineage"
+      - "The amount of free disk space first"
+      - "Whether that server is joined to the domain"
+    answerIndex: 1
+    explanation: "Even the same script can behave subtly differently depending on whether it's running under Windows PowerShell 5.1 (.NET Framework) or PowerShell 7 (.NET). Checking `$PSVersionTable` first to determine the lineage avoids wasting time investigating the wrong thing."
