@@ -100,7 +100,7 @@ In real AD migration work, it's recommended to run `dcdiag /v` at **at least sev
 3. **Right after an FSMO transfer**: Confirms that things like `KnowsOfRoleHolders` correctly recognize the new holder
 4. **Right after demoting and removing the old DC**: Confirms no trace of the old DC remains, and that the remaining DCs stay in a healthy state
 
-Saving the results at each stage, so you can **distinguish "warnings that existed before the migration" from "warnings newly caused by the migration work,"** makes a huge difference in how efficiently you can isolate causes.
+Saving the results at each stage, so you can **distinguish "warnings that existed before the migration" from "warnings newly caused by the migration work,"** makes a huge difference in how efficiently you can isolate causes. If you want to actually experience these four stages hands-on, see [Hands-On: Migrating From an Old DC to a New One](/en/articles/ad-migration-handson-guide), which also includes an exercise in deliberately triggering and reading a dcdiag warning.
 
 ## Common Misconceptions and Pitfalls
 

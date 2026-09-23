@@ -1,0 +1,45 @@
+questions:
+  - question: "According to the article, what's the core principle of a safe AD migration?"
+    choices:
+      - "The standard procedure is to take the old DC down first, then seize FSMO onto the new DC"
+      - "Transferring FSMO (not seizing it) while the current role holder (the old DC) is still running normally is the core principle of a safe migration"
+      - "A FSMO transfer should be performed as soon as possible, without checking replication health first"
+      - "Once the new DC is added, you should immediately demote the old DC, and only transfer FSMO after the demotion"
+    answerIndex: 1
+    explanation: "The core principle of a safe AD migration is transferring FSMO (a transfer, not a seizure) while the current role holder (the old DC) is still running normally. Taking the old DC down first forces you into the much messier emergency option of a seizure."
+
+  - question: "According to the article, what should you check before performing a FSMO transfer?"
+    choices:
+      - "There's nothing in particular to check — you can transfer FSMO as soon as the new DC is built"
+      - "Always confirm with repadmin /showrepl that replication between the old and new DC is functioning correctly"
+      - "You only need to confirm the new DC's disk capacity is larger than the old DC's"
+      - "You need to confirm the new DC's OS version exactly matches the old DC's"
+    answerIndex: 1
+    explanation: "Before proceeding to the FSMO transfer, you must always confirm with repadmin /showrepl that replication between the old and new DC is functioning correctly. You shouldn't proceed to the FSMO transfer until you've confirmed replication is healthy."
+
+  - question: "According to the article, why do you include the -DemoteOperationMasterRole option with Uninstall-ADDSDomainController?"
+    choices:
+      - "It's purely an option to speed up the demotion process, with no other meaning"
+      - "It activates a safety net: if that DC still happens to hold any FSMO roles, they get automatically transferred to another DC before demoting"
+      - "The demotion process can't run at all without this option"
+      - "It's an option for simultaneously removing the DNS server role"
+    answerIndex: 1
+    explanation: "Including -DemoteOperationMasterRole activates a safety net: if that DC still happens to hold any FSMO roles, they get automatically transferred to another DC before demoting. In this hands-on lab, since everything was already transferred in Step 3, nothing actually gets transferred here."
+
+  - question: "According to the article, what's true about verifying post-demotion cleanup?"
+    choices:
+      - "Even with a graceful demotion, information is never actually removed unless you manually check all four consoles (dsa.msc, dssite.msc, adsiedit.msc, dnsmgmt.msc) every single time"
+      - "With a graceful demotion, most of this gets cleaned up automatically, but you shouldn't skip the final verification via dsa.msc, dssite.msc, dnsmgmt.msc, and repadmin /replsummary"
+      - "The demotion process never performs any cleanup at all, so everything must always be manually deleted"
+      - "Manual deletion via adsiedit.msc is the standard first step for post-demotion cleanup"
+    answerIndex: 1
+    explanation: "With a graceful demotion, much of the cleanup happens automatically. However, the final verification via dsa.msc, dssite.msc, dnsmgmt.msc, and repadmin /replsummary shouldn't be skipped, and manual deletion via adsiedit.msc is a last resort for when something is still found to be wrong."
+
+  - question: "According to the article, what's the point of the exercise where you deliberately delete a DNS record and run dcdiag /v?"
+    choices:
+      - "To measure how fast the dcdiag command itself runs"
+      - "To learn to work backward from the specific output — not just \"an error appeared\" — to figure out exactly which mechanism is broken"
+      - "To practice completely removing the DNS server role"
+      - "To confirm this exercise is safe to perform in a production environment"
+    answerIndex: 1
+    explanation: "The point of this exercise is learning to work backward from the specific output — not just the fact that an error appeared — to figure out exactly which mechanism is broken. That's an important skill that separates a confident, evidence-based response from a guess when facing a real-world failure. Note that this exercise should only be performed in a disposable, throwaway lab environment."
