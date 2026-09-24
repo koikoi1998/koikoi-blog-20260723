@@ -35,6 +35,24 @@ questions:
     answerIndex: 1
     explanation: "Setting AnnounceFlags to 0 makes that machine stop advertising itself as \"a time source available for use\" to clients entirely. This is a configuration change that breaks the time synchronization hierarchy itself and generally shouldn't be done."
 
+  - question: "Which statement best matches the article's explanation of the relationship between AnnounceFlags's \"time server\" bits (0x01/0x02) and \"reliable time source\" bits (0x04/0x08)?"
+    choices:
+      - "\"Reliable time source\" is a completely independent flag from \"time server,\" with no constraint on setting only one of the two"
+      - "\"Time server\" controls whether the machine responds to queries, and \"reliable time source\" controls whether it's safe to adopt via automatic selection — two stages of one switch, where being a reliable time source requires also being a time server"
+      - "\"Time server\" and \"reliable time source\" describe exactly the same behavior; they're just alternate spellings"
+      - "\"Reliable time source\" is a legacy compatibility setting for older Windows versions, while \"time server\" is the modern equivalent"
+    answerIndex: 1
+    explanation: "\"Act as a time server\" controls whether the machine responds to NTP queries, while \"act as a reliable time source\" is one level up — controlling whether clients doing automatic upstream discovery via NT5DS may formally adopt that machine's time. Being a reliable time source requires also being a time server."
+
+  - question: "Which statement best matches the article's explanation of the relationship between the PDC emulator's NTP function and the NTP function that activates at DC promotion?"
+    choices:
+      - "The PDC emulator has separate, dedicated NTP server software installed that other DCs don't have"
+      - "They aren't separate — every Windows machine has the same built-in W32Time service, and it simply runs with different settings depending on its position (an ordinary machine, a DC, or the forest root PDC emulator)"
+      - "NTP functionality never activates at DC promotion; it must be manually installed only on the PDC emulator"
+      - "The PDC emulator's NTP function is an entirely separate Windows component from the W32Time service"
+    answerIndex: 1
+    explanation: "W32Time (the Windows Time service) is a single service built into every Windows machine, regardless of whether it's a DC. DC promotion doesn't install a separate feature — the existing W32Time service's configuration (its Type and the automatic AnnounceFlags bits) automatically switches to match its position in the AD DS hierarchy."
+
   - question: "Which statement best matches the article's explanation of the effect of time synchronization accuracy on Kerberos authentication?"
     choices:
       - "Kerberos authentication has no relationship to time accuracy at all, and drift never affects authentication"

@@ -26,6 +26,33 @@ questions:
     answerIndex: 1
     explanation: "The Default Web Site is simply the \"first website\" slot IIS comes with from the start — it isn't a special, reserved mechanism. Some configurations use it as-is, while others stop or delete it and run only a custom website."
 
+  - question: "Which statement best matches the article's explanation of the relationship between the \"Default Web Site\" and the \"DefaultAppPool\" application pool?"
+    choices:
+      - "The Default Web Site and DefaultAppPool are the same object, and deleting one automatically deletes the other"
+      - "The Default Web Site (a site) and DefaultAppPool (an application pool) are two separate objects that simply come paired by default, and the assignment can be freely changed"
+      - "An application pool is a subfolder contained inside the Default Web Site"
+      - "An application pool named DefaultAppPool isn't automatically created when you install the IIS role"
+    answerIndex: 1
+    explanation: "The Default Web Site (a site with a binding configuration and a physical path) and DefaultAppPool (an application pool) are separate objects. By default, the former is simply assigned to the latter — they're easy to conflate because both carry the name \"Default,\" but the assignment can be freely changed."
+
+  - question: "Which statement best matches the article's explanation of the relationship between a website's host name and a DC's domain name?"
+    choices:
+      - "There's no direct technical relationship, and when an intranet site shares the same DNS namespace as an AD domain, it's simply an operational choice to reuse the existing AD-integrated DNS infrastructure"
+      - "A website's host name must always be a subdomain of AD DS's domain name in order to bind in IIS"
+      - "Renaming a DC's domain automatically renames the host names of every website running in that domain"
+      - "A website's host name and a DC's domain name must point to the exact same DNS record"
+    answerIndex: 0
+    explanation: "A binding's host name is just a value that decides which site to route a client to based on the DNS name they resolved — there's no technical requirement for it to belong to AD DS's domain name. When an intranet site shares the same namespace as the AD domain, it's simply an operational choice to reuse the existing AD-integrated DNS infrastructure."
+
+  - question: "Which statement best matches the article's explanation of what a \"website\" actually is?"
+    choices:
+      - "A website's true identity is a collection of HTML/CSS files itself"
+      - "A website's true identity is software (and its configuration) capable of interpreting HTTP and returning a response to a request — HTML/CSS is just one form of content returned as that response"
+      - "A website must always have a database built into it"
+      - "The concept of a website can't exist without using a framework like ASP.NET"
+    answerIndex: 1
+    explanation: "A website's true identity isn't a collection of HTML/CSS files — it's software (and its configuration) capable of interpreting HTTP and returning a response to a request. HTML/CSS is merely one form of content returned as that response."
+
   - question: "Which statement best matches the article's explanation of name-based virtual hosting in binding configuration?"
     choices:
       - "Requests can be routed to different websites based on the value of the Host header in an HTTP request, even with the same IP address and the same port number"

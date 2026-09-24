@@ -20,6 +20,7 @@ This article is part of the [Top 1% Series' full article guide](/en/sitemap), an
 ## Prerequisites
 
 - **HTTP**: The basic communication protocol of the web, where a client (such as a browser) sends a request to a server, and the server returns a response. See [What Is a RESTful API? Understanding from a "Top 1%" Perspective](/en/articles/restful-api-guide) for details.
+- **The difference between a framework and a library**: This article uses the phrase "ASP.NET is a framework." The terms "framework" and "library" themselves are sorted out in [What Is a Library?](/en/articles/software-library-guide) and [What Is a Framework? Understanding the Difference From a Library, Runtime, and SDK](/en/articles/software-framework-guide).
 
 ## Getting the Big Picture
 
@@ -38,6 +39,12 @@ graph TB
 ```
 
 **IIS is simply a general-purpose foundation that accepts the HTTP protocol — it doesn't depend on any particular kind of application running on top of it.** ASP.NET is one representative execution engine that runs on IIS, but modules for PHP or other languages can also be integrated into IIS. **Keeping the distinction "IIS = the web server" versus "ASP.NET = the mechanism for running .NET applications on top of that web server" clear** is the foundation for everything that follows.
+
+### What a "Website" Actually Is
+
+Building on the above, you can understand that **the true identity of the word "website" isn't a collection of HTML/CSS files — it's "software (and its configuration) capable of interpreting the HTTP protocol and returning a response to a request."** The "website" entry IIS manages is, in substance, a bundle of configuration that decides "receive an HTTP request arriving at a specific binding (IP address, port, host name), and either return a static file or hand off response-generation to an execution engine like ASP.NET." HTML/CSS is merely **one form of content** returned as that response — it isn't equivalent to the concept of a website itself.
+
+This sense that "any software capable of processing HTTP can, in a broad sense, be a web server" becomes strikingly concrete once you write a tiny HTTP server yourself. Without a production-grade implementation like IIS or Nginx, you can build a minimal "website" openable from a browser just by **reading the contents of a request (the method, path, and version on the first line, plus headers) as text over a TCP socket, and writing back a response in a fixed format.** This experience is covered in [A "Top 1%" Hands-On Lab: Writing Your Own HTTP Server From Scratch](/en/articles/minimal-http-server-handson-guide).
 
 ## Fundamentals, Explained Thoroughly
 
@@ -58,6 +65,13 @@ Internally, IIS is broadly made up of three components.
 Installing the IIS role automatically creates a website entry named **Default Web Site** by default. This is **the "first website" slot IIS comes with from the start**, configured by default to bind to port 80 (HTTP) and reference `%SystemDrive%\inetpub\wwwroot` (typically `C:\inetpub\wwwroot`) as its physical path.
 
 In practice, **some configurations use this Default Web Site as-is to run a small-scale site, while others create a new, custom website and stop or delete the Default Web Site itself.** The Default Web Site isn't a special, reserved mechanism — it's simply "one of the ordinary website entries provided from the start" — so feel free to stop, delete, or modify it as your requirements dictate.
+
+<details>
+<summary>Is the "Default Web Site" the same thing as an "application pool"?</summary>
+
+This is easy to conflate, but **these are two separate objects.** As explained above, the Default Web Site is a **site** — it has a binding configuration plus a physical path. Installing the IIS role **separately** and automatically creates an application pool named `DefaultAppPool`. Under the default configuration, the Default Web Site (a "site") is **assigned to** DefaultAppPool (an "application pool") — and since both happen to carry the name "Default" and come paired together from the start, they're easily mistaken for a single thing. In practice, you're free to change which application pool the Default Web Site is assigned to, or to assign multiple sites to a single application pool.
+
+</details>
 
 ### Binding Configuration: The Mechanism for Routing to Multiple Websites on One Server
 
@@ -82,6 +96,12 @@ graph TB
 For HTTP, the `Host` header is included in the unencrypted request, so routing can simply look at its value. For HTTPS, on the other hand, there's a challenge: which certificate to present needs to be decided before the TLS encryption handshake even completes. This is solved by **SNI (Server Name Indication)**, a TLS handshake extension that lets the client convey its desired host name in plaintext at an early stage of the handshake. Current IIS supports SNI, letting a single IP address and port simultaneously host multiple HTTPS sites, each with a different certificate.
 
 </details>
+
+### Is There a Relationship Between a Website's Host Name and a DC's Domain Name?
+
+The short answer: **as a technical mechanism, there's no direct relationship at all.** A binding's host name is nothing more than a value used to decide "which site to route a client to, based on the DNS name they resolved to reach it" — that DNS name doesn't need to belong to AD DS's domain name (the forest/domain namespace) in any way. It's the same logic as a public website's host name having nothing to do with any AD environment.
+
+That said, **in practice, an intranet site and an AD domain often do share the same DNS namespace, which is exactly what creates the impression that "they're related."** An internal site's DNS record usually gets added directly to the AD-integrated DNS that already exists (see [Why Is DNS in an AD Environment Designed This Way?](/en/articles/ad-dns-guide)), and it's common to use a host name that carries AD DS's domain name as a suffix, like `intranet.corp.example.com`. This isn't because IIS or HTTP technically require it — it's simply an operational choice to **reuse the internal DNS infrastructure that's already there.**
 
 ### Adding and Changing HTTP Response Headers
 
@@ -129,8 +149,9 @@ For IIS-related issues, the basic approach is to **isolate whether the problem s
 
 - IIS is the web server software itself, accepting HTTP requests, while ASP.NET is the application execution framework for .NET that runs on top of it — clearly distinct layers.
 - IIS is made up of a three-layer structure — HTTP.sys, application pools, and worker processes — with isolation via application pools being an important design element for availability.
-- The Default Web Site isn't a special, reserved mechanism — it's simply one of the ordinary website entries provided from the start.
-- Binding configuration is the mechanism that routes requests to multiple websites on a single server, based on the combination of IP address, port number, and host name.
+- The Default Web Site isn't a special, reserved mechanism — it's simply one of the ordinary website entries provided from the start. The Default Web Site (a site) and DefaultAppPool (an application pool) are two separate objects that simply come paired by default.
+- Binding configuration is the mechanism that routes requests to multiple websites on a single server, based on the combination of IP address, port number, and host name. A host name is just a DNS name — its relationship to AD DS's domain name isn't a technical requirement, but an operational choice to reuse existing internal DNS infrastructure.
+- A "website's" true identity isn't a collection of HTML/CSS files — it's software (and its configuration) capable of interpreting HTTP and returning a response.
 
 **What to Keep in Mind From Today**
 1. When you encounter the terms IIS and ASP.NET, keep in mind they refer to different layers — the web server itself versus the application execution framework.

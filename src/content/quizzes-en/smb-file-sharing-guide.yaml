@@ -35,6 +35,15 @@ questions:
     answerIndex: 0
     explanation: "Access using a hostname is treated as an entirely new connection, keyed by a string different from the IP address. This means it connects cleanly, unaffected by the old connection cache lingering for the IP address."
 
+  - question: "Which statement best matches the article's explanation of the deeper reason the connection cache is managed per string?"
+    choices:
+      - "It's purely an implementation quirk, with no further technical reason behind it"
+      - "A Kerberos service ticket is issued against an SPN (a hostname-based identifier), and since an SPN for an IP address typically doesn't exist, a hostname connection can use Kerberos while an IP-address connection falls back to NTLM — a genuine difference in the authentication protocol itself"
+      - "Connecting via IP address technically requires no authentication at all"
+      - "A hostname connection and an IP-address connection always use exactly the same authentication protocol"
+    answerIndex: 1
+    explanation: "Since an SPN for an IP address typically doesn't exist, a connection to \\\\SRV01 can match a Kerberos SPN, while a connection to \\\\10.0.20.5 has no matching SPN and falls back to NTLM authentication. The connection cache is managed per string because it needs to hold this authentication context independently for each destination."
+
   - question: "Which statement best matches the article's explanation of the practical fix for the \"fails via IP address but succeeds via hostname\" phenomenon?"
     choices:
       - "There's no fix at all — the only solution is to completely rebuild the server"

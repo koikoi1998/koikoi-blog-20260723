@@ -1,0 +1,45 @@
+questions:
+  - question: "Which statement best matches the article's explanation of the relationship between SMB and CIFS?"
+    choices:
+      - "SMB and CIFS are completely unrelated, separate protocols"
+      - "SMB is the umbrella name for the entire protocol family, and CIFS is Microsoft's own name for one early version within it (SMB1.0)"
+      - "CIFS is newer than SMB and is planned to eventually replace it entirely"
+      - "SMB is exclusive to Linux, and CIFS is exclusive to Windows"
+    answerIndex: 1
+    explanation: "SMB is the name of the Windows file-sharing protocol itself, and CIFS is Microsoft's own name for one specific version within it — SMB1.0, published by Microsoft in the 1990s."
+
+  - question: "Which statement best matches the article's explanation of why SMB1.0 (CIFS) is disabled by default in current Windows?"
+    choices:
+      - "SMB1.0 simply being old was the only reason; it had no security problems at all"
+      - "The vulnerability (EternalBlue) exploited by the \"WannaCry\" ransomware, which caused worldwide damage in 2017, existed specifically in the SMB1.0 implementation"
+      - "SMB1.0 is technically incapable of running on any OS other than Windows"
+      - "SMB1.0's licensing cost was higher than other versions"
+    answerIndex: 1
+    explanation: "Beyond weaknesses like no encryption support and poor performance, SMB1.0 (CIFS) became widely known as a security risk because the vulnerability (EternalBlue) exploited by the 2017 WannaCry ransomware existed specifically in this implementation, leading to it being disabled by default."
+
+  - question: "Which statement best matches the article's explanation of why file sharing works between different operating systems (Windows and Linux)?"
+    choices:
+      - "Microsoft secretly installs proprietary software on both operating systems individually"
+      - "SMB is \"a documented communication contract (a protocol specification),\" not \"one specific implementation,\" so any implementation that meets that specification can communicate, regardless of OS"
+      - "Windows and Linux actually use exactly the same kernel internally"
+      - "File sharing is always automatically done via the cloud, so the OS difference doesn't matter"
+    answerIndex: 1
+    explanation: "SMB isn't a specific implementation — it's a documented protocol specification that Microsoft publishes as MS-SMB2. Any software capable of assembling and interpreting byte sequences according to that specification can, in principle, communicate, regardless of which OS it's implemented on."
+
+  - question: "Which statement best matches the article's explanation of the Samba project?"
+    choices:
+      - "Samba is an open-source project that implements the SMB protocol specification on Linux (and other Unix-like OSes), letting Linux act as either a server or a client"
+      - "Samba is the name of a Windows-exclusive cloud storage service"
+      - "Samba only supports SMB1.0 (CIFS) and has no support for SMB2 or SMB3 at all"
+      - "Samba is software that automatically converts files between Windows and Linux"
+    answerIndex: 0
+    explanation: "Samba is an open-source project running since 1992 that implements the SMB protocol on Linux. smbd/nmbd let Linux act as an SMB server, and cifs-utils lets Linux act as an SMB client."
+
+  - question: "Which statement best matches the article's explanation of the relationship between the name `cifs-utils` and the SMB versions it actually supports?"
+    choices:
+      - "As the name suggests, it only supports CIFS (SMB1.0)"
+      - "The name is just a historical holdover — the `vers=` option means it can also specify SMB2 or SMB3"
+      - "`cifs-utils` is a tool for handling a completely different protocol, unrelated to SMB"
+      - "Using `cifs-utils` always requires enabling SMB1.0"
+    answerIndex: 1
+    explanation: "The name `cifs-utils` carries a historical remnant from the era when SMB1.0 (CIFS) was the norm, but the current version can specify SMB2 or SMB3 too via the mount command's `vers=` option — it isn't limited to CIFS (SMB1.0)."

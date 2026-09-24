@@ -82,6 +82,25 @@ Setting `AnnounceFlags` to `0` makes that machine stop advertising itself as "a 
 
 </details>
 
+### What's the Difference Between "Acting as a Time Server" and "Acting as a Reliable Time Source"?
+
+Looking at AnnounceFlags' four bits, `0x01`/`0x02` (**time server**) and `0x04`/`0x08`(**reliable time source**) are easy to conflate since they sound similar. It helps to think of them as **two stages of the same switch**.
+
+- **"Act as a time server" (`0x01`/`0x02`)**: Controls whether that machine **responds** to NTP queries on UDP port 123. If this bit is set, it'll return the time when explicitly queried (e.g. by another machine listing it in `NtpServer`) — but that alone doesn't make it "a source that gets automatically picked as an upstream authority within the hierarchy."
+- **"Act as a reliable time source" (`0x04`/`0x08`)**: One level up from that — it controls whether clients doing automatic upstream discovery via NT5DS are allowed to formally adopt that machine's time as their sync source.
+
+**For a machine to call itself a "reliable time source," it must also be a "time server"** — being reliable while not responding to queries at all isn't a coherent state. That's exactly why the default value `0x0A` combines `0x02` (time server, automatic) and `0x08` (reliable time source, automatic): the forest root PDC emulator needs to be both "something that answers queries" and "something that's safe to trust as an automatic-selection target" at the same time.
+
+### Is the PDC Emulator's NTP Function a Separate Feature From What Gets Installed at DC Promotion?
+
+The short answer is: **no, they're not separate.** W32Time (the Windows Time service) is a **single service built into every Windows machine**, regardless of whether it's a DC. Promoting a machine to a DC doesn't "install a new NTP server feature" — what actually happens is that the **existing W32Time service's configuration (its `Type` and the automatic AnnounceFlags bits) automatically switches** to match its position in the AD DS hierarchy.
+
+- An ordinary domain-joined machine: `Type=NT5DS`, configured purely as a "client" that automatically follows AD DS's hierarchy to find an upstream DC.
+- A DC that isn't the forest root PDC emulator: Also NT5DS, but the automatic AnnounceFlags bits make it act as a "time server" toward the member servers and client PCs beneath it.
+- The forest root PDC emulator: As covered above, it has no upstream to rely on within the domain, so it needs an explicit sync configuration (e.g. `Type=NTP`) to an external time source, and the automatic AnnounceFlags bits make it act as a "reliable time source" itself.
+
+In other words, **the PDC emulator's NTP function and the NTP function that activates at DC promotion aren't two differently-named features — they're the same W32Time service, running with different configuration values depending on its position.** The misconception that "the PDC emulator has some special software installed that other machines don't" tends to get in the way of real-world troubleshooting, so it's worth keeping straight.
+
 ### Other Key Configuration Items
 
 Beyond AnnounceFlags, the following items also come up in Windows Server's NTP configuration:
@@ -137,6 +156,8 @@ For time synchronization issues, the basic approach is to **isolate which layer'
 - NTP's Stratum corresponds to the time synchronization hierarchy anchored by the PDC emulator in AD DS.
 - Only the forest root PDC emulator, which has no higher source to rely on within the domain, needs an explicit sync configuration to an external, authoritative time source.
 - AnnounceFlags is a bit flag combination controlling whether a machine advertises itself as a reliable time source, and its default value (`0x0A`) is a sensible design that automatically follows an FSMO transfer.
+- "Time server" (does it respond to queries) and "reliable time source" (is it safe to adopt via automatic selection) are two stages of one switch — a machine must be a time server to also be a reliable time source.
+- The PDC emulator's NTP function isn't a separately-installed feature at DC promotion — it's the same W32Time service that every machine has, running with different settings depending on its position.
 - Time synchronization accuracy is a prerequisite for Kerberos authentication and shouldn't be dismissed as merely setting the clock.
 
 **What to Keep in Mind From Today**

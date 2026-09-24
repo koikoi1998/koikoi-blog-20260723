@@ -1,0 +1,36 @@
+questions:
+  - question: "Which statement best matches the article's description of the mechanism the mini HTTP server in this hands-on lab uses?"
+    choices:
+      - "It uses both Python's `http.server` module and a web framework"
+      - "It uses nothing but a raw TCP socket — not even the built-in `http.server` module, let alone a web framework"
+      - "It works by calling IIS's internal modules from Python"
+      - "It runs as a browser extension, so nothing needs to be installed on the server side"
+    answerIndex: 1
+    explanation: "The whole point of this hands-on lab is building an HTTP server using nothing but a raw TCP socket — not even Python's built-in `http.server` module, let alone a web framework."
+
+  - question: "Which statement best matches the article's explanation of the `if path == \"/hello\":` conditional in the hands-on lab?"
+    choices:
+      - "This conditional has nothing to do with the \"routing\" feature found in frameworks like ASP.NET"
+      - "It's the most primitive version of what frameworks like ASP.NET or Express call \"routing\" — a framework just wraps this same logic into convenient URL pattern matching"
+      - "This conditional is a special step that's only needed when using HTTPS"
+      - "Without this conditional, the code wouldn't function as an HTTP server at all"
+    answerIndex: 1
+    explanation: "Branching on the path string is the most primitive version of what a framework calls \"routing.\" A framework just wraps this same branching logic into convenient URL pattern matching or configuration files — the underlying substance doesn't change."
+
+  - question: "Which statement best matches the article's explanation of what this mini server is missing?"
+    choices:
+      - "It's missing concurrent connection handling, accurate conformance to the HTTP spec, and security measures such as input validation and TLS support"
+      - "This mini server is superior to IIS or Nginx in every respect"
+      - "This mini server is missing nothing at all"
+      - "This mini server cannot return HTML at all"
+    answerIndex: 0
+    explanation: "This mini server lacks concurrent connection handling, accurate conformance to the HTTP spec (such as chunked transfer encoding), and security measures like input validation and TLS support — making it dangerous to use as-is in production."
+
+  - question: "Which statement best matches the article's explanation of the relationship between \"being able to build your own HTTP server\" and \"using IIS or Nginx in production\"?"
+    choices:
+      - "If you can build it yourself, you should use your own implementation in production too"
+      - "The two aren't remotely in conflict — being able to judge that some things are best left to a proven implementation, while genuinely understanding the underlying principle, is exactly what top-1% understanding looks like"
+      - "Being able to build your own HTTP server has nothing to do with choosing a production implementation"
+      - "IIS and Nginx are always slower than a server someone built themselves"
+    answerIndex: 1
+    explanation: "\"I could build this myself\" and \"in production, you should use a proven implementation instead\" are not in conflict at all. Being able to make the judgment that some things are best left to specialists, while genuinely understanding the underlying principle, is exactly what top-1% understanding looks like."

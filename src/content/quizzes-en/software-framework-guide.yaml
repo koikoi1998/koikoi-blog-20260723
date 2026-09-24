@@ -1,0 +1,45 @@
+questions:
+  - question: "Which statement best matches the article's explanation of the difference between a library and a framework?"
+    choices:
+      - "A framework is whatever has more features, and a library is whatever has fewer"
+      - "It's a structural difference in which side holds control (Inversion of Control) — your code calls a library, while a framework calls your code"
+      - "Library and framework refer to exactly the same thing; it's purely a difference in naming"
+      - "A framework is whatever is sold commercially, and a library is whatever is free"
+    answerIndex: 1
+    explanation: "The difference between a library and a framework isn't about scale — it's a structural difference called Inversion of Control. Your code actively calls a library, but a framework plugs your code in as a component and calls it at a time the framework decides."
+
+  - question: "Which statement best matches the article's explanation of a runtime?"
+    choices:
+      - "A runtime is just another name for a framework"
+      - "A runtime is the actual environment required to execute code that has been compiled (or converted to an intermediate language), and a framework is built on top of it"
+      - "A runtime is a tool that converts source code into a human-readable format"
+      - "A runtime is an independent product that is never bundled inside an SDK"
+    answerIndex: 1
+    explanation: "A runtime is the actual environment required to execute compiled (or intermediate-language) code. .NET's CLR is a representative example, and a framework like ASP.NET itself runs on top of this runtime internally."
+
+  - question: "Which statement best matches the article's explanation of an SDK?"
+    choices:
+      - "An SDK is a mechanism called at runtime, just like a framework or a library"
+      - "An SDK is a package bundling the tools needed to develop software for a specific platform — a runtime, libraries, a compiler, and more — operating on a different dimension from a framework or library"
+      - "An SDK is simply an older name for an API"
+      - "Installing an SDK automatically resolves all library dependencies forever, eliminating the need for version management"
+    answerIndex: 1
+    explanation: "An SDK doesn't refer to a particular execution model — it refers to a package bundling the tools needed for development (a runtime, libraries, a compiler, etc.). It's a containment relationship that bundles a framework or library inside it, operating on a different dimension."
+
+  - question: "Which statement best matches the article's explanation of an API?"
+    choices:
+      - "API is a technical term that only refers to a Web API"
+      - "An API isn't a piece of software — it's the contract itself for how to call something and what response to expect, and it's the interface a library or framework exposes externally"
+      - "An API is hidden code automatically generated inside a runtime"
+      - "API and framework are two names for exactly the same entity"
+    answerIndex: 1
+    explanation: "An API isn't a piece of software — it's the contract itself (an interface specification) for how to call something. A Web API is just one kind of it, and a locally-called library's function signature is also called an API."
+
+  - question: "Which statement best matches the article's explanation of the difference in switching cost between a library and a framework?"
+    choices:
+      - "There's no difference at all in switching cost between a library and a framework"
+      - "A library is comparatively easy to swap since your code holds control, but a framework tends to require substantially rewriting your code's structure, since the code itself is written to fit that framework's execution model"
+      - "A framework is always easier to switch than a library"
+      - "Switching cost is determined solely by the software's price"
+    answerIndex: 1
+    explanation: "Since control stays with your code when using a library, swapping in a different one with the same API often gets away with small changes. A framework, by contrast, usually requires substantially rewriting your code's structure, since the code itself is written to fit that framework's execution model."

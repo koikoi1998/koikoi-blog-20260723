@@ -227,7 +227,9 @@ This blog is written for a wide range of readers — from people with no experie
 <li><a href="/en/articles/iis-fundamentals-guide">Understanding How IIS and ASP.NET Work from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/iis-ftp-guide">Understanding the Relationship Between IIS and FTP from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/smb-file-sharing-guide">Understanding Windows Server SMB File Sharing from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/smb-cifs-linux-interop-guide">What's the Difference Between SMB and CIFS? Understanding Windows-Linux File Sharing from a "Top 1%" Perspective</a></li>
 <li data-subseries="audio"><a href="/en/articles/windows-server-audio-review-guide">[Listen] The Windows Server Operations Series, Fully Recapped</a></li>
+<li data-subseries="handson"><a href="/en/articles/minimal-http-server-handson-guide">A "Top 1%" Hands-On Lab: Writing Your Own HTTP Server From Scratch</a></li>
 <li><a href="/en/articles/disk-raid-fundamentals-guide">Understanding the Relationship Between RAID and Windows Disk Management from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/fc-san-fundamentals-guide">Understanding the Difference Between Fibre Channel and LAN Connections from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/ntfs-mft-internals-guide">Understanding How the NTFS File System Works from a Top-1% Perspective</a></li>
@@ -246,7 +248,7 @@ This blog is written for a wide range of readers — from people with no experie
 <p>Adds the low-level implementation knowledge that sets you apart in interviews and design reviews, on top of everything through STEP6.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP6's 84 articles (see those tabs above)</li>
+<li>STEP1 through STEP6's 86 articles (see those tabs above)</li>
 <li><a href="/en/articles/proxmox-internals-guide">What Is Proxmox VE? Understanding KVM/QEMU Virtualization from the "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/linux-daemon-guide">What Is a Daemon? Understanding Linux Background Processes from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/software-library-guide">What Is a Library? Understanding Static and Dynamic Linking from a "Top 1%" Perspective</a></li>
@@ -258,6 +260,7 @@ This blog is written for a wide range of readers — from people with no experie
 <li><a href="/en/articles/linux-config-activation-guide">How a Config File Actually "Takes Effect," from the "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/linux-journalctl-guide">Investigating Error Logs with journalctl from a "Top 1%" Perspective</a></li>
 <li data-subseries="audio"><a href="/en/articles/linux-audio-review-guide">[Listen] The Linux/OS Fundamentals Series, Fully Recapped</a></li>
+<li><a href="/en/articles/software-framework-guide">What Is a Framework? Understanding the Difference From a Library, Runtime, and SDK from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/nic-driver-internals-guide">Understanding NIC Drivers and Linux Kernel Networking from a "Top 1%" Perspective</a></li>
 <li data-subseries="audio"><a href="/en/articles/network-audio-review-guide">[Listen] The Networking Fundamentals Series, Fully Recapped</a></li>
 <li><a href="/en/articles/openvpn-internals-guide">How OpenVPN Works from a "Top 1%" Perspective</a></li>
@@ -273,13 +276,13 @@ This blog is written for a wide range of readers — from people with no experie
 <div class="persona-panel persona-panel-8">
 <div class="persona-panel-head">
 <h3>🏆 For those gathering information toward the industry's highest skill tier</h3>
-<p>The complete-conquest route: read all 106 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
+<p>The complete-conquest route: read all 109 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP7's 105 articles (see those tabs above)</li>
+<li>STEP1 through STEP7's 108 articles (see those tabs above)</li>
 <li><a href="/en/articles/voip-ss7-guide">Understanding VoIP and SS7 — and the Real Path Your Traffic Takes — from a "Top 1%" Perspective</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>That's all 106 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
+<div class="persona-bonus">🎉 <strong>That's all 109 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
 </div>
 </div>
 </div>
@@ -360,7 +363,7 @@ A series that digs into what actually implements the virtualization behind Proxm
 
 ### Linux / OS Fundamentals Series
 
-A series that takes execution-environment-level terms that keep showing up in the VPN protocol articles and the L2TP/IPsec hands-on lab, and gives each one a standalone deep dive. **Recommended order**: ① linux-daemon-guide → ② software-library-guide → ③ linux-user-kernel-space-guide → ④ linux-file-permissions-guide → ⑤ linux-sysctl-guide → ⑥ linux-iptables-guide → ⑦ linux-filesystem-hierarchy-guide → ⑧ linux-config-activation-guide → ⑨ linux-journalctl-guide → ⑩ linux-audio-review-guide (for reviewing by ear after finishing all 9).
+A series that takes execution-environment-level terms that keep showing up in the VPN protocol articles and the L2TP/IPsec hands-on lab, and gives each one a standalone deep dive. **Recommended order**: ① linux-daemon-guide → ② software-library-guide → ③ linux-user-kernel-space-guide → ④ linux-file-permissions-guide → ⑤ linux-sysctl-guide → ⑥ linux-iptables-guide → ⑦ linux-filesystem-hierarchy-guide → ⑧ linux-config-activation-guide → ⑨ linux-journalctl-guide → ⑩ linux-audio-review-guide (for reviewing by ear after finishing all 9) → ⑪ software-framework-guide (a further deep dive added after the audio review).
 
 - [What Is a Daemon? Understanding Linux Background Processes from a "Top 1%" Perspective](/en/articles/linux-daemon-guide) — How a daemon differs from a regular process, why protocol-handling software like an IKE daemon is implemented as one, and how systemd starts, monitors, and logs it (spun off from the daemon discussion in the modern-VPN-protocols comparison article; also readable standalone).
 - [What Is a Library? Understanding Static and Dynamic Linking from a "Top 1%" Perspective](/en/articles/software-library-guide) — The difference between static linking and dynamic linking (shared libraries), how symbol resolution works, and why ABI compatibility becomes a real failure mode (spun off from the OpenSSL discussion in the modern-VPN-protocols comparison article; also readable standalone).
@@ -372,6 +375,7 @@ A series that takes execution-environment-level terms that keep showing up in th
 - [How a Config File Actually "Takes Effect," from the "Top 1%" Perspective](/en/articles/linux-config-activation-guide) — How a daemon parses a config file into an internal data structure, the difference between reload and restart, and how a userspace daemon's config differs from a kernel parameter in how it actually applies (spun off from editing `ipsec.conf`/`xl2tpd.conf` in the L2TP/IPsec hands-on lab; also readable standalone).
 - [Investigating Error Logs with journalctl from a "Top 1%" Perspective](/en/articles/linux-journalctl-guide) — What the systemd journal actually is, how to use -u/-t/-f/-n/--no-pager/-xe, and how to decide which order to check logs in when several processes (like IKE → L2TP → PPP) work together (spun off from debugging errors in the L2TP/IPsec hands-on lab; also readable standalone).
 - [[Listen] The Linux/OS Fundamentals Series, Fully Recapped](/en/articles/linux-audio-review-guide) — An audio-learning article for anyone who's finished all 9 articles, reviewable by ear alone. No tables, diagrams, or bullet points — just spoken-style prose meant to be read aloud by a browser's text-to-speech feature (assumes you've finished the series).
+- [What Is a Framework? Understanding the Difference From a Library, Runtime, and SDK from a "Top 1%" Perspective](/en/articles/software-framework-guide) — Sorts out five easily-confused terms — "framework," "library," "runtime," "SDK," and "API" — along a single axis: Inversion of Control (IoC) (spun off from [iis-fundamentals-guide](/en/articles/iis-fundamentals-guide)'s "ASP.NET is a framework" line; also readable standalone).
 
 ### Telephony & Access Network Series
 
@@ -438,14 +442,15 @@ A series digging into the "why is it built this way" questions that come up in d
 
 ### Windows Server Operations Series
 
-A series digging into the questions that come up constantly in Windows Server procurement and operations. **Recommended order**: ① windows-server-licensing-guide → ② windows-ntp-server-guide → ③ iis-fundamentals-guide → ④ iis-ftp-guide → ⑤ smb-file-sharing-guide → ⑥ windows-server-audio-review-guide (for reviewing by ear after finishing all 5).
+A series digging into the questions that come up constantly in Windows Server procurement and operations. **Recommended order**: ① windows-server-licensing-guide → ② windows-ntp-server-guide → ③ iis-fundamentals-guide → ④ iis-ftp-guide → ⑤ smb-file-sharing-guide → ⑥ windows-server-audio-review-guide (for reviewing by ear after finishing all 5) → ⑦ minimal-http-server-handson-guide → ⑧ smb-cifs-linux-interop-guide (both added after the audio review).
 
 - [Understanding Windows Server Licensing (OEM, Datacenter, Standard) from a "Top 1%" Perspective](/en/articles/windows-server-licensing-guide) — A deep dive into why the main Standard/Datacenter difference is virtualization rights, how core-based licensing works, and why an OEM license is tied to specific hardware (also readable standalone).
-- [Understanding the Configuration Values for Building an NTP Server on Windows Server from a "Top 1%" Perspective](/en/articles/windows-ntp-server-guide) — A deep dive into the concept of Stratum, why only the forest root PDC emulator needs an explicit sync to an external time source, and what each bit of AnnounceFlags controls (a follow-on from [fsmo-guide](/en/articles/fsmo-guide), also readable standalone).
-- [Understanding How IIS and ASP.NET Work from a "Top 1%" Perspective](/en/articles/iis-fundamentals-guide) — A deep dive into the division of labor between IIS and ASP.NET, the three-layer structure of HTTP.sys/application pools/worker processes, the true identity of the Default Web Site, binding configuration and SNI, and adding HTTP response headers (also readable standalone).
+- [Understanding the Configuration Values for Building an NTP Server on Windows Server from a "Top 1%" Perspective](/en/articles/windows-ntp-server-guide) — A deep dive into the concept of Stratum, why only the forest root PDC emulator needs an explicit sync to an external time source, what each bit of AnnounceFlags controls, the difference between "time server" and "reliable time source," and why the PDC emulator's NTP function isn't separate from what activates at DC promotion (a follow-on from [fsmo-guide](/en/articles/fsmo-guide), also readable standalone).
+- [Understanding How IIS and ASP.NET Work from a "Top 1%" Perspective](/en/articles/iis-fundamentals-guide) — A deep dive into the division of labor between IIS and ASP.NET, the three-layer structure of HTTP.sys/application pools/worker processes, the true identity of the Default Web Site and its relationship to application pools, binding configuration and SNI, the relationship between a website's host name and a DC's domain name, and adding HTTP response headers (also readable standalone).
 - [Understanding the Relationship Between IIS and FTP from a "Top 1%" Perspective](/en/articles/iis-ftp-guide) — A deep dive into the integrated-platform philosophy behind the name IIS, FTP's control/data channels and active/passive modes, and the difference between FTPS and SFTP (a follow-on from [iis-fundamentals-guide](/en/articles/iis-fundamentals-guide), also readable standalone).
-- [Understanding Windows Server SMB File Sharing from a "Top 1%" Perspective](/en/articles/smb-file-sharing-guide) — A deep dive into the role of the C$/IPC$/ADMIN$ administrative shares, why the SMB client's connection cache treats an IP address and a hostname as separate "servers," and diagnosing the phenomenon where access fails via IP address but succeeds via hostname (also readable standalone).
+- [Understanding Windows Server SMB File Sharing from a "Top 1%" Perspective](/en/articles/smb-file-sharing-guide) — A deep dive into the role of the C$/IPC$/ADMIN$ administrative shares, why the SMB client's connection cache treats an IP address and a hostname as separate "servers," diagnosing the phenomenon where access fails via IP address but succeeds via hostname, the difference between SMB and CIFS, and how Windows-Linux file sharing actually works (also readable standalone).
 - [[Listen] The Windows Server Operations Series, Fully Recapped](/en/articles/windows-server-audio-review-guide) — An audio-learning article for anyone who's finished all 5 articles, reviewable by ear alone. No tables, diagrams, or bullet points — just spoken-style prose meant to be read aloud by a browser's text-to-speech feature (assumes you've finished the series).
+- [A "Top 1%" Hands-On Lab: Writing Your Own HTTP Server From Scratch](/en/articles/minimal-http-server-handson-guide) — Build your own HTTP server from a few dozen lines of Python that talk directly to a TCP socket, and experience hands-on the idea that "a website" is simply software that can process HTTP (a practical companion to [iis-fundamentals-guide](/en/articles/iis-fundamentals-guide)).
 
 ### Storage Fundamentals Series
 

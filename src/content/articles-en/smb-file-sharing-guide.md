@@ -15,7 +15,7 @@ pubDate: 2026-09-20
 - **Intended Audience**: This article is aimed at engineers who operate Windows Server file sharing (SMB) but who've run into a hard-to-diagnose issue where access results differ between an IP address and a hostname.
 - **Estimated Reading Time**: About 18 minutes
 
-This article is part of the [Top 1% Series' full article guide](/en/sitemap), and the fifth article in the [Windows Server Operations Series](/en/sitemap#series-list). DC-specific NETLOGON and SYSVOL shares are covered in [Understanding DC Health Checks from a "Top 1%" Perspective](/en/articles/dc-health-check-guide).
+This article is part of the [Top 1% Series' full article guide](/en/sitemap), and the fifth article in the [Windows Server Operations Series](/en/sitemap#series-list). DC-specific NETLOGON and SYSVOL shares are covered in [Understanding DC Health Checks from a "Top 1%" Perspective](/en/articles/dc-health-check-guide), and the difference between SMB and the term "CIFS," along with Windows-Linux file sharing, is covered in [What's the Difference Between SMB and CIFS? Understanding Windows-Linux File Sharing from a "Top 1%" Perspective](/en/articles/smb-cifs-linux-interop-guide).
 
 ## Prerequisites
 
@@ -65,6 +65,20 @@ Diagnosing the real-world example above through this connection-cache lens, it b
 4. **`\\hostname\SpecificFolder`, on the other hand, is treated as an entirely new connection, keyed by a string different from `IPaddress`, so it connects cleanly, unaffected by the old cache.**
 
 **In other words, the essence of this phenomenon isn't the server-side configuration change (stopping the C$ share) itself — it's the old connection cache, keyed by the IP address, that lingered on the accessing client's side.** Access via hostname succeeded simply because it was **a fresh connection, unaffected by that cache.**
+
+### Why Cache by String at All? A Deeper Reason: the Authentication Protocol Itself Can Change
+
+You might feel that "caching by string, even for the same server, sounds like a sloppy implementation choice" — but there's actually a more fundamental reason behind it: **the authentication protocol used can genuinely differ.**
+
+An SMB connection in an AD environment tries to use **Kerberos authentication** whenever possible. As covered in [Understanding SPNs (Service Principal Names) from a "Top 1%" Perspective](/en/articles/ad-spn-guide), a Kerberos service ticket is issued against an **SPN** (a hostname-based identifier, like `cifs/SRV01`). The critical point here is that **an SPN for an IP address typically doesn't exist.** That means a connection to `\\SRV01\share` can successfully match a Kerberos SPN, while a connection to `\\10.0.20.5\share` has no matching SPN at all, so it **can't use Kerberos and falls back to NTLM authentication.**
+
+```mermaid
+graph TB
+    ByName["Connection to \\SRV01"] -->|"the SPN cifs/SRV01 is found"| Kerberos["Kerberos authentication"]
+    ByIp["Connection to \\10.0.20.5"] -->|"no SPN exists for an IP address"| Ntlm["Falls back to NTLM authentication"]
+```
+
+In other words, accessing by IP address versus hostname isn't just about a different connection-cache key — **the authentication protocol used under the hood can genuinely differ.** Understanding that the connection cache is managed per server-name string because it needs to hold this authentication context (which SPN, and which authentication method, a given session was established against) independently for each destination reveals that this isn't just "an implementation quirk" — it's **a design rooted in the structure of the authentication model itself.**
 
 <details>
 <summary>The "multiple connections... using more than one user name" error</summary>
@@ -125,6 +139,7 @@ For SMB share-related issues, the basic approach is to **isolate whether the pro
 - Windows's file sharing client internally caches and manages connections separately, keyed by the string used to specify the destination (an IP address or a hostname).
 - Even for the same physical server, an IP address and a hostname are cached as separate connections, creating an asymmetry where a past connection state that occurred with one doesn't affect the other.
 - Much of the "fails via IP address but succeeds via hostname" phenomenon is caused by an old connection cache lingering on the client side, and can be resolved by explicitly disconnecting it with `net use /delete`.
+- The connection cache being managed per string isn't just an implementation detail — it's rooted in the structure of the authentication model: Kerberos authentication based on an SPN only works against a hostname, while a connection to an IP address falls back to NTLM.
 
 **What to Keep in Mind From Today**
 1. When you run into a phenomenon where access results differ between an IP address and a hostname, first suspect the client-side connection cache (`net use`) rather than the server side.
