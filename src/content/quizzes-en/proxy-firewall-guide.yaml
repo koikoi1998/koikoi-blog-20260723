@@ -17,6 +17,15 @@ questions:
     answerIndex: 0
     explanation: "An explicit proxy has the proxy server's address explicitly specified in the client's (browser's) configuration, so the client is aware it's going through a proxy. A transparent proxy requires no configuration change on the client, with network equipment automatically redirecting traffic to the proxy, leaving the client unaware it exists."
 
+  - question: "Which statement best matches the article's explanation of why a firewall is still necessary even though a proxy can inspect traffic content?"
+    choices:
+      - "A proxy only supports a limited set of protocols and only sees traffic actually routed through it; combined with the division of processing cost and defense in depth, the two are complementary rather than substitutes"
+      - "A firewall is always higher-performance than a proxy, making a proxy essentially unnecessary"
+      - "Both are only deployed together because the law requires it"
+      - "A firewall is a device with no real function, installed purely to make the network diagram look more complex"
+    answerIndex: 0
+    explanation: "A proxy can only relay and inspect protocols it's built to handle, like HTTP, and only sees traffic actually routed through it. A firewall is a general-purpose control layer that can lightly judge all traffic regardless of protocol — the division of processing cost and defense in depth both mean the two are complementary, not substitutes."
+
   - question: "Which statement best matches the article's explanation of the background behind cloud proxies (SWG) becoming important?"
     choices:
       - "It became necessary to apply a consistent security policy regardless of location, as employees gained more opportunities to access the internet directly from outside the office"

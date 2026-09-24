@@ -72,6 +72,17 @@ A **cloud proxy** refers to providing the functionality traditionally deployed a
 
 ## The View From the Top 1% Perspective
 
+### If a proxy can inspect traffic content, why is a firewall still necessary?
+
+It's a natural question to ask: "if a proxy can inspect traffic content in much more detail, is a firewall — which only judges by IP address and port — even necessary anymore?" In practice, though, there are at least four reasons why **the two are complementary, not substitutes for each other.**
+
+1. **A proxy only understands a limited set of protocols**: A proxy can generally only relay and inspect **the application-layer protocols it's actually built to handle**, like HTTP/HTTPS. Meanwhile, a real organization's network carries a huge volume of traffic a web proxy has no involvement with at all — DNS, email (SMTP), database connections, SSH, RDP, SMB file sharing, VPN traffic, and more. A firewall is a **protocol-agnostic, general-purpose control layer** that can decide to allow or block all of this traffic, regardless of protocol type.
+2. **A proxy can only see traffic that's actually routed through it**: A proxy only does its job when **a client's traffic is actually configured or forced to go through it.** Server-to-server traffic inside the organization (east-west traffic), or any traffic that simply isn't subject to the proxy configuration, never crosses the proxy's line of sight. A firewall, by contrast, sits at **boundaries between network segments** — like the kind covered in [Understanding Japanese Local Government Network Segregation and Security Clouds](/en/articles/local-gov-network-guide) — and covers traffic paths a proxy never touches.
+3. **A division of labor by processing cost**: A firewall's IP-address/port-based decision only looks at packet headers — a lightweight operation that can process huge volumes of traffic at low latency. Application-layer inspection by a proxy is, by comparison, a relatively expensive operation. **Trying to route all traffic indiscriminately through a proxy wouldn't be realistically performant, so it makes sense to have the firewall do a coarse first pass, then let the proxy do deep inspection only where it's actually needed.**
+4. **What it means as Defense in Depth**: As covered in [Understanding Practical Security Measures for Building and Operating Servers](/en/articles/practical-server-security-measures-guide), relying on a single countermeasure leaves you exposed the moment that countermeasure is bypassed or defeated. Even if the proxy is misconfigured, or some traffic finds a way around it, **having a separate layer of control — the firewall — still in place limits how far the damage can spread.**
+
+**In other words, a firewall is "a lightweight, general-purpose first gate for all traffic," while a proxy is "a heavyweight, specialized deep inspection for a specific protocol"** — they operate at entirely different layers with entirely different roles, and neither can substitute for the other.
+
 ### The Relationship Between Cloud Proxies and Zero Trust
 
 As covered in [What Is ZTNA (Zero Trust Network Access) from a "Top 1%" Perspective](/en/articles/ztna-guide), zero trust is a design philosophy of "not using being inside the network itself as a basis for trust." **A cloud proxy (SWG) can be positioned as one element that realizes this zero trust idea on the "outbound" side of traffic to the internet.** While ZTNA mainly handles "access to internal applications (a more inbound-oriented idea)," SWG handles "protecting an employee when accessing resources on the internet (a more outbound-oriented idea)." The broader concept integrating both is **SASE (Secure Access Service Edge)**, touched on in [Understanding SD-WAN and Edge Router Selection from a "Top 1%" Perspective](/en/articles/sdwan-edge-router-guide).
@@ -106,6 +117,7 @@ For proxy/firewall-related issues, the basic approach is to **isolate which laye
 ## Summary
 
 - A firewall controls whether traffic passes through, based on IP address and port number; a proxy understands the content of an application-layer protocol like HTTP itself, to relay and control it.
+- A proxy only supports a limited set of protocols and only sees traffic actually routed through it, so it complements — rather than substitutes for — a firewall, which covers every protocol and path. The division of processing cost and defense in depth are both reasons both layers are needed.
 - There are two approaches to a proxy: an explicit proxy, configured on the client, and a transparent proxy, automatically redirected by network equipment.
 - A cloud proxy (SWG) provides proxy functionality traditionally hosted on-premises as a cloud-hosted service, letting a consistent security policy apply regardless of location.
 - A cloud proxy (SWG) is an element realizing the zero trust idea on the outbound side of traffic, and the broader concept integrating it with ZTNA is SASE.
