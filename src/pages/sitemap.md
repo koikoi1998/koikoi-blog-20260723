@@ -69,7 +69,7 @@ graph TB
 
 ## 読者タイプ別のおすすめルート
 
-このブログは、未経験からインフラエンジニアを目指す方から、年収5000万円以上を稼ぐAWS/Googleのトップエンジニアまで、幅広い読者を想定しています。全記事を必ず順番通りに読む必要はないため、キャリアの段階に応じた5つのルートを用意しました。**下のタブから自分に近いものを選ぶと、そのルートだけが表示されます**(②以降は、それより前のすべてのSTEPを読了している前提の積み増しです)。実務のごく特定の場面でしか使わないニッチな記事は、無理にロードマップへ詰め込まず、それが実際に必要になる段階のルートで初めて紹介する形にしています(該当しない段階では「任意」として控えめに触れるだけです)。このルートは**読者のレベル・習熟度・年収帯**で区切ったものであり、特定の分野(Active Directory・コンテナ基盤など)だけをまとめて読みたい場合は、次の「シリーズ一覧」またはトップページの絞り込み機能をご利用ください。
+このブログは、未経験からインフラエンジニアを目指す方から、AWS/Googleのようなトップ企業で第一線を張るエンジニアまで、幅広い読者を想定しています。全記事を必ず順番通りに読む必要はないため、キャリアの段階に応じた8つのルートを用意しました。**下のタブから自分に近いものを選ぶと、そのルートだけが表示されます**(②以降は、それより前のすべてのSTEPを読了している前提の積み増しです)。各STEPを選んだ後は、その下のフィルターで「記事」「ハンズオン」「音声復習」だけに絞り込むこともできます。実務のごく特定の場面でしか使わないニッチな記事は、無理にロードマップへ詰め込まず、それが実際に必要になる段階のルートで初めて紹介する形にしています(該当しない段階では「任意」として控えめに触れるだけです)。このルートは**読者のレベル・習熟度**で区切ったものであり、特定の分野(Active Directory・コンテナ基盤など)だけをまとめて読みたい場合は、次の「シリーズ一覧」またはトップページの絞り込み機能をご利用ください。以前は5つのSTEPで構成していましたが、記事数の増加にともない1STEPあたりの分量が偏っていたため、同じ「現場で自信をつけたい」段階を基礎固め→実務範囲拡大→単独運用→周辺基盤という4つの深さに分割し、1STEPあたりの分量をより均等にしました。
 
 <div class="persona-routes">
 <input type="radio" name="persona-route" id="persona-tab-1" class="persona-input" checked>
@@ -77,12 +77,29 @@ graph TB
 <input type="radio" name="persona-route" id="persona-tab-3" class="persona-input">
 <input type="radio" name="persona-route" id="persona-tab-4" class="persona-input">
 <input type="radio" name="persona-route" id="persona-tab-5" class="persona-input">
+<input type="radio" name="persona-route" id="persona-tab-6" class="persona-input">
+<input type="radio" name="persona-route" id="persona-tab-7" class="persona-input">
+<input type="radio" name="persona-route" id="persona-tab-8" class="persona-input">
+<input type="radio" name="content-filter" id="content-filter-all" class="persona-input" checked>
+<input type="radio" name="content-filter" id="content-filter-main" class="persona-input">
+<input type="radio" name="content-filter" id="content-filter-handson" class="persona-input">
+<input type="radio" name="content-filter" id="content-filter-audio" class="persona-input">
 <div class="persona-tabs">
 <label for="persona-tab-1" class="persona-tab"><span class="persona-tab-step">STEP1</span> 🌱 未経験から独学で目指す</label>
 <label for="persona-tab-2" class="persona-tab"><span class="persona-tab-step">STEP2</span> 🔧 1年目・設計構築デビュー</label>
-<label for="persona-tab-3" class="persona-tab"><span class="persona-tab-step">STEP3</span> 💪 現場で自信をつけたい</label>
-<label for="persona-tab-4" class="persona-tab"><span class="persona-tab-step">STEP4</span> 📈 高年収企業への転職</label>
-<label for="persona-tab-5" class="persona-tab"><span class="persona-tab-step">STEP5</span> 🏆 上位1%(年収1000万〜5000万)</label>
+<label for="persona-tab-3" class="persona-tab"><span class="persona-tab-step">STEP3</span> 💪 現場で自信をつけたい(基礎固め編)</label>
+<label for="persona-tab-4" class="persona-tab"><span class="persona-tab-step">STEP4</span> 💪 現場で自信をつけたい(実務範囲拡大編)</label>
+<label for="persona-tab-5" class="persona-tab"><span class="persona-tab-step">STEP5</span> 💪 現場で自信をつけたい(単独運用編)</label>
+<label for="persona-tab-6" class="persona-tab"><span class="persona-tab-step">STEP6</span> 💪 現場で自信をつけたい(周辺基盤編)</label>
+<label for="persona-tab-7" class="persona-tab"><span class="persona-tab-step">STEP7</span> 📈 高年収企業への転職</label>
+<label for="persona-tab-8" class="persona-tab"><span class="persona-tab-step">STEP8</span> 🏆 上位1%を目指す</label>
+</div>
+<div class="content-filter-bar">
+<span class="article-filters-label">↳ 種類で絞り込み:</span>
+<label for="content-filter-all" class="filter-chip">すべて</label>
+<label for="content-filter-main" class="filter-chip">記事</label>
+<label for="content-filter-handson" class="filter-chip">ハンズオン</label>
+<label for="content-filter-audio" class="filter-chip">音声復習</label>
 </div>
 <div class="persona-panels">
 <div class="persona-panel persona-panel-1">
@@ -118,13 +135,13 @@ graph TB
 <li><a href="/articles/windows-process-task-guide">Windowsのプロセス・タスク・スレッドの違いを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/unicode-filename-normalization-guide">見た目が同じなのに文字数が異なるファイル名が存在する理由を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/windows-install-media-guide">インストーラのx64とx86の違いを『上位1%』の視点で理解する</a></li>
-<li><a href="/articles/windows-defender-eicar-handson-guide">EICARテストファイルでWindows Defenderの検知を実際に確認する『上位1%』のハンズオン</a></li>
+<li data-subseries="handson"><a href="/articles/windows-defender-eicar-handson-guide">EICARテストファイルでWindows Defenderの検知を実際に確認する『上位1%』のハンズオン</a></li>
 <li><a href="/articles/malware-infection-mechanics-guide">マルウェア感染が実際にどう起きているのかを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/practical-server-security-measures-guide">サーバー構築・運用時の現実的なセキュリティ対策を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/monitor-edid-guide">モニターの配置設定が復元される仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/iso-mount-guide">ISOファイルの「マウント」とは何かを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/office-click-to-run-conflict-guide">Officeの版が競合してアンインストールできなくなる理由を『上位1%』の視点で理解する</a></li>
-<li><a href="/articles/windows-client-audio-review-guide">【音声で聴く】Windowsクライアント運用シリーズ総復習</a></li>
+<li data-subseries="audio"><a href="/articles/windows-client-audio-review-guide">【音声で聴く】Windowsクライアント運用シリーズ総復習</a></li>
 <li><a href="/articles/proxy-firewall-guide">プロキシとファイアウォールの使い分けを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/http-caching-cdn-guide">HTTPSの普及とプロキシキャッシュの終焉を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/protocol-design-guide">プロトコルとは何かを『上位1%』の視点で理解する</a></li>
@@ -134,8 +151,8 @@ graph TB
 </div>
 <div class="persona-panel persona-panel-3">
 <div class="persona-panel-head">
-<h3>💪 設計構築の現場で働いているが、いまいち自信が持てない方へ</h3>
-<p>「知ってるつもり」を実務で使える理解に変える段階です。STEP2までに加え、現場のニッチな疑問を解消する記事、手を動かすハンズオン、AD移行・DC運用の実務、Windows Server運用の周辺知識、コンテナ基盤・構成管理の自動化まで、実務で幅広く問われるテーマをまとめて積み増します。特定の分野だけをまとめて読みたい場合は、トップページの絞り込み機能をご利用ください。</p>
+<h3>💪 設計構築の現場で働いているが、いまいち自信が持てない方へ(基礎固め編)</h3>
+<p>「知ってるつもり」を実務で使える理解に変える最初の段階です。VPNの現地構築・拠点間VPN、そして自分の手を動かすハンズオン(仮想化環境の準備・OS初期セットアップ・ターミナル/パケットキャプチャツールの使い方・障害切り分け演習)まで、実際に手を動かして検証する力を積み増します。</p>
 </div>
 <ol class="persona-route-list">
 <li>STEP1・STEP2の29記事(上のタブから確認できます)</li>
@@ -144,16 +161,25 @@ graph TB
 <li><a href="/articles/local-gov-network-guide">自治体ネットワークの三層分離とセキュリティクラウドを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/virtual-ip-guide">代表IP(VIP)とNICチーミングの仮想IPの仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/windows-network-adapter-guide">Windowsの複数ネットワークアダプタとネットワークプロファイルの仕組みを『上位1%』の視点で理解する</a></li>
-<li><a href="/articles/handson-prep-guide">ハンズオン準備マニュアル:Proxmox VEでのVM作成からOSインストールまで</a></li>
-<li><a href="/articles/ubuntu-server-setup-guide">ハンズオン準備マニュアル:Ubuntuサーバーの初期セットアップ</a></li>
-<li><a href="/articles/windows-server-setup-guide">ハンズオン準備マニュアル:Windows Server 2025の初期セットアップとSSHサーバーの有効化(GUI操作)</a></li>
-<li><a href="/articles/teraterm-guide">ハンズオン準備マニュアル:Teraterm(ターミナルソフト)の使い方</a></li>
-<li><a href="/articles/wireshark-guide">ハンズオン準備マニュアル:Wiresharkの使い方</a></li>
-<li><a href="/articles/handson-prep-audio-review-guide">【音声で聴く】ハンズオン準備シリーズ総復習</a></li>
-<li><a href="/articles/l2tp-ipsec-lab-guide">L2TP/IPsecサーバーを自作し、理論を自分の目で検証する『上位1%』のハンズオン</a></li>
-<li><a href="/articles/l2tp-ipsec-troubleshooting-lab">L2TP/IPsecトラブルシューティング演習——自分でエラーログから原因を突き止める『上位1%』のハンズオン</a></li>
+<li data-subseries="handson"><a href="/articles/handson-prep-guide">ハンズオン準備マニュアル:Proxmox VEでのVM作成からOSインストールまで</a></li>
+<li data-subseries="handson"><a href="/articles/ubuntu-server-setup-guide">ハンズオン準備マニュアル:Ubuntuサーバーの初期セットアップ</a></li>
+<li data-subseries="handson"><a href="/articles/windows-server-setup-guide">ハンズオン準備マニュアル:Windows Server 2025の初期セットアップとSSHサーバーの有効化(GUI操作)</a></li>
+<li data-subseries="handson"><a href="/articles/teraterm-guide">ハンズオン準備マニュアル:Teraterm(ターミナルソフト)の使い方</a></li>
+<li data-subseries="handson"><a href="/articles/wireshark-guide">ハンズオン準備マニュアル:Wiresharkの使い方</a></li>
+<li data-subseries="audio"><a href="/articles/handson-prep-audio-review-guide">【音声で聴く】ハンズオン準備シリーズ総復習</a></li>
+<li data-subseries="handson"><a href="/articles/l2tp-ipsec-lab-guide">L2TP/IPsecサーバーを自作し、理論を自分の目で検証する『上位1%』のハンズオン</a></li>
+<li data-subseries="handson"><a href="/articles/l2tp-ipsec-troubleshooting-lab">L2TP/IPsecトラブルシューティング演習——自分でエラーログから原因を突き止める『上位1%』のハンズオン</a></li>
 <li><a href="/articles/windows-rras-roles-guide">Windows Server RRASのVPNアクセス・ダイヤルアップ・デマンドダイヤル・NAT・LANルーティングの違いを『上位1%』の視点で理解する</a></li>
-<li><a href="/articles/vpn-audio-review-guide">【音声で聴く】リモートアクセスVPN/L2TP・IPsecシリーズ総復習</a></li>
+</ol>
+</div>
+<div class="persona-panel persona-panel-4">
+<div class="persona-panel-head">
+<h3>💪 設計構築の現場で働いているが、いまいち自信が持てない方へ(実務範囲拡大編)</h3>
+<p>STEP3までの範囲に、拠点間VPNのAWS連携やSD-WANといった規模の大きい設計、そして社内基盤の中核であるディレクトリサービスの設計思想・DNSの実務・健全性確認の基本を積み増し、任される仕事の幅を広げる段階です。</p>
+</div>
+<ol class="persona-route-list">
+<li>STEP1〜STEP3の43記事(上のタブから確認できます)</li>
+<li data-subseries="audio"><a href="/articles/vpn-audio-review-guide">【音声で聴く】リモートアクセスVPN/L2TP・IPsecシリーズ総復習</a></li>
 <li><a href="/articles/site-to-site-vpn-aws-guide">AWSとの拠点間VPN(Site-to-Site VPN)を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/sdwan-edge-router-guide">SD-WANとエッジルーター選定を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/ad-dc-fundamentals-guide">ADとDC、ドメインとフォレストの違いを『上位1%』の視点で理解する</a></li>
@@ -167,11 +193,21 @@ graph TB
 <li><a href="/articles/dcdiag-guide">dcdiag /vの読み方を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/ad-migration-cleanup-guide">AD移行後のクリーンアップを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/ad-spn-guide">SPN(サービスプリンシパル名)の仕組みを『上位1%』の視点で理解する</a></li>
+</ol>
+<div class="persona-bonus">🔍 <strong>現場で出会ったら(任意)</strong>: <a href="/articles/windows-server-l2tp-vpn-guide">Windows Server(RRAS)でのL2TP/IPsec VPN構築</a>や<a href="/articles/site-to-site-vpn-guide">拠点間VPN</a>、<a href="/articles/local-gov-network-guide">自治体ネットワークの三層分離</a>は、実務でその状況に当たった人向けのニッチな記事です(STEP3で本格的に扱います)。</div>
+</div>
+<div class="persona-panel persona-panel-5">
+<div class="persona-panel-head">
+<h3>💪 設計構築の現場で働いているが、いまいち自信が持てない方へ(単独運用編)</h3>
+<p>STEP4までのディレクトリサービスの基礎に、認証・レプリケーション・移行という「壊すと影響が大きい」領域の深い理解と、実機を使ったマルチドメイン構築・DC移行のハンズオンを積み増し、任された基盤を1人で安心して運用できるようになる段階です。Windows Serverの調達・時刻同期に関する基礎もここで押さえます。</p>
+</div>
+<ol class="persona-route-list">
+<li>STEP1〜STEP4の57記事(上のタブから確認できます)</li>
 <li><a href="/articles/ad-netlogon-guide">Netlogonサービスとセキュアチャネルの仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/ad-kerberos-guide">Kerberos認証の仕組みを『上位1%』の視点で理解する</a></li>
-<li><a href="/articles/ad-multidomain-handson-guide">マルチドメイン・マルチツリーのADフォレストを構築するハンズオン</a></li>
-<li><a href="/articles/ad-migration-handson-guide">旧DCから新DCへのAD移行(リプレース)ハンズオン</a></li>
-<li><a href="/articles/ad-audio-review-guide">【音声で聴く】Active Directoryシリーズ総復習</a></li>
+<li data-subseries="handson"><a href="/articles/ad-multidomain-handson-guide">マルチドメイン・マルチツリーのADフォレストを構築するハンズオン</a></li>
+<li data-subseries="handson"><a href="/articles/ad-migration-handson-guide">旧DCから新DCへのAD移行(リプレース)ハンズオン</a></li>
+<li data-subseries="audio"><a href="/articles/ad-audio-review-guide">【音声で聴く】Active Directoryシリーズ総復習</a></li>
 <li><a href="/articles/ad-sysvol-dfsr-gpo-guide">SYSVOL・DFSR・グループポリシーの仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/ad-family-overview-guide">AD DS・AD CS・AD FS・AD LDS・AD RMSの違いを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/ad-ldap-protocol-guide">LDAPプロトコルの仕組みを『上位1%』の視点で理解する</a></li>
@@ -181,29 +217,38 @@ graph TB
 <li><a href="/articles/ad-isp-guide">ISP(インターネットサービスプロバイダー)とは何かを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/windows-server-licensing-guide">Windows Serverのライセンス(OEM・Datacenter・Standard)を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/windows-ntp-server-guide">Windows ServerでNTPサーバーを構築する際の設定値を『上位1%』の視点で理解する</a></li>
+</ol>
+</div>
+<div class="persona-panel persona-panel-6">
+<div class="persona-panel-head">
+<h3>💪 設計構築の現場で働いているが、いまいち自信が持てない方へ(周辺基盤編)</h3>
+<p>STEP5までの範囲に、Webサーバー(IIS)・ファイル共有(SMB)・ストレージ・クラウド・メール基盤・コンテナ基盤/構成管理の自動化といった、社内インフラの周辺領域まで押さえます。ここまでで「現場で自信をつけたい」ルートは完了です。特定の分野だけをまとめて読みたい場合は、トップページの絞り込み機能をご利用ください。</p>
+</div>
+<ol class="persona-route-list">
+<li>STEP1〜STEP5の71記事(上のタブから確認できます)</li>
 <li><a href="/articles/iis-fundamentals-guide">IISとASP.NETの仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/iis-ftp-guide">IISとFTPの関係を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/smb-file-sharing-guide">Windows ServerのSMB共有を『上位1%』の視点で理解する</a></li>
-<li><a href="/articles/windows-server-audio-review-guide">【音声で聴く】Windows Server運用シリーズ総復習</a></li>
+<li data-subseries="audio"><a href="/articles/windows-server-audio-review-guide">【音声で聴く】Windows Server運用シリーズ総復習</a></li>
 <li><a href="/articles/disk-raid-fundamentals-guide">RAIDとWindowsのディスク管理の関係を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/fc-san-fundamentals-guide">FCケーブル接続とLANケーブル接続の違いを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/ntfs-mft-internals-guide">NTFSファイルシステムの仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/aws-ec2-networking-basics-guide">EC2のキーペア(.pem/.ppk)とサブネットの予約IPを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/m365-email-fundamentals-guide">M365へのメール移行を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/openshift-guide">OpenShiftとは何かを『上位1%』の視点で理解する——Kubernetesとの関係</a></li>
-<li><a href="/articles/openshift-handson-guide">OpenShift Localでコンテナアプリケーションを動かす『上位1%』のハンズオン</a></li>
+<li data-subseries="handson"><a href="/articles/openshift-handson-guide">OpenShift Localでコンテナアプリケーションを動かす『上位1%』のハンズオン</a></li>
 <li><a href="/articles/ansible-guide">Ansibleとは何かを『上位1%』の視点で理解する——構成管理とエージェントレスの仕組み</a></li>
-<li><a href="/articles/ansible-handson-guide">Ansibleで複数サーバーへの設定投入を自動化する『上位1%』のハンズオン</a></li>
+<li data-subseries="handson"><a href="/articles/ansible-handson-guide">Ansibleで複数サーバーへの設定投入を自動化する『上位1%』のハンズオン</a></li>
 </ol>
-<div class="persona-bonus">🔍 <strong>興味があれば(任意)</strong>: <a href="/articles/voip-ss7-guide">VoIPとSS7、そして実際の通信経路</a>は電話網の歴史的経緯に、<a href="/articles/proxmox-internals-guide">Proxmox VEとは何か</a>はKVM/QEMUの内部動作に興味が湧いたら読んでみてください(STEP4で本格的に扱います)。</div>
+<div class="persona-bonus">🔍 <strong>興味があれば(任意)</strong>: <a href="/articles/voip-ss7-guide">VoIPとSS7、そして実際の通信経路</a>は電話網の歴史的経緯に、<a href="/articles/proxmox-internals-guide">Proxmox VEとは何か</a>はKVM/QEMUの内部動作に興味が湧いたら読んでみてください(Proxmoxの深掘りはSTEP7、VoIP/SS7はSTEP8で本格的に扱います)。</div>
 </div>
-<div class="persona-panel persona-panel-4">
+<div class="persona-panel persona-panel-7">
 <div class="persona-panel-head">
 <h3>📈 より年収の高い企業への転職を目指して勉強している方へ</h3>
-<p>STEP3までの実務知識に、面接や設計レビューで差がつく低レイヤーの実装知識を積み増すルートです。</p>
+<p>STEP6までの実務知識に、面接や設計レビューで差がつく低レイヤーの実装知識を積み増すルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP3の84記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP6の84記事(上のタブから確認できます)</li>
 <li><a href="/articles/proxmox-internals-guide">Proxmox VEとは何か——KVM/QEMUによる仮想化の仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/linux-daemon-guide">デーモン(daemon)とは何か——Linuxのバックグラウンドプロセスを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/software-library-guide">ライブラリ(library)とは何か——静的リンク・動的リンクの仕組みを『上位1%』の視点で理解する</a></li>
@@ -214,26 +259,26 @@ graph TB
 <li><a href="/articles/linux-filesystem-hierarchy-guide">/etcとLinuxのディレクトリ構成(FHS)を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/linux-config-activation-guide">設定ファイルが「効く」までの仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/linux-journalctl-guide">journalctlでエラーログを調査する方法を『上位1%』の視点で理解する</a></li>
-<li><a href="/articles/linux-audio-review-guide">【音声で聴く】Linux/OS基礎シリーズ総復習</a></li>
+<li data-subseries="audio"><a href="/articles/linux-audio-review-guide">【音声で聴く】Linux/OS基礎シリーズ総復習</a></li>
 <li><a href="/articles/nic-driver-internals-guide">NICドライバとLinuxカーネルのネットワーク処理を『上位1%』の視点で理解する</a></li>
-<li><a href="/articles/network-audio-review-guide">【音声で聴く】ネットワーク基礎シリーズ総復習</a></li>
+<li data-subseries="audio"><a href="/articles/network-audio-review-guide">【音声で聴く】ネットワーク基礎シリーズ総復習</a></li>
 <li><a href="/articles/openvpn-internals-guide">OpenVPNの仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/wireguard-internals-guide">WireGuardの仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/tailscale-internals-guide">Tailscaleの仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/ztna-guide">ZTNA(ゼロトラストネットワークアクセス)とは何かを『上位1%』の視点で理解する</a></li>
-<li><a href="/articles/modern-vpn-audio-review-guide">【音声で聴く】現代的VPNプロトコル深掘りシリーズ総復習</a></li>
+<li data-subseries="audio"><a href="/articles/modern-vpn-audio-review-guide">【音声で聴く】現代的VPNプロトコル深掘りシリーズ総復習</a></li>
 <li><a href="/articles/idrac-power-guide">サーバー電源の仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/os-boot-process-guide">POST後のOS起動プロセスを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/hyperv-capacity-guide">Hyper-Vの仮想マシンリソース設計を『上位1%』の視点で理解する</a></li>
 </ol>
 </div>
-<div class="persona-panel persona-panel-5">
+<div class="persona-panel persona-panel-8">
 <div class="persona-panel-head">
-<h3>🏆 年収1000万・2000万・5000万を目指して情報収集している方へ</h3>
+<h3>🏆 業界最高峰のスキル水準を目指して情報収集している方へ</h3>
 <p>全106記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP4の105記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP7の105記事(上のタブから確認できます)</li>
 <li><a href="/articles/voip-ss7-guide">VoIPとSS7、そして実際の通信経路を『上位1%』の視点で理解する</a></li>
 </ol>
 <div class="persona-bonus">🎉 <strong>これで全106記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>

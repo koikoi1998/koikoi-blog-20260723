@@ -67,7 +67,7 @@ The recommended reading order within each series is noted in that series' descri
 
 ## Recommended Routes by Reader Type
 
-This blog is written for a wide range of readers — from people with no experience aiming to become infrastructure engineers, to top-tier AWS/Google engineers earning the equivalent of ¥50 million or more a year. You don't have to read every article in order, so here are five routes matched to career stage. **Pick the tab closest to you below and only that route will show** (route ② and beyond each assume every STEP before it). Niche articles that only matter in a very specific real-world situation aren't force-fit into every route — each one is introduced for the first time in the route where it actually becomes relevant (earlier routes just mention it briefly as optional). These routes are split purely by **reader level, proficiency, and income bracket** — if you want to read everything in one specific field (Active Directory, container platforms, and so on) in one go, use "Series list" below or the filter feature on the top page instead.
+This blog is written for a wide range of readers — from people with no experience aiming to become infrastructure engineers, to engineers on the front line at top-tier companies like AWS and Google. You don't have to read every article in order, so here are eight routes matched to career stage. **Pick the tab closest to you below and only that route will show** (route ② and beyond each assume every STEP before it). Once you've picked a STEP, you can also use the filter below it to narrow the list down to just "Articles," "Hands-On," or "Audio Review." Niche articles that only matter in a very specific real-world situation aren't force-fit into every route — each one is introduced for the first time in the route where it actually becomes relevant (earlier routes just mention it briefly as optional). These routes are split purely by **reader level and proficiency** — if you want to read everything in one specific field (Active Directory, container platforms, and so on) in one go, use "Series list" below or the filter feature on the top page instead. This used to be five STEPs, but as the article count grew, the load per STEP became uneven, so the "on the job, building confidence" stage is now split into four depths — foundations, expanding scope, running it solo, and adjacent infrastructure — to make the load per STEP more even.
 
 <div class="persona-routes">
 <input type="radio" name="persona-route" id="persona-tab-1" class="persona-input" checked>
@@ -75,12 +75,29 @@ This blog is written for a wide range of readers — from people with no experie
 <input type="radio" name="persona-route" id="persona-tab-3" class="persona-input">
 <input type="radio" name="persona-route" id="persona-tab-4" class="persona-input">
 <input type="radio" name="persona-route" id="persona-tab-5" class="persona-input">
+<input type="radio" name="persona-route" id="persona-tab-6" class="persona-input">
+<input type="radio" name="persona-route" id="persona-tab-7" class="persona-input">
+<input type="radio" name="persona-route" id="persona-tab-8" class="persona-input">
+<input type="radio" name="content-filter" id="content-filter-all" class="persona-input" checked>
+<input type="radio" name="content-filter" id="content-filter-main" class="persona-input">
+<input type="radio" name="content-filter" id="content-filter-handson" class="persona-input">
+<input type="radio" name="content-filter" id="content-filter-audio" class="persona-input">
 <div class="persona-tabs">
 <label for="persona-tab-1" class="persona-tab"><span class="persona-tab-step">STEP1</span> 🌱 Self-taught, no experience yet</label>
 <label for="persona-tab-2" class="persona-tab"><span class="persona-tab-step">STEP2</span> 🔧 Year 1, entering design/build work</label>
-<label for="persona-tab-3" class="persona-tab"><span class="persona-tab-step">STEP3</span> 💪 On the job, building confidence</label>
-<label for="persona-tab-4" class="persona-tab"><span class="persona-tab-step">STEP4</span> 📈 Aiming for a higher-paying job</label>
-<label for="persona-tab-5" class="persona-tab"><span class="persona-tab-step">STEP5</span> 🏆 Top 1% (¥10M–¥50M+)</label>
+<label for="persona-tab-3" class="persona-tab"><span class="persona-tab-step">STEP3</span> 💪 On the job, building confidence (foundations)</label>
+<label for="persona-tab-4" class="persona-tab"><span class="persona-tab-step">STEP4</span> 💪 On the job, building confidence (expanding scope)</label>
+<label for="persona-tab-5" class="persona-tab"><span class="persona-tab-step">STEP5</span> 💪 On the job, building confidence (running it solo)</label>
+<label for="persona-tab-6" class="persona-tab"><span class="persona-tab-step">STEP6</span> 💪 On the job, building confidence (adjacent infrastructure)</label>
+<label for="persona-tab-7" class="persona-tab"><span class="persona-tab-step">STEP7</span> 📈 Aiming for a higher-paying job</label>
+<label for="persona-tab-8" class="persona-tab"><span class="persona-tab-step">STEP8</span> 🏆 Aiming for the top 1%</label>
+</div>
+<div class="content-filter-bar">
+<span class="article-filters-label">↳ Filter by type:</span>
+<label for="content-filter-all" class="filter-chip">All</label>
+<label for="content-filter-main" class="filter-chip">Articles</label>
+<label for="content-filter-handson" class="filter-chip">Hands-On</label>
+<label for="content-filter-audio" class="filter-chip">Audio Review</label>
 </div>
 <div class="persona-panels">
 <div class="persona-panel persona-panel-1">
@@ -116,13 +133,13 @@ This blog is written for a wide range of readers — from people with no experie
 <li><a href="/en/articles/windows-process-task-guide">Understanding the Difference Between Processes, Tasks, and Threads in Windows from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/unicode-filename-normalization-guide">Why Do Files With Identical-Looking Names Have Different Character Counts in Windows?</a></li>
 <li><a href="/en/articles/windows-install-media-guide">Understanding the Difference Between x64 and x86 Installers from a "Top 1%" Perspective</a></li>
-<li><a href="/en/articles/windows-defender-eicar-handson-guide">A Top-1% Hands-On Lab: Confirming Windows Defender's Detection with the EICAR Test File</a></li>
+<li data-subseries="handson"><a href="/en/articles/windows-defender-eicar-handson-guide">A Top-1% Hands-On Lab: Confirming Windows Defender's Detection with the EICAR Test File</a></li>
 <li><a href="/en/articles/malware-infection-mechanics-guide">Understanding How Malware Infection Actually Happens from a Top-1% Perspective</a></li>
 <li><a href="/en/articles/practical-server-security-measures-guide">Understanding Practical Security Measures for Building and Operating Servers from a Top-1% Perspective</a></li>
 <li><a href="/en/articles/monitor-edid-guide">Understanding How a Monitor's Layout Settings Get Restored from a Top-1% Perspective</a></li>
 <li><a href="/en/articles/iso-mount-guide">Understanding What "Mounting" an ISO File Actually Does from a Top-1% Perspective</a></li>
 <li><a href="/en/articles/office-click-to-run-conflict-guide">Understanding Why Conflicting Office Editions Become Impossible to Uninstall from a Top-1% Perspective</a></li>
-<li><a href="/en/articles/windows-client-audio-review-guide">[Listen] The Windows Client Operations Series, Fully Recapped</a></li>
+<li data-subseries="audio"><a href="/en/articles/windows-client-audio-review-guide">[Listen] The Windows Client Operations Series, Fully Recapped</a></li>
 <li><a href="/en/articles/proxy-firewall-guide">Understanding When to Use a Proxy vs. a Firewall from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/http-caching-cdn-guide">Understanding the Rise of HTTPS and the End of Proxy Caching from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/protocol-design-guide">Understanding What a Protocol Actually Is From a "Top 1%" Perspective</a></li>
@@ -132,8 +149,8 @@ This blog is written for a wide range of readers — from people with no experie
 </div>
 <div class="persona-panel persona-panel-3">
 <div class="persona-panel-head">
-<h3>💪 For those on the job in design/build work who still don't feel confident</h3>
-<p>This is where "I sort of know this" turns into working knowledge. On top of STEP2, this route adds the niche real-world articles, hands-on labs, AD migration/DC-operations work, Windows Server operations beyond AD, and container platforms/config-management automation — the broad range of topics that come up constantly on the job. If you want to read one specific field in one go, use the filter feature on the top page instead.</p>
+<h3>💪 For those on the job in design/build work who still don't feel confident (foundations)</h3>
+<p>This is where "I sort of know this" starts turning into working knowledge. It covers hands-on VPN construction, site-to-site VPN, and the hands-on basics of doing things with your own hands — setting up a virtualization environment, first-time OS setup, terminal/packet-capture tools, and troubleshooting drills.</p>
 </div>
 <ol class="persona-route-list">
 <li>STEP1 and STEP2's 29 articles (see those tabs above)</li>
@@ -142,16 +159,25 @@ This blog is written for a wide range of readers — from people with no experie
 <li><a href="/en/articles/local-gov-network-guide">Understanding Japanese Local Government Network Segregation and Security Clouds from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/virtual-ip-guide">Understanding Virtual IPs (VIPs) and NIC Teaming's Virtual IP from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/windows-network-adapter-guide">Understanding Windows Multi-Adapter Networking and Network Location Awareness from a "Top 1%" Perspective</a></li>
-<li><a href="/en/articles/handson-prep-guide">Hands-On Prep Manual: From Creating a VM in Proxmox VE to Installing an OS</a></li>
-<li><a href="/en/articles/ubuntu-server-setup-guide">Hands-On Prep Manual: Setting Up an Ubuntu Server for the First Time</a></li>
-<li><a href="/en/articles/windows-server-setup-guide">Hands-On Prep Manual: Setting Up Windows Server 2025 for the First Time and Enabling SSH (GUI Only)</a></li>
-<li><a href="/en/articles/teraterm-guide">Hands-On Prep Manual: How to Use Teraterm (a Terminal Client)</a></li>
-<li><a href="/en/articles/wireshark-guide">Hands-On Prep Manual: How to Use Wireshark</a></li>
-<li><a href="/en/articles/handson-prep-audio-review-guide">[Listen] The Hands-On Prep Series, Fully Recapped</a></li>
-<li><a href="/en/articles/l2tp-ipsec-lab-guide">A "Top 1%" Hands-On Lab: Building Your Own L2TP/IPsec Server and Verifying the Theory Yourself</a></li>
-<li><a href="/en/articles/l2tp-ipsec-troubleshooting-lab">L2TP/IPsec Troubleshooting Lab: Diagnosing Real Failures from Error Logs, a "Top 1%" Hands-On Exercise</a></li>
+<li data-subseries="handson"><a href="/en/articles/handson-prep-guide">Hands-On Prep Manual: From Creating a VM in Proxmox VE to Installing an OS</a></li>
+<li data-subseries="handson"><a href="/en/articles/ubuntu-server-setup-guide">Hands-On Prep Manual: Setting Up an Ubuntu Server for the First Time</a></li>
+<li data-subseries="handson"><a href="/en/articles/windows-server-setup-guide">Hands-On Prep Manual: Setting Up Windows Server 2025 for the First Time and Enabling SSH (GUI Only)</a></li>
+<li data-subseries="handson"><a href="/en/articles/teraterm-guide">Hands-On Prep Manual: How to Use Teraterm (a Terminal Client)</a></li>
+<li data-subseries="handson"><a href="/en/articles/wireshark-guide">Hands-On Prep Manual: How to Use Wireshark</a></li>
+<li data-subseries="audio"><a href="/en/articles/handson-prep-audio-review-guide">[Listen] The Hands-On Prep Series, Fully Recapped</a></li>
+<li data-subseries="handson"><a href="/en/articles/l2tp-ipsec-lab-guide">A "Top 1%" Hands-On Lab: Building Your Own L2TP/IPsec Server and Verifying the Theory Yourself</a></li>
+<li data-subseries="handson"><a href="/en/articles/l2tp-ipsec-troubleshooting-lab">L2TP/IPsec Troubleshooting Lab: Diagnosing Real Failures from Error Logs, a "Top 1%" Hands-On Exercise</a></li>
 <li><a href="/en/articles/windows-rras-roles-guide">Understanding the Differences Between VPN Access, Dial-Up Access, Demand-Dial Access, NAT, and LAN Routing in Windows Server RRAS from a "Top 1%" Perspective</a></li>
-<li><a href="/en/articles/vpn-audio-review-guide">[Listen] The Remote-Access VPN / L2TP-IPsec Series, Fully Recapped</a></li>
+</ol>
+</div>
+<div class="persona-panel persona-panel-4">
+<div class="persona-panel-head">
+<h3>💪 For those on the job in design/build work who still don't feel confident (expanding scope)</h3>
+<p>On top of STEP3, this route adds larger-scale design work — site-to-site VPN with AWS, SD-WAN — plus the design philosophy of directory services (the core of internal infrastructure), practical DNS work, and the basics of health checks, expanding the range of work you're trusted with.</p>
+</div>
+<ol class="persona-route-list">
+<li>STEP1 through STEP3's 43 articles (see those tabs above)</li>
+<li data-subseries="audio"><a href="/en/articles/vpn-audio-review-guide">[Listen] The Remote-Access VPN / L2TP-IPsec Series, Fully Recapped</a></li>
 <li><a href="/en/articles/site-to-site-vpn-aws-guide">Understanding Site-to-Site VPN with AWS from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/sdwan-edge-router-guide">Understanding SD-WAN and Edge Router Selection from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/ad-dc-fundamentals-guide">Understanding the Difference Between AD and DC, and Domains vs. Forests, from a "Top 1%" Perspective</a></li>
@@ -165,11 +191,21 @@ This blog is written for a wide range of readers — from people with no experie
 <li><a href="/en/articles/dcdiag-guide">Reading dcdiag /v from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/ad-migration-cleanup-guide">Understanding Post-Migration AD Cleanup from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/ad-spn-guide">Understanding SPNs (Service Principal Names) from a "Top 1%" Perspective</a></li>
+</ol>
+<div class="persona-bonus">🔍 <strong>If you run into it on the job (optional)</strong>: <a href="/en/articles/windows-server-l2tp-vpn-guide">Windows Server (RRAS) L2TP/IPsec VPN setup</a>, <a href="/en/articles/site-to-site-vpn-guide">site-to-site VPN</a>, and <a href="/en/articles/local-gov-network-guide">Japanese local government network segregation</a> are niche articles for people who actually hit that specific situation (STEP3 covers them properly).</div>
+</div>
+<div class="persona-panel persona-panel-5">
+<div class="persona-panel-head">
+<h3>💪 For those on the job in design/build work who still don't feel confident (running it solo)</h3>
+<p>On top of STEP4's directory-services basics, this route adds the deep, "breaking this has a big blast radius" areas — authentication, replication, migration — plus hands-on labs building a multi-domain forest and migrating a DC, so you can run infrastructure you've been handed on your own with confidence. It also covers Windows Server procurement and time-sync basics.</p>
+</div>
+<ol class="persona-route-list">
+<li>STEP1 through STEP4's 57 articles (see those tabs above)</li>
 <li><a href="/en/articles/ad-netlogon-guide">Understanding the Netlogon Service and the Secure Channel from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/ad-kerberos-guide">Understanding Kerberos Authentication from a "Top 1%" Perspective</a></li>
-<li><a href="/en/articles/ad-multidomain-handson-guide">Hands-On: Building a Multi-Domain, Multi-Tree AD Forest</a></li>
-<li><a href="/en/articles/ad-migration-handson-guide">Hands-On: Migrating From an Old DC to a New One</a></li>
-<li><a href="/en/articles/ad-audio-review-guide">[Listen] The Active Directory Series, Fully Recapped</a></li>
+<li data-subseries="handson"><a href="/en/articles/ad-multidomain-handson-guide">Hands-On: Building a Multi-Domain, Multi-Tree AD Forest</a></li>
+<li data-subseries="handson"><a href="/en/articles/ad-migration-handson-guide">Hands-On: Migrating From an Old DC to a New One</a></li>
+<li data-subseries="audio"><a href="/en/articles/ad-audio-review-guide">[Listen] The Active Directory Series, Fully Recapped</a></li>
 <li><a href="/en/articles/ad-sysvol-dfsr-gpo-guide">Understanding SYSVOL, DFSR, and Group Policy from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/ad-family-overview-guide">Understanding AD DS, AD CS, AD FS, AD LDS, and AD RMS from a Top-1% Perspective</a></li>
 <li><a href="/en/articles/ad-ldap-protocol-guide">Understanding the LDAP Protocol from a Top-1% Perspective</a></li>
@@ -179,29 +215,38 @@ This blog is written for a wide range of readers — from people with no experie
 <li><a href="/en/articles/ad-isp-guide">Understanding What an ISP Is from a Top-1% Perspective</a></li>
 <li><a href="/en/articles/windows-server-licensing-guide">Understanding Windows Server Licensing (OEM, Datacenter, Standard) from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/windows-ntp-server-guide">Understanding the Configuration Values for Building an NTP Server on Windows Server from a "Top 1%" Perspective</a></li>
+</ol>
+</div>
+<div class="persona-panel persona-panel-6">
+<div class="persona-panel-head">
+<h3>💪 For those on the job in design/build work who still don't feel confident (adjacent infrastructure)</h3>
+<p>On top of STEP5, this route adds the infrastructure adjacent to your core stack — web servers (IIS), file sharing (SMB), storage, cloud, email infrastructure, and container platforms/config-management automation. This completes the "building confidence" route. If you want to read one specific field in one go, use the filter feature on the top page instead.</p>
+</div>
+<ol class="persona-route-list">
+<li>STEP1 through STEP5's 71 articles (see those tabs above)</li>
 <li><a href="/en/articles/iis-fundamentals-guide">Understanding How IIS and ASP.NET Work from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/iis-ftp-guide">Understanding the Relationship Between IIS and FTP from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/smb-file-sharing-guide">Understanding Windows Server SMB File Sharing from a "Top 1%" Perspective</a></li>
-<li><a href="/en/articles/windows-server-audio-review-guide">[Listen] The Windows Server Operations Series, Fully Recapped</a></li>
+<li data-subseries="audio"><a href="/en/articles/windows-server-audio-review-guide">[Listen] The Windows Server Operations Series, Fully Recapped</a></li>
 <li><a href="/en/articles/disk-raid-fundamentals-guide">Understanding the Relationship Between RAID and Windows Disk Management from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/fc-san-fundamentals-guide">Understanding the Difference Between Fibre Channel and LAN Connections from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/ntfs-mft-internals-guide">Understanding How the NTFS File System Works from a Top-1% Perspective</a></li>
 <li><a href="/en/articles/aws-ec2-networking-basics-guide">Understanding EC2 Key Pairs (.pem/.ppk) and Reserved Subnet IPs from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/m365-email-fundamentals-guide">Understanding Email Migration to M365 from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/openshift-guide">Understanding What OpenShift Actually Is From a "Top 1%" Perspective — Its Relationship to Kubernetes</a></li>
-<li><a href="/en/articles/openshift-handson-guide">A "Top 1%" Hands-On Lab: Running a Container Application on OpenShift Local</a></li>
+<li data-subseries="handson"><a href="/en/articles/openshift-handson-guide">A "Top 1%" Hands-On Lab: Running a Container Application on OpenShift Local</a></li>
 <li><a href="/en/articles/ansible-guide">Understanding What Ansible Actually Is From a "Top 1%" Perspective — Configuration Management and the Agentless Model</a></li>
-<li><a href="/en/articles/ansible-handson-guide">A "Top 1%" Hands-On Lab: Automating Configuration Across Multiple Servers with Ansible</a></li>
+<li data-subseries="handson"><a href="/en/articles/ansible-handson-guide">A "Top 1%" Hands-On Lab: Automating Configuration Across Multiple Servers with Ansible</a></li>
 </ol>
-<div class="persona-bonus">🔍 <strong>If it interests you (optional)</strong>: <a href="/en/articles/voip-ss7-guide">Understanding VoIP and SS7</a> is worth a read once the history behind the telephone network starts to interest you, and <a href="/en/articles/proxmox-internals-guide">What Is Proxmox VE?</a> is worth a read once KVM/QEMU's internals start to interest you (STEP4 covers them properly).</div>
+<div class="persona-bonus">🔍 <strong>If it interests you (optional)</strong>: <a href="/en/articles/voip-ss7-guide">Understanding VoIP and SS7</a> is worth a read once the history behind the telephone network starts to interest you, and <a href="/en/articles/proxmox-internals-guide">What Is Proxmox VE?</a> is worth a read once KVM/QEMU's internals start to interest you (the Proxmox deep-dive is properly covered in STEP7, VoIP/SS7 in STEP8).</div>
 </div>
-<div class="persona-panel persona-panel-4">
+<div class="persona-panel persona-panel-7">
 <div class="persona-panel-head">
 <h3>📈 For those studying to move to a higher-paying company</h3>
-<p>Adds the low-level implementation knowledge that sets you apart in interviews and design reviews, on top of everything through STEP3.</p>
+<p>Adds the low-level implementation knowledge that sets you apart in interviews and design reviews, on top of everything through STEP6.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP3's 84 articles (see those tabs above)</li>
+<li>STEP1 through STEP6's 84 articles (see those tabs above)</li>
 <li><a href="/en/articles/proxmox-internals-guide">What Is Proxmox VE? Understanding KVM/QEMU Virtualization from the "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/linux-daemon-guide">What Is a Daemon? Understanding Linux Background Processes from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/software-library-guide">What Is a Library? Understanding Static and Dynamic Linking from a "Top 1%" Perspective</a></li>
@@ -212,26 +257,26 @@ This blog is written for a wide range of readers — from people with no experie
 <li><a href="/en/articles/linux-filesystem-hierarchy-guide">/etc and the Linux Directory Layout (FHS) from the "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/linux-config-activation-guide">How a Config File Actually "Takes Effect," from the "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/linux-journalctl-guide">Investigating Error Logs with journalctl from a "Top 1%" Perspective</a></li>
-<li><a href="/en/articles/linux-audio-review-guide">[Listen] The Linux/OS Fundamentals Series, Fully Recapped</a></li>
+<li data-subseries="audio"><a href="/en/articles/linux-audio-review-guide">[Listen] The Linux/OS Fundamentals Series, Fully Recapped</a></li>
 <li><a href="/en/articles/nic-driver-internals-guide">Understanding NIC Drivers and Linux Kernel Networking from a "Top 1%" Perspective</a></li>
-<li><a href="/en/articles/network-audio-review-guide">[Listen] The Networking Fundamentals Series, Fully Recapped</a></li>
+<li data-subseries="audio"><a href="/en/articles/network-audio-review-guide">[Listen] The Networking Fundamentals Series, Fully Recapped</a></li>
 <li><a href="/en/articles/openvpn-internals-guide">How OpenVPN Works from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/wireguard-internals-guide">How WireGuard Works from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/tailscale-internals-guide">How Tailscale Works from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/ztna-guide">What Is ZTNA (Zero Trust Network Access) from a "Top 1%" Perspective</a></li>
-<li><a href="/en/articles/modern-vpn-audio-review-guide">[Listen] The Modern VPN Protocol Deep-Dive Series, Fully Recapped</a></li>
+<li data-subseries="audio"><a href="/en/articles/modern-vpn-audio-review-guide">[Listen] The Modern VPN Protocol Deep-Dive Series, Fully Recapped</a></li>
 <li><a href="/en/articles/idrac-power-guide">Understanding Server Power Design from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/os-boot-process-guide">Understanding the OS Boot Process After POST from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/hyperv-capacity-guide">Understanding Hyper-V Virtual Machine Resource Design from a "Top 1%" Perspective</a></li>
 </ol>
 </div>
-<div class="persona-panel persona-panel-5">
+<div class="persona-panel persona-panel-8">
 <div class="persona-panel-head">
-<h3>🏆 For those gathering information toward ¥10M, ¥20M, or ¥50M+</h3>
+<h3>🏆 For those gathering information toward the industry's highest skill tier</h3>
 <p>The complete-conquest route: read all 106 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP4's 105 articles (see those tabs above)</li>
+<li>STEP1 through STEP7's 105 articles (see those tabs above)</li>
 <li><a href="/en/articles/voip-ss7-guide">Understanding VoIP and SS7 — and the Real Path Your Traffic Takes — from a "Top 1%" Perspective</a></li>
 </ol>
 <div class="persona-bonus">🎉 <strong>That's all 106 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>

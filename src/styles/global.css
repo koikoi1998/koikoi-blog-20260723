@@ -947,6 +947,31 @@ pre.mermaid {
   display: block;
 }
 
+/* ---------- content-type filter within a STEP (sitemap) ---------- */
+
+.content-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.6rem;
+  align-items: center;
+  margin: 1.2rem 0 1.5rem;
+}
+
+#content-filter-main:checked ~ .persona-panels li[data-subseries],
+#content-filter-handson:checked ~ .persona-panels li:not([data-subseries="handson"]),
+#content-filter-audio:checked ~ .persona-panels li:not([data-subseries="audio"]) {
+  display: none;
+}
+
+#content-filter-all:checked ~ .content-filter-bar label[for="content-filter-all"],
+#content-filter-main:checked ~ .content-filter-bar label[for="content-filter-main"],
+#content-filter-handson:checked ~ .content-filter-bar label[for="content-filter-handson"],
+#content-filter-audio:checked ~ .content-filter-bar label[for="content-filter-audio"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-fg);
+}
+
 /* ---------- article list filter (homepage) ---------- */
 
 .article-filters {
