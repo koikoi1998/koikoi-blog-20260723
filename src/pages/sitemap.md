@@ -207,7 +207,6 @@ graph TB
 <li><a href="/articles/ad-kerberos-guide">Kerberos認証の仕組みを『上位1%』の視点で理解する</a></li>
 <li data-subseries="handson"><a href="/articles/ad-multidomain-handson-guide">マルチドメイン・マルチツリーのADフォレストを構築するハンズオン</a></li>
 <li data-subseries="handson"><a href="/articles/ad-migration-handson-guide">旧DCから新DCへのAD移行(リプレース)ハンズオン</a></li>
-<li data-subseries="audio"><a href="/articles/ad-audio-review-guide">【音声で聴く】Active Directoryシリーズ総復習</a></li>
 <li><a href="/articles/ad-sysvol-dfsr-gpo-guide">SYSVOL・DFSR・グループポリシーの仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/ad-family-overview-guide">AD DS・AD CS・AD FS・AD LDS・AD RMSの違いを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/ad-ldap-protocol-guide">LDAPプロトコルの仕組みを『上位1%』の視点で理解する</a></li>
@@ -215,6 +214,7 @@ graph TB
 <li><a href="/articles/ad-schema-extension-guide">ADのスキーマ拡張を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/ad-dotnet-powershell-guide">.NET FrameworkとPowerShellの関係を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/ad-isp-guide">ISP(インターネットサービスプロバイダー)とは何かを『上位1%』の視点で理解する</a></li>
+<li data-subseries="audio"><a href="/articles/ad-audio-review-guide">【音声で聴く】Active Directoryシリーズ総復習</a></li>
 <li><a href="/articles/windows-server-licensing-guide">Windows Serverのライセンス(OEM・Datacenter・Standard)を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/windows-ntp-server-guide">Windows ServerでNTPサーバーを構築する際の設定値を『上位1%』の視点で理解する</a></li>
 </ol>
@@ -229,9 +229,9 @@ graph TB
 <li><a href="/articles/iis-fundamentals-guide">IISとASP.NETの仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/iis-ftp-guide">IISとFTPの関係を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/smb-file-sharing-guide">Windows ServerのSMB共有を『上位1%』の視点で理解する</a></li>
+<li data-subseries="handson"><a href="/articles/minimal-http-server-handson-guide">自分の手でHTTPサーバーを書いてみる『上位1%』のハンズオン</a></li>
 <li><a href="/articles/smb-cifs-linux-interop-guide">SMBとCIFSは何が違うのか——Windows-Linux間のファイル共有を『上位1%』の視点で理解する</a></li>
 <li data-subseries="audio"><a href="/articles/windows-server-audio-review-guide">【音声で聴く】Windows Server運用シリーズ総復習</a></li>
-<li data-subseries="handson"><a href="/articles/minimal-http-server-handson-guide">自分の手でHTTPサーバーを書いてみる『上位1%』のハンズオン</a></li>
 <li><a href="/articles/disk-raid-fundamentals-guide">RAIDとWindowsのディスク管理の関係を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/fc-san-fundamentals-guide">FCケーブル接続とLANケーブル接続の違いを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/ntfs-mft-internals-guide">NTFSファイルシステムの仕組みを『上位1%』の視点で理解する</a></li>
@@ -263,8 +263,8 @@ graph TB
 <li><a href="/articles/linux-filesystem-hierarchy-guide">/etcとLinuxのディレクトリ構成(FHS)を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/linux-config-activation-guide">設定ファイルが「効く」までの仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/linux-journalctl-guide">journalctlでエラーログを調査する方法を『上位1%』の視点で理解する</a></li>
-<li data-subseries="audio"><a href="/articles/linux-audio-review-guide">【音声で聴く】Linux/OS基礎シリーズ総復習</a></li>
 <li><a href="/articles/software-framework-guide">フレームワークとは何か——ライブラリ・ランタイム・SDKとの違いを『上位1%』の視点で理解する</a></li>
+<li data-subseries="audio"><a href="/articles/linux-audio-review-guide">【音声で聴く】Linux/OS基礎シリーズ総復習</a></li>
 <li><a href="/articles/nic-driver-internals-guide">NICドライバとLinuxカーネルのネットワーク処理を『上位1%』の視点で理解する</a></li>
 <li data-subseries="audio"><a href="/articles/network-audio-review-guide">【音声で聴く】ネットワーク基礎シリーズ総復習</a></li>
 <li><a href="/articles/openvpn-internals-guide">OpenVPNの仕組みを『上位1%』の視点で理解する</a></li>
@@ -367,7 +367,7 @@ graph TB
 
 ### Linux/OS基礎シリーズ
 
-VPNプロトコルの記事やL2TP/IPsecハンズオンなどで繰り返し登場する、実行環境レベルの基礎用語を深掘りするシリーズです。**読む順番の目安**: ① linux-daemon-guide → ② software-library-guide → ③ linux-user-kernel-space-guide → ④ linux-file-permissions-guide → ⑤ linux-sysctl-guide → ⑥ linux-iptables-guide → ⑦ linux-filesystem-hierarchy-guide → ⑧ linux-config-activation-guide → ⑨ linux-journalctl-guide → ⑩ linux-audio-review-guide(全9記事を読み終えた後の音声復習用) → ⑪ software-framework-guide(音声復習の後に追加された、さらなる深掘り記事)。
+VPNプロトコルの記事やL2TP/IPsecハンズオンなどで繰り返し登場する、実行環境レベルの基礎用語を深掘りするシリーズです。**読む順番の目安**: ① linux-daemon-guide → ② software-library-guide → ③ linux-user-kernel-space-guide → ④ linux-file-permissions-guide → ⑤ linux-sysctl-guide → ⑥ linux-iptables-guide → ⑦ linux-filesystem-hierarchy-guide → ⑧ linux-config-activation-guide → ⑨ linux-journalctl-guide → ⑩ software-framework-guide(音声復習の前に追加された記事) → ⑪ linux-audio-review-guide(全10記事を読み終えた後の音声復習用)。
 
 - [デーモン(daemon)とは何か——Linuxのバックグラウンドプロセスを『上位1%』の視点で理解する](/articles/linux-daemon-guide) — 通常のプロセスとの違い、IKEデーモンなどプロトコル処理がデーモンとして実装される理由、systemdによる起動・監視・ログの仕組みまでの深掘り（現代的なVPNプロトコルとの比較の記事のデーモンの話から派生した発展編、単体でも読めます）。
 - [ライブラリ(library)とは何か——静的リンク・動的リンクの仕組みを『上位1%』の視点で理解する](/articles/software-library-guide) — 静的リンクと動的リンク(共有ライブラリ)の違い、シンボル解決の仕組み、ABI互換性が障害要因になる理由までの深掘り（現代的なVPNプロトコルとの比較の記事のOpenSSLの話から派生した発展編、単体でも読めます）。
@@ -378,8 +378,8 @@ VPNプロトコルの記事やL2TP/IPsecハンズオンなどで繰り返し登�
 - [/etcとLinuxのディレクトリ構成(FHS)を『上位1%』の視点で理解する](/articles/linux-filesystem-hierarchy-guide) — FHSという設計思想を貫く「ホスト固有か共有可能か」「静的か可変か」という2つの軸、サービスごとのサブディレクトリの慣習、コンテナ時代における意味の変化までの深掘り（L2TP/IPsecハンズオンの/etc/ipsec.conf編集から派生した発展編、単体でも読めます）。
 - [設定ファイルが「効く」までの仕組みを『上位1%』の視点で理解する](/articles/linux-config-activation-guide) — デーモンが設定ファイルをパースして内部データ構造に変換する流れ、reloadと再起動の違い、ユーザー空間デーモンの設定とカーネルパラメータの反映経路の違いまでの深掘り（L2TP/IPsecハンズオンのipsec.conf/xl2tpd.conf編集から派生した発展編、単体でも読めます）。
 - [journalctlでエラーログを調査する方法を『上位1%』の視点で理解する](/articles/linux-journalctl-guide) — systemdジャーナルの正体、-u/-t/-f/-n/--no-pager/-xeの使い分け、IKE→L2TP→PPPのように複数プロセスが連携する構成でどの順番でログを追うかの切り分け方までの深掘り（L2TP/IPsecハンズオンのエラー調査から派生した発展編、単体でも読めます）。
-- [【音声で聴く】Linux/OS基礎シリーズ総復習](/articles/linux-audio-review-guide) — 全9記事を読み終えた人向けの、耳だけで復習できる音声学習記事。表・図・箇条書きを使わず、ブラウザの読み上げ機能で聞き流せるように語りかける文章だけで構成(シリーズを読了している前提)。
 - [フレームワークとは何か——ライブラリ・ランタイム・SDKとの違いを『上位1%』の視点で理解する](/articles/software-framework-guide) — 「フレームワーク」「ライブラリ」「ランタイム」「SDK」「API」という紛らわしい5つの用語を、制御の反転(IoC)という1つの軸で整理する深掘り([iis-fundamentals-guide](/articles/iis-fundamentals-guide)の「ASP.NETはフレームワークである」という説明から派生、単体でも読めます)。
+- [【音声で聴く】Linux/OS基礎シリーズ総復習](/articles/linux-audio-review-guide) — 全10記事を読み終えた人向けの、耳だけで復習できる音声学習記事。表・図・箇条書きを使わず、ブラウザの読み上げ機能で聞き流せるように語りかける文章だけで構成(シリーズを読了している前提)。
 
 ### 電話網・アクセス回線シリーズ
 
@@ -402,7 +402,7 @@ VPNプロトコルの記事やL2TP/IPsecハンズオンなどで繰り返し登�
 
 ### Active Directoryシリーズ
 
-AD移行・ドメインコントローラー(DC)の構築・運用の実務で必ず直面する疑問を深掘りするシリーズです。DNSの基礎([dns-guide](/articles/dns-guide))を読了している前提で書いています。**読む順番の目安**: ① ad-dc-fundamentals-guide → ② ad-computername-netdom-guide → ③ ad-windows-login-guide → ④ ad-dns-guide → ⑤ dns-zones-records-guide → ⑥ fsmo-guide → ⑦ dc-health-check-guide → ⑧ ad-sites-guide → ⑨ dcdiag-guide → ⑩ ad-migration-cleanup-guide → ⑪ ad-spn-guide → ⑫ ad-netlogon-guide → ⑬ ad-kerberos-guide → ⑭ ad-multidomain-handson-guide → ⑮ ad-migration-handson-guide → ⑯ ad-audio-review-guide(全15記事を読み終えた後の音声復習用) → ⑰ ad-sysvol-dfsr-gpo-guide → ⑱ ad-family-overview-guide → ⑲ ad-ldap-protocol-guide → ⑳ ad-netbios-dns-history-guide → ㉑ ad-schema-extension-guide → ㉒ ad-dotnet-powershell-guide → ㉓ ad-isp-guide(いずれも音声復習の後に追加された、さらなる深掘り記事)。
+AD移行・ドメインコントローラー(DC)の構築・運用の実務で必ず直面する疑問を深掘りするシリーズです。DNSの基礎([dns-guide](/articles/dns-guide))を読了している前提で書いています。**読む順番の目安**: ① ad-dc-fundamentals-guide → ② ad-computername-netdom-guide → ③ ad-windows-login-guide → ④ ad-dns-guide → ⑤ dns-zones-records-guide → ⑥ fsmo-guide → ⑦ dc-health-check-guide → ⑧ ad-sites-guide → ⑨ dcdiag-guide → ⑩ ad-migration-cleanup-guide → ⑪ ad-spn-guide → ⑫ ad-netlogon-guide → ⑬ ad-kerberos-guide → ⑭ ad-multidomain-handson-guide → ⑮ ad-migration-handson-guide → ⑯ ad-sysvol-dfsr-gpo-guide → ⑰ ad-family-overview-guide → ⑱ ad-ldap-protocol-guide → ⑲ ad-netbios-dns-history-guide → ⑳ ad-schema-extension-guide → ㉑ ad-dotnet-powershell-guide → ㉒ ad-isp-guide(⑯以降はいずれも音声復習の前に追加された、さらなる深掘り記事) → ㉓ ad-audio-review-guide(全22記事を読み終えた後の音声復習用)。
 
 - [ADとDC、ドメインとフォレストの違いを『上位1%』の視点で理解する](/articles/ad-dc-fundamentals-guide) — AD DS(仕組み)とDC(サーバー)の役割分担、ドメイン・ツリー・フォレストという3階層の境界線、機能レベルが何を制約しているか、AD DSの役割追加時に何が一緒にインストールされるのかまでの深掘り。
 - [sysdm.cplとnetdom computernameは何が違うのか——「プライマリホスト名」とAD移行のホスト名重複事故を『上位1%』の視点で理解する](/articles/ad-computername-netdom-guide) — sysdm.cplとnetdomのコンピューター名変更の仕組みの違い、なぜ/add→/makeprimaryという2段階が必要なのか、そして実際のAD移行で発生したホスト名重複による認証障害の事例診断までの深掘り(①の発展編、単体でも読めます)。
@@ -419,7 +419,6 @@ AD移行・ドメインコントローラー(DC)の構築・運用の実務で�
 - [Kerberos認証の仕組みを『上位1%』の視点で理解する](/articles/ad-kerberos-guide) — パスワードを一度もネットワークに送らずに本人確認できる理由、TGT・サービスチケットのやり取り(AS-REQ/AS-REP、TGS-REQ/TGS-REP、AP-REQ)、PAC(特権属性証明書)とSIDの関係、NTLMとの違い、トークン肥大化問題までの深掘り(単体でも読めます)。
 - [マルチドメイン・マルチツリーのADフォレストを構築するハンズオン](/articles/ad-multidomain-handson-guide) — example.comをフォレストルート、child.example.comを子ドメイン、example.netを別ツリーとして構築し、ドメインパーティションの分離・設定パーティションの共有・自動的な信頼関係・GCの検索範囲・FSMOの配置を実際のコマンドで確認するハンズオン(シリーズの集大成、これまでの記事を読んでいる前提)。
 - [旧DCから新DCへのAD移行(リプレース)ハンズオン](/articles/ad-migration-handson-guide) — 新DCの追加、repadmin/dcdiagでのレプリケーション健全性確認、FSMO転送、旧DCの正式な降格、降格後のクリーンアップ確認、新DCへの旧DC名の引き継ぎ、dcdiagであえて警告を発生させて読み解く演習までを扱う、実際の現場を想定したAD移行ハンズオン(シリーズの集大成、これまでの記事を読んでいる前提)。
-- [【音声で聴く】Active Directoryシリーズ総復習](/articles/ad-audio-review-guide) — 全15記事を読み終えた人向けの、耳だけで復習できる音声学習記事。表・図・箇条書きを使わず、ブラウザの読み上げ機能で聞き流せるように語りかける文章だけで構成(シリーズを読了している前提)。
 - [SYSVOL・DFSR・グループポリシーの仕組みを『上位1%』の視点で理解する](/articles/ad-sysvol-dfsr-gpo-guide) — GPOが実はAD DS上のGPCとSYSVOL上のGPTという2つの独立した部分から成ること、DFSRとその前身FRSの違い、GPOバージョン不一致という実務トラブルの診断までの深掘り(単体でも読めます)。
 - [AD DS・AD CS・AD FS・AD LDS・AD RMSの違いを『上位1%』の視点で理解する](/articles/ad-family-overview-guide) — 同じ「Active Directory」を名乗る5つの役割がなぜ中身も用途もまったく異なるのか、証明書発行(AD CS)・組織を越えたSSO(AD FS)・ドメイン非依存の軽量ディレクトリ(AD LDS)・ファイル自体の権利管理(AD RMS)それぞれの役割、AD FS/AD RMSの現在の製品戦略上の位置づけまでの深掘り(単体でも読めます)。
 - [LDAPプロトコルの仕組みを『上位1%』の視点で理解する](/articles/ad-ldap-protocol-guide) — AD DSが問い合わせを受け付けているLDAPそのものの中身、DN(識別名)・属性・検索フィルターというデータモデル、Bind・Search・Add/Modify/Deleteという操作の種類、ポート389/636/3268/3269の使い分け、LDAP署名・LDAPチャネルバインディングという実務上重要なセキュリティ設定までの深掘り(単体でも読めます)。
@@ -427,6 +426,7 @@ AD移行・ドメインコントローラー(DC)の構築・運用の実務で�
 - [ADのスキーマ拡張を『上位1%』の視点で理解する](/articles/ad-schema-extension-guide) — ExchangeやSkype for Businessの導入時に必ず発生するスキーマ拡張が何をしているのか、なぜフォレスト全体に影響するのか、なぜ一度拡張すると実質的に後戻りできないのか、Schema Adminsグループの扱い、実務での安全な進め方までの深掘り(単体でも読めます)。
 - [.NET FrameworkとPowerShellの関係を『上位1%』の視点で理解する](/articles/ad-dotnet-powershell-guide) — .NET Framework(ランタイム+クラスライブラリ)とPowerShellの関係、テキストではなくオブジェクトをやり取りするパイプラインという設計思想、Windows PowerShell 5.1とPowerShell 7の違い、AD DSの役割追加時に.NET Framework 4.8が一緒に有効化される理由までの深掘り(単体でも読めます)。
 - [ISP(インターネットサービスプロバイダー)とは何かを『上位1%』の視点で理解する](/articles/ad-isp-guide) — ISPが実際に提供しているサービスの中身、Tier1・Tier2・Tier3という業界の階層構造とピアリング・トランジットの違い、そしてなぜ日本では地元のケーブルテレビ局がISPを兼業していることが多いのかを歴史的経緯とともに理解する深掘り(単体でも読めます)。
+- [【音声で聴く】Active Directoryシリーズ総復習](/articles/ad-audio-review-guide) — 全22記事を読み終えた人向けの、耳だけで復習できる音声学習記事。表・図・箇条書きを使わず、ブラウザの読み上げ機能で聞き流せるように語りかける文章だけで構成(シリーズを読了している前提)。
 
 ### Windowsクライアント運用シリーズ
 
@@ -446,15 +446,16 @@ AD移行・ドメインコントローラー(DC)の構築・運用の実務で�
 
 ### Windows Server運用シリーズ
 
-Windows Serverの調達・運用で必ず直面する疑問を深掘りするシリーズです。**読む順番の目安**: ① windows-server-licensing-guide → ② windows-ntp-server-guide → ③ iis-fundamentals-guide → ④ iis-ftp-guide → ⑤ smb-file-sharing-guide → ⑥ windows-server-audio-review-guide(全5記事を読み終えた後の音声復習用) → ⑦ minimal-http-server-handson-guide → ⑧ smb-cifs-linux-interop-guide(いずれも音声復習の後に追加された記事)。
+Windows Serverの調達・運用で必ず直面する疑問を深掘りするシリーズです。**読む順番の目安**: ① windows-server-licensing-guide → ② windows-ntp-server-guide → ③ iis-fundamentals-guide → ④ iis-ftp-guide → ⑤ smb-file-sharing-guide → ⑥ minimal-http-server-handson-guide → ⑦ smb-cifs-linux-interop-guide(⑥⑦は音声復習の前に追加された記事) → ⑧ windows-server-audio-review-guide(全7記事を読み終えた後の音声復習用)。
 
 - [Windows Serverのライセンス(OEM・Datacenter・Standard)を『上位1%』の視点で理解する](/articles/windows-server-licensing-guide) — Standard/Datacenterの主な違いが仮想化権利である理由、コアベースライセンシングの仕組み、OEMライセンスがハードウェアに紐づく理由までの深掘り(単体でも読めます)。
 - [Windows ServerでNTPサーバーを構築する際の設定値を『上位1%』の視点で理解する](/articles/windows-ntp-server-guide) — Stratum(階層)の考え方、フォレストルートのPDCエミュレータだけが外部時刻源への明示的な同期を必要とする理由、AnnounceFlagsの各ビットが制御する動作、「時刻サーバー」と「信頼できる時刻源」の違い、PDCエミュレータのNTP機能がDC昇格時の機能と別物ではない理由までの深掘り([fsmo-guide](/articles/fsmo-guide)の発展編、単体でも読めます)。
 - [IISとASP.NETの仕組みを『上位1%』の視点で理解する](/articles/iis-fundamentals-guide) — IISとASP.NETの役割分担、HTTP.sys/アプリケーションプール/ワーカープロセスという3層構造、Default Web Siteの正体とアプリケーションプールとの関係、バインド設定とSNI、Webサイトのホスト名とDCのドメイン名の関係、HTTP応答ヘッダーの追加までの深掘り(単体でも読めます)。
 - [IISとFTPの関係を『上位1%』の視点で理解する](/articles/iis-ftp-guide) — IISという名前が表す統合基盤という設計思想、FTPの制御チャネル/データチャネルとアクティブ/パッシブモード、FTPSとSFTPの違いまでの深掘り([iis-fundamentals-guide](/articles/iis-fundamentals-guide)の発展編、単体でも読めます)。
 - [Windows ServerのSMB共有を『上位1%』の視点で理解する](/articles/smb-file-sharing-guide) — C$/IPC$/ADMIN$という管理共有の役割、SMBクライアントの接続キャッシュがIPアドレスとホスト名を別々の「サーバー」として扱う理由、IPアドレスでは失敗しホスト名では成功する現象の診断、SMBとCIFSの違い、Windows-Linux間のファイル共有の仕組みまでの深掘り(単体でも読めます)。
-- [【音声で聴く】Windows Server運用シリーズ総復習](/articles/windows-server-audio-review-guide) — 全5記事を読み終えた人向けの、耳だけで復習できる音声学習記事。表・図・箇条書きを使わず、ブラウザの読み上げ機能で聞き流せるように語りかける文章だけで構成(シリーズを読了している前提)。
 - [自分の手でHTTPサーバーを書いてみる『上位1%』のハンズオン](/articles/minimal-http-server-handson-guide) — TCPソケットを直接扱う数十行のPythonコードだけでHTTPサーバーを自作し、「Webサイト=HTTPを処理できるソフトウェア」という感覚を実際に手を動かして体験するハンズオン([iis-fundamentals-guide](/articles/iis-fundamentals-guide)の実践編)。
+- [SMBとCIFSは何が違うのか——Windows-Linux間のファイル共有を『上位1%』の視点で理解する](/articles/smb-cifs-linux-interop-guide) — SMBとCIFSの関係、SMB1.0(CIFS)が既定で無効化されている理由、Sambaというソフトウェアがどうやって異なるOS間のファイル共有を実現しているのかまでの深掘り([smb-file-sharing-guide](/articles/smb-file-sharing-guide)の発展編、単体でも読めます)。
+- [【音声で聴く】Windows Server運用シリーズ総復習](/articles/windows-server-audio-review-guide) — 全7記事を読み終えた人向けの、耳だけで復習できる音声学習記事。表・図・箇条書きを使わず、ブラウザの読み上げ機能で聞き流せるように語りかける文章だけで構成(シリーズを読了している前提)。
 
 ### ストレージ基礎シリーズ
 
