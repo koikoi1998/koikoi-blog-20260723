@@ -237,6 +237,8 @@ graph TB
 <li><a href="/articles/ntfs-mft-internals-guide">NTFSファイルシステムの仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/aws-ec2-networking-basics-guide">EC2のキーペア(.pem/.ppk)とサブネットの予約IPを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/m365-email-fundamentals-guide">M365へのメール移行を『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/mail-server-fundamentals-guide">メールサーバーの基礎を『上位1%』の視点で理解する——MTA・MDA・MUAとPostfix・Dovecotの役割分担</a></li>
+<li data-subseries="handson"><a href="/articles/mail-server-handson-guide">PostfixとDovecotでメールサーバーを構築する『上位1%』のハンズオン</a></li>
 <li><a href="/articles/openshift-guide">OpenShiftとは何かを『上位1%』の視点で理解する——Kubernetesとの関係</a></li>
 <li data-subseries="handson"><a href="/articles/openshift-handson-guide">OpenShift Localでコンテナアプリケーションを動かす『上位1%』のハンズオン</a></li>
 <li><a href="/articles/ansible-guide">Ansibleとは何かを『上位1%』の視点で理解する——構成管理とエージェントレスの仕組み</a></li>
@@ -250,7 +252,7 @@ graph TB
 <p>STEP6までの実務知識に、面接や設計レビューで差がつく低レイヤーの実装知識を積み増すルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP6の86記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP6の88記事(上のタブから確認できます)</li>
 <li><a href="/articles/proxmox-internals-guide">Proxmox VEとは何か——KVM/QEMUによる仮想化の仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/linux-daemon-guide">デーモン(daemon)とは何か——Linuxのバックグラウンドプロセスを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/software-library-guide">ライブラリ(library)とは何か——静的リンク・動的リンクの仕組みを『上位1%』の視点で理解する</a></li>
@@ -278,13 +280,13 @@ graph TB
 <div class="persona-panel persona-panel-8">
 <div class="persona-panel-head">
 <h3>🏆 業界最高峰のスキル水準を目指して情報収集している方へ</h3>
-<p>全109記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
+<p>全111記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP7の108記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP7の110記事(上のタブから確認できます)</li>
 <li><a href="/articles/voip-ss7-guide">VoIPとSS7、そして実際の通信経路を『上位1%』の視点で理解する</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>これで全109記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
+<div class="persona-bonus">🎉 <strong>これで全111記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
 </div>
 </div>
 </div>
@@ -477,9 +479,11 @@ EC2・VPCなど、AWSを使ううえで必ず直面する基礎的な疑問を�
 
 ### メール基盤シリーズ
 
-メールにおけるドメイン・Exchangeサーバー・M365への移行といった、メール基盤の基礎を深掘りするシリーズです。**読む順番の目安**: ① m365-email-fundamentals-guide。
+メールにおけるドメイン・Exchangeサーバー・M365への移行、そしてPostfix・Dovecotによるメールサーバー構築といった、メール基盤の基礎を深掘りするシリーズです。**読む順番の目安**: ① m365-email-fundamentals-guide → ② mail-server-fundamentals-guide → ③ mail-server-handson-guide。
 
 - [M365へのメール移行を『上位1%』の視点で理解する](/articles/m365-email-fundamentals-guide) — メールのドメインがMXレコードによってWebサイトのドメインと別々に配送先を決められている仕組み、Exchangeサーバーの2つの役割、M365移行で具体的に何を切り替えるのか、ハイブリッド構成までの深掘り([dns-guide](/articles/dns-guide)の発展編、単体でも読めます)。
+- [メールサーバーの基礎を『上位1%』の視点で理解する——MTA・MDA・MUAとPostfix・Dovecotの役割分担](/articles/mail-server-fundamentals-guide) — メールシステムを構成するMTA・MDA・MUAという役割分担、SMTPとIMAP/POP3の違い、Postfix(MTA)とDovecot(メールボックス管理・取得)の連携、SASL認証の仕組みまでの深掘り(単体でも読めます)。
+- [PostfixとDovecotでメールサーバーを構築する『上位1%』のハンズオン](/articles/mail-server-handson-guide) — telnetで生のSMTP/IMAPコマンドを手打ちし、メールの送受信とMaildir形式での保存を自分の目で確認する実践編([mail-server-fundamentals-guide](/articles/mail-server-fundamentals-guide)の実践編)。
 
 ### プロトコル基礎シリーズ
 

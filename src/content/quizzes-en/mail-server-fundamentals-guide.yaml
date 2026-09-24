@@ -1,0 +1,45 @@
+questions:
+  - question: "Which statement best matches the article's explanation of the MTA/MDA/MUA division of roles in a mail system?"
+    choices:
+      - "MTA, MDA, and MUA are all just different names for the same software, with no meaningful distinction"
+      - "MUA is the mail software a user operates, MTA handles server-to-server transfer, and MDA handles storing mail into the mailbox — three distinct roles"
+      - "MTA handles storing into the mailbox, and MDA handles server-to-server transfer (the reverse of the article's explanation)"
+      - "MUA refers to the physical hardware of the mail server itself"
+    answerIndex: 1
+    explanation: "MUA is the software a user actually operates to compose and read mail, MTA transfers mail between mail servers using SMTP, and MDA actually stores transferred mail into the user's mailbox."
+
+  - question: "Which statement best matches the article's explanation of the difference in roles between SMTP and IMAP/POP3?"
+    choices:
+      - "SMTP's job stops at transfer; a user retrieving the contents of their mailbox is the job of a different protocol, IMAP or POP3"
+      - "SMTP and IMAP do exactly the same thing — it's purely a difference in naming"
+      - "IMAP/POP3 is the protocol responsible for sending (submitting) mail (the reverse of the article's explanation)"
+      - "SMTP is used only for retrieving and syncing a mailbox"
+    answerIndex: 0
+    explanation: "SMTP is the protocol for transferring mail from a sender to the receiving mail server; retrieving from a mailbox uses a different protocol, IMAP or POP3."
+
+  - question: "Which statement best matches the article's explanation of the division of labor between Postfix and Dovecot, and how they cooperate?"
+    choices:
+      - "Postfix and Dovecot are competing pieces of software, and it's common to pick just one"
+      - "Postfix (the MTA) handles receiving and deciding delivery rules, while Dovecot handles storing into the mailbox and IMAP/POP3 retrieval, and the two cooperate via a lightweight protocol called LMTP"
+      - "Postfix implements IMAP/POP3 on its own and doesn't need Dovecot"
+      - "Dovecot is the software responsible for sending and receiving mail (SMTP) (the reverse of the article's explanation)"
+    answerIndex: 1
+    explanation: "Postfix is the MTA that receives mail arriving from outside via SMTP and decides delivery rules, while Dovecot handles storing into the destination user's mailbox and IMAP/POP3 retrieval. The two cooperate internally via the lightweight LMTP protocol."
+
+  - question: "Which statement best matches the article's explanation of the difference between the Maildir and mbox mailbox storage formats?"
+    choices:
+      - "mbox is one message per independent file and robust, while Maildir is one giant file requiring lock management (the reverse of the article's explanation)"
+      - "Maildir stores one message per independent file with no locking needed, while mbox is one giant text file requiring lock management — and Maildir is widely adopted today for its robustness"
+      - "Maildir and mbox are terms for different SMTP versions, unrelated to storage format"
+      - "mbox is exclusive to Dovecot, and Maildir is exclusive to Postfix"
+    answerIndex: 1
+    explanation: "mbox is an older format where one mailbox is one giant text file requiring lock management, while Maildir is today's mainstream format where one message is one independent file needing no locking. Maildir is widely adopted for its robustness."
+
+  - question: "Which statement best matches the article's explanation of SASL authentication for sending mail and the relationship between Postfix and Dovecot?"
+    choices:
+      - "Postfix has no SASL authentication feature of its own; in the typical setup, it borrows the \"Dovecot SASL\" feature Dovecot provides, centralizing the user database on the Dovecot side"
+      - "SASL authentication is implemented entirely by Postfix on its own, with no relationship to Dovecot at all"
+      - "SASL authentication has nothing to do with sending mail — it's a mechanism exclusively for website logins"
+      - "Dovecot is software that has no SASL authentication feature"
+    answerIndex: 0
+    explanation: "SASL authentication is used to prevent an open relay, but in the typical setup, Postfix has no SASL feature of its own and borrows the \"Dovecot SASL\" feature Dovecot provides. Dovecot's user database, which already handles IMAP/POP3 authentication, gets reused for SMTP submission authentication too, centralizing user management."

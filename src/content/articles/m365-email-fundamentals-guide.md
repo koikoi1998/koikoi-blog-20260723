@@ -118,6 +118,8 @@ graph LR
 1. 「メールのドメイン」という言葉に出会ったら、それがMXレコードという特定のDNSレコードによって配送先が決まっていることを思い出しましょう。
 2. MXレコードの切り替えを計画する際は、必ず事前にTTLを短く設定しておきましょう。
 
+Exchangeが1つの製品に統合しているMTA・メールボックス管理という役割が、実際にはどのように分担されうるのかは、[メールサーバーの基礎を『上位1%』の視点で理解する](/articles/mail-server-fundamentals-guide)でPostfix・Dovecotを例に深掘りしています。実際に手を動かして構築したい場合は、続く[PostfixとDovecotでメールサーバーを構築する『上位1%』のハンズオン](/articles/mail-server-handson-guide)もあわせてどうぞ。
+
 ## 参考文献
 
 - [Exchange Online Overview | Microsoft Learn](https://learn.microsoft.com/en-us/exchange/exchange-online)

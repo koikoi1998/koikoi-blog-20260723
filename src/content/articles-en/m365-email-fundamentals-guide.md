@@ -118,6 +118,8 @@ For email-related issues, the basic approach is to **isolate whether the problem
 1. When you encounter the phrase "email domain," remember its delivery destination is decided by a specific DNS record type — the MX record.
 2. When planning to switch an MX record, always set its TTL short ahead of time.
 
+How the MTA and mailbox-management roles that Exchange bundles into a single product can actually be split apart is covered in more depth in [Understanding Mail Server Fundamentals](/en/articles/mail-server-fundamentals-guide), using Postfix and Dovecot as an example. If you want to build one with your own hands, check out [A "Top 1%" Hands-On Lab: Building a Mail Server with Postfix and Dovecot](/en/articles/mail-server-handson-guide) too.
+
 ## References
 
 - [Exchange Online Overview | Microsoft Learn](https://learn.microsoft.com/en-us/exchange/exchange-online)

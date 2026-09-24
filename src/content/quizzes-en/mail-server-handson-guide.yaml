@@ -1,0 +1,45 @@
+questions:
+  - question: "Which statement best matches the article's description of the mailbox storage format used in this hands-on lab?"
+    choices:
+      - "It uses the mbox format, storing all mail in one giant file"
+      - "It uses the Maildir format, and the `home_mailbox = Maildir/` setting stores each message as one independent file"
+      - "The hands-on lab doesn't configure a mailbox storage format at all"
+      - "It uses a format that stores all mail in a SQL database"
+    answerIndex: 1
+    explanation: "This hands-on lab configures the Maildir format via `postconf -e 'home_mailbox = Maildir/'`, and configures Dovecot to reference the same format. In the Maildir format, each message is stored as one independent file."
+
+  - question: "Which statement best matches the article's description of how to signal the end of the message body when typing SMTP commands by hand over telnet?"
+    choices:
+      - "You can keep typing the body freely, indefinitely, with no special terminator needed"
+      - "The end of the body must be explicitly signaled with a line containing only a single `.`"
+      - "The body is automatically finalized the instant you type the `QUIT` command"
+      - "The end of the body is signaled by pressing Enter three times in a row"
+    answerIndex: 1
+    explanation: "The body typed after the `DATA` command must end with a line containing only a single `.`. This is SMTP's delimiter marking the end of the message body."
+
+  - question: "Which statement best matches the article's explanation of the purpose of checking the Maildir directory in Step 3?"
+    choices:
+      - "To check the mail server's CPU usage"
+      - "To visually confirm that the sent mail appears as one more independent file in the directory, and to experience how the Maildir format actually works"
+      - "To check Dovecot's license key"
+      - "To check the firewall configuration"
+    answerIndex: 1
+    explanation: "By confirming that the mail sent in Step 2 exists as a single file in `/home/bob/Maildir/new/`, you can see with your own eyes how the Maildir format stores each message as one independent file."
+
+  - question: "Which statement best matches the article's explanation of the difference in command syntax between SMTP and IMAP?"
+    choices:
+      - "SMTP and IMAP commands use exactly the same format and are indistinguishable"
+      - "IMAP commands have a convention SMTP doesn't — prefixing an arbitrary tag (identifier) like `a` at the start"
+      - "Only SMTP commands require a tag at the start (the reverse of the article's explanation)"
+      - "IMAP commands must all be typed in Japanese"
+    answerIndex: 1
+    explanation: "Unlike SMTP, IMAP commands have the convention of prefixing an arbitrary tag (identifier) like `a` at the start."
+
+  - question: "Which statement best matches the article's explanation of the value of this hands-on lab?"
+    choices:
+      - "Only the result — that mail could be sent and received — matters; there's no need to understand what each command means"
+      - "The value lies in reviewing, one by one, what each SMTP command (HELO, MAIL FROM, RCPT TO, DATA) and each IMAP command (LOGIN, SELECT, FETCH) actually declares or requests"
+      - "This hands-on lab is purely educational and has no use in real-world troubleshooting at all"
+      - "Verifying a mail server without a mail client (like Outlook) is technically impossible"
+    answerIndex: 1
+    explanation: "The value of this hands-on lab lies not just in the result, but in reviewing what each SMTP/IMAP command actually declares or requests. Typing these commands by hand via telnet or openssl s_client to check the response is a genuinely effective real-world diagnostic technique — isolating problems at the protocol level without going through the black box of a mail client."
