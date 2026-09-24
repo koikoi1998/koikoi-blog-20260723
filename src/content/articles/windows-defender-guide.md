@@ -2,6 +2,7 @@
 title: "Microsoft Defenderの仕組みを『上位1%』の視点で理解する——クイックスキャン/フルスキャンの違いとクラウドドライブの扱い"
 description: "Microsoft Defenderはどのような仕組みで動いているのか。標準搭載されているのに、なぜApexOneなど別のセキュリティソフトを併用するメリットがあるのか。クイックスキャンとフルスキャンは何が違い、本番環境接続前のフルスキャン合格は何を保証しているのか。そしてBoxDriveやGoogleDriveがエクスプローラーに統合されている場合、クラウド上のファイルはスキャン対象になるのかまでを体系的に理解する。"
 series: "windows-client"
+subSeries: "main"
 order: 1
 tags: ["windows", "security", "defender", "infra"]
 emoji: "🛡️"
@@ -142,6 +143,8 @@ Defenderに関連する実務上の疑問は、**「リアルタイム保護の�
 **今日から意識すべきこと**
 1. 「フルスキャンに合格した」という結果を見たら、それが保証する範囲(既知の脅威の排除)と保証しない範囲(ゼロデイ、未ダウンロードのクラウドファイルなど)を意識しましょう。
 2. クラウドストレージを利用する環境では、エンドポイント側のスキャンだけに頼らず、クラウドサービス自体のセキュリティ機能もあわせて確認しましょう。
+
+Defenderの検知の様子を実際に確認してみたい場合は[EICARテストファイルでの検知確認ハンズオン](/articles/windows-defender-eicar-handson-guide)を、シグネチャベース検知をすり抜ける実際の攻撃の仕組みをもっと知りたい場合は[マルウェア感染の実際の仕組み](/articles/malware-infection-mechanics-guide)を、構築・運用時に何をどこまで対策すべきかは[サーバー構築・運用時の現実的なセキュリティ対策](/articles/practical-server-security-measures-guide)をあわせてどうぞ。
 
 ## 参考文献
 

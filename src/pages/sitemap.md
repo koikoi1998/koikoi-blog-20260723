@@ -118,6 +118,13 @@ graph TB
 <li><a href="/articles/windows-process-task-guide">Windowsのプロセス・タスク・スレッドの違いを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/unicode-filename-normalization-guide">見た目が同じなのに文字数が異なるファイル名が存在する理由を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/windows-install-media-guide">インストーラのx64とx86の違いを『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/windows-defender-eicar-handson-guide">EICARテストファイルでWindows Defenderの検知を実際に確認する『上位1%』のハンズオン</a></li>
+<li><a href="/articles/malware-infection-mechanics-guide">マルウェア感染が実際にどう起きているのかを『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/practical-server-security-measures-guide">サーバー構築・運用時の現実的なセキュリティ対策を『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/monitor-edid-guide">モニターの配置設定が復元される仕組みを『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/iso-mount-guide">ISOファイルの「マウント」とは何かを『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/office-click-to-run-conflict-guide">Officeの版が競合してアンインストールできなくなる理由を『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/windows-client-audio-review-guide">【音声で聴く】Windowsクライアント運用シリーズ総復習</a></li>
 <li><a href="/articles/proxy-firewall-guide">プロキシとファイアウォールの使い分けを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/http-caching-cdn-guide">HTTPSの普及とプロキシキャッシュの終焉を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/protocol-design-guide">プロトコルとは何かを『上位1%』の視点で理解する</a></li>
@@ -131,7 +138,7 @@ graph TB
 <p>「知ってるつもり」を実務で使える理解に変える段階です。STEP2までに加え、現場のニッチな疑問を解消する記事、手を動かすハンズオン、AD移行・DC運用の実務、Windows Server運用の周辺知識、コンテナ基盤・構成管理の自動化まで、実務で幅広く問われるテーマをまとめて積み増します。特定の分野だけをまとめて読みたい場合は、トップページの絞り込み機能をご利用ください。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1・STEP2の22記事(上のタブから確認できます)</li>
+<li>STEP1・STEP2の29記事(上のタブから確認できます)</li>
 <li><a href="/articles/windows-server-l2tp-vpn-guide">Windows Server(RRAS)でのL2TP/IPsec VPN構築とIPアドレス管理を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/site-to-site-vpn-guide">拠点間VPN(Site-to-Site VPN)を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/local-gov-network-guide">自治体ネットワークの三層分離とセキュリティクラウドを『上位1%』の視点で理解する</a></li>
@@ -196,7 +203,7 @@ graph TB
 <p>STEP3までの実務知識に、面接や設計レビューで差がつく低レイヤーの実装知識を積み増すルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP3の77記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP3の84記事(上のタブから確認できます)</li>
 <li><a href="/articles/proxmox-internals-guide">Proxmox VEとは何か——KVM/QEMUによる仮想化の仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/linux-daemon-guide">デーモン(daemon)とは何か——Linuxのバックグラウンドプロセスを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/software-library-guide">ライブラリ(library)とは何か——静的リンク・動的リンクの仕組みを『上位1%』の視点で理解する</a></li>
@@ -223,13 +230,13 @@ graph TB
 <div class="persona-panel persona-panel-5">
 <div class="persona-panel-head">
 <h3>🏆 年収1000万・2000万・5000万を目指して情報収集している方へ</h3>
-<p>全99記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
+<p>全106記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP4の98記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP4の105記事(上のタブから確認できます)</li>
 <li><a href="/articles/voip-ss7-guide">VoIPとSS7、そして実際の通信経路を『上位1%』の視点で理解する</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>これで全99記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
+<div class="persona-bonus">🎉 <strong>これで全106記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
 </div>
 </div>
 </div>
@@ -372,12 +379,19 @@ AD移行・ドメインコントローラー(DC)の構築・運用の実務で�
 
 ### Windowsクライアント運用シリーズ
 
-日々のPC運用で遭遇する「なぜこうなっているのか」を深掘りするシリーズです。**読む順番の目安**: ① windows-defender-guide → ② windows-process-task-guide → ③ unicode-filename-normalization-guide → ④ windows-install-media-guide。
+日々のPC運用で遭遇する「なぜこうなっているのか」を深掘りするシリーズです。**読む順番の目安**: ① windows-defender-guide → ② windows-process-task-guide → ③ unicode-filename-normalization-guide → ④ windows-install-media-guide → ⑤ windows-defender-eicar-handson-guide → ⑥ malware-infection-mechanics-guide → ⑦ practical-server-security-measures-guide → ⑧ monitor-edid-guide → ⑨ iso-mount-guide → ⑩ office-click-to-run-conflict-guide → ⑪ windows-client-audio-review-guide(全10記事を読み終えた後の音声復習用)。
 
 - [Microsoft Defenderの仕組みを『上位1%』の視点で理解する](/articles/windows-defender-guide) — リアルタイム保護とオンデマンドスキャンの違い、クイックスキャン/フルスキャンの対象範囲、フルスキャン合格が保証する範囲としない範囲、クラウドドライブ(BoxDrive/GoogleDrive)のファイルがスキャン対象になるのかまでの深掘り(単体でも読めます)。
-- [Windowsのプロセス・タスク・スレッドの違いを『上位1%』の視点で理解する](/articles/windows-process-task-guide) — プロセス/タスク/スレッドの階層関係、ゾンビプロセスの正体、モニターの配置設定が復元される仕組み(EDID)までの深掘り(単体でも読めます)。
+- [Windowsのプロセス・タスク・スレッドの違いを『上位1%』の視点で理解する](/articles/windows-process-task-guide) — プロセス/タスク/スレッドの階層関係、ゾンビプロセスの正体までの深掘り(単体でも読めます)。
 - [見た目が同じなのに文字数が異なるファイル名が存在する理由を『上位1%』の視点で理解する](/articles/unicode-filename-normalization-guide) — Unicode正規化(NFC/NFD)の仕組み、Windows(NTFS)が正規化を行わない理由、BOXなどのクラウドストレージが正規化した上で比較するために移行が失敗する理由までの深掘り(単体でも読めます)。
-- [インストーラのx64とx86の違いを『上位1%』の視点で理解する](/articles/windows-install-media-guide) — WoW64によるアプリケーションとドライバの挙動の違い、なぜ今も統一されないのか、ISOファイルの「マウント」が実際に行っていることまでの深掘り(単体でも読めます)。
+- [インストーラのx64とx86の違いを『上位1%』の視点で理解する](/articles/windows-install-media-guide) — WoW64によるアプリケーションとドライバの挙動の違い、なぜ今も統一されないのかまでの深掘り(単体でも読めます)。
+- [EICARテストファイルでWindows Defenderの検知を実際に確認する『上位1%』のハンズオン](/articles/windows-defender-eicar-handson-guide) — 本物のマルウェアを自作する代わりに、業界標準の安全なテストファイルであるEICARを使い、リアルタイム保護・オンデマンドスキャンそれぞれでの検知の様子、保護履歴の確認までを実際に手を動かして確認するハンズオン([windows-defender-guide](/articles/windows-defender-guide)の実践編)。
+- [マルウェア感染が実際にどう起きているのかを『上位1%』の視点で理解する](/articles/malware-infection-mechanics-guide) — 初期アクセス・実行・永続化・C2通信・目的の実行という段階的な感染プロセス、正規のシステムツールを悪用する手口(LOLBins)、ファイルレス化までの深掘り(単体でも読めます)。
+- [サーバー構築・運用時の現実的なセキュリティ対策を『上位1%』の視点で理解する](/articles/practical-server-security-measures-guide) — 「作業後にLANケーブルを抜く」対策が実際に防ぐもの・防がないものの正確な評価、パッチ適用・最小権限・ネットワークセグメンテーション・EDRといった費用対効果の高い対策との優先順位までの深掘り([malware-infection-mechanics-guide](/articles/malware-infection-mechanics-guide)の発展編、単体でも読めます)。
+- [モニターの配置設定が復元される仕組みを『上位1%』の視点で理解する](/articles/monitor-edid-guide) — EDID(Extended Display Identification Data)が運んでいる情報、Windowsがそれをもとに以前接続したモニターを識別する仕組み、KVMスイッチ経由の接続で設定復元がうまく機能しなくなる理由までの深掘り(単体でも読めます)。
+- [ISOファイルの「マウント」とは何かを『上位1%』の視点で理解する](/articles/iso-mount-guide) — マウントという操作が実際に行っていること、アップデートユーティリティが今もISO形式で配布されている理由、ブート可能なUSBメモリ作成との違いまでの深掘り([windows-install-media-guide](/articles/windows-install-media-guide)の発展編、単体でも読めます)。
+- [Officeの版が競合してアンインストールできなくなる理由を『上位1%』の視点で理解する](/articles/office-click-to-run-conflict-guide) — Click-to-Runという配布方式の仕組み、異なるエディション・ビット数の競合が起きる理由、SaRAcmd.exeによる完全削除、Intuneで配信管理している環境での競合の起き方までの深掘り(単体でも読めます)。
+- [【音声で聴く】Windowsクライアント運用シリーズ総復習](/articles/windows-client-audio-review-guide) — 全10記事を読み終えた人向けの、耳だけで復習できる音声学習記事。表・図・箇条書きを使わず、ブラウザの読み上げ機能で聞き流せるように語りかける文章だけで構成(シリーズを読了している前提)。
 
 ### Windows Server運用シリーズ
 

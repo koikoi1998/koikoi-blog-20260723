@@ -26,20 +26,20 @@ questions:
     answerIndex: 1
     explanation: "Bundling both architectures' programs into a single installer file (a universal installer) is technically possible, but it increases file size, so many publishers haven't invested the effort and cost to do so. Many recent consumer apps absorb this via a bootstrapper format, but tools carrying forward an older distribution convention still present an explicit choice."
 
-  - question: "Which statement best matches the article's explanation of what right-clicking an ISO file and choosing \"Mount\" actually does?"
+  - question: "Which statement best matches the article's explanation of how a driver architecture mismatch surfaces in practice?"
     choices:
-      - "It actually unpacks and copies the ISO file's content to another location on disk"
-      - "It makes the ISO file's content recognized as a virtual, read-only drive, exactly as if a disc had actually been inserted into a physical optical drive"
-      - "It completely deletes the ISO file itself and converts it into a new executable file"
-      - "It automatically uploads the ISO file's content to a cloud server over the internet"
+      - "A clear \"wrong architecture\" error message always appears, so there's never any doubt about the cause"
+      - "It surfaces as the installer itself refusing to launch, or the device staying unrecognized in Device Manager — since a clear error message isn't guaranteed, it tends to be more time-consuming to isolate the cause"
+      - "This mismatch always forces Windows to restart immediately"
+      - "This mismatch always completely severs the network connection"
     answerIndex: 1
-    explanation: "Mounting is an operation that makes the ISO file's content recognized as a virtual, read-only drive, exactly as if a disc had actually been inserted into a physical optical drive. It doesn't actually unpack or copy the content elsewhere — unmounting makes the virtual drive disappear, leaving the original ISO file untouched."
+    explanation: "Obtaining the wrong architecture's driver package surfaces as the installer itself refusing to launch, or the device staying unrecognized in Device Manager. Since this kind of mismatch doesn't always show up as a clear \"wrong architecture\" error message, it tends to be more time-consuming to isolate the cause."
 
-  - question: "Which statement best matches the article's explanation of why update utilities are often distributed as an ISO?"
+  - question: "Which statement best matches the article's recommended preventive measure when performing the same update work across many devices?"
     choices:
-      - "An ISO format always results in a smaller file size than an executable"
-      - "The convention of originally being designed for distribution and booting via physical CD/DVD media has carried forward, and an ISO can also be burned onto physical media to boot a server as installation media"
-      - "Windows license activation doesn't work correctly unless it's in ISO format"
-      - "The ISO format is adopted to evade detection by antivirus software"
+      - "There's no need to check architecture at all — just install the x64 version on every device"
+      - "Always confirm the target's CPU and OS bitness before obtaining a driver/firmware update package, and build a check into a checklist or automation script to prevent an architecture-selection mistake"
+      - "No preventive measure is needed — just deal with problems as they come up"
+      - "Standardizing every device on a 32-bit OS eliminates architecture problems entirely"
     answerIndex: 1
-    explanation: "The background behind server firmware/driver update utilities being distributed as an ISO is that the convention of originally being designed for distribution and boot via physical CD/DVD media has carried forward. An ISO can also be burned onto physical media to boot a server as installation media, giving the practical advantage of being able to perform an update even on a server that can't boot its own OS."
+    explanation: "It's important to always confirm the target server/PC's CPU and OS bitness before obtaining a driver/firmware update package. When performing the same work across many devices, building a check into a checklist or automation script ahead of time is recommended to prevent an architecture-selection mistake."

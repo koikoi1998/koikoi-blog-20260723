@@ -1,0 +1,45 @@
+questions:
+  - question: "According to the article, what does \"unplug the LAN cable after work\" actually protect against?"
+    choices:
+      - "This measure has no effect whatsoever and is completely pointless"
+      - "For the duration the device stays disconnected, it drives C2 communication and any new external attack down to genuinely zero, in principle"
+      - "It resolves every vulnerability present during the connected working window as well"
+      - "It blocks every attack vector, including threats arriving via a USB drive"
+    answerIndex: 1
+    explanation: "Physically unplugging a network cable makes that device unreachable from the outside. For the duration it stays disconnected, it drives C2 communication and any new external attack down to genuinely zero, in principle — a real, clear benefit."
+
+  - question: "According to the article, what does \"unplug the LAN cable after work\" NOT protect against?"
+    choices:
+      - "This measure blocks 100% of every threat, so there's nothing it fails to protect against"
+      - "It doesn't protect the connected working window itself, and it doesn't stop a threat arriving through a non-network route like a USB drive"
+      - "This measure completely eliminates the need for patching altogether"
+      - "This measure makes EDR and behavioral detection unnecessary"
+    answerIndex: 1
+    explanation: "This measure doesn't protect the working window itself, while the machine is connected. And if a foothold was already established through a non-network route like a USB drive, the practice of unplugging the cable doesn't remove that threat on its own."
+
+  - question: "According to the article's Stuxnet example, what does it best illustrate about the limits of an air-gapped environment?"
+    choices:
+      - "An air-gapped environment has been proven completely safe under every circumstance"
+      - "Stuxnet reached an air-gapped industrial control system via a USB drive, showing that even with the network-based attack surface at zero, risk never reaches zero as long as a separate pathway — bringing in physical media — remains"
+      - "Stuxnet is malware that spreads only over the network and has nothing to do with air gaps"
+      - "Air-gapped environments have been technically impossible to build ever since Stuxnet appeared"
+    answerIndex: 1
+    explanation: "Stuxnet reached an air-gapped industrial control system via a USB drive and caused significant damage. Even with the network-based attack surface reduced to zero, as long as a completely separate pathway — bringing in physical media — remains, the risk never actually reaches zero."
+
+  - question: "According to the article, what are the challenges of manually plugging and unplugging a LAN cable, and what alternative does it suggest?"
+    choices:
+      - "Manual operation has no downsides at all, so there's no need to consider an alternative"
+      - "It carries the risk of human error (forgetting to unplug or reconnect) and doesn't scale, making it worth weighing against an automated alternative like restricting a firewall's outbound rules to necessary destinations only"
+      - "The only alternative to manual operation is reducing the number of servers"
+      - "Manual operation's cost never increases no matter how many servers you add"
+    answerIndex: 1
+    explanation: "Manually plugging and unplugging a cable every day carries the risk of human error and doesn't scale — the more servers you have, the more the cost grows linearly. It's worth weighing against an automated alternative like restricting outbound firewall rules."
+
+  - question: "According to the article's cost-effectiveness-based priority order for security measures, which statement is most accurate?"
+    choices:
+      - "Physical measures like unplugging the LAN cable are ranked as the top priority above everything else"
+      - "Speed of patching, enforcing least privilege, network segmentation, deploying EDR, and restricting outbound traffic are prioritized, with physical measures positioned as complementary to them"
+      - "There's no concept of priority in security measures at all — everything carries equal importance"
+      - "Patching is ranked as a lower priority than every other measure"
+    answerIndex: 1
+    explanation: "The article lists speed of patch application, enforcing least privilege, network segmentation, deploying EDR/behavioral detection, and restricting outbound traffic as the higher-priority measures, positioning physical measures like unplugging a LAN cable as an additional layer that complements them."

@@ -2,6 +2,7 @@
 title: "Understanding How Microsoft Defender Works from a \"Top 1%\" Perspective — Quick Scan vs. Full Scan, and How It Handles Cloud Drives"
 description: "How does Microsoft Defender actually work? If it's built into Windows, why do some organizations still deploy a separate security product like Apex One? What's the difference between a quick scan and a full scan, and what does passing a full scan before connecting to production actually guarantee? And when BoxDrive or Google Drive is integrated into File Explorer, are the files on the cloud actually scanned? This article systematically answers all of it."
 series: "windows-client"
+subSeries: "main"
 order: 1
 tags: ["windows", "security", "defender", "infra"]
 emoji: "🛡️"
@@ -142,6 +143,8 @@ For practical questions related to Defender, the basic approach is to **isolate 
 **What to Keep in Mind From Today**
 1. When you see the result "passed the full scan," keep in mind both what it guarantees (elimination of known threats) and what it doesn't (zero-day threats, undownloaded cloud files, and so on).
 2. In an environment using cloud storage, don't rely solely on endpoint-side scanning — also check what security functionality the cloud service itself offers.
+
+If you'd like to actually watch Defender's detection in action, check out [A Hands-On Lab: Confirming Detection with the EICAR Test File](/en/articles/windows-defender-eicar-handson-guide). To learn more about how real attacks slip past signature-based detection, see [Understanding How Malware Infection Actually Happens](/en/articles/malware-infection-mechanics-guide). And for what to actually do — and how far to go — when building and operating a server, see [Understanding Practical Security Measures for Building and Operating Servers](/en/articles/practical-server-security-measures-guide).
 
 ## References
 

@@ -1,0 +1,45 @@
+questions:
+  - question: "According to the article, what best describes the mechanism behind a monitor's layout settings being restored?"
+    choices:
+      - "Settings are restored automatically, by magic, with nothing happening behind the scenes"
+      - "The moment it's connected, a monitor sends the PC identifying information called EDID, and Windows looks that content up against information previously saved in the registry to restore the settings"
+      - "A monitor's layout settings are physically stored inside the HDMI cable itself"
+      - "A monitor's layout settings automatically change based on how many times the monitor has been powered on"
+    answerIndex: 1
+    explanation: "The instant a monitor is connected, it sends the PC EDID — information proving its own identity. Windows uses this to recognize whether it's a previously connected monitor and restores settings saved in the registry."
+
+  - question: "According to the article, what information does EDID actually carry?"
+    choices:
+      - "EDID carries a compressed copy of the video data currently being displayed"
+      - "EDID includes the manufacturer's name, product (model) information, serial number, a list of supported resolutions and refresh rates, physical screen size, and chromaticity (color) data"
+      - "EDID only records the monitor's purchase date and price"
+      - "EDID is a storage area reserved for Windows license keys"
+    answerIndex: 1
+    explanation: "EDID includes the manufacturer's name, product (model) information, serial number, a list of supported resolutions and refresh rates, physical screen size, and chromaticity (color) data."
+
+  - question: "According to the article, what criteria does Windows use to determine whether it's \"the same monitor\"?"
+    choices:
+      - "It judges purely by the monitor's physical screen size"
+      - "It judges by the combination of manufacturer, model, and serial number carried in the EDID, so even the same model gets treated as a different monitor if the serial number differs"
+      - "It judges purely by which type of cable is used (HDMI vs. DisplayPort)"
+      - "It judges purely by the time of day the monitor was connected"
+    answerIndex: 1
+    explanation: "Windows identifies a connected monitor specifically based on the combination of manufacturer, model, and serial number carried in the EDID. Even monitors of the exact same model get treated as clearly distinct units if their serial numbers differ."
+
+  - question: "According to the article, why can settings restoration stop working reliably through a KVM switch?"
+    choices:
+      - "A KVM switch always correctly relays EDID to every connected PC"
+      - "A KVM switch often only correctly relays the monitor's EDID information to whichever PC (port) is currently selected, so a PC that isn't selected may not correctly recognize the monitor's state at all"
+      - "Using a KVM switch completely erases the monitor's EDID information"
+      - "A KVM switch has nothing to do with EDID and is unrelated to this problem"
+    answerIndex: 1
+    explanation: "A KVM switch often only correctly relays the monitor's EDID information to whichever PC (port) is currently selected, so from the perspective of a PC that isn't selected, it may not even correctly recognize whether a monitor is connected."
+
+  - question: "According to the article, what can cause a monitor to go unrecognized or display at the wrong resolution?"
+    choices:
+      - "This kind of problem is always caused solely by a hardware failure in the monitor itself"
+      - "The quality of a cheap cable or adapter, or a relay device like a KVM switch, not infrequently interferes with the correct delivery of EDID"
+      - "This kind of problem only ever happens on an outdated version of Windows"
+      - "This kind of problem is determined solely by the length of the monitor's power cable"
+    answerIndex: 1
+    explanation: "With a low-quality cable, or some cheap adapters, the EDID signal line sometimes isn't wired correctly or is prone to noise interference, causing the EDID read itself to fail. A relay device like a KVM switch can cause a similar problem."

@@ -1,0 +1,45 @@
+questions:
+  - question: "According to the article, why use the EICAR test file instead of building real malware?"
+    choices:
+      - "EICAR is harder to detect than real malware, making it a more advanced test"
+      - "Creating and running real malware carries risks like unintended spread and legal exposure, so EICAR is used as the industry-standard safe alternative"
+      - "EICAR is a defanged version of an actual piece of malware, containing the same code"
+      - "Windows Defender is fundamentally incapable of detecting anything other than the EICAR file format"
+    answerIndex: 1
+    explanation: "Actually creating, obtaining, or running working known malware carries real risks — unintended spread, data destruction, and legal exposure among them. This article instead uses the EICAR test file, a standard alternative used across the security industry for decades."
+
+  - question: "According to the article, what is the actual substance of the EICAR test file?"
+    choices:
+      - "A defanged variant of a real piece of malware, with the viral code neutralized"
+      - "A harmless text file containing nothing but a specific 68-byte string, with no viral code or malicious logic at all"
+      - "A self-replicating program with only its data-destruction feature removed"
+      - "A detection-test program developed exclusively by Microsoft for Defender"
+    answerIndex: 1
+    explanation: "The EICAR test file, developed by a European security research organization, is a harmless text file containing nothing but a specific 68-byte string. It contains no viral code or malicious logic whatsoever."
+
+  - question: "According to the article, what's the difference in detection timing between real-time protection and an on-demand scan?"
+    choices:
+      - "Real-time protection and on-demand scanning can only ever run simultaneously"
+      - "Real-time protection detects instantly on file write, while an on-demand scan detects independently, whenever it's explicitly run"
+      - "An on-demand scan can never run in an environment where real-time protection is enabled"
+      - "Real-time protection can't detect EICAR at all — only an on-demand scan can"
+    answerIndex: 1
+    explanation: "Real-time protection hooks the file write (I/O) itself and scans on the spot, reacting the instant you try to save. An on-demand scan, even for a file invisible to real-time protection due to an exclusion, inspects it and detects it the moment it's explicitly run."
+
+  - question: "According to the article, what is the scope of what the EICAR test file actually confirms?"
+    choices:
+      - "If EICAR gets detected, that proves the PC is safe against every kind of advanced threat"
+      - "EICAR only confirms whether the most basic mechanism — signature-based detection — is working; it says nothing about the effectiveness of more advanced defensive layers like cloud protection or behavioral detection"
+      - "EICAR is a dedicated test for precisely measuring the performance of Defender's cloud protection (MAPS)"
+      - "Failing to detect EICAR means Defender itself isn't installed"
+    answerIndex: 1
+    explanation: "What EICAR confirms is exactly one thing: whether the most basic mechanism, signature-based detection, is working correctly. It says nothing about the effectiveness of more advanced defensive layers, such as cloud protection, behavioral detection, or ASR rules."
+
+  - question: "According to the article, how should the exclusion setting added for testing be handled afterward?"
+    choices:
+      - "It gets automatically reverted by Defender once testing is complete"
+      - "Since an exclusion is a manually added setting that's never automatically reverted, it must be explicitly removed after testing"
+      - "Once added, an exclusion can never be removed again"
+      - "Adding an exclusion disables all of Windows's security features entirely"
+    answerIndex: 1
+    explanation: "An exclusion is a manually added setting and is never automatically reverted. Leaving it in place effectively removes that folder from Defender's protection entirely, so it must be explicitly removed after testing."

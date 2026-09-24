@@ -2,6 +2,7 @@
 title: "見た目が同じなのに文字数が異なるファイル名が存在する理由を『上位1%』の視点で理解する——Unicode正規化とBOX移行トラブル"
 description: "Windowsのエクスプローラー上では同じ名前に見える2つのファイルが、PowerShellで文字数を確認すると異なる数値を返すことがある。なぜWindowsではこれらが別々のファイルとして共存でき、BOXなどのクラウドストレージでは同じ名前と判定されて移行が失敗するのか。Unicode正規化(NFC/NFD)という観点から体系的に理解する。"
 series: "windows-client"
+subSeries: "main"
 order: 3
 tags: ["windows", "unicode", "powershell", "infra", "troubleshooting"]
 emoji: "🔤"

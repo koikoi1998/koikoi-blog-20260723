@@ -1,7 +1,8 @@
 ---
-title: "Understanding the Difference Between Processes, Tasks, and Threads in Windows from a \"Top 1%\" Perspective — Zombie Processes and Other PC Terminology"
-description: "Are the \"task\" and \"process\" you see in Task Manager the same thing? What is a zombie process, and why does it happen? When Google Drive disappears from File Explorer, why does killing its process in Task Manager fix it? And why does a monitor's split-screen layout come back automatically just by plugging in an HDMI cable? This article systematically explains PC terminology that comes up constantly in practice."
+title: "Understanding the Difference Between Processes, Tasks, and Threads in Windows from a \"Top 1%\" Perspective — What Is a Zombie Process?"
+description: "Are the \"task\" and \"process\" you see in Task Manager the same thing? What is a zombie process, and why does it happen? When Google Drive disappears from File Explorer, why does killing its process in Task Manager fix it? This article systematically explains it all."
 series: "windows-client"
+subSeries: "main"
 order: 2
 tags: ["windows", "process", "infra", "troubleshooting"]
 emoji: "⚙️"
@@ -10,7 +11,7 @@ pubDate: 2026-09-20
 
 ## Introduction
 
-- **What You'll Learn From This Article**: Starting from a common practical fix — "Google Drive disappeared from File Explorer, and killing its process in Task Manager fixed it" — this article systematically explains the difference between the similar-sounding but distinct terms **process, thread, and task**, and **what a zombie process actually is and why it happens.** Along the way, it also covers other PC terminology that comes up in practice, such as the mechanism behind a monitor's screen layout automatically restoring itself when connected via HDMI.
+- **What You'll Learn From This Article**: Starting from a common practical fix — "Google Drive disappeared from File Explorer, and killing its process in Task Manager fixed it" — this article systematically explains the difference between the similar-sounding but distinct terms **process, thread, and task**, and **what a zombie process actually is and why it happens.**
 - **Intended Audience**: This article is aimed at engineers who routinely kill processes in Task Manager as a fix, but who can't explain the difference between process, task, and thread, or the precise meaning of the term "zombie process."
 - **Estimated Reading Time**: About 16 minutes
 
@@ -77,11 +78,9 @@ The main causes include **a bug in the program itself (a flaw in its resource-re
 
 ## The View From the Top 1% Perspective
 
-### How a Monitor's Layout Settings Get Restored
+### A Lingering Zombie Process vs. an Ordinary Freeze
 
-Another "why does it work this way" question that comes up in practice is the behavior where **connecting a monitor via HDMI automatically remembers your previous screen split/layout settings.**
-
-This happens because **monitors have a mechanism called EDID (Extended Display Identification Data), which conveys that monitor's own identifying information (manufacturer, model, serial number, supported resolutions, and so on) to the PC when it's connected.** Windows uses the **content of this EDID (particularly the combination of serial number and model)** to recognize "this is that monitor I've connected before," and restores the layout, resolution, and orientation settings previously configured for it, from information saved in the registry. Even a different monitor of the same model, if its serial number differs, gets recognized as a distinct monitor and requires a new configuration.
+When a top-1% engineer hears "the application froze," the first thing they do is **check that process's CPU/memory usage trend in Task Manager's "Details" tab, to isolate whether it's "doing nothing at all" or "stuck churning away at something."** A lingering, zombie-like state usually shows near-zero CPU usage with no response ever coming back, while a bug like an infinite loop keeps CPU usage pinned high. That one extra step changes the direction of the investigation completely, even for the same surface symptom — "it's not responding."
 
 ## Common Misconceptions and Pitfalls
 
@@ -110,7 +109,6 @@ For process-related issues, the basic approach is to **isolate whether that proc
 - Task is a unit of work from the user's perspective, process is a unit of resource management the OS handles, and thread is the smallest unit of processing executed within a process — distinct concepts related in a hierarchy.
 - A zombie process refers to a state where the actual work has finished but the management information lingers on; in a Windows environment, it's used in the closely related sense of a process that stays lingering while unresponsive.
 - Killing a process in Task Manager is a way to forcibly reclaim a lingering process's resources — separate from resolving the root cause.
-- The mechanism behind a monitor's layout settings being restored is that Windows recognizes a previously connected monitor based on its unique identifying information, EDID.
 
 **What to Keep in Mind From Today**
 1. When you kill a process in Task Manager as a fix, keep in mind that it's a symptomatic treatment — investigate the root cause if it recurs frequently.
@@ -120,4 +118,3 @@ For process-related issues, the basic approach is to **isolate whether that proc
 
 - [Task Manager overview | Microsoft Learn](https://learn.microsoft.com/en-us/windows/win32/taskschd/task-manager)
 - [About Processes and Threads | Microsoft Learn](https://learn.microsoft.com/en-us/windows/win32/procthread/about-processes-and-threads)
-- [VESA Enhanced Extended Display Identification Data Standard (E-EDID) | VESA](https://vesa.org/vesa-standards/)

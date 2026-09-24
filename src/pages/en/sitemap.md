@@ -116,6 +116,13 @@ This blog is written for a wide range of readers — from people with no experie
 <li><a href="/en/articles/windows-process-task-guide">Understanding the Difference Between Processes, Tasks, and Threads in Windows from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/unicode-filename-normalization-guide">Why Do Files With Identical-Looking Names Have Different Character Counts in Windows?</a></li>
 <li><a href="/en/articles/windows-install-media-guide">Understanding the Difference Between x64 and x86 Installers from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/windows-defender-eicar-handson-guide">A Top-1% Hands-On Lab: Confirming Windows Defender's Detection with the EICAR Test File</a></li>
+<li><a href="/en/articles/malware-infection-mechanics-guide">Understanding How Malware Infection Actually Happens from a Top-1% Perspective</a></li>
+<li><a href="/en/articles/practical-server-security-measures-guide">Understanding Practical Security Measures for Building and Operating Servers from a Top-1% Perspective</a></li>
+<li><a href="/en/articles/monitor-edid-guide">Understanding How a Monitor's Layout Settings Get Restored from a Top-1% Perspective</a></li>
+<li><a href="/en/articles/iso-mount-guide">Understanding What "Mounting" an ISO File Actually Does from a Top-1% Perspective</a></li>
+<li><a href="/en/articles/office-click-to-run-conflict-guide">Understanding Why Conflicting Office Editions Become Impossible to Uninstall from a Top-1% Perspective</a></li>
+<li><a href="/en/articles/windows-client-audio-review-guide">[Listen] The Windows Client Operations Series, Fully Recapped</a></li>
 <li><a href="/en/articles/proxy-firewall-guide">Understanding When to Use a Proxy vs. a Firewall from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/http-caching-cdn-guide">Understanding the Rise of HTTPS and the End of Proxy Caching from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/protocol-design-guide">Understanding What a Protocol Actually Is From a "Top 1%" Perspective</a></li>
@@ -129,7 +136,7 @@ This blog is written for a wide range of readers — from people with no experie
 <p>This is where "I sort of know this" turns into working knowledge. On top of STEP2, this route adds the niche real-world articles, hands-on labs, AD migration/DC-operations work, Windows Server operations beyond AD, and container platforms/config-management automation — the broad range of topics that come up constantly on the job. If you want to read one specific field in one go, use the filter feature on the top page instead.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 and STEP2's 22 articles (see those tabs above)</li>
+<li>STEP1 and STEP2's 29 articles (see those tabs above)</li>
 <li><a href="/en/articles/windows-server-l2tp-vpn-guide">Why Does a VPN Client Need a Gateway on the Same Subnet? — Understanding IP Address Management in Windows Server (RRAS) L2TP/IPsec VPN from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/site-to-site-vpn-guide">Understanding Site-to-Site VPN from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/local-gov-network-guide">Understanding Japanese Local Government Network Segregation and Security Clouds from a "Top 1%" Perspective</a></li>
@@ -194,7 +201,7 @@ This blog is written for a wide range of readers — from people with no experie
 <p>Adds the low-level implementation knowledge that sets you apart in interviews and design reviews, on top of everything through STEP3.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP3's 77 articles (see those tabs above)</li>
+<li>STEP1 through STEP3's 84 articles (see those tabs above)</li>
 <li><a href="/en/articles/proxmox-internals-guide">What Is Proxmox VE? Understanding KVM/QEMU Virtualization from the "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/linux-daemon-guide">What Is a Daemon? Understanding Linux Background Processes from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/software-library-guide">What Is a Library? Understanding Static and Dynamic Linking from a "Top 1%" Perspective</a></li>
@@ -221,13 +228,13 @@ This blog is written for a wide range of readers — from people with no experie
 <div class="persona-panel persona-panel-5">
 <div class="persona-panel-head">
 <h3>🏆 For those gathering information toward ¥10M, ¥20M, or ¥50M+</h3>
-<p>The complete-conquest route: read all 99 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
+<p>The complete-conquest route: read all 106 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP4's 98 articles (see those tabs above)</li>
+<li>STEP1 through STEP4's 105 articles (see those tabs above)</li>
 <li><a href="/en/articles/voip-ss7-guide">Understanding VoIP and SS7 — and the Real Path Your Traffic Takes — from a "Top 1%" Perspective</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>That's all 99 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
+<div class="persona-bonus">🎉 <strong>That's all 106 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
 </div>
 </div>
 </div>
@@ -370,12 +377,19 @@ A series digging into the questions that come up constantly in real-world AD mig
 
 ### Windows Client Operations Series
 
-A series digging into the "why is it built this way" questions that come up in day-to-day PC operations. **Recommended order**: ① windows-defender-guide → ② windows-process-task-guide → ③ unicode-filename-normalization-guide → ④ windows-install-media-guide.
+A series digging into the "why is it built this way" questions that come up in day-to-day PC operations. **Recommended order**: ① windows-defender-guide → ② windows-process-task-guide → ③ unicode-filename-normalization-guide → ④ windows-install-media-guide → ⑤ windows-defender-eicar-handson-guide → ⑥ malware-infection-mechanics-guide → ⑦ practical-server-security-measures-guide → ⑧ monitor-edid-guide → ⑨ iso-mount-guide → ⑩ office-click-to-run-conflict-guide → ⑪ windows-client-audio-review-guide (for reviewing by ear after finishing all 10).
 
 - [Understanding How Microsoft Defender Works from a "Top 1%" Perspective](/en/articles/windows-defender-guide) — A deep dive into the difference between real-time protection and on-demand scanning, the scope of a quick scan vs. a full scan, what passing a full scan does and doesn't guarantee, and whether cloud drive (BoxDrive/Google Drive) files get scanned (also readable standalone).
-- [Understanding the Difference Between Processes, Tasks, and Threads in Windows from a "Top 1%" Perspective](/en/articles/windows-process-task-guide) — A deep dive into the hierarchy between process/task/thread, what a zombie process really is, and the mechanism (EDID) behind a monitor's layout settings being restored (also readable standalone).
+- [Understanding the Difference Between Processes, Tasks, and Threads in Windows from a "Top 1%" Perspective](/en/articles/windows-process-task-guide) — A deep dive into the hierarchy between process/task/thread, and what a zombie process really is (also readable standalone).
 - [Why Do Files With Identical-Looking Names Have Different Character Counts in Windows?](/en/articles/unicode-filename-normalization-guide) — A deep dive into how Unicode normalization (NFC/NFD) works, why Windows (NTFS) doesn't normalize, and why cloud storage services like BOX, which compare after normalizing, fail during migration (also readable standalone).
-- [Understanding the Difference Between x64 and x86 Installers from a "Top 1%" Perspective](/en/articles/windows-install-media-guide) — A deep dive into the behavior difference between applications and drivers via WoW64, why it still isn't unified today, and what "mounting" an ISO file actually does (also readable standalone).
+- [Understanding the Difference Between x64 and x86 Installers from a "Top 1%" Perspective](/en/articles/windows-install-media-guide) — A deep dive into the behavior difference between applications and drivers via WoW64, and why it still isn't unified today (also readable standalone).
+- [A Top-1% Hands-On Lab: Confirming Windows Defender's Detection with the EICAR Test File](/en/articles/windows-defender-eicar-handson-guide) — Instead of building real malware, this hands-on lab uses the industry-standard safe EICAR test file to actually watch detection under real-time protection and an on-demand scan, and check the protection history (a practical companion to [windows-defender-guide](/en/articles/windows-defender-guide)).
+- [Understanding How Malware Infection Actually Happens from a Top-1% Perspective](/en/articles/malware-infection-mechanics-guide) — A deep dive into the staged infection process (initial access, execution, persistence, C2 communication, achieving the objective), the technique of abusing legitimate system tools (LOLBins), and going fileless (also readable standalone).
+- [Understanding Practical Security Measures for Building and Operating Servers from a Top-1% Perspective](/en/articles/practical-server-security-measures-guide) — A precise evaluation of what "unplugging the LAN cable after work" actually protects against and doesn't, and where it ranks against higher-value measures like patching, least privilege, network segmentation, and EDR (a follow-on from [malware-infection-mechanics-guide](/en/articles/malware-infection-mechanics-guide), also readable standalone).
+- [Understanding How a Monitor's Layout Settings Get Restored from a Top-1% Perspective](/en/articles/monitor-edid-guide) — A deep dive into what EDID (Extended Display Identification Data) carries, how Windows uses it to recognize a previously connected monitor, and why this can stop working reliably through a KVM switch (also readable standalone).
+- [Understanding What "Mounting" an ISO File Actually Does from a Top-1% Perspective](/en/articles/iso-mount-guide) — A deep dive into what mounting actually does, why update utilities are still distributed as an ISO today, and how this differs from creating a bootable USB drive (a follow-on from [windows-install-media-guide](/en/articles/windows-install-media-guide), also readable standalone).
+- [Understanding Why Conflicting Office Editions Become Impossible to Uninstall from a Top-1% Perspective](/en/articles/office-click-to-run-conflict-guide) — A deep dive into how Click-to-Run distribution works, why conflicts arise between different editions/bitness, full removal via SaRAcmd.exe, and how conflicts arise in an Intune-managed environment (also readable standalone).
+- [[Listen] The Windows Client Operations Series, Fully Recapped](/en/articles/windows-client-audio-review-guide) — An audio-learning article for anyone who's finished all 10 articles, reviewable by ear alone. No tables, diagrams, or bullet points — just spoken-style prose meant to be read aloud by a browser's text-to-speech feature (assumes you've finished the series).
 
 ### Windows Server Operations Series
 

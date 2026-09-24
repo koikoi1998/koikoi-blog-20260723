@@ -35,11 +35,11 @@ questions:
     answerIndex: 1
     explanation: "Killing a process in Task Manager is just a way to force the OS to reclaim the resources of a lingering process — it doesn't resolve the root cause that caused that state (a bug, a deadlock, and so on). If it happens frequently, investigating the root cause — updating the application, checking its logs — is needed."
 
-  - question: "Which statement best matches the article's explanation of the mechanism behind a monitor's layout settings being restored just by plugging in a cable?"
+  - question: "Which statement best matches the article's recommended first step when someone reports \"the application froze\"?"
     choices:
-      - "The monitor conveys its EDID (unique identifying information) to the PC when connected, and Windows uses that information (particularly its serial number and model) to recognize a previously connected monitor and restore settings saved in the registry"
-      - "Every monitor shares identical settings from the factory, so there's no need to restore anything in the first place"
-      - "A monitor's layout settings are physically stored in the HDMI cable itself"
-      - "A monitor's layout settings are fetched by querying Microsoft's servers over the internet every single time"
-    answerIndex: 0
-    explanation: "A monitor conveys its EDID (Extended Display Identification Data) — unique identifying information such as manufacturer, model, and serial number — to the PC when connected. Windows uses this information to recognize a previously connected monitor and restore the layout, resolution, and orientation settings saved in the registry."
+      - "Just restart the PC — there's no need to investigate the cause"
+      - "Check that process's CPU/memory usage trend in Task Manager's \"Details\" tab, to isolate whether it's doing nothing at all or stuck churning away at something"
+      - "Immediately force-kill the process and never investigate the cause at all"
+      - "Calling the application's vendor is the only available course of action"
+    answerIndex: 1
+    explanation: "A top-1% engineer checks that process's CPU/memory usage trend in Task Manager's \"Details\" tab, to isolate whether it's doing nothing at all or stuck churning away at something. A lingering, zombie-like state usually shows near-zero CPU usage, while a bug like an infinite loop keeps CPU usage pinned high — that one extra step changes the direction of the investigation."

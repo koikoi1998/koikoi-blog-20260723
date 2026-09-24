@@ -2,6 +2,7 @@
 title: "Why Do Files With Identical-Looking Names Have Different Character Counts in Windows? Understanding Unicode Normalization and BOX Migration Trouble From a \"Top 1%\" Perspective"
 description: "Two files that look like they have exactly the same name in File Explorer can return different character counts when checked in PowerShell. Why can these two coexist as separate files in Windows, yet get judged as having the same name — causing a migration to fail — in a cloud storage service like BOX? This article systematically explains it from the perspective of Unicode normalization (NFC/NFD)."
 series: "windows-client"
+subSeries: "main"
 order: 3
 tags: ["windows", "unicode", "powershell", "infra", "troubleshooting"]
 emoji: "🔤"

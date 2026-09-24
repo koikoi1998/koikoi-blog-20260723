@@ -1,0 +1,45 @@
+questions:
+  - question: "According to the article, which statement best describes the distribution and execution method current Office uses?"
+    choices:
+      - "Current Office is still distributed exclusively via the traditional MSI installer"
+      - "Current Office uses Click-to-Run (C2R), where a dedicated background service handles Office's overall state management and automatic updates"
+      - "Current Office runs entirely over the internet and never saves any files locally"
+      - "Current Office is built directly into the Windows kernel itself"
+    answerIndex: 1
+    explanation: "Current Office uses Click-to-Run (C2R), built on virtualization technology similar to App-V, where a dedicated background service (the Office Click-to-Run service) streams and unpacks needed components while handling Office's overall state management and automatic updates."
+
+  - question: "According to the article, why do different Office editions conflict on the same PC?"
+    choices:
+      - "Different Office editions are completely independent internally, so a conflict could never actually happen"
+      - "Different editions and bitness of Office are designed to share a certain amount of common components, so installing one on top of another can create an inconsistency in that shared component's management state"
+      - "Different Office editions are always automatically merged into one"
+      - "Installing a different edition automatically and immediately removes the other one"
+    answerIndex: 1
+    explanation: "The multiple editions of Office distributed via C2R are designed to share a certain amount of common components internally, so installing a different edition or bitness on top of an existing one on the same PC can create an inconsistency in that shared component's management state."
+
+  - question: "According to the article, what's true about 32-bit and 64-bit Office coexisting?"
+    choices:
+      - "Microsoft officially supports running 32-bit and 64-bit Office side by side on the same PC"
+      - "Microsoft officially does not support running 32-bit and 64-bit Office side by side on the same PC — one must be fully removed before the other can be installed"
+      - "32-bit and 64-bit Office can always coexist automatically via WoW64"
+      - "The concept of bitness doesn't even apply to Office"
+    answerIndex: 1
+    explanation: "Microsoft officially does not support running a 32-bit and a 64-bit version of Office side by side on the same PC. If one is installed and you try to install the other, you must fully remove the first one before the second can install correctly."
+
+  - question: "According to the article, what tool resolves an Office conflict that an ordinary uninstall can't fix?"
+    choices:
+      - "Windows's Disk Management (diskmgmt.msc) can resolve it"
+      - "Microsoft Support and Recovery Assistant (SaRA), specifically its command-line variant SaRAcmd.exe run with the OfficeScrubScenario scenario, can forcibly and completely remove what an ordinary uninstaller can't get to"
+      - "Simply changing a Task Scheduler setting resolves it"
+      - "No dedicated tool exists for resolving this kind of conflict"
+    answerIndex: 1
+    explanation: "Microsoft provides a dedicated diagnostic and repair tool called SaRA (Support and Recovery Assistant). Running its command-line variant, SaRAcmd.exe, with the OfficeScrubScenario scenario forcibly and completely removes Click-to-Run-related shared components and more that an ordinary uninstaller can't fully remove."
+
+  - question: "According to the article, what's a typical scenario where Office conflicts arise in an environment managed through Intune?"
+    choices:
+      - "In an Intune-managed environment, it's technically completely impossible for a user to manually install a different Office edition"
+      - "If a user (or an accidental operation) manually installs a different edition than what Intune is managing, the configuration Intune expects and the actual configuration fall out of sync, and both uninstall processes can end up only half-completed"
+      - "Managing Office through Intune eliminates the very concept of an Office edition"
+      - "Intune has no support whatsoever for managing Office deployment"
+    answerIndex: 1
+    explanation: "If a user manually installs a different edition of Office than what Intune is managing, on a device under that management, the configuration Intune expects and the actual configuration on the device fall out of sync. When Intune then tries to reapply its configuration, it can conflict with the manually installed version, leaving both uninstall processes only half-completed."

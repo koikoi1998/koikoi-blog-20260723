@@ -1,0 +1,36 @@
+questions:
+  - question: "According to the article, what is an ISO file?"
+    choices:
+      - "An ISO file is an executable program itself, and double-clicking it starts an installation directly"
+      - "An ISO file is a disk image — the entire content of an optical medium like a CD or DVD, saved byte-for-byte as a single file"
+      - "An ISO file is a type of video file that can only be played over the internet"
+      - "An ISO file is a special file that stores only Windows registry settings"
+    answerIndex: 1
+    explanation: "An ISO file is a \"disk image\" — the entire content of an optical medium like a CD or DVD, saved byte-for-byte as a single file."
+
+  - question: "According to the article, what does right-clicking an ISO file and choosing \"Mount\" actually do?"
+    choices:
+      - "It actually unpacks and copies the ISO file's content to another location on disk"
+      - "It makes the ISO file's content recognized as a virtual, read-only drive, exactly as if a disc had actually been inserted into a physical optical drive"
+      - "It completely deletes the ISO file itself and converts it into a new executable file"
+      - "It automatically uploads the ISO file's content to a cloud server over the internet"
+    answerIndex: 1
+    explanation: "Mounting is an operation that makes the ISO file's content recognized as a virtual, read-only drive, exactly as if a disc had actually been inserted into a physical optical drive. It doesn't actually unpack or copy the content elsewhere — unmounting makes the virtual drive disappear, leaving the original ISO file untouched."
+
+  - question: "According to the article, why are update utilities still often distributed as an ISO today?"
+    choices:
+      - "An ISO format always results in a smaller file size than an executable"
+      - "The convention of originally being designed for distribution and booting via physical CD/DVD media has carried forward, and an ISO can also be burned onto physical media to boot a server as installation media"
+      - "Windows license activation doesn't work correctly unless it's in ISO format"
+      - "The ISO format is adopted to evade detection by antivirus software"
+    answerIndex: 1
+    explanation: "The background behind server firmware/driver update utilities being distributed as an ISO is that the convention of originally being designed for distribution and boot via physical CD/DVD media has carried forward. An ISO can also be burned onto physical media to boot a server as installation media, giving the practical advantage of being able to perform an update even on a server that can't boot its own OS."
+
+  - question: "According to the article, what's true about creating a bootable USB drive from an ISO file?"
+    choices:
+      - "Simply copying the ISO file's contents onto a USB drive makes it bootable media"
+      - "A dedicated tool doesn't just copy the ISO's contents — it also rewrites the USB drive's own partition layout and boot sector into a format the target firmware can recognize"
+      - "Creating a bootable USB drive is exactly the same process as mounting"
+      - "A USB drive can never be used to create bootable media from an ISO file"
+    answerIndex: 1
+    explanation: "A tool that creates a bootable USB drive doesn't just copy the ISO's contents — it also performs the additional work of rewriting the USB drive's own partition layout and boot sector into a format the target firmware (BIOS/UEFI) can correctly recognize. A simple file copy alone doesn't actually make it bootable media."
