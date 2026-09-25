@@ -71,6 +71,17 @@ Alongside the authenticated user's account information, the TGT also contains a 
 
 When a client wants to access a specific service, it sends a **TGS-REQ** to the KDC, along with the TGT and the target SPN. As covered in [Understanding SPNs (Service Principal Names)](/en/articles/ad-spn-guide), the KDC searches for the account whose `servicePrincipalName` attribute holds this SPN, and issues **a service ticket encrypted with that account's key.** This service ticket also comes with its own dedicated session key.
 
+<details>
+<summary>Is it really safe to encrypt the ticket with a different account's (the service's) key, not the client's?</summary>
+
+At first glance, it might seem strange that a response to the client's own request gets encrypted not with the client's own key, but with the key of a completely different account — the one the service runs as. This is actually **deliberate — a design choice that's central to Kerberos's whole security model.**
+
+This service ticket is, in substance, **"a sealed letter from the KDC, addressed to the target service"** — the client is nothing more than the courier delivering that letter, unable to read or tamper with its contents. If it were instead encrypted with the client's own key, the client could freely read and rewrite the ticket's contents (like its own privilege information embedded in the PAC), which would let it **forge its own privileges.** By encrypting it with the service's own key, you get a letter the client can never open, while **only the service that receives it can open it with its own key and verify the contents — whether it really was issued by the KDC, and what privileges it carries.**
+
+This design lets **the service verify the ticket is genuine using only its own key, with zero need to ever query the KDC** (successfully decrypting it is itself proof that only the KDC, which knows that key, could have produced it). It helps to think of it as the same idea behind ordinary secure delivery via symmetric-key encryption — "seal it with the recipient's key" — applied directly to a Kerberos ticket.
+
+</details>
+
 ### AP-REQ and Verification on the Service Side
 
 Finally, the client presents the service ticket it obtained to the service itself, as an **AP-REQ**. The service attempts to decrypt this ticket using **the key derived from its own password** — the same key the KDC used to encrypt it in the TGS-REP. If decryption succeeds and the contents (expiration, client information, and so on) are valid, authentication is established. **The key design point that underpins Kerberos's efficiency is that the service side can verify the ticket's validity using only its own key, without ever querying the KDC directly.**

@@ -47,6 +47,20 @@ sequenceDiagram
 
 ## Fundamentals, Explained Thoroughly
 
+### What "Accessing Multiple Services With One Authentication" Actually Means
+
+The sequence diagram above only shows steps ② and ③ for a single service, but the convenience Kerberos is known for in practice — "log in once, and you don't need to re-authenticate separately for every service" — more precisely means: **"once you've obtained a TGT, all you need to do afterward, per service, is query the TGS to get an individual service ticket — you never need to redo the AS-REQ step (pre-authentication, which uses your password) to re-prove who you are."** In other words, a single ticket doesn't universally work for every service — **steps ② and ③ (TGS-REQ/TGS-REP, AP-REQ) happen again, every single time, for each service you access.** That said, neither of those two steps ever involves the user's password at all — they're completed just by presenting the TGT you already hold — which is why, from the user's perspective, it feels like "log in once, and you can access multiple services without a second thought."
+
+### At What Point in a Connection Does the Kerberos Exchange Actually Happen?
+
+If everything so far has felt like an abstract conversation about "talking to the KDC," it helps to picture concretely where this fits into an actual network connection. Say a client is trying to access a shared folder like `\\dbserver\share`. Roughly, communication happens in this order:
+
+1. **Name resolution**: The hostname `dbserver` gets converted to an IP address via a DNS query.
+2. **Establishing a TCP connection**: A TCP connection is established to that IP address, on the target port (445 for SMB).
+3. **Starting the application-layer protocol, and Kerberos authentication**: Once the TCP connection is up, the application-layer protocol exchange (SMB, in this case) begins — and **woven into that exchange**, the client, behind the scenes, does an AS-REQ/AS-REP with the KDC (if it doesn't already hold a TGT), then a TGS-REQ/TGS-REP for the target SPN (if it doesn't already hold a service ticket for it), and finally presents the resulting service ticket to the target server as an AP-REQ. Since the TGT and service tickets are cached for a while, not every single one of these steps happens on every connection.
+
+Keeping in mind that **Kerberos authentication happens at a layer separate from IP routing or DNS resolution — closer to the application layer, as its own dedicated authentication exchange — and it happens *after* the TCP connection is already established**, makes it clear why a network-layer connectivity check like `ping` or `tracert` alone can never surface a Kerberos problem. Communication with the KDC itself happens over UDP/TCP port 88.
+
 ### The Concrete Format of an SPN
 
 An SPN is expressed in the following format:
@@ -69,6 +83,22 @@ Some concrete examples:
 | `TERMSRV/rdshost.corp.example.com` | A Remote Desktop connection to `rdshost` |
 
 As touched on in [What's the Difference Between sysdm.cpl and netdom computername?](/en/articles/ad-computername-netdom-guide), a computer account is automatically registered by default with an SPN in the form `HOST/computer-name`. This exists so that many basic services running on that computer (file sharing, printing, remote administration, and so on) can all authenticate by piggybacking off this one shared `HOST` SPN.
+
+### A Common Misconception: An SPN Is Registered on the Side Providing the Service, Not the Side Accessing It
+
+This is a genuinely easy point to get backwards. The idea that "an account allowed to access a particular service has that service's SPN registered on its own attributes" has **the direction reversed.** An SPN is registered on **just one account — the one running the service itself** — not on "every client that comes along to access that service."
+
+For example, if SQL Server is running on a server named `dbserver`, the SPN `MSSQLSvc/dbserver.corp.example.com:1433` is registered on **just one account: the service account SQL Server runs as.** No matter how many hundreds or thousands of client accounts connect to that SQL Server, **none of them ever get this SPN registered on themselves.** A client is purely in the position of presenting a request to the KDC saying "I want to access whatever's at this SPN" — it never needs to hold that SPN as an attribute of its own account at all.
+
+The accurate way to think about it: **it isn't "the client holds a list, as SPNs, of the services it's allowed to access" — it's "the service itself holds, as its SPN, a self-introduction saying 'I'm the one who answers to this name.'"**
+
+### A Prerequisite: Both the Client and the Server Must Be Domain-Joined
+
+Everything explained so far assumes **both the client and the server providing the service are joined to a domain in the same forest** (or to a separate domain with a trust relationship). Since both the SPN and the `servicePrincipalName` attribute are pieces of information registered against an account object in AD DS, a computer or user that has no AD DS account at all (i.e. isn't domain-joined) simply can't be a party to Kerberos authentication in the first place. Access to or from a non-domain-joined device or service uses some other authentication method instead of Kerberos — local account authentication, for instance.
+
+### What "Security Context" Actually Means
+
+The term **security context**, which comes up repeatedly in this article and related ones, refers to **which account's privileges and identity a process or service is operating under at runtime.** Saying "this service runs under the computer account's own security context" means every operation that service performs is carried out with the computer account's own privileges. When a service runs as a dedicated service account instead, it helps to picture that service's security context as having switched from the computer account over to that dedicated service account.
 
 ### Where an SPN Gets Registered: Computer Account vs. a Dedicated Service Account
 
