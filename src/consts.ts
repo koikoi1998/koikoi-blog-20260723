@@ -20,6 +20,7 @@ export const seriesNames: Record<string, string> = {
   "protocol-fundamentals": "プロトコル基礎シリーズ",
   openshift: "OpenShiftシリーズ",
   ansible: "Ansibleシリーズ",
+  dns: "DNSサーバー基礎シリーズ",
 };
 
 export const seriesNamesEn: Record<string, string> = {
@@ -44,6 +45,7 @@ export const seriesNamesEn: Record<string, string> = {
   "protocol-fundamentals": "Protocol Fundamentals Series",
   openshift: "OpenShift Series",
   ansible: "Ansible Series",
+  dns: "DNS Server Fundamentals Series",
 };
 
 // シリーズ内をさらに絞り込むためのサブカテゴリの表示名。

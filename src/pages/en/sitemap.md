@@ -37,6 +37,7 @@ graph TB
     WebProxy["Web Proxy / Caching Fundamentals Series"]
     AwsBasics["AWS Fundamentals Series"]
     Messaging["Messaging Fundamentals Series"]
+    Dns["DNS Server Fundamentals Series"]
     Protocol["Protocol Fundamentals Series"]
     OpenShift["OpenShift Series"]
     Ansible["Ansible Series"]
@@ -56,6 +57,7 @@ graph TB
     Network --> WebProxy
     SiteToSite --> AwsBasics
     Network --> Messaging
+    Network --> Dns
     Network --> Protocol
     Network --> OpenShift
     Network --> Ansible
@@ -237,6 +239,8 @@ This blog is written for a wide range of readers — from people with no experie
 <li><a href="/en/articles/m365-email-fundamentals-guide">Understanding Email Migration to M365 from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/mail-server-fundamentals-guide">Understanding Mail Server Fundamentals from a "Top 1%" Perspective — MTA, MDA, MUA, and the Roles of Postfix and Dovecot</a></li>
 <li data-subseries="handson"><a href="/en/articles/mail-server-handson-guide">A "Top 1%" Hands-On Lab: Building a Mail Server with Postfix and Dovecot</a></li>
+<li><a href="/en/articles/dns-server-fundamentals-guide">Understanding DNS Server Fundamentals from a "Top 1%" Perspective — BIND's Zone Files and Master/Slave Configuration</a></li>
+<li data-subseries="handson"><a href="/en/articles/dns-server-handson-guide">A "Top 1%" Hands-On Lab: Building a DNS Server With BIND and Experiencing a Zone Transfer</a></li>
 <li><a href="/en/articles/openshift-guide">Understanding What OpenShift Actually Is From a "Top 1%" Perspective — Its Relationship to Kubernetes</a></li>
 <li data-subseries="handson"><a href="/en/articles/openshift-handson-guide">A "Top 1%" Hands-On Lab: Running a Container Application on OpenShift Local</a></li>
 <li><a href="/en/articles/ansible-guide">Understanding What Ansible Actually Is From a "Top 1%" Perspective — Configuration Management and the Agentless Model</a></li>
@@ -250,7 +254,7 @@ This blog is written for a wide range of readers — from people with no experie
 <p>Adds the low-level implementation knowledge that sets you apart in interviews and design reviews, on top of everything through STEP6.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP6's 88 articles (see those tabs above)</li>
+<li>STEP1 through STEP6's 90 articles (see those tabs above)</li>
 <li><a href="/en/articles/proxmox-internals-guide">What Is Proxmox VE? Understanding KVM/QEMU Virtualization from the "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/linux-daemon-guide">What Is a Daemon? Understanding Linux Background Processes from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/software-library-guide">What Is a Library? Understanding Static and Dynamic Linking from a "Top 1%" Perspective</a></li>
@@ -278,13 +282,13 @@ This blog is written for a wide range of readers — from people with no experie
 <div class="persona-panel persona-panel-8">
 <div class="persona-panel-head">
 <h3>🏆 For those gathering information toward the industry's highest skill tier</h3>
-<p>The complete-conquest route: read all 111 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
+<p>The complete-conquest route: read all 113 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP7's 110 articles (see those tabs above)</li>
+<li>STEP1 through STEP7's 112 articles (see those tabs above)</li>
 <li><a href="/en/articles/voip-ss7-guide">Understanding VoIP and SS7 — and the Real Path Your Traffic Takes — from a "Top 1%" Perspective</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>That's all 111 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
+<div class="persona-bonus">🎉 <strong>That's all 113 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
 </div>
 </div>
 </div>
@@ -483,6 +487,13 @@ A series digging into the fundamentals of messaging infrastructure — what doma
 - [Understanding Email Migration to M365 from a "Top 1%" Perspective](/en/articles/m365-email-fundamentals-guide) — A deep dive into how an email domain's delivery destination is decided separately from a website's via the MX record, the two roles an Exchange server handles, what an M365 migration concretely switches over, and hybrid configurations (a follow-on from [dns-guide](/en/articles/dns-guide), also readable standalone).
 - [Understanding Mail Server Fundamentals from a "Top 1%" Perspective — MTA, MDA, MUA, and the Roles of Postfix and Dovecot](/en/articles/mail-server-fundamentals-guide) — A deep dive into the MTA/MDA/MUA division of roles in a mail system, the difference between SMTP and IMAP/POP3, how Postfix (the MTA) and Dovecot (mailbox management/retrieval) cooperate, and how SASL authentication works (also readable standalone).
 - [A "Top 1%" Hands-On Lab: Building a Mail Server with Postfix and Dovecot](/en/articles/mail-server-handson-guide) — A practical companion that types raw SMTP/IMAP commands by hand over telnet, letting you confirm sending/receiving mail and Maildir storage with your own eyes (a practical companion to [mail-server-fundamentals-guide](/en/articles/mail-server-fundamentals-guide)).
+
+### DNS Server Fundamentals Series
+
+After understanding DNS name resolution from the "using it" side ([dns-guide](/en/articles/dns-guide)), this series digs into the perspective of actually building and operating a DNS server. **Recommended order**: ① dns-server-fundamentals-guide → ② dns-server-handson-guide.
+
+- [Understanding DNS Server Fundamentals from a "Top 1%" Perspective — BIND's Zone Files and Master/Slave Configuration](/en/articles/dns-server-fundamentals-guide) — A deep dive into BIND's two-layer structure of `named.conf` and zone files, what each SOA record field controls, how zone transfers (AXFR/IXFR) work in a master/slave configuration, and why authoritative and caching servers should be kept separate (a follow-on from [dns-guide](/en/articles/dns-guide), also readable standalone).
+- [A "Top 1%" Hands-On Lab: Building a DNS Server With BIND and Experiencing a Zone Transfer](/en/articles/dns-server-handson-guide) — A practical companion where you actually build a master/slave configuration, confirm with your own eyes that forgetting to bump the serial number stops a zone transfer, and then experience fixing it the right way (a practical companion to [dns-server-fundamentals-guide](/en/articles/dns-server-fundamentals-guide)).
 
 ### Protocol Fundamentals Series
 

@@ -188,6 +188,8 @@ DNS-related trouble is best approached by **narrowing down which layer of cache 
 1. When you hit a "can't resolve DNS" issue, narrow down which layer is at fault: the local cache, the OS-level name-resolution configuration (per-adapter DNS servers, NRPT/routing domains), or the authoritative server itself.
 2. If internal name resolution is unreliable over a VPN, check the NRPT (Windows) or routing domain (Linux) configuration first.
 
+Everything so far has been from the perspective of "using" name resolution. The perspective of actually building and operating a DNS server is covered starting with [Understanding DNS Server Fundamentals](/en/articles/dns-server-fundamentals-guide).
+
 ## References
 
 - [Domain Names - Concepts and Facilities | RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034)

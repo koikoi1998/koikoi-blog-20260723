@@ -1,0 +1,45 @@
+questions:
+  - question: "Which statement best matches the article's explanation of the two files BIND's configuration is split across?"
+    choices:
+      - "It's split across `named.conf`, which defines server-wide behavior, and zone files, which hold the actual records for each individual domain"
+      - "All of BIND's configuration is specified in one single giant file"
+      - "`named.conf` is a key file used to encrypt the contents of zone files"
+      - "Zone files operate entirely independently of `named.conf` and never need to be registered there"
+    answerIndex: 0
+    explanation: "BIND's configuration splits into `named.conf`, defining server-wide behavior (such as which zones it manages), and zone files, holding the actual records for each individual domain."
+
+  - question: "Which statement best matches the article's explanation of what happens if you forget to bump an SOA record's serial number?"
+    choices:
+      - "Forgetting to bump the serial number has no effect on zone transfers at all"
+      - "A slave server concludes \"the serial number hasn't changed, so there's nothing new,\" and no zone transfer happens even though the records were actually changed"
+      - "Forgetting to bump the serial number automatically stops the BIND service itself"
+      - "The serial number automatically increments the moment the zone file is saved"
+    answerIndex: 1
+    explanation: "The serial number doesn't increment automatically just from editing a zone file — an administrator has to bump it manually. Forget it, and a slave server concludes there's nothing new, so no zone transfer happens."
+
+  - question: "Which statement best matches the article's explanation of how a zone transfer decision is made in a master/slave configuration?"
+    choices:
+      - "A slave requests a zone transfer if the master's serial number is higher than the value it currently holds, and does nothing otherwise"
+      - "A slave unconditionally re-fetches the entire zone at fixed intervals, regardless of any serial number"
+      - "A zone transfer never happens unless an administrator manually runs a command"
+      - "The master and slave have no mechanism for comparing their serial numbers with each other"
+    answerIndex: 0
+    explanation: "A slave server periodically asks the master for its current serial number at the refresh interval, and requests a zone transfer if the master's value is higher than what it currently holds. This is the same idea, in spirit, as the version-number-based replication decision for GPOs."
+
+  - question: "Which statement best matches the article's explanation of why authoritative and caching (recursive resolver) servers should be kept separate?"
+    choices:
+      - "There's no particular technical reason — it's purely a convention"
+      - "Exposing the recursion feature as an open resolver anyone can freely use carries the risk of it being abused as a launchpad for a DNS amplification attack"
+      - "It's technically impossible to run an authoritative server and a recursive resolver on the same server"
+      - "Separating them always makes DNS name resolution at least twice as fast"
+    answerIndex: 1
+    explanation: "Exposing recursion (caching) functionality as an open resolver carries the risk of it being abused as a launchpad for a DNS amplification attack — a DDoS attack against a third party. An authoritative server has no choice but to be exposed, but standard practice is to restrict recursion to trusted internal clients only."
+
+  - question: "Which statement best matches the article's explanation of the relationship between BIND and Windows DNS Server?"
+    choices:
+      - "BIND and Windows DNS Server are separate implementations of the same DNS protocol specification, and can interoperate across implementations via standardized zone transfers"
+      - "BIND and Windows DNS Server use entirely different protocols, and interoperating between them is technically impossible"
+      - "Windows DNS Server is built by directly reusing BIND's source code"
+      - "BIND is Windows-exclusive software and doesn't run on Linux"
+    answerIndex: 0
+    explanation: "BIND and Windows DNS Server are simply separate pieces of software implementing the same DNS protocol specification. As long as both sides follow the standardized protocol, a zone transfer between different implementations is technically achievable."

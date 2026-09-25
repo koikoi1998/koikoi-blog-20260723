@@ -4,7 +4,7 @@ import { glob } from "astro/loaders";
 const articleSchema = z.object({
   title: z.string(),
   description: z.string(),
-  series: z.enum(["idrac", "network", "vpn", "modern-vpn", "site-to-site-vpn", "linux", "telephony", "api", "security", "handson-prep", "virtualization", "active-directory", "windows-client", "windows-server", "storage", "web-proxy", "aws-basics", "messaging", "protocol-fundamentals", "openshift", "ansible"]),
+  series: z.enum(["idrac", "network", "vpn", "modern-vpn", "site-to-site-vpn", "linux", "telephony", "api", "security", "handson-prep", "virtualization", "active-directory", "windows-client", "windows-server", "storage", "web-proxy", "aws-basics", "messaging", "protocol-fundamentals", "openshift", "ansible", "dns"]),
   // シリーズ内をさらに絞り込むための任意のサブカテゴリ(記事数が多いシリーズだけ設定する)。
   // 表示名は src/consts.ts の subSeriesNames / subSeriesNamesEn で管理する。
   subSeries: z.string().optional(),

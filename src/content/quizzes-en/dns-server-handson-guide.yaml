@@ -1,0 +1,45 @@
+questions:
+  - question: "Which statement best matches the article's explanation of the role of `allow-transfer` in the master's zone configuration?"
+    choices:
+      - "It explicitly specifies which IP addresses are allowed to receive zone transfers; without it, the default behavior can be broadly permissive, leaving zone data retrievable by anyone"
+      - "`allow-transfer` controls whether ordinary DNS queries from clients are allowed"
+      - "Without configuring `allow-transfer`, zone transfers are, by default, restricted to exactly one specific host"
+      - "`allow-transfer` is a feature that automatically fixes syntax errors in a zone file"
+    answerIndex: 0
+    explanation: "allow-transfer explicitly specifies who is allowed to receive zone transfers. Without it, the default behavior may allow zone transfer requests from essentially anyone."
+
+  - question: "Which statement best matches the article's explanation of the slave server's zone configuration?"
+    choices:
+      - "The slave must manually create its own zone file with the same content as the master"
+      - "The slave doesn't need to write the zone file's contents itself — it just needs to specify where to store the data transferred from the master (`file`)"
+      - "The slave doesn't need a `masters` directive; it automatically detects the master"
+      - "The concept of a slave server doesn't exist in BIND"
+    answerIndex: 1
+    explanation: "The slave's configuration doesn't write the zone file's contents itself — it just specifies where to store the data transferred from the master (file) and where to transfer from (masters)."
+
+  - question: "Which statement best matches the article's explanation of what happens after changing a record without bumping the serial number in Step 3?"
+    choices:
+      - "Both the master and the slave immediately reflect the new value"
+      - "Querying the master returns the new value, but querying the slave still returns the old value"
+      - "Both the master and the slave keep the old, unchanged value"
+      - "BIND automatically corrects the serial number even if you don't bump it"
+    answerIndex: 1
+    explanation: "Querying the master itself immediately reflects the new value, but since the slave's serial number hasn't changed, it concludes there's nothing new and never requests a zone transfer, so it keeps returning the old value."
+
+  - question: "Which statement best matches the article's explanation of the action taken in Step 4 to propagate the update to the slave?"
+    choices:
+      - "Completely reinstalling the slave server"
+      - "Bumping the serial number by one on the master's zone file, and, if needed, forcing an immediate zone transfer with `rndc retransfer`"
+      - "Swapping the roles of the master and the slave"
+      - "Deleting the `allow-transfer` configuration"
+    answerIndex: 1
+    explanation: "Correctly bumping the serial number on the master's zone file lets the slave detect the master's update. To make it happen immediately, you can force an immediate zone transfer on the slave side with rndc retransfer."
+
+  - question: "Which statement best matches the article's explanation of the value of this hands-on lab?"
+    choices:
+      - "Learning how to use the dig command is the sole purpose of this hands-on lab"
+      - "The value lies in turning the knowledge that \"forgetting to bump the serial number means it won't propagate\" into an understanding you can actually reach for on the spot in real work, by reproducing it with your own hands and watching dig's results diverge with your own eyes"
+      - "This hands-on lab has no use in real-world troubleshooting at all — it's purely educational"
+      - "You can fully master operating BIND just by reading the text, with no need to actually do it by hand"
+    answerIndex: 1
+    explanation: "The value of this hands-on lab lies in turning knowledge from the article into an understanding you can reach for on the spot in real work, by actually reproducing it with your own hands and watching dig's results diverge with your own eyes."

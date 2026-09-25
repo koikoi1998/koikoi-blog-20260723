@@ -188,6 +188,8 @@ DNS関連の障害は、**「どの段階のキャッシュ・設定が古い/�
 1. 「DNSが引けない」障害に遭遇したら、まずローカルキャッシュ・OS側の名前解決設定(アダプターごとのDNSサーバー、NRPT/ルーティングドメイン)・権威サーバー自体、のどの段階の問題かを切り分けましょう。
 2. VPN接続時に社内名前解決が不安定な場合は、真っ先にNRPT(Windows)またはルーティングドメイン(Linux)の設定を確認しましょう。
 
+ここまでは名前解決を「利用する側」の視点でしたが、実際にDNSサーバーを構築・運用する側の視点は、[DNSサーバーの基礎](/articles/dns-server-fundamentals-guide)以降で扱っています。
+
 ## 参考文献
 
 - [Domain Names - Concepts and Facilities | RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034)
