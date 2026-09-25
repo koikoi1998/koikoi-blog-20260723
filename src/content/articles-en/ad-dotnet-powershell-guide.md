@@ -20,6 +20,7 @@ This article is part of the [Top 1% Series — Full Article Guide](/en/sitemap),
 ## Prerequisite Knowledge
 
 - **Features that accompany the AD DS role**: Covered in [Understanding AD vs. DC, and Domains vs. Forests](/en/articles/ad-dc-fundamentals-guide) — the behavior where adding the AD DS role in Server Manager brings along the Group Policy Management Console and .NET Framework 4.8 features, among other things.
+- **The big picture of terms like runtime, library, SDK, and API**: A general sort-out of these terms themselves is covered in [What Is a Framework?](/en/articles/software-framework-guide). This article zooms in on "runtime (execution engine)" specifically and digs even deeper, using .NET Framework as the concrete example.
 
 ## Getting the Big Picture
 
@@ -43,6 +44,16 @@ graph TB
 ```
 
 ## Deep Dive into the Fundamentals
+
+### What an "execution engine (runtime)" concretely is
+
+This is the single hardest point to grasp, so let's separate it from "software"/"an application" using concrete examples, all the way through.
+
+**Most of what you'd normally call "an application" — a file like `notepad.exe`** — is a file that already contains the exact machine-code instructions the CPU can run directly. Windows just loads this file into memory and tells the CPU "start executing from here"; the CPU then interprets and executes the file's contents directly. No special "execution engine" beyond the OS is needed at all here.
+
+**A .NET-based application (a PowerShell cmdlet, or a compiled .NET program) is a completely different story.** What's actually written inside these files isn't machine code the CPU can run directly — it's **IL** (Intermediate Language), a CPU-independent, "half-finished" form of code. IL, on its own, can't make the CPU do anything. This is exactly where the **CLR** (Common Language Runtime) — a runtime, or execution engine — comes in. The CLR's specific job is to **translate the IL being executed into real machine code for that specific machine (that specific CPU), on the spot, as it goes** (JIT compilation, or Just-In-Time compilation).
+
+In other words, **if "the application" is the contents of the file — the blueprint of what should run — then "the execution engine (runtime)" is the craftsperson who reads that blueprint and, on the spot, translates it into a form the CPU can actually carry out, running the whole show.** A .NET-based program can't get the CPU to execute anything at all, literally, unless the CLR craftsperson is present. That's the core reason ".NET Framework, an execution engine, needs to be separately installed and enabled on Windows." The class library is like a toolbox of prebuilt tools this craftsperson (the CLR) draws on while working — a different role from the execution engine itself. A command-line shell (PowerShell or cmd.exe) is one of the applications built on top of all of this — the "front desk" through which a human types commands to operate it.
 
 ### What .NET Framework is: a runtime plus a class library
 

@@ -46,6 +46,15 @@ AD DS relies heavily on DNS throughout its internal workings. There are two main
 1. **DC locator functionality depends on DNS SRV records**: The mechanism by which a client finds "where's the DC for this domain" (DC locator) is implemented by querying DNS for special SRV records like `_ldap._tcp.dc._msdcs.<domain-name>` (the detailed structure of this zone will be covered in a later article). In other words, if DNS isn't functioning properly, a client can't even find a DC in the first place.
 2. **Unifying dynamic updates with replication via AD-integrated zones**: On startup, a DC dynamically registers a large number of records about itself with DNS — the SRV records mentioned above, plus host records. If the DC itself also hosts the DNS server role, and the zone is AD-integrated, replication of these records **piggybacks on AD DS's own multi-master replication**, eliminating the need to separately configure and manage zone transfers between DNS servers. In addition, AD-integrated zones support **secure dynamic updates** (only Kerberos-authenticated clients/computers can update their own records), which is more secure than dynamic updates against a conventional zone file.
 
+<details>
+<summary>Does adding the DNS role to a DC automatically set up AD-integrated zone sync?</summary>
+
+**If this DC is the first one built for that domain (or the first DC of a brand-new domain), simply choosing "Store the zone in Active Directory (Active Directory-integrated)" while adding the DNS role and creating the zone is enough — it rides on AD DS replication automatically, with no extra work.** Adding the DNS role to a second or later DC is likewise usually just a matter of joining the existing AD-integrated zone — largely a matter of adding the role and waiting for the zone to replicate.
+
+The situation changes, though, **if you build the DNS server on a separate machine that's domain-joined but isn't itself a DC.** In that case, since the machine doesn't participate in AD DS's replication mechanism at all, you can't make the zone AD-integrated in the first place (AD-integrated storage means storing the zone data inside AD DS's own database). In this setup, you'd use the conventional zone-file approach, and either explicitly configure **zone transfers** (copying zone data primary-to-secondary) yourself, or position that server as a conditional forwarder's target — building some other replication/coordination mechanism that doesn't rely on AD DS replication.
+
+</details>
+
 For these reasons, many AD environments don't run DNS server functionality on an independent, dedicated server — instead, they commonly **have the DCs themselves double as DNS servers.**
 
 ### What a Forwarder Is: The True Explanation Behind "ping 8.8.8.8 Works, But I Can't Search"
@@ -56,6 +65,17 @@ When queried about a name outside the corporate domain (such as `www.google.com`
 - **Forward it to a forwarder**: Rather than resolving it itself, it simply **forwards** the query as-is to a specific, pre-configured DNS server (such as an ISP's DNS server or a public DNS service), and relays whatever result comes back straight to the client. What an ISP itself actually is and does is covered in depth in [Understanding What an ISP Is](/en/articles/ad-isp-guide).
 
 In practice, it's common for firewall policy not to allow direct queries to the root servers (a set of 13 server systems worldwide that manage the very top of the DNS namespace, `.` — the starting point of DNS's recursive resolution, from which you work down to the servers managing `.com` or `.jp`) over UDP/TCP port 53, so configuring a forwarder is the typical setup. In DNS Manager, you can specify one or more forwarding destination IP addresses under the target server's properties, on the "Forwarders" tab.
+
+<details>
+<summary>Why is traffic to a forwarder (like an ISP's resolver) allowed, while direct queries to root servers are blocked?</summary>
+
+Both are "communicating with the outside," so it might look inconsistent that one is allowed and the other isn't. The real point here isn't "internal vs. external" — it's **how narrowly the firewall's allow rule can pin down the destination.**
+
+When you recursively resolve names yourself starting from the root servers, exactly which server you end up querying **changes with every name you're trying to resolve, and there's no realistic way to enumerate the destinations ahead of time** (there's no static rule that can capture which of the countless authoritative servers worldwide you'll end up talking to). Trying to allow this through a firewall forces you into an extremely broad, hard-to-audit rule: "allow all port 53 traffic, regardless of destination." A rule that broad also creates a real risk of abuse as an exfiltration channel, like DNS tunneling.
+
+Forwarding to a forwarder is decisively different: **you only need to allow traffic to a small, predetermined handful of specific IP addresses.** That's achievable with a tightly scoped rule: "of port 53 traffic, allow only what's addressed to this one (or these few) IP address(es)." This is a direct application of the same idea covered in [Understanding Practical Security Measures for Building and Operating Servers](/en/articles/practical-server-security-measures-guide) — **restricting outbound traffic to only the destinations you actually need.** The preference for a forwarder-based setup isn't just "easier to get approved internally" — there's a concrete security reason: **it minimizes the attack surface.**
+
+</details>
 
 ```mermaid
 sequenceDiagram
@@ -84,6 +104,8 @@ DNS Manager also has a **conditional forwarding** feature that forwards queries 
 In terms of resolution priority, **a conditional forwarder that matches a more specific condition takes priority over a regular forwarder** (the default destination used for every other query). For a name that neither applies to, and where the regular forwarders also don't respond at all (or none are configured in the first place), it falls back to recursive resolution on its own using root hints (assuming the default of "use root hints if forwarders are unavailable" is enabled on the server's properties).
 
 One more point that matters from an AD-migration angle: **these two default to different storage locations.** A regular forwarder is always stored locally (in the registry) on a per-DNS-server basis — there's no option to store it in AD DS for automatic replication across DCs in the first place. A conditional forwarder, on the other hand, has a checkbox at creation time — "Store this conditional forwarder in Active Directory, and replicate as follows" (off, i.e. local storage, by default) — and enabling it means it gets automatically replicated across DCs via AD DS. In other words, it's not that "only conditional forwarders sync automatically" — the accurate understanding is that **a conditional forwarder *can* replicate if you explicitly opt into storing it in AD DS, while a regular forwarder has no such option at all and always needs to be configured individually on each DC**. When planning an AD migration or adding a new DC, you need to assume regular forwarders will need to be manually reconfigured on the new DC as well.
+
+**Why did Microsoft design it so that only the regular forwarder can't be stored in AD DS?** This looks less like a technical limitation and more like a design choice rooted in **the fact that the two are solving fundamentally different kinds of problems.** A regular forwarder is a setting about "where this particular DNS server hands off internet name resolution" — **it's tightly tied to the specific network environment that server itself sits in (which location, which line it's using).** In an environment with DCs spread across multiple locations, it's not unusual for different locations to contract with different ISPs — if the same forwarder were forcibly replicated to every DC, that would actually get in the way of letting each location use the forwarder that's actually best for it. A conditional forwarder, by contrast, is about "how to resolve a specific (partner organization's or different domain's) namespace" — **information closer to an inter-organizational trust relationship, which arguably should be consistent across the whole forest or domain.** This difference in nature lines up neatly with the difference in whether replication makes sense.
 
 </details>
 
