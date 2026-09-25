@@ -43,6 +43,12 @@ sequenceDiagram
 
 ## Fundamentals, Explained Thoroughly
 
+### What RPC Actually Is
+
+Before getting into NRPC itself, let's sort out **RPC** (Remote Procedure Call), the foundation it's built on. **RPC is a general-purpose mechanism (a category of standards and technology) that lets a program running on one computer call a procedure running on a different computer over the network, in a way that feels just like calling a local function.** The calling side doesn't need to think about the fact that the other end is actually across a network — it just writes code as "call this function, pass it these arguments, get back this return value," and RPC's machinery handles all the actual communication details (assembling packets, sending and receiving them, invoking the corresponding processing on the other end) behind the scenes.
+
+In Windows environments, Microsoft's own implementation, **MS-RPC**, serves as the foundation for a huge range of features — remote registry editing, starting and stopping services, and NRPC, the subject of this article. The **IPC$ share** covered in [Understanding DC Health Checks](/en/articles/dc-health-check-guide) was also a special share for carrying this same RPC communication over SMB. In other words, it helps to think of **NRPC as one of many RPC-based protocols — this particular one specialized for Netlogon-related processing.**
+
 ### The True Identity of the Secure Channel
 
 The secure channel is an authenticated, encrypted communication path established on top of an RPC-based protocol called **NRPC** (Netlogon Remote Protocol). What anchors this authentication is the computer account password mentioned above. Both the member computer and the DC (more precisely, AD DS) are assumed to know this same password, and each side proves to the other "I really am that account." **This secure channel functions correctly only for as long as the password value both sides know actually matches.**
@@ -110,6 +116,32 @@ nltest /dbflag:0x0
 Once enabled, detailed logs get written to `%windir%\debug\netlogon.log`. This log records detailed results of secure-channel establishment attempts and password verification, making it useful for investigating tangled failures that a single simple command can't isolate. Since it generates a lot of log output, be sure to disable it again once you're done investigating.
 
 </details>
+
+### What Happens, and in What Order, Behind the Scenes When a Client Logs On
+
+Netlogon, DC location, and Kerberos authentication have each been covered separately, article by article. Let's stitch them back together here, chronologically, as **the single sequence that runs from powering on a client PC through to a completed logon.**
+
+```mermaid
+sequenceDiagram
+    participant PC as Client PC
+    participant DNS as DNS server
+    participant DC as DC
+
+    Note over PC: Power on, OS boots
+    PC->>DNS: ① DC locator (the Netlogon service)<br/>queries SRV records to find a DC to connect to
+    DNS-->>PC: Returns a list of candidate DCs
+    PC->>DC: ② Requests a secure channel over NRPC<br/>(mutual authentication via the computer account password)
+    DC-->>PC: Secure channel established
+    Note over PC: The user types their ID and password
+    PC->>DC: ③ AS-REQ (Kerberos pre-authentication)
+    DC-->>PC: Issues a TGT
+    Note over PC: Loading the user's profile, applying GPOs,<br/>and accessing whatever services that requires
+    PC->>DC: ④ TGS-REQ (TGT + target SPN)
+    DC-->>PC: Issues a service ticket
+    PC->>DC: ⑤ AP-REQ (presents the service ticket)
+```
+
+As this diagram shows, processing builds up in this order: **① the DC locator finds a DC (Netlogon) → ② the computer's own secure channel gets established (Netlogon) → ③ the user themselves authenticates via Kerberos (the KDC) → ④ from there on, a ticket gets obtained per service as needed (the KDC).** Steps ① and ② authenticate the computer account itself; step ③ onward authenticates the user account — and the single most important thing to take from this whole sequence is that **"trusting the computer" and "trusting the user" are separate layers.** This is also exactly where the causal chain comes from: if the secure channel from ①② is broken, logon fails outright (a trust relationship failure error) no matter how healthy the user authentication in step ③ onward would otherwise be.
 
 ## The View From the Top 1% Perspective
 

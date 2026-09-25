@@ -73,6 +73,29 @@ Only once all four succeed does the `Connectivity` test pass. Regardless of whet
 
 </details>
 
+<details>
+<summary>The role of each service the `Services` test checks, needed for a DC to function</summary>
+
+The main services the `Services` test checks each play a specific role:
+
+| Service | Role / communication involved |
+|---|---|
+| **Netlogon** | The core service covered in [Understanding the Netlogon Service and the Secure Channel](/en/articles/ad-netlogon-guide) — handles DC location (querying DNS for SRV records), establishing the secure channel (NRPC, over SMB on port 445), and pass-through authentication. |
+| **KDC** (Kerberos Key Distribution Center) | The service covered in [Understanding Kerberos Authentication](/en/articles/ad-kerberos-guide) — issues TGTs and service tickets. Communicates over UDP/TCP port 88. |
+| **DNS Server** | Handles queries against, and dynamic updates to, AD-integrated zones. Communicates over UDP/TCP port 53 (when the DC also hosts the DNS server role). |
+| **W32Time** (Windows Time) | The time-sync service covered in [Understanding the Configuration Values for Building an NTP Server on Windows Server](/en/articles/windows-ntp-server-guide). Communicates over UDP port 123. Since Kerberos authentication assumes the clock drift between a client and a DC stays within a certain range, a problem with this service can spill over into Kerberos authentication too. |
+
+Rather than just a comparison table, this is most useful in practice viewed through the lens of **"at what point in the sequence of a client logging on to a DC does each service get invoked?"** See the full sequence diagram — from DC discovery through Kerberos authentication — in [Understanding the Netlogon Service and the Secure Channel](/en/articles/ad-netlogon-guide) as well.
+
+</details>
+
+<details>
+<summary>The relationship between the DC locator, `_msdcs`, and the global catalog</summary>
+
+These three are separate concepts, each with a different role, that nonetheless work closely together. **The DC locator**, as covered in [Understanding the Netlogon Service and the Secure Channel](/en/articles/ad-netlogon-guide), is **the actual process** (a function the Netlogon service performs) by which a client searches for "the DC (or global catalog) it should connect to." What that process is actually querying is the set of SRV records stored in the **`_msdcs` zone**, covered in [Reading DNS Zones and Records](/en/articles/dns-zones-records-guide). And the **global catalog** is one of a DC's extended roles, holding a partial replica of other domains' information across the forest — inside the `_msdcs` zone, there's a dedicated SRV record, `_ldap._tcp.gc._msdcs.<forest root domain>`, specifically for locating global catalog servers. **In other words: the DC locator is "the act of searching," `_msdcs` is "where the information to search is stored," and the global catalog is "one of the roles that can be the target of that search"** — three concepts operating at three different layers.
+
+</details>
+
 ### What the Extra Information Added by the `/v` Option Means
 
 Running `dcdiag` without `/v` shows only a one-line PASS/FAIL for each test, like `passed test Connectivity`. With `/v`, **even for tests that passed, it outputs the detailed information underlying that judgment** (the content of records checked, response times, internal verification steps, and so on). This lets you confirm not just that a test "passed," but **what grounds it used to reach that PASS**, making it much harder to overlook a borderline state (barely passing, with no margin).

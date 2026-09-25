@@ -118,6 +118,20 @@ Placing multiple DCs in a single domain just means those DCs share replicas of t
 - **Tree**: A collection of one or more domains sharing a **contiguous DNS namespace**, such as `example.com` and its child domain `child.example.com`. Domains within the same tree are automatically joined by a two-way, transitive trust relationship (a parent-child trust).
 - **Forest**: A collection of one or more trees, and **the topmost security boundary in AD DS**. Trees within a forest don't need contiguous DNS namespaces (unrelated namespaces, like `example.com` and `example.net`, can coexist as separate trees within the same forest). Every domain in a forest **shares the configuration and schema partitions** described earlier, and the root domains of the trees within a forest are also automatically joined by trust relationships.
 
+<details>
+<summary>What a "parent-child trust relationship" concretely means, and the benefit of a tree structure</summary>
+
+"Trust relationship" sounds abstract, but concretely it means: "**a user authenticated in one domain can, using Kerberos, also access resources in the other domain (given the right permissions).**" When `example.com` and `child.example.com` are in a parent-child relationship, a user account in `child.example.com` can access a file server or shared folder on the `example.com` side **automatically, from the start, with no need to configure a trust between the two domains separately.** This trust is **bidirectional** (works in both directions, parent-to-child and child-to-parent) and **transitive** (it automatically extends to a child's child — a "grandchild" domain — too).
+
+The real-world benefits of choosing a tree structure (a parent domain with child domains) come down mainly to two things:
+
+- **Distributing administration while keeping the namespace consistent**: You can place a dedicated administrator (a domain admin) for each child domain, scoped to that location or department, while still keeping an **organization-wide, consistent naming convention** like `tokyo.corp.example.com`.
+- **Simpler operations thanks to automatic trust**: As noted above, the moment you add a child domain, a trust relationship with the existing domains in the forest is established automatically — no need to manually configure trusts between separate domains one by one.
+
+That said, if your actual requirement is just "I want different policies per department," splitting into separate domains is usually overkill — OUs (organizational units) combined with Group Policy are almost always enough. The real motivation for deliberately choosing a tree structure is usually **a genuine organizational or legal distinction — a separate location, an acquired company — where the DNS namespace or the entity actually responsible for IT management needs to be kept separate.** If you want to see this automatic trust get established with your own eyes by actually building a child domain, check out [Hands-On: Building a Multi-Domain, Multi-Tree AD Forest](/en/articles/ad-multidomain-handson-guide).
+
+</details>
+
 ```mermaid
 graph TB
     subgraph Forest["Forest (topmost security boundary)"]
