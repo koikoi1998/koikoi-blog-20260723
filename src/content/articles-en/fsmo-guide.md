@@ -53,7 +53,7 @@ The **Schema Master** is the sole DC in the forest that can make changes to the 
 
 ### One Per Forest: Domain Naming Master
 
-The **Domain Naming Master** is the sole DC in the forest that can add or remove domains from the forest (and add or remove certain application partitions). "Globally unique" here doesn't mean **unique across the entire internet worldwide — it means unique within your own forest, and only that.** Even if multiple different organizations (each in their own separate forest) all happen to use a commonly-recycled internal name like `test.local`, that's not a problem at all, since the forests are separate. What the Domain Naming Master manages and guarantees is strictly **preventing the accident of two domains with the same name ending up inside your own forest** — it has no involvement with, or even any means of knowing about, domain names that exist out in the world beyond your forest.
+The **Domain Naming Master** is the sole DC in the forest that can add or remove domains from the forest (and add or remove certain application partitions). When a new domain is added, the Domain Naming Master checks that **the domain name is globally unique within the forest** before allowing the addition. "Globally unique" here doesn't mean **unique across the entire internet worldwide — it means unique within your own forest, and only that.** Even if multiple different organizations (each in their own separate forest) all happen to use a commonly-recycled internal name like `test.local`, that's not a problem at all, since the forests are separate. What the Domain Naming Master manages and guarantees is strictly **preventing the accident of two domains with the same name ending up inside your own forest** — it has no involvement with, or even any means of knowing about, domain names that exist out in the world beyond your forest.
 
 ### One Per Domain: RID Master
 
@@ -89,6 +89,17 @@ That said, this isn't a recommended configuration. CMOS clocks generally have po
 ### One Per Domain: Infrastructure Master
 
 The **Infrastructure Master** is responsible for **updating reference information when an object in another domain that's referenced by an object in this domain (for example, a user in a different domain who's a member of a group in this domain) gets renamed or moved.**
+
+<details>
+<summary>Understanding the Infrastructure Master's role with a concrete example</summary>
+
+Say a group called "Sales" in `domain-a.example.com` has a member who's a user from a different domain, `domain-b.example.com`, named `tanaka`. One day, an admin on the `domain-b` side renames that user from `tanaka` to `tanaka2`. This change takes effect immediately on `domain-b`'s own DCs, but a DC in `domain-a` doesn't hold `domain-b`'s object itself, so it has no automatic way of knowing about that change.
+
+This is where `domain-a`'s Infrastructure Master comes in: it periodically checks the list of "references to objects in other domains" it holds, detects that the referenced object (`tanaka`) was renamed, and updates `domain-a`'s own reference information (like the group member's displayed name) to the correct value (`tanaka2`). If the Infrastructure Master doesn't do this, an admin on `domain-a` looking at the "Sales" group's member list keeps seeing the stale name `tanaka` — this is exactly what's known as a **phantom object**.
+
+**In a single-domain forest, this problem can't happen at all.** A single domain has no concept of "a reference to an object in another domain," so the exact problem the Infrastructure Master exists to solve — tracking renames and moves across domains — simply can't occur. That's why you don't need to worry much about Infrastructure Master placement in a single-domain forest.
+
+</details>
 
 This FSMO has a **placement caveat** that's particularly important to keep in mind in practice. **A DC holding the Infrastructure Master role should, in principle, not also serve as a global catalog (GC)** (unless every DC in the forest also serves as a GC). The reason is that, as explained in [Understanding the Difference Between AD and DC, and Domains vs. Forests, from a "Top 1%" Perspective](/en/articles/ad-dc-fundamentals-guide), a GC also holds a partial replica of objects in other domains in the forest — meaning **the GC itself can always see what the referenced object actually looks like now, so it can never detect the "stale references (so-called phantom objects)" the Infrastructure Master is supposed to find.** As a result, co-locating the Infrastructure Master on the same DC as a GC can lead to a bug where a rename of an object in another domain fails to be correctly reflected in this domain's references (such as a group member's displayed name).
 

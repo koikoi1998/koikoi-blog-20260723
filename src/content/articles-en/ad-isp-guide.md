@@ -44,7 +44,7 @@ graph LR
     Office -->|Access line| Access
     Access --> GIP
     Office -.Forwarder.-> DnsSvc
-    ISPNet -->|Transit (paid)| Backbone
+    ISPNet -->|"Transit (paid)"| Backbone
 ```
 
 ## Deep Dive into the Fundamentals

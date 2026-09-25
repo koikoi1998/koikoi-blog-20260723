@@ -51,7 +51,19 @@ The **GPC (Group Policy Container)** is an ordinary AD DS object that lives at `
 
 The **GPT (Group Policy Template)** is a set of files describing the actual configuration content, located in the `Policies\{that GPO's GUID}` folder within the SYSVOL share. Things like the list of registry values to write and the logon script bodies themselves live here as real files. Inside the GPT folder there's a small config file called `gpt.ini`, which also records its own version number.
 
-The GPC and the GPT are linked purely by convention — by the GPO's GUID (a unique identifier assigned when it's created) — and are, in substance, **two completely independent pieces of data.**
+The GPC and the GPT are linked purely by convention — by the GPO's GUID (a unique identifier assigned when it's created) — and are, in substance, **two completely independent pieces of data.** It's accurate to think of it this way: **the GPC holds the skeleton (metadata) of "what state this GPO is in, and what version it is," and the GPT holds the actual per-setting files that follow that skeleton.**
+
+### What a GPO Can Actually Configure in Bulk, Concretely
+
+The range of settings a GPO can push out is genuinely broad. Representative examples include:
+
+- **Registry-based settings (administrative templates)**: Settings like "enable password complexity requirements," "block USB storage devices," or "force automatic Windows Update" — all implemented as writes to registry keys. Administrative templates (ADMX files) define the mapping between a GUI checkbox and its corresponding registry key.
+- **Logon scripts / startup scripts**: The actual script file (a batch file, a PowerShell script, and so on) that runs automatically at PC startup or user logon is placed directly in the GPT's folder and distributed from there.
+- **Software deployment (Group Policy Software Installation)**: Settings that automatically install a specific MSI package on target computers or users.
+- **Folder redirection**: Settings that point folders like "Desktop" or "Documents" at a shared folder on a file server instead of the local disk.
+- **Security settings**: Settings that enforce the membership of the local Administrators group, or enable specific audit-log categories.
+
+None of these actually apply to a client correctly until both halves are present: the GPC's skeleton ("this GPO is enabled, and this is its version") and the GPT's actual data ("specifically, this registry value, this script file").
 
 ### Why the Split Exists, and Why the Replication Paths Are Separate Too
 

@@ -85,6 +85,13 @@ AD RMS takes a different approach from the previous four roles: instead of contr
 
 The implementations of these five roles are completely different, but what they share is that each is **built on the directory-service design philosophy and brand**. AD DS and AD LDS are both, literally, LDAP-based hierarchical directories. AD CS, AD FS, and AD RMS aren't directories themselves, but each is designed to use AD DS's user and computer information as its **root of trust** — AD CS looks up who certificates should be issued to, AD FS looks up the attributes of an authenticated user, and AD RMS looks up the list of users allowed to access a protected file, all from AD DS. This shared pattern — "use AD DS as the root of trust" — is the actual technical reason these products share a name. A top-1% engineer, on encountering an unfamiliar role name, first asks: "Is this an extension of AD DS itself, or is it a separate product that merely uses AD DS as its foundation to solve a different problem?"
 
+<details>
+<summary>Do AD CS, AD FS, and AD RMS work without AD DS?</summary>
+
+The short answer: **only AD LDS is fully independent of AD DS — the other three (AD CS, AD FS, and AD RMS) are, in practice, built assuming AD DS is present.** That said, the strength of that dependency varies. **AD CS** can technically run in a "standalone CA" mode that doesn't join a domain, but most of what makes AD CS actually convenient — certificate template management, automatic enrollment and renewal to clients — is only available in the AD-DS-integrated "enterprise CA" mode, so there's rarely a real-world reason to choose AD CS without AD DS. **AD FS and AD RMS** are both designed to pull the user and group information they authenticate or license against directly from AD DS, making AD DS an effectively hard prerequisite for both.
+
+</details>
+
 ## Common Misconceptions and Pitfalls
 
 - **Misconception 1: "Installing AD FS automatically extends AD DS's functionality to the outside world."**

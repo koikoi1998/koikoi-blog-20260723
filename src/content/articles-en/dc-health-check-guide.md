@@ -122,9 +122,13 @@ The real purpose of these administrative shares is to **directly access the file
 
 In short, C$, ADMIN$, and IPC$ are all **"paths for directly operating files or services remotely without logging in via RDP,"** and RDP is a completely separate, independent mechanism from these.
 
+One more nuance worth flagging: the idea that "accessing `\\server-name\C$` in Explorer as an administrator also unlocks ADMIN$" is half right and half imprecise. **C$ and ADMIN$ are separate, independent shares — accessing one doesn't "grant" permission on the other.** However, since an SMB connection establishes an authenticated session per server, once you've authenticated as an administrator, **that same authenticated session can access whichever of C$ or ADMIN$ your admin privileges allow, without re-authenticating.** It's not that "C$ unlocks ADMIN$" — it's that "the same admin session happens to work for both C$ and ADMIN$."
+
 </details>
 
 ### NETLOGON and SYSVOL, and Why You Need Both
+
+Before going further, it's worth separating two different things the name "NETLOGON" can refer to. Everything covered so far was the `NETLOGON` **share** (exposing the `scripts` folder under SYSVOL) — but there's also a separate Windows service called the **Netlogon service**. **The Netlogon service is responsible for three things: establishing and maintaining the secure channel via the DC's own computer account, processing client authentication requests, and dynamically registering the DNS SRV records clients use to locate their DC.** The `NETLOGON` share's name traces back to this service's historical involvement in distributing logon scripts, but **the share itself is just part of SYSVOL — the Netlogon service doesn't hold the share's content.** The secure channel mechanism itself is covered in depth in [Understanding the Netlogon Service and the Secure Channel](/en/articles/ad-netlogon-guide).
 
 As the table above shows, the `NETLOGON` share's actual target is the `scripts` subfolder inside the `SYSVOL` folder. In other words, **the NETLOGON share is simply re-exposing, under a different name, part of the same tree that the SYSVOL share already exposes** — it isn't separate, independent data. Both trace back to the same SYSVOL folder on the DC, and **both are accessed by clients and DCs alike** (it isn't a split of "SYSVOL is DC-to-DC only, NETLOGON is client-only").
 

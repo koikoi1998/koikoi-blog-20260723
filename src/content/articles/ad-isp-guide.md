@@ -44,7 +44,7 @@ graph LR
     Office -->|アクセス回線| Access
     Access --> GIP
     Office -.フォワーダー.-> DnsSvc
-    ISPNet -->|トランジット(有償)| Backbone
+    ISPNet -->|"トランジット(有償)"| Backbone
 ```
 
 ## 基礎から徹底解説

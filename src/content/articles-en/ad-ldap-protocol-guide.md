@@ -50,6 +50,25 @@ A DN lists several comma-separated components (RDNs: Relative Distinguished Name
 
 </details>
 
+<details>
+<summary>The main types of RDNs, and their relationship to a certificate's CSR</summary>
+
+The most commonly used RDN types include:
+
+| RDN | Meaning |
+|---|---|
+| `CN` | Common Name — the name representing the object itself, like a username or computer name |
+| `OU` | Organizational Unit — AD's administrative folder unit |
+| `DC` | Domain Component — each `.`-separated segment of a domain name (`example.com`) |
+| `O` | Organization — a company name, for example |
+| `C` | Country — an ISO country code (like `JP`) |
+| `L` | Locality — a city or town |
+| `ST` | State/Province |
+
+These RDNs aren't actually specific to LDAP or AD DS at all — they're **a general-purpose "way of representing a name," originating from X.500, the international directory-service standard.** And the **CSR** (Certificate Signing Request) covered in [Understanding PKI and Digital Certificates](/en/articles/pki-guide) has a **Subject** field describing who the certificate is being issued to, written in exactly the same `CN=` / `O=` / `OU=` / `C=` format. In other words, a DN and a certificate's Subject aren't unrelated — **they're the same X.500-derived name-representation standard, reused in two different contexts: an LDAP directory, and a certificate.** Everything you learn here about reading a DN carries over directly to filling in a `CN=` or `O=` value in a certificate's Subject.
+
+</details>
+
 Every object's **object class** (what kind of object it is — a `user`, a `computer`, and so on) determines which **attributes** (name/value pairs such as name, password hash, or group membership) it's allowed to have. This "rulebook defining an object's type and its attributes" is exactly the **schema** touched on in [Understanding AD vs. DC, and Domains vs. Forests](/en/articles/ad-dc-fundamentals-guide).
 
 ### LDAP's core operations: Bind, Search, and Add/Modify/Delete
