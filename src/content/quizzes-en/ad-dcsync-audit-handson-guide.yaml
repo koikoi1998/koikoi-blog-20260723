@@ -1,0 +1,45 @@
+questions:
+  - question: "What exactly does the DCSync technique abuse?"
+    choices:
+      - "A bug in the AD DS software"
+      - "The fact that holding the extended rights needed for replication lets an account behave like a DC and receive data as if it were legitimate replication traffic"
+      - "A physical vulnerability in network cabling"
+      - "A missing Windows Update"
+    answerIndex: 1
+    explanation: "DCSync abuses the fact that holding the two extended rights, Replicating Directory Changes and Replicating Directory Changes All, lets an account behave as if it were a DC and receive information like every user's password hash as legitimate replication traffic."
+
+  - question: "What's an example of a service, other than a DC, that might legitimately need the two extended rights DCSync abuses?"
+    choices:
+      - "A DHCP server"
+      - "Microsoft Entra Connect (for password hash synchronization)"
+      - "A print server"
+      - "A file sharing server"
+    answerIndex: 1
+    explanation: "Microsoft Entra Connect legitimately needs this right to synchronize password hashes between on-premises AD DS and Microsoft Entra ID in the cloud."
+
+  - question: "What should defending against DCSync focus on most?"
+    choices:
+      - "Detecting and blocking replication traffic on the network"
+      - "Properly managing who actually holds the replication rights themselves"
+      - "Disabling the firewall on every DC"
+      - "Relaxing the password policy's complexity requirements"
+    answerIndex: 1
+    explanation: "Since DCSync traffic is technically indistinguishable from legitimate replication traffic, the focus needs to be on rights management itself — never letting an account that shouldn't hold the right, hold it."
+
+  - question: "Why is the Tier 0 concept considered insufficient if based only on \"is this account a member of Domain Admins\"?"
+    choices:
+      - "The concept of a Domain Admins group has been discontinued"
+      - "Even without Domain Admins membership, simply holding the replication rights can inflict equivalent damage"
+      - "Tier 0 is a group with lower privileges than Domain Admins"
+      - "Only physical access restrictions can be applied to the Domain Admins group"
+    answerIndex: 1
+    explanation: "Even without membership in Domain Admins, simply holding the rights needed for DCSync can inflict damage effectively equivalent to Domain Admins itself, so Tier 0 redefines what needs protecting based on actual blast radius."
+
+  - question: "If your audit turns up an unfamiliar account holding a right like Replicating Directory Changes All, what should you do first?"
+    choices:
+      - "Delete that account immediately"
+      - "Check with stakeholders what that account is used for and whether there's a legitimate reason"
+      - "Add that account to Domain Admins"
+      - "Leave it alone and do nothing"
+    answerIndex: 1
+    explanation: "Removing the right immediately risks breaking a legitimate service, so you should first check with stakeholders what that account is used for and whether there's a legitimate reason."

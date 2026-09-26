@@ -1,9 +1,9 @@
 ---
 title: "[Listen] The Active Directory Series, Fully Recapped — Only the Top-1% Insights, Told as One Continuous Story"
-description: "An audio-learning article for anyone who's finished all 36 articles in the Active Directory series — built to be reviewed with your eyes closed. No tables, no diagrams, no bullet points, just spoken-style narration, so you can listen on a commute or while doing chores using your browser's built-in read-aloud feature (Edge or Chrome's \"Read aloud\" / \"Read this page\" feature)."
+description: "An audio-learning article for anyone who's finished all 38 articles in the Active Directory series — built to be reviewed with your eyes closed. No tables, no diagrams, no bullet points, just spoken-style narration, so you can listen on a commute or while doing chores using your browser's built-in read-aloud feature (Edge or Chrome's \"Read aloud\" / \"Read this page\" feature)."
 series: "active-directory"
 subSeries: "audio"
-order: 42
+order: 44
 tags: ["windows-server", "active-directory", "audio-review"]
 emoji: "🎧"
 pubDate: 2026-09-23
@@ -12,9 +12,9 @@ updatedDate: 2026-09-26
 
 ## How to Listen to This Article
 
-Nice work getting through all 36 articles in the Active Directory series. This one's different — it's a full recap built to be listened to, not read. No tables, no code blocks, no diagrams anywhere in here, on purpose, so you don't need to look at the screen at all. Listen on your commute, while you're doing the dishes, soaking in the tub, whatever works. If you're on Edge or Chrome, there's a "Read aloud" or "Read this page" feature tucked into a menu somewhere — fire that up and just hand your ears over to this page. Your eyes are free.
+Nice work getting through all 38 articles in the Active Directory series. This one's different — it's a full recap built to be listened to, not read. No tables, no code blocks, no diagrams anywhere in here, on purpose, so you don't need to look at the screen at all. Listen on your commute, while you're doing the dishes, soaking in the tub, whatever works. If you're on Edge or Chrome, there's a "Read aloud" or "Read this page" feature tucked into a menu somewhere — fire that up and just hand your ears over to this page. Your eyes are free.
 
-What follows isn't a rehash of the technical details from those 36 articles. You don't need to trace through the text again — you already did that. Instead, for each article, I'm going to pull out the one line that actually matters most in practice, and tell it back to you as one connected story. Exact command flags and registry key names are genuinely hard to absorb by ear, so if you need that level of detail, go back and check the source article with your eyes when the moment calls for it. Think of today as time spent redrawing the map in your head.
+What follows isn't a rehash of the technical details from those 38 articles. You don't need to trace through the text again — you already did that. Instead, for each article, I'm going to pull out the one line that actually matters most in practice, and tell it back to you as one connected story. Exact command flags and registry key names are genuinely hard to absorb by ear, so if you need that level of detail, go back and check the source article with your eyes when the moment calls for it. Think of today as time spent redrawing the map in your head.
 
 ## Why AD Is Worth Understanding This Deeply in the First Place
 
@@ -76,7 +76,7 @@ The Netlogon article covered the true nature of the secure channel — mutual au
 
 The Kerberos article was one of the most central pieces in this whole series. A client and the KDC can each independently derive the same key from the user's password — which means proving you know that password never requires sending it. All that gets exchanged is proof that you can encrypt and decrypt correctly with that key. A TGT is a sealed certificate encrypted with the KDC's own key — even the client that holds it can't read what's inside. And the PAC embedded in a ticket carries the user's SID and every group SID they belong to — that's the concrete, implementation-level reality behind the principle that Windows permissions are checked against a SID, not a username string.
 
-## Turning Understanding Into Muscle Memory With Sixteen Hands-On Labs
+## Turning Understanding Into Muscle Memory With Eighteen Hands-On Labs
 
 In the next two hands-on articles, you actually built a forest root, a child domain, and a separate tree, and confirmed with your own eyes exactly what gets shared and what stays isolated. In the other, you walked through a realistic scenario end to end: adding a new DC, verifying replication health, transferring FSMO, demoting the old DC, and verifying the cleanup afterward. If something you thought you understood from reading alone suddenly felt sharper once you actually did it by hand, that's exactly what these labs were for.
 
@@ -106,7 +106,11 @@ In the fourteenth, as the finishing step after decommissioning an old DC, you ra
 
 In the fifteenth, you configured scavenging for AD-integrated DNS, experiencing how a retired device's old record gets automatically deleted. Keep in mind the two-stage grace period made of a no-refresh interval and a refresh interval, and the fact that a static record has no timestamp, so it's excluded from scavenging by default.
 
-And in the sixteenth and final one, using three locations — Tokyo, Osaka, and Nagoya — you confirmed how changing site link cost changes the replication path the KCC automatically generates. Don't forget that cost is an abstract, administrator-assigned preference rather than actual bandwidth, and that site link transitivity automatically calculates a path even between locations with no direct link.
+In the sixteenth one, using three locations — Tokyo, Osaka, and Nagoya — you confirmed how changing site link cost changes the replication path the KCC automatically generates. Don't forget that cost is an abstract, administrator-assigned preference rather than actual bandwidth, and that site link transitivity automatically calculates a path even between locations with no direct link.
+
+In the seventeenth, you reproduced Kerberoasting, an attack technique, with your own hands in a safe test environment. You felt firsthand that an ordinary user with no special rights can request a service ticket as long as they know the SPN, and that this is Kerberos's designed behavior, not a bug. Don't forget that the only effective countermeasure is migrating to a gMSA, giving you an unbreakably strong password.
+
+And in the eighteenth and final one, you audited the domain root's ACL for the two extended rights related to replicating directory changes, which a technique called DCSync abuses. Don't forget that a legitimate service like Microsoft Entra Connect can also need this right, and that the Tier 0 concept is based on the actual blast radius of compromise, not the superficial criterion of Domain Admins group membership.
 
 ## Why GPOs Actually Live in Two Places at Once
 
@@ -138,6 +142,6 @@ Last was the ISP article — internet service providers. It might have felt like
 
 ## One Last Thing: What Actually Separates the Top 1% From Everyone Else
 
-Having just run back through all 36 articles, here's what I want to leave you with. None of AD's individual features are actually that complicated on their own. What feels complicated is the seams — where one piece connects to another. FSMO and the global catalog. The secure channel and Kerberos. Sites and DNS's SRV records. The GPC and the GPT. The moment you can explain those seams from first principles instead of just memorizing them, you're already past what the average engineer understands.
+Having just run back through all 38 articles, here's what I want to leave you with. None of AD's individual features are actually that complicated on their own. What feels complicated is the seams — where one piece connects to another. FSMO and the global catalog. The secure channel and Kerberos. Sites and DNS's SRV records. The GPC and the GPT. The moment you can explain those seams from first principles instead of just memorizing them, you're already past what the average engineer understands.
 
 Next time you're staring down an AD-related outage or sitting in the middle of an AD migration, run back through this same thread in your head. You'll move with a lot more calm, and a lot more evidence behind every call you make. Nice work today — that's a wrap.

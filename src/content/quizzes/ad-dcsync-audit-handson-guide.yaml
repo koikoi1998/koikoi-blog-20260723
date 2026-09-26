@@ -1,0 +1,45 @@
+questions:
+  - question: "DCSyncという手法が悪用しているのは、具体的にどのような性質か。"
+    choices:
+      - "AD DSのソフトウェアに存在するバグ"
+      - "レプリケーションに必要な拡張権限さえ持っていれば、DCであるかのように振る舞い、正規のレプリケーション通信としてデータを受け取れてしまう性質"
+      - "ネットワークケーブルの物理的な脆弱性"
+      - "Windows Updateの適用漏れ"
+    answerIndex: 1
+    explanation: "DCSyncは、Replicating Directory ChangesとReplicating Directory Changes Allという2つの拡張権限さえ持っていれば、あるアカウントがDCであるかのように振る舞い、正規のレプリケーション通信として全ユーザーのパスワードハッシュなどを受け取れてしまう性質を悪用する手法です。"
+
+  - question: "DCSyncに悪用される2つの拡張権限を、DC以外で正規に必要とすることがあるサービスの例はどれか。"
+    choices:
+      - "DHCPサーバー"
+      - "Microsoft Entra Connect(パスワードハッシュ同期のため)"
+      - "プリントサーバー"
+      - "ファイル共有サーバー"
+    answerIndex: 1
+    explanation: "Microsoft Entra Connectは、オンプレミスのAD DSとクラウド上のMicrosoft Entra IDの間でパスワードハッシュを同期するために、正規にこの権限を必要とします。"
+
+  - question: "DCSyncへの対策として、最も焦点を当てるべきなのはどれか。"
+    choices:
+      - "ネットワーク上のレプリケーション通信を検知してブロックすること"
+      - "複製権限そのものを、誰が保持しているかを適切に管理すること"
+      - "すべてのDCのファイアウォールを無効化すること"
+      - "パスワードポリシーの複雑性要件を緩和すること"
+    answerIndex: 1
+    explanation: "DCSyncの通信は正規のレプリケーション通信と技術的に区別がつかないため、通信の検知ではなく、その権限を持つべきではないアカウントに権限を持たせないという、権限管理そのものに焦点を当てる必要があります。"
+
+  - question: "Tier 0という考え方が、「Domain Adminsグループのメンバーかどうか」という基準だけでは不十分とされる理由は何か。"
+    choices:
+      - "Domain Adminsグループという概念自体が廃止されたため"
+      - "Domain Adminsのメンバーでなくても、複製権限さえ持っていれば同等の被害をもたらせるため"
+      - "Tier 0はDomain Adminsよりも権限が低いグループであるため"
+      - "Domain Adminsグループには物理的なアクセス制限しかかけられないため"
+    answerIndex: 1
+    explanation: "Domain Adminsのメンバーでなくても、DCSyncに必要な権限さえ持っていれば、事実上Domain Adminsと同等の被害をもたらせるため、Tier 0は実際の被害範囲を基準に保護対象を再定義します。"
+
+  - question: "監査でReplicating Directory Changes Allなどの権限を持つ見慣れないアカウントを見つけた場合、まず何をすべきか。"
+    choices:
+      - "即座にそのアカウントを削除する"
+      - "そのアカウントが何のために使われているか、正規の理由があるかを関係者に確認する"
+      - "そのアカウントをDomain Adminsに追加する"
+      - "何もせず放置する"
+    answerIndex: 1
+    explanation: "権限を即座に削除すると正規のサービスを壊す可能性があるため、まずはそのアカウントの用途と正規の理由の有無を関係者に確認する必要があります。"
