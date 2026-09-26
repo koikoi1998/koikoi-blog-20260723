@@ -189,6 +189,7 @@ graph TB
 <li><a href="/articles/sdwan-edge-router-guide">SD-WANとエッジルーター選定を『上位1%』の視点で理解する</a></li>
 <li data-subseries="lecture"><a href="/articles/ad-audio-lecture-1-guide">【音声で学ぶ】Active Directory講義 Part1</a></li>
 <li data-subseries="lecture"><a href="/articles/ad-audio-lecture-2-guide">【音声で学ぶ】Active Directory講義 Part2</a></li>
+<li data-subseries="lecture"><a href="/articles/ad-audio-lecture-3-guide">【音声で学ぶ】Active Directory講義 Part3</a></li>
 <li><a href="/articles/ad-dc-fundamentals-guide">ADとDC、ドメインとフォレストの違いを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/ad-computername-netdom-guide">sysdm.cplとnetdom computernameは何が違うのか</a></li>
 <li><a href="/articles/ad-windows-login-guide">Windowsのログインとユーザープロファイルの仕組みを『上位1%』の視点で理解する</a></li>
@@ -209,10 +210,11 @@ graph TB
 <p>STEP4までのディレクトリサービスの基礎に、認証・レプリケーション・移行という「壊すと影響が大きい」領域の深い理解と、実機を使ったマルチドメイン構築・DC移行のハンズオンを積み増し、任された基盤を1人で安心して運用できるようになる段階です。Windows Serverの調達・時刻同期に関する基礎もここで押さえます。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP4の60記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP4の61記事(上のタブから確認できます)</li>
 <li><a href="/articles/ad-netlogon-guide">Netlogonサービスとセキュアチャネルの仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/ad-kerberos-guide">Kerberos認証の仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/ad-sysvol-dfsr-gpo-guide">SYSVOL・DFSR・グループポリシーの仕組みを『上位1%』の視点で理解する</a></li>
+<li data-subseries="lecture"><a href="/articles/ad-audio-lecture-4-guide">【音声で学ぶ】Active Directory講義 Part4(最終回)</a></li>
 <li><a href="/articles/ad-family-overview-guide">AD DS・AD CS・AD FS・AD LDS・AD RMSの違いを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/ad-ldap-protocol-guide">LDAPプロトコルの仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/ad-netbios-dns-history-guide">NetBIOS名とDNSホスト名、なぜ2つの名前が共存しているのかを『上位1%』の視点で理解する</a></li>
@@ -262,7 +264,7 @@ graph TB
 <p>STEP5までの範囲に、Webサーバー(IIS)・ファイル共有(SMB)・ストレージ・クラウド・メール基盤・コンテナ基盤/構成管理の自動化といった、社内インフラの周辺領域まで押さえます。ここまでで「現場で自信をつけたい」ルートは完了です。特定の分野だけをまとめて読みたい場合は、トップページの絞り込み機能をご利用ください。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP5の90記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP5の92記事(上のタブから確認できます)</li>
 <li><a href="/articles/iis-fundamentals-guide">IISとASP.NETの仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/iis-ftp-guide">IISとFTPの関係を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/smb-file-sharing-guide">Windows ServerのSMB共有を『上位1%』の視点で理解する</a></li>
@@ -309,7 +311,7 @@ graph TB
 <p>STEP6までの実務知識に、面接や設計レビューで差がつく低レイヤーの実装知識を積み増すルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP6の127記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP6の129記事(上のタブから確認できます)</li>
 <li><a href="/articles/proxmox-internals-guide">Proxmox VEとは何か——KVM/QEMUによる仮想化の仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/linux-daemon-guide">デーモン(daemon)とは何か——Linuxのバックグラウンドプロセスを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/software-library-guide">ライブラリ(library)とは何か——静的リンク・動的リンクの仕組みを『上位1%』の視点で理解する</a></li>
@@ -338,13 +340,13 @@ graph TB
 <div class="persona-panel persona-panel-8">
 <div class="persona-panel-head">
 <h3>🏆 業界最高峰のスキル水準を目指して情報収集している方へ</h3>
-<p>全151記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
+<p>全153記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP7の150記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP7の152記事(上のタブから確認できます)</li>
 <li><a href="/articles/voip-ss7-guide">VoIPとSS7、そして実際の通信経路を『上位1%』の視点で理解する</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>これで全151記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
+<div class="persona-bonus">🎉 <strong>これで全153記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
 </div>
 </div>
 </div>
@@ -462,7 +464,7 @@ VPNプロトコルの記事やL2TP/IPsecハンズオンなどで繰り返し登�
 
 ### Active Directoryシリーズ
 
-AD移行・ドメインコントローラー(DC)の構築・運用の実務で必ず直面する疑問を深掘りする、このブログの最大シリーズです(全41記事)。DNSの基礎([dns-guide](/articles/dns-guide))を読了している前提で書いています。記事数が多いため、**基礎編→補足・深掘り編→ハンズオン(4段階)→音声学習**という構成に分けています。各グループ内は上から順に読む想定ですが、どの記事も単体で読めるように書かれているため、興味のある箇所から読み始めても問題ありません。ハンズオンは、未経験でも構築しながら学べる基礎編から、実際の案件でよく遭遇するシナリオ編、細かな仕様や機能を正確に理解するための編、そして攻撃者視点を体験して守りを固めるセキュリティ強化編まで、段階的に難易度が上がる4段構成です。記事を1本も読まずにゼロから耳だけで学びたい場合は、[音声講義](/articles/ad-audio-lecture-1-guide)から始める道もあります(全4回を予定)。
+AD移行・ドメインコントローラー(DC)の構築・運用の実務で必ず直面する疑問を深掘りする、このブログの最大シリーズです(全43記事)。DNSの基礎([dns-guide](/articles/dns-guide))を読了している前提で書いています。記事数が多いため、**基礎編→補足・深掘り編→ハンズオン(4段階)→音声学習**という構成に分けています。各グループ内は上から順に読む想定ですが、どの記事も単体で読めるように書かれているため、興味のある箇所から読み始めても問題ありません。ハンズオンは、未経験でも構築しながら学べる基礎編から、実際の案件でよく遭遇するシナリオ編、細かな仕様や機能を正確に理解するための編、そして攻撃者視点を体験して守りを固めるセキュリティ強化編まで、段階的に難易度が上がる4段構成です。記事を1本も読まずにゼロから耳だけで学びたい場合は、[音声講義](/articles/ad-audio-lecture-1-guide)から始める道もあります(全4回)。
 
 #### 基礎編(10記事)
 
@@ -520,10 +522,12 @@ AD移行・ドメインコントローラー(DC)の構築・運用の実務で�
 1. [Kerberoasting攻撃を自分の手で再現し、サービスアカウントを守るハンズオン](/articles/ad-kerberoasting-handson-guide) — 特別な権限を持たない一般ユーザーでも実行できるKerberoastingを安全な検証環境で再現するハンズオン。これがバグではなくKerberosの設計上の性質であること、gMSAへの移行が根本対策になる理由までを扱う(単体でも読めます)。
 2. [DCSyncが悪用する複製権限を監査し、Tier 0管理モデルで守るハンズオン](/articles/ad-dcsync-audit-handson-guide) — DCSyncが悪用する複製ディレクトリの変更に関する2つの拡張権限を、ドメインルートのACLから監査するハンズオン。Entra Connectのような正規サービスとの見分け方、Tier 0という管理モデルの考え方までを扱う(単体でも読めます)。
 
-#### 音声で学ぶ・聴く(3記事)
+#### 音声で学ぶ・聴く(5記事)
 
-- [【音声で学ぶ】Active Directory講義 Part1](/articles/ad-audio-lecture-1-guide) — シリーズの記事を1本も読んでいない状態からでも、耳だけでゼロから学べる音声講義の第1回。AD DS・DC・ドメイン・ツリー・フォレストの基礎から、コンピューター名変更、ログインの裏側、AD環境のDNS設計までを扱う(全4回を予定)。
+- [【音声で学ぶ】Active Directory講義 Part1](/articles/ad-audio-lecture-1-guide) — シリーズの記事を1本も読んでいない状態からでも、耳だけでゼロから学べる音声講義の第1回。AD DS・DC・ドメイン・ツリー・フォレストの基礎から、コンピューター名変更、ログインの裏側、AD環境のDNS設計までを扱う(全4回)。
 - [【音声で学ぶ】Active Directory講義 Part2](/articles/ad-audio-lecture-2-guide) — 音声講義の第2回。SPNが実際には何を指しているのか、Netlogonのセキュアチャネル、Kerberos認証がパスワードを一度も送らずに済む仕組み、FSMOという例外的な役割、DC同士のレプリケーションまでを扱う。
+- [【音声で学ぶ】Active Directory講義 Part3](/articles/ad-audio-lecture-3-guide) — 音声講義の第3回。サイトが認証面でも持つ役割、dcdiagとrepadminによるDCの健康状態の確認、GPOがLocal・Site・Domain・OUの順に適用される仕組みまでを扱う。
+- [【音声で学ぶ】Active Directory講義 Part4(最終回)](/articles/ad-audio-lecture-4-guide) — 音声講義の最終回。AD DS・AD CS・AD FS・AD LDS・AD RMSという5つの役割の違い、LDAPプロトコルの正体、スキーマ拡張という後戻りできない操作、そしてハンズオン全体のレベル別振り返りを扱う。
 - [【音声で聴く】Active Directoryシリーズ総復習](/articles/ad-audio-review-guide) — 全38記事(音声学習を除く全記事)を読み終えた人向けの、耳だけで復習できる音声学習記事。表・図・箇条書きを使わず、ブラウザの読み上げ機能で聞き流せるように語りかける文章だけで構成(シリーズを読了している前提)。
 
 ### Windowsクライアント運用シリーズ

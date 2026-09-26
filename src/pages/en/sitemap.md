@@ -187,6 +187,7 @@ This blog is written for a wide range of readers — from people with no experie
 <li><a href="/en/articles/sdwan-edge-router-guide">Understanding SD-WAN and Edge Router Selection from a "Top 1%" Perspective</a></li>
 <li data-subseries="lecture"><a href="/en/articles/ad-audio-lecture-1-guide">[Audio Lecture] Active Directory, Part 1</a></li>
 <li data-subseries="lecture"><a href="/en/articles/ad-audio-lecture-2-guide">[Audio Lecture] Active Directory, Part 2</a></li>
+<li data-subseries="lecture"><a href="/en/articles/ad-audio-lecture-3-guide">[Audio Lecture] Active Directory, Part 3</a></li>
 <li><a href="/en/articles/ad-dc-fundamentals-guide">Understanding the Difference Between AD and DC, and Domains vs. Forests, from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/ad-computername-netdom-guide">What's the Difference Between sysdm.cpl and netdom computername?</a></li>
 <li><a href="/en/articles/ad-windows-login-guide">Understanding Windows Logon and User Profiles from a "Top 1%" Perspective</a></li>
@@ -207,10 +208,11 @@ This blog is written for a wide range of readers — from people with no experie
 <p>On top of STEP4's directory-services basics, this route adds the deep, "breaking this has a big blast radius" areas — authentication, replication, migration — plus hands-on labs building a multi-domain forest and migrating a DC, so you can run infrastructure you've been handed on your own with confidence. It also covers Windows Server procurement and time-sync basics.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP4's 60 articles (see those tabs above)</li>
+<li>STEP1 through STEP4's 61 articles (see those tabs above)</li>
 <li><a href="/en/articles/ad-netlogon-guide">Understanding the Netlogon Service and the Secure Channel from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/ad-kerberos-guide">Understanding Kerberos Authentication from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/ad-sysvol-dfsr-gpo-guide">Understanding SYSVOL, DFSR, and Group Policy from a "Top 1%" Perspective</a></li>
+<li data-subseries="lecture"><a href="/en/articles/ad-audio-lecture-4-guide">[Audio Lecture] Active Directory, Part 4 (Final)</a></li>
 <li><a href="/en/articles/ad-family-overview-guide">Understanding AD DS, AD CS, AD FS, AD LDS, and AD RMS from a Top-1% Perspective</a></li>
 <li><a href="/en/articles/ad-ldap-protocol-guide">Understanding the LDAP Protocol from a Top-1% Perspective</a></li>
 <li><a href="/en/articles/ad-netbios-dns-history-guide">Understanding Why NetBIOS Names and DNS Hostnames Coexist from a Top-1% Perspective</a></li>
@@ -260,7 +262,7 @@ This blog is written for a wide range of readers — from people with no experie
 <p>On top of STEP5, this route adds the infrastructure adjacent to your core stack — web servers (IIS), file sharing (SMB), storage, cloud, email infrastructure, and container platforms/config-management automation. This completes the "building confidence" route. If you want to read one specific field in one go, use the filter feature on the top page instead.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP5's 90 articles (see those tabs above)</li>
+<li>STEP1 through STEP5's 92 articles (see those tabs above)</li>
 <li><a href="/en/articles/iis-fundamentals-guide">Understanding How IIS and ASP.NET Work from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/iis-ftp-guide">Understanding the Relationship Between IIS and FTP from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/smb-file-sharing-guide">Understanding Windows Server SMB File Sharing from a "Top 1%" Perspective</a></li>
@@ -307,7 +309,7 @@ This blog is written for a wide range of readers — from people with no experie
 <p>Adds the low-level implementation knowledge that sets you apart in interviews and design reviews, on top of everything through STEP6.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP6's 127 articles (see those tabs above)</li>
+<li>STEP1 through STEP6's 129 articles (see those tabs above)</li>
 <li><a href="/en/articles/proxmox-internals-guide">What Is Proxmox VE? Understanding KVM/QEMU Virtualization from the "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/linux-daemon-guide">What Is a Daemon? Understanding Linux Background Processes from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/software-library-guide">What Is a Library? Understanding Static and Dynamic Linking from a "Top 1%" Perspective</a></li>
@@ -336,13 +338,13 @@ This blog is written for a wide range of readers — from people with no experie
 <div class="persona-panel persona-panel-8">
 <div class="persona-panel-head">
 <h3>🏆 For those gathering information toward the industry's highest skill tier</h3>
-<p>The complete-conquest route: read all 151 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
+<p>The complete-conquest route: read all 153 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP7's 150 articles (see those tabs above)</li>
+<li>STEP1 through STEP7's 152 articles (see those tabs above)</li>
 <li><a href="/en/articles/voip-ss7-guide">Understanding VoIP and SS7 — and the Real Path Your Traffic Takes — from a "Top 1%" Perspective</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>That's all 151 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
+<div class="persona-bonus">🎉 <strong>That's all 153 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
 </div>
 </div>
 </div>
@@ -460,7 +462,7 @@ A series that takes execution-environment-level terms that keep showing up in th
 
 ### Active Directory Series
 
-A series digging into the questions that come up constantly in real-world AD migration and domain controller (DC) build/operation work — the largest series on this blog (41 articles). Written assuming you've read the DNS fundamentals article ([dns-guide](/en/articles/dns-guide)). Given the article count, it's organized into **Fundamentals → Supplementary Deep-Dives → Hands-On (4 tiers) → Audio Learning.** Within each group, reading top to bottom is recommended, but every article is written to stand alone, so feel free to start wherever interests you. The hands-on labs escalate in four tiers: a foundational tier you can build along with as a beginner, a real-world-scenario tier covering situations that come up constantly on the job, a niche-spec tier for precisely understanding fine-grained features, and a security-hardening tier for experiencing an attacker's perspective to harden your defenses. If you'd rather start from zero, by ear, before reading a single article, the [audio lecture](/en/articles/ad-audio-lecture-1-guide) is also available (4 parts planned).
+A series digging into the questions that come up constantly in real-world AD migration and domain controller (DC) build/operation work — the largest series on this blog (43 articles). Written assuming you've read the DNS fundamentals article ([dns-guide](/en/articles/dns-guide)). Given the article count, it's organized into **Fundamentals → Supplementary Deep-Dives → Hands-On (4 tiers) → Audio Learning.** Within each group, reading top to bottom is recommended, but every article is written to stand alone, so feel free to start wherever interests you. The hands-on labs escalate in four tiers: a foundational tier you can build along with as a beginner, a real-world-scenario tier covering situations that come up constantly on the job, a niche-spec tier for precisely understanding fine-grained features, and a security-hardening tier for experiencing an attacker's perspective to harden your defenses. If you'd rather start from zero, by ear, before reading a single article, the [audio lecture](/en/articles/ad-audio-lecture-1-guide) is also available (4 parts).
 
 #### Fundamentals (10 articles)
 
@@ -518,10 +520,12 @@ A series digging into the questions that come up constantly in real-world AD mig
 1. [The Top 1% Hands-On for Reproducing Kerberoasting Yourself and Defending Service Accounts](/en/articles/ad-kerberoasting-handson-guide) — Reproduce Kerberoasting, carried out by any ordinary user with no special rights, in a safe test environment. Covers why it's Kerberos's designed behavior rather than a bug, and why migrating to a gMSA is the fundamental fix (also readable standalone).
 2. [The Top 1% Hands-On for Auditing the Replication Rights DCSync Abuses](/en/articles/ad-dcsync-audit-handson-guide) — Audit the domain root's ACL for the two extended rights around replicating directory changes that DCSync abuses. Covers telling them apart from a legitimate service like Entra Connect, and the Tier 0 administrative model (also readable standalone).
 
-#### Audio Learning (3 articles)
+#### Audio Learning (5 articles)
 
-- [[Audio Lecture] Active Directory, Part 1](/en/articles/ad-audio-lecture-1-guide) — The first installment of an audio lecture that teaches the series from zero, by ear alone, even if you haven't read a single article yet. Covers AD DS/DC/domain/tree/forest fundamentals, renaming a computer, what's behind a login, and AD's DNS design (4 parts planned).
+- [[Audio Lecture] Active Directory, Part 1](/en/articles/ad-audio-lecture-1-guide) — The first installment of an audio lecture that teaches the series from zero, by ear alone, even if you haven't read a single article yet. Covers AD DS/DC/domain/tree/forest fundamentals, renaming a computer, what's behind a login, and AD's DNS design (4 parts).
 - [[Audio Lecture] Active Directory, Part 2](/en/articles/ad-audio-lecture-2-guide) — The second installment. Covers what an SPN actually points to, the Netlogon secure channel, why Kerberos never sends your password, FSMO as an exception, and replication between DCs.
+- [[Audio Lecture] Active Directory, Part 3](/en/articles/ad-audio-lecture-3-guide) — The third installment. Covers the authentication-side role sites play, checking a DC's health with dcdiag and repadmin, and the order GPOs apply in — Local, Site, Domain, OU.
+- [[Audio Lecture] Active Directory, Part 4 (Final)](/en/articles/ad-audio-lecture-4-guide) — The final installment. Covers the difference between the five roles sharing the Active Directory name, what LDAP really is, schema extension as an operation you can't undo, and a level-by-level recap of the whole hands-on series.
 - [\[Listen\] The Active Directory Series, Fully Recapped](/en/articles/ad-audio-review-guide) — An audio-learning article for anyone who's finished all 38 articles (every non-audio article in the series): no tables, diagrams, or bullet points, just spoken-style narration built to be listened to via your browser's read-aloud feature (assumes you've read the whole series).
 
 ### Windows Client Operations Series
