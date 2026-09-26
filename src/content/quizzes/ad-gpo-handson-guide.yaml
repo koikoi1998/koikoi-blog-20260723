@@ -1,0 +1,45 @@
+questions:
+  - question: "親OUにリンクされたGPOと、子OUにリンクされたGPOで設定が競合している場合、通常はどちらが優先されるか。"
+    choices:
+      - "常に親OUのGPOが優先される"
+      - "通常は子OU(より具体的なOU)のGPOが優先される"
+      - "どちらが優先されるかはランダムに決まる"
+      - "先に作成された方のGPOが優先される"
+    answerIndex: 1
+    explanation: "GPOはLSDOU(ローカル→サイト→ドメイン→OU、親から子へ)の順に処理され、後から処理されたものが優先されるため、通常は子OUのGPOが優先されます。"
+
+  - question: "親OUのGPOリンクを「強制(Enforced)」に設定すると、何が起こるか。"
+    choices:
+      - "何も変わらない"
+      - "本来なら子OUのGPOが優先されるはずの競合において、Enforcedにした親OUのGPOが優先されるようになる"
+      - "子OUのGPOが完全に無効化される"
+      - "そのGPOがドメイン全体に自動的にリンクされる"
+    answerIndex: 1
+    explanation: "Enforcedは通常の優先順位ルールを覆す明示的な指定であり、本来なら子OU側が優先されるはずの競合でも、Enforced化した親OU側のGPOが優先されるようになります。"
+
+  - question: "子OUで「継承のブロック」を設定した場合、親OU側のGPOがEnforcedになっていると、その設定はどうなるか。"
+    choices:
+      - "継承のブロックにより、親OUのGPOは完全に適用されなくなる"
+      - "継承のブロックはEnforcedになったGPOには効果がなく、親OUの設定は適用され続ける"
+      - "継承のブロックとEnforcedが競合し、両方とも無効になる"
+      - "この組み合わせはそもそも設定できない"
+    answerIndex: 1
+    explanation: "継承のブロックは、Enforced化された親OUのGPOには無力であり、Enforcedの設定はそのまま適用され続けます。"
+
+  - question: "GPOのセキュリティフィルタリングとは、どのような仕組みか。"
+    choices:
+      - "GPOのリンク先OUを変更する仕組み"
+      - "リンク先OU配下のオブジェクトのうち、特定のグループなど許可されたものにだけGPOを適用する仕組み"
+      - "GPOの設定内容をウイルスからスキャンする仕組み"
+      - "GPOの複製をセキュアチャネル経由で暗号化する仕組み"
+    answerIndex: 1
+    explanation: "セキュリティフィルタリングは、GPOのリンク先OU配下であっても、適用許可(Apply)を持つグループ・ユーザーにだけGPOが適用されるようにする仕組みです。"
+
+  - question: "「GPOを作成してリンクしたのに反映されない」という問題の原因を切り分ける際、最初に確認すべきコマンドは何か。"
+    choices:
+      - "ping"
+      - "gpresult /r"
+      - "nslookup"
+      - "repadmin /showrepl"
+    answerIndex: 1
+    explanation: "gpresult /rは、対象ユーザー・コンピューターに実際に適用された(または拒否された)GPOの一覧を表示するため、まずこのコマンドで原因の切り分けを始めます。"

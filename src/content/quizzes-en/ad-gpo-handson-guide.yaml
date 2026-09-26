@@ -1,0 +1,45 @@
+questions:
+  - question: "When a GPO linked to a parent OU conflicts with one linked to a child OU, which normally wins?"
+    choices:
+      - "The parent OU's GPO always wins"
+      - "The child OU's (more specific) GPO normally wins"
+      - "It's decided randomly"
+      - "Whichever GPO was created first wins"
+    answerIndex: 1
+    explanation: "GPOs are processed in LSDOU order (Local, Site, Domain, OU, parent to child), and whatever is processed last takes precedence, so the child OU's GPO normally wins."
+
+  - question: "What happens when you set a parent OU's GPO link to 'Enforced'?"
+    choices:
+      - "Nothing changes"
+      - "In a conflict where the child OU's GPO would normally win, the now-Enforced parent OU's GPO wins instead"
+      - "The child OU's GPO is completely disabled"
+      - "The GPO is automatically linked to the entire domain"
+    answerIndex: 1
+    explanation: "Enforced is an explicit override of the normal precedence rule: even in a conflict where the child OU would normally win, the Enforced parent OU's GPO takes precedence instead."
+
+  - question: "If you set Block Inheritance on a child OU while the parent OU's GPO is set to Enforced, what happens to that setting?"
+    choices:
+      - "Block Inheritance causes the parent OU's GPO to stop applying entirely"
+      - "Block Inheritance has no effect on a GPO set to Enforced, so the parent OU's setting keeps applying"
+      - "Block Inheritance and Enforced conflict, disabling both"
+      - "This combination cannot be configured at all"
+    answerIndex: 1
+    explanation: "Block Inheritance is powerless against a GPO that has been set to Enforced, so the Enforced setting keeps applying regardless."
+
+  - question: "What does GPO security filtering do?"
+    choices:
+      - "Changes which OU a GPO is linked to"
+      - "Limits a GPO's application, within the linked OU, to only objects (such as a specific group) explicitly permitted"
+      - "Scans a GPO's settings for viruses"
+      - "Encrypts GPO replication over the secure channel"
+    answerIndex: 1
+    explanation: "Security filtering ensures a GPO applies only to groups or users granted the Apply permission, even within its linked OU."
+
+  - question: "When troubleshooting 'I created and linked a GPO, but it's not applying,' what command should you check first?"
+    choices:
+      - "ping"
+      - "gpresult /r"
+      - "nslookup"
+      - "repadmin /showrepl"
+    answerIndex: 1
+    explanation: "gpresult /r shows the list of GPOs actually applied to (or denied for) the target user/computer, making it the right first step for diagnosis."
