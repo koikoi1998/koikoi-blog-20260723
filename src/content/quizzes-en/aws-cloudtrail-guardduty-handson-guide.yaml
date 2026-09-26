@@ -1,0 +1,45 @@
+questions:
+  - question: "What's correct about CloudTrail's role?"
+    choices:
+      - "It's a detection service that analyzes anomalies and alerts on them"
+      - "It's purely a logging service, endlessly recording every API call without applying any judgment"
+      - "It's a firewall that automatically blocks unauthorized access"
+      - "It's a service that automatically generates IAM policies"
+    answerIndex: 1
+    explanation: "CloudTrail is purely a logging service, endlessly recording every API call without applying any judgment."
+
+  - question: "What's correct about GuardDuty's role?"
+    choices:
+      - "It's a service that only records logs"
+      - "It's a service that analyzes logs like CloudTrail's and alerts after judging something anomalous"
+      - "It's a service that automatically strengthens IAM users' passwords"
+      - "It's a service that automatically takes backups of S3 buckets"
+    answerIndex: 1
+    explanation: "GuardDuty cross-references CloudTrail's log and other data against machine learning and threat intelligence, judges anomalies, and then alerts."
+
+  - question: "Why combine a GuardDuty finding with CloudTrail logs?"
+    choices:
+      - "Because GuardDuty alone can't tell you the finding's severity"
+      - "Because GuardDuty tells you 'something's wrong,' while a detailed investigation needs CloudTrail's log for the source IP and request parameters"
+      - "Because GuardDuty won't start without CloudTrail enabled"
+      - "To reduce cost"
+    answerIndex: 1
+    explanation: "GuardDuty handles anomaly detection, while CloudTrail's log provides the raw evidence needed for the detailed after-the-fact investigation. Only together do they function in real-world work."
+
+  - question: "Why is long-term retention of CloudTrail logs important?"
+    choices:
+      - "Because retaining logs long-term improves GuardDuty's detection accuracy"
+      - "Because time has often already passed by the time of detection, and if the logs have been deleted or overwritten, after-the-fact investigation becomes impossible"
+      - "Because AWS's terms of service mandate log retention"
+      - "Because long-term retention always lowers storage cost"
+    answerIndex: 1
+    explanation: "By the time GuardDuty detects something, time has often already passed since the incident, and losing the logs needed for investigation makes after-the-fact investigation impossible."
+
+  - question: "What's correct about GuardDuty's detection accuracy right after enabling it?"
+    choices:
+      - "It detects with perfect accuracy from the moment it's enabled"
+      - "It needs a period to learn normal usage patterns, so detection accuracy can be low right after enabling"
+      - "It performs no detection at all right after enabling"
+      - "Its detection accuracy degrades over time"
+    answerIndex: 1
+    explanation: "GuardDuty needs to learn a baseline of normal usage patterns, so detection accuracy can be low right after it's enabled."

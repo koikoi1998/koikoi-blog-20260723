@@ -1,0 +1,45 @@
+questions:
+  - question: "What is a block?"
+    choices:
+      - "Syntax for attaching a comment to a single task"
+      - "A mechanism for treating multiple tasks as a single unit, where a failure inside stops the whole unit's execution"
+      - "A mechanism for encrypting a variable's value"
+      - "Syntax for defining an inventory group"
+    answerIndex: 1
+    explanation: "A block treats multiple tasks as a single unit — if something inside fails, execution of the whole block stops there and control moves to rescue."
+
+  - question: "Under what condition does the rescue section run?"
+    choices:
+      - "Only when the Playbook's execution succeeds completely"
+      - "Only when a task fails inside the corresponding block"
+      - "Always, unconditionally"
+      - "Only when manually triggered"
+    answerIndex: 1
+    explanation: "The rescue section only runs if a failure occurred inside the corresponding block."
+
+  - question: "What's the correct difference between ignore_errors: true and block/rescue?"
+    choices:
+      - "They behave in exactly the same way"
+      - "ignore_errors just ignores a failure and continues, while block/rescue can run specific recovery processing on failure"
+      - "ignore_errors provides more advanced exception handling"
+      - "block/rescue is syntax for ignoring failures"
+    answerIndex: 1
+    explanation: "ignore_errors is a simple mechanism that just ignores a failure and continues, while block/rescue is structured exception handling that can detect a failure and run specific recovery processing."
+
+  - question: "What's correct about when the always section runs?"
+    choices:
+      - "Only when the block fails"
+      - "Only when the block succeeds"
+      - "Always, regardless of whether the block succeeded or failed"
+      - "Only when rescue didn't run"
+    answerIndex: 2
+    explanation: "The always section always runs in both cases, regardless of whether the block succeeded or failed."
+
+  - question: "What's the significance of explicitly reporting failure with the fail module at the end of the rescue section?"
+    choices:
+      - "Because Ansible's spec mandates it as a required item"
+      - "Because just rolling back and ending normally would prevent an operator from ever noticing the deployment actually failed"
+      - "Because the rollback itself won't run without the fail module"
+      - "To reduce cost"
+    answerIndex: 1
+    explanation: "If it just rolled back and ended normally, looking only at the Playbook's execution result would mistakenly suggest 'success,' hiding the fact that it actually failed and needed recovery."

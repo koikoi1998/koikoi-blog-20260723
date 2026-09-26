@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the real risk of a policy with `\"Resource\": \"*\"` and `\"Action\": \"s3:*\"`?"
+    choices:
+      - "The risk is limited since it only affects one specific bucket"
+      - "It permits every operation — including read, write, and delete — on every S3 bucket in the entire account"
+      - "It also affects services other than S3"
+      - "It's invalid as a policy, so nothing is permitted at all"
+    answerIndex: 1
+    explanation: "A policy with Resource=* and Action=s3:* permits every operation on every S3 bucket in the account, not just the specific bucket that was intended."
+
+  - question: "What's the correct evaluation order when both Allow and Deny exist in an IAM policy?"
+    choices:
+      - "Whichever was added more recently takes priority"
+      - "An explicit Deny always takes priority over an Allow"
+      - "Allow always takes priority over Deny"
+      - "Whichever has more statements takes priority"
+    answerIndex: 1
+    explanation: "In an IAM policy, an explicit Deny always takes priority over an Allow — the same idea as AD's ACL evaluation order."
+
+  - question: "What does IAM Access Analyzer's generate-policy do?"
+    choices:
+      - "Automatically fixes and applies security problems"
+      - "Analyzes CloudTrail's actual usage history and automatically generates a draft least-privilege policy"
+      - "Automatically resets every IAM user's password"
+      - "Scans the entire network to detect vulnerabilities"
+    answerIndex: 1
+    explanation: "generate-policy automatically generates a draft least-privilege policy based on CloudTrail's actual usage history, covering only the operations that user actually used. Actually applying it is a human judgment call."
+
+  - question: "Why does 'use a broad policy during development, narrow it before production' sometimes fail to work in real-world practice?"
+    choices:
+      - "Because AWS's technical limitations make narrowing impossible"
+      - "Because the psychology of 'I don't want to touch what's already working' repeatedly pushes off the pre-production narrowing"
+      - "Because a broad policy is cheaper"
+      - "Because narrowing it deletes the IAM user itself"
+    answerIndex: 1
+    explanation: "The damage from an overly broad permission stays invisible, and the 'don't touch what's working' mindset repeatedly pushes off narrowing it — a common real-world pattern."
+
+  - question: "What's correct about the relationship between Resource and Condition?"
+    choices:
+      - "Scoping Resource down to an ARN always makes Condition unnecessary"
+      - "Resource and Condition complement each other, and constraints Resource alone can't express — like a time window or IP range — can be added via Condition"
+      - "Condition is used standalone instead of Resource"
+      - "Resource and Condition can't be used together"
+    answerIndex: 1
+    explanation: "Resource and Condition complement each other, adding constraints (a time window, an IP range, requiring MFA) that Resource alone can't express."

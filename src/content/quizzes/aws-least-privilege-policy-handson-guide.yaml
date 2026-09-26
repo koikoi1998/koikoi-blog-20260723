@@ -1,0 +1,45 @@
+questions:
+  - question: "`\"Resource\": \"*\"`かつ`\"Action\": \"s3:*\"`のポリシーが持つ実際のリスクは何か。"
+    choices:
+      - "特定のバケットにしか影響しないため、リスクは限定的である"
+      - "アカウント内のすべてのS3バケットに対する、読み取り・書き込み・削除を含む全操作を許可してしまう"
+      - "S3以外のサービスにも影響が及ぶ"
+      - "ポリシーとして無効なため、そもそも何も許可されない"
+    answerIndex: 1
+    explanation: "Resource=*かつAction=s3:*のポリシーは、意図した特定のバケットだけでなく、アカウント内のすべてのS3バケットに対する全操作を許可してしまいます。"
+
+  - question: "IAMポリシーで、AllowとDenyが同時に存在する場合の評価順序として正しいのはどれか。"
+    choices:
+      - "後から追加された方が優先される"
+      - "明示的なDenyが常にAllowより優先される"
+      - "Allowが常にDenyより優先される"
+      - "AllowとDenyの数が多い方が優先される"
+    answerIndex: 1
+    explanation: "IAMポリシーでは、明示的なDenyが常にAllowより優先されます。これはADのACL評価順序と同じ考え方です。"
+
+  - question: "IAM Access Analyzerの`generate-policy`が行うことは何か。"
+    choices:
+      - "セキュリティ上の問題を自動的に修正して適用する"
+      - "CloudTrailの実際の利用履歴を分析し、最小権限のポリシー案を自動生成する"
+      - "すべてのIAMユーザーのパスワードを自動的にリセットする"
+      - "ネットワーク全体をスキャンして脆弱性を検出する"
+    answerIndex: 1
+    explanation: "generate-policyは、CloudTrailの実際の利用履歴に基づいて、そのユーザーが実際に使った操作だけの最小権限ポリシー案を自動生成します。実際の適用は人間の判断です。"
+
+  - question: "「開発中に広いポリシーを使い、本番投入前に絞り込む」という運用が実務でうまくいかないことがある理由は何か。"
+    choices:
+      - "AWSの技術的な制約により、絞り込みが不可能なため"
+      - "『動いているものは触りたくない』という心理から、本番投入前の絞り込みが先送りにされ続けるため"
+      - "広いポリシーの方がコストが安いため"
+      - "絞り込むとIAMユーザー自体が削除されてしまうため"
+    answerIndex: 1
+    explanation: "権限が広すぎることによる被害は目に見えにくく、『動いているものは触りたくない』という心理から、絞り込みが先送りにされ続けることが実務で頻発します。"
+
+  - question: "ResourceとConditionの関係について正しい説明はどれか。"
+    choices:
+      - "ResourceでARNを絞り込めば、Conditionは常に不要になる"
+      - "ResourceとConditionは補完し合うものであり、時間帯やIPアドレス範囲などResourceだけでは表現できない制約をConditionで追加できる"
+      - "ConditionはResourceの代わりに単独で使用するものである"
+      - "ResourceとConditionは同時に使用できない"
+    answerIndex: 1
+    explanation: "ResourceとConditionは補完し合う関係にあり、Resourceだけでは表現できない制約(時間帯・IPアドレス範囲・MFA必須化など)をConditionで追加します。"
