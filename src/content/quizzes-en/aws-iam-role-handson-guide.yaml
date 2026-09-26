@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the main problem with hardcoding an access key into an application on EC2?"
+    choices:
+      - "Access keys technically can't be used on EC2 at all"
+      - "A static access key has no expiration, so if the instance is compromised, it stays valid indefinitely even after being stolen"
+      - "Hardcoding an access key slows down the application's startup speed"
+      - "Access keys don't work with any service other than S3"
+    answerIndex: 1
+    explanation: "A static access key has no expiration, so unless an administrator deliberately rotates it, it stays valid indefinitely even after being stolen from a compromised instance."
+
+  - question: "What kind of credentials does an EC2 instance with an IAM role attached actually use to access an AWS service?"
+    choices:
+      - "The same permanently valid, static access key as an IAM user"
+      - "Temporary, time-limited credentials automatically issued by STS"
+      - "No credentials at all — access is unconditionally allowed"
+      - "A password manually entered by an administrator"
+    answerIndex: 1
+    explanation: "An instance with an IAM role attached uses temporary, time-limited credentials automatically issued by STS (Security Token Service)."
+
+  - question: "What additional configuration is needed to use the AWS CLI on an EC2 instance with an IAM role attached?"
+    choices:
+      - "You need to set an access key and secret key with aws configure"
+      - "No additional configuration is needed — the AWS CLI retrieves credentials automatically"
+      - "You need to enter a password every time"
+      - "You need to manually enable internet connectivity"
+    answerIndex: 1
+    explanation: "With an IAM role attached, the AWS CLI automatically retrieves credentials from the instance metadata service, so running aws configure is unnecessary."
+
+  - question: "Compared to IMDSv1, what attack does IMDSv2 prevent?"
+    choices:
+      - "A password brute-force attack"
+      - "Indirect credential theft via SSRF (Server-Side Request Forgery)"
+      - "A DDoS attack"
+      - "A SQL injection attack"
+    answerIndex: 1
+    explanation: "IMDSv1 let credentials be retrieved with nothing more than a simple HTTP GET request, risking indirect credential theft via an SSRF vulnerability. IMDSv2 prevents this by requiring a token to be fetched first."
+
+  - question: "Which statement about the difference between an IAM role and an IAM user is correct?"
+    choices:
+      - "They're exactly the same concept, just with different names"
+      - "An IAM user is a persistent identity with long-term credentials, while an IAM role is assumed on demand and holds no static credentials of its own"
+      - "An IAM role always has stronger permissions than an IAM user"
+      - "An IAM user can only be used with EC2, and an IAM role can only be used with S3"
+    answerIndex: 1
+    explanation: "An IAM user is a persistent identity with long-term credentials, while an IAM role is something assumed on demand each time, holding no static credentials of its own."

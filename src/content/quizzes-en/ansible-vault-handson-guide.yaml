@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the problem with writing a secret in plaintext into a variable file and committing it to Git?"
+    choices:
+      - "Ansible's execution speed slows down"
+      - "Even if you delete the line later, anyone can still read the secret by digging through Git's commit history"
+      - "The Playbook can no longer run correctly"
+      - "There's no real problem"
+    answerIndex: 1
+    explanation: "Once a secret is committed to Git's history, deleting the offending line later doesn't help — it's still readable by digging through the past commit history."
+
+  - question: "What do the contents of a file encrypted with ansible-vault encrypt look like when viewed with cat?"
+    choices:
+      - "The original plaintext, unchanged"
+      - "Unreadable ciphertext starting with $ANSIBLE_VAULT"
+      - "An empty file"
+      - "An error message"
+    answerIndex: 1
+    explanation: "An encrypted file's contents become unreadable ciphertext starting with $ANSIBLE_VAULT."
+
+  - question: "What's the simplest way to change an encrypted variable file's contents later?"
+    choices:
+      - "Manually decrypt it, then manually re-encrypt it after editing"
+      - "Use the ansible-vault edit command, which handles decrypt, edit, and re-encrypt in one step"
+      - "Delete the file and recreate it from scratch"
+      - "An encrypted file can never be edited again"
+    answerIndex: 1
+    explanation: "The ansible-vault edit command bundles decrypt, edit, and re-encrypt into a single command."
+
+  - question: "What's the main purpose of the vault-id mechanism?"
+    choices:
+      - "Managing Ansible's version"
+      - "Using a different encryption password per environment, such as development versus production"
+      - "Encrypting a server's IP address"
+      - "Measuring a Playbook's execution speed"
+    answerIndex: 1
+    explanation: "vault-id lets you use different encryption passwords, such as one for development and one for production, side by side within the same repository."
+
+  - question: "Which is a common real-world approach for managing secrets?"
+    choices:
+      - "Encrypting the entire Playbook as one unit"
+      - "Carving out just the variables containing secrets into a dedicated encrypted file, leaving the rest of the code unencrypted"
+      - "Hardcoding every secret into environment variables"
+      - "Never encrypting secrets, relying only on access permissions"
+    answerIndex: 1
+    explanation: "The common design in practice is carving out just the variables containing secrets into a dedicated encrypted file, while version-controlling the rest of the ordinary code unencrypted."
