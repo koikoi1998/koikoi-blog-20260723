@@ -184,6 +184,7 @@ This blog is written for a wide range of readers — from people with no experie
 <li><a href="/en/articles/site-to-site-vpn-aws-guide">Understanding Site-to-Site VPN with AWS from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/sdwan-edge-router-guide">Understanding SD-WAN and Edge Router Selection from a "Top 1%" Perspective</a></li>
 <li data-subseries="lecture"><a href="/en/articles/ad-audio-lecture-1-guide">[Audio Lecture] Active Directory, Part 1</a></li>
+<li data-subseries="lecture"><a href="/en/articles/ad-audio-lecture-2-guide">[Audio Lecture] Active Directory, Part 2</a></li>
 <li><a href="/en/articles/ad-dc-fundamentals-guide">Understanding the Difference Between AD and DC, and Domains vs. Forests, from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/ad-computername-netdom-guide">What's the Difference Between sysdm.cpl and netdom computername?</a></li>
 <li><a href="/en/articles/ad-windows-login-guide">Understanding Windows Logon and User Profiles from a "Top 1%" Perspective</a></li>
@@ -204,7 +205,7 @@ This blog is written for a wide range of readers — from people with no experie
 <p>On top of STEP4's directory-services basics, this route adds the deep, "breaking this has a big blast radius" areas — authentication, replication, migration — plus hands-on labs building a multi-domain forest and migrating a DC, so you can run infrastructure you've been handed on your own with confidence. It also covers Windows Server procurement and time-sync basics.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP4's 59 articles (see those tabs above)</li>
+<li>STEP1 through STEP4's 60 articles (see those tabs above)</li>
 <li><a href="/en/articles/ad-netlogon-guide">Understanding the Netlogon Service and the Secure Channel from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/ad-kerberos-guide">Understanding Kerberos Authentication from a "Top 1%" Perspective</a></li>
 <li data-subseries="handson"><a href="/en/articles/ad-multidomain-handson-guide">Hands-On: Building a Multi-Domain, Multi-Tree AD Forest</a></li>
@@ -243,7 +244,7 @@ This blog is written for a wide range of readers — from people with no experie
 <p>On top of STEP5, this route adds the infrastructure adjacent to your core stack — web servers (IIS), file sharing (SMB), storage, cloud, email infrastructure, and container platforms/config-management automation. This completes the "building confidence" route. If you want to read one specific field in one go, use the filter feature on the top page instead.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP5's 89 articles (see those tabs above)</li>
+<li>STEP1 through STEP5's 90 articles (see those tabs above)</li>
 <li><a href="/en/articles/iis-fundamentals-guide">Understanding How IIS and ASP.NET Work from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/iis-ftp-guide">Understanding the Relationship Between IIS and FTP from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/smb-file-sharing-guide">Understanding Windows Server SMB File Sharing from a "Top 1%" Perspective</a></li>
@@ -274,7 +275,7 @@ This blog is written for a wide range of readers — from people with no experie
 <p>Adds the low-level implementation knowledge that sets you apart in interviews and design reviews, on top of everything through STEP6.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP6's 110 articles (see those tabs above)</li>
+<li>STEP1 through STEP6's 111 articles (see those tabs above)</li>
 <li><a href="/en/articles/proxmox-internals-guide">What Is Proxmox VE? Understanding KVM/QEMU Virtualization from the "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/linux-daemon-guide">What Is a Daemon? Understanding Linux Background Processes from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/software-library-guide">What Is a Library? Understanding Static and Dynamic Linking from a "Top 1%" Perspective</a></li>
@@ -303,13 +304,13 @@ This blog is written for a wide range of readers — from people with no experie
 <div class="persona-panel persona-panel-8">
 <div class="persona-panel-head">
 <h3>🏆 For those gathering information toward the industry's highest skill tier</h3>
-<p>The complete-conquest route: read all 134 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
+<p>The complete-conquest route: read all 135 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP7's 133 articles (see those tabs above)</li>
+<li>STEP1 through STEP7's 134 articles (see those tabs above)</li>
 <li><a href="/en/articles/voip-ss7-guide">Understanding VoIP and SS7 — and the Real Path Your Traffic Takes — from a "Top 1%" Perspective</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>That's all 134 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
+<div class="persona-bonus">🎉 <strong>That's all 135 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
 </div>
 </div>
 </div>
@@ -430,6 +431,7 @@ A series that takes execution-environment-level terms that keep showing up in th
 A series digging into the questions that come up constantly in real-world AD migration and domain controller (DC) build/operation work. Written assuming you've read the DNS fundamentals article ([dns-guide](/en/articles/dns-guide)). **Recommended order**: ① ad-dc-fundamentals-guide → ② ad-computername-netdom-guide → ③ ad-windows-login-guide → ④ ad-dns-guide → ⑤ dns-zones-records-guide → ⑥ fsmo-guide → ⑦ dc-health-check-guide → ⑧ ad-sites-guide → ⑨ dcdiag-guide → ⑩ ad-migration-cleanup-guide → ⑪ ad-spn-guide → ⑫ ad-netlogon-guide → ⑬ ad-kerberos-guide → ⑭ ad-multidomain-handson-guide → ⑮ ad-migration-handson-guide → ⑯ ad-forest-trust-handson-guide → ⑰ ad-recycle-bin-handson-guide → ⑱ ad-sysvol-dfsr-gpo-guide → ⑲ ad-gpo-handson-guide → ⑳ ad-fgpp-handson-guide → ㉑ ad-delegation-handson-guide → ㉒ ad-constrained-delegation-handson-guide → ㉓ ad-backup-restore-handson-guide → ㉔ ad-fsmo-seize-handson-guide → ㉕ ad-gmsa-handson-guide → ㉖ ad-cs-handson-guide → ㉗ ad-rodc-handson-guide → ㉘ ad-functional-level-handson-guide → ㉙ ad-dns-scavenging-handson-guide → ㉚ ad-sitelink-topology-handson-guide → ㉛ ad-kerberoasting-handson-guide → ㉜ ad-dcsync-audit-handson-guide → ㉝ ad-family-overview-guide → ㉞ ad-ldap-protocol-guide → ㉟ ad-netbios-dns-history-guide → ㊱ ad-schema-extension-guide → ㊲ ad-dotnet-powershell-guide → ㊳ ad-isp-guide (⑯ onward were added as further deep dives before the audio review) → ㊴ ad-audio-review-guide (for reviewing by ear after finishing all 38). If you'd rather start from zero, by ear, before reading anything, [Audio Lecture Part 1](/en/articles/ad-audio-lecture-1-guide) is also available (4 parts planned; no prior reading required).
 
 - [[Audio Lecture] Active Directory, Part 1](/en/articles/ad-audio-lecture-1-guide) — The first installment of an audio lecture that teaches the series from zero, by ear alone, even if you haven't read a single article yet. Covers AD DS/DC/domain/tree/forest fundamentals, renaming a computer, what's behind a login, and AD's DNS design (4 parts planned).
+- [[Audio Lecture] Active Directory, Part 2](/en/articles/ad-audio-lecture-2-guide) — The second installment. Covers what an SPN actually points to, the Netlogon secure channel, why Kerberos never sends your password, FSMO as an exception, and replication between DCs.
 - [Understanding the Difference Between AD and DC, and Domains vs. Forests, from a "Top 1%" Perspective](/en/articles/ad-dc-fundamentals-guide) — A deep dive into the division of labor between AD DS (the mechanism) and DC (the server), the three-layer boundary of domain/tree/forest, what functional levels constrain, and what gets installed alongside the AD DS role.
 - [What's the Difference Between sysdm.cpl and netdom computername?](/en/articles/ad-computername-netdom-guide) — A deep dive into the mechanism difference between sysdm.cpl and netdom for changing a computer name, why the two-step /add → /makeprimary process is required, and a diagnosis of a real authentication outage caused by a hostname collision during an AD migration (a follow-on from article ①, also readable standalone).
 - [Understanding Windows Logon and User Profiles from a "Top 1%" Perspective](/en/articles/ad-windows-login-guide) — A deep dive into why the first logon needs corporate network connectivity, what cached credentials really are, roaming profiles, and profile management via FSLogix in persistent/non-persistent VDI (also readable standalone).

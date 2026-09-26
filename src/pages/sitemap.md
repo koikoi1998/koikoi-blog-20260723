@@ -186,6 +186,7 @@ graph TB
 <li><a href="/articles/site-to-site-vpn-aws-guide">AWSとの拠点間VPN(Site-to-Site VPN)を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/sdwan-edge-router-guide">SD-WANとエッジルーター選定を『上位1%』の視点で理解する</a></li>
 <li data-subseries="lecture"><a href="/articles/ad-audio-lecture-1-guide">【音声で学ぶ】Active Directory講義 Part1</a></li>
+<li data-subseries="lecture"><a href="/articles/ad-audio-lecture-2-guide">【音声で学ぶ】Active Directory講義 Part2</a></li>
 <li><a href="/articles/ad-dc-fundamentals-guide">ADとDC、ドメインとフォレストの違いを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/ad-computername-netdom-guide">sysdm.cplとnetdom computernameは何が違うのか</a></li>
 <li><a href="/articles/ad-windows-login-guide">Windowsのログインとユーザープロファイルの仕組みを『上位1%』の視点で理解する</a></li>
@@ -206,7 +207,7 @@ graph TB
 <p>STEP4までのディレクトリサービスの基礎に、認証・レプリケーション・移行という「壊すと影響が大きい」領域の深い理解と、実機を使ったマルチドメイン構築・DC移行のハンズオンを積み増し、任された基盤を1人で安心して運用できるようになる段階です。Windows Serverの調達・時刻同期に関する基礎もここで押さえます。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP4の59記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP4の60記事(上のタブから確認できます)</li>
 <li><a href="/articles/ad-netlogon-guide">Netlogonサービスとセキュアチャネルの仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/ad-kerberos-guide">Kerberos認証の仕組みを『上位1%』の視点で理解する</a></li>
 <li data-subseries="handson"><a href="/articles/ad-multidomain-handson-guide">マルチドメイン・マルチツリーのADフォレストを構築するハンズオン</a></li>
@@ -245,7 +246,7 @@ graph TB
 <p>STEP5までの範囲に、Webサーバー(IIS)・ファイル共有(SMB)・ストレージ・クラウド・メール基盤・コンテナ基盤/構成管理の自動化といった、社内インフラの周辺領域まで押さえます。ここまでで「現場で自信をつけたい」ルートは完了です。特定の分野だけをまとめて読みたい場合は、トップページの絞り込み機能をご利用ください。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP5の89記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP5の90記事(上のタブから確認できます)</li>
 <li><a href="/articles/iis-fundamentals-guide">IISとASP.NETの仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/iis-ftp-guide">IISとFTPの関係を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/smb-file-sharing-guide">Windows ServerのSMB共有を『上位1%』の視点で理解する</a></li>
@@ -276,7 +277,7 @@ graph TB
 <p>STEP6までの実務知識に、面接や設計レビューで差がつく低レイヤーの実装知識を積み増すルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP6の110記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP6の111記事(上のタブから確認できます)</li>
 <li><a href="/articles/proxmox-internals-guide">Proxmox VEとは何か——KVM/QEMUによる仮想化の仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/linux-daemon-guide">デーモン(daemon)とは何か——Linuxのバックグラウンドプロセスを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/software-library-guide">ライブラリ(library)とは何か——静的リンク・動的リンクの仕組みを『上位1%』の視点で理解する</a></li>
@@ -305,13 +306,13 @@ graph TB
 <div class="persona-panel persona-panel-8">
 <div class="persona-panel-head">
 <h3>🏆 業界最高峰のスキル水準を目指して情報収集している方へ</h3>
-<p>全134記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
+<p>全135記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP7の133記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP7の134記事(上のタブから確認できます)</li>
 <li><a href="/articles/voip-ss7-guide">VoIPとSS7、そして実際の通信経路を『上位1%』の視点で理解する</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>これで全134記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
+<div class="persona-bonus">🎉 <strong>これで全135記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
 </div>
 </div>
 </div>
@@ -432,6 +433,7 @@ VPNプロトコルの記事やL2TP/IPsecハンズオンなどで繰り返し登�
 AD移行・ドメインコントローラー(DC)の構築・運用の実務で必ず直面する疑問を深掘りするシリーズです。DNSの基礎([dns-guide](/articles/dns-guide))を読了している前提で書いています。**読む順番の目安**: ① ad-dc-fundamentals-guide → ② ad-computername-netdom-guide → ③ ad-windows-login-guide → ④ ad-dns-guide → ⑤ dns-zones-records-guide → ⑥ fsmo-guide → ⑦ dc-health-check-guide → ⑧ ad-sites-guide → ⑨ dcdiag-guide → ⑩ ad-migration-cleanup-guide → ⑪ ad-spn-guide → ⑫ ad-netlogon-guide → ⑬ ad-kerberos-guide → ⑭ ad-multidomain-handson-guide → ⑮ ad-migration-handson-guide → ⑯ ad-forest-trust-handson-guide → ⑰ ad-recycle-bin-handson-guide → ⑱ ad-sysvol-dfsr-gpo-guide → ⑲ ad-gpo-handson-guide → ⑳ ad-fgpp-handson-guide → ㉑ ad-delegation-handson-guide → ㉒ ad-constrained-delegation-handson-guide → ㉓ ad-backup-restore-handson-guide → ㉔ ad-fsmo-seize-handson-guide → ㉕ ad-gmsa-handson-guide → ㉖ ad-cs-handson-guide → ㉗ ad-rodc-handson-guide → ㉘ ad-functional-level-handson-guide → ㉙ ad-dns-scavenging-handson-guide → ㉚ ad-sitelink-topology-handson-guide → ㉛ ad-kerberoasting-handson-guide → ㉜ ad-dcsync-audit-handson-guide → ㉝ ad-family-overview-guide → ㉞ ad-ldap-protocol-guide → ㉟ ad-netbios-dns-history-guide → ㊱ ad-schema-extension-guide → ㊲ ad-dotnet-powershell-guide → ㊳ ad-isp-guide(⑯以降はいずれも音声復習の前に追加された、さらなる深掘り記事) → ㊴ ad-audio-review-guide(全38記事を読み終えた後の音声復習用)。なお、記事を読む前にゼロから耳だけで学びたい場合は、[音声講義Part1](/articles/ad-audio-lecture-1-guide)から始める道も用意しています(全4回を予定、記事を読了している必要はありません)。
 
 - [【音声で学ぶ】Active Directory講義 Part1](/articles/ad-audio-lecture-1-guide) — シリーズの記事を1本も読んでいない状態からでも、耳だけでゼロから学べる音声講義の第1回。AD DS・DC・ドメイン・ツリー・フォレストの基礎から、コンピューター名変更、ログインの裏側、AD環境のDNS設計までを扱う(全4回を予定)。
+- [【音声で学ぶ】Active Directory講義 Part2](/articles/ad-audio-lecture-2-guide) — 音声講義の第2回。SPNが実際には何を指しているのか、Netlogonのセキュアチャネル、Kerberos認証がパスワードを一度も送らずに済む仕組み、FSMOという例外的な役割、DC同士のレプリケーションまでを扱う。
 - [ADとDC、ドメインとフォレストの違いを『上位1%』の視点で理解する](/articles/ad-dc-fundamentals-guide) — AD DS(仕組み)とDC(サーバー)の役割分担、ドメイン・ツリー・フォレストという3階層の境界線、機能レベルが何を制約しているか、AD DSの役割追加時に何が一緒にインストールされるのかまでの深掘り。
 - [sysdm.cplとnetdom computernameは何が違うのか——「プライマリホスト名」とAD移行のホスト名重複事故を『上位1%』の視点で理解する](/articles/ad-computername-netdom-guide) — sysdm.cplとnetdomのコンピューター名変更の仕組みの違い、なぜ/add→/makeprimaryという2段階が必要なのか、そして実際のAD移行で発生したホスト名重複による認証障害の事例診断までの深掘り(①の発展編、単体でも読めます)。
 - [Windowsのログインとユーザープロファイルの仕組みを『上位1%』の視点で理解する](/articles/ad-windows-login-guide) — 初回ログインになぜ社内ネットワーク接続が必要か、キャッシュされた資格情報の正体、ローミングプロファイル、VDI(永続型/非永続型)とFSLogixによるプロファイル管理までの深掘り(単体でも読めます)。
