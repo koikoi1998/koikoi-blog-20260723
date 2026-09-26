@@ -2,6 +2,7 @@
 title: "EBSスナップショットとAMIでバックアップ・リストア戦略を組む『上位1%』のハンズオン——増分バックアップの実像とgp3/io2の違い"
 description: "稼働中のEC2からEBSスナップショットを取得し、AMIを作成して別インスタンスを復元する。スナップショットが実は増分バックアップであり、1つ目を削除しても後続のスナップショットが壊れない理由、そしてgp3とio2というボリュームタイプの使い分けまでを扱うハンズオン。"
 series: "aws-basics"
+subSeries: "handson"
 order: 8
 tags: ["aws", "ebs", "backup", "storage", "handson"]
 emoji: "💾"

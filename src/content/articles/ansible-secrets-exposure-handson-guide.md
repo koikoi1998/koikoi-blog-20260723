@@ -2,6 +2,7 @@
 title: "Ansible実行時に機密情報がログとプロセス一覧に漏れる経路を塞ぐ『上位1%』のハンズオン——no_logとシェルインジェクションの実像"
 description: "パスワードを扱うタスクの実行結果が、意図せずログに平文で残ってしまう状況を再現し、no_logで塞ぐ。psコマンドで他のプロセスから引数が見えてしまうリスク、そしてshell/commandモジュールに変数をそのまま埋め込むことで生まれるシェルインジェクションの再現までを扱う、教育・防御目的のハンズオン。"
 series: "ansible"
+subSeries: "handson"
 order: 11
 tags: ["ansible", "iac", "infra", "security", "handson"]
 emoji: "🕳️"

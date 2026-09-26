@@ -2,6 +2,7 @@
 title: "Ansibleとは何かを『上位1%』の視点で理解する——構成管理とエージェントレスの仕組み"
 description: "Ansibleという名前は聞いたことがあるが、何が便利なのか実感が薄い。エージェント型の構成管理ツールとの違い、SSH+Pythonだけで動くエージェントレスの仕組み、Inventory・Playbook・Task・Module・Roleといった基本概念、そして冪等性(idempotency)という中核的な設計思想までを体系的に理解する。"
 series: "ansible"
+subSeries: "main"
 order: 1
 tags: ["ansible", "automation", "iac", "infra"]
 emoji: "🤖"

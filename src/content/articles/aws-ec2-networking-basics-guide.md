@@ -2,6 +2,7 @@
 title: "EC2のキーペア(.pem/.ppk)とサブネットの予約IPを『上位1%』の視点で理解する"
 description: "EC2でWindows Serverを構築する際、キーペアには.pemと.ppkのどちらを選ぶべきなのか。両者は何が違うのか。そしてAWSでサブネットを作成すると、先頭4つ・末尾1つのIPアドレスが予約されているのはなぜか、それぞれ何に使われているのかを体系的に理解する。"
 series: "aws-basics"
+subSeries: "main"
 order: 1
 tags: ["aws", "ec2", "vpc", "infra"]
 emoji: "🔑"

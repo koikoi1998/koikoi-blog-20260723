@@ -2,6 +2,7 @@
 title: "The Top 1% Hands-On for Speeding Up a Large Inventory by Caching Ansible Facts: What gather_facts Actually Costs"
 description: "Reduce the cost of facts gathering that happens on every single Playbook run, using a JSON file cache. Covers what gather_facts actually does under the hood, designing a cache TTL (time-to-live), and how to weigh the risk of cached information going stale."
 series: "ansible"
+subSeries: "handson"
 order: 9
 tags: ["ansible", "iac", "infra", "performance", "handson"]
 emoji: "⚡"

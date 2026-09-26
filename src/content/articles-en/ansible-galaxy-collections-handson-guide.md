@@ -2,6 +2,7 @@
 title: "The Top 1% Hands-On for Using Community Roles and Collections With Ansible Galaxy Instead of Reinventing the Wheel"
 description: "Set up Nginx using a proven, community-published role and Collection from Ansible Galaxy, instead of a hand-rolled Playbook. Covers version pinning with requirements.yml, the difference between a Collection and a role, and why 'building everything from scratch yourself' is actually the choice you should avoid in real-world work."
 series: "ansible"
+subSeries: "handson"
 order: 7
 tags: ["ansible", "iac", "infra", "handson"]
 emoji: "📦"

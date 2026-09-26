@@ -2,6 +2,7 @@
 title: "The Top 1% Hands-On for Closing Off the Paths Where Secrets Leak Into Logs and Process Lists During an Ansible Run: How no_log and Shell Injection Really Work"
 description: "Reproduce a situation where a task handling a password ends up leaving it in plaintext in a log, and close it off with no_log. Also covers the risk of an argument being visible to other processes via the ps command, and reproducing shell injection created by embedding a variable directly into a shell/command module. An educational, defense-focused hands-on."
 series: "ansible"
+subSeries: "handson"
 order: 11
 tags: ["ansible", "iac", "infra", "security", "handson"]
 emoji: "🕳️"

@@ -2,6 +2,7 @@
 title: "The Top 1% Hands-On for Experiencing Ansible's Jinja2 Filters and the loop/when Gotchas"
 description: "Process lists and dictionaries with Jinja2 filters, and combine loop with when to write conditional repeated tasks. Covers the actual structure inside a register variable, customizing change detection with changed_when, and the easily-overlooked spec that when is evaluated per loop item."
 series: "ansible"
+subSeries: "handson"
 order: 8
 tags: ["ansible", "iac", "infra", "handson"]
 emoji: "🔁"

@@ -2,6 +2,7 @@
 title: "The Top 1% Hands-On for Building a Backup/Restore Strategy With EBS Snapshots and AMIs: How Incremental Backup Really Works, and gp3 vs. io2"
 description: "Take an EBS snapshot from a running EC2 instance, create an AMI from it, and restore it onto a separate instance. Covers why a snapshot is actually an incremental backup, why deleting the first one doesn't corrupt later snapshots, and choosing between the gp3 and io2 volume types."
 series: "aws-basics"
+subSeries: "handson"
 order: 8
 tags: ["aws", "ebs", "backup", "storage", "handson"]
 emoji: "💾"

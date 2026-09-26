@@ -2,6 +2,7 @@
 title: "The Top 1% Hands-On for Never Giving EC2 an Access Key: Escaping Hardcoded Credentials With an IAM Role"
 description: "Run an application on EC2 that safely accesses AWS services like S3, using an IAM role, without ever hardcoding an access key or secret key. Covers how an IAM role's credentials are temporary, automatically issued and rotated by STS, and why IMDSv2 is now required. The single most fundamental and important security practice in AWS."
 series: "aws-basics"
+subSeries: "handson"
 order: 3
 tags: ["aws", "iam", "security", "handson", "ec2"]
 emoji: "🔐"

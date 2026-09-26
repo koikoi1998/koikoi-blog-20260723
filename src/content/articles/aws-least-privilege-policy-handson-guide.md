@@ -2,6 +2,7 @@
 title: "過剰な権限を持つIAMポリシーの危険性を再現し、最小権限に絞り込む『上位1%』のハンズオン——条件付きポリシーとIAM Access Analyzer"
 description: "S3への操作権限を『すべてのバケット』へ許可する過剰なIAMポリシーが、意図しないデータ漏洩やデータ破壊にどうつながるかを検証環境で再現し、Resource/Conditionで範囲を絞り込んだ最小権限ポリシーへ修正する。IAM Access Analyzerによる未使用権限の発見までを扱う、教育・防御目的のハンズオン。"
 series: "aws-basics"
+subSeries: "handson"
 order: 9
 tags: ["aws", "iam", "security", "handson"]
 emoji: "🛡️"

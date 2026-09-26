@@ -2,6 +2,7 @@
 title: "The Top 1% Hands-On for Reaching S3 Without a NAT Gateway Using a VPC Endpoint: Gateway Type vs. Interface Type"
 description: "Reach S3 directly from a private subnet via a VPC endpoint, instead of routing through a NAT gateway. Covers the difference between the gateway type (S3/DynamoDB only, free) and the interface type (for other AWS services, paid), and the mechanism difference between an automatic route table addition and going through an ENI."
 series: "aws-basics"
+subSeries: "handson"
 order: 7
 tags: ["aws", "vpc", "networking", "cost", "handson"]
 emoji: "🚪"

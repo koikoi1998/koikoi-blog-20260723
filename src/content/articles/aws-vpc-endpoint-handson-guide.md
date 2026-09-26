@@ -2,6 +2,7 @@
 title: "VPCエンドポイントでNATゲートウェイを経由せずS3にアクセスする『上位1%』のハンズオン——ゲートウェイ型とインターフェイス型の違い"
 description: "プライベートサブネットからS3へ、NATゲートウェイを経由せず、VPCエンドポイント経由で直接アクセスする。ゲートウェイ型(S3/DynamoDB専用、無料)とインターフェイス型(他のAWSサービス向け、有料)の違い、ルートテーブルへの自動追加とENI経由という仕組みの違いまでを扱うハンズオン。"
 series: "aws-basics"
+subSeries: "handson"
 order: 7
 tags: ["aws", "vpc", "networking", "cost", "handson"]
 emoji: "🚪"

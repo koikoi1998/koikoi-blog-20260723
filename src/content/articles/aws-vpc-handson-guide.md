@@ -2,6 +2,7 @@
 title: "パブリック/プライベートサブネットを持つVPCを自力で構築する『上位1%』のハンズオン——NATゲートウェイとルートテーブルの実像"
 description: "デフォルトVPCに頼らず、パブリックサブネットとプライベートサブネットを持つVPCを自分の手で構築する。IGW・NATゲートウェイ・ルートテーブルの3点が実際に何をしているのか、そして『パブリック/プライベート』という区分がAWS側の属性ではなくルートテーブルの設定にすぎないことまでを体験するハンズオン。"
 series: "aws-basics"
+subSeries: "handson"
 order: 5
 tags: ["aws", "vpc", "networking", "infra", "handson"]
 emoji: "🛣️"

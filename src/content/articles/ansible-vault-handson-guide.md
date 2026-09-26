@@ -2,6 +2,7 @@
 title: "Ansible Vaultでパスワードをgitにプレーンテキストのまま置かない『上位1%』のハンズオン"
 description: "データベースのパスワードなどの機密情報を、Playbookやgroup_varsにプレーンテキストで書かず、Ansible Vaultで暗号化して安全に管理する。暗号化されたファイルとされていないファイルをGitリポジトリで安全に共存させる方法、そしてvault-idを使った複数の暗号化パスワードの使い分けまでを扱うハンズオン。"
 series: "ansible"
+subSeries: "handson"
 order: 4
 tags: ["ansible", "iac", "infra", "handson", "security"]
 emoji: "🔒"

@@ -2,6 +2,7 @@
 title: "A \"Top 1%\" Hands-On Lab: Automating Configuration Across Multiple Servers with Ansible"
 description: "Using existing Ubuntu Server VMs, this hands-on lab walks through installing Ansible on a control node, setting up SSH key authentication, writing an Inventory and a Playbook, and automating Nginx installation, startup, and configuration across servers — then running the same Playbook twice to see idempotency (changed=0) with your own eyes."
 series: "ansible"
+subSeries: "handson"
 order: 2
 tags: ["ansible", "automation", "iac", "handson"]
 emoji: "🛠️"

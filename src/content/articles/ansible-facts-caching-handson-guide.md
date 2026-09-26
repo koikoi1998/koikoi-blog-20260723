@@ -2,6 +2,7 @@
 title: "Ansibleのfacts収集をキャッシュして大規模インベントリを高速化する『上位1%』のハンズオン——gather_factsの実行コストの正体"
 description: "毎回のPlaybook実行で発生しているfacts収集のコストを、JSONファイルキャッシュで削減する。gather_factsが裏側で何をしているのか、キャッシュのTTL(有効期限)設計、そしてキャッシュした情報が古くなることのリスクとの向き合い方までを扱うハンズオン。"
 series: "ansible"
+subSeries: "handson"
 order: 9
 tags: ["ansible", "iac", "infra", "performance", "handson"]
 emoji: "⚡"

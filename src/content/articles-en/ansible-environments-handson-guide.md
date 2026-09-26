@@ -2,6 +2,7 @@
 title: "The Top 1% Hands-On for Safely Running dev/staging/prod From One Ansible Playbook: What group_vars and --limit Really Do"
 description: "Run the same Playbook against dev, staging, and prod environments while safely switching between different config values per environment. Covers per-environment variable management with group_vars, narrowing targets with --limit, and concrete protection against the most feared real-world accident: accidentally targeting production."
 series: "ansible"
+subSeries: "handson"
 order: 6
 tags: ["ansible", "iac", "infra", "handson"]
 emoji: "🗂️"

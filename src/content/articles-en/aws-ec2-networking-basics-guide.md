@@ -2,6 +2,7 @@
 title: "Understanding EC2 Key Pairs (.pem/.ppk) and Reserved Subnet IPs from a \"Top 1%\" Perspective"
 description: "When building a Windows Server instance on EC2, should you choose a .pem or .ppk key pair? What's actually different between them? And when creating a subnet on AWS, why are the first four and last one IP addresses reserved, and what is each one used for? This article systematically explains both."
 series: "aws-basics"
+subSeries: "main"
 order: 1
 tags: ["aws", "ec2", "vpc", "infra"]
 emoji: "🔑"

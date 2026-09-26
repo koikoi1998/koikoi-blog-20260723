@@ -2,6 +2,7 @@
 title: "Understanding What Ansible Actually Is From a \"Top 1%\" Perspective — Configuration Management and the Agentless Model"
 description: "You've heard the name Ansible, but its usefulness hasn't quite clicked. This article systematically explains how it differs from agent-based configuration management tools, how it runs on nothing but SSH and Python, the core concepts of Inventory, Playbook, Task, Module, and Role, and the core design principle of idempotency."
 series: "ansible"
+subSeries: "main"
 order: 1
 tags: ["ansible", "automation", "iac", "infra"]
 emoji: "🤖"

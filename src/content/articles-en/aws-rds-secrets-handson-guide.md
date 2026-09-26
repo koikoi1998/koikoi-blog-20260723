@@ -2,6 +2,7 @@
 title: "The Top 1% Hands-On for Never Letting an App Write a Password With RDS and Secrets Manager: Eliminating Hardcoded DB Credentials"
 description: "Build an RDS instance in a private subnet, and fetch the DB connection password from Secrets Manager at runtime instead of ever writing it into application code or config files. Covers password rotation, combining an EC2 IAM role with Secrets Manager permissions, and why RDS belongs in a private subnet."
 series: "aws-basics"
+subSeries: "handson"
 order: 6
 tags: ["aws", "rds", "secrets-manager", "database", "security", "handson"]
 emoji: "🔐"

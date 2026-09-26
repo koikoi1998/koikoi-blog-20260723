@@ -2,6 +2,7 @@
 title: "Ansibleで複数サーバーへの設定投入を自動化する『上位1%』のハンズオン"
 description: "既存のUbuntu Server VMを使い、制御ノードにAnsibleをインストールし、SSH鍵認証を設定し、InventoryとPlaybookを作成して、複数サーバーへのNginxインストール・起動・設定投入を自動化するまでを実際に手を動かして体験するハンズオン。同じPlaybookを2回実行し、冪等性(changed=0)を自分の目で確認する。"
 series: "ansible"
+subSeries: "handson"
 order: 2
 tags: ["ansible", "automation", "iac", "handson"]
 emoji: "🛠️"

@@ -2,6 +2,7 @@
 title: "The Top 1% Hands-On for Never Leaving a Password in Plaintext in Git With Ansible Vault"
 description: "Instead of writing a database password or other secret directly into a Playbook or group_vars in plaintext, encrypt it safely with Ansible Vault. Covers how to safely let encrypted and unencrypted files coexist in a Git repository, and how to use vault-id to manage multiple encryption passwords."
 series: "ansible"
+subSeries: "handson"
 order: 4
 tags: ["ansible", "iac", "infra", "handson", "security"]
 emoji: "🔒"

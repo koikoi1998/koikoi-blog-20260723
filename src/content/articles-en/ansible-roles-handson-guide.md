@@ -2,6 +2,7 @@
 title: "The Top 1% Hands-On for Real-World Config Management With Ansible Roles, Handlers, and Templates"
 description: "Split a Playbook that had everything crammed into one YAML file into a reusable role, distribute a config file with a Jinja2 template, and implement a handler that restarts a service only when its config actually changed. Experience hands-on why real-world Ansible code is organized around the role unit."
 series: "ansible"
+subSeries: "handson"
 order: 3
 tags: ["ansible", "iac", "infra", "handson", "automation"]
 emoji: "🗂️"

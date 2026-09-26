@@ -2,6 +2,7 @@
 title: "AWSでEC2インスタンスを起動し、Webサーバーを公開する『上位1%』のハンズオン——初めてのAWS実践"
 description: "AWSの無料利用枠を使い、EC2インスタンスを実際に起動し、セキュリティグループで最小限の穴だけを開け、SSH接続してNginxを構築し、インターネット経由でアクセスできることを確認するまでの、AWSで最初に必ず通るハンズオン。作業後の後片付けで、stopとterminateの課金の違い、Elastic IPの見えない課金の罠までを扱う。"
 series: "aws-basics"
+subSeries: "handson"
 order: 2
 tags: ["aws", "ec2", "cloud", "handson", "security"]
 emoji: "☁️"

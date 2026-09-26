@@ -2,6 +2,7 @@
 title: "Ansibleのroles・Handlers・テンプレートで実務レベルの構成管理を体験する『上位1%』のハンズオン"
 description: "1つのYAMLファイルにすべて書いていたPlaybookを、再利用可能なroleへ分割し、Jinja2テンプレートで設定ファイルを配布し、設定が変わったときだけサービスを再起動するHandlerを実装する。実務のAnsibleコードがなぜroleという単位で構成されているのかを、手を動かしながら体験するハンズオン。"
 series: "ansible"
+subSeries: "handson"
 order: 3
 tags: ["ansible", "iac", "infra", "handson", "automation"]
 emoji: "🗂️"

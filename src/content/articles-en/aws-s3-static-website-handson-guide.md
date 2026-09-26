@@ -2,6 +2,7 @@
 title: "The Top 1% Hands-On for Publishing a Static Website From an S3 Bucket: Correctly Unblocking Public Access"
 description: "Create an S3 bucket, enable static website hosting, and get it actually reachable from the internet. Covers why S3 blocks all public access by default, how to correctly unblock it 'per bucket' and 'only for what's actually needed,' and versioning as protection against accidental deletion."
 series: "aws-basics"
+subSeries: "handson"
 order: 4
 tags: ["aws", "s3", "storage", "security", "handson"]
 emoji: "🪣"

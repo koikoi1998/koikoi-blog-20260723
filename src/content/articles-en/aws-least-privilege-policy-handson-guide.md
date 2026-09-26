@@ -2,6 +2,7 @@
 title: "The Top 1% Hands-On for Reproducing the Danger of an Overly Broad IAM Policy and Scoping It to Least Privilege: Conditional Policies and IAM Access Analyzer"
 description: "Reproduce, in a test environment, how an overly broad IAM policy granting S3 operations on 'every bucket' can lead to unintended data leakage or destruction, then fix it into a least-privilege policy scoped down with Resource/Condition. Also covers finding unused permissions with IAM Access Analyzer. An educational, defense-focused hands-on."
 series: "aws-basics"
+subSeries: "handson"
 order: 9
 tags: ["aws", "iam", "security", "handson"]
 emoji: "🛡️"

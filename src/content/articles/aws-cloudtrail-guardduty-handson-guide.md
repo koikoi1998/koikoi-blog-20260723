@@ -2,6 +2,7 @@
 title: "CloudTrailとGuardDutyで漏洩したアクセスキーの不正利用を検知する『上位1%』のハンズオン——ログの記録から検知・通知までの全体像"
 description: "CloudTrailで全API操作の証跡を記録し、GuardDutyで漏洩したアクセスキーが実際に外部から不正利用される様子を検証環境で再現・検知する。CloudTrailが『記録するだけ』でGuardDutyが『分析して知らせる』という役割分担、検知後の調査にCloudTrailログを使う具体的な流れまでを扱う、教育・防御目的のハンズオン。"
 series: "aws-basics"
+subSeries: "handson"
 order: 10
 tags: ["aws", "security", "cloudtrail", "guardduty", "handson"]
 emoji: "🕵️"

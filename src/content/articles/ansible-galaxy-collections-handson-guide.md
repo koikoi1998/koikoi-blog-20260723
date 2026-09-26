@@ -2,6 +2,7 @@
 title: "Ansible Galaxyでコミュニティ製のroleとCollectionを使い、車輪の再発明をやめる『上位1%』のハンズオン"
 description: "Nginxのセットアップを自作Playbookではなく、Ansible Galaxyで公開されている実績のあるroleとCollectionを使って行う。requirements.ymlによるバージョン固定、Collectionとroleの違い、そして実務で『ゼロから全部自作する』ことがむしろ避けるべき選択である理由までを扱うハンズオン。"
 series: "ansible"
+subSeries: "handson"
 order: 7
 tags: ["ansible", "iac", "infra", "handson"]
 emoji: "📦"

@@ -2,6 +2,7 @@
 title: "AnsibleでAWSの動的インベントリを使い、静的なIPリストから解放される『上位1%』のハンズオン"
 description: "起動・停止のたびにIPアドレスが変わるクラウド環境で、inventory.iniに固定のIPアドレスを書き続けるのをやめ、Ansibleがそのつど最新のEC2インスタンス一覧をAWSから直接取得する動的インベントリを構築する。タグを使ったグループ化、そしてIAMロールによる認証情報のハードコード回避までを扱うハンズオン。"
 series: "ansible"
+subSeries: "handson"
 order: 5
 tags: ["ansible", "aws", "iac", "infra", "handson"]
 emoji: "☁️"

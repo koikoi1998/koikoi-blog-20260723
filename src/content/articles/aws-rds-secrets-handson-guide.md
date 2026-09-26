@@ -2,6 +2,7 @@
 title: "RDSとSecrets Managerでアプリにパスワードを一切書かせない『上位1%』のハンズオン——DB接続情報のハードコード撲滅"
 description: "プライベートサブネットにRDSを構築し、DB接続パスワードをアプリのコードや設定ファイルに一切書かずに、Secrets Managerから実行時に取得する。パスワードのローテーション、EC2のIAMロールとSecrets Managerの権限の組み合わせ、そしてRDSがプライベートサブネットに置かれるべき理由までを扱うハンズオン。"
 series: "aws-basics"
+subSeries: "handson"
 order: 6
 tags: ["aws", "rds", "secrets-manager", "database", "security", "handson"]
 emoji: "🔐"

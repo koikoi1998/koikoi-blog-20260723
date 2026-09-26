@@ -2,6 +2,7 @@
 title: "The Top 1% Hands-On for Detecting a Leaked Access Key's Misuse With CloudTrail and GuardDuty: From Logging to Detection to Alert"
 description: "Record every API operation's trail with CloudTrail, then reproduce and detect, in a test environment, a leaked access key actually being misused from outside. Covers the division of labor where CloudTrail 'just records' and GuardDuty 'analyzes and alerts,' plus the concrete flow of using CloudTrail logs to investigate after detection. An educational, defense-focused hands-on."
 series: "aws-basics"
+subSeries: "handson"
 order: 10
 tags: ["aws", "security", "cloudtrail", "guardduty", "handson"]
 emoji: "🕵️"

@@ -2,6 +2,7 @@
 title: "AnsibleのJinja2フィルターとloop・whenの落とし穴を体験する『上位1%』のハンズオン"
 description: "リストや辞書をJinja2フィルターで加工し、loopとwhenを組み合わせて条件付きの繰り返し処理を書く。register変数の中身の実際の構造、changed_whenで変更検知をカスタマイズする方法、そしてwhenがloopの各要素ごとに評価されるという見落としがちな仕様までを扱うハンズオン。"
 series: "ansible"
+subSeries: "handson"
 order: 8
 tags: ["ansible", "iac", "infra", "handson"]
 emoji: "🔁"

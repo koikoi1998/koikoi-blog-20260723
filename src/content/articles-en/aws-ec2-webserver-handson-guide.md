@@ -2,6 +2,7 @@
 title: "The Top 1% Hands-On for Launching an EC2 Instance and Publishing a Web Server: Your First Real AWS Exercise"
 description: "Using AWS's free tier, actually launch an EC2 instance, open only the minimum necessary holes with a security group, SSH in, build Nginx, and confirm it's reachable over the internet — the hands-on everyone has to go through first on AWS. Covers the billing difference between stop and terminate, and the invisible billing trap of an Elastic IP, during cleanup."
 series: "aws-basics"
+subSeries: "handson"
 order: 2
 tags: ["aws", "ec2", "cloud", "handson", "security"]
 emoji: "☁️"

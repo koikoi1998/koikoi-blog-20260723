@@ -284,6 +284,7 @@ graph TB
 <li data-subseries="handson"><a href="/articles/aws-ebs-snapshot-handson-guide">EBSスナップショットとAMIでバックアップ・リストア戦略を組むハンズオン</a></li>
 <li data-subseries="handson"><a href="/articles/aws-least-privilege-policy-handson-guide">過剰な権限を持つIAMポリシーの危険性を再現し最小権限に絞り込むハンズオン</a></li>
 <li data-subseries="handson"><a href="/articles/aws-cloudtrail-guardduty-handson-guide">CloudTrailとGuardDutyで漏洩したアクセスキーの不正利用を検知するハンズオン</a></li>
+<li data-subseries="audio"><a href="/articles/aws-basics-audio-review-guide">【音声で聴く】AWS基礎シリーズ総復習</a></li>
 <li><a href="/articles/m365-email-fundamentals-guide">M365へのメール移行を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/mail-server-fundamentals-guide">メールサーバーの基礎を『上位1%』の視点で理解する——MTA・MDA・MUAとPostfix・Dovecotの役割分担</a></li>
 <li data-subseries="handson"><a href="/articles/mail-server-handson-guide">PostfixとDovecotでメールサーバーを構築する『上位1%』のハンズオン</a></li>
@@ -302,6 +303,7 @@ graph TB
 <li data-subseries="handson"><a href="/articles/ansible-facts-caching-handson-guide">factsをキャッシュして大規模インベントリを高速化するハンズオン</a></li>
 <li data-subseries="handson"><a href="/articles/ansible-error-handling-handson-guide">block/rescue/alwaysで構成変更失敗時のロールバックを設計するハンズオン</a></li>
 <li data-subseries="handson"><a href="/articles/ansible-secrets-exposure-handson-guide">実行時に機密情報がログとプロセス一覧に漏れる経路を塞ぐハンズオン</a></li>
+<li data-subseries="audio"><a href="/articles/ansible-audio-review-guide">【音声で聴く】Ansibleシリーズ総復習</a></li>
 </ol>
 <div class="persona-bonus">🔍 <strong>興味があれば(任意)</strong>: <a href="/articles/voip-ss7-guide">VoIPとSS7、そして実際の通信経路</a>は電話網の歴史的経緯に、<a href="/articles/proxmox-internals-guide">Proxmox VEとは何か</a>はKVM/QEMUの内部動作に興味が湧いたら読んでみてください(Proxmoxの深掘りはSTEP7、VoIP/SS7はSTEP8で本格的に扱います)。</div>
 </div>
@@ -311,7 +313,7 @@ graph TB
 <p>STEP6までの実務知識に、面接や設計レビューで差がつく低レイヤーの実装知識を積み増すルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP6の129記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP6の131記事(上のタブから確認できます)</li>
 <li><a href="/articles/proxmox-internals-guide">Proxmox VEとは何か——KVM/QEMUによる仮想化の仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/linux-daemon-guide">デーモン(daemon)とは何か——Linuxのバックグラウンドプロセスを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/software-library-guide">ライブラリ(library)とは何か——静的リンク・動的リンクの仕組みを『上位1%』の視点で理解する</a></li>
@@ -340,13 +342,13 @@ graph TB
 <div class="persona-panel persona-panel-8">
 <div class="persona-panel-head">
 <h3>🏆 業界最高峰のスキル水準を目指して情報収集している方へ</h3>
-<p>全153記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
+<p>全155記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP7の152記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP7の154記事(上のタブから確認できます)</li>
 <li><a href="/articles/voip-ss7-guide">VoIPとSS7、そして実際の通信経路を『上位1%』の視点で理解する</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>これで全153記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
+<div class="persona-bonus">🎉 <strong>これで全155記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
 </div>
 </div>
 </div>
@@ -576,7 +578,7 @@ RAID・ディスク管理・ストレージ接続方式など、ストレージ�
 
 ### AWS基礎シリーズ
 
-EC2・VPCなど、AWSを使ううえで必ず直面する基礎的な疑問を深掘りするシリーズです。**読む順番の目安**: ① aws-ec2-networking-basics-guide → ② aws-ec2-webserver-handson-guide → ③ aws-iam-role-handson-guide → ④ aws-s3-static-website-handson-guide → ⑤ aws-vpc-handson-guide → ⑥ aws-rds-secrets-handson-guide → ⑦ aws-vpc-endpoint-handson-guide → ⑧ aws-ebs-snapshot-handson-guide → ⑨ aws-least-privilege-policy-handson-guide → ⑩ aws-cloudtrail-guardduty-handson-guide。
+EC2・VPCなど、AWSを使ううえで必ず直面する基礎的な疑問を深掘りするシリーズです。**読む順番の目安**: ① aws-ec2-networking-basics-guide → ② aws-ec2-webserver-handson-guide → ③ aws-iam-role-handson-guide → ④ aws-s3-static-website-handson-guide → ⑤ aws-vpc-handson-guide → ⑥ aws-rds-secrets-handson-guide → ⑦ aws-vpc-endpoint-handson-guide → ⑧ aws-ebs-snapshot-handson-guide → ⑨ aws-least-privilege-policy-handson-guide → ⑩ aws-cloudtrail-guardduty-handson-guide。耳だけで復習したい場合は[音声復習記事](/articles/aws-basics-audio-review-guide)もあります。
 
 - [EC2のキーペア(.pem/.ppk)とサブネットの予約IPを『上位1%』の視点で理解する](/articles/aws-ec2-networking-basics-guide) — .pemと.ppkが同じ秘密鍵の異なるファイル形式である理由、AWSサブネットで先頭4つ・末尾1つのIPアドレスが予約されている理由と用途までの深掘り(単体でも読めます)。
 - [AWSでEC2インスタンスを起動し、Webサーバーを公開する『上位1%』のハンズオン](/articles/aws-ec2-webserver-handson-guide) — セキュリティグループで必要最小限の穴だけを開け、EC2インスタンスを起動してNginxを構築・公開するハンズオン。StopとTerminateの課金の違い、Elastic IPの見えない課金の罠までを扱う(単体でも読めます)。
@@ -588,6 +590,7 @@ EC2・VPCなど、AWSを使ううえで必ず直面する基礎的な疑問を�
 - [EBSスナップショットとAMIでバックアップ・リストア戦略を組むハンズオン](/articles/aws-ebs-snapshot-handson-guide) — スナップショットが実は増分バックアップである仕組みと、1つ目を削除しても後続が壊れない理由を扱うハンズオン。gp3とio2の使い分けまでを扱う(単体でも読めます)。
 - [過剰な権限を持つIAMポリシーの危険性を再現し最小権限に絞り込むハンズオン](/articles/aws-least-privilege-policy-handson-guide) — 教育・防御目的のハンズオン。Resource/Conditionでの絞り込み、IAM Access Analyzerによる未使用権限の発見までを扱う(単体でも読めます)。
 - [CloudTrailとGuardDutyで漏洩したアクセスキーの不正利用を検知するハンズオン](/articles/aws-cloudtrail-guardduty-handson-guide) — 教育・防御目的のハンズオン。CloudTrailが『記録』、GuardDutyが『分析して知らせる』という役割分担、検知後のログ調査までを扱う(単体でも読めます)。
+- [【音声で聴く】AWS基礎シリーズ総復習](/articles/aws-basics-audio-review-guide) — 全10記事を読み終えた人向けの、耳だけで復習できる音声学習記事。表・図・箇条書きを使わず、ブラウザの読み上げ機能で聞き流せるように語りかける文章だけで構成(シリーズを読了している前提)。
 
 ### メール基盤シリーズ
 
@@ -620,7 +623,7 @@ DNSの名前解決の仕組み([dns-guide](/articles/dns-guide))を「利用す�
 
 ### Ansibleシリーズ
 
-構成管理の基礎から、実際に複数サーバーへの設定投入を自動化するまでを概要編とハンズオン編で深掘りするシリーズです。**読む順番の目安**: ① ansible-guide → ② ansible-handson-guide → ③ ansible-roles-handson-guide → ④ ansible-vault-handson-guide → ⑤ ansible-aws-dynamic-inventory-handson-guide → ⑥ ansible-environments-handson-guide → ⑦ ansible-galaxy-collections-handson-guide → ⑧ ansible-jinja2-loops-handson-guide → ⑨ ansible-facts-caching-handson-guide → ⑩ ansible-error-handling-handson-guide → ⑪ ansible-secrets-exposure-handson-guide。
+構成管理の基礎から、実際に複数サーバーへの設定投入を自動化するまでを概要編とハンズオン編で深掘りするシリーズです。**読む順番の目安**: ① ansible-guide → ② ansible-handson-guide → ③ ansible-roles-handson-guide → ④ ansible-vault-handson-guide → ⑤ ansible-aws-dynamic-inventory-handson-guide → ⑥ ansible-environments-handson-guide → ⑦ ansible-galaxy-collections-handson-guide → ⑧ ansible-jinja2-loops-handson-guide → ⑨ ansible-facts-caching-handson-guide → ⑩ ansible-error-handling-handson-guide → ⑪ ansible-secrets-exposure-handson-guide。耳だけで復習したい場合は[音声復習記事](/articles/ansible-audio-review-guide)もあります。
 
 - [Ansibleとは何かを『上位1%』の視点で理解する——構成管理とエージェントレスの仕組み](/articles/ansible-guide) — エージェント型(Puppet・Chefなど)とエージェントレスの違い、Inventory・Playbook・Task・Module・Roleという基本概念、そして冪等性(idempotency)という中核的な設計思想までの深掘り(単体でも読めます)。
 - [Ansibleで複数サーバーへの設定投入を自動化する『上位1%』のハンズオン](/articles/ansible-handson-guide) — 制御ノードへのAnsibleインストールから、SSH鍵認証の設定、InventoryとPlaybookの作成、Nginxのインストール・起動・設定投入の自動化、同じPlaybookを2回実行して冪等性(`changed=0`)を確認するまでを実際に手を動かして体験([ansible-guide](/articles/ansible-guide)の実践編)。
@@ -633,6 +636,7 @@ DNSの名前解決の仕組み([dns-guide](/articles/dns-guide))を「利用す�
 - [factsをキャッシュして大規模インベントリを高速化するハンズオン](/articles/ansible-facts-caching-handson-guide) — gather_factsが裏側でSSH接続とPythonスクリプト実行を行っている実像を扱うハンズオン。キャッシュのTTL設計、古くなるリスクとの向き合い方までを扱う(単体でも読めます)。
 - [block/rescue/alwaysで構成変更失敗時のロールバックを設計するハンズオン](/articles/ansible-error-handling-handson-guide) — ignore_errorsとblock/rescueの決定的な違いを扱うハンズオン。『変更したが確認していない状態』を残さない例外処理の設計思想までを扱う(単体でも読めます)。
 - [実行時に機密情報がログとプロセス一覧に漏れる経路を塞ぐハンズオン](/articles/ansible-secrets-exposure-handson-guide) — 教育・防御目的のハンズオン。no_logの効果と限界、shellモジュールへの直接埋め込みによるシェルインジェクションの再現までを扱う(単体でも読めます)。
+- [【音声で聴く】Ansibleシリーズ総復習](/articles/ansible-audio-review-guide) — 全11記事を読み終えた人向けの、耳だけで復習できる音声学習記事。表・図・箇条書きを使わず、ブラウザの読み上げ機能で聞き流せるように語りかける文章だけで構成(シリーズを読了している前提)。
 
 ## 今後の展開予定
 

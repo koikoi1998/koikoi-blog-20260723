@@ -2,6 +2,7 @@
 title: "The Top 1% Hands-On for Designing a Rollback on Failed Configuration Changes With Ansible's block/rescue/always: How Exception Handling and Auto-Recovery Really Work"
 description: "Deliberately reproduce a scenario where a configuration deployment fails partway through, and use block/rescue/always to detect it, automatically roll back, and clean up. Covers the decisive difference between ignore_errors and block/rescue, customizing failure judgment with failed_when, and the design philosophy of never leaving behind a 'changed but unverified' state."
 series: "ansible"
+subSeries: "handson"
 order: 10
 tags: ["ansible", "iac", "infra", "reliability", "handson"]
 emoji: "🧯"

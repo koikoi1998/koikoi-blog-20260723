@@ -2,6 +2,7 @@
 title: "Ansibleのblock/rescue/alwaysで構成変更失敗時のロールバックを設計する『上位1%』のハンズオン——例外処理と自動復旧の実像"
 description: "設定投入の途中で失敗するシナリオを意図的に再現し、block/rescue/alwaysで検知・自動ロールバック・後始末を行う。ignore_errorsとblock/rescueの決定的な違い、failed_whenによる失敗判定のカスタマイズ、そして『変更したが確認していない状態』を残さないための設計思想までを扱うハンズオン。"
 series: "ansible"
+subSeries: "handson"
 order: 10
 tags: ["ansible", "iac", "infra", "reliability", "handson"]
 emoji: "🧯"

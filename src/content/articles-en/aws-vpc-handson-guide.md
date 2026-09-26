@@ -2,6 +2,7 @@
 title: "The Top 1% Hands-On for Building a VPC With Public/Private Subnets Yourself: What NAT Gateways and Route Tables Actually Do"
 description: "Build a VPC with public and private subnets yourself instead of relying on the default VPC. Covers what the internet gateway (IGW), NAT gateway, and route table each actually do, why you need all three, and the fact that 'public/private' isn't an AWS-side attribute at all, just a result of route table configuration."
 series: "aws-basics"
+subSeries: "handson"
 order: 5
 tags: ["aws", "vpc", "networking", "infra", "handson"]
 emoji: "🛣️"

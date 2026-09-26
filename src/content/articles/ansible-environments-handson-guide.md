@@ -2,6 +2,7 @@
 title: "Ansibleでdev/staging/prodを1つのPlaybookで安全に使い分ける『上位1%』のハンズオン——group_varsと--limitの実像"
 description: "同じPlaybookをdev/staging/prodの3環境に対して実行しながら、環境ごとに異なる設定値を安全に切り替える。group_varsによる環境別変数の管理、--limitによる対象の絞り込み、そして『本番環境を間違えて対象にしてしまう』という実務で最も恐れられている事故への具体的な備えまでを扱うハンズオン。"
 series: "ansible"
+subSeries: "handson"
 order: 6
 tags: ["ansible", "iac", "infra", "handson"]
 emoji: "🗂️"

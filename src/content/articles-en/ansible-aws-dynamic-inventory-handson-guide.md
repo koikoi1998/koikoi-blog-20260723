@@ -2,6 +2,7 @@
 title: "The Top 1% Hands-On for Escaping the Static IP List With Ansible's AWS Dynamic Inventory"
 description: "In a cloud environment where IP addresses change every time an instance starts or stops, stop writing fixed IP addresses into inventory.ini, and build a dynamic inventory that has Ansible query AWS directly for the current list of EC2 instances every single run. Covers grouping by tags, and avoiding hardcoded credentials with an IAM role."
 series: "ansible"
+subSeries: "handson"
 order: 5
 tags: ["ansible", "aws", "iac", "infra", "handson"]
 emoji: "☁️"
