@@ -207,6 +207,7 @@ This blog is written for a wide range of readers — from people with no experie
 <li><a href="/en/articles/ad-kerberos-guide">Understanding Kerberos Authentication from a "Top 1%" Perspective</a></li>
 <li data-subseries="handson"><a href="/en/articles/ad-multidomain-handson-guide">Hands-On: Building a Multi-Domain, Multi-Tree AD Forest</a></li>
 <li data-subseries="handson"><a href="/en/articles/ad-migration-handson-guide">Hands-On: Migrating From an Old DC to a New One</a></li>
+<li data-subseries="handson"><a href="/en/articles/ad-forest-trust-handson-guide">A Hands-On Lab: Building Trust Between Two Independent Forests in an Acquisition Scenario</a></li>
 <li><a href="/en/articles/ad-sysvol-dfsr-gpo-guide">Understanding SYSVOL, DFSR, and Group Policy from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/ad-family-overview-guide">Understanding AD DS, AD CS, AD FS, AD LDS, and AD RMS from a Top-1% Perspective</a></li>
 <li><a href="/en/articles/ad-ldap-protocol-guide">Understanding the LDAP Protocol from a Top-1% Perspective</a></li>
@@ -225,7 +226,7 @@ This blog is written for a wide range of readers — from people with no experie
 <p>On top of STEP5, this route adds the infrastructure adjacent to your core stack — web servers (IIS), file sharing (SMB), storage, cloud, email infrastructure, and container platforms/config-management automation. This completes the "building confidence" route. If you want to read one specific field in one go, use the filter feature on the top page instead.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP5's 71 articles (see those tabs above)</li>
+<li>STEP1 through STEP5's 72 articles (see those tabs above)</li>
 <li><a href="/en/articles/iis-fundamentals-guide">Understanding How IIS and ASP.NET Work from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/iis-ftp-guide">Understanding the Relationship Between IIS and FTP from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/smb-file-sharing-guide">Understanding Windows Server SMB File Sharing from a "Top 1%" Perspective</a></li>
@@ -254,7 +255,7 @@ This blog is written for a wide range of readers — from people with no experie
 <p>Adds the low-level implementation knowledge that sets you apart in interviews and design reviews, on top of everything through STEP6.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP6's 90 articles (see those tabs above)</li>
+<li>STEP1 through STEP6's 91 articles (see those tabs above)</li>
 <li><a href="/en/articles/proxmox-internals-guide">What Is Proxmox VE? Understanding KVM/QEMU Virtualization from the "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/linux-daemon-guide">What Is a Daemon? Understanding Linux Background Processes from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/software-library-guide">What Is a Library? Understanding Static and Dynamic Linking from a "Top 1%" Perspective</a></li>
@@ -282,13 +283,13 @@ This blog is written for a wide range of readers — from people with no experie
 <div class="persona-panel persona-panel-8">
 <div class="persona-panel-head">
 <h3>🏆 For those gathering information toward the industry's highest skill tier</h3>
-<p>The complete-conquest route: read all 113 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
+<p>The complete-conquest route: read all 114 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP7's 112 articles (see those tabs above)</li>
+<li>STEP1 through STEP7's 113 articles (see those tabs above)</li>
 <li><a href="/en/articles/voip-ss7-guide">Understanding VoIP and SS7 — and the Real Path Your Traffic Takes — from a "Top 1%" Perspective</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>That's all 113 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
+<div class="persona-bonus">🎉 <strong>That's all 114 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
 </div>
 </div>
 </div>
@@ -404,7 +405,7 @@ A series that takes execution-environment-level terms that keep showing up in th
 
 ### Active Directory Series
 
-A series digging into the questions that come up constantly in real-world AD migration and domain controller (DC) build/operation work. Written assuming you've read the DNS fundamentals article ([dns-guide](/en/articles/dns-guide)). **Recommended order**: ① ad-dc-fundamentals-guide → ② ad-computername-netdom-guide → ③ ad-windows-login-guide → ④ ad-dns-guide → ⑤ dns-zones-records-guide → ⑥ fsmo-guide → ⑦ dc-health-check-guide → ⑧ ad-sites-guide → ⑨ dcdiag-guide → ⑩ ad-migration-cleanup-guide → ⑪ ad-spn-guide → ⑫ ad-netlogon-guide → ⑬ ad-kerberos-guide → ⑭ ad-multidomain-handson-guide → ⑮ ad-migration-handson-guide → ⑯ ad-sysvol-dfsr-gpo-guide → ⑰ ad-family-overview-guide → ⑱ ad-ldap-protocol-guide → ⑲ ad-netbios-dns-history-guide → ⑳ ad-schema-extension-guide → ㉑ ad-dotnet-powershell-guide → ㉒ ad-isp-guide (⑯ onward were added as further deep dives before the audio review) → ㉓ ad-audio-review-guide (for reviewing by ear after finishing all 22).
+A series digging into the questions that come up constantly in real-world AD migration and domain controller (DC) build/operation work. Written assuming you've read the DNS fundamentals article ([dns-guide](/en/articles/dns-guide)). **Recommended order**: ① ad-dc-fundamentals-guide → ② ad-computername-netdom-guide → ③ ad-windows-login-guide → ④ ad-dns-guide → ⑤ dns-zones-records-guide → ⑥ fsmo-guide → ⑦ dc-health-check-guide → ⑧ ad-sites-guide → ⑨ dcdiag-guide → ⑩ ad-migration-cleanup-guide → ⑪ ad-spn-guide → ⑫ ad-netlogon-guide → ⑬ ad-kerberos-guide → ⑭ ad-multidomain-handson-guide → ⑮ ad-migration-handson-guide → ⑯ ad-forest-trust-handson-guide → ⑰ ad-sysvol-dfsr-gpo-guide → ⑱ ad-family-overview-guide → ⑲ ad-ldap-protocol-guide → ⑳ ad-netbios-dns-history-guide → ㉑ ad-schema-extension-guide → ㉒ ad-dotnet-powershell-guide → ㉓ ad-isp-guide (⑯ onward were added as further deep dives before the audio review) → ㉔ ad-audio-review-guide (for reviewing by ear after finishing all 23).
 
 - [Understanding the Difference Between AD and DC, and Domains vs. Forests, from a "Top 1%" Perspective](/en/articles/ad-dc-fundamentals-guide) — A deep dive into the division of labor between AD DS (the mechanism) and DC (the server), the three-layer boundary of domain/tree/forest, what functional levels constrain, and what gets installed alongside the AD DS role.
 - [What's the Difference Between sysdm.cpl and netdom computername?](/en/articles/ad-computername-netdom-guide) — A deep dive into the mechanism difference between sysdm.cpl and netdom for changing a computer name, why the two-step /add → /makeprimary process is required, and a diagnosis of a real authentication outage caused by a hostname collision during an AD migration (a follow-on from article ①, also readable standalone).
@@ -421,6 +422,7 @@ A series digging into the questions that come up constantly in real-world AD mig
 - [Understanding Kerberos Authentication from a "Top 1%" Perspective](/en/articles/ad-kerberos-guide) — A deep dive into why identity can be verified without ever sending the password over the network, the TGT and service-ticket exchange (AS-REQ/AS-REP, TGS-REQ/TGS-REP, AP-REQ), the relationship between the PAC (Privilege Attribute Certificate) and SIDs, the difference from NTLM, and the token-bloat problem (also readable standalone).
 - [Hands-On: Building a Multi-Domain, Multi-Tree AD Forest](/en/articles/ad-multidomain-handson-guide) — Build example.com as the forest root, child.example.com as a child domain, and example.net as a separate tree, then confirm domain partition isolation, configuration partition sharing, automatic trust relationships, GC search scope, and FSMO placement with real commands (a capstone for the series, assumes you've read the earlier articles).
 - [Hands-On: Migrating From an Old DC to a New One](/en/articles/ad-migration-handson-guide) — A real-world-scenario AD migration hands-on covering adding a new DC, verifying replication health with repadmin/dcdiag, the FSMO transfer, formally demoting the old DC, post-demotion cleanup verification, handing the old DC's name to the new one, and an exercise in deliberately triggering and reading a dcdiag warning (a capstone for the series, assumes you've read the earlier articles).
+- [A Hands-On Lab: Building Trust Between Two Independent Forests in an Acquisition Scenario](/en/articles/ad-forest-trust-handson-guide) — Build a forest trust between two genuinely independent forests and confirm cross-forest resource access, covering the difference from automatic trust within a single forest, what a trust alone doesn't solve, and where ADMT stands today (also readable standalone).
 - [Understanding SYSVOL, DFSR, and Group Policy from a "Top 1%" Perspective](/en/articles/ad-sysvol-dfsr-gpo-guide) — A deep dive into how a GPO is actually made of two independent parts — the GPC in AD DS and the GPT in SYSVOL — the difference between DFSR and its predecessor FRS, and diagnosing the real-world GPO version-mismatch problem (also readable standalone).
 - [Understanding AD DS, AD CS, AD FS, AD LDS, and AD RMS from a Top-1% Perspective](/en/articles/ad-family-overview-guide) — A deep dive into why five roles sharing the "Active Directory" name have completely different implementations and purposes: certificate issuance (AD CS), cross-organization SSO (AD FS), a domain-independent lightweight directory (AD LDS), file-level rights management (AD RMS), and where AD FS/AD RMS currently sit in Microsoft's product strategy (also readable standalone).
 - [Understanding the LDAP Protocol from a Top-1% Perspective](/en/articles/ad-ldap-protocol-guide) — A deep dive into what LDAP itself actually does behind AD DS's queries: its data model (DN, attributes, search filters), its operations (Bind, Search, Add/Modify/Delete), how ports 389/636/3268/3269 are used differently, and the practically important security settings of LDAP signing and LDAP channel binding (also readable standalone).

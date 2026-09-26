@@ -1,0 +1,45 @@
+questions:
+  - question: "Which statement best matches the article's explanation of the difference between trust between two independent forests and trust between domains within a single forest?"
+    choices:
+      - "Trust between domains within the same forest forms automatically, but trust between two independent forests (a forest trust) never forms unless an administrator explicitly builds it with a command like `netdom trust`"
+      - "Both kinds of trust form automatically without any administrator action"
+      - "Trust between independent forests forms more readily, automatically, than trust within the same forest"
+      - "It's technically impossible to build a trust relationship at all when the forests are different"
+    answerIndex: 0
+    explanation: "Domains within the same forest (parent-child, or between tree roots) automatically form a trust, but a forest trust between independent forests never forms automatically unless an administrator explicitly builds it with a command like netdom trust."
+
+  - question: "Which statement best matches the article's explanation of the prerequisite that must be established before building a forest trust?"
+    choices:
+      - "Both DCs need to be able to resolve each other's domain name, using something like a conditional forwarder"
+      - "Both forests' time zones must be made to match exactly"
+      - "Both forests' AD DS schemas must be made completely identical beforehand"
+      - "There's no particular prerequisite — you can just run the netdom trust command immediately"
+    answerIndex: 0
+    explanation: "Before building a forest trust, both DCs need to be able to resolve each other's domain name, using something like a conditional forwarder. If name resolution fails, building the trust itself fails."
+
+  - question: "Which statement best matches the article's explanation of what a forest trust solves, and what it doesn't?"
+    choices:
+      - "Building a forest trust automatically resolves everything, including duplicate user accounts and eventual forest consolidation"
+      - "A forest trust only solves authentication and access-permission cooperation — resolving duplicate user accounts or ultimately retiring one of the two forests requires separate work"
+      - "A forest trust is a purely nominal mechanism that doesn't even achieve authentication cooperation"
+      - "Building a forest trust automatically merges both forests' user accounts into one"
+    answerIndex: 1
+    explanation: "A forest trust only solves authentication and access-permission cooperation. Resolving duplicate user accounts, or ultimately retiring one of the two forests, requires entirely separate work — potentially a dedicated migration tool."
+
+  - question: "Which statement best matches the article's explanation of where ADMT (Active Directory Migration Tool) stands today?"
+    choices:
+      - "ADMT is still under active development, and its correct operation on current Windows Server versions is officially validated"
+      - "Development on ADMT has stopped, and its official support policy only covers testing through Windows Server 2012 R2 — operation on current versions hasn't been validated"
+      - "ADMT requires no additional software at all, such as SQL Server, and is fully self-contained"
+      - "ADMT is a tool for building the forest trust itself"
+    answerIndex: 1
+    explanation: "Development on ADMT has stopped, and Microsoft's official support policy only covers testing through Windows Server 2012 R2. Operation on a current environment like Windows Server 2025 hasn't been validated, and the article doesn't recommend actually running ADMT in that environment."
+
+  - question: "Which statement best matches the article's explanation of SID filtering?"
+    choices:
+      - "A protective feature enabled by default on a forest trust, preventing the trusting forest from unconditionally believing it if the trusted forest maliciously claims a powerful SID"
+      - "SID filtering is a feature for speeding up DNS name resolution"
+      - "SID filtering is disabled by default and does nothing unless manually enabled"
+      - "SID filtering is a feature for encrypting user passwords"
+    answerIndex: 0
+    explanation: "SID filtering is a security feature enabled by default on a forest trust, preventing the trusting forest from unconditionally believing a maliciously claimed SID from the trusted forest."
