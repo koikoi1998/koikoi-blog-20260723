@@ -1,0 +1,45 @@
+questions:
+  - question: "What condition is needed for `group_vars/prod.yml` to be loaded correctly?"
+    choices:
+      - "The Playbook side must explicitly include this file"
+      - "As long as the filename matches the inventory group name, Ansible loads it automatically"
+      - "The file to load must be enumerated in ansible.cfg"
+      - "It must be explicitly specified via a command-line argument"
+    answerIndex: 1
+    explanation: "As long as the inventory group name matches a filename under group_vars, Ansible applies it automatically with no explicit load specification."
+
+  - question: "If the `--limit` option isn't specified, what becomes the execution target?"
+    choices:
+      - "Always just the dev group"
+      - "The entire group written in the Playbook's hosts:"
+      - "Just the single host listed first in the inventory"
+      - "Nothing is executed at all"
+    answerIndex: 1
+    explanation: "Without --limit, the entire group written in the Playbook's hosts: (for example all) becomes the target."
+
+  - question: "Which statement about `--check --diff` is correct?"
+    choices:
+      - "--check actually makes changes, while --diff makes none"
+      - "--check makes no actual change, and combined with --diff you can review the diff of what would change"
+      - "Adding --diff automatically targets the production environment"
+      - "--check and --diff can't be used together"
+    answerIndex: 1
+    explanation: "--check doesn't actually apply any change to any host, and combined with --diff you can visually review exactly what a file's content would change to."
+
+  - question: "What's the best real-world countermeasure against the accident of applying to production by mistake?"
+    choices:
+      - "Leave it up to the operator being careful"
+      - "Prevent it with a mechanism, such as a wrapper script that makes --limit mandatory or a CI/CD pipeline requiring human review"
+      - "Delete the production inventory file"
+      - "Stop using Ansible altogether"
+    answerIndex: 1
+    explanation: "The real-world countermeasure is building a mechanism where one last line of defense stops a careless mistake even when it happens, not relying on carefulness."
+
+  - question: "Which statement about group_vars priority order is correct?"
+    choices:
+      - "The value in all.yml is always given top priority"
+      - "The value from a more specific scope (a single host's host_vars) overrides the value from a broader scope (common to all hosts)"
+      - "No priority order exists — whichever file loads last always wins"
+      - "Priority between groups is determined alphabetically"
+    answerIndex: 1
+    explanation: "Among the all/group/single-host hierarchy, the value from the more specific scope (a single host) overrides the value from the broader scope."

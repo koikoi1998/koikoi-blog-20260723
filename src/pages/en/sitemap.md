@@ -274,6 +274,8 @@ This blog is written for a wide range of readers — from people with no experie
 <li data-subseries="handson"><a href="/en/articles/aws-ec2-webserver-handson-guide">The Top 1% Hands-On for Launching an EC2 Instance and Publishing a Web Server</a></li>
 <li data-subseries="handson"><a href="/en/articles/aws-iam-role-handson-guide">The Top 1% Hands-On for Never Giving EC2 an Access Key With an IAM Role</a></li>
 <li data-subseries="handson"><a href="/en/articles/aws-s3-static-website-handson-guide">The Top 1% Hands-On for Publishing a Static Website From an S3 Bucket</a></li>
+<li data-subseries="handson"><a href="/en/articles/aws-vpc-handson-guide">The Top 1% Hands-On for Building a VPC With Public/Private Subnets Yourself</a></li>
+<li data-subseries="handson"><a href="/en/articles/aws-rds-secrets-handson-guide">The Top 1% Hands-On for Never Letting an App Write a Password With RDS and Secrets Manager</a></li>
 <li><a href="/en/articles/m365-email-fundamentals-guide">Understanding Email Migration to M365 from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/mail-server-fundamentals-guide">Understanding Mail Server Fundamentals from a "Top 1%" Perspective — MTA, MDA, MUA, and the Roles of Postfix and Dovecot</a></li>
 <li data-subseries="handson"><a href="/en/articles/mail-server-handson-guide">A "Top 1%" Hands-On Lab: Building a Mail Server with Postfix and Dovecot</a></li>
@@ -286,6 +288,8 @@ This blog is written for a wide range of readers — from people with no experie
 <li data-subseries="handson"><a href="/en/articles/ansible-roles-handson-guide">The Top 1% Hands-On for Real-World Config Management With Ansible Roles, Handlers, and Templates</a></li>
 <li data-subseries="handson"><a href="/en/articles/ansible-vault-handson-guide">The Top 1% Hands-On for Never Leaving a Password in Plaintext in Git With Ansible Vault</a></li>
 <li data-subseries="handson"><a href="/en/articles/ansible-aws-dynamic-inventory-handson-guide">The Top 1% Hands-On for Escaping the Static IP List With Ansible's AWS Dynamic Inventory</a></li>
+<li data-subseries="handson"><a href="/en/articles/ansible-environments-handson-guide">The Top 1% Hands-On for Safely Running dev/staging/prod From One Ansible Playbook</a></li>
+<li data-subseries="handson"><a href="/en/articles/ansible-galaxy-collections-handson-guide">The Top 1% Hands-On for Using Community Roles and Collections With Ansible Galaxy</a></li>
 </ol>
 <div class="persona-bonus">🔍 <strong>If it interests you (optional)</strong>: <a href="/en/articles/voip-ss7-guide">Understanding VoIP and SS7</a> is worth a read once the history behind the telephone network starts to interest you, and <a href="/en/articles/proxmox-internals-guide">What Is Proxmox VE?</a> is worth a read once KVM/QEMU's internals start to interest you (the Proxmox deep-dive is properly covered in STEP7, VoIP/SS7 in STEP8).</div>
 </div>
@@ -295,7 +299,7 @@ This blog is written for a wide range of readers — from people with no experie
 <p>Adds the low-level implementation knowledge that sets you apart in interviews and design reviews, on top of everything through STEP6.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP6's 115 articles (see those tabs above)</li>
+<li>STEP1 through STEP6's 119 articles (see those tabs above)</li>
 <li><a href="/en/articles/proxmox-internals-guide">What Is Proxmox VE? Understanding KVM/QEMU Virtualization from the "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/linux-daemon-guide">What Is a Daemon? Understanding Linux Background Processes from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/software-library-guide">What Is a Library? Understanding Static and Dynamic Linking from a "Top 1%" Perspective</a></li>
@@ -324,13 +328,13 @@ This blog is written for a wide range of readers — from people with no experie
 <div class="persona-panel persona-panel-8">
 <div class="persona-panel-head">
 <h3>🏆 For those gathering information toward the industry's highest skill tier</h3>
-<p>The complete-conquest route: read all 139 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
+<p>The complete-conquest route: read all 143 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP7's 138 articles (see those tabs above)</li>
+<li>STEP1 through STEP7's 142 articles (see those tabs above)</li>
 <li><a href="/en/articles/voip-ss7-guide">Understanding VoIP and SS7 — and the Real Path Your Traffic Takes — from a "Top 1%" Perspective</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>That's all 139 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
+<div class="persona-bonus">🎉 <strong>That's all 143 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
 </div>
 </div>
 </div>
@@ -558,12 +562,14 @@ A series digging into the fundamentals of controlling and speeding up web traffi
 
 ### AWS Fundamentals Series
 
-A series digging into the basic questions that come up constantly when using AWS — EC2, VPC, and more. **Recommended order**: ① aws-ec2-networking-basics-guide → ② aws-ec2-webserver-handson-guide → ③ aws-iam-role-handson-guide → ④ aws-s3-static-website-handson-guide.
+A series digging into the basic questions that come up constantly when using AWS — EC2, VPC, and more. **Recommended order**: ① aws-ec2-networking-basics-guide → ② aws-ec2-webserver-handson-guide → ③ aws-iam-role-handson-guide → ④ aws-s3-static-website-handson-guide → ⑤ aws-vpc-handson-guide → ⑥ aws-rds-secrets-handson-guide.
 
 - [Understanding EC2 Key Pairs (.pem/.ppk) and Reserved Subnet IPs from a "Top 1%" Perspective](/en/articles/aws-ec2-networking-basics-guide) — A deep dive into why .pem and .ppk are different file formats for the same private key, and why the first four and last one IP addresses on an AWS subnet are reserved, and what each is used for (also readable standalone).
 - [The Top 1% Hands-On for Launching an EC2 Instance and Publishing a Web Server](/en/articles/aws-ec2-webserver-handson-guide) — A hands-on lab opening only the minimum necessary holes with a security group, launching an EC2 instance, and building/publishing Nginx. Covers the billing difference between Stop and Terminate, and the invisible billing trap of an Elastic IP (also readable standalone).
 - [The Top 1% Hands-On for Never Giving EC2 an Access Key With an IAM Role](/en/articles/aws-iam-role-handson-guide) — Avoid hardcoding an access key by accessing an AWS service safely with an IAM role instead. Covers STS's automatic issuance of temporary credentials, and why IMDSv2 is now required (also readable standalone).
 - [The Top 1% Hands-On for Publishing a Static Website From an S3 Bucket](/en/articles/aws-s3-static-website-handson-guide) — Correctly unblock public access "per bucket" and "only for what's needed." Covers the public access block as defense in depth, and versioning as protection against accidental deletion (also readable standalone).
+- [The Top 1% Hands-On for Building a VPC With Public/Private Subnets Yourself](/en/articles/aws-vpc-handson-guide) — Combine an IGW, a NAT gateway, and route tables yourself instead of relying on the default VPC. Covers the fact that "public/private" isn't an AWS-side attribute at all, just a result of route table configuration (also readable standalone).
+- [The Top 1% Hands-On for Never Letting an App Write a Password With RDS and Secrets Manager](/en/articles/aws-rds-secrets-handson-guide) — Build RDS in a private subnet and fetch the DB password from Secrets Manager at runtime. Covers combining it with an IAM role and automatic rotation (also readable standalone).
 
 ### Messaging Fundamentals Series
 
@@ -596,13 +602,15 @@ A series digging into container/Kubernetes fundamentals and what OpenShift adds 
 
 ### Ansible Series
 
-A series digging into configuration management fundamentals through to actually automating configuration across multiple servers, split into an overview article and a hands-on lab. **Recommended order**: ① ansible-guide → ② ansible-handson-guide → ③ ansible-roles-handson-guide → ④ ansible-vault-handson-guide → ⑤ ansible-aws-dynamic-inventory-handson-guide.
+A series digging into configuration management fundamentals through to actually automating configuration across multiple servers, split into an overview article and a hands-on lab. **Recommended order**: ① ansible-guide → ② ansible-handson-guide → ③ ansible-roles-handson-guide → ④ ansible-vault-handson-guide → ⑤ ansible-aws-dynamic-inventory-handson-guide → ⑥ ansible-environments-handson-guide → ⑦ ansible-galaxy-collections-handson-guide.
 
 - [Understanding What Ansible Actually Is From a "Top 1%" Perspective — Configuration Management and the Agentless Model](/en/articles/ansible-guide) — A deep dive into the difference between agent-based tools (Puppet, Chef, and so on) and the agentless model, the core concepts of Inventory, Playbook, Task, Module, and Role, and the core design principle of idempotency (also readable standalone).
 - [A "Top 1%" Hands-On Lab: Automating Configuration Across Multiple Servers with Ansible](/en/articles/ansible-handson-guide) — Hands-on experience installing Ansible on a control node, setting up SSH key authentication, writing an Inventory and a Playbook, automating installing/starting/configuring Nginx, and running the same Playbook twice to confirm idempotency (`changed=0`) (a practical follow-on to [ansible-guide](/en/articles/ansible-guide)).
 - [The Top 1% Hands-On for Real-World Config Management With Ansible Roles, Handlers, and Templates](/en/articles/ansible-roles-handson-guide) — Splits a single Playbook into a role, distributes a config file with a Jinja2 template, and restarts a service only when something changed via notify/handlers — three mechanisms that show up in almost every piece of real-world Ansible code (a follow-on to [ansible-handson-guide](/en/articles/ansible-handson-guide)).
 - [The Top 1% Hands-On for Never Leaving a Password in Plaintext in Git With Ansible Vault](/en/articles/ansible-vault-handson-guide) — Encrypt a variable file containing secrets with Ansible Vault, decrypting it only at execution time. Covers letting encrypted and unencrypted files coexist, and managing a different password per environment with vault-id (also readable standalone).
 - [The Top 1% Hands-On for Escaping the Static IP List With Ansible's AWS Dynamic Inventory](/en/articles/ansible-aws-dynamic-inventory-handson-guide) — Replace a hand-maintained static inventory with a dynamic fetch straight from the AWS API. Covers automatic tag-based grouping with keyed_groups, and combining it with an IAM role so no access key needs to be configured on the control node (also readable standalone).
+- [The Top 1% Hands-On for Safely Running dev/staging/prod From One Ansible Playbook](/en/articles/ansible-environments-handson-guide) — Manage per-environment variables with group_vars and narrow targets with --limit. Covers concrete protection against the accident of targeting production by mistake (also readable standalone).
+- [The Top 1% Hands-On for Using Community Roles and Collections With Ansible Galaxy](/en/articles/ansible-galaxy-collections-handson-guide) — Stop reinventing the wheel and use a battle-tested role and Collection pinned via requirements.yml. Covers the difference between a Collection and a Role (also readable standalone).
 
 ## What's next
 

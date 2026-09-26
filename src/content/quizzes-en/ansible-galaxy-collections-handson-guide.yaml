@@ -1,0 +1,45 @@
+questions:
+  - question: "What best describes the role of `requirements.yml`?"
+    choices:
+      - "A file that records a Playbook's execution log"
+      - "A file that explicitly declares the Collections and roles to use, by name and version"
+      - "A file that defines the content of an inventory"
+      - "A file that stores SSH connection information"
+    answerIndex: 1
+    explanation: "requirements.yml is the equivalent of package.json or requirements.txt in a programming language, declaring exactly what to use at what version."
+
+  - question: "Where does a role installed via ansible-galaxy install get placed?"
+    choices:
+      - "Unpacked directly inside the same directory as your own Playbook"
+      - "Unpacked somewhere independent of your existing codebase, such as ~/.ansible/roles/"
+      - "Automatically uploaded to an AWS S3 bucket"
+      - "Forcibly placed at the root directory of a Git repository"
+    answerIndex: 1
+    explanation: "An installed role gets placed somewhere independent, such as under ~/.ansible/roles/, without cluttering your own Playbook directory."
+
+  - question: "What's the best description of the benefit of using a battle-tested community role?"
+    choices:
+      - "It's always guaranteed to run faster than a role you write yourself"
+      - "It has usually already resolved countless edge cases, based on feedback from a huge number of users"
+      - "The only benefit is that it's free to use"
+      - "A community role can't be customized with variables at all"
+    answerIndex: 1
+    explanation: "A battle-tested role has usually already built in support for various OSes and edge cases, based on feedback from a huge number of users."
+
+  - question: "What can happen if a version isn't pinned in requirements.yml?"
+    choices:
+      - "The same version keeps getting installed safely, always"
+      - "A different version gets installed each time you run it, and a Playbook's behavior could suddenly change one day"
+      - "ansible-galaxy install itself becomes impossible to run"
+      - "Only the most stable release is automatically chosen"
+    answerIndex: 1
+    explanation: "Without a pinned version, whatever is the latest version at run time gets installed, so the result can change every time you run it."
+
+  - question: "Which statement about the relationship between a Collection and a Role is correct?"
+    choices:
+      - "A Collection and a Role are just two different names for the exact same thing"
+      - "A Collection is a distribution format bundling modules, roles, and more, while a Role is a narrower reusable unit that can also be published independently of any Collection"
+      - "A Role can only ever exist inside a Collection"
+      - "A Collection can only ever contain a single role"
+    answerIndex: 1
+    explanation: "A Collection is a distribution format bundling modules, plugins, roles, and more, while a Role is a narrower unit that can also be published on Galaxy independently of any Collection."

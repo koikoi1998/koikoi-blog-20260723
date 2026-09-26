@@ -276,6 +276,8 @@ graph TB
 <li data-subseries="handson"><a href="/articles/aws-ec2-webserver-handson-guide">AWSでEC2インスタンスを起動し、Webサーバーを公開する『上位1%』のハンズオン</a></li>
 <li data-subseries="handson"><a href="/articles/aws-iam-role-handson-guide">IAMロールでEC2にアクセスキーを一切持たせないハンズオン</a></li>
 <li data-subseries="handson"><a href="/articles/aws-s3-static-website-handson-guide">S3バケットで静的Webサイトを公開するハンズオン</a></li>
+<li data-subseries="handson"><a href="/articles/aws-vpc-handson-guide">パブリック/プライベートサブネットを持つVPCを自力で構築するハンズオン</a></li>
+<li data-subseries="handson"><a href="/articles/aws-rds-secrets-handson-guide">RDSとSecrets Managerでアプリにパスワードを一切書かせないハンズオン</a></li>
 <li><a href="/articles/m365-email-fundamentals-guide">M365へのメール移行を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/mail-server-fundamentals-guide">メールサーバーの基礎を『上位1%』の視点で理解する——MTA・MDA・MUAとPostfix・Dovecotの役割分担</a></li>
 <li data-subseries="handson"><a href="/articles/mail-server-handson-guide">PostfixとDovecotでメールサーバーを構築する『上位1%』のハンズオン</a></li>
@@ -288,6 +290,8 @@ graph TB
 <li data-subseries="handson"><a href="/articles/ansible-roles-handson-guide">Ansibleのroles・Handlers・テンプレートで実務レベルの構成管理を体験するハンズオン</a></li>
 <li data-subseries="handson"><a href="/articles/ansible-vault-handson-guide">Ansible Vaultでパスワードをgitにプレーンテキストのまま置かないハンズオン</a></li>
 <li data-subseries="handson"><a href="/articles/ansible-aws-dynamic-inventory-handson-guide">AnsibleでAWSの動的インベントリを使い、静的なIPリストから解放されるハンズオン</a></li>
+<li data-subseries="handson"><a href="/articles/ansible-environments-handson-guide">dev/staging/prodを1つのPlaybookで安全に使い分けるハンズオン</a></li>
+<li data-subseries="handson"><a href="/articles/ansible-galaxy-collections-handson-guide">Ansible Galaxyでコミュニティ製のroleとCollectionを使うハンズオン</a></li>
 </ol>
 <div class="persona-bonus">🔍 <strong>興味があれば(任意)</strong>: <a href="/articles/voip-ss7-guide">VoIPとSS7、そして実際の通信経路</a>は電話網の歴史的経緯に、<a href="/articles/proxmox-internals-guide">Proxmox VEとは何か</a>はKVM/QEMUの内部動作に興味が湧いたら読んでみてください(Proxmoxの深掘りはSTEP7、VoIP/SS7はSTEP8で本格的に扱います)。</div>
 </div>
@@ -297,7 +301,7 @@ graph TB
 <p>STEP6までの実務知識に、面接や設計レビューで差がつく低レイヤーの実装知識を積み増すルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP6の115記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP6の119記事(上のタブから確認できます)</li>
 <li><a href="/articles/proxmox-internals-guide">Proxmox VEとは何か——KVM/QEMUによる仮想化の仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/linux-daemon-guide">デーモン(daemon)とは何か——Linuxのバックグラウンドプロセスを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/software-library-guide">ライブラリ(library)とは何か——静的リンク・動的リンクの仕組みを『上位1%』の視点で理解する</a></li>
@@ -326,13 +330,13 @@ graph TB
 <div class="persona-panel persona-panel-8">
 <div class="persona-panel-head">
 <h3>🏆 業界最高峰のスキル水準を目指して情報収集している方へ</h3>
-<p>全139記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
+<p>全143記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP7の138記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP7の142記事(上のタブから確認できます)</li>
 <li><a href="/articles/voip-ss7-guide">VoIPとSS7、そして実際の通信経路を『上位1%』の視点で理解する</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>これで全139記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
+<div class="persona-bonus">🎉 <strong>これで全143記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
 </div>
 </div>
 </div>
@@ -560,12 +564,14 @@ RAID・ディスク管理・ストレージ接続方式など、ストレージ�
 
 ### AWS基礎シリーズ
 
-EC2・VPCなど、AWSを使ううえで必ず直面する基礎的な疑問を深掘りするシリーズです。**読む順番の目安**: ① aws-ec2-networking-basics-guide → ② aws-ec2-webserver-handson-guide → ③ aws-iam-role-handson-guide → ④ aws-s3-static-website-handson-guide。
+EC2・VPCなど、AWSを使ううえで必ず直面する基礎的な疑問を深掘りするシリーズです。**読む順番の目安**: ① aws-ec2-networking-basics-guide → ② aws-ec2-webserver-handson-guide → ③ aws-iam-role-handson-guide → ④ aws-s3-static-website-handson-guide → ⑤ aws-vpc-handson-guide → ⑥ aws-rds-secrets-handson-guide。
 
 - [EC2のキーペア(.pem/.ppk)とサブネットの予約IPを『上位1%』の視点で理解する](/articles/aws-ec2-networking-basics-guide) — .pemと.ppkが同じ秘密鍵の異なるファイル形式である理由、AWSサブネットで先頭4つ・末尾1つのIPアドレスが予約されている理由と用途までの深掘り(単体でも読めます)。
 - [AWSでEC2インスタンスを起動し、Webサーバーを公開する『上位1%』のハンズオン](/articles/aws-ec2-webserver-handson-guide) — セキュリティグループで必要最小限の穴だけを開け、EC2インスタンスを起動してNginxを構築・公開するハンズオン。StopとTerminateの課金の違い、Elastic IPの見えない課金の罠までを扱う(単体でも読めます)。
 - [IAMロールでEC2にアクセスキーを一切持たせないハンズオン](/articles/aws-iam-role-handson-guide) — アクセスキーのハードコードを避け、IAMロールでAWSサービスへ安全にアクセスするハンズオン。STSによる一時的な認証情報の自動発行、IMDSv2が必須になった理由までを扱う(単体でも読めます)。
 - [S3バケットで静的Webサイトを公開するハンズオン](/articles/aws-s3-static-website-handson-guide) — パブリックアクセスブロックを「バケット単位で」「必要な操作だけ」正しく解除するハンズオン。多層防御としてのパブリックアクセスブロックの意味、バージョニングによる誤削除対策までを扱う(単体でも読めます)。
+- [パブリック/プライベートサブネットを持つVPCを自力で構築するハンズオン](/articles/aws-vpc-handson-guide) — デフォルトVPCに頼らず、IGW・NATゲートウェイ・ルートテーブルを自分で組み合わせるハンズオン。「パブリック/プライベート」がAWS側の属性ではなくルートテーブルの設定にすぎないことまでを扱う(単体でも読めます)。
+- [RDSとSecrets Managerでアプリにパスワードを一切書かせないハンズオン](/articles/aws-rds-secrets-handson-guide) — プライベートサブネットにRDSを構築し、DBパスワードをSecrets Managerから実行時に取得するハンズオン。IAMロールとの組み合わせ、自動ローテーションまでを扱う(単体でも読めます)。
 
 ### メール基盤シリーズ
 
@@ -598,13 +604,15 @@ DNSの名前解決の仕組み([dns-guide](/articles/dns-guide))を「利用す�
 
 ### Ansibleシリーズ
 
-構成管理の基礎から、実際に複数サーバーへの設定投入を自動化するまでを概要編とハンズオン編で深掘りするシリーズです。**読む順番の目安**: ① ansible-guide → ② ansible-handson-guide → ③ ansible-roles-handson-guide → ④ ansible-vault-handson-guide → ⑤ ansible-aws-dynamic-inventory-handson-guide。
+構成管理の基礎から、実際に複数サーバーへの設定投入を自動化するまでを概要編とハンズオン編で深掘りするシリーズです。**読む順番の目安**: ① ansible-guide → ② ansible-handson-guide → ③ ansible-roles-handson-guide → ④ ansible-vault-handson-guide → ⑤ ansible-aws-dynamic-inventory-handson-guide → ⑥ ansible-environments-handson-guide → ⑦ ansible-galaxy-collections-handson-guide。
 
 - [Ansibleとは何かを『上位1%』の視点で理解する——構成管理とエージェントレスの仕組み](/articles/ansible-guide) — エージェント型(Puppet・Chefなど)とエージェントレスの違い、Inventory・Playbook・Task・Module・Roleという基本概念、そして冪等性(idempotency)という中核的な設計思想までの深掘り(単体でも読めます)。
 - [Ansibleで複数サーバーへの設定投入を自動化する『上位1%』のハンズオン](/articles/ansible-handson-guide) — 制御ノードへのAnsibleインストールから、SSH鍵認証の設定、InventoryとPlaybookの作成、Nginxのインストール・起動・設定投入の自動化、同じPlaybookを2回実行して冪等性(`changed=0`)を確認するまでを実際に手を動かして体験([ansible-guide](/articles/ansible-guide)の実践編)。
 - [Ansibleのroles・Handlers・テンプレートで実務レベルの構成管理を体験するハンズオン](/articles/ansible-roles-handson-guide) — 単一のPlaybookをroleへ分割し、Jinja2テンプレートで設定ファイルを配布し、notify/Handlerで「変更があったときだけ」サービスを再起動する、実務のAnsibleコードでほぼ必ず使われる3つの仕組みを体験する([ansible-handson-guide](/articles/ansible-handson-guide)の発展編)。
 - [Ansible Vaultでパスワードをgitにプレーンテキストのまま置かないハンズオン](/articles/ansible-vault-handson-guide) — 機密情報を含む変数ファイルをAnsible Vaultで暗号化し、実行時にだけ復号するハンズオン。暗号化ファイルと非暗号化ファイルの共存設計、vault-idによる環境ごとのパスワード使い分けまでを扱う(単体でも読めます)。
 - [AnsibleでAWSの動的インベントリを使い、静的なIPリストから解放されるハンズオン](/articles/ansible-aws-dynamic-inventory-handson-guide) — 固定IPを書いた静的インベントリの代わりに、AWSから最新のEC2一覧を動的に取得するハンズオン。タグによる自動グループ化、IAMロールとの組み合わせまでを扱う(単体でも読めます)。
+- [dev/staging/prodを1つのPlaybookで安全に使い分けるハンズオン](/articles/ansible-environments-handson-guide) — group_varsによる環境別変数の管理、--limitによる対象の絞り込みを扱うハンズオン。「本番環境を間違えて対象にしてしまう」事故への具体的な備えまでを扱う(単体でも読めます)。
+- [Ansible Galaxyでコミュニティ製のroleとCollectionを使うハンズオン](/articles/ansible-galaxy-collections-handson-guide) — 車輪の再発明をやめ、実績あるroleとCollectionをrequirements.ymlでバージョン固定して使うハンズオン。CollectionとRoleの違いまでを扱う(単体でも読めます)。
 
 ## 今後の展開予定
 

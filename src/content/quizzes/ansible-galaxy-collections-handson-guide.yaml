@@ -1,0 +1,45 @@
+questions:
+  - question: "`requirements.yml`の役割として最も適切な説明はどれか。"
+    choices:
+      - "Playbookの実行ログを記録するファイル"
+      - "利用するCollectionやroleを、名前とバージョンで明示的に宣言するファイル"
+      - "インベントリの内容を定義するファイル"
+      - "SSH接続情報を保存するファイル"
+    answerIndex: 1
+    explanation: "requirements.ymlは、プログラミング言語のpackage.jsonやrequirements.txtに相当し、何をどのバージョンで使うかを宣言します。"
+
+  - question: "ansible-galaxy installでインストールされたroleは、どこに配置されるか。"
+    choices:
+      - "自分のPlaybookと同じディレクトリの中に直接展開される"
+      - "~/.ansible/roles/など、既存のコードベースとは独立した場所に展開される"
+      - "AWSのS3バケットに自動的にアップロードされる"
+      - "Gitリポジトリのルートディレクトリに強制的に配置される"
+    answerIndex: 1
+    explanation: "インストールされたroleは、自分のPlaybookのディレクトリを汚すことなく、~/.ansible/roles/配下などの独立した場所に配置されます。"
+
+  - question: "実績あるコミュニティ製roleを使うことの利点として最も適切なのはどれか。"
+    choices:
+      - "必ず自作のroleより実行速度が速くなる"
+      - "多くのユーザーのフィードバックにより、無数のエッジケースが既に解消されていることが多い"
+      - "無料で使えるという点だけが利点である"
+      - "コミュニティ製roleは変数のカスタマイズが一切できない"
+    answerIndex: 1
+    explanation: "実績あるroleは、多くのユーザーのフィードバックを受けて、様々なOSやエッジケースへの対応が既に組み込まれていることが多いです。"
+
+  - question: "requirements.ymlでバージョンを固定しない場合に起こりうることは何か。"
+    choices:
+      - "常に同じバージョンが安全にインストールされ続ける"
+      - "実行するたびに異なるバージョンがインストールされ、ある日突然Playbookの挙動が変わる可能性がある"
+      - "ansible-galaxy install自体が実行できなくなる"
+      - "自動的に最も安定した安定版だけが選ばれる"
+    answerIndex: 1
+    explanation: "バージョンを固定しない場合、実行時点での最新バージョンがインストールされるため、実行するたびに結果が変わる可能性があります。"
+
+  - question: "CollectionとRoleの関係について正しい説明はどれか。"
+    choices:
+      - "CollectionとRoleは完全に同じものを指す別名にすぎない"
+      - "Collectionはモジュールやroleなどをまとめた配布形式であり、RoleはCollectionとは独立して公開されることもある、より狭い再利用可能な部品である"
+      - "Roleは常にCollectionの中にしか存在できない"
+      - "Collectionは1つのroleしか含むことができない"
+    answerIndex: 1
+    explanation: "Collectionはモジュール・プラグイン・roleなどをまとめた配布形式で、Roleはより狭い単位の部品であり、Collectionとは独立してGalaxy上に公開されることもあります。"

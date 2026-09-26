@@ -1,0 +1,45 @@
+questions:
+  - question: "What determines whether a subnet is 'public' or 'private'?"
+    choices:
+      - "An attribute you specify in the AWS console when creating the subnet"
+      - "The content of the route table associated with that subnet"
+      - "The value of the subnet's CIDR block itself"
+      - "Whether the subnet's name contains the string 'public'"
+    answerIndex: 1
+    explanation: "'Public/private' isn't an AWS-side attribute — it's a distinction determined by the content of the route table associated with that subnet."
+
+  - question: "What happens simply by attaching an IGW to a VPC?"
+    choices:
+      - "Every subnet in the VPC automatically gains internet connectivity"
+      - "No subnet can communicate with the internet yet on that alone"
+      - "All existing route tables are automatically updated"
+      - "A NAT gateway is automatically created"
+    answerIndex: 1
+    explanation: "Attaching an IGW alone doesn't enable communication — an explicit route must be added to each subnet's own route table."
+
+  - question: "Which direction of communication does a NAT gateway enable?"
+    choices:
+      - "Two-way communication from the internet into the private subnet"
+      - "One-way communication only, initiated outbound from the private subnet side"
+      - "Communication only between subnets within the same VPC"
+      - "Dedicated-line communication with an on-premises environment only"
+    answerIndex: 1
+    explanation: "A NAT gateway only enables one-way communication initiated outbound from the private side — something external can never initiate a connection."
+
+  - question: "Which statement about NAT gateway billing is correct?"
+    choices:
+      - "Only time-based billing applies, not data volume"
+      - "Both time-based billing and data-processing volume billing apply"
+      - "It's completely free to use"
+      - "Only a one-time charge at creation applies"
+    answerIndex: 1
+    explanation: "A NAT gateway bills you both for the time it's running and for the volume of data passing through it."
+
+  - question: "What's needed to correctly configure reachability to an EC2 instance in a private subnet?"
+    choices:
+      - "Route table reachability alone is sufficient"
+      - "Security group permission alone is sufficient"
+      - "Both route table reachability and security group permission need to be configured correctly"
+      - "Nothing needs to be configured — it's accessible by default"
+    answerIndex: 2
+    explanation: "Reachability via the route table and permission via security groups are separate layers, and both need to be configured correctly."
