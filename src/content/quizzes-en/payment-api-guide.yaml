@@ -1,0 +1,45 @@
+questions:
+  - question: "Why isn't Stripe's payment API designed as a simple 'one API call completes the payment'?"
+    choices:
+      - "It's just deliberately made complicated for security reasons"
+      - "Extra authentication like 3D Secure can be inserted, requiring a design with state transitions"
+      - "Server processing limits require splitting it into multiple calls"
+      - "Splitting it into multiple API calls lets more fees be charged"
+    answerIndex: 1
+    explanation: "Because extra authentication like 3D Secure can be inserted, the design routes through a PaymentIntent object with state transitions, across multiple steps."
+
+  - question: "What is the main purpose of a design where the card number is sent directly from the browser to the payment provider, never passing through your own server?"
+    choices:
+      - "To improve communication speed"
+      - "To keep the PCI DSS compliance scope small"
+      - "To lower payment processing fees"
+      - "To reduce server load"
+    answerIndex: 1
+    explanation: "By ensuring your own server never touches the card number even once, you keep the compliance scope for PCI DSS, a strict security standard, dramatically smaller."
+
+  - question: "Why shouldn't the frontend's redirect completing be treated as definitive proof a payment succeeded?"
+    choices:
+      - "Because redirects always fail"
+      - "Because the payment succeeding and the redirect reaching the frontend are independent events that can each fail separately"
+      - "Because redirects have a security vulnerability"
+      - "Because redirects aren't part of the payment API's specification"
+    answerIndex: 1
+    explanation: "Whether the payment itself succeeded and whether that result reached the frontend are two independent events that can each fail on their own, so actual order-confirmation processing must be triggered by the webhook."
+
+  - question: "What must always be done when receiving a webhook, to prevent spoofing?"
+    choices:
+      - "Save the received data directly to the database as-is"
+      - "Verify the HMAC signature to confirm the request came from a legitimate source"
+      - "Visually check that the source IP address belongs to Stripe"
+      - "Nothing in particular needs to be done"
+    answerIndex: 1
+    explanation: "Since a webhook arrives as an ordinary HTTP request from outside, it should only be treated as legitimate after its signature has been verified."
+
+  - question: "Why does the idempotency key matter especially for payment APIs?"
+    choices:
+      - "Payment APIs don't have a concept of idempotency keys at all"
+      - "To prevent a payment from being executed twice due to a simple retry after a request timeout"
+      - "Using an idempotency key speeds up payment processing"
+      - "Idempotency keys are only used for 3D Secure authentication"
+    answerIndex: 1
+    explanation: "If a request times out and the client retries, without an idempotency key you risk a duplicate payment being created for the same request."

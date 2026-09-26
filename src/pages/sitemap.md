@@ -118,6 +118,7 @@ graph TB
 <li><a href="/articles/circuit-switching-ppp-guide">電話回線とIPネットワークの違いを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/access-network-guide">ADSL・光回線などアクセス回線の技術変遷を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/restful-api-guide">RESTful APIとは何か？HTTP・JSONの基礎から実務設計まで『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/payment-api-guide">決済APIの裏側の仕組みを『上位1%』の視点で理解する</a></li>
 </ol>
 </div>
 <div class="persona-panel persona-panel-2">
@@ -126,7 +127,7 @@ graph TB
 <p>STEP1の土台に、設計・構築の現場で必ず問われるVPN・暗号・証明書まわりを積み増すルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1の8記事(iDRAC〜RESTful API、上のタブから確認できます)</li>
+<li>STEP1の9記事(iDRAC〜決済API、上のタブから確認できます)</li>
 <li><a href="/articles/l2tp-ipsec-guide">L2TP/IPsecの仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/pki-guide">PKIとデジタル証明書の仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/symmetric-encryption-guide">共通鍵暗号(AES)とHMAC/AEADの仕組みを『上位1%』の視点で理解する</a></li>
@@ -157,7 +158,7 @@ graph TB
 <p>「知ってるつもり」を実務で使える理解に変える最初の段階です。VPNの現地構築・拠点間VPN、そして自分の手を動かすハンズオン(仮想化環境の準備・OS初期セットアップ・ターミナル/パケットキャプチャツールの使い方・障害切り分け演習)まで、実際に手を動かして検証する力を積み増します。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1・STEP2の29記事(上のタブから確認できます)</li>
+<li>STEP1・STEP2の30記事(上のタブから確認できます)</li>
 <li><a href="/articles/windows-server-l2tp-vpn-guide">Windows Server(RRAS)でのL2TP/IPsec VPN構築とIPアドレス管理を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/site-to-site-vpn-guide">拠点間VPN(Site-to-Site VPN)を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/local-gov-network-guide">自治体ネットワークの三層分離とセキュリティクラウドを『上位1%』の視点で理解する</a></li>
@@ -180,7 +181,7 @@ graph TB
 <p>STEP3までの範囲に、拠点間VPNのAWS連携やSD-WANといった規模の大きい設計、そして社内基盤の中核であるディレクトリサービスの設計思想・DNSの実務・健全性確認の基本を積み増し、任される仕事の幅を広げる段階です。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP3の43記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP3の44記事(上のタブから確認できます)</li>
 <li data-subseries="audio"><a href="/articles/vpn-audio-review-guide">【音声で聴く】リモートアクセスVPN/L2TP・IPsecシリーズ総復習</a></li>
 <li><a href="/articles/site-to-site-vpn-aws-guide">AWSとの拠点間VPN(Site-to-Site VPN)を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/sdwan-edge-router-guide">SD-WANとエッジルーター選定を『上位1%』の視点で理解する</a></li>
@@ -204,7 +205,7 @@ graph TB
 <p>STEP4までのディレクトリサービスの基礎に、認証・レプリケーション・移行という「壊すと影響が大きい」領域の深い理解と、実機を使ったマルチドメイン構築・DC移行のハンズオンを積み増し、任された基盤を1人で安心して運用できるようになる段階です。Windows Serverの調達・時刻同期に関する基礎もここで押さえます。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP4の57記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP4の58記事(上のタブから確認できます)</li>
 <li><a href="/articles/ad-netlogon-guide">Netlogonサービスとセキュアチャネルの仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/ad-kerberos-guide">Kerberos認証の仕組みを『上位1%』の視点で理解する</a></li>
 <li data-subseries="handson"><a href="/articles/ad-multidomain-handson-guide">マルチドメイン・マルチツリーのADフォレストを構築するハンズオン</a></li>
@@ -231,7 +232,7 @@ graph TB
 <p>STEP5までの範囲に、Webサーバー(IIS)・ファイル共有(SMB)・ストレージ・クラウド・メール基盤・コンテナ基盤/構成管理の自動化といった、社内インフラの周辺領域まで押さえます。ここまでで「現場で自信をつけたい」ルートは完了です。特定の分野だけをまとめて読みたい場合は、トップページの絞り込み機能をご利用ください。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP5の75記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP5の76記事(上のタブから確認できます)</li>
 <li><a href="/articles/iis-fundamentals-guide">IISとASP.NETの仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/iis-ftp-guide">IISとFTPの関係を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/smb-file-sharing-guide">Windows ServerのSMB共有を『上位1%』の視点で理解する</a></li>
@@ -260,7 +261,7 @@ graph TB
 <p>STEP6までの実務知識に、面接や設計レビューで差がつく低レイヤーの実装知識を積み増すルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP6の94記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP6の95記事(上のタブから確認できます)</li>
 <li><a href="/articles/proxmox-internals-guide">Proxmox VEとは何か——KVM/QEMUによる仮想化の仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/linux-daemon-guide">デーモン(daemon)とは何か——Linuxのバックグラウンドプロセスを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/software-library-guide">ライブラリ(library)とは何か——静的リンク・動的リンクの仕組みを『上位1%』の視点で理解する</a></li>
@@ -289,13 +290,13 @@ graph TB
 <div class="persona-panel persona-panel-8">
 <div class="persona-panel-head">
 <h3>🏆 業界最高峰のスキル水準を目指して情報収集している方へ</h3>
-<p>全118記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
+<p>全119記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP7の117記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP7の118記事(上のタブから確認できます)</li>
 <li><a href="/articles/voip-ss7-guide">VoIPとSS7、そして実際の通信経路を『上位1%』の視点で理解する</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>これで全118記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
+<div class="persona-bonus">🎉 <strong>これで全119記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
 </div>
 </div>
 </div>
@@ -402,6 +403,7 @@ VPNプロトコルの記事やL2TP/IPsecハンズオンなどで繰り返し登�
 ### Web / API シリーズ
 
 - [RESTful APIとは何か？HTTP・JSONの基礎から実務設計まで『上位1%』の視点で理解する](/articles/restful-api-guide) — HTTP・REST・JSON・認証・べき等性・ページネーションの深掘り。
+- [決済APIの裏側の仕組みを『上位1%』の視点で理解する](/articles/payment-api-guide) — Stripeを題材に、PaymentIntentという多段階のライフサイクル、3Dセキュア(SCA)対応、決済完了をWebhookで検知する仕組みとその署名検証、カード番号を自社サーバーに触れさせないPCI DSS対応までの深掘り(単体でも読めます)。
 
 ### セキュリティ基礎シリーズ
 

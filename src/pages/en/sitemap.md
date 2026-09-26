@@ -116,6 +116,7 @@ This blog is written for a wide range of readers — from people with no experie
 <li><a href="/en/articles/circuit-switching-ppp-guide">Understanding the Difference Between Telephone Lines and IP Networks from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/access-network-guide">Understanding the Evolution of Access-Line Technology — ADSL, Fiber, and More — from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/restful-api-guide">What Is a RESTful API? Understanding from HTTP/JSON Basics to Practical Design from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/payment-api-guide">Understanding Payment APIs from a "Top 1%" Perspective</a></li>
 </ol>
 </div>
 <div class="persona-panel persona-panel-2">
@@ -124,7 +125,7 @@ This blog is written for a wide range of readers — from people with no experie
 <p>Builds on STEP1 with the VPN, cryptography, and certificate topics that design/build work always ends up touching.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1's 8 articles (iDRAC through RESTful API — see that tab above)</li>
+<li>STEP1's 9 articles (iDRAC through the payment API guide — see that tab above)</li>
 <li><a href="/en/articles/l2tp-ipsec-guide">Understanding How L2TP/IPsec Works from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/pki-guide">Understanding PKI and Digital Certificates from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/symmetric-encryption-guide">Understanding Symmetric Encryption (AES) and HMAC/AEAD from a "Top 1%" Perspective</a></li>
@@ -155,7 +156,7 @@ This blog is written for a wide range of readers — from people with no experie
 <p>This is where "I sort of know this" starts turning into working knowledge. It covers hands-on VPN construction, site-to-site VPN, and the hands-on basics of doing things with your own hands — setting up a virtualization environment, first-time OS setup, terminal/packet-capture tools, and troubleshooting drills.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 and STEP2's 29 articles (see those tabs above)</li>
+<li>STEP1 and STEP2's 30 articles (see those tabs above)</li>
 <li><a href="/en/articles/windows-server-l2tp-vpn-guide">Why Does a VPN Client Need a Gateway on the Same Subnet? — Understanding IP Address Management in Windows Server (RRAS) L2TP/IPsec VPN from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/site-to-site-vpn-guide">Understanding Site-to-Site VPN from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/local-gov-network-guide">Understanding Japanese Local Government Network Segregation and Security Clouds from a "Top 1%" Perspective</a></li>
@@ -178,7 +179,7 @@ This blog is written for a wide range of readers — from people with no experie
 <p>On top of STEP3, this route adds larger-scale design work — site-to-site VPN with AWS, SD-WAN — plus the design philosophy of directory services (the core of internal infrastructure), practical DNS work, and the basics of health checks, expanding the range of work you're trusted with.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP3's 43 articles (see those tabs above)</li>
+<li>STEP1 through STEP3's 44 articles (see those tabs above)</li>
 <li data-subseries="audio"><a href="/en/articles/vpn-audio-review-guide">[Listen] The Remote-Access VPN / L2TP-IPsec Series, Fully Recapped</a></li>
 <li><a href="/en/articles/site-to-site-vpn-aws-guide">Understanding Site-to-Site VPN with AWS from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/sdwan-edge-router-guide">Understanding SD-WAN and Edge Router Selection from a "Top 1%" Perspective</a></li>
@@ -202,7 +203,7 @@ This blog is written for a wide range of readers — from people with no experie
 <p>On top of STEP4's directory-services basics, this route adds the deep, "breaking this has a big blast radius" areas — authentication, replication, migration — plus hands-on labs building a multi-domain forest and migrating a DC, so you can run infrastructure you've been handed on your own with confidence. It also covers Windows Server procurement and time-sync basics.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP4's 57 articles (see those tabs above)</li>
+<li>STEP1 through STEP4's 58 articles (see those tabs above)</li>
 <li><a href="/en/articles/ad-netlogon-guide">Understanding the Netlogon Service and the Secure Channel from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/ad-kerberos-guide">Understanding Kerberos Authentication from a "Top 1%" Perspective</a></li>
 <li data-subseries="handson"><a href="/en/articles/ad-multidomain-handson-guide">Hands-On: Building a Multi-Domain, Multi-Tree AD Forest</a></li>
@@ -229,7 +230,7 @@ This blog is written for a wide range of readers — from people with no experie
 <p>On top of STEP5, this route adds the infrastructure adjacent to your core stack — web servers (IIS), file sharing (SMB), storage, cloud, email infrastructure, and container platforms/config-management automation. This completes the "building confidence" route. If you want to read one specific field in one go, use the filter feature on the top page instead.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP5's 75 articles (see those tabs above)</li>
+<li>STEP1 through STEP5's 76 articles (see those tabs above)</li>
 <li><a href="/en/articles/iis-fundamentals-guide">Understanding How IIS and ASP.NET Work from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/iis-ftp-guide">Understanding the Relationship Between IIS and FTP from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/smb-file-sharing-guide">Understanding Windows Server SMB File Sharing from a "Top 1%" Perspective</a></li>
@@ -258,7 +259,7 @@ This blog is written for a wide range of readers — from people with no experie
 <p>Adds the low-level implementation knowledge that sets you apart in interviews and design reviews, on top of everything through STEP6.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP6's 94 articles (see those tabs above)</li>
+<li>STEP1 through STEP6's 95 articles (see those tabs above)</li>
 <li><a href="/en/articles/proxmox-internals-guide">What Is Proxmox VE? Understanding KVM/QEMU Virtualization from the "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/linux-daemon-guide">What Is a Daemon? Understanding Linux Background Processes from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/software-library-guide">What Is a Library? Understanding Static and Dynamic Linking from a "Top 1%" Perspective</a></li>
@@ -287,13 +288,13 @@ This blog is written for a wide range of readers — from people with no experie
 <div class="persona-panel persona-panel-8">
 <div class="persona-panel-head">
 <h3>🏆 For those gathering information toward the industry's highest skill tier</h3>
-<p>The complete-conquest route: read all 118 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
+<p>The complete-conquest route: read all 119 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP7's 117 articles (see those tabs above)</li>
+<li>STEP1 through STEP7's 118 articles (see those tabs above)</li>
 <li><a href="/en/articles/voip-ss7-guide">Understanding VoIP and SS7 — and the Real Path Your Traffic Takes — from a "Top 1%" Perspective</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>That's all 118 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
+<div class="persona-bonus">🎉 <strong>That's all 119 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
 </div>
 </div>
 </div>
@@ -400,6 +401,7 @@ A series that takes execution-environment-level terms that keep showing up in th
 ### Web / API Series
 
 - [What Is a RESTful API? Understanding from HTTP/JSON Basics to Practical Design from a "Top 1%" Perspective](/en/articles/restful-api-guide) — A deep dive into HTTP, REST, JSON, authentication, idempotency, and pagination.
+- [Understanding Payment APIs from a "Top 1%" Perspective](/en/articles/payment-api-guide) — Uses Stripe as a concrete example for a deep dive into the multi-step PaymentIntent lifecycle, 3D Secure (SCA) support, detecting payment completion with webhooks and their signature verification, and PCI DSS compliance that keeps card numbers off your own server (also readable standalone).
 
 ### Security Fundamentals Series
 
