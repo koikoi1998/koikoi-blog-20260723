@@ -243,7 +243,7 @@ graph TB
 <li><a href="/articles/fc-san-fundamentals-guide">FCケーブル接続とLANケーブル接続の違いを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/ntfs-mft-internals-guide">NTFSファイルシステムの仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/aws-ec2-networking-basics-guide">EC2のキーペア(.pem/.ppk)とサブネットの予約IPを『上位1%』の視点で理解する</a></li>
-<li><a href="/articles/aws-ec2-webserver-handson-guide">AWSでEC2インスタンスを起動し、Webサーバーを公開する『上位1%』のハンズオン</a></li>
+<li data-subseries="handson"><a href="/articles/aws-ec2-webserver-handson-guide">AWSでEC2インスタンスを起動し、Webサーバーを公開する『上位1%』のハンズオン</a></li>
 <li><a href="/articles/m365-email-fundamentals-guide">M365へのメール移行を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/mail-server-fundamentals-guide">メールサーバーの基礎を『上位1%』の視点で理解する——MTA・MDA・MUAとPostfix・Dovecotの役割分担</a></li>
 <li data-subseries="handson"><a href="/articles/mail-server-handson-guide">PostfixとDovecotでメールサーバーを構築する『上位1%』のハンズオン</a></li>
@@ -253,6 +253,7 @@ graph TB
 <li data-subseries="handson"><a href="/articles/openshift-handson-guide">OpenShift Localでコンテナアプリケーションを動かす『上位1%』のハンズオン</a></li>
 <li><a href="/articles/ansible-guide">Ansibleとは何かを『上位1%』の視点で理解する——構成管理とエージェントレスの仕組み</a></li>
 <li data-subseries="handson"><a href="/articles/ansible-handson-guide">Ansibleで複数サーバーへの設定投入を自動化する『上位1%』のハンズオン</a></li>
+<li data-subseries="handson"><a href="/articles/ansible-roles-handson-guide">Ansibleのroles・Handlers・テンプレートで実務レベルの構成管理を体験するハンズオン</a></li>
 </ol>
 <div class="persona-bonus">🔍 <strong>興味があれば(任意)</strong>: <a href="/articles/voip-ss7-guide">VoIPとSS7、そして実際の通信経路</a>は電話網の歴史的経緯に、<a href="/articles/proxmox-internals-guide">Proxmox VEとは何か</a>はKVM/QEMUの内部動作に興味が湧いたら読んでみてください(Proxmoxの深掘りはSTEP7、VoIP/SS7はSTEP8で本格的に扱います)。</div>
 </div>
@@ -262,7 +263,7 @@ graph TB
 <p>STEP6までの実務知識に、面接や設計レビューで差がつく低レイヤーの実装知識を積み増すルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP6の96記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP6の97記事(上のタブから確認できます)</li>
 <li><a href="/articles/proxmox-internals-guide">Proxmox VEとは何か——KVM/QEMUによる仮想化の仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/linux-daemon-guide">デーモン(daemon)とは何か——Linuxのバックグラウンドプロセスを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/software-library-guide">ライブラリ(library)とは何か——静的リンク・動的リンクの仕組みを『上位1%』の視点で理解する</a></li>
@@ -291,13 +292,13 @@ graph TB
 <div class="persona-panel persona-panel-8">
 <div class="persona-panel-head">
 <h3>🏆 業界最高峰のスキル水準を目指して情報収集している方へ</h3>
-<p>全120記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
+<p>全121記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP7の119記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP7の120記事(上のタブから確認できます)</li>
 <li><a href="/articles/voip-ss7-guide">VoIPとSS7、そして実際の通信経路を『上位1%』の視点で理解する</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>これで全120記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
+<div class="persona-bonus">🎉 <strong>これで全121記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
 </div>
 </div>
 </div>
@@ -527,10 +528,11 @@ DNSの名前解決の仕組み([dns-guide](/articles/dns-guide))を「利用す�
 
 ### Ansibleシリーズ
 
-構成管理の基礎から、実際に複数サーバーへの設定投入を自動化するまでを概要編とハンズオン編で深掘りするシリーズです。**読む順番の目安**: ① ansible-guide → ② ansible-handson-guide。
+構成管理の基礎から、実際に複数サーバーへの設定投入を自動化するまでを概要編とハンズオン編で深掘りするシリーズです。**読む順番の目安**: ① ansible-guide → ② ansible-handson-guide → ③ ansible-roles-handson-guide。
 
 - [Ansibleとは何かを『上位1%』の視点で理解する——構成管理とエージェントレスの仕組み](/articles/ansible-guide) — エージェント型(Puppet・Chefなど)とエージェントレスの違い、Inventory・Playbook・Task・Module・Roleという基本概念、そして冪等性(idempotency)という中核的な設計思想までの深掘り(単体でも読めます)。
 - [Ansibleで複数サーバーへの設定投入を自動化する『上位1%』のハンズオン](/articles/ansible-handson-guide) — 制御ノードへのAnsibleインストールから、SSH鍵認証の設定、InventoryとPlaybookの作成、Nginxのインストール・起動・設定投入の自動化、同じPlaybookを2回実行して冪等性(`changed=0`)を確認するまでを実際に手を動かして体験([ansible-guide](/articles/ansible-guide)の実践編)。
+- [Ansibleのroles・Handlers・テンプレートで実務レベルの構成管理を体験するハンズオン](/articles/ansible-roles-handson-guide) — 単一のPlaybookをroleへ分割し、Jinja2テンプレートで設定ファイルを配布し、notify/Handlerで「変更があったときだけ」サービスを再起動する、実務のAnsibleコードでほぼ必ず使われる3つの仕組みを体験する([ansible-handson-guide](/articles/ansible-handson-guide)の発展編)。
 
 ## 今後の展開予定
 

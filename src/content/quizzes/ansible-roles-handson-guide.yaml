@@ -1,0 +1,45 @@
+questions:
+  - question: "`ansible-galaxy init roles/webserver`を実行すると何が起こるか。"
+    choices:
+      - "Ansible本体が再インストールされる"
+      - "roleの定型ディレクトリ構成(tasks・handlers・templates・varsなど)が自動生成される"
+      - "既存のPlaybookがすべて削除される"
+      - "対象サーバーにNginxが自動的にインストールされる"
+    answerIndex: 1
+    explanation: "ansible-galaxy initは、role用の定型ディレクトリ構成(tasks・handlers・templates・vars・defaultsなど)を自動生成するコマンドです。"
+
+  - question: "`copy`モジュールと`template`モジュールの違いは何か。"
+    choices:
+      - "copyは常に失敗し、templateだけが正常に動作する"
+      - "copyは静的なファイルをそのまま転送するが、templateはJinja2の{{ }}構文を実行時に展開してから配布する"
+      - "copyはWindows専用、templateはLinux専用のモジュールである"
+      - "両者に機能上の違いはなく、名前が違うだけである"
+    answerIndex: 1
+    explanation: "copyは静的なファイルをそのまま転送しますが、templateはJinja2テンプレート内の変数を実行時に展開してから配布します。"
+
+  - question: "Handlerが実際に実行されるのはどのような場合か。"
+    choices:
+      - "notifyを指定したTaskが実行されるたびに、常に実行される"
+      - "notifyを指定したTaskが実際にchanged(変更あり)として報告された場合にだけ実行される"
+      - "Playbookの実行開始時に、必ず1回実行される"
+      - "手動でHandlerのコマンドを別途実行しない限り、実行されることはない"
+    answerIndex: 1
+    explanation: "Handlerは、notifyを指定したTaskが実際にchangedとして報告された場合にだけ呼び出されます。"
+
+  - question: "同じPlay内で、複数のTaskが同じHandlerにnotifyしていた場合、そのHandlerは何回実行されるか。"
+    choices:
+      - "notifyした回数と同じ回数だけ実行される"
+      - "1回もnotifyされていなければ実行されないが、1回以上notifyされていればPlayの最後にまとめて1回だけ実行される"
+      - "Task数の2倍の回数実行される"
+      - "常に実行されない"
+    answerIndex: 1
+    explanation: "同じPlay内であれば、Handlerは(1回以上notifyされていれば)Playの最後にまとめて1回だけ実行されます。"
+
+  - question: "実務のAnsibleコードが、単一のPlaybookではなくroleという単位で構成される主な理由は何か。"
+    choices:
+      - "roleを使わないとAnsibleが正常に動作しないため"
+      - "役割ごとに独立して管理・再利用できるようにするため"
+      - "roleを使うとPlaybookの実行速度が必ず速くなるため"
+      - "roleは既定のインベントリファイルの代わりとして機能するため"
+    answerIndex: 1
+    explanation: "roleという単位に分割することで、webserverロールだけを別プロジェクトへコピーして再利用するなど、役割ごとの独立した管理・再利用が可能になります。"

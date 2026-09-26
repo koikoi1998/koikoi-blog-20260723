@@ -1,0 +1,45 @@
+questions:
+  - question: "What happens when you run `ansible-galaxy init roles/webserver`?"
+    choices:
+      - "Ansible itself gets reinstalled"
+      - "The standard directory structure for a role (tasks, handlers, templates, vars, and so on) is auto-generated"
+      - "All existing Playbooks are deleted"
+      - "Nginx is automatically installed on the target server"
+    answerIndex: 1
+    explanation: "ansible-galaxy init auto-generates the standard directory structure for a role (tasks, handlers, templates, vars, defaults, and so on)."
+
+  - question: "What's the difference between the copy module and the template module?"
+    choices:
+      - "copy always fails, and only template works correctly"
+      - "copy transfers a static file as-is, while template expands Jinja2's {{ }} syntax at runtime before distributing it"
+      - "copy is Windows-only and template is Linux-only"
+      - "There's no functional difference between them — they're just named differently"
+    answerIndex: 1
+    explanation: "copy transfers a static file as-is, while template expands variables inside a Jinja2 template at runtime before distributing it."
+
+  - question: "When does a handler actually run?"
+    choices:
+      - "Every single time a Task specifying notify runs"
+      - "Only when the Task specifying notify actually reports changed"
+      - "Exactly once, at the start of every Playbook run"
+      - "Never, unless you separately run the handler's command manually"
+    answerIndex: 1
+    explanation: "A handler is only called when the Task specifying notify actually reports changed."
+
+  - question: "If multiple Tasks in the same Play notify the same handler, how many times does that handler run?"
+    choices:
+      - "The same number of times it was notified"
+      - "It doesn't run if never notified, but runs just once, gathered at the end of the Play, if notified one or more times"
+      - "Twice the number of Tasks"
+      - "It never runs"
+    answerIndex: 1
+    explanation: "Within the same Play, a handler runs just once at the end of the Play, as long as it was notified at least once."
+
+  - question: "What's the main reason real-world Ansible code is organized around the role unit, rather than a single Playbook?"
+    choices:
+      - "Ansible doesn't work correctly without roles"
+      - "So each role can be managed and reused independently"
+      - "Using roles always makes a Playbook run faster"
+      - "A role acts as a replacement for the default inventory file"
+    answerIndex: 1
+    explanation: "Splitting things into role units makes independent management and reuse possible per role, such as copying just the webserver role into a separate project."
