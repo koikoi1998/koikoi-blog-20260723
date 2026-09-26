@@ -1,0 +1,45 @@
+questions:
+  - question: "What is a current S3 bucket's default state?"
+    choices:
+      - "All public access is allowed by default"
+      - "All public access is blocked by default"
+      - "File uploads themselves are disabled by default"
+      - "Files can't be stored at all without encryption by default"
+    answerIndex: 1
+    explanation: "A current S3 bucket blocks all public access by default. Publishing it requires explicitly unblocking that."
+
+  - question: "Does simply disabling the public access block make files in a bucket public?"
+    choices:
+      - "Yes, that alone makes it accessible to anyone"
+      - "No, permission must also be explicitly granted separately, such as via a bucket policy"
+      - "Yes, but only downloading files is disabled"
+      - "The public access block setting doesn't exist at all"
+    answerIndex: 1
+    explanation: "Disabling the public access block only 'permits' a public-access configuration via a bucket policy or ACL — actually publishing anything still requires a separate, explicit grant of permission."
+
+  - question: "What idea is behind the existence of the public access block mechanism?"
+    choices:
+      - "To improve S3's processing speed"
+      - "To provide one last line of defense (defense in depth) against unintentional public exposure"
+      - "To reduce AWS usage fees"
+      - "To automate file encryption"
+    answerIndex: 1
+    explanation: "It's based on the idea of defense in depth — even if a public-access configuration is accidentally set, it doesn't actually take effect as long as the public access block is enabled."
+
+  - question: "With S3 versioning enabled, what actually happens when you delete a file?"
+    choices:
+      - "The file is completely erased and can never be restored"
+      - "The file isn't actually deleted — a special version called a delete marker is added instead"
+      - "The entire bucket is automatically deleted"
+      - "The delete operation itself is rejected and can't be performed"
+    answerIndex: 1
+    explanation: "With versioning enabled, a delete operation doesn't actually erase the file — it just adds a special version called a delete marker."
+
+  - question: "If a bucket policy only permits s3:GetObject, what operation becomes available to everyone?"
+    choices:
+      - "Every operation, including uploading, deleting, and overwriting files"
+      - "Only reading files — uploading and deleting remain unavailable"
+      - "Deleting the bucket itself"
+      - "Accessing other buckets as well"
+    answerIndex: 1
+    explanation: "s3:GetObject only grants permission to read an object — other operations like uploading or deleting aren't permitted by this policy alone."

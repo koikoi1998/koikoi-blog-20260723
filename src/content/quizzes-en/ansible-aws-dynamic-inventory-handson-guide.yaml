@@ -1,0 +1,45 @@
+questions:
+  - question: "Why does hand-writing IP addresses into a static inventory.ini become a problem in a cloud environment?"
+    choices:
+      - "Ansible itself doesn't work in a cloud environment"
+      - "An EC2 instance's public IP address commonly changes every time it restarts"
+      - "The filename inventory.ini is reserved by AWS"
+      - "A static file is always insecure"
+    answerIndex: 1
+    explanation: "Unless an Elastic IP is used, an EC2 instance's public IP address commonly changes every time it restarts, making manual inventory updates unrealistic."
+
+  - question: "What does the amazon.aws.aws_ec2 dynamic inventory plugin actually do?"
+    choices:
+      - "Generates IP addresses completely at random"
+      - "Queries the AWS API every run to fetch the current list of instances"
+      - "Creates a brand new AWS account"
+      - "Automatically stops EC2 instances"
+    answerIndex: 1
+    explanation: "The amazon.aws.aws_ec2 plugin queries the AWS API every time Ansible runs, dynamically fetching the current list of instances at that moment."
+
+  - question: "What does the keyed_groups configuration achieve?"
+    choices:
+      - "Automatically generating SSH keys"
+      - "Automatically generating Ansible groups based on the value of an AWS-side tag"
+      - "Measuring a Playbook's execution speed"
+      - "Calculating an EC2 instance's billing amount"
+    answerIndex: 1
+    explanation: "Configuring keyed_groups automatically generates Ansible groups based on the value of a tag set on each EC2 instance."
+
+  - question: "If the control node itself is an EC2 instance, is configuring an access key mandatory for the dynamic inventory's AWS API queries?"
+    choices:
+      - "Yes, it absolutely won't work without an access key"
+      - "No, if an IAM role is attached, authentication works without an access key"
+      - "No authentication is needed at all, since dynamic inventory never queries an API"
+      - "Password authentication is always required instead of an access key"
+    answerIndex: 1
+    explanation: "If the control node has an IAM role attached, the AWS SDK automatically uses that role's temporary credentials, so no access key configuration is needed."
+
+  - question: "What is the real practical value of dynamic inventory?"
+    choices:
+      - "A smaller file size than a static file"
+      - "It automatically targets only the instances actually running at execution time, even in an environment where the count fluctuates due to auto scaling and similar"
+      - "Ansible always runs faster"
+      - "SSH connections are no longer needed at all"
+    answerIndex: 1
+    explanation: "In an environment where an auto scaling group changes the instance count, it's unrealistic for a human to keep an accurate list — dynamic inventory automatically targets only the instances actually running at that moment."
