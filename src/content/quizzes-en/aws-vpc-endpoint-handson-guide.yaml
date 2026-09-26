@@ -1,0 +1,45 @@
+questions:
+  - question: "Which services does a gateway-type VPC endpoint support?"
+    choices:
+      - "Only EC2 and Lambda"
+      - "Only S3 and DynamoDB"
+      - "Every AWS service"
+      - "Only Secrets Manager and SSM"
+    answerIndex: 1
+    explanation: "Only two services support the gateway-type VPC endpoint: S3 and DynamoDB."
+
+  - question: "What happens to the route table when you create a gateway-type VPC endpoint?"
+    choices:
+      - "Nothing changes unless you manually add a route"
+      - "A route targeting the target service's IP address range is automatically added to the specified route table"
+      - "All existing routes are deleted"
+      - "The route table itself gets recreated from scratch"
+    answerIndex: 1
+    explanation: "Creating a gateway-type VPC endpoint automatically adds a route targeting the target service's prefix list to the specified route table."
+
+  - question: "Which statement about interface-type VPC endpoint billing is correct?"
+    choices:
+      - "It's completely free, just like the gateway type"
+      - "It works via an ENI, incurring both time-based and data-processing charges"
+      - "Only a one-time charge at creation applies"
+      - "Only traffic to S3 is charged"
+    answerIndex: 1
+    explanation: "The interface type forwards traffic through an ENI, making it a paid component that incurs both time-based and data-processing charges."
+
+  - question: "Which statement about the idea 'using a VPC endpoint is always free' is correct?"
+    choices:
+      - "Correct. Every VPC endpoint is free"
+      - "Incorrect. Only the gateway type (S3/DynamoDB) is free — the interface type for other services is paid"
+      - "Correct, but S3 is the sole exception and is paid"
+      - "Incorrect. Every VPC endpoint is paid"
+    answerIndex: 1
+    explanation: "The billing model differs entirely depending on the target service, and only the gateway type (S3/DynamoDB) is free."
+
+  - question: "What's the correct approach to real-world cost optimization?"
+    choices:
+      - "Turn every piece of traffic into a VPC endpoint no matter what"
+      - "Judge cost-benefit by looking at traffic volume and service type"
+      - "Never use a NAT gateway at all"
+      - "Standardize entirely on NAT gateways and never use VPC endpoints"
+    answerIndex: 1
+    explanation: "Cost optimization is the job of judging cost-benefit by traffic volume and service type, not unconditionally turning everything into an endpoint."

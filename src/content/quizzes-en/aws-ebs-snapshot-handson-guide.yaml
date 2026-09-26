@@ -1,0 +1,45 @@
+questions:
+  - question: "Why can an EBS snapshot after the first be created faster and cheaper than the first?"
+    choices:
+      - "Because data is compressed for storage from the second one onward"
+      - "Because every snapshot after the first is an incremental backup, storing only the difference from the immediately preceding snapshot"
+      - "Because they're copied directly from a cache"
+      - "Because AWS provides every snapshot after the first for free"
+    answerIndex: 1
+    explanation: "Every EBS snapshot after the first is an incremental backup that stores only the difference from the immediately preceding one, which dramatically reduces time and cost."
+
+  - question: "What happens to the second snapshot if the first snapshot is deleted?"
+    choices:
+      - "The second snapshot also breaks and becomes unrestorable"
+      - "Since AWS internally manages block-level reference relationships, the second snapshot remains independently, correctly restorable"
+      - "The second snapshot automatically converts into a full backup equivalent to the first"
+      - "The second snapshot's size doubles"
+    answerIndex: 1
+    explanation: "Because AWS internally manages block-level reference relationships, data from blocks that only existed in the first snapshot is carried forward into the second, keeping it independently restorable."
+
+  - question: "What is an AMI?"
+    choices:
+      - "Just another name for the EBS volume itself"
+      - "A bundle of a snapshot plus metadata like the OS, instance type, and boot configuration"
+      - "A file that stores only an EC2 instance's network configuration"
+      - "A list of an IAM role's permissions"
+    answerIndex: 1
+    explanation: "An AMI bundles a snapshot together with metadata like the OS and instance type, and from this AMI you can launch an instance in the same state at any time."
+
+  - question: "Which is a correct characteristic of the gp3 volume?"
+    choices:
+      - "You can independently specify storage capacity and IOPS/throughput, with good cost-performance for most workloads"
+      - "It's a volume type exclusively for databases requiring extremely high IOPS"
+      - "It's always more expensive than io2"
+      - "It's a volume type that can't have snapshots taken"
+    answerIndex: 0
+    explanation: "gp3 is a general-purpose volume that lets you independently specify capacity and IOPS/throughput, with excellent cost-performance for most workloads."
+
+  - question: "What's the correct behavior after deregistering an AMI?"
+    choices:
+      - "Its associated snapshot is also automatically deleted"
+      - "Its associated snapshot is not automatically deleted — it needs to be deleted individually if no longer needed"
+      - "The original EC2 instance is also automatically terminated"
+      - "Deregistering is an operation that can't be undone"
+    answerIndex: 1
+    explanation: "An AMI only internally references a snapshot, so deregistering the AMI doesn't automatically delete the snapshot."

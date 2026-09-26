@@ -1,0 +1,45 @@
+questions:
+  - question: "Jinja2フィルターの使い方として正しい説明はどれか。"
+    choices:
+      - "1つの式につき、1種類のフィルターしか使用できない"
+      - "`|`で複数のフィルターを連結し、パイプライン処理として順番に適用できる"
+      - "フィルターはPlaybookのvarsセクションでしか使用できない"
+      - "フィルターを使うには専用のモジュールをインストールする必要がある"
+    answerIndex: 1
+    explanation: "Jinja2フィルターは`|`で連結でき、selectやlist、sortなどを組み合わせたパイプライン処理を1行で書けます。"
+
+  - question: "`command`モジュールをregisterした変数の中身について正しい説明はどれか。"
+    choices:
+      - "常に単純な文字列である"
+      - "stdout・stderr・rc・changedなどのキーを持つ、構造化された辞書である"
+      - "常にtrueかfalseのブール値である"
+      - "実行時間の数値のみが格納される"
+    answerIndex: 1
+    explanation: "registerした変数は、stdout・rc・changedなどのキーを持つ構造化された辞書です。"
+
+  - question: "`when`が`loop`と組み合わされた場合の評価について正しい説明はどれか。"
+    choices:
+      - "loop全体に対して1回だけ評価される"
+      - "loopの各要素ごとに、個別に評価される"
+      - "最初の要素の結果がすべての要素に適用される"
+      - "whenとloopは同時に使用できない"
+    answerIndex: 1
+    explanation: "whenはloopの各要素ごとに個別に評価される仕様であり、1つの要素が条件を満たしても他の要素には影響しません。"
+
+  - question: "`command`モジュールが既定でどう扱われるか、正しい説明はどれか。"
+    choices:
+      - "冪等性をAnsibleが自動的に判断し、変更がなければchanged: falseになる"
+      - "コマンドの中身をAnsibleが解釈できないため、既定では常にchanged: trueとして報告される"
+      - "常にエラーとして扱われる"
+      - "既定では実行そのものがスキップされる"
+    answerIndex: 1
+    explanation: "commandやshellモジュールは、そのコマンドが冪等かどうかをAnsibleが判断できないため、既定では常にchanged: trueとして報告します。"
+
+  - question: "`changed_when: false`を指定する目的は何か。"
+    choices:
+      - "タスクの実行自体をスキップするため"
+      - "そのタスクが状態を確認しているだけで、何も変更していないことをAnsibleに正確に伝えるため"
+      - "Handlerを強制的に発火させるため"
+      - "エラーを常に無視するため"
+    answerIndex: 1
+    explanation: "changed_when: falseを指定することで、状態確認だけのタスクをAnsibleに正確に伝え、Handlerの不必要な発火を防げます。"

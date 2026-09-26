@@ -1,0 +1,45 @@
+questions:
+  - question: "What does gather_facts actually do under the hood?"
+    choices:
+      - "Compute information only on the local machine"
+      - "Establish an SSH connection to the target host and run a Python script (the setup module) to collect information"
+      - "Query the AWS API to fetch information"
+      - "Just read the inventory file's content as-is"
+    answerIndex: 1
+    explanation: "gather_facts establishes an SSH connection to the target host and actually runs the setup module, a Python script, collecting hundreds of pieces of information."
+
+  - question: "What's the purpose of setting `gathering = smart`?"
+    choices:
+      - "To always skip facts gathering for every host"
+      - "To skip facts gathering entirely whenever a valid, fresh cache exists"
+      - "To forcibly slow down the speed of facts gathering"
+      - "To change the order inventory is loaded in"
+    answerIndex: 1
+    explanation: "Setting gathering = smart skips facts gathering when a valid cache exists, reducing execution time."
+
+  - question: "What happens once the number of seconds specified by fact_caching_timeout passes?"
+    choices:
+      - "The entire Playbook run fails with an error"
+      - "The cache is automatically invalidated, and facts gathering runs again"
+      - "The cache file is automatically deleted and can never be used again"
+      - "Nothing happens — the stale information just keeps being used"
+    answerIndex: 1
+    explanation: "Once the specified number of seconds passes, the cache is considered automatically invalid, facts gathering runs again, and its content is refreshed."
+
+  - question: "What's correct about the risk a fact cache carries?"
+    choices:
+      - "No risk exists at all"
+      - "Cached information can diverge from the target host's actual current state"
+      - "Using a cache always makes the Playbook run fail"
+      - "Using a cache makes SSH connections impossible entirely"
+    answerIndex: 1
+    explanation: "If the target host's configuration changes during the TTL window, a task referencing the stale cached information could make an incorrect judgment."
+
+  - question: "What's the best real-world approach to deciding a TTL value?"
+    choices:
+      - "Always set it to the shortest possible value"
+      - "Balance cost against risk, tuning it based on how frequently the target system's configuration actually changes"
+      - "Always set it to the longest possible value"
+      - "No manual setting is needed since Ansible automatically computes the optimal value"
+    answerIndex: 1
+    explanation: "The real-world key point is weighing facts gathering's heavy cost against the risk of a stale cache, and tuning the TTL based on how often configuration actually changes."

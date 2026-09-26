@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the correct way Jinja2 filters can be used?"
+    choices:
+      - "Only one type of filter can be used per expression"
+      - "Multiple filters can be chained with `|` and applied in sequence as a pipeline"
+      - "Filters can only be used in a Playbook's vars section"
+      - "A dedicated module must be installed to use filters"
+    answerIndex: 1
+    explanation: "Jinja2 filters chain together with `|`, letting you write a pipeline combining select, list, sort, and more in a single line."
+
+  - question: "What's correct about the content of a variable registered from the `command` module?"
+    choices:
+      - "It's always a simple string"
+      - "It's a structured dictionary with keys like stdout, stderr, rc, and changed"
+      - "It's always a boolean true or false"
+      - "Only a numeric execution time is stored"
+    answerIndex: 1
+    explanation: "A registered variable is a structured dictionary with keys like stdout, rc, and changed."
+
+  - question: "What's correct about how `when` is evaluated when combined with `loop`?"
+    choices:
+      - "It's evaluated just once for the whole loop"
+      - "It's evaluated individually for each loop item"
+      - "The first item's result gets applied to every item"
+      - "when and loop can't be used together"
+    answerIndex: 1
+    explanation: "when is evaluated individually per loop item — one item meeting the condition has no effect on any other item."
+
+  - question: "What's correct about how the `command` module is treated by default?"
+    choices:
+      - "Ansible automatically judges idempotency and reports changed: false if nothing changed"
+      - "Since Ansible can't interpret the command's content, it always reports changed: true by default"
+      - "It's always treated as an error"
+      - "Execution itself is skipped by default"
+    answerIndex: 1
+    explanation: "The command and shell modules always report changed: true by default, since Ansible has no way to judge whether the command itself is idempotent."
+
+  - question: "What's the purpose of specifying `changed_when: false`?"
+    choices:
+      - "To skip the task's execution entirely"
+      - "To accurately tell Ansible that this task is only checking state and hasn't changed anything"
+      - "To forcibly trigger a Handler"
+      - "To always ignore errors"
+    answerIndex: 1
+    explanation: "Specifying changed_when: false accurately conveys to Ansible that a task is only checking state, preventing a Handler from firing unnecessarily."
