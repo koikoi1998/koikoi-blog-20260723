@@ -46,7 +46,13 @@ mkdir roles
 ansible-galaxy init roles/webserver
 ```
 
-Check the generated directory structure.
+Check the generated directory structure with the `tree` command. Install it first if it isn't already there.
+
+```bash
+sudo apt update
+sudo apt install -y tree
+tree roles/webserver
+```
 
 ```
 roles/webserver/
@@ -58,27 +64,43 @@ roles/webserver/
 └── (other directories, unused today)
 ```
 
+**`tree` displays a directory's hierarchy visually, laid out just like a diagram.** Instead of running `ls` on each directory in turn, this one command lets you take in a role's entire shape at a glance.
+
 **Notice how "tasks," "handlers," "templates," and "variables" each get their own dedicated directory and file.** In the previous hands-on, all of this was crammed into a single file, `site.yml`. A role is a mechanism for organizing that mess, so that **"building a webserver" becomes a self-contained unit you can copy straight into another project and reuse.**
 
 ### Step 2: Distributing a config file with variables and a template
 
 First, pull out the values you'll want to change per environment as variables. Edit `roles/webserver/vars/main.yml`.
 
+```bash
+nano roles/webserver/vars/main.yml
+```
+
 ```yaml
 server_name: lab.example.com
 welcome_message: "Hello from Ansible Roles!"
 ```
 
+**Variables themselves should already feel familiar, from the `-e` option in earlier hands-on labs.**
+
 Next, create an Nginx test page with these variables embedded, as a Jinja2 template at `roles/webserver/templates/index.html.j2`.
+
+```bash
+nano roles/webserver/templates/index.html.j2
+```
 
 ```html
 <h1>{{ welcome_message }}</h1>
 <p>server_name: {{ server_name }}</p>
 ```
 
-**The parts wrapped in `{{ }}` are Jinja2's variable-expansion syntax — they get replaced with the values from `vars/main.yml` at runtime.** This lets one single template file produce a different config file per environment, just by changing the values in `vars/main.yml`.
+**The parts wrapped in `{{ }}` are Jinja2's variable-expansion syntax — they get replaced with the values from `vars/main.yml` at runtime.** This lets one single template file produce a different config file per environment, just by changing the values in `vars/main.yml`. **Jinja2 itself is a templating engine widely used across the Python world, and Ansible adopts it as-is.** Don't overthink it — the one thing to remember is that "wherever you write `{{ variable_name }}`, it gets replaced with the actual value at runtime." That understanding will click naturally as you work through the rest of these steps.
 
 Next, edit `roles/webserver/tasks/main.yml` to describe installing Nginx and deploying this template.
+
+```bash
+nano roles/webserver/tasks/main.yml
+```
 
 ```yaml
 ---
@@ -101,6 +123,10 @@ Next, edit `roles/webserver/tasks/main.yml` to describe installing Nginx and dep
 
 The `notify: Restart Nginx` at the end of that Task is what triggers a handler. Edit `roles/webserver/handlers/main.yml` to define the corresponding handler.
 
+```bash
+nano roles/webserver/handlers/main.yml
+```
+
 ```yaml
 ---
 - name: Restart Nginx
@@ -109,11 +135,15 @@ The `notify: Restart Nginx` at the end of that Task is what triggers a handler. 
     state: restarted
 ```
 
-**This combination of `notify` and `handlers` plays an extremely important role in real-world Ansible code.** A Task using the `template` module only returns a `changed` result — and only in that case does it call the handler named in `notify` — when the destination file's contents actually change. **If the contents didn't change (on a second or later run, for example), the handler is never called, and Nginx isn't restarted.** This prevents the wasteful, real-world-undesirable behavior of unconditionally restarting a service every single time a config file is distributed.
+**A handler looks almost identical to an ordinary Task, but there's one decisive difference: it never runs unless it's called.** An ordinary Task always runs, in the order it's written in the Playbook, while a handler is a more reserved kind of entity — it only runs when some Task names it via `notify`, and even then, only when that Task actually changed something. **This combination of `notify` and `handlers` plays an extremely important role in real-world Ansible code.** A Task using the `template` module only returns a `changed` result — and only in that case does it call the handler named in `notify` — when the destination file's contents actually change. **If the contents didn't change (on a second or later run, for example), the handler is never called, and Nginx isn't restarted.** This prevents the wasteful, real-world-undesirable behavior of unconditionally restarting a service every single time a config file is distributed.
 
 ### Step 4: Run the role from site.yml
 
 Rewrite `~/ansible-lab/site.yml` to a simple form that just calls the role.
+
+```bash
+nano site.yml
+```
 
 ```yaml
 ---
@@ -124,10 +154,10 @@ Rewrite `~/ansible-lab/site.yml` to a simple form that just calls the role.
     - webserver
 ```
 
-Run it.
+Run it. As in the previous hands-on, add `-K` to have it prompt for the `sudo` password.
 
 ```bash
-ansible-playbook -i inventory.ini site.yml
+ansible-playbook -i inventory.ini site.yml -K
 ```
 
 On the first run, installing Nginx and deploying the template (and the resulting Nginx restart triggered by the handler) should both be reported as `changed`. **Run the same Playbook again.** This time, since the template's content hasn't changed, the `template` Task is reported as `ok`, and **the handler named in `notify` is never called — Nginx isn't restarted.**

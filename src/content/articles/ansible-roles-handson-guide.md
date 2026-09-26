@@ -46,7 +46,13 @@ mkdir roles
 ansible-galaxy init roles/webserver
 ```
 
-生成されたディレクトリ構成を確認してください。
+生成されたディレクトリ構成を、`tree`コマンドで確認してみましょう。まだインストールされていなければ、先にインストールします。
+
+```bash
+sudo apt update
+sudo apt install -y tree
+tree roles/webserver
+```
 
 ```
 roles/webserver/
@@ -58,27 +64,43 @@ roles/webserver/
 └── (その他、今回は使わないディレクトリ)
 ```
 
+**`tree`は、ディレクトリの階層構造を、そのまま図のように表示してくれるコマンドです。** `ls`をディレクトリごとに繰り返す代わりに、この1つのコマンドで、roleの全体像を一望できます。
+
 **「タスク」「Handler」「テンプレート」「変数」が、それぞれ専用のディレクトリ・ファイルに分離されている**ことに注目してください。前回のハンズオンでは、これらすべてを`site.yml`という1つのファイルに詰め込んでいました。roleは、この詰め込みを整理し、**「webserverを構築する」という単位で、他のプロジェクトにもそのままコピーして再利用できる**ようにするための仕組みです。
 
 ### Step 2: 変数とテンプレートで設定ファイルを配布する
 
 まず、環境ごとに変えたい値を変数として切り出します。`roles/webserver/vars/main.yml`を編集します。
 
+```bash
+nano roles/webserver/vars/main.yml
+```
+
 ```yaml
 server_name: lab.example.com
 welcome_message: "Hello from Ansible Roles!"
 ```
 
+**変数自体は、これまでのハンズオンでも`-e`オプションなどを通じて馴染みがあるはずです。**
+
 次に、この変数を埋め込んだNginxのテストページを、Jinja2テンプレートとして`roles/webserver/templates/index.html.j2`に作成します。
+
+```bash
+nano roles/webserver/templates/index.html.j2
+```
 
 ```html
 <h1>{{ welcome_message }}</h1>
 <p>server_name: {{ server_name }}</p>
 ```
 
-**`{{ }}`で囲まれた部分が、実行時に`vars/main.yml`の値へ置き換えられる、Jinja2テンプレートの変数展開構文です。** この仕組みにより、同じテンプレートファイル1つで、`vars/main.yml`の値を変えるだけで、環境ごとに異なる内容の設定ファイルを配布できます。
+**`{{ }}`で囲まれた部分が、実行時に`vars/main.yml`の値へ置き換えられる、Jinja2テンプレートの変数展開構文です。** この仕組みにより、同じテンプレートファイル1つで、`vars/main.yml`の値を変えるだけで、環境ごとに異なる内容の設定ファイルを配布できます。**Jinja2自体は、Pythonの世界で広く使われているテンプレートエンジンで、Ansibleはこれをそのまま採用しています。** 難しく考えず、「`{{ 変数名 }}`と書いた場所が、実行時に実際の値へ置き換わる」という1点だけ覚えておけば、この後の手順を進める中で自然と感覚がつかめます。
 
 続いて、`roles/webserver/tasks/main.yml`を編集し、Nginxのインストールとこのテンプレートの配布を記述します。
+
+```bash
+nano roles/webserver/tasks/main.yml
+```
 
 ```yaml
 ---
@@ -101,6 +123,10 @@ welcome_message: "Hello from Ansible Roles!"
 
 先ほどのTaskの最後にある`notify: Nginxを再起動する`が、Handlerを起動するための指定です。`roles/webserver/handlers/main.yml`を編集し、対応するHandlerを定義します。
 
+```bash
+nano roles/webserver/handlers/main.yml
+```
+
 ```yaml
 ---
 - name: Nginxを再起動する
@@ -109,11 +135,15 @@ welcome_message: "Hello from Ansible Roles!"
     state: restarted
 ```
 
-**この`notify`と`handlers`の組み合わせが、実務のAnsibleコードで非常に重要な役割を果たします。** `template`モジュールを使ったTaskは、配布先のファイルの中身が実際に変わった場合にだけ`changed`という結果を返し、その場合にだけ`notify`で指定したHandlerが呼び出されます。**ファイルの中身に変化がなかった場合(2回目以降の実行など)は、Handlerは呼び出されず、Nginxは再起動されません。** これにより、「設定ファイルを配布するたびに無条件でサービスを再起動する」という、実務では避けたい過剰な処理を防いでいます。
+**Handlerは、見た目こそ通常のTaskとほぼ同じですが、「呼ばれない限り実行されない」という一点が決定的に異なります。** 通常のTaskは、Playbookに書かれた順番に必ず実行されますが、Handlerは、どこかのTaskから`notify`で名指しされた場合にだけ、それも「実際に変更があった場合にだけ」実行される、いわば控えめな存在です。**この`notify`と`handlers`の組み合わせが、実務のAnsibleコードで非常に重要な役割を果たします。** `template`モジュールを使ったTaskは、配布先のファイルの中身が実際に変わった場合にだけ`changed`という結果を返し、その場合にだけ`notify`で指定したHandlerが呼び出されます。**ファイルの中身に変化がなかった場合(2回目以降の実行など)は、Handlerは呼び出されず、Nginxは再起動されません。** これにより、「設定ファイルを配布するたびに無条件でサービスを再起動する」という、実務では避けたい過剰な処理を防いでいます。
 
 ### Step 4: site.ymlからroleを呼び出して実行する
 
 `~/ansible-lab/site.yml`を、roleを呼び出すだけのシンプルな内容に書き換えます。
+
+```bash
+nano site.yml
+```
 
 ```yaml
 ---
@@ -124,10 +154,10 @@ welcome_message: "Hello from Ansible Roles!"
     - webserver
 ```
 
-実行します。
+実行します。前回のハンズオンと同様に、`sudo`のパスワードを尋ねる`-K`オプションを付けます。
 
 ```bash
-ansible-playbook -i inventory.ini site.yml
+ansible-playbook -i inventory.ini site.yml -K
 ```
 
 初回実行では、Nginxのインストールとテンプレートの配布(そしてそれに伴うHandlerの発火によるNginx再起動)が行われ、`changed`として報告されるはずです。**同じPlaybookをもう一度実行してください。** 今度はテンプレートの中身に変化がないため、`template`のTaskは`ok`として報告され、**`notify`で指定したHandlerも呼び出されず、Nginxは再起動されません。**

@@ -19,7 +19,9 @@ This article is part of the [Top 1% Series Complete Article Guide](/en/sitemap),
 
 ## Prerequisites
 
-- [The Top 1% Hands-On for Real-World Config Management With Ansible Roles, Handlers, and Templates](/en/articles/ansible-roles-handson-guide): This article assumes you already know the structure of a role and what `group_vars` is.
+- [The Top 1% Hands-On for Real-World Config Management With Ansible Roles, Handlers, and Templates](/en/articles/ansible-roles-handson-guide): This article assumes you're familiar with a role's variable file (`vars/main.yml`). The steps here don't require `group_vars` or `host_vars` (the mechanism for managing variables per environment) — those are covered in depth in [The Top 1% Hands-On for Safely Running dev/staging/prod From One Ansible Playbook](/en/articles/ansible-environments-handson-guide).
+- [Understanding How Git Works From a "Top 1%" Perspective](/en/articles/git-basics-guide): If terms like "Git repository" and "commit" aren't familiar yet, reading this first is recommended.
+- [Understanding How cat > file << 'EOF' Works From a "Top 1%" Perspective](/en/articles/linux-heredoc-redirect-guide): Covers in detail what the `cat > file << 'EOF'` construct used in this hands-on's Step 1 actually does.
 
 ## Why This Problem Happens in the First Place
 
@@ -42,7 +44,7 @@ graph LR
 
 ### Step 1: Encrypt a variable file containing a secret
 
-Create a variable file containing a database password.
+Create a variable file containing a database password. **This hands-on doesn't actually build a database server.** The database password here is purely illustrative — a stand-in for "a typical secret a real-world Playbook has to handle." What matters here isn't the value's actual content — it's the sequence of steps you're about to go through: "encrypt a variable file containing a secret."
 
 ```bash
 cat > db_secrets.yml << 'EOF'
@@ -86,7 +88,9 @@ ansible-vault edit db_secrets.yml
 
 ### A design that lets "encrypted" and "unencrypted" files safely coexist in a Git repository
 
-In practice, rather than encrypting an entire Playbook, the common design is to **carve out just the variables containing secrets into a dedicated encrypted file (often named something like `vault.yml`), while everything else — the regular Playbooks and task definitions — stays version-controlled unencrypted, as-is.** This keeps the vast majority of the code able to go through normal Git diff review, while safely protecting only the secrets. A common convention is pairing `group_vars/all/vault.yml` with an ordinary `group_vars/all/vars.yml`, where the latter references variables from the former.
+In practice, rather than encrypting an entire Playbook, the common design is to **carve out just the variables containing secrets into a dedicated encrypted file (often named something like `vault.yml`), while everything else — the regular Playbooks and task definitions — stays version-controlled unencrypted, as-is.** This keeps the vast majority of the code able to go through normal Git diff review, while safely protecting only the secrets.
+
+A common layout for this is `group_vars/all/vault.yml`. `group_vars`, covered in depth in [The Top 1% Hands-On for Safely Running dev/staging/prod From One Ansible Playbook](/en/articles/ansible-environments-handson-guide), is the mechanism for managing variables per inventory group, and `group_vars/all/` is a special location within it for "variables common to every host." A common convention is placing both an encrypted `vault.yml` (the secrets) and an unencrypted `vars.yml` (everything else) inside this same `group_vars/all/`, with `vars.yml` referencing the variables defined in `vault.yml`.
 
 ### Using vault-id to manage multiple encryption passwords
 
