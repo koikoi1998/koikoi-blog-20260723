@@ -1,0 +1,45 @@
+questions:
+  - question: "What is the default state of the AD Recycle Bin on Windows Server?"
+    choices:
+      - "Enabled by default"
+      - "Disabled by default; an administrator must explicitly enable it"
+      - "Automatically enabled when a domain controller is promoted"
+      - "Automatically enabled when the forest functional level is raised"
+    answerIndex: 1
+    explanation: "The AD Recycle Bin is disabled by default. An administrator must explicitly enable it with the Enable-ADOptionalFeature command."
+
+  - question: "Once the AD Recycle Bin has been enabled, can it be disabled again?"
+    choices:
+      - "Yes, at any time"
+      - "Yes, by lowering the forest functional level"
+      - "No, once enabled it can never be disabled"
+      - "Yes, by restarting all domain controllers"
+    answerIndex: 2
+    explanation: "Enabling the AD Recycle Bin is an irreversible operation; once enabled, it can never be disabled."
+
+  - question: "When a user object is restored using the AD Recycle Bin, what happens to the group memberships it originally had?"
+    choices:
+      - "They must be manually reconfigured"
+      - "They are restored exactly as they were at the time of deletion, along with other attributes"
+      - "They are lost permanently and cannot be restored"
+      - "The groups themselves are deleted at the same time"
+    answerIndex: 1
+    explanation: "Restoring via the AD Recycle Bin brings back nearly all attributes as they were at deletion time, including linked attributes like group membership."
+
+  - question: "Before the AD Recycle Bin existed, in what state were deleted objects retained?"
+    choices:
+      - "They were permanently erased and could never be restored"
+      - "As a tombstone, with most of their attributes stripped away"
+      - "They were automatically moved to another domain"
+      - "As an encrypted backup file"
+    answerIndex: 1
+    explanation: "Before the AD Recycle Bin, deleted objects survived only as a tombstone, with most of their attributes stripped away."
+
+  - question: "If an object restored with Restore-ADObject doesn't end up back in its original location, what should you check first?"
+    choices:
+      - "The DNS server configuration"
+      - "Whether the original parent container (such as an OU) has itself been restored first"
+      - "The forest functional level"
+      - "The activation status of the license"
+    answerIndex: 1
+    explanation: "If the parent container hasn't been restored, child objects may be restored into a default container such as LostAndFound. Restore parent objects before their children."
