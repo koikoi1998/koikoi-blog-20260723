@@ -897,6 +897,19 @@ pre.mermaid {
   line-height: 1.6;
 }
 
+.persona-route-heading {
+  margin: 1.2rem 0 0.4rem;
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+}
+
+.persona-route-heading:first-child {
+  margin-top: 0;
+}
+
 .persona-bonus {
   border: 1px dashed var(--border-strong);
   border-radius: 10px;
@@ -959,14 +972,16 @@ pre.mermaid {
 
 #content-filter-main:checked ~ .persona-panels li[data-subseries],
 #content-filter-handson:checked ~ .persona-panels li:not([data-subseries="handson"]),
-#content-filter-audio:checked ~ .persona-panels li:not([data-subseries="audio"]) {
+#content-filter-audio:checked ~ .persona-panels li:not([data-subseries="audio"]),
+#content-filter-lecture:checked ~ .persona-panels li:not([data-subseries="lecture"]) {
   display: none;
 }
 
 #content-filter-all:checked ~ .content-filter-bar label[for="content-filter-all"],
 #content-filter-main:checked ~ .content-filter-bar label[for="content-filter-main"],
 #content-filter-handson:checked ~ .content-filter-bar label[for="content-filter-handson"],
-#content-filter-audio:checked ~ .content-filter-bar label[for="content-filter-audio"] {
+#content-filter-audio:checked ~ .content-filter-bar label[for="content-filter-audio"],
+#content-filter-lecture:checked ~ .content-filter-bar label[for="content-filter-lecture"] {
   background: var(--accent);
   border-color: var(--accent);
   color: var(--accent-fg);

@@ -71,7 +71,7 @@ graph TB
 
 ## 読者タイプ別のおすすめルート
 
-このブログは、未経験からインフラエンジニアを目指す方から、AWS/Googleのようなトップ企業で第一線を張るエンジニアまで、幅広い読者を想定しています。全記事を必ず順番通りに読む必要はないため、キャリアの段階に応じた8つのルートを用意しました。**下のタブから自分に近いものを選ぶと、そのルートだけが表示されます**(②以降は、それより前のすべてのSTEPを読了している前提の積み増しです)。各STEPを選んだ後は、その下のフィルターで「記事」「ハンズオン」「音声復習」だけに絞り込むこともできます。実務のごく特定の場面でしか使わないニッチな記事は、無理にロードマップへ詰め込まず、それが実際に必要になる段階のルートで初めて紹介する形にしています(該当しない段階では「任意」として控えめに触れるだけです)。このルートは**読者のレベル・習熟度**で区切ったものであり、特定の分野(Active Directory・コンテナ基盤など)だけをまとめて読みたい場合は、次の「シリーズ一覧」またはトップページの絞り込み機能をご利用ください。以前は5つのSTEPで構成していましたが、記事数の増加にともない1STEPあたりの分量が偏っていたため、同じ「現場で自信をつけたい」段階を基礎固め→実務範囲拡大→単独運用→周辺基盤という4つの深さに分割し、1STEPあたりの分量をより均等にしました。
+このブログは、未経験からインフラエンジニアを目指す方から、AWS/Googleのようなトップ企業で第一線を張るエンジニアまで、幅広い読者を想定しています。全記事を必ず順番通りに読む必要はないため、キャリアの段階に応じた8つのルートを用意しました。**下のタブから自分に近いものを選ぶと、そのルートだけが表示されます**(②以降は、それより前のすべてのSTEPを読了している前提の積み増しです)。各STEPを選んだ後は、その下のフィルターで「記事」「ハンズオン」「音声復習」「音声講義」だけに絞り込むこともできます。実務のごく特定の場面でしか使わないニッチな記事は、無理にロードマップへ詰め込まず、それが実際に必要になる段階のルートで初めて紹介する形にしています(該当しない段階では「任意」として控えめに触れるだけです)。このルートは**読者のレベル・習熟度**で区切ったものであり、特定の分野(Active Directory・コンテナ基盤など)だけをまとめて読みたい場合は、次の「シリーズ一覧」またはトップページの絞り込み機能をご利用ください。以前は5つのSTEPで構成していましたが、記事数の増加にともない1STEPあたりの分量が偏っていたため、同じ「現場で自信をつけたい」段階を基礎固め→実務範囲拡大→単独運用→周辺基盤という4つの深さに分割し、1STEPあたりの分量をより均等にしました。
 
 <div class="persona-routes">
 <input type="radio" name="persona-route" id="persona-tab-1" class="persona-input" checked>
@@ -86,6 +86,7 @@ graph TB
 <input type="radio" name="content-filter" id="content-filter-main" class="persona-input">
 <input type="radio" name="content-filter" id="content-filter-handson" class="persona-input">
 <input type="radio" name="content-filter" id="content-filter-audio" class="persona-input">
+<input type="radio" name="content-filter" id="content-filter-lecture" class="persona-input">
 <div class="persona-tabs">
 <label for="persona-tab-1" class="persona-tab"><span class="persona-tab-step">STEP1</span> 🌱 未経験から独学で目指す</label>
 <label for="persona-tab-2" class="persona-tab"><span class="persona-tab-step">STEP2</span> 🔧 1年目・設計構築デビュー</label>
@@ -102,6 +103,7 @@ graph TB
 <label for="content-filter-main" class="filter-chip">記事</label>
 <label for="content-filter-handson" class="filter-chip">ハンズオン</label>
 <label for="content-filter-audio" class="filter-chip">音声復習</label>
+<label for="content-filter-lecture" class="filter-chip">音声講義</label>
 </div>
 <div class="persona-panels">
 <div class="persona-panel persona-panel-1">
@@ -210,31 +212,45 @@ graph TB
 <li>STEP1〜STEP4の60記事(上のタブから確認できます)</li>
 <li><a href="/articles/ad-netlogon-guide">Netlogonサービスとセキュアチャネルの仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/ad-kerberos-guide">Kerberos認証の仕組みを『上位1%』の視点で理解する</a></li>
-<li data-subseries="handson"><a href="/articles/ad-multidomain-handson-guide">マルチドメイン・マルチツリーのADフォレストを構築するハンズオン</a></li>
-<li data-subseries="handson"><a href="/articles/ad-migration-handson-guide">旧DCから新DCへのAD移行(リプレース)ハンズオン</a></li>
-<li data-subseries="handson"><a href="/articles/ad-forest-trust-handson-guide">買収を想定した2つの独立フォレスト間の信頼関係構築ハンズオン</a></li>
-<li data-subseries="handson"><a href="/articles/ad-recycle-bin-handson-guide">誤って削除したユーザー・OUを復元するAD ごみ箱(AD Recycle Bin)のハンズオン</a></li>
 <li><a href="/articles/ad-sysvol-dfsr-gpo-guide">SYSVOL・DFSR・グループポリシーの仕組みを『上位1%』の視点で理解する</a></li>
-<li data-subseries="handson"><a href="/articles/ad-gpo-handson-guide">GPOを実際に作成・リンクし、優先順位とトラブルシューティングを体験するハンズオン</a></li>
-<li data-subseries="handson"><a href="/articles/ad-fgpp-handson-guide">きめ細かいパスワードポリシー(PSO)で部署ごとに異なるパスワード要件を適用するハンズオン</a></li>
-<li data-subseries="handson"><a href="/articles/ad-delegation-handson-guide">OUへの権限移譲(Delegation of Control)でヘルプデスクに権限だけを渡すハンズオン</a></li>
-<li data-subseries="handson"><a href="/articles/ad-constrained-delegation-handson-guide">Kerberos制約付き委任で『ダブルホップ問題』を解決するハンズオン</a></li>
-<li data-subseries="handson"><a href="/articles/ad-backup-restore-handson-guide">System Stateバックアップと権威的復元(Authoritative Restore)のハンズオン</a></li>
-<li data-subseries="handson"><a href="/articles/ad-fsmo-seize-handson-guide">旧DCが完全に失われた状況を想定し、FSMOをシージ(強制移行)するハンズオン</a></li>
-<li data-subseries="handson"><a href="/articles/ad-gmsa-handson-guide">gMSA(グループ管理サービスアカウント)でパスワード管理から解放されるハンズオン</a></li>
-<li data-subseries="handson"><a href="/articles/ad-cs-handson-guide">AD CS(証明書サービス)でエンタープライズCAを構築し証明書の自動発行を体験するハンズオン</a></li>
-<li data-subseries="handson"><a href="/articles/ad-rodc-handson-guide">拠点展開のためのRODC(読み取り専用ドメインコントローラー)を構築するハンズオン</a></li>
-<li data-subseries="handson"><a href="/articles/ad-functional-level-handson-guide">ドメイン・フォレスト機能レベルを引き上げるハンズオン</a></li>
-<li data-subseries="handson"><a href="/articles/ad-dns-scavenging-handson-guide">AD統合DNSのスキャベンジング(古いレコードの自動削除)を設定するハンズオン</a></li>
-<li data-subseries="handson"><a href="/articles/ad-sitelink-topology-handson-guide">サイトリンクのコスト設定でレプリケーション経路を制御するハンズオン</a></li>
-<li data-subseries="handson"><a href="/articles/ad-kerberoasting-handson-guide">Kerberoasting攻撃を自分の手で再現し、サービスアカウントを守るハンズオン</a></li>
-<li data-subseries="handson"><a href="/articles/ad-dcsync-audit-handson-guide">DCSyncが悪用する複製権限を監査し、Tier 0管理モデルで守るハンズオン</a></li>
 <li><a href="/articles/ad-family-overview-guide">AD DS・AD CS・AD FS・AD LDS・AD RMSの違いを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/ad-ldap-protocol-guide">LDAPプロトコルの仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/ad-netbios-dns-history-guide">NetBIOS名とDNSホスト名、なぜ2つの名前が共存しているのかを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/ad-schema-extension-guide">ADのスキーマ拡張を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/ad-dotnet-powershell-guide">.NET FrameworkとPowerShellの関係を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/ad-isp-guide">ISP(インターネットサービスプロバイダー)とは何かを『上位1%』の視点で理解する</a></li>
+</ol>
+<p class="persona-route-heading">▶ ADハンズオン:基礎編(未経験でも構築しながら学べる)</p>
+<ol class="persona-route-list">
+<li data-subseries="handson"><a href="/articles/ad-multidomain-handson-guide">マルチドメイン・マルチツリーのADフォレストを構築するハンズオン</a></li>
+<li data-subseries="handson"><a href="/articles/ad-migration-handson-guide">旧DCから新DCへのAD移行(リプレース)ハンズオン</a></li>
+</ol>
+<p class="persona-route-heading">▶ ADハンズオン:実務シナリオ編</p>
+<ol class="persona-route-list">
+<li data-subseries="handson"><a href="/articles/ad-forest-trust-handson-guide">買収を想定した2つの独立フォレスト間の信頼関係構築ハンズオン</a></li>
+<li data-subseries="handson"><a href="/articles/ad-recycle-bin-handson-guide">誤って削除したユーザー・OUを復元するAD ごみ箱(AD Recycle Bin)のハンズオン</a></li>
+<li data-subseries="handson"><a href="/articles/ad-gpo-handson-guide">GPOを実際に作成・リンクし、優先順位とトラブルシューティングを体験するハンズオン</a></li>
+<li data-subseries="handson"><a href="/articles/ad-fgpp-handson-guide">きめ細かいパスワードポリシー(PSO)で部署ごとに異なるパスワード要件を適用するハンズオン</a></li>
+<li data-subseries="handson"><a href="/articles/ad-delegation-handson-guide">OUへの権限移譲(Delegation of Control)でヘルプデスクに権限だけを渡すハンズオン</a></li>
+<li data-subseries="handson"><a href="/articles/ad-constrained-delegation-handson-guide">Kerberos制約付き委任で『ダブルホップ問題』を解決するハンズオン</a></li>
+<li data-subseries="handson"><a href="/articles/ad-backup-restore-handson-guide">System Stateバックアップと権威的復元(Authoritative Restore)のハンズオン</a></li>
+<li data-subseries="handson"><a href="/articles/ad-fsmo-seize-handson-guide">旧DCが完全に失われた状況を想定し、FSMOをシージ(強制移行)するハンズオン</a></li>
+</ol>
+<p class="persona-route-heading">▶ ADハンズオン:細かな仕様・機能編</p>
+<ol class="persona-route-list">
+<li data-subseries="handson"><a href="/articles/ad-gmsa-handson-guide">gMSA(グループ管理サービスアカウント)でパスワード管理から解放されるハンズオン</a></li>
+<li data-subseries="handson"><a href="/articles/ad-cs-handson-guide">AD CS(証明書サービス)でエンタープライズCAを構築し証明書の自動発行を体験するハンズオン</a></li>
+<li data-subseries="handson"><a href="/articles/ad-rodc-handson-guide">拠点展開のためのRODC(読み取り専用ドメインコントローラー)を構築するハンズオン</a></li>
+<li data-subseries="handson"><a href="/articles/ad-functional-level-handson-guide">ドメイン・フォレスト機能レベルを引き上げるハンズオン</a></li>
+<li data-subseries="handson"><a href="/articles/ad-dns-scavenging-handson-guide">AD統合DNSのスキャベンジング(古いレコードの自動削除)を設定するハンズオン</a></li>
+<li data-subseries="handson"><a href="/articles/ad-sitelink-topology-handson-guide">サイトリンクのコスト設定でレプリケーション経路を制御するハンズオン</a></li>
+</ol>
+<p class="persona-route-heading">▶ ADハンズオン:セキュリティ強化編(攻撃者視点で守りを固める)</p>
+<ol class="persona-route-list">
+<li data-subseries="handson"><a href="/articles/ad-kerberoasting-handson-guide">Kerberoasting攻撃を自分の手で再現し、サービスアカウントを守るハンズオン</a></li>
+<li data-subseries="handson"><a href="/articles/ad-dcsync-audit-handson-guide">DCSyncが悪用する複製権限を監査し、Tier 0管理モデルで守るハンズオン</a></li>
+</ol>
+<ol class="persona-route-list">
 <li data-subseries="audio"><a href="/articles/ad-audio-review-guide">【音声で聴く】Active Directoryシリーズ総復習</a></li>
 <li><a href="/articles/windows-server-licensing-guide">Windows Serverのライセンス(OEM・Datacenter・Standard)を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/windows-ntp-server-guide">Windows ServerでNTPサーバーを構築する際の設定値を『上位1%』の視点で理解する</a></li>
@@ -432,49 +448,69 @@ VPNプロトコルの記事やL2TP/IPsecハンズオンなどで繰り返し登�
 
 ### Active Directoryシリーズ
 
-AD移行・ドメインコントローラー(DC)の構築・運用の実務で必ず直面する疑問を深掘りするシリーズです。DNSの基礎([dns-guide](/articles/dns-guide))を読了している前提で書いています。**読む順番の目安**: ① ad-dc-fundamentals-guide → ② ad-computername-netdom-guide → ③ ad-windows-login-guide → ④ ad-dns-guide → ⑤ dns-zones-records-guide → ⑥ fsmo-guide → ⑦ dc-health-check-guide → ⑧ ad-sites-guide → ⑨ dcdiag-guide → ⑩ ad-migration-cleanup-guide → ⑪ ad-spn-guide → ⑫ ad-netlogon-guide → ⑬ ad-kerberos-guide → ⑭ ad-multidomain-handson-guide → ⑮ ad-migration-handson-guide → ⑯ ad-forest-trust-handson-guide → ⑰ ad-recycle-bin-handson-guide → ⑱ ad-sysvol-dfsr-gpo-guide → ⑲ ad-gpo-handson-guide → ⑳ ad-fgpp-handson-guide → ㉑ ad-delegation-handson-guide → ㉒ ad-constrained-delegation-handson-guide → ㉓ ad-backup-restore-handson-guide → ㉔ ad-fsmo-seize-handson-guide → ㉕ ad-gmsa-handson-guide → ㉖ ad-cs-handson-guide → ㉗ ad-rodc-handson-guide → ㉘ ad-functional-level-handson-guide → ㉙ ad-dns-scavenging-handson-guide → ㉚ ad-sitelink-topology-handson-guide → ㉛ ad-kerberoasting-handson-guide → ㉜ ad-dcsync-audit-handson-guide → ㉝ ad-family-overview-guide → ㉞ ad-ldap-protocol-guide → ㉟ ad-netbios-dns-history-guide → ㊱ ad-schema-extension-guide → ㊲ ad-dotnet-powershell-guide → ㊳ ad-isp-guide(⑯以降はいずれも音声復習の前に追加された、さらなる深掘り記事) → ㊴ ad-audio-review-guide(全38記事を読み終えた後の音声復習用)。なお、記事を読む前にゼロから耳だけで学びたい場合は、[音声講義Part1](/articles/ad-audio-lecture-1-guide)から始める道も用意しています(全4回を予定、記事を読了している必要はありません)。
+AD移行・ドメインコントローラー(DC)の構築・運用の実務で必ず直面する疑問を深掘りする、このブログの最大シリーズです(全41記事)。DNSの基礎([dns-guide](/articles/dns-guide))を読了している前提で書いています。記事数が多いため、**基礎編→補足・深掘り編→ハンズオン(4段階)→音声学習**という構成に分けています。各グループ内は上から順に読む想定ですが、どの記事も単体で読めるように書かれているため、興味のある箇所から読み始めても問題ありません。ハンズオンは、未経験でも構築しながら学べる基礎編から、実際の案件でよく遭遇するシナリオ編、細かな仕様や機能を正確に理解するための編、そして攻撃者視点を体験して守りを固めるセキュリティ強化編まで、段階的に難易度が上がる4段構成です。記事を1本も読まずにゼロから耳だけで学びたい場合は、[音声講義](/articles/ad-audio-lecture-1-guide)から始める道もあります(全4回を予定)。
+
+#### 基礎編(10記事)
+
+1. [ADとDC、ドメインとフォレストの違いを『上位1%』の視点で理解する](/articles/ad-dc-fundamentals-guide) — AD DS(仕組み)とDC(サーバー)の役割分担、ドメイン・ツリー・フォレストという3階層の境界線、機能レベルが何を制約しているか、AD DSの役割追加時に何が一緒にインストールされるのかまでの深掘り。
+2. [sysdm.cplとnetdom computernameは何が違うのか——「プライマリホスト名」とAD移行のホスト名重複事故を『上位1%』の視点で理解する](/articles/ad-computername-netdom-guide) — sysdm.cplとnetdomのコンピューター名変更の仕組みの違い、なぜ/add→/makeprimaryという2段階が必要なのか、そして実際のAD移行で発生したホスト名重複による認証障害の事例診断までの深掘り(①の発展編、単体でも読めます)。
+3. [Windowsのログインとユーザープロファイルの仕組みを『上位1%』の視点で理解する](/articles/ad-windows-login-guide) — 初回ログインになぜ社内ネットワーク接続が必要か、キャッシュされた資格情報の正体、ローミングプロファイル、VDI(永続型/非永続型)とFSLogixによるプロファイル管理までの深掘り(単体でも読めます)。
+4. [AD環境のDNSはなぜこう設計されているのか——フォワーダー・プライマリ/セカンダリの挙動・127.0.0.1指定の理由を『上位1%』の視点で理解する](/articles/ad-dns-guide) — 「ping 8.8.8.8は通るのに検索できない」の正体、DNSサーバーのフォワーダー、プライマリ/セカンダリが自動フェイルオーバーしない理由、127.0.0.1指定のメリットと副作用、ipconfig /registerdnsまでの深掘り([dns-guide](/articles/dns-guide)の発展編、単体でも読めます)。
+5. [DNSゾーンとレコードの読み方を『上位1%』の視点で理解する](/articles/dns-zones-records-guide) — 前方参照ゾーン・後方参照ゾーンの違い、_msdcsゾーンがフォレスト全体でレプリケーションされる理由、SRVレコードとGUID名のCNAMEレコードの役割、DNSマネージャーの実務的な見方までの深掘り([dns-guide](/articles/dns-guide)の発展編、単体でも読めます)。
+6. [FSMO(操作マスター)とは何かを『上位1%』の視点で理解する](/articles/fsmo-guide) — マルチマスターレプリケーションの例外がなぜ必要か、スキーマ・ドメイン名前付け・RID・PDCエミュレータ・インフラストラクチャという5つの役割の意味、FSMO転送とシージの違いまでの深掘り(単体でも読めます)。
+7. [DCの正常性確認を『上位1%』の視点で理解する](/articles/dc-health-check-guide) — repadmin /showreplで確認できる5つのパーティション、「成功」表示の本当の意味、net shareに表示されるC$/IPC$/ADMIN$/NETLOGON/SYSVOLの違い、SysvolReadyレジストリ値までの深掘り(単体でも読めます)。
+8. [ADの「サイト」とレプリケーショントポロジーを『上位1%』の視点で理解する](/articles/ad-sites-guide) — サブネットとサイトの対応表という実体、サイト内/サイト間レプリケーションの速さの違い、KCC・ISTG・ブリッジヘッドサーバー・サイトリンクコストの役割分担までの深掘り(単体でも読めます)。
+9. [dcdiag /vの読み方を『上位1%』の視点で理解する](/articles/dcdiag-guide) — dcdiagが何をテストしているツールなのか、主要なテスト項目の意味、警告・エラーを無視してよい根拠と無視できない根拠、AD移行の各段階での実行タイミングまでの深掘り(単体でも読めます)。
+10. [AD移行後のクリーンアップを『上位1%』の視点で理解する](/articles/ad-migration-cleanup-guide) — dsa.msc・dssite.msc・adsiedit.msc・dnsmgmt.mscがそれぞれ管理しているAD DSのパーティション、ドメイン脱退後もコンピューターアカウントが残り続ける理由、4つのコンソールすべての確認が本当に必要になる場面までの深掘り(単体でも読めます)。
+
+#### 補足・深掘り編(10記事)
+
+1. [SPN(サービスプリンシパル名)の仕組みを『上位1%』の視点で理解する](/articles/ad-spn-guide) — SPNがサーバーではなく「サービスを実行しているアカウント」を指す識別子であること、Kerberosのチケット要求の中での役割、setspnコマンドの使い方、SPN重複エラーの正体、NTLMへの静かな降格の診断までの深掘り(単体でも読めます)。
+2. [Netlogonサービスとセキュアチャネルの仕組みを『上位1%』の視点で理解する](/articles/ad-netlogon-guide) — セキュアチャネルの正体、マシンアカウントパスワードが既定30日ごとに自動更新される仕組み、VMスナップショットを古い状態に戻すと「信頼関係の障害」が起きる理由、Test-ComputerSecureChannelでの復旧、Zerologon脆弱性の概要までの深掘り(単体でも読めます)。
+3. [Kerberos認証の仕組みを『上位1%』の視点で理解する](/articles/ad-kerberos-guide) — パスワードを一度もネットワークに送らずに本人確認できる理由、TGT・サービスチケットのやり取り(AS-REQ/AS-REP、TGS-REQ/TGS-REP、AP-REQ)、PAC(特権属性証明書)とSIDの関係、NTLMとの違い、トークン肥大化問題までの深掘り(単体でも読めます)。
+4. [SYSVOL・DFSR・グループポリシーの仕組みを『上位1%』の視点で理解する](/articles/ad-sysvol-dfsr-gpo-guide) — GPOが実はAD DS上のGPCとSYSVOL上のGPTという2つの独立した部分から成ること、DFSRとその前身FRSの違い、GPOバージョン不一致という実務トラブルの診断までの深掘り(単体でも読めます)。
+5. [AD DS・AD CS・AD FS・AD LDS・AD RMSの違いを『上位1%』の視点で理解する](/articles/ad-family-overview-guide) — 同じ「Active Directory」を名乗る5つの役割がなぜ中身も用途もまったく異なるのか、証明書発行(AD CS)・組織を越えたSSO(AD FS)・ドメイン非依存の軽量ディレクトリ(AD LDS)・ファイル自体の権利管理(AD RMS)それぞれの役割、AD FS/AD RMSの現在の製品戦略上の位置づけまでの深掘り(単体でも読めます)。
+6. [LDAPプロトコルの仕組みを『上位1%』の視点で理解する](/articles/ad-ldap-protocol-guide) — AD DSが問い合わせを受け付けているLDAPそのものの中身、DN(識別名)・属性・検索フィルターというデータモデル、Bind・Search・Add/Modify/Deleteという操作の種類、ポート389/636/3268/3269の使い分け、LDAP署名・LDAPチャネルバインディングという実務上重要なセキュリティ設定までの深掘り(単体でも読めます)。
+7. [NetBIOS名とDNSホスト名、なぜ2つの名前が共存しているのかを『上位1%』の視点で理解する](/articles/ad-netbios-dns-history-guide) — コンピューター名がなぜ15文字までしか使えないのか、NetBIOSが生まれた歴史的経緯、WINSが果たしていた役割、そしてWindows Server 2025がWINSを含む最後のLTSCリリースとなり以降完全に削除される、という実務上重要な現在地までの深掘り(単体でも読めます)。
+8. [ADのスキーマ拡張を『上位1%』の視点で理解する](/articles/ad-schema-extension-guide) — ExchangeやSkype for Businessの導入時に必ず発生するスキーマ拡張が何をしているのか、なぜフォレスト全体に影響するのか、なぜ一度拡張すると実質的に後戻りできないのか、Schema Adminsグループの扱い、実務での安全な進め方までの深掘り(単体でも読めます)。
+9. [.NET FrameworkとPowerShellの関係を『上位1%』の視点で理解する](/articles/ad-dotnet-powershell-guide) — .NET Framework(ランタイム+クラスライブラリ)とPowerShellの関係、テキストではなくオブジェクトをやり取りするパイプラインという設計思想、Windows PowerShell 5.1とPowerShell 7の違い、AD DSの役割追加時に.NET Framework 4.8が一緒に有効化される理由までの深掘り(単体でも読めます)。
+10. [ISP(インターネットサービスプロバイダー)とは何かを『上位1%』の視点で理解する](/articles/ad-isp-guide) — ISPが実際に提供しているサービスの中身、Tier1・Tier2・Tier3という業界の階層構造とピアリング・トランジットの違い、そしてなぜ日本では地元のケーブルテレビ局がISPを兼業していることが多いのかを歴史的経緯とともに理解する深掘り(単体でも読めます)。
+
+#### ハンズオン:基礎編(未経験でも構築しながら学べる、2記事)
+
+1. [マルチドメイン・マルチツリーのADフォレストを構築するハンズオン](/articles/ad-multidomain-handson-guide) — example.comをフォレストルート、child.example.comを子ドメイン、example.netを別ツリーとして構築し、ドメインパーティションの分離・設定パーティションの共有・自動的な信頼関係・GCの検索範囲・FSMOの配置を実際のコマンドで確認するハンズオン(基礎編・補足編を読んでいる前提)。
+2. [旧DCから新DCへのAD移行(リプレース)ハンズオン](/articles/ad-migration-handson-guide) — 新DCの追加、repadmin/dcdiagでのレプリケーション健全性確認、FSMO転送、旧DCの正式な降格、降格後のクリーンアップ確認、新DCへの旧DC名の引き継ぎ、dcdiagであえて警告を発生させて読み解く演習までを扱う、実際の現場を想定したAD移行ハンズオン(基礎編・補足編を読んでいる前提)。
+
+#### ハンズオン:実務シナリオ編(8記事)
+
+1. [買収を想定した2つの独立フォレスト間の信頼関係構築ハンズオン](/articles/ad-forest-trust-handson-guide) — 完全に独立した2つのフォレスト間でフォレストトラストを構築し、クロスフォレストでのリソースアクセスを確認するハンズオン。同一フォレスト内の自動的な信頼関係との違い、トラストだけでは解決しない課題、ADMTの現在地までを扱う(単体でも読めます)。
+2. [誤って削除したユーザー・OUを復元するAD ごみ箱のハンズオン](/articles/ad-recycle-bin-handson-guide) — AD ごみ箱(AD Recycle Bin)を有効化し、あえてOUごとユーザーを削除したうえで、グループメンバーシップなどの属性を保ったまま復元するハンズオン。有効化が不可逆であること、tombstoneを使った旧来の復元方法との違いまでを扱う(単体でも読めます)。
+3. [GPOを実際に作成・リンクし、優先順位とトラブルシューティングを体験するハンズオン](/articles/ad-gpo-handson-guide) — 複数のGPOを作成・リンクし、リンク順・Enforced・継承のブロックが適用結果に与える影響とセキュリティフィルタリングを検証したうえで、「GPOが効かない」トラブルをgpresultで切り分けるハンズオン(単体でも読めます)。
+4. [きめ細かいパスワードポリシー(PSO)で部署ごとに異なるパスワード要件を適用するハンズオン](/articles/ad-fgpp-handson-guide) — 1ドメイン1パスワードポリシーというAD DSの制約を、PSOで乗り越えるハンズオン。PSOがOUに直接リンクできないという落とし穴、複数PSOが競合したときのPrecedenceによる優先順位解決までを扱う(単体でも読めます)。
+5. [OUへの権限移譲(Delegation of Control)でヘルプデスクに権限だけを渡すハンズオン](/articles/ad-delegation-handson-guide) — Domain Adminsを渡すことなく、特定のOU配下のパスワードリセットだけを委任するハンズオン。権限移譲の実態がOUのACL上のACEであること、委任を取り消す機能がウィザードにないという落とし穴までを扱う(単体でも読めます)。
+6. [Kerberos制約付き委任で『ダブルホップ問題』を解決するハンズオン](/articles/ad-constrained-delegation-handson-guide) — Webサーバーから裏側のSQLサーバーへの認証が失敗する、実務でよくあるダブルホップ問題を再現してから、Kerberos制約付き委任で解決するハンズオン。CredSSPやNTLMでは解決にならない理由までを扱う(単体でも読めます)。
+7. [System Stateバックアップと権威的復元(Authoritative Restore)のハンズオン](/articles/ad-backup-restore-handson-guide) — AD ごみ箱の限界を超える障害に備える、System Stateバックアップとntdsutilによる権威的復元のハンズオン。非権威的復元との違い、USNの書き換えが復元の決め手になる理由までを扱う(単体でも読めます)。
+8. [旧DCが完全に失われた状況を想定し、FSMOをシージ(強制移行)するハンズオン](/articles/ad-fsmo-seize-handson-guide) — 正規の転送ではなく、緊急時の強制的な奪取であるシージを体験するハンズオン。シージ後に旧DCを二度とネットワークに戻してはいけない理由、メタデータクリーンアップの必要性までを扱う(単体でも読めます)。
+
+#### ハンズオン:細かな仕様・機能編(6記事)
+
+1. [gMSA(グループ管理サービスアカウント)でパスワード管理から解放されるハンズオン](/articles/ad-gmsa-handson-guide) — AD DS自身がパスワードを自動生成・自動ローテーションするgMSAを構築するハンズオン。KDSルートキーの伝播待ち時間(約10時間)という実務上の落とし穴、前身のsMSAとの違いまでを扱う(単体でも読めます)。
+2. [AD CS(証明書サービス)でエンタープライズCAを構築し証明書の自動発行を体験するハンズオン](/articles/ad-cs-handson-guide) — エンタープライズCAを構築し、証明書テンプレートとGPOを組み合わせた自動登録を体験するハンズオン。スタンドアロンCAとの違い、「登録」と「自動登録」という別々の権限までを扱う(単体でも読めます)。
+3. [拠点展開のためのRODC(読み取り専用ドメインコントローラー)を構築するハンズオン](/articles/ad-rodc-handson-guide) — 既定でどのユーザーのパスワードもキャッシュしないパスワード複製ポリシーの仕組みを体験するハンズオン。RODC盗難時の被害範囲が限定される理由、管理者ロールの分離までを扱う(単体でも読めます)。
+4. [ドメイン・フォレスト機能レベルを引き上げるハンズオン](/articles/ad-functional-level-handson-guide) — 旧DC降格後の仕上げとして機能レベルを引き上げるハンズオン。この操作が不可逆である理由、フォレスト機能レベルを上げる前にドメイン機能レベルを揃える必要がある理由までを扱う(単体でも読めます)。
+5. [AD統合DNSのスキャベンジング(古いレコードの自動削除)を設定するハンズオン](/articles/ad-dns-scavenging-handson-guide) — ノーリフレッシュ間隔とリフレッシュ間隔という2段構えの猶予期間を体験するハンズオン。静的レコードがスキャベンジングの対象外になる理由までを扱う(単体でも読めます)。
+6. [サイトリンクのコスト設定でレプリケーション経路を制御するハンズオン](/articles/ad-sitelink-topology-handson-guide) — KCCが自動生成するレプリケーション経路を、サイトリンクのコスト変更で制御するハンズオン。コストが帯域幅ではないこと、サイトリンクの推移性までを扱う(単体でも読めます)。
+
+#### ハンズオン:セキュリティ強化編(攻撃者視点で守りを固める、2記事)
+
+1. [Kerberoasting攻撃を自分の手で再現し、サービスアカウントを守るハンズオン](/articles/ad-kerberoasting-handson-guide) — 特別な権限を持たない一般ユーザーでも実行できるKerberoastingを安全な検証環境で再現するハンズオン。これがバグではなくKerberosの設計上の性質であること、gMSAへの移行が根本対策になる理由までを扱う(単体でも読めます)。
+2. [DCSyncが悪用する複製権限を監査し、Tier 0管理モデルで守るハンズオン](/articles/ad-dcsync-audit-handson-guide) — DCSyncが悪用する複製ディレクトリの変更に関する2つの拡張権限を、ドメインルートのACLから監査するハンズオン。Entra Connectのような正規サービスとの見分け方、Tier 0という管理モデルの考え方までを扱う(単体でも読めます)。
+
+#### 音声で学ぶ・聴く(3記事)
 
 - [【音声で学ぶ】Active Directory講義 Part1](/articles/ad-audio-lecture-1-guide) — シリーズの記事を1本も読んでいない状態からでも、耳だけでゼロから学べる音声講義の第1回。AD DS・DC・ドメイン・ツリー・フォレストの基礎から、コンピューター名変更、ログインの裏側、AD環境のDNS設計までを扱う(全4回を予定)。
 - [【音声で学ぶ】Active Directory講義 Part2](/articles/ad-audio-lecture-2-guide) — 音声講義の第2回。SPNが実際には何を指しているのか、Netlogonのセキュアチャネル、Kerberos認証がパスワードを一度も送らずに済む仕組み、FSMOという例外的な役割、DC同士のレプリケーションまでを扱う。
-- [ADとDC、ドメインとフォレストの違いを『上位1%』の視点で理解する](/articles/ad-dc-fundamentals-guide) — AD DS(仕組み)とDC(サーバー)の役割分担、ドメイン・ツリー・フォレストという3階層の境界線、機能レベルが何を制約しているか、AD DSの役割追加時に何が一緒にインストールされるのかまでの深掘り。
-- [sysdm.cplとnetdom computernameは何が違うのか——「プライマリホスト名」とAD移行のホスト名重複事故を『上位1%』の視点で理解する](/articles/ad-computername-netdom-guide) — sysdm.cplとnetdomのコンピューター名変更の仕組みの違い、なぜ/add→/makeprimaryという2段階が必要なのか、そして実際のAD移行で発生したホスト名重複による認証障害の事例診断までの深掘り(①の発展編、単体でも読めます)。
-- [Windowsのログインとユーザープロファイルの仕組みを『上位1%』の視点で理解する](/articles/ad-windows-login-guide) — 初回ログインになぜ社内ネットワーク接続が必要か、キャッシュされた資格情報の正体、ローミングプロファイル、VDI(永続型/非永続型)とFSLogixによるプロファイル管理までの深掘り(単体でも読めます)。
-- [AD環境のDNSはなぜこう設計されているのか——フォワーダー・プライマリ/セカンダリの挙動・127.0.0.1指定の理由を『上位1%』の視点で理解する](/articles/ad-dns-guide) — 「ping 8.8.8.8は通るのに検索できない」の正体、DNSサーバーのフォワーダー、プライマリ/セカンダリが自動フェイルオーバーしない理由、127.0.0.1指定のメリットと副作用、ipconfig /registerdnsまでの深掘り([dns-guide](/articles/dns-guide)の発展編、単体でも読めます)。
-- [DNSゾーンとレコードの読み方を『上位1%』の視点で理解する](/articles/dns-zones-records-guide) — 前方参照ゾーン・後方参照ゾーンの違い、_msdcsゾーンがフォレスト全体でレプリケーションされる理由、SRVレコードとGUID名のCNAMEレコードの役割、DNSマネージャーの実務的な見方までの深掘り([dns-guide](/articles/dns-guide)の発展編、単体でも読めます)。
-- [FSMO(操作マスター)とは何かを『上位1%』の視点で理解する](/articles/fsmo-guide) — マルチマスターレプリケーションの例外がなぜ必要か、スキーマ・ドメイン名前付け・RID・PDCエミュレータ・インフラストラクチャという5つの役割の意味、FSMO転送とシージの違いまでの深掘り(単体でも読めます)。
-- [DCの正常性確認を『上位1%』の視点で理解する](/articles/dc-health-check-guide) — repadmin /showreplで確認できる5つのパーティション、「成功」表示の本当の意味、net shareに表示されるC$/IPC$/ADMIN$/NETLOGON/SYSVOLの違い、SysvolReadyレジストリ値までの深掘り(単体でも読めます)。
-- [ADの「サイト」とレプリケーショントポロジーを『上位1%』の視点で理解する](/articles/ad-sites-guide) — サブネットとサイトの対応表という実体、サイト内/サイト間レプリケーションの速さの違い、KCC・ISTG・ブリッジヘッドサーバー・サイトリンクコストの役割分担までの深掘り(単体でも読めます)。
-- [dcdiag /vの読み方を『上位1%』の視点で理解する](/articles/dcdiag-guide) — dcdiagが何をテストしているツールなのか、主要なテスト項目の意味、警告・エラーを無視してよい根拠と無視できない根拠、AD移行の各段階での実行タイミングまでの深掘り(単体でも読めます)。
-- [AD移行後のクリーンアップを『上位1%』の視点で理解する](/articles/ad-migration-cleanup-guide) — dsa.msc・dssite.msc・adsiedit.msc・dnsmgmt.mscがそれぞれ管理しているAD DSのパーティション、ドメイン脱退後もコンピューターアカウントが残り続ける理由、4つのコンソールすべての確認が本当に必要になる場面までの深掘り(単体でも読めます)。
-- [SPN(サービスプリンシパル名)の仕組みを『上位1%』の視点で理解する](/articles/ad-spn-guide) — SPNがサーバーではなく「サービスを実行しているアカウント」を指す識別子であること、Kerberosのチケット要求の中での役割、setspnコマンドの使い方、SPN重複エラーの正体、NTLMへの静かな降格の診断までの深掘り(単体でも読めます)。
-- [Netlogonサービスとセキュアチャネルの仕組みを『上位1%』の視点で理解する](/articles/ad-netlogon-guide) — セキュアチャネルの正体、マシンアカウントパスワードが既定30日ごとに自動更新される仕組み、VMスナップショットを古い状態に戻すと「信頼関係の障害」が起きる理由、Test-ComputerSecureChannelでの復旧、Zerologon脆弱性の概要までの深掘り(単体でも読めます)。
-- [Kerberos認証の仕組みを『上位1%』の視点で理解する](/articles/ad-kerberos-guide) — パスワードを一度もネットワークに送らずに本人確認できる理由、TGT・サービスチケットのやり取り(AS-REQ/AS-REP、TGS-REQ/TGS-REP、AP-REQ)、PAC(特権属性証明書)とSIDの関係、NTLMとの違い、トークン肥大化問題までの深掘り(単体でも読めます)。
-- [マルチドメイン・マルチツリーのADフォレストを構築するハンズオン](/articles/ad-multidomain-handson-guide) — example.comをフォレストルート、child.example.comを子ドメイン、example.netを別ツリーとして構築し、ドメインパーティションの分離・設定パーティションの共有・自動的な信頼関係・GCの検索範囲・FSMOの配置を実際のコマンドで確認するハンズオン(シリーズの集大成、これまでの記事を読んでいる前提)。
-- [旧DCから新DCへのAD移行(リプレース)ハンズオン](/articles/ad-migration-handson-guide) — 新DCの追加、repadmin/dcdiagでのレプリケーション健全性確認、FSMO転送、旧DCの正式な降格、降格後のクリーンアップ確認、新DCへの旧DC名の引き継ぎ、dcdiagであえて警告を発生させて読み解く演習までを扱う、実際の現場を想定したAD移行ハンズオン(シリーズの集大成、これまでの記事を読んでいる前提)。
-- [買収を想定した2つの独立フォレスト間の信頼関係構築ハンズオン](/articles/ad-forest-trust-handson-guide) — 完全に独立した2つのフォレスト間でフォレストトラストを構築し、クロスフォレストでのリソースアクセスを確認するハンズオン。同一フォレスト内の自動的な信頼関係との違い、トラストだけでは解決しない課題、ADMTの現在地までを扱う(単体でも読めます)。
-- [誤って削除したユーザー・OUを復元するAD ごみ箱のハンズオン](/articles/ad-recycle-bin-handson-guide) — AD ごみ箱(AD Recycle Bin)を有効化し、あえてOUごとユーザーを削除したうえで、グループメンバーシップなどの属性を保ったまま復元するハンズオン。有効化が不可逆であること、tombstoneを使った旧来の復元方法との違いまでを扱う(単体でも読めます)。
-- [SYSVOL・DFSR・グループポリシーの仕組みを『上位1%』の視点で理解する](/articles/ad-sysvol-dfsr-gpo-guide) — GPOが実はAD DS上のGPCとSYSVOL上のGPTという2つの独立した部分から成ること、DFSRとその前身FRSの違い、GPOバージョン不一致という実務トラブルの診断までの深掘り(単体でも読めます)。
-- [GPOを実際に作成・リンクし、優先順位とトラブルシューティングを体験するハンズオン](/articles/ad-gpo-handson-guide) — 複数のGPOを作成・リンクし、リンク順・Enforced・継承のブロックが適用結果に与える影響とセキュリティフィルタリングを検証したうえで、「GPOが効かない」トラブルをgpresultで切り分けるハンズオン(単体でも読めます)。
-- [きめ細かいパスワードポリシー(PSO)で部署ごとに異なるパスワード要件を適用するハンズオン](/articles/ad-fgpp-handson-guide) — 1ドメイン1パスワードポリシーというAD DSの制約を、PSOで乗り越えるハンズオン。PSOがOUに直接リンクできないという落とし穴、複数PSOが競合したときのPrecedenceによる優先順位解決までを扱う(単体でも読めます)。
-- [OUへの権限移譲(Delegation of Control)でヘルプデスクに権限だけを渡すハンズオン](/articles/ad-delegation-handson-guide) — Domain Adminsを渡すことなく、特定のOU配下のパスワードリセットだけを委任するハンズオン。権限移譲の実態がOUのACL上のACEであること、委任を取り消す機能がウィザードにないという落とし穴までを扱う(単体でも読めます)。
-- [Kerberos制約付き委任で『ダブルホップ問題』を解決するハンズオン](/articles/ad-constrained-delegation-handson-guide) — Webサーバーから裏側のSQLサーバーへの認証が失敗する、実務でよくあるダブルホップ問題を再現してから、Kerberos制約付き委任で解決するハンズオン。CredSSPやNTLMでは解決にならない理由までを扱う(単体でも読めます)。
-- [System Stateバックアップと権威的復元(Authoritative Restore)のハンズオン](/articles/ad-backup-restore-handson-guide) — AD ごみ箱の限界を超える障害に備える、System Stateバックアップとntdsutilによる権威的復元のハンズオン。非権威的復元との違い、USNの書き換えが復元の決め手になる理由までを扱う(単体でも読めます)。
-- [旧DCが完全に失われた状況を想定し、FSMOをシージ(強制移行)するハンズオン](/articles/ad-fsmo-seize-handson-guide) — 正規の転送ではなく、緊急時の強制的な奪取であるシージを体験するハンズオン。シージ後に旧DCを二度とネットワークに戻してはいけない理由、メタデータクリーンアップの必要性までを扱う(単体でも読めます)。
-- [gMSA(グループ管理サービスアカウント)でパスワード管理から解放されるハンズオン](/articles/ad-gmsa-handson-guide) — AD DS自身がパスワードを自動生成・自動ローテーションするgMSAを構築するハンズオン。KDSルートキーの伝播待ち時間(約10時間)という実務上の落とし穴、前身のsMSAとの違いまでを扱う(単体でも読めます)。
-- [AD CS(証明書サービス)でエンタープライズCAを構築し証明書の自動発行を体験するハンズオン](/articles/ad-cs-handson-guide) — エンタープライズCAを構築し、証明書テンプレートとGPOを組み合わせた自動登録を体験するハンズオン。スタンドアロンCAとの違い、「登録」と「自動登録」という別々の権限までを扱う(単体でも読めます)。
-- [拠点展開のためのRODC(読み取り専用ドメインコントローラー)を構築するハンズオン](/articles/ad-rodc-handson-guide) — 既定でどのユーザーのパスワードもキャッシュしないパスワード複製ポリシーの仕組みを体験するハンズオン。RODC盗難時の被害範囲が限定される理由、管理者ロールの分離までを扱う(単体でも読めます)。
-- [ドメイン・フォレスト機能レベルを引き上げるハンズオン](/articles/ad-functional-level-handson-guide) — 旧DC降格後の仕上げとして機能レベルを引き上げるハンズオン。この操作が不可逆である理由、フォレスト機能レベルを上げる前にドメイン機能レベルを揃える必要がある理由までを扱う(単体でも読めます)。
-- [AD統合DNSのスキャベンジング(古いレコードの自動削除)を設定するハンズオン](/articles/ad-dns-scavenging-handson-guide) — ノーリフレッシュ間隔とリフレッシュ間隔という2段構えの猶予期間を体験するハンズオン。静的レコードがスキャベンジングの対象外になる理由までを扱う(単体でも読めます)。
-- [サイトリンクのコスト設定でレプリケーション経路を制御するハンズオン](/articles/ad-sitelink-topology-handson-guide) — KCCが自動生成するレプリケーション経路を、サイトリンクのコスト変更で制御するハンズオン。コストが帯域幅ではないこと、サイトリンクの推移性までを扱う(単体でも読めます)。
-- [Kerberoasting攻撃を自分の手で再現し、サービスアカウントを守るハンズオン](/articles/ad-kerberoasting-handson-guide) — 特別な権限を持たない一般ユーザーでも実行できるKerberoastingを安全な検証環境で再現するハンズオン。これがバグではなくKerberosの設計上の性質であること、gMSAへの移行が根本対策になる理由までを扱う(単体でも読めます)。
-- [DCSyncが悪用する複製権限を監査し、Tier 0管理モデルで守るハンズオン](/articles/ad-dcsync-audit-handson-guide) — DCSyncが悪用する複製ディレクトリの変更に関する2つの拡張権限を、ドメインルートのACLから監査するハンズオン。Entra Connectのような正規サービスとの見分け方、Tier 0という管理モデルの考え方までを扱う(単体でも読めます)。
-- [AD DS・AD CS・AD FS・AD LDS・AD RMSの違いを『上位1%』の視点で理解する](/articles/ad-family-overview-guide) — 同じ「Active Directory」を名乗る5つの役割がなぜ中身も用途もまったく異なるのか、証明書発行(AD CS)・組織を越えたSSO(AD FS)・ドメイン非依存の軽量ディレクトリ(AD LDS)・ファイル自体の権利管理(AD RMS)それぞれの役割、AD FS/AD RMSの現在の製品戦略上の位置づけまでの深掘り(単体でも読めます)。
-- [LDAPプロトコルの仕組みを『上位1%』の視点で理解する](/articles/ad-ldap-protocol-guide) — AD DSが問い合わせを受け付けているLDAPそのものの中身、DN(識別名)・属性・検索フィルターというデータモデル、Bind・Search・Add/Modify/Deleteという操作の種類、ポート389/636/3268/3269の使い分け、LDAP署名・LDAPチャネルバインディングという実務上重要なセキュリティ設定までの深掘り(単体でも読めます)。
-- [NetBIOS名とDNSホスト名、なぜ2つの名前が共存しているのかを『上位1%』の視点で理解する](/articles/ad-netbios-dns-history-guide) — コンピューター名がなぜ15文字までしか使えないのか、NetBIOSが生まれた歴史的経緯、WINSが果たしていた役割、そしてWindows Server 2025がWINSを含む最後のLTSCリリースとなり以降完全に削除される、という実務上重要な現在地までの深掘り(単体でも読めます)。
-- [ADのスキーマ拡張を『上位1%』の視点で理解する](/articles/ad-schema-extension-guide) — ExchangeやSkype for Businessの導入時に必ず発生するスキーマ拡張が何をしているのか、なぜフォレスト全体に影響するのか、なぜ一度拡張すると実質的に後戻りできないのか、Schema Adminsグループの扱い、実務での安全な進め方までの深掘り(単体でも読めます)。
-- [.NET FrameworkとPowerShellの関係を『上位1%』の視点で理解する](/articles/ad-dotnet-powershell-guide) — .NET Framework(ランタイム+クラスライブラリ)とPowerShellの関係、テキストではなくオブジェクトをやり取りするパイプラインという設計思想、Windows PowerShell 5.1とPowerShell 7の違い、AD DSの役割追加時に.NET Framework 4.8が一緒に有効化される理由までの深掘り(単体でも読めます)。
-- [ISP(インターネットサービスプロバイダー)とは何かを『上位1%』の視点で理解する](/articles/ad-isp-guide) — ISPが実際に提供しているサービスの中身、Tier1・Tier2・Tier3という業界の階層構造とピアリング・トランジットの違い、そしてなぜ日本では地元のケーブルテレビ局がISPを兼業していることが多いのかを歴史的経緯とともに理解する深掘り(単体でも読めます)。
-- [【音声で聴く】Active Directoryシリーズ総復習](/articles/ad-audio-review-guide) — 全38記事を読み終えた人向けの、耳だけで復習できる音声学習記事。表・図・箇条書きを使わず、ブラウザの読み上げ機能で聞き流せるように語りかける文章だけで構成(シリーズを読了している前提)。
+- [【音声で聴く】Active Directoryシリーズ総復習](/articles/ad-audio-review-guide) — 全38記事(音声学習を除く全記事)を読み終えた人向けの、耳だけで復習できる音声学習記事。表・図・箇条書きを使わず、ブラウザの読み上げ機能で聞き流せるように語りかける文章だけで構成(シリーズを読了している前提)。
 
 ### Windowsクライアント運用シリーズ
 
