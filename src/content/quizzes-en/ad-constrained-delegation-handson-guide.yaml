@@ -1,0 +1,45 @@
+questions:
+  - question: "What exactly is the \"double hop problem\"?"
+    choices:
+      - "The client's very first connection to the web server fails immediately"
+      - "The first hop, from the client to the web server, succeeds, but the second hop, from the web server to the server behind it, fails because credentials aren't forwarded"
+      - "A Kerberos ticket's validity period doubles unexpectedly"
+      - "The same user can no longer log in from two devices at once"
+    answerIndex: 1
+    explanation: "The double hop problem occurs because the first hop (client to web server) succeeds, but the second hop (web server to the server behind it) fails to carry credentials forward."
+
+  - question: "How does Kerberos's design treat the double hop problem occurring at all?"
+    choices:
+      - "It's a clear bug requiring a patch"
+      - "It's intentional, safe-by-design behavior — correctly denying delegation unless it's been explicitly permitted"
+      - "It's a new problem that only started appearing with Windows Server 2025"
+      - "It's a problem that occurs incidentally due to network latency"
+    answerIndex: 1
+    explanation: "This is Kerberos's intended, safe-by-design behavior, not a bug. Correctly denying credential forwarding unless it's been explicitly permitted is the intended behavior."
+
+  - question: "In Kerberos constrained delegation, what is the role of the msDS-AllowedToDelegateTo attribute?"
+    choices:
+      - "Encrypting and storing the delegating account's password"
+      - "Explicitly enumerating which destination services (SPNs) delegation is permitted to"
+      - "Setting an expiration date for the delegation"
+      - "Recording the group memberships of the delegating user"
+    answerIndex: 1
+    explanation: "The msDS-AllowedToDelegateTo attribute explicitly enumerates the SPNs delegation is permitted to, which is exactly what enforces the constraint against freely delegating to any arbitrary service."
+
+  - question: "What advantage does Kerberos constrained delegation have over CredSSP?"
+    choices:
+      - "It always requires fewer configuration steps than CredSSP"
+      - "It never holds sensitive information like a password on the intermediate server — it works entirely through handing off tickets"
+      - "It supports older OS versions than CredSSP does"
+      - "It processes faster because it uses no encryption at all"
+    answerIndex: 1
+    explanation: "Kerberos constrained delegation is considered safer than CredSSP because it never relays raw sensitive information like a password — it works entirely through tickets issued by the KDC."
+
+  - question: "Which statement about NTLM authentication is correct?"
+    choices:
+      - "NTLM authentication can support delegation if configured correctly"
+      - "NTLM authentication doesn't support the concept of delegation at all"
+      - "NTLM authentication has richer delegation features than Kerberos"
+      - "NTLM authentication is another name for constrained delegation"
+    answerIndex: 1
+    explanation: "NTLM authentication doesn't support the concept of delegation at all. Whenever delegation is required, confirm that Kerberos authentication is actually being used."

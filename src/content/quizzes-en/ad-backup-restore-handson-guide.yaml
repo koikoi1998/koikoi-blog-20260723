@@ -1,0 +1,45 @@
+questions:
+  - question: "If you only perform a non-authoritative restore, what happens to the object you deleted?"
+    choices:
+      - "It's immediately and completely restored, permanently"
+      - "It's reset to the backup-time state, but subsequent replication ultimately catches it back up to the current state (deleted, in this case)"
+      - "The restore operation itself always fails"
+      - "Every other DC automatically shuts down"
+    answerIndex: 1
+    explanation: "A non-authoritative restore only resets to the backup-time state; subsequent replication ultimately catches it back up to the current state other DCs hold, such as being deleted again."
+
+  - question: "What does an authoritative restore actually do?"
+    choices:
+      - "Encrypts the target object"
+      - "Deliberately rewrites the target object's USN (update sequence number) to a value newer than any other DC holds"
+      - "Rebuilds the target DC entirely from scratch"
+      - "Resets the target object's password"
+    answerIndex: 1
+    explanation: "An authoritative restore uses ntdsutil to rewrite the target object's USN to a value higher than what other DCs hold, making other DCs recognize it as the correct, current state."
+
+  - question: "Which statement about the restore subtree command is correct?"
+    choices:
+      - "It can only perform an authoritative restore against the entire forest"
+      - "It can perform a partial authoritative restore, scoped to just one specific OU"
+      - "It's a command for restoring the domain controller itself"
+      - "It's a command for enabling the AD Recycle Bin feature"
+    answerIndex: 1
+    explanation: "The restore subtree command allows a partial authoritative restore scoped to a specific OU — there's no need to target the entire forest."
+
+  - question: "What's the correct relationship between the AD Recycle Bin and a System State backup?"
+    choices:
+      - "A System State backup is no longer necessary once the AD Recycle Bin is enabled"
+      - "They're complementary safeguards covering different severities of failure"
+      - "A System State backup completely replaces the AD Recycle Bin's functionality"
+      - "The AD Recycle Bin and a System State backup are just two names for the exact same mechanism"
+    answerIndex: 1
+    explanation: "The AD Recycle Bin is a recovery method for within tombstoneLifetime while AD DS itself is functioning normally; more serious failures beyond that require restoring from a System State backup. The two complement each other."
+
+  - question: "What security effect does the USN-based replication mechanism have?"
+    choices:
+      - "It automatically strengthens password complexity"
+      - "It defends against a rollback attack that deliberately restores an old state from an old backup, since replication with other healthy DCs pulls it back to the correct state"
+      - "It automatically optimizes firewall configuration"
+      - "The USN-based mechanism has no security effect whatsoever"
+    answerIndex: 1
+    explanation: "Even if someone deliberately tries to roll back to an old state from an old backup, an ordinary (non-authoritative) restore gets pulled back to the correct, current state through replication with other healthy DCs, defending against a rollback attack."

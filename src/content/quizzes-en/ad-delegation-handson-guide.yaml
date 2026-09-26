@@ -1,0 +1,45 @@
+questions:
+  - question: "If you delegate only 'reset password' with the Delegation of Control Wizard, can that group also unlock a locked-out account?"
+    choices:
+      - "Yes, resetting a password includes unlocking the account"
+      - "No, resetting a password and unlocking an account are separate permissions, and both must be delegated if both are needed"
+      - "It depends on the domain functional level"
+      - "It automatically becomes possible the next day"
+    answerIndex: 1
+    explanation: "Resetting a password and unlocking a locked-out account are separate permissions. Both boxes must be checked in the wizard if both are needed."
+
+  - question: "How do you revoke a permission delegated with the Delegation of Control Wizard?"
+    choices:
+      - "Run the same wizard again and select 'revoke'"
+      - "The wizard has no revoke feature, so you manually remove the ACE from the Security tab"
+      - "The only option is to delete and recreate the target OU"
+      - "It's automatically revoked by restarting the domain controller"
+    answerIndex: 1
+    explanation: "The Delegation of Control Wizard has no revoke feature, so you must manually remove the relevant access control entry (ACE) from the OU's Security tab (with Advanced Features enabled)."
+
+  - question: "What is the Delegation of Control Wizard actually doing under the hood?"
+    choices:
+      - "Encrypting the target OU"
+      - "Adding a single ACE granting a specific permission to the target OU's ACL (access control list)"
+      - "Automatically adding the target group to Domain Admins"
+      - "Directly changing the target user's password"
+    answerIndex: 1
+    explanation: "The Delegation of Control Wizard simply adds one ACE (access control entry) to the target OU's ACL, granting the specified group a specific extended right."
+
+  - question: "When you delegate a permission on an OU, how far does that scope extend by default?"
+    choices:
+      - "The entire forest"
+      - "Only that OU and the objects beneath it"
+      - "The entire domain"
+      - "Only for as long as the delegator's own session lasts"
+    answerIndex: 1
+    explanation: "A delegated permission is scoped, by default, to that OU and the objects beneath it — it doesn't automatically extend to the entire domain or forest."
+
+  - question: "Why should help desk staff be given delegated control rather than Domain Admins in practice?"
+    choices:
+      - "Domain Admins technically can't be granted to help desk staff"
+      - "The principle of least privilege limits the blast radius if that account is ever compromised"
+      - "Delegation of control requires less setup effort than Domain Admins"
+      - "Granting Domain Admins disables the password-reset feature entirely"
+    answerIndex: 1
+    explanation: "Scoping permissions down to exactly what a help desk staffer needs means that even if their account is compromised, the entire forest isn't put at risk."

@@ -1,0 +1,45 @@
+questions:
+  - question: "Which situation is most appropriate for performing an FSMO seize?"
+    choices:
+      - "When communication with the old DC is merely temporarily unstable"
+      - "When the old DC is completely lost and can be said with certainty to never recover"
+      - "Whenever seizing simply feels like a faster procedure than transferring"
+      - "When a maintenance window can't be arranged for the old DC"
+    answerIndex: 1
+    explanation: "Seizing is a last resort for when the old DC is completely lost and will never recover. As long as there's any remaining chance of recovery, a graceful transfer should be preferred."
+
+  - question: "What must absolutely never be done after performing a seize?"
+    choices:
+      - "Performing metadata cleanup"
+      - "Reconnecting the seized old DC to the network"
+      - "Checking which DC holds each FSMO role on the new DC"
+      - "Checking replication health"
+    answerIndex: 1
+    explanation: "If the old DC ever comes back up still believing it holds the FSMO roles, severe inconsistency results, so the old DC must never be reconnected to the network after seizing."
+
+  - question: "What is the purpose of metadata cleanup?"
+    choices:
+      - "To improve the new DC's performance"
+      - "To completely remove the remaining information in AD DS for an old DC that's never coming back"
+      - "To automatically transfer the FSMO roles"
+      - "To optimize the replication schedule"
+    answerIndex: 1
+    explanation: "Metadata cleanup completely removes the old DC's remaining information from AD DS, preventing serious inconsistency in case the old DC were ever to come back."
+
+  - question: "Among the five FSMO roles, which one requires especially careful attention after a seize?"
+    choices:
+      - "Schema Master"
+      - "RID Master"
+      - "Domain Naming Master"
+      - "PDC Emulator"
+    answerIndex: 1
+    explanation: "If the old DC were to come back after the RID master was seized, both the old and new DCs could hand out duplicate RIDs from the same pool, requiring especially careful attention."
+
+  - question: "If you want to rejoin a seized old DC to the network, what must you do?"
+    choices:
+      - "Simply reconnect it as-is"
+      - "Reinstall its OS and rebuild it as an entirely new DC"
+      - "Manually write the FSMO roles back onto it, then reconnect it as-is"
+      - "Reconnecting it is technically impossible under any circumstances"
+    answerIndex: 1
+    explanation: "Reconnecting a seized old DC as-is must always be avoided. To reuse it, its OS must be reinstalled and it must be rebuilt as an entirely new DC."

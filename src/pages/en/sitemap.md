@@ -214,6 +214,10 @@ This blog is written for a wide range of readers — from people with no experie
 <li><a href="/en/articles/ad-sysvol-dfsr-gpo-guide">Understanding SYSVOL, DFSR, and Group Policy from a "Top 1%" Perspective</a></li>
 <li data-subseries="handson"><a href="/en/articles/ad-gpo-handson-guide">A Hands-On Lab: GPO Precedence and Troubleshooting</a></li>
 <li data-subseries="handson"><a href="/en/articles/ad-fgpp-handson-guide">A Hands-On Lab: Applying Different Password Requirements Per Department With a Fine-Grained Password Policy (PSO)</a></li>
+<li data-subseries="handson"><a href="/en/articles/ad-delegation-handson-guide">The Top 1% Hands-On for Delegating OU Control to the Help Desk</a></li>
+<li data-subseries="handson"><a href="/en/articles/ad-constrained-delegation-handson-guide">The Top 1% Hands-On for Solving the "Double Hop Problem" With Kerberos Constrained Delegation</a></li>
+<li data-subseries="handson"><a href="/en/articles/ad-backup-restore-handson-guide">The Top 1% Hands-On for System State Backup and Authoritative Restore</a></li>
+<li data-subseries="handson"><a href="/en/articles/ad-fsmo-seize-handson-guide">The Top 1% Hands-On for Seizing FSMO Roles When an Old DC Is Permanently Gone</a></li>
 <li><a href="/en/articles/ad-family-overview-guide">Understanding AD DS, AD CS, AD FS, AD LDS, and AD RMS from a Top-1% Perspective</a></li>
 <li><a href="/en/articles/ad-ldap-protocol-guide">Understanding the LDAP Protocol from a Top-1% Perspective</a></li>
 <li><a href="/en/articles/ad-netbios-dns-history-guide">Understanding Why NetBIOS Names and DNS Hostnames Coexist from a Top-1% Perspective</a></li>
@@ -231,7 +235,7 @@ This blog is written for a wide range of readers — from people with no experie
 <p>On top of STEP5, this route adds the infrastructure adjacent to your core stack — web servers (IIS), file sharing (SMB), storage, cloud, email infrastructure, and container platforms/config-management automation. This completes the "building confidence" route. If you want to read one specific field in one go, use the filter feature on the top page instead.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP5's 77 articles (see those tabs above)</li>
+<li>STEP1 through STEP5's 81 articles (see those tabs above)</li>
 <li><a href="/en/articles/iis-fundamentals-guide">Understanding How IIS and ASP.NET Work from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/iis-ftp-guide">Understanding the Relationship Between IIS and FTP from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/smb-file-sharing-guide">Understanding Windows Server SMB File Sharing from a "Top 1%" Perspective</a></li>
@@ -262,7 +266,7 @@ This blog is written for a wide range of readers — from people with no experie
 <p>Adds the low-level implementation knowledge that sets you apart in interviews and design reviews, on top of everything through STEP6.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP6's 98 articles (see those tabs above)</li>
+<li>STEP1 through STEP6's 102 articles (see those tabs above)</li>
 <li><a href="/en/articles/proxmox-internals-guide">What Is Proxmox VE? Understanding KVM/QEMU Virtualization from the "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/linux-daemon-guide">What Is a Daemon? Understanding Linux Background Processes from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/software-library-guide">What Is a Library? Understanding Static and Dynamic Linking from a "Top 1%" Perspective</a></li>
@@ -291,13 +295,13 @@ This blog is written for a wide range of readers — from people with no experie
 <div class="persona-panel persona-panel-8">
 <div class="persona-panel-head">
 <h3>🏆 For those gathering information toward the industry's highest skill tier</h3>
-<p>The complete-conquest route: read all 122 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
+<p>The complete-conquest route: read all 126 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP7's 121 articles (see those tabs above)</li>
+<li>STEP1 through STEP7's 125 articles (see those tabs above)</li>
 <li><a href="/en/articles/voip-ss7-guide">Understanding VoIP and SS7 — and the Real Path Your Traffic Takes — from a "Top 1%" Perspective</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>That's all 122 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
+<div class="persona-bonus">🎉 <strong>That's all 126 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
 </div>
 </div>
 </div>
@@ -415,7 +419,7 @@ A series that takes execution-environment-level terms that keep showing up in th
 
 ### Active Directory Series
 
-A series digging into the questions that come up constantly in real-world AD migration and domain controller (DC) build/operation work. Written assuming you've read the DNS fundamentals article ([dns-guide](/en/articles/dns-guide)). **Recommended order**: ① ad-dc-fundamentals-guide → ② ad-computername-netdom-guide → ③ ad-windows-login-guide → ④ ad-dns-guide → ⑤ dns-zones-records-guide → ⑥ fsmo-guide → ⑦ dc-health-check-guide → ⑧ ad-sites-guide → ⑨ dcdiag-guide → ⑩ ad-migration-cleanup-guide → ⑪ ad-spn-guide → ⑫ ad-netlogon-guide → ⑬ ad-kerberos-guide → ⑭ ad-multidomain-handson-guide → ⑮ ad-migration-handson-guide → ⑯ ad-forest-trust-handson-guide → ⑰ ad-recycle-bin-handson-guide → ⑱ ad-sysvol-dfsr-gpo-guide → ⑲ ad-gpo-handson-guide → ⑳ ad-fgpp-handson-guide → ㉑ ad-family-overview-guide → ㉒ ad-ldap-protocol-guide → ㉓ ad-netbios-dns-history-guide → ㉔ ad-schema-extension-guide → ㉕ ad-dotnet-powershell-guide → ㉖ ad-isp-guide (⑯ onward were added as further deep dives before the audio review) → ㉗ ad-audio-review-guide (for reviewing by ear after finishing all 26). If you'd rather start from zero, by ear, before reading anything, [Audio Lecture Part 1](/en/articles/ad-audio-lecture-1-guide) is also available (4 parts planned; no prior reading required).
+A series digging into the questions that come up constantly in real-world AD migration and domain controller (DC) build/operation work. Written assuming you've read the DNS fundamentals article ([dns-guide](/en/articles/dns-guide)). **Recommended order**: ① ad-dc-fundamentals-guide → ② ad-computername-netdom-guide → ③ ad-windows-login-guide → ④ ad-dns-guide → ⑤ dns-zones-records-guide → ⑥ fsmo-guide → ⑦ dc-health-check-guide → ⑧ ad-sites-guide → ⑨ dcdiag-guide → ⑩ ad-migration-cleanup-guide → ⑪ ad-spn-guide → ⑫ ad-netlogon-guide → ⑬ ad-kerberos-guide → ⑭ ad-multidomain-handson-guide → ⑮ ad-migration-handson-guide → ⑯ ad-forest-trust-handson-guide → ⑰ ad-recycle-bin-handson-guide → ⑱ ad-sysvol-dfsr-gpo-guide → ⑲ ad-gpo-handson-guide → ⑳ ad-fgpp-handson-guide → ㉑ ad-delegation-handson-guide → ㉒ ad-constrained-delegation-handson-guide → ㉓ ad-backup-restore-handson-guide → ㉔ ad-fsmo-seize-handson-guide → ㉕ ad-family-overview-guide → ㉖ ad-ldap-protocol-guide → ㉗ ad-netbios-dns-history-guide → ㉘ ad-schema-extension-guide → ㉙ ad-dotnet-powershell-guide → ㉚ ad-isp-guide (⑯ onward were added as further deep dives before the audio review) → ㉛ ad-audio-review-guide (for reviewing by ear after finishing all 30). If you'd rather start from zero, by ear, before reading anything, [Audio Lecture Part 1](/en/articles/ad-audio-lecture-1-guide) is also available (4 parts planned; no prior reading required).
 
 - [[Audio Lecture] Active Directory, Part 1](/en/articles/ad-audio-lecture-1-guide) — The first installment of an audio lecture that teaches the series from zero, by ear alone, even if you haven't read a single article yet. Covers AD DS/DC/domain/tree/forest fundamentals, renaming a computer, what's behind a login, and AD's DNS design (4 parts planned).
 - [Understanding the Difference Between AD and DC, and Domains vs. Forests, from a "Top 1%" Perspective](/en/articles/ad-dc-fundamentals-guide) — A deep dive into the division of labor between AD DS (the mechanism) and DC (the server), the three-layer boundary of domain/tree/forest, what functional levels constrain, and what gets installed alongside the AD DS role.
@@ -438,13 +442,17 @@ A series digging into the questions that come up constantly in real-world AD mig
 - [Understanding SYSVOL, DFSR, and Group Policy from a "Top 1%" Perspective](/en/articles/ad-sysvol-dfsr-gpo-guide) — A deep dive into how a GPO is actually made of two independent parts — the GPC in AD DS and the GPT in SYSVOL — the difference between DFSR and its predecessor FRS, and diagnosing the real-world GPO version-mismatch problem (also readable standalone).
 - [A Hands-On Lab: GPO Precedence and Troubleshooting](/en/articles/ad-gpo-handson-guide) — Create and link several GPOs, verify how link order, Enforced, Block Inheritance, and security filtering affect the applied result, then diagnose "the GPO doesn't apply" with gpresult (also readable standalone).
 - [A Hands-On Lab: Applying Different Password Requirements Per Department With a Fine-Grained Password Policy (PSO)](/en/articles/ad-fgpp-handson-guide) — Work around AD DS's one-password-policy-per-domain limitation with a PSO. Covers the trap that a PSO can't be linked directly to an OU, and how Precedence resolves conflicts between multiple PSOs (also readable standalone).
+- [The Top 1% Hands-On for Delegating OU Control to the Help Desk](/en/articles/ad-delegation-handson-guide) — Delegate password-reset rights within one specific OU, without ever handing out Domain Admins. Covers how a delegated permission is really just an ACE on an ACL, and the gotcha that the wizard has no built-in way to revoke one (also readable standalone).
+- [The Top 1% Hands-On for Solving the "Double Hop Problem" With Kerberos Constrained Delegation](/en/articles/ad-constrained-delegation-handson-guide) — Reproduces the common real-world double hop problem, where authentication from a web server to the SQL server behind it fails, then solves it with Kerberos constrained delegation. Covers why CredSSP and NTLM aren't the right fix (also readable standalone).
+- [The Top 1% Hands-On for System State Backup and Authoritative Restore](/en/articles/ad-backup-restore-handson-guide) — Prepares for failures beyond what the AD Recycle Bin can save you from, with a System State backup and an ntdsutil-driven authoritative restore. Covers the difference from a non-authoritative restore, and why rewriting the USN is the decisive factor (also readable standalone).
+- [The Top 1% Hands-On for Seizing FSMO Roles When an Old DC Is Permanently Gone](/en/articles/ad-fsmo-seize-handson-guide) — Experience a forced seize, the emergency alternative to a graceful transfer. Covers why the old DC must never be reconnected to the network after seizing, and why metadata cleanup is mandatory (also readable standalone).
 - [Understanding AD DS, AD CS, AD FS, AD LDS, and AD RMS from a Top-1% Perspective](/en/articles/ad-family-overview-guide) — A deep dive into why five roles sharing the "Active Directory" name have completely different implementations and purposes: certificate issuance (AD CS), cross-organization SSO (AD FS), a domain-independent lightweight directory (AD LDS), file-level rights management (AD RMS), and where AD FS/AD RMS currently sit in Microsoft's product strategy (also readable standalone).
 - [Understanding the LDAP Protocol from a Top-1% Perspective](/en/articles/ad-ldap-protocol-guide) — A deep dive into what LDAP itself actually does behind AD DS's queries: its data model (DN, attributes, search filters), its operations (Bind, Search, Add/Modify/Delete), how ports 389/636/3268/3269 are used differently, and the practically important security settings of LDAP signing and LDAP channel binding (also readable standalone).
 - [Understanding Why NetBIOS Names and DNS Hostnames Coexist from a Top-1% Perspective](/en/articles/ad-netbios-dns-history-guide) — A deep dive into why a computer name is capped at 15 characters, the historical origin of NetBIOS, the role WINS played, and the practically important current state: Windows Server 2025 is the last LTSC release to include WINS before it's removed entirely (also readable standalone).
 - [Understanding AD Schema Extension from a Top-1% Perspective](/en/articles/ad-schema-extension-guide) — A deep dive into what actually happens during the schema extension that inevitably occurs when deploying Exchange or Skype for Business, why it affects the entire forest, why it's essentially irreversible once done, how the Schema Admins group should be handled, and how to proceed safely in practice (also readable standalone).
 - [Understanding the Relationship Between .NET Framework and PowerShell from a Top-1% Perspective](/en/articles/ad-dotnet-powershell-guide) — A deep dive into the relationship between .NET Framework (runtime + class library) and PowerShell, PowerShell's design philosophy of passing objects rather than text through its pipeline, the difference between Windows PowerShell 5.1 and PowerShell 7, and why .NET Framework 4.8 gets enabled alongside the AD DS role (also readable standalone).
 - [Understanding What an ISP Is from a Top-1% Perspective](/en/articles/ad-isp-guide) — A deep dive into what an ISP actually provides, the industry's Tier 1/Tier 2/Tier 3 hierarchy and the difference between peering and transit, and why a local cable TV company is often also your ISP in Japan, complete with the history behind it (also readable standalone).
-- [\[Listen\] The Active Directory Series, Fully Recapped](/en/articles/ad-audio-review-guide) — An audio-learning article for anyone who's finished all 26 articles in the series: no tables, diagrams, or bullet points, just spoken-style narration built to be listened to via your browser's read-aloud feature (assumes you've read the whole series).
+- [\[Listen\] The Active Directory Series, Fully Recapped](/en/articles/ad-audio-review-guide) — An audio-learning article for anyone who's finished all 30 articles in the series: no tables, diagrams, or bullet points, just spoken-style narration built to be listened to via your browser's read-aloud feature (assumes you've read the whole series).
 
 ### Windows Client Operations Series
 
