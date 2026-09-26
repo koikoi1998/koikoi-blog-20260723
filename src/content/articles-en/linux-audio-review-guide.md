@@ -1,16 +1,16 @@
 ---
 title: "[Listen] The Linux/OS Fundamentals Series, Fully Recapped"
-description: "An audio-learning article that reviews all 10 articles of the Linux/OS Fundamentals series by ear, during a commute or while doing chores. No tables, diagrams, or bullet points — just spoken-style prose meant to be read aloud by a browser's text-to-speech feature."
+description: "An audio-learning article that reviews all 11 articles of the Linux/OS Fundamentals series by ear, during a commute or while doing chores. No tables, diagrams, or bullet points — just spoken-style prose meant to be read aloud by a browser's text-to-speech feature."
 series: "linux"
 subSeries: "audio"
 order: 12
 tags: ["linux", "audio-review", "infra"]
 emoji: "🎧"
 pubDate: 2026-09-24
-updatedDate: 2026-09-25
+updatedDate: 2026-09-26
 ---
 
-This article is an audio-learning recap for anyone who's already read all ten articles in the Linux/OS Fundamentals series. Use your browser's or phone's text-to-speech feature and let it play in the background during a commute or while doing chores. There are no diagrams, tables, or code here — just spoken-style prose, stitching the whole series back together into a single, continuous thread.
+This article is an audio-learning recap for anyone who's already read all eleven articles in the Linux/OS Fundamentals series. Use your browser's or phone's text-to-speech feature and let it play in the background during a commute or while doing chores. There are no diagrams, tables, or code here — just spoken-style prose, stitching the whole series back together into a single, continuous thread.
 
 The series opened with the daemon itself. A daemon is a process with no screen a user directly operates, running continuously in the background for as long as the OS is up, providing some specific role or service. The name doesn't come from anything sinister — it traces back to the Greek idea of a guardian spirit, watching over and quietly working alongside you, and by convention its name usually ends in the letter d. Behind every server, these nameless guardian spirits just keep working, without ever stopping.
 
@@ -30,6 +30,8 @@ One topic in this series was especially tied directly to real-world work: how a 
 
 Next came the journalctl command. journalctl is the search command for the "journal" — a binary-format log store managed by systemd. Instead of grepping through a plain-text file, you can filter structured logs directly by service name, time range, priority level, or originating process. This command, standing at the front line of troubleshooting, actually rests on the foundation of everything the rest of this series covered.
 
+Stepping a bit sideways from there, we covered the true nature of the curl command. curl is a tool for assembling and sending an HTTP request from the command line and receiving the response back, and we mapped its options for viewing the status code and headers, specifying the method, and sending a body onto the exact part of an HTTP request each one corresponds to. And don't forget the key fact: curl itself isn't a standalone tool at all — it's a thin wrapper calling a library called libcurl, which an enormous number of programming languages call directly behind the scenes. A request you've already verified locally with the curl command is effectively a dry run for the same request your application code will make later — keep that perspective in mind.
+
 We closed with the true nature of the word "framework." A framework and a library both let you reuse code someone else wrote, but the thing that genuinely separates them is which direction control flows. A library is something your own code calls as a component, whenever it needs to, staying firmly in control. A framework is the reverse — the framework itself holds control, calling your code as a component at a moment it decides. A runtime is the actual ground code stands on to run at all. An SDK is a toolbox bundling that ground together with a set of components. And an API isn't a piece of software at all — it's simply the contract for how to call something. Once you know these five words each operate on a different dimension, you can join a technology-selection debate without getting lost.
 
-Looking back across all ten articles, a consistent stance emerges. The daemon, the library, the split between kernel space and user space, permissions, procfs, iptables, directory structure, how a config file takes effect, journalctl, and the concept of a framework — every single one of them was really telling the same story: behind whatever's visibly happening on the surface, who is actually doing the work, and who actually holds control? Not the person typing the command, but reaching all the way through to the program or kernel entity that actually receives it and does the processing — that's the pattern of thought a top-1% engineer applies almost automatically. And that's the recap of the Linux/OS Fundamentals series, complete.
+Looking back across all eleven articles, a consistent stance emerges. The daemon, the library, the split between kernel space and user space, permissions, procfs, iptables, directory structure, how a config file takes effect, journalctl, curl, and the concept of a framework — every single one of them was really telling the same story: behind whatever's visibly happening on the surface, who is actually doing the work, and who actually holds control? Not the person typing the command, but reaching all the way through to the program or kernel entity that actually receives it and does the processing — that's the pattern of thought a top-1% engineer applies almost automatically. And that's the recap of the Linux/OS Fundamentals series, complete.

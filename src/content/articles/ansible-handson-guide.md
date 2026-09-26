@@ -44,6 +44,8 @@ ansible --version
 
 バージョン情報とあわせて、Pythonのバージョンやconfigファイルの場所も表示されます。**Ansible自体はPythonで実装されたソフトウェアであり、`control`側にもPythonの実行環境が必要**であることが、ここからも分かります。
 
+`sudo apt update`が具体的に何をしているのか(単なる慣習ではなく、なぜ`install`の前に毎回実行するのか)、また作業のたびに`sudo`を付けるのが面倒な場合に使う`sudo su -`との使い分けについては、[ハンズオン準備マニュアル:Ubuntuサーバーの初期セットアップ](/articles/ubuntu-server-setup-guide)で詳しく解説しています。
+
 ## Step 1: SSH鍵認証を設定する
 
 Ansibleは既定でSSH接続を使いますが、実行のたびにパスワードを手入力するのは非効率かつ自動化に適さないため、**SSH鍵認証**を設定します。
@@ -60,6 +62,15 @@ ssh-copy-id <node1のユーザー名>@<node1のIP>
 ```
 
 `ssh-copy-id`は、`control`で生成した公開鍵を、`node1`の`~/.ssh/authorized_keys`へ自動的に追記してくれるコマンドです。実行後、次のコマンドで**パスワード入力なしにログインできる**ことを確認してください。
+
+<details>
+<summary>補足: ssh-keygenとssh-copy-idが実際にやっていること</summary>
+
+`ssh-keygen`は、数学的に対になった**秘密鍵と公開鍵のペア**をその場で生成するコマンドです。既定では`~/.ssh/id_ed25519`(秘密鍵)と`~/.ssh/id_ed25519.pub`(公開鍵)という2つのファイルが作られます。1台の`control`から複数のサーバーへ、それぞれ異なる鍵ペアを使い分けたい場合は、`ssh-keygen -f ~/.ssh/id_ed25519_node2`のようにファイル名を指定することで、複数の鍵ペアを作成できます。
+
+`ssh-copy-id`が実際に行っているのは、指定した公開鍵ファイル(オプションを省略した場合は、`~/.ssh/id_rsa.pub`や`~/.ssh/id_ed25519.pub`など、既定の場所にある公開鍵)の中身を、SSH経由で接続先の`~/.ssh/authorized_keys`ファイルへ1行追記するだけの処理です。**「すべての公開鍵をまとめてコピーする」わけではなく、あくまで1つの公開鍵ファイルをコピーします。** 複数の鍵ペアを使い分けている場合は、`ssh-copy-id -i ~/.ssh/id_ed25519_node2.pub <ユーザー名>@<IP>`のように、コピーしたい公開鍵ファイルを`-i`オプションで明示的に指定します。
+
+</details>
 
 ```bash
 ssh <node1のユーザー名>@<node1のIP>
@@ -85,6 +96,8 @@ node1 ansible_host=<node1のIP> ansible_user=<node1のユーザー名>
 
 `[webservers]`は**グループ名**で、複数のサーバーをまとめて指定する際の単位になります。今回は1台だけですが、2台目の管理対象VMを追加した場合は、同じ`[webservers]`グループの中に1行追加するだけで台数を増やせます。
 
+**`ansible_host`や`ansible_user`はAnsibleが解釈する予約されたキー名であり、1文字でも綴りが違うと(`ansible_user`を`ansilbe_user`のように打ち間違えるなど)、Ansibleはそのキーを単なる無視されるカスタム変数として扱ってしまい、接続時にユーザー名が指定されなかったものとして、意図しないユーザー(SSH接続時の実行ユーザーなど)で接続を試みます。** 次のStepで接続エラーが出た場合は、まずこのファイルの綴りを1文字ずつ確認してください。
+
 ## Step 3: 疎通確認をする(pingモジュール)
 
 Inventoryに書いたサーバーへ、Ansibleが実際に接続できるかを確認します。
@@ -106,6 +119,13 @@ node1 | SUCCESS => {
 ```
 
 `"ping": "pong"`が返ってくれば、`control`から`node1`へのSSH接続とPython実行環境が正常に機能していることが確認できました。
+
+<details>
+<summary>補足: なぜAnsibleの実行に「Pythonの実行」が関わってくるのか</summary>
+
+Ansibleは、`control`から`node1`へSSH接続するだけでなく、**接続先(`node1`)の上でPythonスクリプトを実際に実行する**ことで動作しています。たとえば`ansible.builtin.apt`モジュールでNginxをインストールするとき、Ansibleは裏側で、そのモジュールに対応するPythonスクリプトを`node1`へ一時的に転送し、`node1`上のPythonインタプリタでそのスクリプトを実行し、実行結果(すでにインストール済みか、新規にインストールしたか、など)をJSON形式で`control`へ返す、という処理を行っています。**この「node1上でPythonを実行する」という部分があるからこそ、Ansibleは単なるSSHコマンドの自動実行(シェルスクリプトの延長)ではなく、「現在の状態を判定してから、必要な差分だけを適用する」という冪等性のある動作を実現できています。** 先ほどの実行結果に表示されていた`"discovered_interpreter_python": "/usr/bin/python3"`は、Ansibleが`node1`上のPythonインタプリタの場所を自動検出した結果です。Ubuntu Serverには標準でPython 3がプリインストールされているため、今回は追加のセットアップなしにこの仕組みが機能しています。
+
+</details>
 
 ## Step 4: Playbookを作成する
 
@@ -145,6 +165,12 @@ nano site.yml
 
 ```bash
 ansible-playbook -i inventory.ini site.yml
+```
+
+**`node1`側のユーザーが、パスワードなしで`sudo`を実行できる設定(`NOPASSWD`)になっていない場合、このコマンドは`"msg": "Missing sudo password"`というエラーで失敗します。** これは、Playbook内の`become: true`によって管理者権限への昇格(`sudo`)が必要になったものの、そのためのパスワードをAnsibleに渡せていないことが原因です。この場合は、次のように`-K`(`--ask-become-pass`)オプションを付けて実行し、インタラクティブに`sudo`用のパスワードを入力してください。
+
+```bash
+ansible-playbook -i inventory.ini site.yml -K
 ```
 
 実行すると、各Taskについて`changed`または`ok`の結果が、色分けされた形で表示されます。初回実行では、Nginxがまだインストールされていない状態から変更を加えるため、3つのTaskすべてが`changed`(黄色)として報告されるはずです。最後に表示される`PLAY RECAP`で、`ok=4 changed=3`のような要約を確認できます。
@@ -203,8 +229,10 @@ ansible-playbook -i inventory.ini site.yml
 ## よくあるエラーとその対処
 
 - **`UNREACHABLE`と表示され、SSH接続に失敗する**: Step 1のSSH鍵認証が正しく設定されているかを確認してください。また、`node1`へ初めてSSH接続する際に表示される「ホスト鍵を保存するか」という確認プロンプトが、Ansible実行時には表示されず失敗の原因になることがあります。事前に一度手動で`ssh <node1のユーザー名>@<node1のIP>`を実行し、ホスト鍵を承認しておいてください。
+- **`Permission denied (publickey,password)`と表示され、意図しないユーザー(`root`など)で接続しようとしている**: Step 2のInventoryファイルで、`ansible_user`のキー名を打ち間違えていないか(`ansilbe_user`のような綴りミスなど)を1文字ずつ確認してください。キー名が正しく認識されないと、Ansibleはユーザー名の指定がなかったものとして扱い、Ansible実行時のデフォルトユーザー(多くの場合`root`)で接続を試みるため、公開鍵が登録されていない相手として拒否されます。
 - **Pythonの実行に関するエラーが出る**: `node1`にPython 3がインストールされているかを確認してください(Ubuntu Serverには通常標準で入っています)。特殊な環境でPythonのパスが異なる場合は、Inventoryに`ansible_python_interpreter=/usr/bin/python3`を追記します。
 - **`apt`モジュールのTaskが権限エラーで失敗する**: Playbook側の`become: true`が設定されているか、また`node1`側のユーザーがパスワードなしで`sudo`を実行できる設定(`NOPASSWD`)になっているか、`sudo -l`で確認してください。
+- **`"msg": "Missing sudo password"`と表示され、Playbookの実行が失敗する**: `node1`側のユーザーが`NOPASSWD`設定になっていないことが原因です。Step 5で扱った通り、`ansible-playbook`コマンドに`-K`(`--ask-become-pass`)オプションを付けて実行し、インタラクティブに`sudo`用のパスワードを入力してください。毎回パスワード入力するのが煩わしい場合は、`node1`側で`visudo`を使い、該当ユーザーに`NOPASSWD`設定を追加する方法もあります。
 
 ## まとめ
 

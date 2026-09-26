@@ -44,6 +44,8 @@ ansible --version
 
 Alongside the version information, this also displays the Python version and the location of the config file. **This tells you that Ansible itself is software implemented in Python, and that `control` needs its own Python runtime as well.**
 
+For what `sudo apt update` actually does under the hood (and why you run it before `install` every time, rather than out of habit), plus when to reach for `sudo su -` instead of prefixing every command with `sudo`, see [Prep Manual: Initial Setup for an Ubuntu Server](/en/articles/ubuntu-server-setup-guide).
+
 ## Step 1: Setting Up SSH Key Authentication
 
 Ansible uses an SSH connection by default, but manually typing a password every run isn't efficient and doesn't suit automation, so set up **SSH key authentication.**
@@ -60,6 +62,15 @@ ssh-copy-id <node1's username>@<node1's IP>
 ```
 
 `ssh-copy-id` automatically appends the public key generated on `control` to `node1`'s `~/.ssh/authorized_keys`. After running it, confirm you can **log in without entering a password**, with the following command.
+
+<details>
+<summary>Note: what ssh-keygen and ssh-copy-id are actually doing</summary>
+
+`ssh-keygen` generates a mathematically paired **private and public key** on the spot. By default it creates two files: `~/.ssh/id_ed25519` (the private key) and `~/.ssh/id_ed25519.pub` (the public key). If you want to use a different key pair for each of several servers from one `control` machine, you can create multiple key pairs by specifying a filename, e.g. `ssh-keygen -f ~/.ssh/id_ed25519_node2`.
+
+What `ssh-copy-id` actually does is take the contents of the public key file you specify (or, if you omit any option, whichever public key sits at the default location, such as `~/.ssh/id_rsa.pub` or `~/.ssh/id_ed25519.pub`) and append it as a single line to the destination's `~/.ssh/authorized_keys` file over SSH. **It does not copy "all your public keys at once" — it copies exactly one public key file.** If you're managing multiple key pairs, specify which public key to copy explicitly with the `-i` option, e.g. `ssh-copy-id -i ~/.ssh/id_ed25519_node2.pub <username>@<IP>`.
+
+</details>
 
 ```bash
 ssh <node1's username>@<node1's IP>
@@ -85,6 +96,8 @@ node1 ansible_host=<node1's IP> ansible_user=<node1's username>
 
 `[webservers]` is a **group name** — a unit for referring to multiple servers together. Here it's just one server, but if you add a second managed VM, you can scale up simply by adding one more line inside the same `[webservers]` group.
 
+**`ansible_host` and `ansible_user` are reserved key names Ansible parses specially — misspell either by even one character (say, typing `ansilbe_user` instead of `ansible_user`), and Ansible silently treats it as an ordinary, ignored custom variable instead.** With no username actually specified, Ansible falls back to connecting as whatever unintended user it defaults to (typically the local user running Ansible, or `root`). If you hit a connection error in the next step, check this file's spelling character by character first.
+
 ## Step 3: Checking Connectivity (the ping Module)
 
 Confirm that Ansible can actually connect to the server listed in the Inventory.
@@ -106,6 +119,13 @@ node1 | SUCCESS => {
 ```
 
 Getting back `"ping": "pong"` confirms that the SSH connection from `control` to `node1`, and its Python runtime, are working correctly.
+
+<details>
+<summary>Note: why "running Python" is part of how Ansible works at all</summary>
+
+Ansible doesn't just SSH into `node1` — it actually **executes a Python script on `node1` itself.** When the `ansible.builtin.apt` module installs Nginx, for example, Ansible transfers the Python script backing that module to `node1` behind the scenes, runs it there with `node1`'s own Python interpreter, and gets back the result (whether it was already installed, or newly installed) as JSON. **This step — actually running Python on `node1` — is exactly what lets Ansible be more than an automated SSH command runner (a glorified shell script): it's what makes idempotency possible, by checking the current state before deciding what, if anything, needs to change.** The `"discovered_interpreter_python": "/usr/bin/python3"` you saw in the result above is Ansible reporting where it auto-detected the Python interpreter on `node1`. Since Ubuntu Server ships with Python 3 preinstalled, this all worked here with no extra setup.
+
+</details>
 
 ## Step 4: Writing a Playbook
 
@@ -145,6 +165,12 @@ nano site.yml
 
 ```bash
 ansible-playbook -i inventory.ini site.yml
+```
+
+**If the user on `node1` isn't configured for passwordless `sudo` (`NOPASSWD`), this command fails with `"msg": "Missing sudo password"`.** That's because `become: true` in the Playbook requires elevating to administrator privileges (`sudo`), but Ansible has no password to supply for it. In that case, run it with the `-K` (`--ask-become-pass`) option instead, which interactively prompts you for the `sudo` password.
+
+```bash
+ansible-playbook -i inventory.ini site.yml -K
 ```
 
 Running it displays a color-coded `changed` or `ok` result for each Task. Since Nginx isn't installed yet on the first run, all three Tasks should be reported as `changed` (yellow). The `PLAY RECAP` shown at the end gives you a summary like `ok=4 changed=3`.
@@ -203,8 +229,10 @@ You'll notice you're already getting used to the idea of **writing cleanup as a 
 ## Common Errors and How to Handle Them
 
 - **`UNREACHABLE` appears, and the SSH connection fails**: Check that the SSH key authentication from Step 1 is set up correctly. Also, the confirmation prompt asking whether to save the host key — normally shown the first time you SSH into `node1` — doesn't appear when Ansible runs it, which can be a cause of failure. Manually run `ssh <node1's username>@<node1's IP>` once beforehand to accept the host key.
+- **`Permission denied (publickey,password)` appears, and it's trying to connect as an unexpected user (such as `root`)**: In Step 2's Inventory file, check the spelling of `ansible_user` character by character (for a typo like `ansilbe_user`). If the key name isn't recognized correctly, Ansible treats it as if no username were specified, falls back to whatever default user it connects as (often `root`), and gets rejected because that user's public key was never registered.
 - **An error related to Python execution appears**: Check that Python 3 is installed on `node1` (Ubuntu Server usually has it by default). If Python's path is different in an unusual environment, add `ansible_python_interpreter=/usr/bin/python3` to the Inventory.
 - **A Task using the `apt` module fails with a permission error**: Check whether `become: true` is set on the Playbook side, and whether the user on `node1` is configured to run `sudo` without a password (`NOPASSWD`), using `sudo -l`.
+- **`"msg": "Missing sudo password"` appears, and the Playbook run fails**: This happens because the user on `node1` isn't configured for `NOPASSWD`. As covered in Step 5, run `ansible-playbook` with the `-K` (`--ask-become-pass`) option and enter the `sudo` password interactively. If typing the password every time is too tedious, you can also add a `NOPASSWD` entry for that user on `node1` with `visudo`.
 
 ## Summary
 

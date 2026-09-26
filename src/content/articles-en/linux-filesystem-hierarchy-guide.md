@@ -62,6 +62,13 @@ Sorting the FHS's top-level directories that come up frequently in practice alon
 The act of opening `/etc/ipsec.conf` in `nano` and hand-editing it lines up exactly with `/etc`'s definition: host-specific, mutably edited by a human.
 
 <details>
+<summary>What does `~` (tilde) actually point to?</summary>
+
+The `~` you see constantly in the shell is a **special symbol meaning "the home directory of whichever user is currently logged in."** At runtime, the shell automatically expands it based on the logged-in username — to `/home/<username>` for a regular user, or `/root` for the `root` user. For example, `cd ~` as the regular user `ubuntu` takes you to `/home/ubuntu`, while `cd ~` after switching to `root` with `sudo su -` takes you to `/root`. Follow it with another username, as in `~user`, and it points at that specific user's home directory instead (`~ubuntu` always resolves to `/home/ubuntu`). A path like `~/.ssh/authorized_keys`, which comes up constantly in this site's hands-on labs, means "the `.ssh` directory under my own home directory" — keep in mind that the actual resolved path changes depending on which user runs the command.
+
+</details>
+
+<details>
 <summary>Why is `/bin` a symlink to `/usr/bin` on so many distributions (the usrmerge)?</summary>
 
 Historically, the minimal set of commands usable in the very early boot stages — before `/usr` was even mounted — lived in `/bin`/`/sbin`, with most other commands in `/usr/bin`/`/usr/sbin`. But as the initial RAM disk (initramfs) mechanism matured on modern Linux, keeping this split served little practical purpose, so many distributions (Debian/Ubuntu, etc.) adopted the "usrmerge," turning `/bin`/`/sbin` into plain symlinks to `/usr/bin`/`/usr/sbin` to simplify the layout.

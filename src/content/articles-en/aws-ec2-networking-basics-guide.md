@@ -56,6 +56,13 @@ graph LR
 
 </details>
 
+<details>
+<summary>Why PuTTY used to be the default, and OpenSSH is now standard</summary>
+
+For a long time, Windows had no SSH client built in the way Linux and macOS did. PuTTY, which appeared in the late 1990s, filled that gap and became the de facto standard for Windows users, largely because it was free, lightweight, and had a GUI. That changed relatively recently: **starting with Windows 10 (the 2018 Fall Creators Update) and Windows Server 2019, an OpenSSH client became available as a built-in optional feature.** That means you no longer need to install separate software — you can run `ssh` directly from Command Prompt or PowerShell. If you're choosing a new SSH setup today, OpenSSH is the more sensible choice: no extra installation, and the same command set you already know from Linux and macOS. PuTTY still gets chosen for existing workflows that already depend on it, or when someone prefers its GUI-based fine-grained connection settings (character encoding, key bindings, and so on).
+
+</details>
+
 ### AWS Subnet Reserved IP Addresses
 
 When you create a subnet within a VPC, AWS **reserves a total of five IP addresses out of that subnet's CIDR range — the first four and the last one — making them unavailable for assignment to EC2 instances or anything else.**
@@ -71,6 +78,13 @@ For example, if you create a subnet with `10.0.0.0/24`, these are reserved as fo
 | `10.0.0.255` (last) | The network broadcast address (AWS doesn't support broadcast, but it's conventionally reserved anyway) |
 
 **The first three (router, DNS, future reservation) are addresses the VPC service itself needs internally to manage and provide its functionality.** In particular, `10.0.0.2` functions as the address of the Amazon-provided DNS server (Route 53 Resolver) that instances within the VPC query for name resolution. **The first address, `10.0.0.0`, and the last, `10.0.0.255`, serve no actual function on AWS, but are still treated as reserved IPs, in line with traditional IP networking convention (a network address and broadcast address).**
+
+<details>
+<summary>Is "the VPC router" one per VPC, or one per subnet?</summary>
+
+**The reserved `X.X.X.1` exists once per subnet.** There isn't a single physical or virtual router device shared by every subnet across the whole VPC. Unlike on-premises networking hardware, AWS's VPC routing is a fully virtualized, distributed mechanism: the AWS infrastructure itself transparently handles routing (without exposing any actual router device) based on the **route table** configuration attached to each individual subnet. It's more accurate to think of it as "each subnet gets its own `X.X.X.1` as that subnet's dedicated gateway address." The fact that you can configure and inspect each subnet's route table independently reflects exactly this design: routing is handled independently, per subnet.
+
+</details>
 
 ```mermaid
 graph LR

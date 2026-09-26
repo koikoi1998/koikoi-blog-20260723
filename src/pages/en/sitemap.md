@@ -269,6 +269,7 @@ This blog is written for a wide range of readers — from people with no experie
 <li><a href="/en/articles/linux-filesystem-hierarchy-guide">/etc and the Linux Directory Layout (FHS) from the "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/linux-config-activation-guide">How a Config File Actually "Takes Effect," from the "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/linux-journalctl-guide">Investigating Error Logs with journalctl from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/curl-guide">Understanding curl's Inner Workings from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/software-framework-guide">What Is a Framework? Understanding the Difference From a Library, Runtime, and SDK from a "Top 1%" Perspective</a></li>
 <li data-subseries="audio"><a href="/en/articles/linux-audio-review-guide">[Listen] The Linux/OS Fundamentals Series, Fully Recapped</a></li>
 <li><a href="/en/articles/nic-driver-internals-guide">Understanding NIC Drivers and Linux Kernel Networking from a "Top 1%" Perspective</a></li>
@@ -286,13 +287,13 @@ This blog is written for a wide range of readers — from people with no experie
 <div class="persona-panel persona-panel-8">
 <div class="persona-panel-head">
 <h3>🏆 For those gathering information toward the industry's highest skill tier</h3>
-<p>The complete-conquest route: read all 117 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
+<p>The complete-conquest route: read all 118 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP7's 116 articles (see those tabs above)</li>
+<li>STEP1 through STEP7's 117 articles (see those tabs above)</li>
 <li><a href="/en/articles/voip-ss7-guide">Understanding VoIP and SS7 — and the Real Path Your Traffic Takes — from a "Top 1%" Perspective</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>That's all 117 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
+<div class="persona-bonus">🎉 <strong>That's all 118 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
 </div>
 </div>
 </div>
@@ -373,7 +374,7 @@ A series that digs into what actually implements the virtualization behind Proxm
 
 ### Linux / OS Fundamentals Series
 
-A series that takes execution-environment-level terms that keep showing up in the VPN protocol articles and the L2TP/IPsec hands-on lab, and gives each one a standalone deep dive. **Recommended order**: ① linux-daemon-guide → ② software-library-guide → ③ linux-user-kernel-space-guide → ④ linux-file-permissions-guide → ⑤ linux-sysctl-guide → ⑥ linux-iptables-guide → ⑦ linux-filesystem-hierarchy-guide → ⑧ linux-config-activation-guide → ⑨ linux-journalctl-guide → ⑩ software-framework-guide (added before the audio review) → ⑪ linux-audio-review-guide (for reviewing by ear after finishing all 10).
+A series that takes execution-environment-level terms that keep showing up in the VPN protocol articles and the L2TP/IPsec hands-on lab, and gives each one a standalone deep dive. **Recommended order**: ① linux-daemon-guide → ② software-library-guide → ③ linux-user-kernel-space-guide → ④ linux-file-permissions-guide → ⑤ linux-sysctl-guide → ⑥ linux-iptables-guide → ⑦ linux-filesystem-hierarchy-guide → ⑧ linux-config-activation-guide → ⑨ linux-journalctl-guide → ⑩ curl-guide → ⑪ software-framework-guide (⑩⑪ were added before the audio review) → ⑫ linux-audio-review-guide (for reviewing by ear after finishing all 11).
 
 - [What Is a Daemon? Understanding Linux Background Processes from a "Top 1%" Perspective](/en/articles/linux-daemon-guide) — How a daemon differs from a regular process, why protocol-handling software like an IKE daemon is implemented as one, and how systemd starts, monitors, and logs it (spun off from the daemon discussion in the modern-VPN-protocols comparison article; also readable standalone).
 - [What Is a Library? Understanding Static and Dynamic Linking from a "Top 1%" Perspective](/en/articles/software-library-guide) — The difference between static linking and dynamic linking (shared libraries), how symbol resolution works, and why ABI compatibility becomes a real failure mode (spun off from the OpenSSL discussion in the modern-VPN-protocols comparison article; also readable standalone).
@@ -384,8 +385,9 @@ A series that takes execution-environment-level terms that keep showing up in th
 - [/etc and the Linux Directory Layout (FHS) from the "Top 1%" Perspective](/en/articles/linux-filesystem-hierarchy-guide) — The two axes running through the FHS design philosophy ("host-specific vs. shareable," "static vs. mutable"), the convention of per-service subdirectories, and how the meaning shifts in the container era (spun off from editing `/etc/ipsec.conf` in the L2TP/IPsec hands-on lab; also readable standalone).
 - [How a Config File Actually "Takes Effect," from the "Top 1%" Perspective](/en/articles/linux-config-activation-guide) — How a daemon parses a config file into an internal data structure, the difference between reload and restart, and how a userspace daemon's config differs from a kernel parameter in how it actually applies (spun off from editing `ipsec.conf`/`xl2tpd.conf` in the L2TP/IPsec hands-on lab; also readable standalone).
 - [Investigating Error Logs with journalctl from a "Top 1%" Perspective](/en/articles/linux-journalctl-guide) — What the systemd journal actually is, how to use -u/-t/-f/-n/--no-pager/-xe, and how to decide which order to check logs in when several processes (like IKE → L2TP → PPP) work together (spun off from debugging errors in the L2TP/IPsec hands-on lab; also readable standalone).
+- [Understanding curl's Inner Workings from a "Top 1%" Perspective](/en/articles/curl-guide) — Maps main options like -X, -H, -d, and -i onto the exact part of an HTTP request each corresponds to, and covers how curl isn't a standalone tool but a wrapper around a library called libcurl (also readable standalone).
 - [What Is a Framework? Understanding the Difference From a Library, Runtime, and SDK from a "Top 1%" Perspective](/en/articles/software-framework-guide) — Sorts out five easily-confused terms — "framework," "library," "runtime," "SDK," and "API" — along a single axis: Inversion of Control (IoC) (spun off from [iis-fundamentals-guide](/en/articles/iis-fundamentals-guide)'s "ASP.NET is a framework" line; also readable standalone).
-- [[Listen] The Linux/OS Fundamentals Series, Fully Recapped](/en/articles/linux-audio-review-guide) — An audio-learning article for anyone who's finished all 10 articles, reviewable by ear alone. No tables, diagrams, or bullet points — just spoken-style prose meant to be read aloud by a browser's text-to-speech feature (assumes you've finished the series).
+- [[Listen] The Linux/OS Fundamentals Series, Fully Recapped](/en/articles/linux-audio-review-guide) — An audio-learning article for anyone who's finished all 11 articles, reviewable by ear alone. No tables, diagrams, or bullet points — just spoken-style prose meant to be read aloud by a browser's text-to-speech feature (assumes you've finished the series).
 
 ### Telephony & Access Network Series
 

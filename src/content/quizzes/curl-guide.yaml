@@ -1,0 +1,45 @@
+questions:
+  - question: "オプションを何も付けずに`curl http://example.com/`を実行すると、既定でどのHTTPメソッドが使われるか。"
+    choices:
+      - "POST"
+      - "GET"
+      - "PUT"
+      - "DELETE"
+    answerIndex: 1
+    explanation: "オプションを付けずに実行すると、既定でGETメソッドによるHTTPリクエストが送信されます。"
+
+  - question: "`curl`のレスポンスで、HTTPステータスコードやレスポンスヘッダーも表示したい場合に使うオプションはどれか。"
+    choices:
+      - "-d"
+      - "-X"
+      - "-i"
+      - "-H"
+    answerIndex: 2
+    explanation: "-i(--include)オプションを付けると、ボディの前にステータスコードとレスポンスヘッダー一式が表示されます。"
+
+  - question: "`-d`オプションでデータを送信した場合、`-X POST`を省略するとどうなるか。"
+    choices:
+      - "エラーになり、リクエストが送信されない"
+      - "GETメソッドとして送信される"
+      - "-dを指定すると自動的にPOSTメソッドが選ばれる"
+      - "-Xを省略した場合、メソッドは不定になる"
+    answerIndex: 2
+    explanation: "-dオプションでデータを指定すると、-X POSTを省略しても自動的にPOSTメソッドが選ばれます。"
+
+  - question: "`curl`コマンドは、実際には何のラッパーであるか。"
+    choices:
+      - "wgetというツールのラッパー"
+      - "libcurlというライブラリのラッパー"
+      - "OpenSSLというライブラリのラッパー"
+      - "独立したツールであり、何のラッパーでもない"
+    answerIndex: 1
+    explanation: "curlコマンドは、libcurlというC言語のライブラリを、コマンドラインから呼び出すための薄いラッパーです。libcurl自体は多くのプログラミング言語からも直接呼び出されています。"
+
+  - question: "`curl`について正しい説明はどれか。"
+    choices:
+      - "curlはHTTP専用のコマンドであり、他のプロトコルは扱えない"
+      - "curlはHTTP/HTTPSを含む、多数のプロトコルに対応した汎用ツールである"
+      - "curlはブラウザの機能をすべて再現できるツールである"
+      - "curlはサーバー証明書の検証を常に無効化する"
+    answerIndex: 1
+    explanation: "curlという名前は「Client for URLs」に由来し、HTTP/HTTPSだけでなくFTP、SMTP、LDAPなど、さまざまなプロトコルのURLを扱える汎用的な通信ツールです。"

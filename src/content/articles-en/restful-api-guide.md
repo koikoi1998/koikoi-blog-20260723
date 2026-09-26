@@ -120,6 +120,8 @@ sequenceDiagram
 
 Because of this sequence, even if an attacker inserts themselves into the communication path along the way, certificate verification lets any "impersonation" be detected, and even if the communication data is intercepted, it appears as nothing but ciphertext to a third party who doesn't know the symmetric key — providing double protection.
 
+If you want to go deeper into public-key cryptography itself — why having just two keys is enough to make this secure — plus certificates, CSRs, and how certificate chain verification actually works, [Understanding PKI and Digital Certificates from a "Top 1%" Perspective](/en/articles/pki-guide) covers it systematically.
+
 </details>
 
 ### What Is REST? (Design Philosophy)
@@ -212,6 +214,8 @@ sequenceDiagram
 ```
 
 The key point is that **the client (the third-party app) never receives the user's password**. The user logs in and grants consent directly on the authorization server's own screen, and all the client ever receives is a voucher (the authorization code) meaning "you may act on behalf of this user, within this scope of permission" and the **access token** subsequently issued in exchange for it. Access tokens are typically given a short validity period, and it's a common design to pair them with a long-lived **refresh token**, so they can be renewed without requiring the user to log in again after they expire.
+
+**Let's walk through a concrete example.** Say a calendar app (the client) has a "Connect with Google Calendar" button. Clicking it redirects you not to the calendar app's own server, but to **Google's login screen (the authorization server)**. The Google account password you type there is received only by Google's servers — the calendar app never sees it at all. After logging in, you're shown a consent screen: "Allow this app to read and write your Google Calendar events?" Click "Allow," and the calendar app receives an access token via the authorization code flow described above. From then on, the calendar app uses that access token to reach Google Calendar's API (the resource server), but **the Google account password itself is never handed to the calendar app at any point** — that's the real-world payoff. Even if the calendar app's database were ever breached, all that would leak is a scoped, limited access token — never the actual Google account password.
 
 </details>
 

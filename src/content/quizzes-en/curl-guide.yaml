@@ -1,0 +1,45 @@
+questions:
+  - question: "Running `curl http://example.com/` with no options, which HTTP method is used by default?"
+    choices:
+      - "POST"
+      - "GET"
+      - "PUT"
+      - "DELETE"
+    answerIndex: 1
+    explanation: "Run with no options, curl sends an HTTP request using the GET method by default."
+
+  - question: "Which option shows the HTTP status code and response headers in curl's output, in addition to the body?"
+    choices:
+      - "-d"
+      - "-X"
+      - "-i"
+      - "-H"
+    answerIndex: 2
+    explanation: "The -i (--include) option prints the status code and the full set of response headers before the body."
+
+  - question: "If you send data with the -d option, what happens when you omit -X POST?"
+    choices:
+      - "It results in an error, and no request is sent"
+      - "It gets sent as a GET request"
+      - "Specifying -d automatically selects the POST method"
+      - "The method becomes undefined if -X is omitted"
+    answerIndex: 2
+    explanation: "Specifying data with -d automatically selects the POST method, even if -X POST is omitted."
+
+  - question: "What is the curl command actually a wrapper for?"
+    choices:
+      - "A wrapper for a tool called wget"
+      - "A wrapper for a library called libcurl"
+      - "A wrapper for a library called OpenSSL"
+      - "It's a standalone tool and not a wrapper for anything"
+    answerIndex: 1
+    explanation: "The curl command is a thin wrapper for calling libcurl, a C library, from the command line. libcurl itself is also called directly from many programming languages."
+
+  - question: "Which of the following statements about curl is correct?"
+    choices:
+      - "curl is an HTTP-only command and can't handle any other protocol"
+      - "curl is a general-purpose tool supporting many protocols, including HTTP/HTTPS"
+      - "curl can reproduce every feature of a web browser"
+      - "curl always disables server certificate verification"
+    answerIndex: 1
+    explanation: "The name curl comes from \"Client for URLs\" — it's a general-purpose communication tool that handles URLs for FTP, SMTP, LDAP, and many other protocols, not just HTTP/HTTPS."
