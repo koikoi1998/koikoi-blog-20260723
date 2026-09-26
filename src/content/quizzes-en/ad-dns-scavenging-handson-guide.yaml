@@ -1,0 +1,45 @@
+questions:
+  - question: "What happens to an A record registered via dynamic updates after that device is retired?"
+    choices:
+      - "It's automatically deleted right away"
+      - "It lingers indefinitely, unless scavenging is configured"
+      - "It's automatically deleted after 24 hours"
+      - "The DNS server automatically converts it into a static record"
+    answerIndex: 1
+    explanation: "Since there's no mechanism for the PC itself to tell the DNS server to delete the record, it lingers indefinitely unless scavenging is configured."
+
+  - question: "What kind of record becomes eligible for scavenging, across both the no-refresh interval and the refresh interval?"
+    choices:
+      - "A record whose timestamp was updated even once"
+      - "A record whose timestamp was never updated across both periods"
+      - "Every statically registered record"
+      - "Every record that's 24 hours old since creation"
+    answerIndex: 1
+    explanation: "Only a record whose timestamp was never updated through both periods combined (14 days total, by default) becomes eligible for deletion."
+
+  - question: "Why doesn't actual deletion happen just from enabling \"aging\" on a zone?"
+    choices:
+      - "The zone-side setting alone isn't enough — a scavenging schedule must also be separately configured on the server"
+      - "Enabling aging requires a server restart"
+      - "The zone-side setting is display-only and doesn't actually change anything"
+      - "Server license activation is required"
+    answerIndex: 1
+    explanation: "The zone-side \"enable aging\" and the server-side \"scavenging schedule\" are two separate on/off switches, and both need to be configured."
+
+  - question: "Is a statically (manually) registered DNS record subject to scavenging?"
+    choices:
+      - "Yes, it can be deleted just like any other record"
+      - "No, by default, since it has no timestamp"
+      - "The concept of a static record doesn't exist"
+      - "Yes, but its grace period before deletion doubles"
+    answerIndex: 1
+    explanation: "A static record has no timestamp, so it's excluded from scavenging by default."
+
+  - question: "Why is scavenging disabled by default?"
+    choices:
+      - "Scavenging is still an experimental feature"
+      - "A misconfiguration risks accidentally deleting a record that's still actively in use"
+      - "Scavenging requires an additional license fee"
+      - "Scavenging is scheduled to be removed in Windows Server 2025"
+    answerIndex: 1
+    explanation: "Scavenging is disabled by default because a misconfiguration risks accidentally deleting a record that's still actively in use."

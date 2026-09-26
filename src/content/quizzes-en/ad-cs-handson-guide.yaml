@@ -1,0 +1,45 @@
+questions:
+  - question: "Which type of CA supports certificate autoenrollment (automatic issuance) in AD CS?"
+    choices:
+      - "Only a standalone CA"
+      - "Only an enterprise CA"
+      - "Both types support it equally"
+      - "Neither type supports it"
+    answerIndex: 1
+    explanation: "Autoenrollment is only possible with an enterprise CA integrated with AD DS, since certificate templates are stored in AD DS's configuration partition."
+
+  - question: "What happens if you only grant a certificate template's \"Enroll\" permission?"
+    choices:
+      - "It also automatically becomes eligible for autoenrollment"
+      - "It only allows a user to manually request a certificate — it doesn't become eligible for autoenrollment"
+      - "The certificate template itself becomes disabled"
+      - "GPO configuration becomes unnecessary"
+    answerIndex: 1
+    explanation: "\"Enroll\" is the permission for a user to manually request a certificate. A separate \"Autoenroll\" permission must be granted to make it eligible for GPO-driven autoenrollment."
+
+  - question: "Where is autoenrollment actually configured?"
+    choices:
+      - "Entirely within the Certificate Templates console alone"
+      - "Both granting permission on the certificate template and explicit GPO configuration are needed"
+      - "Simply editing the registry directly is enough"
+      - "Entirely within DNS server settings alone"
+    answerIndex: 1
+    explanation: "Autoenrollment requires both granting the \"Autoenroll\" permission on the certificate template and configuring the GPO's \"Certificate Services Client - Auto-Enrollment\" setting."
+
+  - question: "What's a typical scenario where a standalone CA is chosen?"
+    choices:
+      - "When prioritizing automatic distribution to internal domain-joined devices"
+      - "External-facing or high-security use cases where integration with AD DS is deliberately avoided"
+      - "When you definitely want to use GPO-based autoenrollment"
+      - "When you want to make heavy use of certificate templates"
+    answerIndex: 1
+    explanation: "A standalone CA, in exchange for not depending on AD DS, is built around individually approving each certificate issuance — chosen where integration with AD DS is deliberately avoided."
+
+  - question: "What is the technical reason an AD CS enterprise CA can support autoenrollment at all?"
+    choices:
+      - "Certificate templates are stored in AD DS's configuration partition, shared forest-wide"
+      - "An enterprise CA is always connected to the internet"
+      - "Its certificates are smaller in size than a standalone CA's"
+      - "An enterprise CA also doubles as a DNS server"
+    answerIndex: 1
+    explanation: "Because certificate template information itself is stored in AD DS's configuration partition, GPO-based autoenrollment — which works in tandem with AD DS — becomes possible."

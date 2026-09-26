@@ -1,0 +1,45 @@
+questions:
+  - question: "After the old DC is decommissioned, what happens to the domain functional level?"
+    choices:
+      - "It's automatically raised to the latest level"
+      - "It doesn't automatically get raised unless a command is explicitly run"
+      - "It's forcibly reset at the same time as decommissioning"
+      - "It's automatically calculated based on the old DC's OS version"
+    answerIndex: 1
+    explanation: "A functional level doesn't get raised automatically just because the old DC was decommissioned — an explicit command must be run."
+
+  - question: "Which statement about raising a functional level is correct?"
+    choices:
+      - "It's a reversible operation that can always be lowered back later"
+      - "It's an irreversible operation, and once raised, an older-OS DC can no longer be added"
+      - "Raising it has no effect on DC functionality whatsoever"
+      - "It can be performed without domain administrator rights"
+    answerIndex: 1
+    explanation: "Raising a functional level is irreversible. Once raised, a DC running an older OS version can no longer be added to that domain."
+
+  - question: "What prerequisite is required to raise the forest functional level?"
+    choices:
+      - "Only one domain in the forest needs to have reached the target level"
+      - "Every domain in the forest must have reached at least the same domain functional level"
+      - "There's no prerequisite at all — it can be raised freely at any time"
+      - "The number of DCs in the forest must be an even number"
+    answerIndex: 1
+    explanation: "Raising the forest functional level requires every domain in the forest to have already reached at least the same domain functional level you're raising to."
+
+  - question: "What is the fundamental reason raising a functional level is irreversible?"
+    choices:
+      - "Microsoft's licensing terms require it"
+      - "Once a new feature starts being used, an older-version DC simply lacks the ability to process it correctly"
+      - "The functional level's value is written directly into hardware"
+      - "Making it irreversible reduces licensing costs"
+    answerIndex: 1
+    explanation: "Once a new feature that a new functional level assumes starts being used, an older-version DC has no ability to process it correctly, so the path back down is closed off to protect backward compatibility."
+
+  - question: "In a multi-domain forest, how is the forest functional level effectively determined?"
+    choices:
+      - "It automatically matches whichever domain functional level is newest"
+      - "The lowest domain functional level currently present effectively acts as its ceiling"
+      - "Each domain's forest functional level is independent and has no effect on the others"
+      - "Only the forest root domain's functional level matters"
+    answerIndex: 1
+    explanation: "The forest functional level is, in effect, capped by the lowest domain functional level currently present in the forest."

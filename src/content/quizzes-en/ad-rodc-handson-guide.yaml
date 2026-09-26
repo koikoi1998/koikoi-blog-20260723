@@ -1,0 +1,45 @@
+questions:
+  - question: "By default, whose passwords does an RODC cache?"
+    choices:
+      - "Every user's password in the entire forest"
+      - "No user's password at all, by default"
+      - "Only users in the domain that RODC belongs to"
+      - "Only members of the Domain Admins group"
+    answerIndex: 1
+    explanation: "An RODC caches no user's password by default. Only users explicitly permitted by the Password Replication Policy get cached."
+
+  - question: "If an RODC is physically stolen, what's actually at risk?"
+    choices:
+      - "Every account's password in the entire forest"
+      - "Only the passwords of users that were cached on that RODC"
+      - "Only the DNS records that RODC was responsible for"
+      - "The blast radius can't be determined, so the entire forest must always be rebuilt"
+    answerIndex: 1
+    explanation: "The Password Replication Policy limits the blast radius of a stolen RODC to only the passwords of users that were cached there."
+
+  - question: "How does an RODC behave when it receives a write request against AD DS?"
+    choices:
+      - "It completely rejects every write request and returns an error"
+      - "It accepts the write request itself, but forwards the actual processing to a writable DC"
+      - "It accepts the write request and applies it directly to its local database"
+      - "It accepts the write request, then switches the entire forest to read-only"
+    answerIndex: 1
+    explanation: "An RODC accepts write requests (such as a password change) but forwards the actual processing to a writable DC — it never writes directly to its own database."
+
+  - question: "What's the scope of the permission granted by an RODC's Administrator Role Separation?"
+    choices:
+      - "Forest-wide, Domain-Admins-equivalent rights"
+      - "Local administrative rights, limited to that one specific RODC"
+      - "Full rights over AD DS's data itself"
+      - "Administrative rights over every other DC"
+    answerIndex: 1
+    explanation: "Administrator Role Separation grants rights limited to local administration of that one RODC (rebooting it, applying patches, and so on) — it doesn't include rights over AD DS's data."
+
+  - question: "What happens when a user not on the Password Replication Policy's allowed list tries to log in at the branch where the RODC is deployed?"
+    choices:
+      - "The login itself is rejected"
+      - "The login succeeds, but that user's password isn't cached on the RODC"
+      - "The login succeeds and the password gets cached automatically anyway"
+      - "The RODC automatically disables that user's account"
+    answerIndex: 1
+    explanation: "A login from a user not on the allowed list succeeds because the RODC forwards authentication to a writable DC, but that user's password is never cached on the RODC."
