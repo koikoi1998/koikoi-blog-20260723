@@ -1,0 +1,45 @@
+questions:
+  - question: "How does the Default Domain Policy's password policy apply within a domain?"
+    choices:
+      - "It can apply a different setting per OU"
+      - "It applies exactly once, to the entire domain, and can't be varied by OU like an ordinary GPO"
+      - "It can be configured individually per user"
+      - "A different setting is automatically assigned per group"
+    answerIndex: 1
+    explanation: "The Default Domain Policy's password-related settings don't follow ordinary GPO inheritance/precedence rules — they apply exactly once, to the entire domain."
+
+  - question: "What can a PSO (Fine-Grained Password Policy) be applied directly to?"
+    choices:
+      - "An OU (organizational unit)"
+      - "A user or a global security group"
+      - "A site"
+      - "An entire forest"
+    answerIndex: 1
+    explanation: "A PSO can only be applied to a user or a global security group. It cannot be linked directly to an OU."
+
+  - question: "If you want to manage PSOs by OU in practice, what technique is used?"
+    choices:
+      - "Link the PSO directly to the OU"
+      - "Create a dedicated 'shadow group' containing the OU's users, and apply the PSO to that group"
+      - "Create a separate domain for each OU"
+      - "Use a GPO instead of a PSO entirely"
+    answerIndex: 1
+    explanation: "Since a PSO can't be linked directly to an OU, a dedicated global group called a shadow group — containing the OU's users — is created, and the PSO is applied to that group instead."
+
+  - question: "If multiple PSOs can apply to the same user, which one ultimately takes effect?"
+    choices:
+      - "All the PSOs' settings are merged together"
+      - "The PSO with the strictest settings is automatically chosen"
+      - "Only the single PSO with the lowest Precedence number applies"
+      - "The most recently created PSO applies"
+    answerIndex: 2
+    explanation: "Even when multiple PSOs could apply, they are never merged — only the single PSO with the lowest Precedence number takes effect."
+
+  - question: "What is the correct relationship between a PSO's Precedence number and its priority?"
+    choices:
+      - "A higher number means higher priority"
+      - "A lower number means higher priority"
+      - "The number has no bearing on priority"
+      - "If the numbers are equal, both apply"
+    answerIndex: 1
+    explanation: "For a PSO's Precedence, a lower number means higher priority — a different rule from the intuition you'd bring from ordinary GPO link order."

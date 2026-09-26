@@ -213,6 +213,7 @@ graph TB
 <li data-subseries="handson"><a href="/articles/ad-recycle-bin-handson-guide">誤って削除したユーザー・OUを復元するAD ごみ箱(AD Recycle Bin)のハンズオン</a></li>
 <li><a href="/articles/ad-sysvol-dfsr-gpo-guide">SYSVOL・DFSR・グループポリシーの仕組みを『上位1%』の視点で理解する</a></li>
 <li data-subseries="handson"><a href="/articles/ad-gpo-handson-guide">GPOを実際に作成・リンクし、優先順位とトラブルシューティングを体験するハンズオン</a></li>
+<li data-subseries="handson"><a href="/articles/ad-fgpp-handson-guide">きめ細かいパスワードポリシー(PSO)で部署ごとに異なるパスワード要件を適用するハンズオン</a></li>
 <li><a href="/articles/ad-family-overview-guide">AD DS・AD CS・AD FS・AD LDS・AD RMSの違いを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/ad-ldap-protocol-guide">LDAPプロトコルの仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/ad-netbios-dns-history-guide">NetBIOS名とDNSホスト名、なぜ2つの名前が共存しているのかを『上位1%』の視点で理解する</a></li>
@@ -230,7 +231,7 @@ graph TB
 <p>STEP5までの範囲に、Webサーバー(IIS)・ファイル共有(SMB)・ストレージ・クラウド・メール基盤・コンテナ基盤/構成管理の自動化といった、社内インフラの周辺領域まで押さえます。ここまでで「現場で自信をつけたい」ルートは完了です。特定の分野だけをまとめて読みたい場合は、トップページの絞り込み機能をご利用ください。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP5の74記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP5の75記事(上のタブから確認できます)</li>
 <li><a href="/articles/iis-fundamentals-guide">IISとASP.NETの仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/iis-ftp-guide">IISとFTPの関係を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/smb-file-sharing-guide">Windows ServerのSMB共有を『上位1%』の視点で理解する</a></li>
@@ -259,7 +260,7 @@ graph TB
 <p>STEP6までの実務知識に、面接や設計レビューで差がつく低レイヤーの実装知識を積み増すルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP6の93記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP6の94記事(上のタブから確認できます)</li>
 <li><a href="/articles/proxmox-internals-guide">Proxmox VEとは何か——KVM/QEMUによる仮想化の仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/linux-daemon-guide">デーモン(daemon)とは何か——Linuxのバックグラウンドプロセスを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/software-library-guide">ライブラリ(library)とは何か——静的リンク・動的リンクの仕組みを『上位1%』の視点で理解する</a></li>
@@ -287,13 +288,13 @@ graph TB
 <div class="persona-panel persona-panel-8">
 <div class="persona-panel-head">
 <h3>🏆 業界最高峰のスキル水準を目指して情報収集している方へ</h3>
-<p>全116記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
+<p>全117記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP7の115記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP7の116記事(上のタブから確認できます)</li>
 <li><a href="/articles/voip-ss7-guide">VoIPとSS7、そして実際の通信経路を『上位1%』の視点で理解する</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>これで全116記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
+<div class="persona-bonus">🎉 <strong>これで全117記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
 </div>
 </div>
 </div>
@@ -409,7 +410,7 @@ VPNプロトコルの記事やL2TP/IPsecハンズオンなどで繰り返し登�
 
 ### Active Directoryシリーズ
 
-AD移行・ドメインコントローラー(DC)の構築・運用の実務で必ず直面する疑問を深掘りするシリーズです。DNSの基礎([dns-guide](/articles/dns-guide))を読了している前提で書いています。**読む順番の目安**: ① ad-dc-fundamentals-guide → ② ad-computername-netdom-guide → ③ ad-windows-login-guide → ④ ad-dns-guide → ⑤ dns-zones-records-guide → ⑥ fsmo-guide → ⑦ dc-health-check-guide → ⑧ ad-sites-guide → ⑨ dcdiag-guide → ⑩ ad-migration-cleanup-guide → ⑪ ad-spn-guide → ⑫ ad-netlogon-guide → ⑬ ad-kerberos-guide → ⑭ ad-multidomain-handson-guide → ⑮ ad-migration-handson-guide → ⑯ ad-forest-trust-handson-guide → ⑰ ad-recycle-bin-handson-guide → ⑱ ad-sysvol-dfsr-gpo-guide → ⑲ ad-gpo-handson-guide → ⑳ ad-family-overview-guide → ㉑ ad-ldap-protocol-guide → ㉒ ad-netbios-dns-history-guide → ㉓ ad-schema-extension-guide → ㉔ ad-dotnet-powershell-guide → ㉕ ad-isp-guide(⑯以降はいずれも音声復習の前に追加された、さらなる深掘り記事) → ㉖ ad-audio-review-guide(全25記事を読み終えた後の音声復習用)。
+AD移行・ドメインコントローラー(DC)の構築・運用の実務で必ず直面する疑問を深掘りするシリーズです。DNSの基礎([dns-guide](/articles/dns-guide))を読了している前提で書いています。**読む順番の目安**: ① ad-dc-fundamentals-guide → ② ad-computername-netdom-guide → ③ ad-windows-login-guide → ④ ad-dns-guide → ⑤ dns-zones-records-guide → ⑥ fsmo-guide → ⑦ dc-health-check-guide → ⑧ ad-sites-guide → ⑨ dcdiag-guide → ⑩ ad-migration-cleanup-guide → ⑪ ad-spn-guide → ⑫ ad-netlogon-guide → ⑬ ad-kerberos-guide → ⑭ ad-multidomain-handson-guide → ⑮ ad-migration-handson-guide → ⑯ ad-forest-trust-handson-guide → ⑰ ad-recycle-bin-handson-guide → ⑱ ad-sysvol-dfsr-gpo-guide → ⑲ ad-gpo-handson-guide → ⑳ ad-fgpp-handson-guide → ㉑ ad-family-overview-guide → ㉒ ad-ldap-protocol-guide → ㉓ ad-netbios-dns-history-guide → ㉔ ad-schema-extension-guide → ㉕ ad-dotnet-powershell-guide → ㉖ ad-isp-guide(⑯以降はいずれも音声復習の前に追加された、さらなる深掘り記事) → ㉗ ad-audio-review-guide(全26記事を読み終えた後の音声復習用)。
 
 - [ADとDC、ドメインとフォレストの違いを『上位1%』の視点で理解する](/articles/ad-dc-fundamentals-guide) — AD DS(仕組み)とDC(サーバー)の役割分担、ドメイン・ツリー・フォレストという3階層の境界線、機能レベルが何を制約しているか、AD DSの役割追加時に何が一緒にインストールされるのかまでの深掘り。
 - [sysdm.cplとnetdom computernameは何が違うのか——「プライマリホスト名」とAD移行のホスト名重複事故を『上位1%』の視点で理解する](/articles/ad-computername-netdom-guide) — sysdm.cplとnetdomのコンピューター名変更の仕組みの違い、なぜ/add→/makeprimaryという2段階が必要なのか、そして実際のAD移行で発生したホスト名重複による認証障害の事例診断までの深掘り(①の発展編、単体でも読めます)。
@@ -430,13 +431,14 @@ AD移行・ドメインコントローラー(DC)の構築・運用の実務で�
 - [誤って削除したユーザー・OUを復元するAD ごみ箱のハンズオン](/articles/ad-recycle-bin-handson-guide) — AD ごみ箱(AD Recycle Bin)を有効化し、あえてOUごとユーザーを削除したうえで、グループメンバーシップなどの属性を保ったまま復元するハンズオン。有効化が不可逆であること、tombstoneを使った旧来の復元方法との違いまでを扱う(単体でも読めます)。
 - [SYSVOL・DFSR・グループポリシーの仕組みを『上位1%』の視点で理解する](/articles/ad-sysvol-dfsr-gpo-guide) — GPOが実はAD DS上のGPCとSYSVOL上のGPTという2つの独立した部分から成ること、DFSRとその前身FRSの違い、GPOバージョン不一致という実務トラブルの診断までの深掘り(単体でも読めます)。
 - [GPOを実際に作成・リンクし、優先順位とトラブルシューティングを体験するハンズオン](/articles/ad-gpo-handson-guide) — 複数のGPOを作成・リンクし、リンク順・Enforced・継承のブロックが適用結果に与える影響とセキュリティフィルタリングを検証したうえで、「GPOが効かない」トラブルをgpresultで切り分けるハンズオン(単体でも読めます)。
+- [きめ細かいパスワードポリシー(PSO)で部署ごとに異なるパスワード要件を適用するハンズオン](/articles/ad-fgpp-handson-guide) — 1ドメイン1パスワードポリシーというAD DSの制約を、PSOで乗り越えるハンズオン。PSOがOUに直接リンクできないという落とし穴、複数PSOが競合したときのPrecedenceによる優先順位解決までを扱う(単体でも読めます)。
 - [AD DS・AD CS・AD FS・AD LDS・AD RMSの違いを『上位1%』の視点で理解する](/articles/ad-family-overview-guide) — 同じ「Active Directory」を名乗る5つの役割がなぜ中身も用途もまったく異なるのか、証明書発行(AD CS)・組織を越えたSSO(AD FS)・ドメイン非依存の軽量ディレクトリ(AD LDS)・ファイル自体の権利管理(AD RMS)それぞれの役割、AD FS/AD RMSの現在の製品戦略上の位置づけまでの深掘り(単体でも読めます)。
 - [LDAPプロトコルの仕組みを『上位1%』の視点で理解する](/articles/ad-ldap-protocol-guide) — AD DSが問い合わせを受け付けているLDAPそのものの中身、DN(識別名)・属性・検索フィルターというデータモデル、Bind・Search・Add/Modify/Deleteという操作の種類、ポート389/636/3268/3269の使い分け、LDAP署名・LDAPチャネルバインディングという実務上重要なセキュリティ設定までの深掘り(単体でも読めます)。
 - [NetBIOS名とDNSホスト名、なぜ2つの名前が共存しているのかを『上位1%』の視点で理解する](/articles/ad-netbios-dns-history-guide) — コンピューター名がなぜ15文字までしか使えないのか、NetBIOSが生まれた歴史的経緯、WINSが果たしていた役割、そしてWindows Server 2025がWINSを含む最後のLTSCリリースとなり以降完全に削除される、という実務上重要な現在地までの深掘り(単体でも読めます)。
 - [ADのスキーマ拡張を『上位1%』の視点で理解する](/articles/ad-schema-extension-guide) — ExchangeやSkype for Businessの導入時に必ず発生するスキーマ拡張が何をしているのか、なぜフォレスト全体に影響するのか、なぜ一度拡張すると実質的に後戻りできないのか、Schema Adminsグループの扱い、実務での安全な進め方までの深掘り(単体でも読めます)。
 - [.NET FrameworkとPowerShellの関係を『上位1%』の視点で理解する](/articles/ad-dotnet-powershell-guide) — .NET Framework(ランタイム+クラスライブラリ)とPowerShellの関係、テキストではなくオブジェクトをやり取りするパイプラインという設計思想、Windows PowerShell 5.1とPowerShell 7の違い、AD DSの役割追加時に.NET Framework 4.8が一緒に有効化される理由までの深掘り(単体でも読めます)。
 - [ISP(インターネットサービスプロバイダー)とは何かを『上位1%』の視点で理解する](/articles/ad-isp-guide) — ISPが実際に提供しているサービスの中身、Tier1・Tier2・Tier3という業界の階層構造とピアリング・トランジットの違い、そしてなぜ日本では地元のケーブルテレビ局がISPを兼業していることが多いのかを歴史的経緯とともに理解する深掘り(単体でも読めます)。
-- [【音声で聴く】Active Directoryシリーズ総復習](/articles/ad-audio-review-guide) — 全25記事を読み終えた人向けの、耳だけで復習できる音声学習記事。表・図・箇条書きを使わず、ブラウザの読み上げ機能で聞き流せるように語りかける文章だけで構成(シリーズを読了している前提)。
+- [【音声で聴く】Active Directoryシリーズ総復習](/articles/ad-audio-review-guide) — 全26記事を読み終えた人向けの、耳だけで復習できる音声学習記事。表・図・箇条書きを使わず、ブラウザの読み上げ機能で聞き流せるように語りかける文章だけで構成(シリーズを読了している前提)。
 
 ### Windowsクライアント運用シリーズ
 
