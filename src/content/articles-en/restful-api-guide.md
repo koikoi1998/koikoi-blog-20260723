@@ -230,6 +230,22 @@ With everything covered so far in mind, here's how iDRAC's Redfish API can be in
 
 You should now have a concrete picture of how "remotely operating a server" — something that seems like a special case at first glance — is actually built on the exact same HTTP and JSON framework as viewing a website.
 
+<details>
+<summary>Is an "API server" set up separately from the server providing the actual service?</summary>
+
+Up to this point, the term "API server" has been used without much explanation, but in real-world practice, it's common to deliberately separate "the server whose purpose is providing the service itself (displaying a website, processing an order, and so on)" from "the server whose only job is being the API's front door." The component that handles this separation is called an **API gateway**.
+
+An API gateway's roles include the following:
+
+- Accepting requests from clients and forwarding them to the appropriate backend service (microservice) based on the URL or header content
+- Handling authentication and authorization centrally at the gateway, rather than in each individual service
+- Centralizing rate limiting and request logging
+- Aggregating requests to multiple backend services and returning them to the client as a single combined response (a pattern called BFF: Backend For Frontend)
+
+**This role closely resembles the reverse proxy covered in [Understanding When to Use a Proxy vs. a Firewall from a "Top 1%" Perspective](/en/articles/proxy-firewall-guide).** In fact, many API gateways are internally built on top of reverse proxy functionality. The difference is that a reverse proxy sticks to the generic role of "where to forward an HTTP request," while an API gateway is a more specialized reverse proxy that additionally handles API-specific concerns: API key validation, request/response format transformation, and aggregating multiple services. Whether to separate out an "API server" depends on the system's scale and whether there's one backend service or several. With just one backend service, that service can safely expose its API directly, but once a system is split into multiple microservices, centralizing through an API gateway becomes nearly mandatory in real-world practice.
+
+</details>
+
 ## The View from the Top 1% (What Experts See)
 
 ### Why Idempotency Matters in Practice

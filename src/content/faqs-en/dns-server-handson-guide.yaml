@@ -1,0 +1,18 @@
+items:
+  - question: "Running sudo journalctl -u bind9 | grep transfer shows nothing, even though dig itself returns the correct result"
+    answer: "If dig's result is correct, the zone transfer itself succeeded. The most common reasons journalctl shows nothing are: (1) grep's search term doesn't match the log's actual capitalization, (2) a minimal Ubuntu server doesn't have rsyslog installed, so named's own syslog-based output isn't fully forwarded into journalctl, or (3) the AppArmor profile bundled with Ubuntu's named package restricts some access to logging destinations. First try a case-insensitive search with sudo journalctl -u bind9 | grep -i transfer, and if that still shows nothing, check the full log with sudo journalctl -u bind9 --no-pager | tail -50. Either way, if dig returns the correct record, the zone transfer is working, and there's nothing to worry about."
+
+  - question: "Running named-checkzone gives an 'unexpected end of line' or 'unexpected end of input' error"
+    answer: "In most cases, this is caused by an unintended character (like ]) sneaking into the very first line of the zone file. Copying and pasting terminal output often drags along a fragment of the prompt or a misaligned selection. Run cat -A <zone file name> to see the file's content including normally-invisible control characters, and check the first line for a stray character. The <file>:<line number>: portion of the error message points to exactly where the error occurred, so checking that spot first is the fastest path to a fix."
+
+  - question: "I correctly bumped the serial number, but it propagated to the slave almost immediately instead of waiting for the 3600-second refresh interval. Why?"
+    answer: "This is normal behavior. BIND has a mechanism called NOTIFY enabled by default, which actively informs slaves whenever the master updates, triggering a zone transfer almost immediately without waiting for the refresh interval. The refresh interval is only a fallback polling interval used if NOTIFY fails to arrive for some reason."
+    link:
+      url: "/en/articles/dns-server-handson-guide"
+      label: "See how NOTIFY works in the article's 'View From the Top 1%' section"
+
+  - question: "I've heard there's also a command called nslookup, besides dig. What's the difference?"
+    answer: "Both dig and nslookup query DNS, but dig displays more detailed information (like TTL and flags) and is better suited for use in scripts. nslookup has an interactive mode and comes standard on Windows too, giving it the advantage of being a command you can use consistently on both Windows and Linux. The difference in how to use each is covered in detail in a separate article."
+    link:
+      url: "/en/articles/dig-nslookup-guide"
+      label: "See how to use and choose between dig and nslookup"

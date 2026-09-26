@@ -1,0 +1,45 @@
+questions:
+  - question: "What does `git add` actually do?"
+    choices:
+      - "Directly sends the change content to the remote repository"
+      - "Moves a change from the working directory into the staging area"
+      - "Completely deletes the commit history"
+      - "Encrypts the file"
+    answerIndex: 1
+    explanation: "git add moves a change from the working directory into the staging area. At this point, nothing has been recorded into history yet."
+
+  - question: "What's the correct description of what a commit actually is?"
+    choices:
+      - "It only records the change (the diff) from the previous one"
+      - "It records the state of every file (a snapshot) at that point in time, reusing references for unchanged files"
+      - "It duplicates the entire repository on every commit"
+      - "A commit doesn't store any data at all"
+    answerIndex: 1
+    explanation: "A commit records a snapshot of every file at that point in time, while reusing references to files that haven't changed."
+
+  - question: "What does git push actually send to the remote repository?"
+    choices:
+      - "The latest content of the files themselves"
+      - "The set of commit history that doesn't yet exist on the remote side"
+      - "Only the staging area's content"
+      - "A full backup of the entire working directory"
+    answerIndex: 1
+    explanation: "git push sends the commit history that doesn't yet exist on the remote side, and file content is reconstructed as a result of walking that history."
+
+  - question: "What's the best reason add and commit are split into two separate steps?"
+    choices:
+      - "To speed up processing"
+      - "To let you choose just some of the changes across multiple edited files and record them as one meaningful, coherent commit"
+      - "To compress file size"
+      - "Git's spec just requires two steps for no particular reason"
+    answerIndex: 1
+    explanation: "add and commit are separate so that, even while editing multiple files, you can choose just some of them and record them as one meaningful, coherent unit (a commit)."
+
+  - question: "What's the correct role of .gitignore?"
+    choices:
+      - "Automatically encrypts the specified file"
+      - "Removes a file matching the specified pattern from Git's tracking, so it never gets staged even by something like git add ."
+      - "Automatically compresses commit history"
+      - "Prohibits pushing to the remote repository"
+    answerIndex: 1
+    explanation: "A file matching a pattern written in .gitignore never gets included in the staging area, even by a bulk-add command, removing it from Git's tracking."

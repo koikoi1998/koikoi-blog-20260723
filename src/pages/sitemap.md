@@ -290,6 +290,7 @@ graph TB
 <li data-subseries="handson"><a href="/articles/mail-server-handson-guide">PostfixとDovecotでメールサーバーを構築する『上位1%』のハンズオン</a></li>
 <li><a href="/articles/dns-server-fundamentals-guide">DNSサーバーの基礎を『上位1%』の視点で理解する——BINDのゾーンファイルとマスター/スレーブ構成</a></li>
 <li data-subseries="handson"><a href="/articles/dns-server-handson-guide">BINDでDNSサーバーを構築し、ゾーン転送を体験する『上位1%』のハンズオン</a></li>
+<li><a href="/articles/dig-nslookup-guide">digとnslookupの使い方・使い分けを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/openshift-guide">OpenShiftとは何かを『上位1%』の視点で理解する——Kubernetesとの関係</a></li>
 <li data-subseries="handson"><a href="/articles/openshift-handson-guide">OpenShift Localでコンテナアプリケーションを動かす『上位1%』のハンズオン</a></li>
 <li><a href="/articles/ansible-guide">Ansibleとは何かを『上位1%』の視点で理解する——構成管理とエージェントレスの仕組み</a></li>
@@ -313,7 +314,7 @@ graph TB
 <p>STEP6までの実務知識に、面接や設計レビューで差がつく低レイヤーの実装知識を積み増すルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP6の131記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP6の132記事(上のタブから確認できます)</li>
 <li><a href="/articles/proxmox-internals-guide">Proxmox VEとは何か——KVM/QEMUによる仮想化の仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/linux-daemon-guide">デーモン(daemon)とは何か——Linuxのバックグラウンドプロセスを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/software-library-guide">ライブラリ(library)とは何か——静的リンク・動的リンクの仕組みを『上位1%』の視点で理解する</a></li>
@@ -326,6 +327,9 @@ graph TB
 <li><a href="/articles/linux-journalctl-guide">journalctlでエラーログを調査する方法を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/curl-guide">curlコマンドの裏側の仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/software-framework-guide">フレームワークとは何か——ライブラリ・ランタイム・SDKとの違いを『上位1%』の視点で理解する</a></li>
+<li data-subseries="handson"><a href="/articles/linux-find-guide">findコマンドでファイル・ディレクトリを自力で探し当てるハンズオン</a></li>
+<li><a href="/articles/linux-heredoc-redirect-guide">cat > file << 'EOF'の仕組みを『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/git-basics-guide">Gitの仕組みを『上位1%』の視点で理解する</a></li>
 <li data-subseries="audio"><a href="/articles/linux-audio-review-guide">【音声で聴く】Linux/OS基礎シリーズ総復習</a></li>
 <li><a href="/articles/nic-driver-internals-guide">NICドライバとLinuxカーネルのネットワーク処理を『上位1%』の視点で理解する</a></li>
 <li data-subseries="audio"><a href="/articles/network-audio-review-guide">【音声で聴く】ネットワーク基礎シリーズ総復習</a></li>
@@ -342,13 +346,13 @@ graph TB
 <div class="persona-panel persona-panel-8">
 <div class="persona-panel-head">
 <h3>🏆 業界最高峰のスキル水準を目指して情報収集している方へ</h3>
-<p>全155記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
+<p>全159記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP7の154記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP7の158記事(上のタブから確認できます)</li>
 <li><a href="/articles/voip-ss7-guide">VoIPとSS7、そして実際の通信経路を『上位1%』の視点で理解する</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>これで全155記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
+<div class="persona-bonus">🎉 <strong>これで全159記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
 </div>
 </div>
 </div>
@@ -429,7 +433,7 @@ graph TB
 
 ### Linux/OS基礎シリーズ
 
-VPNプロトコルの記事やL2TP/IPsecハンズオンなどで繰り返し登場する、実行環境レベルの基礎用語を深掘りするシリーズです。**読む順番の目安**: ① linux-daemon-guide → ② software-library-guide → ③ linux-user-kernel-space-guide → ④ linux-file-permissions-guide → ⑤ linux-sysctl-guide → ⑥ linux-iptables-guide → ⑦ linux-filesystem-hierarchy-guide → ⑧ linux-config-activation-guide → ⑨ linux-journalctl-guide → ⑩ curl-guide → ⑪ software-framework-guide(⑩⑪は音声復習の前に追加された記事) → ⑫ linux-audio-review-guide(全11記事を読み終えた後の音声復習用)。
+VPNプロトコルの記事やL2TP/IPsecハンズオンなどで繰り返し登場する、実行環境レベルの基礎用語を深掘りするシリーズです。**読む順番の目安**: ① linux-daemon-guide → ② software-library-guide → ③ linux-user-kernel-space-guide → ④ linux-file-permissions-guide → ⑤ linux-sysctl-guide → ⑥ linux-iptables-guide → ⑦ linux-filesystem-hierarchy-guide → ⑧ linux-config-activation-guide → ⑨ linux-journalctl-guide → ⑩ curl-guide → ⑪ software-framework-guide → ⑫ linux-find-guide → ⑬ linux-heredoc-redirect-guide → ⑭ git-basics-guide → ⑮ linux-audio-review-guide(全14記事を読み終えた後の音声復習用)。
 
 - [デーモン(daemon)とは何か——Linuxのバックグラウンドプロセスを『上位1%』の視点で理解する](/articles/linux-daemon-guide) — 通常のプロセスとの違い、IKEデーモンなどプロトコル処理がデーモンとして実装される理由、systemdによる起動・監視・ログの仕組みまでの深掘り（現代的なVPNプロトコルとの比較の記事のデーモンの話から派生した発展編、単体でも読めます）。
 - [ライブラリ(library)とは何か——静的リンク・動的リンクの仕組みを『上位1%』の視点で理解する](/articles/software-library-guide) — 静的リンクと動的リンク(共有ライブラリ)の違い、シンボル解決の仕組み、ABI互換性が障害要因になる理由までの深掘り（現代的なVPNプロトコルとの比較の記事のOpenSSLの話から派生した発展編、単体でも読めます）。
@@ -442,7 +446,10 @@ VPNプロトコルの記事やL2TP/IPsecハンズオンなどで繰り返し登�
 - [journalctlでエラーログを調査する方法を『上位1%』の視点で理解する](/articles/linux-journalctl-guide) — systemdジャーナルの正体、-u/-t/-f/-n/--no-pager/-xeの使い分け、IKE→L2TP→PPPのように複数プロセスが連携する構成でどの順番でログを追うかの切り分け方までの深掘り（L2TP/IPsecハンズオンのエラー調査から派生した発展編、単体でも読めます）。
 - [curlコマンドの裏側の仕組みを『上位1%』の視点で理解する](/articles/curl-guide) — -X・-H・-d・-iといった主要オプションがHTTPリクエストのどの部分に対応するのかの整理と、curlが単体のツールではなくlibcurlというライブラリのラッパーであることの深掘り(単体でも読めます)。
 - [フレームワークとは何か——ライブラリ・ランタイム・SDKとの違いを『上位1%』の視点で理解する](/articles/software-framework-guide) — 「フレームワーク」「ライブラリ」「ランタイム」「SDK」「API」という紛らわしい5つの用語を、制御の反転(IoC)という1つの軸で整理する深掘り([iis-fundamentals-guide](/articles/iis-fundamentals-guide)の「ASP.NETはフレームワークである」という説明から派生、単体でも読めます)。
-- [【音声で聴く】Linux/OS基礎シリーズ総復習](/articles/linux-audio-review-guide) — 全11記事を読み終えた人向けの、耳だけで復習できる音声学習記事。表・図・箇条書きを使わず、ブラウザの読み上げ機能で聞き流せるように語りかける文章だけで構成(シリーズを読了している前提)。
+- [findコマンドでファイル・ディレクトリを自力で探し当てるハンズオン](/articles/linux-find-guide) — 手順書に頼らず、名前・種類・更新日時で絞り込んでファイルを探し当てるハンズオン。ディレクトリの命名慣習から当たりを付ける力、locate・treeとの使い分けまでを扱う(単体でも読めます)。
+- [cat > file << 'EOF'の仕組みを理解する](/articles/linux-heredoc-redirect-guide) — ハンズオン記事で頻出するこの書き方の中身を、リダイレクト(>・>>・<)とヒアドキュメント(<<)に分解して理解する深掘り(単体でも読めます)。
+- [Gitの仕組みを理解する——なぜコミットという単位でバージョンを管理するのか](/articles/git-basics-guide) — 作業ディレクトリ・ステージングエリア・リポジトリの関係、コミットが差分ではなくスナップショットである実像、push/pullの仕組みまでの深掘り(単体でも読めます)。
+- [【音声で聴く】Linux/OS基礎シリーズ総復習](/articles/linux-audio-review-guide) — 全14記事を読み終えた人向けの、耳だけで復習できる音声学習記事。表・図・箇条書きを使わず、ブラウザの読み上げ機能で聞き流せるように語りかける文章だけで構成(シリーズを読了している前提)。
 
 ### 電話網・アクセス回線シリーズ
 
@@ -454,7 +461,7 @@ VPNプロトコルの記事やL2TP/IPsecハンズオンなどで繰り返し登�
 
 ### Web / API シリーズ
 
-- [RESTful APIとは何か？HTTP・JSONの基礎から実務設計まで『上位1%』の視点で理解する](/articles/restful-api-guide) — HTTP・REST・JSON・認証・べき等性・ページネーションの深掘り。
+- [RESTful APIとは何か？HTTP・JSONの基礎から実務設計まで『上位1%』の視点で理解する](/articles/restful-api-guide) — HTTP・REST・JSON・認証・冪等性・ページネーションの深掘り。APIゲートウェイとリバースプロキシの関係にも触れる(単体でも読めます)。
 - [決済APIの裏側の仕組みを『上位1%』の視点で理解する](/articles/payment-api-guide) — Stripeを題材に、PaymentIntentという多段階のライフサイクル、3Dセキュア(SCA)対応、決済完了をWebhookで検知する仕組みとその署名検証、カード番号を自社サーバーに触れさせないPCI DSS対応までの深掘り(単体でも読めます)。
 
 ### セキュリティ基礎シリーズ
@@ -602,10 +609,11 @@ EC2・VPCなど、AWSを使ううえで必ず直面する基礎的な疑問を�
 
 ### DNSサーバー基礎シリーズ
 
-DNSの名前解決の仕組み([dns-guide](/articles/dns-guide))を「利用する側」の視点で理解した後、実際にDNSサーバーを構築・運用する側の視点を深掘りするシリーズです。**読む順番の目安**: ① dns-server-fundamentals-guide → ② dns-server-handson-guide。
+DNSの名前解決の仕組み([dns-guide](/articles/dns-guide))を「利用する側」の視点で理解した後、実際にDNSサーバーを構築・運用する側の視点を深掘りするシリーズです。**読む順番の目安**: ① dns-server-fundamentals-guide → ② dns-server-handson-guide → ③ dig-nslookup-guide。
 
 - [DNSサーバーの基礎を『上位1%』の視点で理解する——BINDのゾーンファイルとマスター/スレーブ構成](/articles/dns-server-fundamentals-guide) — BINDの`named.conf`とゾーンファイルという2層構造、SOAレコードの各フィールド、マスター/スレーブ構成におけるゾーン転送(AXFR/IXFR)の仕組み、権威サーバーとキャッシュサーバーを分離すべき理由までの深掘り([dns-guide](/articles/dns-guide)の発展編、単体でも読めます)。
 - [BINDでDNSサーバーを構築し、ゾーン転送を体験する『上位1%』のハンズオン](/articles/dns-server-handson-guide) — マスター/スレーブ構成を実際に構築し、シリアル番号を上げ忘れるとゾーン転送が発生しないことを自分の目で確認したうえで、正しい手順で反映させるまでを体験する実践編([dns-server-fundamentals-guide](/articles/dns-server-fundamentals-guide)の実践編)。
+- [digとnslookupの使い方・使い分けを理解する](/articles/dig-nslookup-guide) — 出力結果(ANSWER SECTIONなど)の読み方、`@`での問い合わせ先指定、そしてnslookupが「非推奨」と言われる技術的な理由までを扱う深掘り(単体でも読めます)。
 
 ### プロトコル基礎シリーズ
 

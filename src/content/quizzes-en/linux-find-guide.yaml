@@ -1,0 +1,45 @@
+questions:
+  - question: "Which find option narrows results down to files only (excluding directories)?"
+    choices:
+      - "-name"
+      - "-type f"
+      - "-mmin"
+      - "-exec"
+    answerIndex: 1
+    explanation: "-type f narrows it down to files only, and -type d narrows it down to directories only."
+
+  - question: "What condition does `find /etc/bind -mmin -30` express?"
+    choices:
+      - "Files modified within the last 30 days"
+      - "Files modified within the last 30 minutes"
+      - "At most 30 files"
+      - "Files 30MB or smaller"
+    answerIndex: 1
+    explanation: "-mmin -30 is the condition 'modified within the last 30 minutes.'"
+
+  - question: "What's the role of the `-exec` option?"
+    choices:
+      - "Saving the search result to a file"
+      - "Running a specified command on each file that's found"
+      - "Speeding up the search"
+      - "Automatically ignoring permission errors"
+    answerIndex: 1
+    explanation: "-exec lets you run a specified command on the spot against each file found. {} is the placeholder for the found file's path."
+
+  - question: "What's the correct difference between find and locate?"
+    choices:
+      - "find is always faster"
+      - "locate searches a pre-built index, making it fast, but it can miss a file created just minutes ago"
+      - "locate can only be used on Windows"
+      - "find and locate always return identical results"
+    answerIndex: 1
+    explanation: "locate is fast because it searches an index (database), but since that index only updates periodically, it can miss a very recently created file."
+
+  - question: "What's the real-world value of understanding directory naming conventions (FHS)?"
+    choices:
+      - "It speeds up the find command's execution"
+      - "It lets you make a good guess about what's likely there before you even search with find"
+      - "It eliminates Permission denied errors"
+      - "It automatically refreshes locate's index"
+    answerIndex: 1
+    explanation: "Understanding FHS conventions lets you make a good guess, before running find, about 'it's probably around here.'"

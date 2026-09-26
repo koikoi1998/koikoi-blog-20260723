@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the correct difference between `>` and `>>`?"
+    choices:
+      - "They mean exactly the same thing — use whichever is easier to type"
+      - "`>` overwrites existing content, while `>>` appends to the end"
+      - "`>` appends, while `>>` overwrites"
+      - "`>>` can only be used to create a directory"
+    answerIndex: 1
+    explanation: "`>` overwrites existing content, while `>>` appends to the end while leaving existing content intact."
+
+  - question: "What's the correct description of the `cat > file << 'EOF'` construct?"
+    choices:
+      - "A command that only displays a file's content on screen"
+      - "A construct that writes the multiple lines of text passed via a here document into a file, via redirection"
+      - "A construct for deleting a file"
+      - "An always-erroring, invalid construct"
+    answerIndex: 1
+    explanation: "The here document (<<) feeds multiple lines of text as input to cat, and the redirection (>) writes that output to a file."
+
+  - question: "What's correct about a here document's terminating marker?"
+    choices:
+      - "It must always be the string EOF"
+      - "EOF is purely a convention — any string that doesn't appear in the body text can be used"
+      - "The terminating marker can be omitted"
+      - "The terminating marker must be a number"
+    answerIndex: 1
+    explanation: "The string EOF carries no special meaning of its own — it's just conventional. Any unique string that doesn't appear in the body text can be used."
+
+  - question: "What's the effect of wrapping it in single quotes, like `<< 'EOF'`?"
+    choices:
+      - "Variable expansion happens as usual"
+      - "Variable expansion doesn't happen at all — text like $name is output literally"
+      - "The command runs faster"
+      - "The file's permissions are automatically changed"
+    answerIndex: 1
+    explanation: "Wrapping the terminating marker in single quotes disables variable expansion inside the here document, letting you output a string containing $ literally."
+
+  - question: "What's the best reason hands-on articles use a here document instead of nano?"
+    choices:
+      - "A here document looks simpler"
+      - "Since the file's content is embedded in the command itself, running it reproduces the same content identically for anyone, and it can be automated"
+      - "nano is often not installed on Linux"
+      - "A here document always runs faster"
+    answerIndex: 1
+    explanation: "Because a here document embeds the file's content as a literal string inside the command, running it reproduces the exact same content for anyone, identically, and it's well suited to automation."

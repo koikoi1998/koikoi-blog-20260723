@@ -288,6 +288,7 @@ This blog is written for a wide range of readers — from people with no experie
 <li data-subseries="handson"><a href="/en/articles/mail-server-handson-guide">A "Top 1%" Hands-On Lab: Building a Mail Server with Postfix and Dovecot</a></li>
 <li><a href="/en/articles/dns-server-fundamentals-guide">Understanding DNS Server Fundamentals from a "Top 1%" Perspective — BIND's Zone Files and Master/Slave Configuration</a></li>
 <li data-subseries="handson"><a href="/en/articles/dns-server-handson-guide">A "Top 1%" Hands-On Lab: Building a DNS Server With BIND and Experiencing a Zone Transfer</a></li>
+<li><a href="/en/articles/dig-nslookup-guide">Understanding How to Use dig and nslookup From a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/openshift-guide">Understanding What OpenShift Actually Is From a "Top 1%" Perspective — Its Relationship to Kubernetes</a></li>
 <li data-subseries="handson"><a href="/en/articles/openshift-handson-guide">A "Top 1%" Hands-On Lab: Running a Container Application on OpenShift Local</a></li>
 <li><a href="/en/articles/ansible-guide">Understanding What Ansible Actually Is From a "Top 1%" Perspective — Configuration Management and the Agentless Model</a></li>
@@ -311,7 +312,7 @@ This blog is written for a wide range of readers — from people with no experie
 <p>Adds the low-level implementation knowledge that sets you apart in interviews and design reviews, on top of everything through STEP6.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP6's 131 articles (see those tabs above)</li>
+<li>STEP1 through STEP6's 132 articles (see those tabs above)</li>
 <li><a href="/en/articles/proxmox-internals-guide">What Is Proxmox VE? Understanding KVM/QEMU Virtualization from the "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/linux-daemon-guide">What Is a Daemon? Understanding Linux Background Processes from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/software-library-guide">What Is a Library? Understanding Static and Dynamic Linking from a "Top 1%" Perspective</a></li>
@@ -324,6 +325,9 @@ This blog is written for a wide range of readers — from people with no experie
 <li><a href="/en/articles/linux-journalctl-guide">Investigating Error Logs with journalctl from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/curl-guide">Understanding curl's Inner Workings from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/software-framework-guide">What Is a Framework? Understanding the Difference From a Library, Runtime, and SDK from a "Top 1%" Perspective</a></li>
+<li data-subseries="handson"><a href="/en/articles/linux-find-guide">The Top 1% Hands-On for Tracking Down a File or Directory Yourself With find</a></li>
+<li><a href="/en/articles/linux-heredoc-redirect-guide">Understanding How cat > file << 'EOF' Works</a></li>
+<li><a href="/en/articles/git-basics-guide">Understanding How Git Works</a></li>
 <li data-subseries="audio"><a href="/en/articles/linux-audio-review-guide">[Listen] The Linux/OS Fundamentals Series, Fully Recapped</a></li>
 <li><a href="/en/articles/nic-driver-internals-guide">Understanding NIC Drivers and Linux Kernel Networking from a "Top 1%" Perspective</a></li>
 <li data-subseries="audio"><a href="/en/articles/network-audio-review-guide">[Listen] The Networking Fundamentals Series, Fully Recapped</a></li>
@@ -340,13 +344,13 @@ This blog is written for a wide range of readers — from people with no experie
 <div class="persona-panel persona-panel-8">
 <div class="persona-panel-head">
 <h3>🏆 For those gathering information toward the industry's highest skill tier</h3>
-<p>The complete-conquest route: read all 155 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
+<p>The complete-conquest route: read all 159 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP7's 154 articles (see those tabs above)</li>
+<li>STEP1 through STEP7's 158 articles (see those tabs above)</li>
 <li><a href="/en/articles/voip-ss7-guide">Understanding VoIP and SS7 — and the Real Path Your Traffic Takes — from a "Top 1%" Perspective</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>That's all 155 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
+<div class="persona-bonus">🎉 <strong>That's all 159 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
 </div>
 </div>
 </div>
@@ -427,7 +431,7 @@ A series that digs into what actually implements the virtualization behind Proxm
 
 ### Linux / OS Fundamentals Series
 
-A series that takes execution-environment-level terms that keep showing up in the VPN protocol articles and the L2TP/IPsec hands-on lab, and gives each one a standalone deep dive. **Recommended order**: ① linux-daemon-guide → ② software-library-guide → ③ linux-user-kernel-space-guide → ④ linux-file-permissions-guide → ⑤ linux-sysctl-guide → ⑥ linux-iptables-guide → ⑦ linux-filesystem-hierarchy-guide → ⑧ linux-config-activation-guide → ⑨ linux-journalctl-guide → ⑩ curl-guide → ⑪ software-framework-guide (⑩⑪ were added before the audio review) → ⑫ linux-audio-review-guide (for reviewing by ear after finishing all 11).
+A series that takes execution-environment-level terms that keep showing up in the VPN protocol articles and the L2TP/IPsec hands-on lab, and gives each one a standalone deep dive. **Recommended order**: ① linux-daemon-guide → ② software-library-guide → ③ linux-user-kernel-space-guide → ④ linux-file-permissions-guide → ⑤ linux-sysctl-guide → ⑥ linux-iptables-guide → ⑦ linux-filesystem-hierarchy-guide → ⑧ linux-config-activation-guide → ⑨ linux-journalctl-guide → ⑩ curl-guide → ⑪ software-framework-guide → ⑫ linux-find-guide → ⑬ linux-heredoc-redirect-guide → ⑭ git-basics-guide → ⑮ linux-audio-review-guide (for reviewing by ear after finishing all 14).
 
 - [What Is a Daemon? Understanding Linux Background Processes from a "Top 1%" Perspective](/en/articles/linux-daemon-guide) — How a daemon differs from a regular process, why protocol-handling software like an IKE daemon is implemented as one, and how systemd starts, monitors, and logs it (spun off from the daemon discussion in the modern-VPN-protocols comparison article; also readable standalone).
 - [What Is a Library? Understanding Static and Dynamic Linking from a "Top 1%" Perspective](/en/articles/software-library-guide) — The difference between static linking and dynamic linking (shared libraries), how symbol resolution works, and why ABI compatibility becomes a real failure mode (spun off from the OpenSSL discussion in the modern-VPN-protocols comparison article; also readable standalone).
@@ -440,7 +444,10 @@ A series that takes execution-environment-level terms that keep showing up in th
 - [Investigating Error Logs with journalctl from a "Top 1%" Perspective](/en/articles/linux-journalctl-guide) — What the systemd journal actually is, how to use -u/-t/-f/-n/--no-pager/-xe, and how to decide which order to check logs in when several processes (like IKE → L2TP → PPP) work together (spun off from debugging errors in the L2TP/IPsec hands-on lab; also readable standalone).
 - [Understanding curl's Inner Workings from a "Top 1%" Perspective](/en/articles/curl-guide) — Maps main options like -X, -H, -d, and -i onto the exact part of an HTTP request each corresponds to, and covers how curl isn't a standalone tool but a wrapper around a library called libcurl (also readable standalone).
 - [What Is a Framework? Understanding the Difference From a Library, Runtime, and SDK from a "Top 1%" Perspective](/en/articles/software-framework-guide) — Sorts out five easily-confused terms — "framework," "library," "runtime," "SDK," and "API" — along a single axis: Inversion of Control (IoC) (spun off from [iis-fundamentals-guide](/en/articles/iis-fundamentals-guide)'s "ASP.NET is a framework" line; also readable standalone).
-- [[Listen] The Linux/OS Fundamentals Series, Fully Recapped](/en/articles/linux-audio-review-guide) — An audio-learning article for anyone who's finished all 11 articles, reviewable by ear alone. No tables, diagrams, or bullet points — just spoken-style prose meant to be read aloud by a browser's text-to-speech feature (assumes you've finished the series).
+- [The Top 1% Hands-On for Tracking Down a File or Directory Yourself With find](/en/articles/linux-find-guide) — A hands-on lab tracking down a file by narrowing on name, type, and modification time instead of relying on a written guide. Covers the instinct for a good guess from directory naming conventions, and choosing between locate and tree (also readable standalone).
+- [Understanding How cat > file << 'EOF' Works](/en/articles/linux-heredoc-redirect-guide) — A deep dive breaking down this construct, common in hands-on articles, into redirection (>, >>, <) and a here document (<<) (also readable standalone).
+- [Understanding How Git Works — Why Version Control Happens in Units Called Commits](/en/articles/git-basics-guide) — A deep dive into the relationship between the working directory, staging area, and repository, the reality that a commit is a snapshot rather than a diff, and how push/pull works (also readable standalone).
+- [[Listen] The Linux/OS Fundamentals Series, Fully Recapped](/en/articles/linux-audio-review-guide) — An audio-learning article for anyone who's finished all 14 articles, reviewable by ear alone. No tables, diagrams, or bullet points — just spoken-style prose meant to be read aloud by a browser's text-to-speech feature (assumes you've finished the series).
 
 ### Telephony & Access Network Series
 
@@ -452,7 +459,7 @@ A series that takes execution-environment-level terms that keep showing up in th
 
 ### Web / API Series
 
-- [What Is a RESTful API? Understanding from HTTP/JSON Basics to Practical Design from a "Top 1%" Perspective](/en/articles/restful-api-guide) — A deep dive into HTTP, REST, JSON, authentication, idempotency, and pagination.
+- [What Is a RESTful API? Understanding from HTTP/JSON Basics to Practical Design from a "Top 1%" Perspective](/en/articles/restful-api-guide) — A deep dive into HTTP, REST, JSON, authentication, idempotency, and pagination. Also touches on the relationship between an API gateway and a reverse proxy (also readable standalone).
 - [Understanding Payment APIs from a "Top 1%" Perspective](/en/articles/payment-api-guide) — Uses Stripe as a concrete example for a deep dive into the multi-step PaymentIntent lifecycle, 3D Secure (SCA) support, detecting payment completion with webhooks and their signature verification, and PCI DSS compliance that keeps card numbers off your own server (also readable standalone).
 
 ### Security Fundamentals Series
@@ -600,10 +607,11 @@ A series digging into the fundamentals of messaging infrastructure — what doma
 
 ### DNS Server Fundamentals Series
 
-After understanding DNS name resolution from the "using it" side ([dns-guide](/en/articles/dns-guide)), this series digs into the perspective of actually building and operating a DNS server. **Recommended order**: ① dns-server-fundamentals-guide → ② dns-server-handson-guide.
+After understanding DNS name resolution from the "using it" side ([dns-guide](/en/articles/dns-guide)), this series digs into the perspective of actually building and operating a DNS server. **Recommended order**: ① dns-server-fundamentals-guide → ② dns-server-handson-guide → ③ dig-nslookup-guide.
 
 - [Understanding DNS Server Fundamentals from a "Top 1%" Perspective — BIND's Zone Files and Master/Slave Configuration](/en/articles/dns-server-fundamentals-guide) — A deep dive into BIND's two-layer structure of `named.conf` and zone files, what each SOA record field controls, how zone transfers (AXFR/IXFR) work in a master/slave configuration, and why authoritative and caching servers should be kept separate (a follow-on from [dns-guide](/en/articles/dns-guide), also readable standalone).
 - [A "Top 1%" Hands-On Lab: Building a DNS Server With BIND and Experiencing a Zone Transfer](/en/articles/dns-server-handson-guide) — A practical companion where you actually build a master/slave configuration, confirm with your own eyes that forgetting to bump the serial number stops a zone transfer, and then experience fixing it the right way (a practical companion to [dns-server-fundamentals-guide](/en/articles/dns-server-fundamentals-guide)).
+- [Understanding How to Use dig and nslookup From a "Top 1%" Perspective](/en/articles/dig-nslookup-guide) — A deep dive into how to read the output (the ANSWER SECTION and more), specifying the target with `@`, and the technical reason nslookup is sometimes called "not recommended" (also readable standalone).
 
 ### Protocol Fundamentals Series
 

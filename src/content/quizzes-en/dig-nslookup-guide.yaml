@@ -1,0 +1,45 @@
+questions:
+  - question: "Which symbol does dig use to explicitly specify the target DNS server to query?"
+    choices:
+      - "# (hash)"
+      - "@ (at sign)"
+      - "$ (dollar sign)"
+      - "% (percent sign)"
+    answerIndex: 1
+    explanation: "dig uses @ to explicitly specify the target DNS server. Omit it, and it queries the OS's default DNS server."
+
+  - question: "Which section of dig's output displays the actual returned record content, like TTL and value?"
+    choices:
+      - "QUESTION SECTION"
+      - "ANSWER SECTION"
+      - "HEADER"
+      - "AUTHORITY SECTION"
+    answerIndex: 1
+    explanation: "The ANSWER SECTION displays the actual returned record's TTL, class, record type, and value."
+
+  - question: "What's the best description of nslookup's strength?"
+    choices:
+      - "It can always display more detailed information than dig"
+      - "It comes standard on Windows, usable with no extra installation"
+      - "It's best suited for embedding into scripts"
+      - "It only communicates over TCP, never UDP"
+    answerIndex: 1
+    explanation: "nslookup's biggest strength is that it comes standard on Windows, usable with no extra installation."
+
+  - question: "What's the effect of dig's `+short` option?"
+    choices:
+      - "It speeds up the query"
+      - "It displays only the record's value, concisely"
+      - "It automatically chooses the target DNS server"
+      - "It forcibly shortens the TTL value"
+    answerIndex: 1
+    explanation: "The +short option displays only the record's value concisely, which is convenient for capturing a value into a script."
+
+  - question: "What's the correct technical reason nslookup is sometimes called 'not recommended'?"
+    choices:
+      - "It doesn't work outside of Windows"
+      - "It internally uses a different query path from the OS's standard name-resolution library, occasionally diverging from the actual result"
+      - "The command itself has already been discontinued"
+      - "It's always slower than dig"
+    answerIndex: 1
+    explanation: "nslookup historically used its own internal query path, which can rarely diverge from an actual application's name-resolution result — that's the technical reason."

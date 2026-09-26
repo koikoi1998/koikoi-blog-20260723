@@ -1,0 +1,45 @@
+questions:
+  - question: "digコマンドで、問い合わせ先のDNSサーバーを明示的に指定するために使う記号はどれか。"
+    choices:
+      - "#(シャープ)"
+      - "@(アットマーク)"
+      - "$(ドル記号)"
+      - "%(パーセント記号)"
+    answerIndex: 1
+    explanation: "digでは@を使うことで、問い合わせ先のDNSサーバーを明示的に指定できます。省略するとOSの既定のDNSサーバーへ問い合わせます。"
+
+  - question: "digの出力結果のうち、実際に返ってきたレコードの内容(TTLや値など)が表示されるセクションはどれか。"
+    choices:
+      - "QUESTION SECTION"
+      - "ANSWER SECTION"
+      - "HEADER"
+      - "AUTHORITY SECTION"
+    answerIndex: 1
+    explanation: "ANSWER SECTIONに、実際に返ってきたレコードのTTL・クラス・レコードタイプ・値が表示されます。"
+
+  - question: "nslookupの強みとして最も適切なのはどれか。"
+    choices:
+      - "digよりも常に詳細な情報を表示できる"
+      - "Windows環境に標準搭載されており、追加インストールなしで使える"
+      - "スクリプトへの組み込みに最も適している"
+      - "UDPではなくTCPのみで通信する"
+    answerIndex: 1
+    explanation: "nslookupの最大の強みは、Windows環境に標準搭載されている点であり、追加のインストールなしで使えます。"
+
+  - question: "digの`+short`オプションの効果として正しいのはどれか。"
+    choices:
+      - "問い合わせを高速化する"
+      - "レコードの値だけを簡潔に表示する"
+      - "問い合わせ先のDNSサーバーを自動的に選択する"
+      - "TTLの値を強制的に短くする"
+    answerIndex: 1
+    explanation: "+shortオプションを付けると、レコードの値だけが簡潔に表示され、スクリプトでの値の取り込みに便利です。"
+
+  - question: "nslookupが「非推奨」と言われることがある技術的な理由として正しいのはどれか。"
+    choices:
+      - "Windows以外では動作しないため"
+      - "内部的にOSの標準的な名前解決ライブラリとは異なる問い合わせ経路を使っており、稀に結果が食い違うことがあるため"
+      - "コマンド自体がすでに廃止されているため"
+      - "digよりも常に遅いため"
+    answerIndex: 1
+    explanation: "nslookupは内部的に独自の問い合わせ経路を使っていた歴史的経緯があり、実際のアプリケーションの名前解決結果と稀に食い違うことがある、というのが技術的な理由です。"

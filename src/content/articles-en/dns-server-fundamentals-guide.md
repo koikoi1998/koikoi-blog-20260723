@@ -56,6 +56,18 @@ example.com.  IN  SOA  ns1.example.com. admin.example.com. (
                         86400 )     ; Negative cache TTL (seconds)
 ```
 
+Before the five numbers inside the parentheses, there are actually four more items on that line worth understanding too.
+
+| Item | Content |
+|---|---|
+| **`example.com.`** | The name of the zone (domain) this record belongs to. The trailing dot (`.`) marks it as an FQDN — DNS's notation for "this is a complete, absolute path" — not an abbreviation. |
+| **`IN`** | The record's "class." Nearly every record specifies `IN` (Internet), meaning it's a record used on the internet, and in real-world work you'll basically never see any other value here. |
+| **`SOA`** | The record's "type." It sits alongside types like A, NS, and MX, declaring "this is an SOA record." |
+| **`ns1.example.com.`** | The hostname of this zone's **primary name server** (the master server). |
+| **`admin.example.com.`** | The **administrator's email address** for this zone, written according to DNS's notation rules. Since the convention is to replace an email address's `@` with a dot (`.`), this actually means the administrator address `admin@example.com`. |
+
+Following these four items, the five numeric values (the timer-related settings) appear inside the parentheses.
+
 | Field | Meaning |
 |---|---|
 | **Serial number** | The "version number" of this zone data. Every time you change the zone data, you must increment this value. |
