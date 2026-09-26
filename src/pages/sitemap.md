@@ -243,6 +243,7 @@ graph TB
 <li><a href="/articles/fc-san-fundamentals-guide">FCケーブル接続とLANケーブル接続の違いを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/ntfs-mft-internals-guide">NTFSファイルシステムの仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/aws-ec2-networking-basics-guide">EC2のキーペア(.pem/.ppk)とサブネットの予約IPを『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/aws-ec2-webserver-handson-guide">AWSでEC2インスタンスを起動し、Webサーバーを公開する『上位1%』のハンズオン</a></li>
 <li><a href="/articles/m365-email-fundamentals-guide">M365へのメール移行を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/mail-server-fundamentals-guide">メールサーバーの基礎を『上位1%』の視点で理解する——MTA・MDA・MUAとPostfix・Dovecotの役割分担</a></li>
 <li data-subseries="handson"><a href="/articles/mail-server-handson-guide">PostfixとDovecotでメールサーバーを構築する『上位1%』のハンズオン</a></li>
@@ -261,7 +262,7 @@ graph TB
 <p>STEP6までの実務知識に、面接や設計レビューで差がつく低レイヤーの実装知識を積み増すルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP6の95記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP6の96記事(上のタブから確認できます)</li>
 <li><a href="/articles/proxmox-internals-guide">Proxmox VEとは何か——KVM/QEMUによる仮想化の仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/linux-daemon-guide">デーモン(daemon)とは何か——Linuxのバックグラウンドプロセスを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/software-library-guide">ライブラリ(library)とは何か——静的リンク・動的リンクの仕組みを『上位1%』の視点で理解する</a></li>
@@ -290,13 +291,13 @@ graph TB
 <div class="persona-panel persona-panel-8">
 <div class="persona-panel-head">
 <h3>🏆 業界最高峰のスキル水準を目指して情報収集している方へ</h3>
-<p>全119記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
+<p>全120記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP7の118記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP7の119記事(上のタブから確認できます)</li>
 <li><a href="/articles/voip-ss7-guide">VoIPとSS7、そして実際の通信経路を『上位1%』の視点で理解する</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>これで全119記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
+<div class="persona-bonus">🎉 <strong>これで全120記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
 </div>
 </div>
 </div>
@@ -490,9 +491,10 @@ RAID・ディスク管理・ストレージ接続方式など、ストレージ�
 
 ### AWS基礎シリーズ
 
-EC2・VPCなど、AWSを使ううえで必ず直面する基礎的な疑問を深掘りするシリーズです。**読む順番の目安**: ① aws-ec2-networking-basics-guide。
+EC2・VPCなど、AWSを使ううえで必ず直面する基礎的な疑問を深掘りするシリーズです。**読む順番の目安**: ① aws-ec2-networking-basics-guide → ② aws-ec2-webserver-handson-guide。
 
 - [EC2のキーペア(.pem/.ppk)とサブネットの予約IPを『上位1%』の視点で理解する](/articles/aws-ec2-networking-basics-guide) — .pemと.ppkが同じ秘密鍵の異なるファイル形式である理由、AWSサブネットで先頭4つ・末尾1つのIPアドレスが予約されている理由と用途までの深掘り(単体でも読めます)。
+- [AWSでEC2インスタンスを起動し、Webサーバーを公開する『上位1%』のハンズオン](/articles/aws-ec2-webserver-handson-guide) — セキュリティグループで必要最小限の穴だけを開け、EC2インスタンスを起動してNginxを構築・公開するハンズオン。StopとTerminateの課金の違い、Elastic IPの見えない課金の罠までを扱う(単体でも読めます)。
 
 ### メール基盤シリーズ
 

@@ -1,0 +1,45 @@
+questions:
+  - question: "Why does this hands-on restrict the security group's SSH rule source to \"My IP\"?"
+    choices:
+      - "Because AWS doesn't technically allow setting it to Anywhere"
+      - "To put into practice the principle of never allowing unnecessary traffic, by opening only the minimum necessary hole"
+      - "Restricting it to My IP improves connection speed"
+      - "To reduce costs"
+    answerIndex: 1
+    explanation: "Leaving SSH (port 22) open to the entire internet is a configuration to avoid in practice, so this puts into practice the principle of opening only the minimum necessary hole."
+
+  - question: "Which command must always be run on the downloaded .pem file before connecting over SSH?"
+    choices:
+      - "chmod 777 my-key.pem"
+      - "chmod 400 my-key.pem"
+      - "chown root my-key.pem"
+      - "Nothing in particular needs to be run"
+    answerIndex: 1
+    explanation: "Try to connect without running chmod 400 first, and the connection is refused with a warning that the permissions are too open."
+
+  - question: "To completely stop billing on an EC2 instance, should you stop it or terminate it?"
+    choices:
+      - "Stopping it is sufficient"
+      - "You need to terminate it — stopping alone leaves the attached storage's charges accruing"
+      - "Either one has the same effect on billing"
+      - "You need to contact AWS Support to stop billing"
+    answerIndex: 1
+    explanation: "Stopping an instance leaves the attached storage (EBS) accruing charges. Fully stopping billing requires terminating the instance."
+
+  - question: "Which statement about an Elastic IP is correct?"
+    choices:
+      - "It's always free as long as you're just holding onto it"
+      - "It accrues charges when it's not attached to a running instance"
+      - "Once reserved, an Elastic IP is never billed again"
+      - "Elastic IPs aren't covered by the free tier and are always billed the moment you reserve one"
+    answerIndex: 1
+    explanation: "An Elastic IP is free while attached to a running instance, but billing kicks in once it loses that attachment."
+
+  - question: "What does it concretely mean for an AWS security group to be \"stateful\"?"
+    choices:
+      - "Changing a setting instantly propagates to every region worldwide"
+      - "Return traffic for anything allowed inbound passes through automatically, without needing a separate outbound rule"
+      - "A security group's configuration history is stored permanently"
+      - "The same security group can be shared across multiple VPCs"
+    answerIndex: 1
+    explanation: "Because a security group is stateful, return traffic for anything allowed inbound is automatically permitted, with no need to configure outbound separately."

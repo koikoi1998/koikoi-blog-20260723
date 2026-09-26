@@ -241,6 +241,7 @@ This blog is written for a wide range of readers — from people with no experie
 <li><a href="/en/articles/fc-san-fundamentals-guide">Understanding the Difference Between Fibre Channel and LAN Connections from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/ntfs-mft-internals-guide">Understanding How the NTFS File System Works from a Top-1% Perspective</a></li>
 <li><a href="/en/articles/aws-ec2-networking-basics-guide">Understanding EC2 Key Pairs (.pem/.ppk) and Reserved Subnet IPs from a "Top 1%" Perspective</a></li>
+<li><a href="/en/articles/aws-ec2-webserver-handson-guide">The Top 1% Hands-On for Launching an EC2 Instance and Publishing a Web Server</a></li>
 <li><a href="/en/articles/m365-email-fundamentals-guide">Understanding Email Migration to M365 from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/mail-server-fundamentals-guide">Understanding Mail Server Fundamentals from a "Top 1%" Perspective — MTA, MDA, MUA, and the Roles of Postfix and Dovecot</a></li>
 <li data-subseries="handson"><a href="/en/articles/mail-server-handson-guide">A "Top 1%" Hands-On Lab: Building a Mail Server with Postfix and Dovecot</a></li>
@@ -259,7 +260,7 @@ This blog is written for a wide range of readers — from people with no experie
 <p>Adds the low-level implementation knowledge that sets you apart in interviews and design reviews, on top of everything through STEP6.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP6's 95 articles (see those tabs above)</li>
+<li>STEP1 through STEP6's 96 articles (see those tabs above)</li>
 <li><a href="/en/articles/proxmox-internals-guide">What Is Proxmox VE? Understanding KVM/QEMU Virtualization from the "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/linux-daemon-guide">What Is a Daemon? Understanding Linux Background Processes from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/software-library-guide">What Is a Library? Understanding Static and Dynamic Linking from a "Top 1%" Perspective</a></li>
@@ -288,13 +289,13 @@ This blog is written for a wide range of readers — from people with no experie
 <div class="persona-panel persona-panel-8">
 <div class="persona-panel-head">
 <h3>🏆 For those gathering information toward the industry's highest skill tier</h3>
-<p>The complete-conquest route: read all 119 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
+<p>The complete-conquest route: read all 120 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP7's 118 articles (see those tabs above)</li>
+<li>STEP1 through STEP7's 119 articles (see those tabs above)</li>
 <li><a href="/en/articles/voip-ss7-guide">Understanding VoIP and SS7 — and the Real Path Your Traffic Takes — from a "Top 1%" Perspective</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>That's all 119 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
+<div class="persona-bonus">🎉 <strong>That's all 120 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
 </div>
 </div>
 </div>
@@ -488,9 +489,10 @@ A series digging into the fundamentals of controlling and speeding up web traffi
 
 ### AWS Fundamentals Series
 
-A series digging into the basic questions that come up constantly when using AWS — EC2, VPC, and more. **Recommended order**: ① aws-ec2-networking-basics-guide.
+A series digging into the basic questions that come up constantly when using AWS — EC2, VPC, and more. **Recommended order**: ① aws-ec2-networking-basics-guide → ② aws-ec2-webserver-handson-guide.
 
 - [Understanding EC2 Key Pairs (.pem/.ppk) and Reserved Subnet IPs from a "Top 1%" Perspective](/en/articles/aws-ec2-networking-basics-guide) — A deep dive into why .pem and .ppk are different file formats for the same private key, and why the first four and last one IP addresses on an AWS subnet are reserved, and what each is used for (also readable standalone).
+- [The Top 1% Hands-On for Launching an EC2 Instance and Publishing a Web Server](/en/articles/aws-ec2-webserver-handson-guide) — A hands-on lab opening only the minimum necessary holes with a security group, launching an EC2 instance, and building/publishing Nginx. Covers the billing difference between Stop and Terminate, and the invisible billing trap of an Elastic IP (also readable standalone).
 
 ### Messaging Fundamentals Series
 
