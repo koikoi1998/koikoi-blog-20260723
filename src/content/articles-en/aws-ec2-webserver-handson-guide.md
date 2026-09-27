@@ -21,6 +21,8 @@ This article is part of the [Top 1% Series' full article guide](/en/sitemap).
 
 - [Understanding EC2 Key Pairs (.pem/.ppk) and Reserved Subnet IPs from a "Top 1%" Perspective](/en/articles/aws-ec2-networking-basics-guide): This article assumes you already know how key pairs work.
 - **An AWS account**: Set one up in advance with access to the free tier (12 months, a certain amount of `t2.micro` instance time free, and so on).
+- **Basic console operation**: The steps below only show the values to configure. If you're unsure which screen or button to click, reading [Hands-On Prep Manual: Basic Operation of the AWS Management Console](/en/articles/aws-console-setup-guide) first is recommended. This article uses the default VPC covered there as-is (with an internet gateway already attached).
+- **Client machine**: The steps below assume you're working from Windows 11 with PowerShell. If you're using a Linux/macOS terminal, just substitute the `chmod` command step.
 
 ## The Big Picture
 
@@ -62,14 +64,36 @@ Once launched, confirm the instance's state becomes "running" and that it's been
 
 ### Step 3: Verify the SSH connection
 
-Before connecting over SSH, always lock down the permissions on the downloaded `.pem` file.
+Work with the downloaded private key file (`<the private key file you created>.pem` — the actual filename differs per user) from PowerShell on Windows 11. First, lock down this file's permissions so nobody but you can read it.
 
-```bash
-chmod 400 my-key.pem
-ssh -i my-key.pem ubuntu@<public IPv4 address>
+```powershell
+icacls .\<the private key file you created>.pem /inheritance:r
+icacls .\<the private key file you created>.pem /grant:r "$($env:USERNAME):(R)"
 ```
 
-**Try to connect without running `chmod 400` first, and the connection is refused with a warning: `Permissions 0644 for 'my-key.pem' are too open`.** This is the SSH client itself confirming that the private key file can't be read by anyone but you.
+Next, from that same PowerShell window, connect over SSH using the OpenSSH client built into Windows.
+
+```powershell
+ssh -i .\<the private key file you created>.pem ubuntu@<public IPv4 address>
+```
+
+**This `icacls` command is the operation that locks down permissions — the Windows equivalent of `chmod 400` on Linux.** Windows 11 comes with an OpenSSH client built in, so the `ssh` command itself needs no extra install, but since the permission model is entirely different (Windows ACLs, not Linux permission bits), it needs its own dedicated command. Skipping this permission check sometimes doesn't block the connection on Windows's OpenSSH client, but locking it down anyway, matching real-world convention, is recommended.
+
+**Also notice the username used to connect, `ubuntu`.** An EC2 instance launched from the Ubuntu Server AMI automatically comes with a user named `ubuntu` created by default, and your first SSH connection is meant to use that user (an Amazon Linux AMI, for comparison, defaults to `ec2-user` — the default username varies by AMI).
+
+<details>
+<summary>Connecting from a Linux/macOS terminal, or a Linux VM on PVE</summary>
+
+If you're connecting from a Linux/macOS terminal, or from a Linux VM built on PVE per the [Hands-On Prep Manual](/en/articles/handson-prep-guide), lock down permissions the traditional way, with `chmod`.
+
+```bash
+chmod 400 <the private key file you created>.pem
+ssh -i <the private key file you created>.pem ubuntu@<public IPv4 address>
+```
+
+**Try to connect without running `chmod 400` first, and the connection is refused with a warning: `Permissions 0644 for '<filename>' are too open`.** This is the SSH client itself confirming that the private key file can't be read by anyone but you.
+
+</details>
 
 ### Step 4: Build Nginx and confirm external access
 
@@ -144,7 +168,7 @@ We allowed SSH (port 22) with an inbound rule, but configured nothing at all for
 ## Summary
 
 - With a security group, the norm is to open only the minimum necessary holes, such as restricting SSH's source to "My IP."
-- Always lock down the `.pem` file's permissions with `chmod 400` before connecting over SSH.
+- Always lock down the `.pem` file's permissions before connecting over SSH — `icacls` on Windows, `chmod 400` on Linux/macOS.
 - `sudo apt install nginx` alone completes both the install and the automatic-startup configuration.
 - Fully stopping billing on an instance requires terminating it, not just stopping it — and watch out, an unattached Elastic IP keeps accruing charges.
 - A security group is stateful, so there's no need to separately allow outbound traffic.

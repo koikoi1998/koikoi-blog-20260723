@@ -171,6 +171,7 @@ graph TB
 <li data-subseries="handson"><a href="/articles/windows-server-setup-guide">ハンズオン準備マニュアル:Windows Server 2025の初期セットアップとSSHサーバーの有効化(GUI操作)</a></li>
 <li data-subseries="handson"><a href="/articles/teraterm-guide">ハンズオン準備マニュアル:Teraterm(ターミナルソフト)の使い方</a></li>
 <li data-subseries="handson"><a href="/articles/wireshark-guide">ハンズオン準備マニュアル:Wiresharkの使い方</a></li>
+<li data-subseries="handson"><a href="/articles/aws-console-setup-guide">ハンズオン準備マニュアル:AWSマネジメントコンソールの基本操作</a></li>
 <li data-subseries="audio"><a href="/articles/handson-prep-audio-review-guide">【音声で聴く】ハンズオン準備シリーズ総復習</a></li>
 <li data-subseries="handson"><a href="/articles/l2tp-ipsec-lab-guide">L2TP/IPsecサーバーを自作し、理論を自分の目で検証する『上位1%』のハンズオン</a></li>
 <li data-subseries="handson"><a href="/articles/l2tp-ipsec-troubleshooting-lab">L2TP/IPsecトラブルシューティング演習——自分でエラーログから原因を突き止める『上位1%』のハンズオン</a></li>
@@ -183,7 +184,7 @@ graph TB
 <p>STEP3までの範囲に、拠点間VPNのAWS連携やSD-WANといった規模の大きい設計、そして社内基盤の中核であるディレクトリサービスの設計思想・DNSの実務・健全性確認の基本を積み増し、任される仕事の幅を広げる段階です。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP3の44記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP3の45記事(上のタブから確認できます)</li>
 <li data-subseries="audio"><a href="/articles/vpn-audio-review-guide">【音声で聴く】リモートアクセスVPN/L2TP・IPsecシリーズ総復習</a></li>
 <li><a href="/articles/site-to-site-vpn-aws-guide">AWSとの拠点間VPN(Site-to-Site VPN)を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/sdwan-edge-router-guide">SD-WANとエッジルーター選定を『上位1%』の視点で理解する</a></li>
@@ -210,7 +211,7 @@ graph TB
 <p>STEP4までのディレクトリサービスの基礎に、認証・レプリケーション・移行という「壊すと影響が大きい」領域の深い理解と、実機を使ったマルチドメイン構築・DC移行のハンズオンを積み増し、任された基盤を1人で安心して運用できるようになる段階です。Windows Serverの調達・時刻同期に関する基礎もここで押さえます。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP4の61記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP4の62記事(上のタブから確認できます)</li>
 <li><a href="/articles/ad-netlogon-guide">Netlogonサービスとセキュアチャネルの仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/ad-kerberos-guide">Kerberos認証の仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/ad-sysvol-dfsr-gpo-guide">SYSVOL・DFSR・グループポリシーの仕組みを『上位1%』の視点で理解する</a></li>
@@ -264,7 +265,7 @@ graph TB
 <p>STEP5までの範囲に、Webサーバー(IIS)・ファイル共有(SMB)・ストレージ・クラウド・メール基盤・コンテナ基盤/構成管理の自動化といった、社内インフラの周辺領域まで押さえます。ここまでで「現場で自信をつけたい」ルートは完了です。特定の分野だけをまとめて読みたい場合は、トップページの絞り込み機能をご利用ください。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP5の92記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP5の93記事(上のタブから確認できます)</li>
 <li><a href="/articles/iis-fundamentals-guide">IISとASP.NETの仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/iis-ftp-guide">IISとFTPの関係を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/smb-file-sharing-guide">Windows ServerのSMB共有を『上位1%』の視点で理解する</a></li>
@@ -314,7 +315,7 @@ graph TB
 <p>STEP6までの実務知識に、面接や設計レビューで差がつく低レイヤーの実装知識を積み増すルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP6の132記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP6の133記事(上のタブから確認できます)</li>
 <li><a href="/articles/proxmox-internals-guide">Proxmox VEとは何か——KVM/QEMUによる仮想化の仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/linux-daemon-guide">デーモン(daemon)とは何か——Linuxのバックグラウンドプロセスを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/software-library-guide">ライブラリ(library)とは何か——静的リンク・動的リンクの仕組みを『上位1%』の視点で理解する</a></li>
@@ -346,13 +347,13 @@ graph TB
 <div class="persona-panel persona-panel-8">
 <div class="persona-panel-head">
 <h3>🏆 業界最高峰のスキル水準を目指して情報収集している方へ</h3>
-<p>全159記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
+<p>全160記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP7の158記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP7の159記事(上のタブから確認できます)</li>
 <li><a href="/articles/voip-ss7-guide">VoIPとSS7、そして実際の通信経路を『上位1%』の視点で理解する</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>これで全159記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
+<div class="persona-bonus">🎉 <strong>これで全160記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
 </div>
 </div>
 </div>
@@ -415,14 +416,15 @@ graph TB
 
 ### ハンズオン準備シリーズ
 
-このブログのハンズオン記事(L2TP/IPsecサーバー自作など)に共通して必要になる、Proxmox VEでのVM作成・OS初期設定・SSHクライアント/パケットキャプチャツールの使い方をテーマ別に分けた準備マニュアル群です。**読む順番の目安**: ① handson-prep-guide → ② ubuntu-server-setup-guide → ③ windows-server-setup-guide → ④ teraterm-guide → ⑤ wireshark-guide → ⑥ handson-prep-audio-review-guide(全5記事を読み終えた後の音声復習用)。
+このブログのハンズオン記事(L2TP/IPsecサーバー自作など)に共通して必要になる、Proxmox VEでのVM作成・OS初期設定・SSHクライアント/パケットキャプチャツールの使い方をテーマ別に分けた準備マニュアル群です。**読む順番の目安**: ① handson-prep-guide → ② ubuntu-server-setup-guide → ③ windows-server-setup-guide → ④ teraterm-guide → ⑤ wireshark-guide → ⑥ aws-console-setup-guide → ⑦ handson-prep-audio-review-guide(全6記事を読み終えた後の音声復習用)。
 
 - [ハンズオン準備マニュアル:Proxmox VEでのVM作成からOSインストールまで](/articles/handson-prep-guide) — Proxmox VEでのVM作成ウィザードの各タブ、Ubuntu ServerのISOダウンロード・アップロード、OSインストールの流れをまとめた操作マニュアル(内部動作の深掘りではなく、初めてハンズオンに取り組む方向けの手順書、単体でも読めます)。
 - [ハンズオン準備マニュアル:Ubuntuサーバーの初期セットアップ](/articles/ubuntu-server-setup-guide) — 初回ログイン後のapt update/sudo su -/nanoの基本操作、USキーボードレイアウトの注意点、OpenSSHサーバーの確認・インストール手順までの操作マニュアル(単体でも読めます)。
 - [ハンズオン準備マニュアル:Windows Server 2025の初期セットアップとSSHサーバーの有効化(GUI操作)](/articles/windows-server-setup-guide) — Server ManagerのGUI操作だけによるコンピューター名・IPアドレス・タイムゾーンの設定、「Add Roles and Features」からのOpenSSH Server有効化、ファイアウォールの受信規則確認までの操作マニュアル(PowerShellコマンドは使いません、単体でも読めます)。
 - [ハンズオン準備マニュアル:Teraterm(ターミナルソフト)の使い方](/articles/teraterm-guide) — 新規SSH接続の作成、初回接続時のホスト鍵確認、文字コード設定による文字化け対策、接続設定の保存、操作ログの記録までの操作マニュアル(単体でも読めます)。
 - [ハンズオン準備マニュアル:Wiresharkの使い方](/articles/wireshark-guide) — tcpdumpで取得したキャプチャファイルをscpで手元のPCへ転送し、Wiresharkで開いて表示フィルタで絞り込むまでの操作マニュアル(単体でも読めます)。
-- [【音声で聴く】ハンズオン準備シリーズ総復習](/articles/handson-prep-audio-review-guide) — 全5記事を読み終えた人向けの、耳だけで復習できる音声学習記事。表・図・箇条書きを使わず、ブラウザの読み上げ機能で聞き流せるように語りかける文章だけで構成(シリーズを読了している前提)。
+- [ハンズオン準備マニュアル:AWSマネジメントコンソールの基本操作](/articles/aws-console-setup-guide) — ルートユーザーの扱い、リージョンの選び方、VPC・EC2・セキュリティグループ・S3・IAMユーザー・IAMロールをコンソール上でどう作成するかをまとめた操作マニュアル(単体でも読めます)。
+- [【音声で聴く】ハンズオン準備シリーズ総復習](/articles/handson-prep-audio-review-guide) — 全6記事を読み終えた人向けの、耳だけで復習できる音声学習記事。表・図・箇条書きを使わず、ブラウザの読み上げ機能で聞き流せるように語りかける文章だけで構成(シリーズを読了している前提)。
 
 ### 仮想化基盤シリーズ
 

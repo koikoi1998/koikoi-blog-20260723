@@ -19,7 +19,8 @@ This article is part of the [Top 1% Series Complete Article Guide](/en/sitemap),
 
 ## Prerequisites
 
-- [The Top 1% Hands-On for Launching an EC2 Instance and Publishing a Web Server](/en/articles/aws-ec2-webserver-handson-guide): This article assumes you already know how to launch an EC2 instance.
+- [The Top 1% Hands-On for Launching an EC2 Instance and Publishing a Web Server](/en/articles/aws-ec2-webserver-handson-guide): This article assumes you already know how to launch an EC2 instance. This hands-on continues by SSHing straight into the instance you launched there.
+- **Basic console operation**: This hands-on creates the IAM role via the AWS CLI rather than the console GUI (the CLI makes the steps easier to reproduce exactly). If you'd like to check the GUI steps first, see the IAM role creation steps in [Hands-On Prep Manual: Basic Operation of the AWS Management Console](/en/articles/aws-console-setup-guide).
 
 ## Why Hardcoding an Access Key Is a Problem in the First Place
 
@@ -27,18 +28,31 @@ Say an application running on EC2 needs to read a file from an S3 bucket. The ea
 
 ## The Big Picture
 
-This hands-on consists of four steps.
+This hands-on consists of five steps.
 
 ```mermaid
 graph LR
+    Step0["Step0<br/>Set up a test<br/>S3 bucket"]
     Step1["Step1<br/>Create a least-privilege<br/>IAM role"]
     Step2["Step2<br/>Attach the role to<br/>the EC2 instance"]
     Step3["Step3<br/>Access S3 with<br/>no credentials configured"]
     Step4["Step4<br/>Confirm access outside<br/>the role's scope fails"]
-    Step1 --> Step2 --> Step3 --> Step4
+    Step0 --> Step1 --> Step2 --> Step3 --> Step4
 ```
 
 ## Hands-On Steps
+
+### Step 0: Set up a test S3 bucket
+
+Create a test S3 bucket for this hands-on to target, and upload some arbitrary file into it (run this from the environment in [Understanding EC2 Key Pairs and Reserved Subnet IPs](/en/articles/aws-ec2-networking-basics-guide), or from your own machine).
+
+```bash
+aws s3 mb s3://my-allowed-bucket-<a unique string, like your own name>
+echo "test file" > test.txt
+aws s3 cp test.txt s3://my-allowed-bucket-<a unique string, like your own name>/
+```
+
+**A bucket name must be unique across all of AWS, so replace `<a unique string, like your own name>` with something that won't collide with anyone else's.** From here on, this bucket is referred to as `my-allowed-bucket`.
 
 ### Step 1: Create a least-privilege IAM role
 
@@ -55,7 +69,11 @@ aws iam create-role --role-name EC2-S3-ReadOnly-Role --assume-role-policy-docume
 
 ### Step 2: Attach the role to the EC2 instance
 
-Attach the role you created to your target EC2 instance.
+Attach the role you created to your target EC2 instance. **Replace `i-xxxxxxxx` with the actual instance ID of the instance you launched in the [previous hands-on](/en/articles/aws-ec2-webserver-handson-guide).** You can find the instance ID on the EC2 console's instance list screen, or with this command.
+
+```bash
+aws ec2 describe-instances --query "Reservations[].Instances[].{ID:InstanceId,Name:Tags[?Key=='Name']|[0].Value}" --output table
+```
 
 ```bash
 aws ec2 associate-iam-instance-profile --instance-id i-xxxxxxxx --iam-instance-profile Name=EC2-S3-ReadOnly-Role

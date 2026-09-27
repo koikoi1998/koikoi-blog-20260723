@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the recommended way to handle the root user?"
+    choices:
+      - "Keep using it directly for everyday operations"
+      - "Create an IAM user first, and use that for everyday operations from then on"
+      - "Only use the root user in a test environment, and never create one in real-world work"
+      - "Since the root user can't change billing information, set up separate contract information"
+    answerIndex: 1
+    explanation: "Since the root user holds the strongest permissions, it's recommended to avoid everyday operations with it — create an IAM user first and use that instead."
+
+  - question: "What's the most common cause of the beginner confusion 'the resource I created isn't anywhere to be found'?"
+    choices:
+      - "An AWS server outage"
+      - "The selected region differs between when it was created and when you're looking for it"
+      - "An internet connectivity issue"
+      - "A browser cache problem"
+    answerIndex: 1
+    explanation: "Since most AWS services exist as resources independent per region, selecting the wrong region is the most common cause."
+
+  - question: "When first getting started with AWS, is it necessary to build your own VPC from scratch?"
+    choices:
+      - "Yes, it's mandatory, and the default VPC can't be used"
+      - "No — using the default VPC as-is lets you publish EC2 to the internet without thinking about building your own VPC"
+      - "The concept of a VPC doesn't exist in AWS"
+      - "The default VPC is a paid option"
+    answerIndex: 1
+    explanation: "Since the default VPC already has an internet gateway attached, using it as-is when first starting out lets you focus on AWS's basic operations."
+
+  - question: "What's the correct difference between an IAM user and an IAM role?"
+    choices:
+      - "They're exactly the same feature, just with different names"
+      - "An IAM user is an account for a human to log into the console with; an IAM role is temporary permissions given to an AWS resource itself"
+      - "An IAM role is a superset of an IAM user, so you should always use a role instead"
+      - "IAM users are free, but IAM roles are a paid service"
+    answerIndex: 1
+    explanation: "An IAM user is a login account for a human, while an IAM role is temporary permissions given to an AWS resource itself, like EC2 — their purposes are entirely different."
+
+  - question: "What's correct about a security group's outbound rules?"
+    choices:
+      - "Like inbound, everything needs individual permission settings for communication to work"
+      - "Everything is permitted by default, so most hands-on labs don't require any changes"
+      - "The concept of outbound rules doesn't exist in security groups"
+      - "Outbound is always completely blocked"
+    answerIndex: 1
+    explanation: "Outbound rules permit everything by default, so no change is needed unless you specifically want to restrict it."

@@ -19,7 +19,8 @@ pubDate: 2026-09-26
 
 ## 前提知識
 
-- [AWSでEC2インスタンスを起動し、Webサーバーを公開するハンズオン](/articles/aws-ec2-webserver-handson-guide): EC2インスタンスの起動について、この記事の前提になっています。
+- [AWSでEC2インスタンスを起動し、Webサーバーを公開するハンズオン](/articles/aws-ec2-webserver-handson-guide): EC2インスタンスの起動について、この記事の前提になっています。このハンズオンは、そこで起動したEC2インスタンスへ、そのままSSH接続して進めます。
+- **マネジメントコンソールの基本操作**: このハンズオンでは、IAMロールの作成をコンソールのGUIではなくAWS CLIで行います(CLIの方が、手順を正確に再現しやすいためです)。GUIでの操作手順を先に確認しておきたい場合は、[ハンズオン準備マニュアル:AWSマネジメントコンソールの基本操作](/articles/aws-console-setup-guide)のIAMロール作成の手順を参照してください。
 
 ## そもそも、なぜアクセスキーのハードコードが問題なのか
 
@@ -27,18 +28,31 @@ EC2上で動くアプリケーションが、S3バケットからファイルを
 
 ## 全体像をつかむ
 
-このハンズオンで行うことは、次の4ステップです。
+このハンズオンで行うことは、次の5ステップです。
 
 ```mermaid
 graph LR
+    Step0["Step0<br/>検証用のS3バケットを用意"]
     Step1["Step1<br/>最小権限のIAMロールを作成"]
     Step2["Step2<br/>ロールをEC2インスタンスへ<br/>アタッチ"]
     Step3["Step3<br/>認証情報なしで<br/>S3へアクセス"]
     Step4["Step4<br/>権限外のリソースへの<br/>アクセスを確認"]
-    Step1 --> Step2 --> Step3 --> Step4
+    Step0 --> Step1 --> Step2 --> Step3 --> Step4
 ```
 
 ## ハンズオン手順
+
+### Step 0: 検証用のS3バケットを用意する
+
+このハンズオンでアクセス対象にする、テスト用のS3バケットを作成し、適当なファイルを1つアップロードしておきます([EC2のキーペアとサブネットの予約IP](/articles/aws-ec2-networking-basics-guide)の環境や、自分の端末から実行してください)。
+
+```bash
+aws s3 mb s3://my-allowed-bucket-<自分の名前など一意な文字列>
+echo "test file" > test.txt
+aws s3 cp test.txt s3://my-allowed-bucket-<自分の名前など一意な文字列>/
+```
+
+**バケット名はAWS全体で一意である必要があるため、`<自分の名前など一意な文字列>`の部分は、他の人と重複しない適当な文字列に置き換えてください。** 以降の手順では、このバケット名を`my-allowed-bucket`として説明します。
 
 ### Step 1: 最小権限のIAMロールを作成する
 
@@ -55,7 +69,11 @@ aws iam create-role --role-name EC2-S3-ReadOnly-Role --assume-role-policy-docume
 
 ### Step 2: ロールをEC2インスタンスへアタッチする
 
-作成したロールを、対象のEC2インスタンスへアタッチします。
+作成したロールを、対象のEC2インスタンスへアタッチします。**`i-xxxxxxxx`の部分は、[前回のハンズオン](/articles/aws-ec2-webserver-handson-guide)で起動したインスタンスの、実際のインスタンスIDに置き換えてください。** インスタンスIDは、EC2コンソールのインスタンス一覧画面か、次のコマンドで確認できます。
+
+```bash
+aws ec2 describe-instances --query "Reservations[].Instances[].{ID:InstanceId,Name:Tags[?Key=='Name']|[0].Value}" --output table
+```
 
 ```bash
 aws ec2 associate-iam-instance-profile --instance-id i-xxxxxxxx --iam-instance-profile Name=EC2-S3-ReadOnly-Role
