@@ -149,6 +149,7 @@ graph TB
 <li data-subseries="audio"><a href="/articles/windows-client-audio-review-guide">【音声で聴く】Windowsクライアント運用シリーズ総復習</a></li>
 <li><a href="/articles/proxy-firewall-guide">プロキシとファイアウォールの使い分けを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/http-caching-cdn-guide">HTTPSの普及とプロキシキャッシュの終焉を『上位1%』の視点で理解する</a></li>
+<li data-subseries="handson"><a href="/articles/squid-proxy-handson-guide">Squidで明示的プロキシを構築するハンズオン</a></li>
 <li><a href="/articles/protocol-design-guide">プロトコルとは何かを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/icmp-guide">ICMPの仕組みを『上位1%』の視点で理解する</a></li>
 </ol>
@@ -184,7 +185,7 @@ graph TB
 <p>STEP3までの範囲に、拠点間VPNのAWS連携やSD-WANといった規模の大きい設計、そして社内基盤の中核であるディレクトリサービスの設計思想・DNSの実務・健全性確認の基本を積み増し、任される仕事の幅を広げる段階です。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP3の45記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP3の46記事(上のタブから確認できます)</li>
 <li data-subseries="audio"><a href="/articles/vpn-audio-review-guide">【音声で聴く】リモートアクセスVPN/L2TP・IPsecシリーズ総復習</a></li>
 <li><a href="/articles/site-to-site-vpn-aws-guide">AWSとの拠点間VPN(Site-to-Site VPN)を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/sdwan-edge-router-guide">SD-WANとエッジルーター選定を『上位1%』の視点で理解する</a></li>
@@ -211,7 +212,7 @@ graph TB
 <p>STEP4までのディレクトリサービスの基礎に、認証・レプリケーション・移行という「壊すと影響が大きい」領域の深い理解と、実機を使ったマルチドメイン構築・DC移行のハンズオンを積み増し、任された基盤を1人で安心して運用できるようになる段階です。Windows Serverの調達・時刻同期に関する基礎もここで押さえます。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP4の62記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP4の63記事(上のタブから確認できます)</li>
 <li><a href="/articles/ad-netlogon-guide">Netlogonサービスとセキュアチャネルの仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/ad-kerberos-guide">Kerberos認証の仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/ad-sysvol-dfsr-gpo-guide">SYSVOL・DFSR・グループポリシーの仕組みを『上位1%』の視点で理解する</a></li>
@@ -265,7 +266,7 @@ graph TB
 <p>STEP5までの範囲に、Webサーバー(IIS)・ファイル共有(SMB)・ストレージ・クラウド・メール基盤・コンテナ基盤/構成管理の自動化といった、社内インフラの周辺領域まで押さえます。ここまでで「現場で自信をつけたい」ルートは完了です。特定の分野だけをまとめて読みたい場合は、トップページの絞り込み機能をご利用ください。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP5の93記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP5の94記事(上のタブから確認できます)</li>
 <li><a href="/articles/iis-fundamentals-guide">IISとASP.NETの仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/iis-ftp-guide">IISとFTPの関係を『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/smb-file-sharing-guide">Windows ServerのSMB共有を『上位1%』の視点で理解する</a></li>
@@ -315,7 +316,7 @@ graph TB
 <p>STEP6までの実務知識に、面接や設計レビューで差がつく低レイヤーの実装知識を積み増すルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP6の133記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP6の134記事(上のタブから確認できます)</li>
 <li><a href="/articles/proxmox-internals-guide">Proxmox VEとは何か——KVM/QEMUによる仮想化の仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/linux-daemon-guide">デーモン(daemon)とは何か——Linuxのバックグラウンドプロセスを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/software-library-guide">ライブラリ(library)とは何か——静的リンク・動的リンクの仕組みを『上位1%』の視点で理解する</a></li>
@@ -349,13 +350,13 @@ graph TB
 <div class="persona-panel persona-panel-8">
 <div class="persona-panel-head">
 <h3>🏆 業界最高峰のスキル水準を目指して情報収集している方へ</h3>
-<p>全162記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
+<p>全163記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP7の161記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP7の162記事(上のタブから確認できます)</li>
 <li><a href="/articles/voip-ss7-guide">VoIPとSS7、そして実際の通信経路を『上位1%』の視点で理解する</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>これで全162記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
+<div class="persona-bonus">🎉 <strong>これで全163記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
 </div>
 </div>
 </div>
@@ -584,10 +585,11 @@ RAID・ディスク管理・ストレージ接続方式など、ストレージ�
 
 ### Webプロキシ/キャッシュ基礎シリーズ
 
-プロキシ・ファイアウォール・キャッシュ・CDNといった、Webトラフィックの制御と高速化にまつわる基礎を深掘りするシリーズです。**読む順番の目安**: ① proxy-firewall-guide → ② http-caching-cdn-guide。
+プロキシ・ファイアウォール・キャッシュ・CDNといった、Webトラフィックの制御と高速化にまつわる基礎を深掘りするシリーズです。**読む順番の目安**: ① proxy-firewall-guide → ② http-caching-cdn-guide → ③ squid-proxy-handson-guide。
 
 - [プロキシとファイアウォールの使い分けを『上位1%』の視点で理解する](/articles/proxy-firewall-guide) — 両者が制御する通信の階層・単位の違い、明示的プロキシと透過型プロキシ、クラウドプロキシ(SWG)とZTNA・SASEの関係、SSLインスペクションまでの深掘り(単体でも読めます)。
 - [HTTPSの普及とプロキシキャッシュの終焉を『上位1%』の視点で理解する](/articles/http-caching-cdn-guide) — プロキシキャッシュ・ブラウザキャッシュ・CDNという3つのレイヤーの違い、HTTPS化がプロキシキャッシュだけを無力化した理由、CDNが利用者側から提供者側へと共有キャッシュの主体を引き継いだ歴史的経緯までの深掘り([proxy-firewall-guide](/articles/proxy-firewall-guide)の発展編、単体でも読めます)。
+- [Squidで明示的プロキシを構築するハンズオン](/articles/squid-proxy-handson-guide) — URL単位のACL(dstdomain)を設定し、http_accessのルール評価順序、アクセスログの読み方までを体験するハンズオン(単体でも読めます)。
 
 ### AWS基礎シリーズ
 

@@ -147,6 +147,7 @@ This blog is written for a wide range of readers — from people with no experie
 <li data-subseries="audio"><a href="/en/articles/windows-client-audio-review-guide">[Listen] The Windows Client Operations Series, Fully Recapped</a></li>
 <li><a href="/en/articles/proxy-firewall-guide">Understanding When to Use a Proxy vs. a Firewall from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/http-caching-cdn-guide">Understanding the Rise of HTTPS and the End of Proxy Caching from a "Top 1%" Perspective</a></li>
+<li data-subseries="handson"><a href="/en/articles/squid-proxy-handson-guide">The Top 1% Hands-On for Building an Explicit Proxy With Squid</a></li>
 <li><a href="/en/articles/protocol-design-guide">Understanding What a Protocol Actually Is From a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/icmp-guide">Understanding How ICMP Works From a "Top 1%" Perspective</a></li>
 </ol>
@@ -182,7 +183,7 @@ This blog is written for a wide range of readers — from people with no experie
 <p>On top of STEP3, this route adds larger-scale design work — site-to-site VPN with AWS, SD-WAN — plus the design philosophy of directory services (the core of internal infrastructure), practical DNS work, and the basics of health checks, expanding the range of work you're trusted with.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP3's 45 articles (see those tabs above)</li>
+<li>STEP1 through STEP3's 46 articles (see those tabs above)</li>
 <li data-subseries="audio"><a href="/en/articles/vpn-audio-review-guide">[Listen] The Remote-Access VPN / L2TP-IPsec Series, Fully Recapped</a></li>
 <li><a href="/en/articles/site-to-site-vpn-aws-guide">Understanding Site-to-Site VPN with AWS from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/sdwan-edge-router-guide">Understanding SD-WAN and Edge Router Selection from a "Top 1%" Perspective</a></li>
@@ -209,7 +210,7 @@ This blog is written for a wide range of readers — from people with no experie
 <p>On top of STEP4's directory-services basics, this route adds the deep, "breaking this has a big blast radius" areas — authentication, replication, migration — plus hands-on labs building a multi-domain forest and migrating a DC, so you can run infrastructure you've been handed on your own with confidence. It also covers Windows Server procurement and time-sync basics.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP4's 62 articles (see those tabs above)</li>
+<li>STEP1 through STEP4's 63 articles (see those tabs above)</li>
 <li><a href="/en/articles/ad-netlogon-guide">Understanding the Netlogon Service and the Secure Channel from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/ad-kerberos-guide">Understanding Kerberos Authentication from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/ad-sysvol-dfsr-gpo-guide">Understanding SYSVOL, DFSR, and Group Policy from a "Top 1%" Perspective</a></li>
@@ -263,7 +264,7 @@ This blog is written for a wide range of readers — from people with no experie
 <p>On top of STEP5, this route adds the infrastructure adjacent to your core stack — web servers (IIS), file sharing (SMB), storage, cloud, email infrastructure, and container platforms/config-management automation. This completes the "building confidence" route. If you want to read one specific field in one go, use the filter feature on the top page instead.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP5's 93 articles (see those tabs above)</li>
+<li>STEP1 through STEP5's 94 articles (see those tabs above)</li>
 <li><a href="/en/articles/iis-fundamentals-guide">Understanding How IIS and ASP.NET Work from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/iis-ftp-guide">Understanding the Relationship Between IIS and FTP from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/smb-file-sharing-guide">Understanding Windows Server SMB File Sharing from a "Top 1%" Perspective</a></li>
@@ -313,7 +314,7 @@ This blog is written for a wide range of readers — from people with no experie
 <p>Adds the low-level implementation knowledge that sets you apart in interviews and design reviews, on top of everything through STEP6.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP6's 133 articles (see those tabs above)</li>
+<li>STEP1 through STEP6's 134 articles (see those tabs above)</li>
 <li><a href="/en/articles/proxmox-internals-guide">What Is Proxmox VE? Understanding KVM/QEMU Virtualization from the "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/linux-daemon-guide">What Is a Daemon? Understanding Linux Background Processes from a "Top 1%" Perspective</a></li>
 <li><a href="/en/articles/software-library-guide">What Is a Library? Understanding Static and Dynamic Linking from a "Top 1%" Perspective</a></li>
@@ -347,13 +348,13 @@ This blog is written for a wide range of readers — from people with no experie
 <div class="persona-panel persona-panel-8">
 <div class="persona-panel-head">
 <h3>🏆 For those gathering information toward the industry's highest skill tier</h3>
-<p>The complete-conquest route: read all 162 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
+<p>The complete-conquest route: read all 163 articles and be able to speak to the design philosophy of the whole series, end to end.</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1 through STEP7's 161 articles (see those tabs above)</li>
+<li>STEP1 through STEP7's 162 articles (see those tabs above)</li>
 <li><a href="/en/articles/voip-ss7-guide">Understanding VoIP and SS7 — and the Real Path Your Traffic Takes — from a "Top 1%" Perspective</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>That's all 162 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
+<div class="persona-bonus">🎉 <strong>That's all 163 articles.</strong> You can also revisit the whole shape of the series in "Series list," next.</div>
 </div>
 </div>
 </div>
@@ -582,10 +583,11 @@ A series digging into storage fundamentals — RAID, disk management, storage co
 
 ### Web Proxy / Caching Fundamentals Series
 
-A series digging into the fundamentals of controlling and speeding up web traffic — proxies, firewalls, caching, and CDNs. **Recommended order**: ① proxy-firewall-guide → ② http-caching-cdn-guide.
+A series digging into the fundamentals of controlling and speeding up web traffic — proxies, firewalls, caching, and CDNs. **Recommended order**: ① proxy-firewall-guide → ② http-caching-cdn-guide → ③ squid-proxy-handson-guide.
 
 - [Understanding When to Use a Proxy vs. a Firewall from a "Top 1%" Perspective](/en/articles/proxy-firewall-guide) — A deep dive into the difference in the layer and granularity each controls, explicit vs. transparent proxies, the relationship between a cloud proxy (SWG) and ZTNA/SASE, and SSL inspection (also readable standalone).
 - [Understanding the Rise of HTTPS and the End of Proxy Caching from a "Top 1%" Perspective](/en/articles/http-caching-cdn-guide) — A deep dive into the difference between the three layers of proxy caching, browser caching, and CDNs, why HTTPS adoption neutralized only proxy caching, and the historical handoff of shared caching from the consumer side to the provider side via CDNs (a follow-on from [proxy-firewall-guide](/en/articles/proxy-firewall-guide), also readable standalone).
+- [The Top 1% Hands-On for Building an Explicit Proxy With Squid](/en/articles/squid-proxy-handson-guide) — A hands-on lab setting up a URL-level ACL (dstdomain), covering http_access rule evaluation order and how to read the access log (also readable standalone).
 
 ### AWS Fundamentals Series
 

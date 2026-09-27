@@ -70,6 +70,29 @@ A **cloud proxy** refers to providing the functionality traditionally deployed a
 
 **The background behind cloud proxies becoming important is the growing number of opportunities for employees to access the internet directly from outside the office (home, while traveling).** A traditional on-premises proxy was designed on the premise that traffic routes through the corporate network, but a cloud proxy **routes an employee's device through the cloud-hosted proxy first, no matter where they are**, letting a consistent security policy apply regardless of location.
 
+<details>
+<summary>Four common questions about cloud proxies</summary>
+
+**Question 1: Is a proxy's role today mostly about inspecting traffic content?**
+
+That's correct. A proxy once carried a heavier emphasis on caching content to speed up re-fetching, but as covered in [Understanding the Rise of HTTPS and the End of Proxy Caching](/en/articles/http-caching-cdn-guide), HTTPS's spread has shrunk that caching role. A proxy's main reason for existing today — especially a cloud proxy (SWG) — has shifted to **security inspection that actually reads the content of traffic**: malware inspection, URL filtering, DLP (data loss prevention).
+
+**Question 2: Are more organizations adopting cloud proxies for remote work and more up-to-date security detection?**
+
+That's correct. As covered in the main text, the growing number of employees accessing the internet directly from outside the office is the single biggest driver behind cloud proxy adoption. On top of that, since it's delivered as a cloud service, the vendor can keep updating its detection logic continuously, without waiting on an on-premises hardware refresh — that ease of keeping up with the latest threats is another reason adoption keeps growing.
+
+**Question 3: With a cloud proxy, does traffic route through the proxy even from outside the office, enabling access control?**
+
+That's correct. Most cloud proxies work by installing a dedicated **agent** on an employee's device. This agent forcibly routes that device's internet-bound traffic through the cloud-hosted proxy, regardless of where the device physically is (in the office, at home, or on the road). This lets the same access-control policy apply to traffic from outside the office as traffic from inside it.
+
+**Question 4: If an organization has adopted a cloud proxy, does internal-to-internal traffic also route through it? How does this relate to zero trust?**
+
+**This isn't a matter of configuration — in principle, the answer is almost always "no, it doesn't route through it."** What a cloud proxy (SWG) targets is strictly **outbound traffic, from a device toward the internet.** Traffic between internal servers, or from an internal device to a different internal system (east-west traffic), was never internet-bound traffic in the first place, so it falls outside a cloud proxy's scope entirely.
+
+This might feel, at first glance, like it contradicts zero trust's philosophy, but it actually doesn't. **Zero trust isn't the idea that "traffic must always route through one specific device" — it's the idea that "regardless of where traffic came from or what it routed through, identity and authorization get checked every single time."** For internal-to-internal traffic (east-west traffic), a separate mechanism from the cloud proxy handles that role — microsegmentation, for example, or the kind of per-application authentication and authorization covered in [Understanding ZTNA (Zero Trust Network Access)](/en/articles/ztna-guide). **Keep in mind that a cloud proxy (protecting traffic to the outside) and ZTNA/microsegmentation (protecting internal-to-internal traffic) are separate, complementary mechanisms sitting under the same zero-trust umbrella.**
+
+</details>
+
 ## The View From the Top 1% Perspective
 
 ### If a proxy can inspect traffic content, why is a firewall still necessary?

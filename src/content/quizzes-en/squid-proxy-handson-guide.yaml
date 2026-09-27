@@ -1,0 +1,45 @@
+questions:
+  - question: "In this hands-on, is the client's use of Squid an explicit proxy or a transparent proxy?"
+    choices:
+      - "A transparent proxy — the client is unaware the proxy exists"
+      - "An explicit proxy — the client explicitly specifies the proxy's address via an environment variable"
+      - "Neither — it's a third approach"
+      - "It could be either, depending on configuration"
+    answerIndex: 1
+    explanation: "Since the proxy's address is explicitly specified via the http_proxy/https_proxy environment variables, this is an explicit proxy."
+
+  - question: "What's the correct order in which http_access rules are evaluated?"
+    choices:
+      - "Every rule is evaluated, and the strictest judgment applies"
+      - "They're evaluated top to bottom, and the first matching rule applies — nothing after it is evaluated"
+      - "They're evaluated in random order"
+      - "They're evaluated bottom to top"
+    answerIndex: 1
+    explanation: "http_access rules are evaluated top to bottom, and the first matching rule decides the outcome immediately. No rule after it is ever evaluated."
+
+  - question: "What happens if you write an allow rule (allow all) before a deny rule?"
+    choices:
+      - "The deny rule takes priority and works correctly"
+      - "The deny rule never gets evaluated at all, leaving an unintended allow-everything state"
+      - "Squid fails to start"
+      - "Nothing in particular happens"
+    answerIndex: 1
+    explanation: "Since http_access decides the outcome at the first matching rule, writing a broad allow rule first means every deny rule after it never gets evaluated."
+
+  - question: "What's the fundamental difference between a dstdomain-based ACL and a firewall's IP-address-based control?"
+    choices:
+      - "dstdomain is always faster to process"
+      - "It can decide allow or deny at the hostname (domain name) level within a request, even for servers sharing the same IP address"
+      - "dstdomain only supports HTTPS"
+      - "There's no real difference"
+    answerIndex: 1
+    explanation: "Since a proxy can actually understand an HTTP request's content (like the hostname), it can decide allow or deny at the domain-name level, even for servers sharing the same IP address."
+
+  - question: "What's correct about access to a domain denied by an ACL?"
+    choices:
+      - "It becomes completely unreachable at the network level"
+      - "What Squid returns is an HTTP-level denial response, so a separate path that doesn't go through the proxy could still potentially reach it"
+      - "Setting up the ACL deletes that domain's DNS record"
+      - "An ACL has the same effect as physically cutting a cable"
+    answerIndex: 1
+    explanation: "What Squid returns is an HTTP-level denial response (like 403) — a path that doesn't go through the proxy could still potentially reach it."
