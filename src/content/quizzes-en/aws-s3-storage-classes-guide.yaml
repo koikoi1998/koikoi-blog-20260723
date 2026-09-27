@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the correct reason multiple S3 storage classes exist?"
+    choices:
+      - "Purely to add visual variety"
+      - "To shift the balance between storage unit cost and retrieval fees, based on the data's access frequency"
+      - "Because a different class must be used per region"
+      - "It's purely an AWS marketing decision"
+    answerIndex: 1
+    explanation: "A storage class shifts the balance between two components — storage unit cost and retrieval fees — based on access frequency."
+
+  - question: "What's a correct characteristic of S3 Glacier?"
+    choices:
+      - "The most expensive storage cost, but instant retrieval"
+      - "Extremely cheap storage cost, but retrieval takes anywhere from minutes to hours"
+      - "Storage and retrieval cost exactly the same as every other class"
+      - "The concept of retrieval doesn't exist for Glacier"
+    answerIndex: 1
+    explanation: "Glacier has an extremely cheap storage unit cost, but retrieving data from it takes anywhere from minutes to hours."
+
+  - question: "What's a correct feature of a lifecycle policy?"
+    choices:
+      - "It's a feature that only automates deletion"
+      - "It can automate transitioning to a different storage class over time, and automatically deleting old versions"
+      - "It's a feature that automatically deletes the S3 bucket itself"
+      - "It's a feature that automatically changes access permissions"
+    answerIndex: 1
+    explanation: "A lifecycle policy can automate transitioning to a different storage class over time, not just deletion."
+
+  - question: "Besides cost, what's an important consideration when choosing a storage class?"
+    choices:
+      - "Cost is the only consideration"
+      - "The time constraint you'll face when you actually need to retrieve that data"
+      - "How easy the storage class's name is to understand"
+      - "AWS's brand image"
+    answerIndex: 1
+    explanation: "The time constraint of urgently retrieving data during something like an incident investigation is also an important consideration when choosing a storage class."
+
+  - question: "What's the correct relationship between versioning and a lifecycle policy?"
+    choices:
+      - "The two features are entirely unrelated"
+      - "A lifecycle policy can also target old versions accumulated by versioning, for deletion or transition"
+      - "Enabling versioning automatically disables a lifecycle policy"
+      - "A lifecycle policy can't be used unless versioning is enabled"
+    answerIndex: 1
+    explanation: "A lifecycle policy can also target old versions accumulated through versioning, deleting or transitioning them after a certain period."

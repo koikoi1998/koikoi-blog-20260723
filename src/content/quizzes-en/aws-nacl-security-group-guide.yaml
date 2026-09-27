@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the correct difference in scope between a security group and a NACL?"
+    choices:
+      - "Both apply per instance"
+      - "A security group applies per instance, while a NACL applies per subnet"
+      - "A security group applies per subnet, while a NACL applies per instance"
+      - "Both apply per region"
+    answerIndex: 1
+    explanation: "A security group applies per EC2 instance (network interface), while a NACL applies per subnet."
+
+  - question: "What does it mean that a NACL is stateless?"
+    choices:
+      - "Permit inbound, and the corresponding outbound return traffic is automatically permitted too"
+      - "Inbound and outbound must be configured as completely independent, separate rules"
+      - "A NACL has no ability to deny traffic at all"
+      - "Stateless and stateful mean the same thing"
+    answerIndex: 1
+    explanation: "A NACL is stateless, requiring inbound and outbound to be configured as completely independent, separate rules."
+
+  - question: "What's a common reason a connection fails even though a NACL permits it inbound?"
+    choices:
+      - "NACLs always have bugs"
+      - "Outbound to the ephemeral port range used for responses was never permitted"
+      - "Too many inbound rules exist"
+      - "It always fails if a security group isn't configured"
+    answerIndex: 1
+    explanation: "Since a NACL is stateless, a response packet is treated as its own independent traffic, so the connection fails unless outbound to the ephemeral port range is permitted."
+
+  - question: "What's the correct rule evaluation order for a NACL?"
+    choices:
+      - "An explicit Deny always wins over an Allow"
+      - "Rules are evaluated in ascending numeric order, and the first matching rule applies"
+      - "Rules are evaluated in random order"
+      - "Allow rules are always evaluated after Deny rules"
+    answerIndex: 1
+    explanation: "A NACL evaluates rules in ascending numeric order, and the first matching rule applies — a different mechanism from IAM policy evaluation logic."
+
+  - question: "What's the correct relationship between a security group and a NACL?"
+    choices:
+      - "Only one of them needs to be configured"
+      - "Both get evaluated at the same time — getting blocked by either one breaks the connection"
+      - "A security group overrides a NACL's configuration"
+      - "A NACL ignores a security group's configuration"
+    answerIndex: 1
+    explanation: "A security group and a NACL are both evaluated at the same time — getting blocked by either one means the connection never works."

@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the core principle in IAM's evaluation logic?"
+    choices:
+      - "Any operation not explicitly denied is allowed"
+      - "Any operation not explicitly allowed is denied (implicit deny)"
+      - "A user with no policy configured can do everything"
+      - "Allow and deny are always decided randomly"
+    answerIndex: 1
+    explanation: "The core principle of IAM's evaluation logic is implicit deny — any operation not explicitly allowed is denied."
+
+  - question: "What's the correct relationship between identity-based and resource-based policies?"
+    choices:
+      - "Only one of them gets evaluated, and the other is ignored"
+      - "Both get evaluated at the same time, and access fails if either doesn't permit it"
+      - "Resource-based policies only exist for S3"
+      - "Identity-based policies always take priority"
+    answerIndex: 1
+    explanation: "Identity-based and resource-based policies are both evaluated at the same time."
+
+  - question: "What's the correct role of a permissions boundary?"
+    choices:
+      - "It adds permissions, the same way an ordinary policy does"
+      - "It defines the ceiling on the permissions an IAM entity can hold"
+      - "It's another name for a resource-based policy"
+      - "It's exactly the same mechanism as an SCP"
+    answerIndex: 1
+    explanation: "A permissions boundary defines the ceiling on the permissions an IAM user or role can hold — it never grants permission on its own."
+
+  - question: "What's correct about an explicit Deny?"
+    choices:
+      - "It gets overridden if there are enough other Allow policies"
+      - "Regardless of which type of policy it's in, it wins over every other Allow, denying that operation"
+      - "A Deny can only be set in an identity-based policy"
+      - "A Deny is almost never used in real-world work"
+    answerIndex: 1
+    explanation: "An explicit Deny — whether in an identity-based policy, a resource-based policy, a permissions boundary, or an SCP — always wins over every other Allow."
+
+  - question: "What's correct about an SCP (Service Control Policy)?"
+    choices:
+      - "It's another name for a permissions boundary, applied only to individual IAM users"
+      - "It's a mechanism for setting a ceiling on an entire account under AWS Organizations"
+      - "It's a billing-related setting unrelated to IAM policies"
+      - "An SCP always permits every operation"
+    answerIndex: 1
+    explanation: "An SCP is a mechanism for setting a ceiling on an entire account, used when managing multiple AWS accounts together under an organization."
