@@ -104,7 +104,7 @@ sudo apt update
 sudo apt install -y nginx
 ```
 
-`sudo apt install`だけで、Nginxのインストールと同時に自動起動の設定まで完了します(パッケージにsystemdのユニットファイルが同梱されているため)。念のため、状態を確認しておきましょう。
+`sudo apt install`だけで、Nginxのインストールと同時に自動起動の設定まで完了します(パッケージにsystemdのユニットファイルが同梱されているため)。念のため、状態を確認しておきましょう。**Nginx自体の仕組み(イベント駆動アーキテクチャやmaster/workerプロセス)を深く理解したい場合は、[Nginxの仕組みを『上位1%』の視点で理解する](/articles/nginx-fundamentals-guide)を参照してください。**
 
 ```bash
 sudo systemctl status nginx

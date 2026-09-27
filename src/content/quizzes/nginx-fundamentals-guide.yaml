@@ -1,0 +1,45 @@
+questions:
+  - question: "Nginxが少ないリソースで大量の接続をさばける理由として正しい説明はどれか。"
+    choices:
+      - "クライアント1つにつき1つのプロセスを割り当てているため"
+      - "イベント駆動アーキテクチャにより、少数のworkerプロセスが多数の接続を効率的に切り替えながら処理しているため"
+      - "接続数に上限を設けて古い接続を強制切断しているため"
+      - "すべての処理をmasterプロセスが単独で行っているため"
+    answerIndex: 1
+    explanation: "Nginxはイベント駆動(non-blocking I/O)アーキテクチャを採用しており、少数のworkerプロセスが多数の接続を効率的に切り替えながら処理します。"
+
+  - question: "masterプロセスとworkerプロセスの役割分担として正しいのはどれか。"
+    choices:
+      - "masterプロセスが実際のクライアント接続を処理し、workerプロセスは監視だけを行う"
+      - "masterプロセスが設定管理とworkerの監視を行い、workerプロセスが実際のクライアント接続を処理する"
+      - "masterとworkerは常に同じ処理を並行して行う"
+      - "workerプロセスは設定ファイルを直接読み込む権限を持つ"
+    answerIndex: 1
+    explanation: "masterプロセスは設定の読み込みとworkerプロセスの管理を担当し、実際のクライアント接続を処理するのはworkerプロセスです。"
+
+  - question: "`nginx -s reload`の効果として正しいのはどれか。"
+    choices:
+      - "Nginx全体を停止してから再起動する"
+      - "サービスを止めることなく、新しい設定を持ったworkerプロセスに入れ替える"
+      - "設定ファイルの構文エラーを自動的に修正する"
+      - "すべての接続を強制的に切断する"
+    answerIndex: 1
+    explanation: "nginx -s reloadは、masterプロセスに設定の再読み込みを指示し、古いworkerプロセスを処理完了後に新しい設定のworkerプロセスへ入れ替える、無停止の仕組みです。"
+
+  - question: "1つのserverブロックの中で、静的ファイル配信とリバースプロキシは共存できるか。"
+    choices:
+      - "できない。どちらか一方しか設定できない"
+      - "できる。locationごとに異なる役割(rootとproxy_pass)を設定できる"
+      - "共存はできるが、性能が著しく低下するため非推奨"
+      - "共存には別途ライセンスが必要である"
+    answerIndex: 1
+    explanation: "locationごとに、静的ファイルを返すrootの設定と、別サーバーへ転送するproxy_passの設定を、同じserverブロック内で共存させられます。"
+
+  - question: "sites-available/sites-enabledについて正しい説明はどれか。"
+    choices:
+      - "Nginx自体の公式機能である"
+      - "Debian系ディストリビューションのパッケージが独自に採用している運用上の慣習である"
+      - "Windows版のNginxにのみ存在する仕組みである"
+      - "設定ファイルを暗号化するための仕組みである"
+    answerIndex: 1
+    explanation: "sites-available/sites-enabledはNginx自体の機能ではなく、Debian系のパッケージが独自に採用している運用上の慣習です。"

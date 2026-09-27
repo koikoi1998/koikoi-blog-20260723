@@ -1,0 +1,45 @@
+questions:
+  - question: "Does placing a config file in sites-available alone enable it?"
+    choices:
+      - "Yes — it's automatically enabled just by that"
+      - "No — a symlink into sites-enabled needs to be created"
+      - "It's not enabled until you reinstall Nginx"
+      - "It's not enabled unless the file extension is .conf"
+    answerIndex: 1
+    explanation: "Unless you create a symlink into sites-enabled, Nginx never loads a config file sitting in sites-available."
+
+  - question: "What should you do next if nginx -t reports an error?"
+    choices:
+      - "Run nginx -s reload anyway"
+      - "Fix the config file using the filename and line number shown in the error message"
+      - "Uninstall and reinstall Nginx"
+      - "Restart the server itself"
+    answerIndex: 1
+    explanation: "You shouldn't run reload while a syntax error exists. Fix the config file using the filename and line number shown in the error message."
+
+  - question: "What does the proxy_pass specified for location /api/ do in this hands-on?"
+    choices:
+      - "Directly returns a static file"
+      - "Forwards the request straight to the backend app (port 3000) and returns its response"
+      - "Rejects the request"
+      - "Caches the request and then discards it"
+    answerIndex: 1
+    explanation: "proxy_pass forwards the request to the backend app and returns whatever response comes back from there, straight to the client."
+
+  - question: "When multiple locations match simultaneously, how does Nginx decide which one to apply?"
+    choices:
+      - "Whichever is written first in the config file"
+      - "It prefers the longer, more specific matching pattern"
+      - "It picks one at random"
+      - "Whichever comes first alphabetically"
+    answerIndex: 1
+    explanation: "When multiple locations match simultaneously, Nginx decides the applying order based on preferring the longer, more specific matching pattern."
+
+  - question: "What's the benefit of binding a backend app only to 127.0.0.1, reachable only through Nginx's forwarding?"
+    choices:
+      - "The backend app's processing speed automatically improves"
+      - "It concentrates concerns like TLS termination and caching at Nginx, letting the backend focus purely on business logic"
+      - "This design means you no longer need to write the backend app's code"
+      - "There's no particular security benefit"
+    answerIndex: 1
+    explanation: "It concentrates concerns like TLS termination, caching, and rate limiting at one front door, Nginx, letting the backend application server focus purely on business logic."

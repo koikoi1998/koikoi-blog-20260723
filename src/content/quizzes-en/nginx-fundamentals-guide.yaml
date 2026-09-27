@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the correct reason Nginx can handle a huge number of connections with few resources?"
+    choices:
+      - "It assigns one process per connecting client"
+      - "Its event-driven architecture lets a small number of worker processes efficiently juggle a huge number of connections"
+      - "It caps the connection count and forcibly disconnects old connections"
+      - "The master process alone handles all the processing"
+    answerIndex: 1
+    explanation: "Nginx adopts an event-driven (non-blocking I/O) architecture, where a small number of worker processes efficiently juggle a huge number of connections."
+
+  - question: "What's the correct division of labor between the master and worker processes?"
+    choices:
+      - "The master process handles actual client connections, and workers only monitor"
+      - "The master process handles config management and monitoring workers, while worker processes handle actual client connections"
+      - "Master and worker always do the exact same processing in parallel"
+      - "A worker process has direct permission to read the config file"
+    answerIndex: 1
+    explanation: "The master process handles loading the config and managing worker processes, while worker processes are the ones actually handling client connections."
+
+  - question: "What's the correct effect of `nginx -s reload`?"
+    choices:
+      - "It stops Nginx entirely, then restarts it"
+      - "It swaps in worker processes carrying the new config, without ever stopping the service"
+      - "It automatically fixes a config file's syntax errors"
+      - "It forcibly disconnects every connection"
+    answerIndex: 1
+    explanation: "nginx -s reload tells the master process to reload the config, then swaps old worker processes for new ones carrying the new config, once they finish their current work — a zero-downtime mechanism."
+
+  - question: "Can static file serving and a reverse proxy coexist within a single server block?"
+    choices:
+      - "No — only one or the other can be configured"
+      - "Yes — each location can be configured with a different role (root or proxy_pass)"
+      - "They can coexist, but it's discouraged since performance drops significantly"
+      - "Coexisting requires a separate license"
+    answerIndex: 1
+    explanation: "Each location can be configured with a different role — root, which serves a static file, and proxy_pass, which forwards to a different server — coexisting within the same server block."
+
+  - question: "What's correct about sites-available/sites-enabled?"
+    choices:
+      - "It's an official feature of Nginx itself"
+      - "It's an operational convention Debian-family distribution packaging adopted on its own"
+      - "It only exists in the Windows version of Nginx"
+      - "It's a mechanism for encrypting config files"
+    answerIndex: 1
+    explanation: "sites-available/sites-enabled isn't a feature of Nginx itself — it's an operational convention Debian-family packaging adopted on its own."

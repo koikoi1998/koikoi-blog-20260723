@@ -331,6 +331,8 @@ graph TB
 <li data-subseries="handson"><a href="/articles/linux-find-guide">findコマンドでファイル・ディレクトリを自力で探し当てるハンズオン</a></li>
 <li><a href="/articles/linux-heredoc-redirect-guide">cat > file << 'EOF'の仕組みを『上位1%』の視点で理解する</a></li>
 <li><a href="/articles/git-basics-guide">Gitの仕組みを『上位1%』の視点で理解する</a></li>
+<li><a href="/articles/nginx-fundamentals-guide">Nginxの仕組みを『上位1%』の視点で理解する</a></li>
+<li data-subseries="handson"><a href="/articles/nginx-handson-guide">Nginxで独自の仮想ホストとリバースプロキシを構築するハンズオン</a></li>
 <li data-subseries="audio"><a href="/articles/linux-audio-review-guide">【音声で聴く】Linux/OS基礎シリーズ総復習</a></li>
 <li><a href="/articles/nic-driver-internals-guide">NICドライバとLinuxカーネルのネットワーク処理を『上位1%』の視点で理解する</a></li>
 <li data-subseries="audio"><a href="/articles/network-audio-review-guide">【音声で聴く】ネットワーク基礎シリーズ総復習</a></li>
@@ -347,13 +349,13 @@ graph TB
 <div class="persona-panel persona-panel-8">
 <div class="persona-panel-head">
 <h3>🏆 業界最高峰のスキル水準を目指して情報収集している方へ</h3>
-<p>全160記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
+<p>全162記事を読み切り、シリーズ全体の設計思想を一貫して語れる状態を目指す、完全制覇ルートです。</p>
 </div>
 <ol class="persona-route-list">
-<li>STEP1〜STEP7の159記事(上のタブから確認できます)</li>
+<li>STEP1〜STEP7の161記事(上のタブから確認できます)</li>
 <li><a href="/articles/voip-ss7-guide">VoIPとSS7、そして実際の通信経路を『上位1%』の視点で理解する</a></li>
 </ol>
-<div class="persona-bonus">🎉 <strong>これで全160記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
+<div class="persona-bonus">🎉 <strong>これで全162記事読了です。</strong> シリーズ全体の構成は、次の「シリーズ一覧」でも振り返れます。</div>
 </div>
 </div>
 </div>
@@ -435,7 +437,7 @@ graph TB
 
 ### Linux/OS基礎シリーズ
 
-VPNプロトコルの記事やL2TP/IPsecハンズオンなどで繰り返し登場する、実行環境レベルの基礎用語を深掘りするシリーズです。**読む順番の目安**: ① linux-daemon-guide → ② software-library-guide → ③ linux-user-kernel-space-guide → ④ linux-file-permissions-guide → ⑤ linux-sysctl-guide → ⑥ linux-iptables-guide → ⑦ linux-filesystem-hierarchy-guide → ⑧ linux-config-activation-guide → ⑨ linux-journalctl-guide → ⑩ curl-guide → ⑪ software-framework-guide → ⑫ linux-find-guide → ⑬ linux-heredoc-redirect-guide → ⑭ git-basics-guide → ⑮ linux-audio-review-guide(全14記事を読み終えた後の音声復習用)。
+VPNプロトコルの記事やL2TP/IPsecハンズオンなどで繰り返し登場する、実行環境レベルの基礎用語を深掘りするシリーズです。**読む順番の目安**: ① linux-daemon-guide → ② software-library-guide → ③ linux-user-kernel-space-guide → ④ linux-file-permissions-guide → ⑤ linux-sysctl-guide → ⑥ linux-iptables-guide → ⑦ linux-filesystem-hierarchy-guide → ⑧ linux-config-activation-guide → ⑨ linux-journalctl-guide → ⑩ curl-guide → ⑪ software-framework-guide → ⑫ linux-find-guide → ⑬ linux-heredoc-redirect-guide → ⑭ git-basics-guide → ⑮ nginx-fundamentals-guide → ⑯ nginx-handson-guide → ⑰ linux-audio-review-guide(全16記事を読み終えた後の音声復習用)。
 
 - [デーモン(daemon)とは何か——Linuxのバックグラウンドプロセスを『上位1%』の視点で理解する](/articles/linux-daemon-guide) — 通常のプロセスとの違い、IKEデーモンなどプロトコル処理がデーモンとして実装される理由、systemdによる起動・監視・ログの仕組みまでの深掘り（現代的なVPNプロトコルとの比較の記事のデーモンの話から派生した発展編、単体でも読めます）。
 - [ライブラリ(library)とは何か——静的リンク・動的リンクの仕組みを『上位1%』の視点で理解する](/articles/software-library-guide) — 静的リンクと動的リンク(共有ライブラリ)の違い、シンボル解決の仕組み、ABI互換性が障害要因になる理由までの深掘り（現代的なVPNプロトコルとの比較の記事のOpenSSLの話から派生した発展編、単体でも読めます）。
@@ -451,6 +453,8 @@ VPNプロトコルの記事やL2TP/IPsecハンズオンなどで繰り返し登�
 - [findコマンドでファイル・ディレクトリを自力で探し当てるハンズオン](/articles/linux-find-guide) — 手順書に頼らず、名前・種類・更新日時で絞り込んでファイルを探し当てるハンズオン。ディレクトリの命名慣習から当たりを付ける力、locate・treeとの使い分けまでを扱う(単体でも読めます)。
 - [cat > file << 'EOF'の仕組みを理解する](/articles/linux-heredoc-redirect-guide) — ハンズオン記事で頻出するこの書き方の中身を、リダイレクト(>・>>・<)とヒアドキュメント(<<)に分解して理解する深掘り(単体でも読めます)。
 - [Gitの仕組みを理解する——なぜコミットという単位でバージョンを管理するのか](/articles/git-basics-guide) — 作業ディレクトリ・ステージングエリア・リポジトリの関係、コミットが差分ではなくスナップショットである実像、push/pullの仕組みまでの深掘り(単体でも読めます)。
+- [Nginxの仕組みを理解する——イベント駆動アーキテクチャとリバースプロキシの二面性](/articles/nginx-fundamentals-guide) — Apacheとの設計思想の違いであるイベント駆動アーキテクチャ、master/workerプロセスの役割分担、Webサーバーとリバースプロキシという二面性を持つ設定ファイルの構造までの深掘り(単体でも読めます)。
+- [Nginxで独自の仮想ホストとリバースプロキシを構築するハンズオン](/articles/nginx-handson-guide) — sites-available/sites-enabledの使い方、nginx -tによる構文チェック、nginx -s reloadによる無停止反映までを体験するハンズオン(単体でも読めます)。
 - [【音声で聴く】Linux/OS基礎シリーズ総復習](/articles/linux-audio-review-guide) — 全14記事を読み終えた人向けの、耳だけで復習できる音声学習記事。表・図・箇条書きを使わず、ブラウザの読み上げ機能で聞き流せるように語りかける文章だけで構成(シリーズを読了している前提)。
 
 ### 電話網・アクセス回線シリーズ

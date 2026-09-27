@@ -104,7 +104,7 @@ sudo apt update
 sudo apt install -y nginx
 ```
 
-`sudo apt install` alone completes both installing Nginx and configuring it to start automatically (the package bundles its own systemd unit file). Just to be sure, check its status.
+`sudo apt install` alone completes both installing Nginx and configuring it to start automatically (the package bundles its own systemd unit file). Just to be sure, check its status. **If you'd like to understand Nginx's own inner workings (its event-driven architecture, the master/worker processes) in depth, see [Understanding How Nginx Works From a "Top 1%" Perspective](/en/articles/nginx-fundamentals-guide).**
 
 ```bash
 sudo systemctl status nginx

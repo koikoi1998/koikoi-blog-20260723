@@ -1,16 +1,16 @@
 ---
 title: "[Listen] The Linux/OS Fundamentals Series, Fully Recapped"
-description: "An audio-learning article that reviews all 14 articles of the Linux/OS Fundamentals series by ear, during a commute or while doing chores. No tables, diagrams, or bullet points — just spoken-style prose meant to be read aloud by a browser's text-to-speech feature."
+description: "An audio-learning article that reviews all 16 articles of the Linux/OS Fundamentals series by ear, during a commute or while doing chores. No tables, diagrams, or bullet points — just spoken-style prose meant to be read aloud by a browser's text-to-speech feature."
 series: "linux"
 subSeries: "audio"
-order: 16
+order: 18
 tags: ["linux", "audio-review", "infra"]
 emoji: "🎧"
 pubDate: 2026-09-24
 updatedDate: 2026-09-26
 ---
 
-This article is an audio-learning recap for anyone who's already read all fourteen articles in the Linux/OS Fundamentals series. Use your browser's or phone's text-to-speech feature and let it play in the background during a commute or while doing chores. There are no diagrams, tables, or code here — just spoken-style prose, stitching the whole series back together into a single, continuous thread.
+This article is an audio-learning recap for anyone who's already read all sixteen articles in the Linux/OS Fundamentals series. Use your browser's or phone's text-to-speech feature and let it play in the background during a commute or while doing chores. There are no diagrams, tables, or code here — just spoken-style prose, stitching the whole series back together into a single, continuous thread.
 
 The series opened with the daemon itself. A daemon is a process with no screen a user directly operates, running continuously in the background for as long as the OS is up, providing some specific role or service. The name doesn't come from anything sinister — it traces back to the Greek idea of a guardian spirit, watching over and quietly working alongside you, and by convention its name usually ends in the letter d. Behind every server, these nameless guardian spirits just keep working, without ever stopping.
 
@@ -38,6 +38,8 @@ From there came a hands-on lab about tracking down a file or directory yourself 
 
 From there, we dug into the construct that shows up in hands-on articles as a given: combining the cat command, a redirection symbol, and the string EOF. It turned out to be a combination of two independent mechanisms — redirection and a here document. Redirection switches the output destination from the screen to a file, and a here document feeds the multiple lines of text about to follow, on the spot, as input to a command. We even covered the fine detail that wrapping the terminating marker in single quotes changes whether variable expansion happens at all.
 
-We closed with Git, the version-control mechanism itself. There are three areas — the working directory, the staging area, and the repository. Add is a temporary addition to the staging area, and only commit finalizes it into history. The core insight was that a commit's true nature is a collection of snapshots reusing references to unchanged files, not a diff.
+Next came Git, the version-control mechanism itself. There are three areas — the working directory, the staging area, and the repository. Add is a temporary addition to the staging area, and only commit finalizes it into history. The core insight was that a commit's true nature is a collection of snapshots reusing references to unchanged files, not a diff.
 
-Looking back across all fourteen articles, a consistent stance emerges. The daemon, the library, the split between kernel space and user space, permissions, procfs, iptables, directory structure, how a config file takes effect, journalctl, curl, the concept of a framework, tracking things down with find, redirection and here documents, and the true nature of a Git commit — every single one of them was really telling the same story: behind whatever's visibly happening on the surface, who is actually doing the work, and who actually holds control? Not the person typing the command, but reaching all the way through to the program or kernel entity that actually receives it and does the processing — that's the pattern of thought a top-1% engineer applies almost automatically. And that's the recap of the Linux/OS Fundamentals series, complete.
+We closed with Nginx. Where a traditional web server assigns one process per connection, Nginx uses an event-driven mechanism, where a small number of worker processes efficiently juggle a huge number of connections. The master process handles config management and monitoring workers, and worker processes handle the actual work. And within a single config file, it carries a dual identity: a face as a web server serving static files, and a face as a reverse proxy forwarding requests to a different server, coexisting at the same time. You built your own config file and confirmed, with your own hands, two different processing paths — a static file, and forwarding to an API — functioning simultaneously on the very same port.
+
+Looking back across all sixteen articles, a consistent stance emerges. The daemon, the library, the split between kernel space and user space, permissions, procfs, iptables, directory structure, how a config file takes effect, journalctl, curl, the concept of a framework, tracking things down with find, redirection and here documents, the true nature of a Git commit, and Nginx's event-driven architecture — every single one of them was really telling the same story: behind whatever's visibly happening on the surface, who is actually doing the work, and who actually holds control? Not the person typing the command, but reaching all the way through to the program or kernel entity that actually receives it and does the processing — that's the pattern of thought a top-1% engineer applies almost automatically. And that's the recap of the Linux/OS Fundamentals series, complete.
