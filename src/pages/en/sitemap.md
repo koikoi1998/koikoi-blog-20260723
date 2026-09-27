@@ -15,6 +15,8 @@ This series aims for the level of understanding held by "the top 1% of infrastru
 
 ...in a way that lets even a beginner climb the ladder one step at a time. When a topic gets too large, we don't force it into a single article — we split it by theme and link the articles together. This page is the table of contents, recommended reading order, and sitemap across all of them. It gets updated every time a new topic is added.
 
+**As the article count has grown, a roadmap built around reading every article in order has gotten harder to navigate, so we've also built [The Top 1% University](/en/university) — the same articles reorganized around the metaphor of a university's faculties, departments, and grades.** If you'd rather narrow in on your own specialty, check that page out too.
+
 ## Recommended reading order
 
 This page used to cram every article into a single giant diagram, but chaining everything back through the iDRAC article as the root made things — especially everything under the VPN/L2TP-IPsec series — too dense to read. So article-level derivation is now shown within each series' own section (in "Series list" below), and this diagram is scaled back to a simple map of **how the series relate to each other.**
