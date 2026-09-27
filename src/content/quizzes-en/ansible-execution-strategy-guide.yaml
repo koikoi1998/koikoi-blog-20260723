@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the correct description of linear, Ansible's default execution strategy?"
+    choices:
+      - "Each host progresses independently, at its own pace, through every Task"
+      - "Ansible never moves to the next Task until every target host finishes the current one"
+      - "It always sends processing to exactly one host"
+      - "Execution order is decided randomly per host"
+    answerIndex: 1
+    explanation: "The linear strategy waits for every host to finish a given Task before moving on to the next one."
+
+  - question: "What's the correct description of forks?"
+    choices:
+      - "A setting that limits the total number of Tasks in a Playbook"
+      - "The parallelism setting controlling how many hosts a single Task runs against at once"
+      - "A setting controlling the SSH connection timeout in seconds"
+      - "A setting controlling variable precedence"
+    answerIndex: 1
+    explanation: "forks controls how many hosts a single Task runs against simultaneously; its default value is 5."
+
+  - question: "What's the structural weakness of the linear strategy?"
+    choices:
+      - "It can't run in parallel at all"
+      - "Every host has to wait for the single slowest host to finish a given Task"
+      - "It breaks variable precedence"
+      - "It makes Check Mode unusable"
+    answerIndex: 1
+    explanation: "Under linear, even one unusually slow host causes its wait time for that Task to spill over onto the entire run."
+
+  - question: "What's an important caveat when using the free strategy?"
+    choices:
+      - "It's always slower than linear"
+      - "A Playbook containing a step requiring synchronization across hosts may end up executing in an unintended order"
+      - "It completely disables the forks setting"
+      - "It can never be combined with Check Mode"
+    answerIndex: 1
+    explanation: "Since each host progresses independently under free, a Playbook that assumes every host has finished before a certain step risks running that step at an unintended moment."
+
+  - question: "What's appropriate to check when a Playbook's run time grows more than expected as host count increases?"
+    choices:
+      - "Rename the Playbook's file"
+      - "Whether the forks value is too low relative to the target host count, and whether one specific host is a bottleneck"
+      - "Delete the entire inventory file"
+      - "There's no way to check this"
+    answerIndex: 1
+    explanation: "Checking the forks value and looking for an unusually slow Task on a specific host, e.g. via the -v flag, is standard practice."

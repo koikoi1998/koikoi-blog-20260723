@@ -1,0 +1,45 @@
+questions:
+  - question: "Ansible TowerとAWXの関係として正しいのはどれか。"
+    choices:
+      - "まったく別のコンセプトを持つ、無関係なソフトウェアである"
+      - "AWXはTowerの元になっているオープンソース版であり、基本コンセプトを共有している"
+      - "AWXはTowerの後継として開発が終了した旧製品である"
+      - "AWXはPlaybookを書くためのエディタである"
+    answerIndex: 1
+    explanation: "AWXはAnsible Towerの元になっているオープンソースプロジェクトであり、Web UI経由での一元管理という基本コンセプトを共有しています。"
+
+  - question: "CLIでの直接実行が、組織の規模が大きくなると抱える課題として正しくないのはどれか。"
+    choices:
+      - "誰が、いつ、何を実行したのかが追跡しづらい"
+      - "本番環境への実行権限を細かく制御しづらい"
+      - "定期実行のスケジュール管理が属人化しやすい"
+      - "Playbook自体をYAML以外の言語で書けなくなる"
+    answerIndex: 3
+    explanation: "CLIでの直接実行の課題は、追跡性・権限の細分化・スケジュール管理の3点であり、Playbookの記述言語自体には影響しません。"
+
+  - question: "Tower/AWXのRBAC機能が解決する課題として正しいのはどれか。"
+    choices:
+      - "Playbookの実行速度を向上させる"
+      - "Playbook単位・環境単位での実行権限を細かく制御し、認証情報を一元管理する"
+      - "YAMLの構文エラーを自動修正する"
+      - "forksの値を自動的に最適化する"
+    answerIndex: 1
+    explanation: "RBACは、ユーザーグループごとに実行できるJob Templateを制限し、SSH鍵やクラウドの認証情報をTower/AWX内部で一元管理する機能です。"
+
+  - question: "Job Templateの説明として正しいのはどれか。"
+    choices:
+      - "どのPlaybookを、どのインベントリに対して、どの認証情報で実行するかを事前に定義したもの"
+      - "Playbookの構文をチェックするための静的解析ツール"
+      - "block/rescueの代わりに使うエラーハンドリングの仕組み"
+      - "forksの並列度を設定するためのファイル"
+    answerIndex: 0
+    explanation: "Job Templateは実行の組み合わせを事前に定義したものであり、実行権限を持つメンバーはそれを選んで実行するだけで済むようになります。"
+
+  - question: "Tower/AWXの設計思想と、Ansible Vaultの設計思想の関係として正しいのはどれか。"
+    choices:
+      - "両者はまったく無関係な機能である"
+      - "Vaultはファイル内の機密情報を暗号化し、Tower/AWXは実行者の手元に認証情報そのものを渡さないという、一段上のレイヤーで機密情報を保護する"
+      - "Tower/AWXを導入すればVaultは不要になる"
+      - "Vaultを導入すればTower/AWXのRBAC機能は不要になる"
+    answerIndex: 1
+    explanation: "Vaultはファイル内の暗号化、Tower/AWXは実行者に認証情報そのものを渡さない仕組みという、異なるレイヤーで機密情報保護に貢献します。"

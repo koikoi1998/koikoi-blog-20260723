@@ -1,0 +1,45 @@
+questions:
+  - question: "ansible.cfgが複数の場所に置かれている場合の挙動として正しいのはどれか。"
+    choices:
+      - "すべての場所のファイルがマージされる"
+      - "最初に見つかった1つのファイルだけが読み込まれる"
+      - "最後に見つかったファイルが読み込まれる"
+      - "エラーになり実行できない"
+    answerIndex: 1
+    explanation: "Ansibleは決まった順序でansible.cfgを探し、最初に見つかった1つだけを読み込みます。複数の場所にあってもマージはされません。"
+
+  - question: "Ansibleの設定の優先順位として正しいのはどれか(左が低優先度、右が高優先度)。"
+    choices:
+      - "コマンドライン引数 < 環境変数 < ansible.cfg < 組み込みデフォルト値"
+      - "組み込みデフォルト値 < ansible.cfg < 環境変数 < コマンドライン引数"
+      - "ansible.cfg < 組み込みデフォルト値 < コマンドライン引数 < 環境変数"
+      - "すべて同じ優先度で扱われる"
+    answerIndex: 1
+    explanation: "組み込みデフォルト値、ansible.cfg、環境変数、コマンドライン引数の順に優先度が上がり、後のものが前のものを上書きします。"
+
+  - question: "host_key_checking = Falseに設定することの説明として正しいのはどれか。"
+    choices:
+      - "SSHの通信を暗号化しなくなる"
+      - "SSHの既知ホスト確認を無効化し、なりすましホストへの接続を検知できなくなる"
+      - "sudoによる特権昇格が常に無効になる"
+      - "Ansibleの実行速度には一切影響しない設定である"
+    answerIndex: 1
+    explanation: "host_key_checkingを無効化すると、接続先ホストのなりすましを検知できなくなるという明確なトレードオフを伴います。"
+
+  - question: "チームメンバー間でAnsibleの挙動が異なる原因を調査する際に有効なコマンドはどれか。"
+    choices:
+      - "ansible --version"
+      - "ansible-config dump --only-changed"
+      - "ansible-doc -l"
+      - "ansible-inventory --list"
+    answerIndex: 1
+    explanation: "ansible-config dump --only-changedは、デフォルト値からどの設定が、どのソースによって上書きされているかを一覧表示します。"
+
+  - question: "実務でansible.cfgをどこに置くのが一般的か。"
+    choices:
+      - "/etc/ansible/ansible.cfgにのみ置く"
+      - "Playbookと同じカレントディレクトリに置き、gitで管理する"
+      - "各メンバーのホームディレクトリに個別に置く"
+      - "どこに置いても優先順位に影響しないため任意でよい"
+    answerIndex: 1
+    explanation: "プロジェクトのカレントディレクトリにansible.cfgを置きgitで共有することで、プロジェクトごとの設定切り替えとチーム内での共有が両立できます。"

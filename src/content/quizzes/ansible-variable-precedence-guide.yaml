@@ -1,0 +1,45 @@
+questions:
+  - question: "Ansibleの変数優先順位の大原則として正しいのはどれか。"
+    choices:
+      - "アルファベット順で早いものが優先される"
+      - "対象が広いものより狭いもの、先に読み込まれるものより後に読み込まれるものが優先される"
+      - "ファイル名が短いものが優先される"
+      - "常にPlaybookの一番上に書かれた変数が優先される"
+    answerIndex: 1
+    explanation: "host_varsのように対象が狭いもの、-eのように後から適用されるものが、より優先度が高くなります。"
+
+  - question: "role defaultsの説明として正しいのはどれか。"
+    choices:
+      - "他のどの変数よりも優先度が高い"
+      - "利用者が上書きすることを前提にした、最も優先度が低い変数である"
+      - "コマンドラインからのみ変更できる"
+      - "group_varsより必ず優先される"
+    answerIndex: 1
+    explanation: "role defaultsは初期値として位置づけられ、Ansibleの変数優先順位の中で最も優先度が低い変数です。"
+
+  - question: "-e(extra-vars)の説明として正しいのはどれか。"
+    choices:
+      - "そのPlaybook実行の一部のTaskにだけ適用される"
+      - "他のほぼすべての定義元より優先され、Playbook実行全体に適用される"
+      - "group_varsより優先度が低い"
+      - "roleの中でしか使えない"
+    answerIndex: 1
+    explanation: "-eは事実上最も強い優先度を持ち、そのPlaybook実行のすべてのTaskに対して他の定義元を上書きします。"
+
+  - question: "group_varsとhost_varsで同じ変数名が定義された場合、どちらが優先されるか。"
+    choices:
+      - "group_vars"
+      - "host_vars"
+      - "どちらも適用されずエラーになる"
+      - "実行するたびにランダムに決まる"
+    answerIndex: 1
+    explanation: "host_varsは特定の1台のホストにだけ適用されるため、より対象範囲が狭いhost_varsが優先されます。"
+
+  - question: "想定と違う変数の値が使われている場合の調査方法として適切なのはどれか。"
+    choices:
+      - "ansible-doc -lを実行する"
+      - "ansible-inventory --host <ホスト名>で最終的に適用される値を確認する"
+      - "ansible --versionを確認する"
+      - "調査方法は存在しないため再インストールするしかない"
+    answerIndex: 1
+    explanation: "ansible-inventory --host <ホスト名>を使うと、そのホストに最終的に適用される変数の値を確認できます。"

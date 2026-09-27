@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the correct relationship between Ansible Tower and AWX?"
+    choices:
+      - "They're completely unrelated pieces of software with different concepts"
+      - "AWX is the open-source project Tower is built on, sharing the same core concept"
+      - "AWX is a discontinued legacy product superseded by Tower"
+      - "AWX is an editor for writing Playbooks"
+    answerIndex: 1
+    explanation: "AWX is the open-source project Ansible Tower is built on, sharing the core concept of centralized management through a web UI."
+
+  - question: "Which of these is NOT a real problem that running directly from the CLI runs into as an organization grows?"
+    choices:
+      - "It's hard to track who ran what, and when"
+      - "It's hard to finely control who can execute against production"
+      - "Scheduled runs tend to become tribal knowledge, tied to one person's machine"
+      - "Playbooks can no longer be written in any language other than YAML"
+    answerIndex: 3
+    explanation: "Running directly from the CLI creates problems around traceability, permission segmentation, and scheduling — it has no effect on the language Playbooks are written in."
+
+  - question: "What problem does Tower/AWX's RBAC feature solve?"
+    choices:
+      - "It improves Playbook execution speed"
+      - "It provides fine-grained execution permissions per Playbook and per environment, with credentials managed centrally"
+      - "It automatically fixes YAML syntax errors"
+      - "It automatically optimizes the forks value"
+    answerIndex: 1
+    explanation: "RBAC restricts which Job Templates a user group can run, and manages SSH keys and cloud credentials centrally inside Tower/AWX."
+
+  - question: "What's the correct description of a Job Template?"
+    choices:
+      - "A pre-defined combination of which Playbook to run, against which inventory, with which credential"
+      - "A static-analysis tool for checking Playbook syntax"
+      - "An error-handling mechanism used instead of block/rescue"
+      - "A file for configuring the forks parallelism setting"
+    answerIndex: 0
+    explanation: "A Job Template pre-defines an execution combination, so anyone with permission just picks it and runs it."
+
+  - question: "What's the correct relationship between Tower/AWX's design philosophy and Ansible Vault's?"
+    choices:
+      - "The two features are completely unrelated"
+      - "Vault encrypts secrets inside a file, while Tower/AWX protects secrets one layer up, by never handing credentials to the person running the job"
+      - "Adopting Tower/AWX makes Vault unnecessary"
+      - "Adopting Vault makes Tower/AWX's RBAC feature unnecessary"
+    answerIndex: 1
+    explanation: "Vault protects secrets via in-file encryption, while Tower/AWX protects them at a different layer, by never exposing the credential itself to the runner."

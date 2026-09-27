@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the correct description of Check Mode (--check)?"
+    choices:
+      - "It applies the real changes and logs the result"
+      - "It judges, for each Task, only whether it would change anything, without making any real change"
+      - "It only detects Playbook syntax errors"
+      - "It rewrites the contents of the inventory"
+    answerIndex: 1
+    explanation: "Check Mode is a dry-run feature that reports only a changed/ok judgment, without ever applying a real change."
+
+  - question: "What does Diff Mode (--diff) display?"
+    choices:
+      - "Execution-time statistics"
+      - "The concrete before-and-after difference for files or templates"
+      - "A list of hosts registered in the inventory"
+      - "A list of available modules"
+    answerIndex: 1
+    explanation: "Diff Mode shows the concrete before-and-after difference for file contents or rendered templates."
+
+  - question: "What's a correct caveat about Check Mode?"
+    choices:
+      - "Every module can simulate its effect with perfect accuracy"
+      - "Some modules, such as command/shell, never actually run, so they may not simulate accurately"
+      - "Using Check Mode causes every command to actually execute"
+      - "Check Mode can only be used against production"
+    answerIndex: 1
+    explanation: "The command/shell module never actually runs during Check Mode, so it can't accurately simulate any downstream Task that depends on its output."
+
+  - question: "What do you set on a Task to force it to actually run even during Check Mode?"
+    choices:
+      - "always_run: true"
+      - "check_mode: false"
+      - "force_run: true"
+      - "ignore_check: true"
+    answerIndex: 1
+    explanation: "Setting check_mode: false on a Task forces it to actually run even while Check Mode is active."
+
+  - question: "What's an appropriate way to use Check Mode/Diff Mode in real-world operations?"
+    choices:
+      - "Trust the result completely and skip an actual test run in a test environment"
+      - "Use it as reference information before applying to production, without over-trusting it where command/shell is used heavily"
+      - "Conclude the Playbook itself has a bug the moment any single Task reports changed"
+      - "Use Diff Mode only against production, never in a test environment"
+    answerIndex: 1
+    explanation: "Check Mode/Diff Mode is a valuable final safety net before production, but some modules have real accuracy limits, so the result shouldn't be taken at face value."

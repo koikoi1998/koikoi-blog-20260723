@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the correct behavior when a Task has ignore_errors: true set?"
+    choices:
+      - "The Task always counts as a success, and no record of it appears anywhere in the Playbook's results"
+      - "Processing continues on that host, but the Playbook as a whole still records that a failure happened"
+      - "Processing on every other host is stopped immediately"
+      - "The entire Playbook terminates at that point"
+    answerIndex: 1
+    explanation: "ignore_errors: true lets processing continue on that host, but the failure itself is still recorded in the final run summary."
+
+  - question: "What's the correct description of failed_when?"
+    choices:
+      - "It rewrites the command's actual exit code"
+      - "It's a mechanism for redefining, yourself, the judgment logic behind what Ansible treats as a \"failure\""
+      - "It's a conditional for skipping an entire Task"
+      - "It's a mechanism for changing variable precedence"
+    answerIndex: 1
+    explanation: "failed_when overrides the standard judgment logic based on a module's exit code, letting you define \"failure\" with your own condition."
+
+  - question: "What's the correct behavior when any_errors_fatal: true is set on a Play?"
+    choices:
+      - "Only the failed host's processing continues, and other hosts are unaffected (same as the default)"
+      - "The instant a Task fails on one host, processing on every other host is immediately stopped too"
+      - "It ignores the failure entirely and treats the whole Playbook as a success"
+      - "It automatically pins the forks value to 1"
+    answerIndex: 1
+    explanation: "any_errors_fatal: true turns one host's failure into an emergency stop switch for the whole run, useful for an all-or-nothing coordinated deployment."
+
+  - question: "What's Ansible's default behavior (when any_errors_fatal is NOT set)?"
+    choices:
+      - "A failure on one host stops only that host's processing, while other hosts continue"
+      - "A failure on one host automatically stops processing on every other host too"
+      - "A single failure prevents the Playbook run from even starting"
+      - "No log is kept at all about which host failed"
+    answerIndex: 0
+    explanation: "By default, a Task failure on one host stops processing only on that host, with no effect on the others."
+
+  - question: "For a deployment to 10 hosts where you want the whole thing to halt if even one fails, what should you set?"
+    choices:
+      - "ignore_errors: true"
+      - "any_errors_fatal: true"
+      - "check_mode: true"
+      - "gather_facts: false"
+    answerIndex: 1
+    explanation: "Setting any_errors_fatal: true on the Play turns one host's failure into an emergency stop for every other host's processing."

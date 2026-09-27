@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the core principle behind Ansible's variable precedence?"
+    choices:
+      - "Alphabetically earlier names win"
+      - "A narrower scope wins over a broader one, and a later-loaded value wins over an earlier one"
+      - "Shorter file names win"
+      - "The variable written at the top of the Playbook always wins"
+    answerIndex: 1
+    explanation: "A narrow-scope variable like host_vars, or one applied later like -e, ends up with higher priority."
+
+  - question: "What's the correct description of role defaults?"
+    choices:
+      - "It has higher priority than every other variable"
+      - "It's the lowest-priority variable, meant to be overridden by whoever uses the role"
+      - "It can only be changed from the command line"
+      - "It always wins over group_vars"
+    answerIndex: 1
+    explanation: "role defaults is positioned as an initial value, and holds the lowest priority in Ansible's variable precedence order."
+
+  - question: "What's the correct description of -e (extra-vars)?"
+    choices:
+      - "It only applies to part of that Playbook run's Tasks"
+      - "It takes priority over nearly every other source, applying across the entire Playbook run"
+      - "It has lower priority than group_vars"
+      - "It can only be used inside a role"
+    answerIndex: 1
+    explanation: "-e effectively holds the strongest priority, overriding every other source across all Tasks in that Playbook run."
+
+  - question: "If the same variable name is defined in both group_vars and host_vars, which one wins?"
+    choices:
+      - "group_vars"
+      - "host_vars"
+      - "Neither applies, and it results in an error"
+      - "It's decided randomly on each run"
+    answerIndex: 1
+    explanation: "host_vars applies to only a single, specific host, so its narrower scope wins over group_vars."
+
+  - question: "What's an appropriate way to investigate why an unexpected variable value is being used?"
+    choices:
+      - "Run ansible-doc -l"
+      - "Use ansible-inventory --host <hostname> to check the final applied value"
+      - "Check ansible --version"
+      - "There's no way to investigate — reinstalling is the only option"
+    answerIndex: 1
+    explanation: "ansible-inventory --host <hostname> shows the final variable value that actually ends up applied to that host."

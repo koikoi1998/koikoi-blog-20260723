@@ -1,0 +1,45 @@
+questions:
+  - question: "Check Mode(--check)の説明として正しいのはどれか。"
+    choices:
+      - "実際に変更を適用したうえで、結果をログに記録する"
+      - "実際には変更を加えずに、各Taskで変更が発生するかどうかだけを判定する"
+      - "Playbookの構文エラーだけを検出する"
+      - "インベントリの内容を書き換える"
+    answerIndex: 1
+    explanation: "Check Modeは実際の変更を一切加えず、changed/okの判定結果だけを報告するドライラン機能です。"
+
+  - question: "Diff Mode(--diff)が表示する内容として正しいのはどれか。"
+    choices:
+      - "実行時間の統計情報"
+      - "ファイルやテンプレートの変更前後の具体的な差分"
+      - "インベントリに登録されているホストの一覧"
+      - "使用可能なモジュールの一覧"
+    answerIndex: 1
+    explanation: "Diff Modeは、ファイルの内容やテンプレートの展開結果について、変更前後の具体的な差分を表示します。"
+
+  - question: "Check Modeに関する注意点として正しいのはどれか。"
+    choices:
+      - "すべてのモジュールが完全に正確にシミュレートできる"
+      - "command/shellモジュールなど、一部のモジュールは実際には実行されないため正確にシミュレートできない場合がある"
+      - "Check Modeを使うと実際にコマンドがすべて実行される"
+      - "Check Modeは本番環境でしか使えない"
+    answerIndex: 1
+    explanation: "command/shellモジュールはCheck Mode中に実際には実行されないため、その出力に依存する後続のTaskを正確にシミュレートできません。"
+
+  - question: "特定のTaskをCheck Mode中でも強制的に実行させたい場合、そのTaskに指定するものはどれか。"
+    choices:
+      - "always_run: true"
+      - "check_mode: false"
+      - "force_run: true"
+      - "ignore_check: true"
+    answerIndex: 1
+    explanation: "Taskにcheck_mode: falseを指定すると、Check Mode中でもそのTaskを強制的に実行させることができます。"
+
+  - question: "実務でのCheck Mode/Diff Modeの使い方として適切なのはどれか。"
+    choices:
+      - "結果を完全に信頼し、検証環境でのテスト実行を省略する"
+      - "本番適用前の参考情報として活用しつつ、command/shellを多用する箇所では結果を過信しない"
+      - "Check Modeの結果が1つでもchangedになったら、Playbook自体にバグがあると判断する"
+      - "Diff Modeは本番環境でのみ使用し、検証環境では使わない"
+    answerIndex: 1
+    explanation: "Check Mode/Diff Modeは本番適用前の最後のセーフティネットとして有効ですが、一部のモジュールでは正確性に限界があるため、結果を鵜呑みにしない姿勢が重要です。"

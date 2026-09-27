@@ -1,0 +1,45 @@
+questions:
+  - question: "ignore_errors: trueをTaskに付けた場合の挙動として正しいのはどれか。"
+    choices:
+      - "そのTaskは常に成功したとみなされ、Playbook全体の記録にも一切残らない"
+      - "そのホストでの後続処理は継続されるが、Playbook全体としては失敗があったという記録が残る"
+      - "他のすべてのホストの処理が即座に停止する"
+      - "Playbook全体がその時点で終了する"
+    answerIndex: 1
+    explanation: "ignore_errors: trueは、そのホストでの後続処理を継続させますが、失敗があったこと自体は最終的な実行結果のサマリーに記録されます。"
+
+  - question: "failed_whenの説明として正しいのはどれか。"
+    choices:
+      - "コマンドの実際の終了コードそのものを書き換える"
+      - "Ansible上で「失敗」とみなす判定ロジックを、自分で定義し直す仕組みである"
+      - "Task全体をスキップするための条件分岐である"
+      - "変数の優先順位を変更する仕組みである"
+    answerIndex: 1
+    explanation: "failed_whenは、モジュールの終了コードに基づく標準の判定ロジックを上書きし、独自の条件で「失敗」を定義できる仕組みです。"
+
+  - question: "any_errors_fatal: trueをPlayに設定した場合の挙動として正しいのはどれか。"
+    choices:
+      - "失敗したホストの処理だけが継続され、他のホストは影響を受けない(既定の挙動と同じ)"
+      - "いずれか1台のホストでTaskが失敗した瞬間に、他のすべてのホストの処理も即座に停止する"
+      - "失敗を完全に無視してPlaybook全体を成功扱いにする"
+      - "forksの値が自動的に1に固定される"
+    answerIndex: 1
+    explanation: "any_errors_fatal: trueは、1台の失敗を全体の緊急停止スイッチにする設定で、all-or-nothingの挙動が必要な一斉デプロイなどで使われます。"
+
+  - question: "Ansibleの既定の挙動として正しいのはどれか(any_errors_fatalを設定しない場合)。"
+    choices:
+      - "あるホストの失敗は、そのホストの処理だけを止め、他のホストへの処理は続行される"
+      - "あるホストの失敗は、自動的に他のすべてのホストの処理も停止させる"
+      - "失敗が1件でもあると、Playbookの実行自体が開始されない"
+      - "失敗したホストの情報はログに一切残らない"
+    answerIndex: 0
+    explanation: "Ansibleの既定の挙動では、あるホストでのTaskの失敗は、そのホストの処理だけを止め、他のホストへの処理には影響しません。"
+
+  - question: "10台への一斉デプロイで「1台でも失敗したら全体を止めたい」場合に設定すべきものはどれか。"
+    choices:
+      - "ignore_errors: true"
+      - "any_errors_fatal: true"
+      - "check_mode: true"
+      - "gather_facts: false"
+    answerIndex: 1
+    explanation: "any_errors_fatal: trueをPlayに設定することで、1台の失敗を、他のすべてのホストの処理を停止させる緊急停止スイッチにできます。"

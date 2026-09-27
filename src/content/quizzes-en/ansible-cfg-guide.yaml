@@ -1,0 +1,45 @@
+questions:
+  - question: "What happens when ansible.cfg exists in multiple locations?"
+    choices:
+      - "All the files get merged together"
+      - "Only the first one found gets loaded"
+      - "Only the last one found gets loaded"
+      - "It results in an error and Ansible refuses to run"
+    answerIndex: 1
+    explanation: "Ansible searches for ansible.cfg in a fixed order and loads only the first one it finds — files anywhere else are never merged."
+
+  - question: "What's the correct setting-precedence order for Ansible (from lowest to highest priority)?"
+    choices:
+      - "Command-line arguments < environment variables < ansible.cfg < built-in defaults"
+      - "Built-in defaults < ansible.cfg < environment variables < command-line arguments"
+      - "ansible.cfg < built-in defaults < command-line arguments < environment variables"
+      - "All sources are treated with equal priority"
+    answerIndex: 1
+    explanation: "Priority rises in the order built-in defaults, ansible.cfg, environment variables, command-line arguments, with later ones overriding earlier ones."
+
+  - question: "What's the correct description of setting host_key_checking = False?"
+    choices:
+      - "It stops SSH traffic from being encrypted"
+      - "It disables SSH's known-hosts verification, so a spoofed host can no longer be detected"
+      - "It always disables privilege escalation via sudo"
+      - "It has no effect on Ansible's execution speed at all"
+    answerIndex: 1
+    explanation: "Disabling host_key_checking comes with the clear tradeoff of no longer being able to detect a spoofed destination host."
+
+  - question: "Which command is useful for investigating why Ansible behaves differently across team members?"
+    choices:
+      - "ansible --version"
+      - "ansible-config dump --only-changed"
+      - "ansible-doc -l"
+      - "ansible-inventory --list"
+    answerIndex: 1
+    explanation: "ansible-config dump --only-changed lists which settings differ from the defaults and which source overrode each one."
+
+  - question: "Where is it common practice to place ansible.cfg in real-world projects?"
+    choices:
+      - "Only in /etc/ansible/ansible.cfg"
+      - "In the current directory alongside the Playbooks, tracked under git"
+      - "Individually in each team member's home directory"
+      - "Anywhere at all, since location never affects precedence"
+    answerIndex: 1
+    explanation: "Placing ansible.cfg in the project's current directory and sharing it via git lets you switch configuration per project while keeping the whole team in sync."
