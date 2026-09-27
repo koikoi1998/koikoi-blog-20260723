@@ -14,7 +14,7 @@ altHref: "/en/university"
 - **学科(Department)**: 学部の中の専門領域です。1つの学科は、既存の「シリーズ」1つに、ほぼそのまま対応します。
 - **学年(Grade)**: 記事・ハンズオンの難易度そのものです。教養課程から大学院、その先まで、未経験からトップエンジニアまでの距離を、段階として示します。
 
-**現時点では、[ActiveDirectory学科](#activedirectory学科)だけが、学年構成をすべて満たす「開講済み」の学科です。** 他の学科は、今後のコンテンツ追加によって、少しずつ学年が埋まっていきます。既存の記事フォルダやURLは変更していません。このページは、あくまで「見せ方」を変えるための、追加の入り口です。
+**現時点では、[ActiveDirectory学科](#activedirectory学科)と[AWS学科](#aws学科)が、学年構成をすべて満たす「開講済み」の学科です。** 他の学科は、今後のコンテンツ追加によって、少しずつ学年が埋まっていきます。既存の記事フォルダやURLは変更していません。このページは、あくまで「見せ方」を変えるための、追加の入り口です。
 
 ## 学年ラベルの共通ルール
 
@@ -61,7 +61,7 @@ altHref: "/en/university"
 
 | 学科 | 対応シリーズ | 状態 |
 |---|---|---|
-| AWS学科 | [aws-basics](/sitemap#シリーズ一覧) | 📗 ハンズオン4段階まで開講(座学は教養課程相当のみ) |
+| AWS学科 | [aws-basics](/sitemap#シリーズ一覧) | 🎓 開講済み(大学院まで) |
 | Ansible/IaC学科 | [ansible](/sitemap#シリーズ一覧) | 📗 ハンズオン4段階まで開講(座学は教養課程相当のみ) |
 
 ### Web/APIエンジニア学部
@@ -150,6 +150,62 @@ altHref: "/en/university"
 
 - [【音声で学ぶ】Active Directory講義 Part1〜4](/articles/ad-audio-lecture-1-guide)(全4回、記事を読まずにゼロから音声だけで学べます)
 - [【音声で聴く】Active Directoryシリーズ総復習](/articles/ad-audio-review-guide)(卒業後の復習用)
+
+## AWS学科
+
+ActiveDirectory学科に続いて、学年構成のすべてを満たした学科です。**この学科のカリキュラムをすべて自力で実施・理解できれば、AWS上でのシステム構築・運用・セキュリティ対応を、一通り自力で回せるレベル**を目標にしています。
+
+### 教養課程(前提科目)
+
+- [ハンズオン準備マニュアル:AWSマネジメントコンソールの基本操作](/articles/aws-console-setup-guide) — マネジメントコンソールの画面操作に不慣れな場合は、先にこちらを読んでおくと、以降のハンズオンで迷いません。
+
+### 1年生:基礎編+初めてのハンズオン
+
+**座学(基礎編、4記事)**
+
+1. [EC2のキーペアとサブネットの予約IPを『上位1%』の視点で理解する](/articles/aws-ec2-networking-basics-guide)
+2. [AWSのリージョン・アベイラビリティーゾーン・エッジロケーションを『上位1%』の視点で理解する](/articles/aws-global-infrastructure-guide)
+3. [EC2の料金モデル(オンデマンド・リザーブド・スポット)を『上位1%』の視点で理解する](/articles/aws-ec2-pricing-models-guide)
+4. [責任共有モデルを『上位1%』の視点で理解する](/articles/aws-shared-responsibility-model-guide)
+
+**実技(ハンズオン基礎編、1記事)**
+
+1. [AWSでEC2インスタンスを起動し、Webサーバーを公開するハンズオン](/articles/aws-ec2-webserver-handson-guide)
+
+### 2年生:補足・深掘り編
+
+1. [IAMポリシーの評価ロジックを『上位1%』の視点で理解する](/articles/aws-iam-policy-evaluation-guide)
+2. [S3のストレージクラスとライフサイクルポリシーを『上位1%』の視点で理解する](/articles/aws-s3-storage-classes-guide)
+3. [セキュリティグループとネットワークACL(NACL)の違いを『上位1%』の視点で理解する](/articles/aws-nacl-security-group-guide)
+
+### 3年生:実務シナリオ編ハンズオン
+
+1. [IAMロールでEC2にアクセスキーを一切持たせないハンズオン](/articles/aws-iam-role-handson-guide)
+2. [S3バケットで静的Webサイトを公開するハンズオン](/articles/aws-s3-static-website-handson-guide)
+3. [パブリック/プライベートサブネットを持つVPCを自力で構築するハンズオン](/articles/aws-vpc-handson-guide)
+4. [RDSとSecrets Managerでアプリにパスワードを一切書かせないハンズオン](/articles/aws-rds-secrets-handson-guide)
+
+### 4年生(卒業):ニッチな仕様・機能編ハンズオン
+
+1. [VPCエンドポイントでNATゲートウェイを経由せずS3にアクセスするハンズオン](/articles/aws-vpc-endpoint-handson-guide)
+2. [EBSスナップショットとAMIでバックアップ・リストア戦略を組むハンズオン](/articles/aws-ebs-snapshot-handson-guide)
+
+**この2本まで自力で実施・理解できれば、「4年生」として卒業水準です。**
+
+### 大学院:セキュリティ強化編ハンズオン(攻撃者視点)
+
+1. [過剰な権限を持つIAMポリシーの危険性を再現し、最小権限に絞り込むハンズオン](/articles/aws-least-privilege-policy-handson-guide)
+2. [CloudTrailとGuardDutyで漏洩したアクセスキーの不正利用を検知するハンズオン](/articles/aws-cloudtrail-guardduty-handson-guide)
+
+いずれも、自分が管理する検証環境の防御力を高めるための、教育・防御目的のハンズオンです。
+
+### アーキテクト以降
+
+まだ記事がありません。複数の学科(AWSだけでなく、Ansible/IaCやネットワーク設計なども含む)をまたいだ、システム全体のアーキテクチャ設計を扱う内容になる見込みです。
+
+### 耳で学ぶ補助教材(学年を問わず)
+
+- [【音声で聴く】AWS基礎シリーズ総復習](/articles/aws-basics-audio-review-guide)(卒業後の復習用)
 
 ## 今後の予定
 

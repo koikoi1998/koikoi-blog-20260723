@@ -14,7 +14,7 @@ The [sitemap](/en/sitemap) is organized as a "STEP1 through STEP8" roadmap that 
 - **Department**: A specialized area within a faculty. One department corresponds almost exactly to one of the existing "series."
 - **Grade**: The difficulty level of the articles and hands-on labs themselves. From general education through graduate school and beyond, it shows the distance from complete beginner to top engineer, as a sequence of stages.
 
-**At the moment, only the [Active Directory Department](#active-directory-department) is a "fully open" department, satisfying every grade level.** Other departments will fill in their grades gradually, as content gets added over time. No existing article folder or URL has been changed — this page is purely an additional front door, changing how things are presented.
+**At the moment, the [Active Directory Department](#active-directory-department) and the [AWS Department](#aws-department) are "fully open" departments, satisfying every grade level.** Other departments will fill in their grades gradually, as content gets added over time. No existing article folder or URL has been changed — this page is purely an additional front door, changing how things are presented.
 
 ## The Shared Grade Ladder
 
@@ -61,7 +61,7 @@ Regardless of how much content currently exists, here's the full list of faculti
 
 | Department | Corresponding Series | Status |
 |---|---|---|
-| AWS Department | [aws-basics](/en/sitemap#series-list) | 📗 Open through all 4 hands-on tiers (theory content is general-education level only) |
+| AWS Department | [aws-basics](/en/sitemap#series-list) | 🎓 Fully open (through graduate school) |
 | Ansible/IaC Department | [ansible](/en/sitemap#series-list) | 📗 Open through all 4 hands-on tiers (theory content is general-education level only) |
 
 ### Web/API Engineering Faculty
@@ -150,6 +150,62 @@ No articles exist here yet. This is expected to cover organization-wide director
 
 - [[Audio Lecture] Active Directory, Parts 1-4](/en/articles/ad-audio-lecture-1-guide) (all 4 parts — learn from zero, by ear alone, without reading a single article)
 - [[Listen] The Active Directory Series, Fully Recapped](/en/articles/ad-audio-review-guide) (for reviewing after graduation)
+
+## AWS Department
+
+Following the Active Directory Department, this is the second department to satisfy every grade level. **The goal is that anyone who works through and understands this entire department's curriculum on their own comes away able to handle building, operating, and securing systems on AWS end to end, on their own.**
+
+### General Education (Prerequisite)
+
+- [Hands-On Prep Manual: Basic Operation of the AWS Management Console](/en/articles/aws-console-setup-guide) — If you're not comfortable navigating the Management Console yet, read this first so you're never lost during the hands-on labs that follow.
+
+### Freshman: Fundamentals + Your First Hands-On
+
+**Lectures (Fundamentals, 4 articles)**
+
+1. [Understanding EC2 Key Pairs and Reserved Subnet IPs from a "Top 1%" Perspective](/en/articles/aws-ec2-networking-basics-guide)
+2. [Understanding AWS Regions, Availability Zones, and Edge Locations From a "Top 1%" Perspective](/en/articles/aws-global-infrastructure-guide)
+3. [Understanding EC2 Pricing Models (On-Demand, Reserved, Spot) From a "Top 1%" Perspective](/en/articles/aws-ec2-pricing-models-guide)
+4. [Understanding AWS's Shared Responsibility Model From a "Top 1%" Perspective](/en/articles/aws-shared-responsibility-model-guide)
+
+**Hands-On (Foundational Tier, 1 article)**
+
+1. [The Top 1% Hands-On for Launching an EC2 Instance and Publishing a Web Server](/en/articles/aws-ec2-webserver-handson-guide)
+
+### Sophomore: Supplementary Deep-Dives
+
+1. [Understanding IAM Policy Evaluation Logic From a "Top 1%" Perspective](/en/articles/aws-iam-policy-evaluation-guide)
+2. [Understanding S3 Storage Classes and Lifecycle Policies From a "Top 1%" Perspective](/en/articles/aws-s3-storage-classes-guide)
+3. [Understanding the Difference Between Security Groups and Network ACLs (NACLs) From a "Top 1%" Perspective](/en/articles/aws-nacl-security-group-guide)
+
+### Junior: Real-World-Scenario Hands-On
+
+1. [The Top 1% Hands-On for Never Giving EC2 an Access Key: Escaping Hardcoded Credentials With an IAM Role](/en/articles/aws-iam-role-handson-guide)
+2. [The Top 1% Hands-On for Publishing a Static Website From an S3 Bucket](/en/articles/aws-s3-static-website-handson-guide)
+3. [The Top 1% Hands-On for Building a VPC With Public/Private Subnets Yourself](/en/articles/aws-vpc-handson-guide)
+4. [The Top 1% Hands-On for Never Letting an App Write a Password With RDS and Secrets Manager](/en/articles/aws-rds-secrets-handson-guide)
+
+### Senior (Graduation): Niche-Spec Hands-On
+
+1. [The Top 1% Hands-On for Reaching S3 Without a NAT Gateway Using a VPC Endpoint](/en/articles/aws-vpc-endpoint-handson-guide)
+2. [The Top 1% Hands-On for Building a Backup/Restore Strategy With EBS Snapshots and AMIs](/en/articles/aws-ebs-snapshot-handson-guide)
+
+**Work through and understand both of these, and you're at graduation level, as a "Senior."**
+
+### Graduate School: Security-Hardening Hands-On (An Attacker's Perspective)
+
+1. [The Top 1% Hands-On for Reproducing the Danger of an Overly Broad IAM Policy and Scoping It to Least Privilege](/en/articles/aws-least-privilege-policy-handson-guide)
+2. [The Top 1% Hands-On for Detecting a Leaked Access Key's Misuse With CloudTrail and GuardDuty](/en/articles/aws-cloudtrail-guardduty-handson-guide)
+
+Both are educational, defense-focused hands-on labs, meant to strengthen the defenses of a test environment you manage yourself.
+
+### Architect and Beyond
+
+No articles exist here yet. This is expected to cover system-wide architecture design spanning multiple departments — not just AWS, but Ansible/IaC and network design too.
+
+### Audio Learning Materials (Regardless of Grade)
+
+- [[Listen] The AWS Fundamentals Series, Fully Recapped](/en/articles/aws-basics-audio-review-guide) (for reviewing after graduation)
 
 ## What's Next
 
