@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the correct description of an Availability Zone (AZ)?"
+    choices:
+      - "A point deployed in major cities worldwide, used for CDN caching"
+      - "A cluster of physically separate data centers within a region, each with independent power, cooling, and network connections"
+      - "A geographic top-level unit, higher than a region"
+      - "A point dedicated to lightweight processing, where you can't launch an EC2 instance"
+    answerIndex: 1
+    explanation: "An AZ is a cluster of one or more physically separate data centers within a region, each with its own independent power, cooling, and network connections."
+
+  - question: "What's correct about most AWS resources?"
+    choices:
+      - "A created resource displays identically from any region"
+      - "It exists only within the region you selected, and doesn't show up in a different region"
+      - "The concept of a region doesn't exist at all"
+      - "It can only be created at an edge location"
+    answerIndex: 1
+    explanation: "Most AWS resources are created as resources that exist only within the region you've selected."
+
+  - question: "What's correct about data replication between regions?"
+    choices:
+      - "It's automatically replicated by default"
+      - "It doesn't happen by default — something like cross-region replication needs to be explicitly enabled when needed"
+      - "The concept of replication doesn't exist"
+      - "Edge locations automatically perform the replication"
+    answerIndex: 1
+    explanation: "Most AWS services don't replicate data across regions by default, and the feature needs to be explicitly enabled when needed."
+
+  - question: "What's the correct role of an edge location?"
+    choices:
+      - "A sub-unit of a region, for launching EC2 instances"
+      - "A point closest to users, handling lightweight processing like CDN caching"
+      - "The single, central hub for all AWS resources"
+      - "A special point that exists in smaller numbers than regions"
+    answerIndex: 1
+    explanation: "An edge location is a point for lightweight processing closest to users, like a CDN's (CloudFront's) caching, and is deployed in far greater numbers than regions."
+
+  - question: "What's the correct difference between multi-AZ design and multi-region design?"
+    choices:
+      - "Both are achievable at exactly the same difficulty"
+      - "Multi-AZ is relatively easy to achieve, while multi-region is far harder in terms of data consistency, latency, and cost"
+      - "Multi-region is always easier"
+      - "Multi-AZ is an impossible design"
+    answerIndex: 1
+    explanation: "Multi-AZ is relatively easy to achieve using an AWS-managed service, while multi-region requires a far harder design decision around data consistency, latency, and cost."

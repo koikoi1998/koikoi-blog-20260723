@@ -1,0 +1,45 @@
+questions:
+  - question: "Which of the three pricing models has the highest per-unit price, but can be launched or stopped at any time?"
+    choices:
+      - "Reserved Instance"
+      - "On-Demand Instance"
+      - "Spot Instance"
+      - "All three have the same per-unit price"
+    answerIndex: 1
+    explanation: "An On-Demand Instance needs no long-term commitment, but in exchange, carries the highest per-unit price among the three models."
+
+  - question: "What's the correct reason a Reserved Instance gets a major discount?"
+    choices:
+      - "AWS provides it as a charity"
+      - "Committing in advance to long-term usage of a specific instance type in a specific region lets AWS reliably count on that demand"
+      - "It performs worse than the other models"
+      - "A Reserved Instance displays advertisements"
+    answerIndex: 1
+    explanation: "From AWS's side, being able to reliably count on long-term demand for that resource makes it rational to lower the price in exchange for securing that commitment."
+
+  - question: "What's the correct reason a Spot Instance gets interrupted?"
+    choices:
+      - "It's interrupted randomly, for no reason"
+      - "It's interrupted when AWS needs to reclaim that capacity for other demand (an On-Demand or Reserved customer)"
+      - "It's always interrupted at a fixed time every day"
+      - "It's only interrupted if you forget to pay"
+    answerIndex: 1
+    explanation: "A Spot Instance is forcibly interrupted, after a brief notice period, when AWS needs to reclaim that capacity for other demand."
+
+  - question: "Which workload characteristic pairs well with a Spot Instance?"
+    choices:
+      - "A database server that needs to hold state continuously"
+      - "Batch processing or data analysis that's fine being re-run later if interrupted"
+      - "Payment processing where even a one-second stop is catastrophic"
+      - "No workload is well-suited to a Spot Instance"
+    answerIndex: 1
+    explanation: "A workload like batch processing or data analysis, where re-running it later is fine if interrupted, pairs extremely well with a Spot Instance."
+
+  - question: "What's the best real-world approach to choosing between pricing models?"
+    choices:
+      - "Always standardize the entire system on one model"
+      - "Combine multiple pricing models, chosen per workload's nature"
+      - "Always use only the cheapest Spot Instances"
+      - "Always use only the most expensive On-Demand Instances"
+    answerIndex: 1
+    explanation: "In real-world work, the basic approach is combining models — Reserved for what always runs, On-Demand for temporary increases, and Spot for interruption-tolerant workloads."

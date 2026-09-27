@@ -1,0 +1,45 @@
+questions:
+  - question: "What falls under 'security OF the cloud'?"
+    choices:
+      - "Patching the guest OS"
+      - "Physical data center security, hardware, and the safety of the virtualization layer"
+      - "Managing access permissions via IAM"
+      - "Application configuration"
+    answerIndex: 1
+    explanation: "'Security OF the cloud' is AWS's own responsibility, covering physical data center security, hardware, network infrastructure, and the virtualization layer's safety."
+
+  - question: "What falls under 'security IN the cloud'?"
+    choices:
+      - "Physical security of the data center"
+      - "Configuring access permissions via IAM, and data encryption/classification"
+      - "Managing AWS's entire network infrastructure"
+      - "The safety of the hypervisor itself"
+    answerIndex: 1
+    explanation: "'Security IN the cloud' is the customer's own responsibility, covering patching the guest OS, application configuration, IAM management, and data encryption/classification."
+
+  - question: "What's correct about the responsibility boundary between EC2 and RDS?"
+    choices:
+      - "Both have the boundary in exactly the same place"
+      - "For EC2, everything above the OS layer is the customer's responsibility, while for RDS, patching the OS and DB engine falls within AWS's scope"
+      - "RDS gives the customer a broader responsibility scope than EC2"
+      - "The concept of a boundary doesn't exist"
+    answerIndex: 1
+    explanation: "For the IaaS-type EC2, everything above the OS is the customer's responsibility, but for the managed-type RDS, patching the OS and DB engine itself falls within AWS's scope."
+
+  - question: "What's the correct main cause of cloud-related security incidents?"
+    choices:
+      - "Mostly a breach of AWS's own infrastructure"
+      - "Mostly a customer-side misconfiguration within 'security IN the cloud,' the customer's own responsibility scope"
+      - "Security incidents don't happen in the cloud"
+      - "Always a physical failure of network lines"
+    answerIndex: 1
+    explanation: "Most cloud-related security incidents are caused by a customer-side misconfiguration within 'security IN the cloud,' not AWS's own infrastructure."
+
+  - question: "What's the best description of what choosing a managed service means?"
+    choices:
+      - "It's purely a comparison of features and cost"
+      - "It's also a security design decision, deliberately shifting your own responsibility scope toward AWS"
+      - "It's a choice entirely unrelated to security"
+      - "Choosing a managed service actually increases the customer's responsibility scope"
+    answerIndex: 1
+    explanation: "Choosing a managed service is also a security design decision, deliberately shifting responsibility scope toward AWS, not just a comparison of features and cost."
