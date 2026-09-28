@@ -14,7 +14,7 @@ The [sitemap](/en/sitemap) is organized as a "STEP1 through STEP8" roadmap that 
 - **Department**: A specialized area within a faculty. One department corresponds almost exactly to one of the existing "series."
 - **Grade**: The difficulty level of the articles and hands-on labs themselves. From general education through graduate school and beyond, it shows the distance from complete beginner to top engineer, as a sequence of stages.
 
-**At the moment, the [Active Directory Department](#active-directory-department), the [AWS Department](#aws-department), and the [Ansible/IaC Department](#ansibleiac-department) are "fully open" departments, satisfying every grade level.** Other departments will fill in their grades gradually, as content gets added over time. No existing article folder or URL has been changed — this page is purely an additional front door, changing how things are presented.
+**At the moment, the [Active Directory Department](#active-directory-department), the [AWS Department](#aws-department), the [Ansible/IaC Department](#ansibleiac-department), and the [VPN Department](#vpn-department) are "fully open" departments, satisfying every grade level.** Other departments will fill in their grades gradually, as content gets added over time. No existing article folder or URL has been changed — this page is purely an additional front door, changing how things are presented.
 
 ## The Shared Grade Ladder
 
@@ -53,7 +53,7 @@ Regardless of how much content currently exists, here's the full list of faculti
 
 | Department | Corresponding Series | Status |
 |---|---|---|
-| VPN Department | [vpn](/en/sitemap#series-list) / [modern-vpn](/en/sitemap#series-list) / [site-to-site-vpn](/en/sitemap#series-list) | 📖 General education–Freshman level |
+| VPN Department | [vpn](/en/sitemap#series-list) / [modern-vpn](/en/sitemap#series-list) / [site-to-site-vpn](/en/sitemap#series-list) | 🎓 Fully open (through graduate school) |
 | Web Proxy/Caching Department | [web-proxy](/en/sitemap#series-list) | 🌱 Few articles (through Freshman hands-on) |
 | Load Balancing Department | (not started) | ⬜ Not started |
 
@@ -263,6 +263,70 @@ No articles exist here yet. As with the AWS Department, this is expected to cove
 ### Audio Learning Materials (Regardless of Grade)
 
 - [[Listen] The Ansible Series, Fully Recapped](/en/articles/ansible-audio-review-guide) (for reviewing after graduation)
+
+## VPN Department
+
+The fourth department to become "fully open," following Active Directory, AWS, and Ansible/IaC. **This department differs from the other "fully open" departments in that it's built across three existing series: [vpn](/en/sitemap#series-list), [modern-vpn](/en/sitemap#series-list), and [site-to-site-vpn](/en/sitemap#series-list).** The goal is that anyone who works through and understands this entire department's curriculum on their own comes away able to handle remote-access VPN, modern VPN protocols, and site-to-site VPN alike — end to end, from design through building, troubleshooting, and security hardening.
+
+### General Education (Prerequisite)
+
+- [Understanding How NAT/NAPT Works From a "Top 1%" Perspective](/en/articles/nat-guide) — A prerequisite for understanding IPsec's NAT traversal (NAT-T).
+
+### Freshman: Fundamentals + Your First Hands-On
+
+**Lectures (Fundamentals, 3 articles)**
+
+1. [Understanding How L2TP/IPsec Works From a "Top 1%" Perspective](/en/articles/l2tp-ipsec-guide)
+2. [Why Does a VPN Client Need a Gateway on the Same Subnet?](/en/articles/windows-server-l2tp-vpn-guide)
+3. [Comparing L2TP/IPsec to Modern VPN Protocols From a "Top 1%" Perspective](/en/articles/vpn-protocols-comparison-guide)
+
+**Hands-On (Foundational Tier, 1 article)**
+
+1. [A "Top 1%" Hands-On Lab: Building Your Own L2TP/IPsec Server and Verifying the Theory Yourself](/en/articles/l2tp-ipsec-lab-guide)
+
+### Sophomore: Supplementary Deep-Dives
+
+1. [Understanding IPsec's AH (Authentication Header) From a "Top 1%" Perspective](/en/articles/ipsec-ah-guide)
+2. [Understanding the Differences Between VPN Access, Dial-Up Access, Demand-Dial Access, NAT, and LAN Routing in Windows Server RRAS From a "Top 1%" Perspective](/en/articles/windows-rras-roles-guide)
+3. [How OpenVPN Works Internally From a "Top 1%" Perspective](/en/articles/openvpn-internals-guide)
+4. [How WireGuard Works Internally From a "Top 1%" Perspective](/en/articles/wireguard-internals-guide)
+5. [How Tailscale Works From a "Top 1%" Perspective](/en/articles/tailscale-internals-guide)
+6. [What Is ZTNA (Zero Trust Network Access) From a "Top 1%" Perspective](/en/articles/ztna-guide)
+
+### Junior: Real-World-Scenario Hands-On
+
+1. [L2TP/IPsec Troubleshooting Lab](/en/articles/l2tp-ipsec-troubleshooting-lab)
+2. [The Top 1% Hands-On for Building a WireGuard Tunnel Yourself and Feeling Cryptokey Routing in Action](/en/articles/wireguard-handson-guide)
+
+### Senior (Graduation): Niche-Spec
+
+**Lectures (3 articles)**
+
+1. [Understanding Site-to-Site VPN From a "Top 1%" Perspective](/en/articles/site-to-site-vpn-guide)
+2. [Understanding Site-to-Site VPN With AWS From a "Top 1%" Perspective](/en/articles/site-to-site-vpn-aws-guide)
+3. [Understanding SD-WAN and Edge Router Selection From a "Top 1%" Perspective](/en/articles/sdwan-edge-router-guide)
+
+**Hands-On (1 article)**
+
+1. [The Top 1% Hands-On for Mock-Building a Cross-Vendor Site-to-Site IPsec Tunnel With strongSwan](/en/articles/site-to-site-vpn-handson-guide)
+
+**Work through and understand all 4 of these, and you're at graduation level, as a "Senior."**
+
+### Graduate School: Security-Hardening Hands-On (An Attacker's Perspective)
+
+1. [The Top 1% Hands-On for Reproducing an Offline Dictionary Attack Against IKE Aggressive Mode and PSK, and Defending With a Move to IKEv2](/en/articles/ike-psk-cracking-handson-guide)
+
+An educational, defense-focused hands-on lab, meant to strengthen the defenses of a test environment you manage yourself.
+
+### Architect and Beyond
+
+No articles exist here yet. As with the other departments, this is expected to cover system-wide architecture design spanning multiple departments.
+
+### Audio Learning Materials (Regardless of Grade)
+
+- [[Listen] The Remote-Access VPN / L2TP-IPsec Series, Fully Recapped](/en/articles/vpn-audio-review-guide) (for reviewing after graduation)
+- [[Listen] The Modern VPN Protocol Deep-Dive Series, Fully Recapped](/en/articles/modern-vpn-audio-review-guide) (for reviewing after graduation)
+- [[Listen] The Site-to-Site VPN Series, Fully Recapped](/en/articles/site-to-site-vpn-audio-review-guide) (for reviewing after graduation)
 
 ## What's Next
 

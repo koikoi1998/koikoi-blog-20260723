@@ -14,7 +14,7 @@ altHref: "/en/university"
 - **学科(Department)**: 学部の中の専門領域です。1つの学科は、既存の「シリーズ」1つに、ほぼそのまま対応します。
 - **学年(Grade)**: 記事・ハンズオンの難易度そのものです。教養課程から大学院、その先まで、未経験からトップエンジニアまでの距離を、段階として示します。
 
-**現時点では、[ActiveDirectory学科](#activedirectory学科)・[AWS学科](#aws学科)・[Ansible/IaC学科](#ansibleiac学科)が、学年構成をすべて満たす「開講済み」の学科です。** 他の学科は、今後のコンテンツ追加によって、少しずつ学年が埋まっていきます。既存の記事フォルダやURLは変更していません。このページは、あくまで「見せ方」を変えるための、追加の入り口です。
+**現時点では、[ActiveDirectory学科](#activedirectory学科)・[AWS学科](#aws学科)・[Ansible/IaC学科](#ansibleiac学科)・[VPN学科](#vpn学科)が、学年構成をすべて満たす「開講済み」の学科です。** 他の学科は、今後のコンテンツ追加によって、少しずつ学年が埋まっていきます。既存の記事フォルダやURLは変更していません。このページは、あくまで「見せ方」を変えるための、追加の入り口です。
 
 ## 学年ラベルの共通ルール
 
@@ -53,7 +53,7 @@ altHref: "/en/university"
 
 | 学科 | 対応シリーズ | 状態 |
 |---|---|---|
-| VPN学科 | [vpn](/sitemap#シリーズ一覧) / [modern-vpn](/sitemap#シリーズ一覧) / [site-to-site-vpn](/sitemap#シリーズ一覧) | 📖 教養課程〜1年生相当 |
+| VPN学科 | [vpn](/sitemap#シリーズ一覧) / [modern-vpn](/sitemap#シリーズ一覧) / [site-to-site-vpn](/sitemap#シリーズ一覧) | 🎓 開講済み(大学院まで) |
 | Webプロキシ・キャッシュ学科 | [web-proxy](/sitemap#シリーズ一覧) | 🌱 記事少数(1年生ハンズオンまで) |
 | ロードバランシング学科 | (未着手) | ⬜ 未着手 |
 
@@ -263,6 +263,70 @@ AWS学科に続いて、3つ目の「開講済み」学科です。**この学�
 ### 耳で学ぶ補助教材(学年を問わず)
 
 - [【音声で聴く】Ansibleシリーズ総復習](/articles/ansible-audio-review-guide)(卒業後の復習用)
+
+## VPN学科
+
+ActiveDirectory学科・AWS学科・Ansible/IaC学科に続く4つ目の「開講済み」学科です。**この学科は、既存の[vpn](/sitemap#シリーズ一覧)・[modern-vpn](/sitemap#シリーズ一覧)・[site-to-site-vpn](/sitemap#シリーズ一覧)という3つのシリーズをまたいで構成されている点が、他の「開講済み」学科と異なります。** この学科のカリキュラムをすべて自力で実施・理解できれば、リモートアクセスVPN・現代的なVPNプロトコル・拠点間VPNのいずれについても、設計から構築、トラブルシューティング、セキュリティ強化まで一通り自力で対応できるレベルを目標にしています。
+
+### 教養課程(前提科目)
+
+- [NAT/NAPTの仕組みを『上位1%』の視点で理解する](/articles/nat-guide) — IPsecのNAT越え(NAT-T)を理解するための前提になっています。
+
+### 1年生:基礎編+初めてのハンズオン
+
+**座学(基礎編、3記事)**
+
+1. [L2TP/IPsecの仕組みを『上位1%』の視点で理解する](/articles/l2tp-ipsec-guide)
+2. [なぜ同一セグメントなのにVPNクライアントにゲートウェイが必要なのか](/articles/windows-server-l2tp-vpn-guide)
+3. [L2TP/IPsecと現代的なVPNプロトコルを『上位1%』の視点で比較する](/articles/vpn-protocols-comparison-guide)
+
+**実技(ハンズオン基礎編、1記事)**
+
+1. [L2TP/IPsecサーバーを自作し、理論を自分の目で検証するハンズオン](/articles/l2tp-ipsec-lab-guide)
+
+### 2年生:補足・深掘り編
+
+1. [IPsecのAH(Authentication Header)とは何かを『上位1%』の視点で理解する](/articles/ipsec-ah-guide)
+2. [Windows Server RRASのVPNアクセス・ダイヤルアップ・デマンドダイヤル・NAT・LANルーティングの違いを『上位1%』の視点で理解する](/articles/windows-rras-roles-guide)
+3. [OpenVPNの仕組みを『上位1%』の視点で理解する](/articles/openvpn-internals-guide)
+4. [WireGuardの仕組みを『上位1%』の視点で理解する](/articles/wireguard-internals-guide)
+5. [Tailscaleの仕組みを『上位1%』の視点で理解する](/articles/tailscale-internals-guide)
+6. [ZTNA(ゼロトラストネットワークアクセス)とは何かを『上位1%』の視点で理解する](/articles/ztna-guide)
+
+### 3年生:実務シナリオ編ハンズオン
+
+1. [L2TP/IPsecトラブルシューティング演習](/articles/l2tp-ipsec-troubleshooting-lab)
+2. [WireGuardトンネルを自分の手で構築し、Cryptokey Routingを体感するハンズオン](/articles/wireguard-handson-guide)
+
+### 4年生(卒業):ニッチな仕様・機能編
+
+**座学(3記事)**
+
+1. [拠点間VPN(Site-to-Site VPN)を『上位1%』の視点で理解する](/articles/site-to-site-vpn-guide)
+2. [AWSとの拠点間VPN(Site-to-Site VPN)を『上位1%』の視点で理解する](/articles/site-to-site-vpn-aws-guide)
+3. [SD-WANとエッジルーター選定を『上位1%』の視点で理解する](/articles/sdwan-edge-router-guide)
+
+**実技(1記事)**
+
+1. [strongSwanで異なるベンダー間のSite-to-Site IPsecトンネルを模擬構築するハンズオン](/articles/site-to-site-vpn-handson-guide)
+
+**この4本まで自力で実施・理解できれば、「4年生」として卒業水準です。**
+
+### 大学院:セキュリティ強化編ハンズオン(攻撃者視点)
+
+1. [IKE Aggressive ModeとPSKに対するオフライン辞書攻撃を再現し、IKEv2への移行で防ぐハンズオン](/articles/ike-psk-cracking-handson-guide)
+
+自分が管理する検証環境の防御力を高めるための、教育・防御目的のハンズオンです。
+
+### アーキテクト以降
+
+まだ記事がありません。他の学科と同様、複数学科をまたいだシステム全体のアーキテクチャ設計を扱う内容になる見込みです。
+
+### 耳で学ぶ補助教材(学年を問わず)
+
+- [【音声で聴く】リモートアクセスVPN/L2TP・IPsecシリーズ総復習](/articles/vpn-audio-review-guide)(卒業後の復習用)
+- [【音声で聴く】現代的VPNプロトコル深掘りシリーズ総復習](/articles/modern-vpn-audio-review-guide)(卒業後の復習用)
+- [【音声で聴く】拠点間VPN(Site-to-Site VPN)シリーズ総復習](/articles/site-to-site-vpn-audio-review-guide)(卒業後の復習用)
 
 ## 今後の予定
 
