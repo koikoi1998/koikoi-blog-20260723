@@ -14,7 +14,7 @@ The [sitemap](/en/sitemap) is organized as a "STEP1 through STEP8" roadmap that 
 - **Department**: A specialized area within a faculty. One department corresponds almost exactly to one of the existing "series."
 - **Grade**: The difficulty level of the articles and hands-on labs themselves. From general education through graduate school and beyond, it shows the distance from complete beginner to top engineer, as a sequence of stages.
 
-**At the moment, the [Active Directory Department](#active-directory-department) and the [AWS Department](#aws-department) are "fully open" departments, satisfying every grade level.** Other departments will fill in their grades gradually, as content gets added over time. No existing article folder or URL has been changed — this page is purely an additional front door, changing how things are presented.
+**At the moment, the [Active Directory Department](#active-directory-department), the [AWS Department](#aws-department), and the [Ansible/IaC Department](#ansibleiac-department) are "fully open" departments, satisfying every grade level.** Other departments will fill in their grades gradually, as content gets added over time. No existing article folder or URL has been changed — this page is purely an additional front door, changing how things are presented.
 
 ## The Shared Grade Ladder
 
@@ -62,7 +62,7 @@ Regardless of how much content currently exists, here's the full list of faculti
 | Department | Corresponding Series | Status |
 |---|---|---|
 | AWS Department | [aws-basics](/en/sitemap#series-list) | 🎓 Fully open (through graduate school) |
-| Ansible/IaC Department | [ansible](/en/sitemap#series-list) | 📗 Open through all 4 hands-on tiers (theory content is general-education level only) |
+| Ansible/IaC Department | [ansible](/en/sitemap#series-list) | 🎓 Fully open (through graduate school) |
 
 ### Web/API Engineering Faculty
 
@@ -206,6 +206,63 @@ No articles exist here yet. This is expected to cover system-wide architecture d
 ### Audio Learning Materials (Regardless of Grade)
 
 - [[Listen] The AWS Fundamentals Series, Fully Recapped](/en/articles/aws-basics-audio-review-guide) (for reviewing after graduation)
+
+## Ansible/IaC Department
+
+Following the AWS Department, this is the third department to become "fully open." **The goal is that anyone who works through and understands this entire department's curriculum on their own comes away able to run real-world-grade Ansible configuration management on their own, with an eye toward operating it as a team.**
+
+### General Education (Prerequisite)
+
+- [Hands-On Prep Manual: Setting Up an Ubuntu Server for the First Time](/en/articles/ubuntu-server-setup-guide) — The basics of the SSH connection Ansible is built on top of.
+
+### Freshman: Fundamentals + Your First Hands-On
+
+**Lectures (Fundamentals, 4 articles)**
+
+1. [Understanding What Ansible Actually Is From a "Top 1%" Perspective](/en/articles/ansible-guide)
+2. [Understanding ansible.cfg and Setting Precedence From a "Top 1%" Perspective](/en/articles/ansible-cfg-guide)
+3. [Understanding Ansible Variable Precedence From a "Top 1%" Perspective](/en/articles/ansible-variable-precedence-guide)
+4. [Understanding Ansible's Check Mode and Diff Mode From a "Top 1%" Perspective](/en/articles/ansible-check-diff-mode-guide)
+
+**Hands-On (Foundational Tier, 1 article)**
+
+1. [A "Top 1%" Hands-On Lab: Automating Configuration Across Multiple Servers with Ansible](/en/articles/ansible-handson-guide)
+
+### Sophomore: Supplementary Deep-Dives
+
+1. [Understanding Ansible's Execution Strategy and Fork Parallelism From a "Top 1%" Perspective](/en/articles/ansible-execution-strategy-guide)
+2. [Understanding Ansible's ignore_errors, any_errors_fatal, and failed_when From a "Top 1%" Perspective](/en/articles/ansible-error-handling-strategies-guide)
+3. [Understanding Ansible Tower/AWX From a "Top 1%" Perspective](/en/articles/ansible-tower-awx-overview-guide)
+
+### Junior: Real-World-Scenario Hands-On
+
+1. [The Top 1% Hands-On for Real-World Config Management With Ansible Roles, Handlers, and Templates](/en/articles/ansible-roles-handson-guide)
+2. [The Top 1% Hands-On for Never Leaving a Password in Plaintext in Git With Ansible Vault](/en/articles/ansible-vault-handson-guide)
+3. [The Top 1% Hands-On for Escaping the Static IP List With Ansible's AWS Dynamic Inventory](/en/articles/ansible-aws-dynamic-inventory-handson-guide)
+4. [The Top 1% Hands-On for Safely Running dev/staging/prod From One Ansible Playbook](/en/articles/ansible-environments-handson-guide)
+5. [The Top 1% Hands-On for Using Community Roles and Collections With Ansible Galaxy](/en/articles/ansible-galaxy-collections-handson-guide)
+
+### Senior (Graduation): Niche-Spec Hands-On
+
+1. [The Top 1% Hands-On for Experiencing Ansible's Jinja2 Filters and the loop/when Gotchas](/en/articles/ansible-jinja2-loops-handson-guide)
+2. [The Top 1% Hands-On for Speeding Up a Large Inventory by Caching Ansible Facts](/en/articles/ansible-facts-caching-handson-guide)
+3. [The Top 1% Hands-On for Designing a Rollback on Failed Configuration Changes With Ansible's block/rescue/always](/en/articles/ansible-error-handling-handson-guide)
+
+**Work through and understand all 3 of these, and you're at graduation level, as a "Senior."**
+
+### Graduate School: Security-Hardening Hands-On (An Attacker's Perspective)
+
+1. [The Top 1% Hands-On for Closing Off the Paths Where Secrets Leak Into Logs and Process Lists During an Ansible Run](/en/articles/ansible-secrets-exposure-handson-guide)
+
+An educational, defense-focused hands-on lab, meant to strengthen the defenses of a test environment you manage yourself.
+
+### Architect and Beyond
+
+No articles exist here yet. As with the AWS Department, this is expected to cover system-wide architecture design spanning multiple departments.
+
+### Audio Learning Materials (Regardless of Grade)
+
+- [[Listen] The Ansible Series, Fully Recapped](/en/articles/ansible-audio-review-guide) (for reviewing after graduation)
 
 ## What's Next
 

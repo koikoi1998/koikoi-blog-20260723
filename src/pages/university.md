@@ -14,7 +14,7 @@ altHref: "/en/university"
 - **学科(Department)**: 学部の中の専門領域です。1つの学科は、既存の「シリーズ」1つに、ほぼそのまま対応します。
 - **学年(Grade)**: 記事・ハンズオンの難易度そのものです。教養課程から大学院、その先まで、未経験からトップエンジニアまでの距離を、段階として示します。
 
-**現時点では、[ActiveDirectory学科](#activedirectory学科)と[AWS学科](#aws学科)が、学年構成をすべて満たす「開講済み」の学科です。** 他の学科は、今後のコンテンツ追加によって、少しずつ学年が埋まっていきます。既存の記事フォルダやURLは変更していません。このページは、あくまで「見せ方」を変えるための、追加の入り口です。
+**現時点では、[ActiveDirectory学科](#activedirectory学科)・[AWS学科](#aws学科)・[Ansible/IaC学科](#ansibleiac学科)が、学年構成をすべて満たす「開講済み」の学科です。** 他の学科は、今後のコンテンツ追加によって、少しずつ学年が埋まっていきます。既存の記事フォルダやURLは変更していません。このページは、あくまで「見せ方」を変えるための、追加の入り口です。
 
 ## 学年ラベルの共通ルール
 
@@ -62,7 +62,7 @@ altHref: "/en/university"
 | 学科 | 対応シリーズ | 状態 |
 |---|---|---|
 | AWS学科 | [aws-basics](/sitemap#シリーズ一覧) | 🎓 開講済み(大学院まで) |
-| Ansible/IaC学科 | [ansible](/sitemap#シリーズ一覧) | 📗 ハンズオン4段階まで開講(座学は教養課程相当のみ) |
+| Ansible/IaC学科 | [ansible](/sitemap#シリーズ一覧) | 🎓 開講済み(大学院まで) |
 
 ### Web/APIエンジニア学部
 
@@ -206,6 +206,63 @@ ActiveDirectory学科に続いて、学年構成のすべてを満たした学�
 ### 耳で学ぶ補助教材(学年を問わず)
 
 - [【音声で聴く】AWS基礎シリーズ総復習](/articles/aws-basics-audio-review-guide)(卒業後の復習用)
+
+## Ansible/IaC学科
+
+AWS学科に続いて、3つ目の「開講済み」学科です。**この学科のカリキュラムをすべて自力で実施・理解できれば、実務レベルのAnsible構成管理を、チームでの運用まで見据えて自力で回せるレベル**を目標にしています。
+
+### 教養課程(前提科目)
+
+- [ハンズオン準備マニュアル:Ubuntuサーバーの初期セットアップ](/articles/ubuntu-server-setup-guide) — Ansibleが土台にしているSSH接続の基本です。
+
+### 1年生:基礎編+初めてのハンズオン
+
+**座学(基礎編、4記事)**
+
+1. [Ansibleとは何かを『上位1%』の視点で理解する](/articles/ansible-guide)
+2. [ansible.cfgと設定の優先順位を『上位1%』の視点で理解する](/articles/ansible-cfg-guide)
+3. [Ansibleの変数の優先順位を『上位1%』の視点で理解する](/articles/ansible-variable-precedence-guide)
+4. [AnsibleのCheck ModeとDiff Modeを『上位1%』の視点で理解する](/articles/ansible-check-diff-mode-guide)
+
+**実技(ハンズオン基礎編、1記事)**
+
+1. [Ansibleで複数サーバーへの設定投入を自動化するハンズオン](/articles/ansible-handson-guide)
+
+### 2年生:補足・深掘り編
+
+1. [Ansibleの実行戦略(strategy)とforkの並列度を『上位1%』の視点で理解する](/articles/ansible-execution-strategy-guide)
+2. [Ansibleのignore_errors・any_errors_fatal・failed_whenを『上位1%』の視点で理解する](/articles/ansible-error-handling-strategies-guide)
+3. [Ansible Tower/AWXを『上位1%』の視点で理解する](/articles/ansible-tower-awx-overview-guide)
+
+### 3年生:実務シナリオ編ハンズオン
+
+1. [Ansibleのroles・Handlers・テンプレートで実務レベルの構成管理を体験するハンズオン](/articles/ansible-roles-handson-guide)
+2. [Ansible Vaultでパスワードをgitにプレーンテキストのまま置かないハンズオン](/articles/ansible-vault-handson-guide)
+3. [AnsibleでAWSの動的インベントリを使い、静的なIPリストから解放されるハンズオン](/articles/ansible-aws-dynamic-inventory-handson-guide)
+4. [Ansibleでdev/staging/prodを1つのPlaybookで安全に使い分けるハンズオン](/articles/ansible-environments-handson-guide)
+5. [Ansible Galaxyでコミュニティ製のroleとCollectionを使うハンズオン](/articles/ansible-galaxy-collections-handson-guide)
+
+### 4年生(卒業):ニッチな仕様・機能編ハンズオン
+
+1. [AnsibleのJinja2フィルターとloop・whenの落とし穴を体験するハンズオン](/articles/ansible-jinja2-loops-handson-guide)
+2. [Ansibleのfacts収集をキャッシュして大規模インベントリを高速化するハンズオン](/articles/ansible-facts-caching-handson-guide)
+3. [Ansibleのblock/rescue/alwaysで構成変更失敗時のロールバックを設計するハンズオン](/articles/ansible-error-handling-handson-guide)
+
+**この3本まで自力で実施・理解できれば、「4年生」として卒業水準です。**
+
+### 大学院:セキュリティ強化編ハンズオン(攻撃者視点)
+
+1. [Ansible実行時に機密情報がログとプロセス一覧に漏れる経路を塞ぐハンズオン](/articles/ansible-secrets-exposure-handson-guide)
+
+自分が管理する検証環境の防御力を高めるための、教育・防御目的のハンズオンです。
+
+### アーキテクト以降
+
+まだ記事がありません。AWS学科と同様、複数学科をまたいだシステム全体のアーキテクチャ設計を扱う内容になる見込みです。
+
+### 耳で学ぶ補助教材(学年を問わず)
+
+- [【音声で聴く】Ansibleシリーズ総復習](/articles/ansible-audio-review-guide)(卒業後の復習用)
 
 ## 今後の予定
 
