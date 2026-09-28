@@ -1,0 +1,45 @@
+questions:
+  - question: "What did rewriting AllowedIPs in this hands-on demonstrate?"
+    choices:
+      - "You had to explicitly manipulate the routing table with the ip route command"
+      - "Rewriting AllowedIPs alone changed the forwarding range, with no need to touch the routing table"
+      - "Changing AllowedIPs had no effect on the forwarded range at all"
+      - "Changing AllowedIPs required regenerating the key pair"
+    answerIndex: 1
+    explanation: "AllowedIPs is the actual mechanism deciding which public key's peer gets sent packets addressed to that range, so rewriting it alone changes the forwarding range without touching the routing table."
+
+  - question: "What's the real purpose of PersistentKeepalive?"
+    choices:
+      - "To prevent WireGuard's own connection from dropping"
+      - "To keep alive the NAT router's record that a UDP port is an active session (the NAT binding)"
+      - "To reduce how often handshakes happen"
+      - "To fix the encryption algorithm in place"
+    answerIndex: 1
+    explanation: "PersistentKeepalive maintains the NAT binding so that reachability from the side behind NAT is preserved."
+
+  - question: "What's the correct description of WireGuard's handshake behavior?"
+    choices:
+      - "It happens only once, at the initial connection, and never gets re-established"
+      - "It gets automatically re-established in the background roughly every two minutes, without interrupting traffic"
+      - "It never happens unless you manually run wg-quick down"
+      - "WireGuard has no concept of a handshake at all"
+    answerIndex: 1
+    explanation: "WireGuard automatically re-establishes the session key in the background roughly every two minutes."
+
+  - question: "What kind of failure does an AllowedIPs misconfiguration commonly cause?"
+    choices:
+      - "A clear, total loss of all connectivity"
+      - "A confusing failure where everything works except one specific host"
+      - "The WireGuard process itself crashing"
+      - "The key pair getting automatically invalidated"
+    answerIndex: 1
+    explanation: "Since AllowedIPs functions as an actual routing policy, a mistake in its range produces the confusing failure of one specific host being unreachable while others work."
+
+  - question: "What information covered in this hands-on can the wg show command display?"
+    choices:
+      - "A list of IPsec security associations (SAs)"
+      - "Handshake completion status and recent send/receive volume"
+      - "A list of firewall rules"
+      - "DNS name resolution results"
+    answerIndex: 1
+    explanation: "wg show can display whether the handshake completed, along with recent send/receive volume and the latest handshake time."

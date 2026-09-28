@@ -2,6 +2,7 @@
 title: "AWSとの拠点間VPN(Site-to-Site VPN)を『上位1%』の視点で理解する——VGW/CGW/TGWと実際の通信経路"
 description: "オンプレミスのファイアウォールとAWSをVPN接続する際、IGW・VGW・CGW・TGWといったゲートウェイがそれぞれ何を表しているのか。裏側の通信は本当にただのインターネットを流れているのか、それともAWS専用のネットワークを通るのか。実際の構成・料金の考え方・構築手順の流れまでを体系的に理解する。"
 series: "site-to-site-vpn"
+subSeries: "main"
 order: 2
 tags: ["aws", "vpn", "ipsec", "network", "infra"]
 emoji: "☁️"

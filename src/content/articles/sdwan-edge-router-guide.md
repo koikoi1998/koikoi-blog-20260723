@@ -2,6 +2,7 @@
 title: "SD-WANとエッジルーター選定を『上位1%』の視点で理解する——FortiGate・YAMAHA・Merakiの違いとクラウド管理の関係"
 description: "回線冗長化のためSD-WANを設定すると聞くが、SD-WANとはそもそも何なのか。Merakiのようなクラウド上で一括設定できる仕組みと同じものなのか、それとも別物なのか。SD-WANというトラフィック制御技術と、クラウド管理という運用管理の一元化を切り分けたうえで、FortiGate・YAMAHA・Merakiという拠点間VPNの実務でよく比較される機器の違いと選び方までを体系的に理解する。"
 series: "site-to-site-vpn"
+subSeries: "main"
 order: 3
 tags: ["network", "sd-wan", "fortigate", "infra", "vpn"]
 emoji: "🌐"

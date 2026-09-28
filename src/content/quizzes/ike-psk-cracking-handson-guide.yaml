@@ -1,0 +1,45 @@
+questions:
+  - question: "IKEのMain ModeとAggressive Modeの違いとして正しいのはどれか。"
+    choices:
+      - "Main Modeは3往復、Aggressive Modeは6往復のメッセージ交換を行う"
+      - "Main Modeは身元情報を暗号化してから交換するが、Aggressive Modeは暗号化せずに送る"
+      - "Aggressive ModeはIKEv2専用のモードである"
+      - "両者の間に実質的な違いはない"
+    answerIndex: 1
+    explanation: "Main Modeは6往復で身元情報を暗号化してから交換しますが、Aggressive Modeは3往復に短縮する代わりに身元情報を暗号化せずに送ります。"
+
+  - question: "ike-scanとpsk-crackを使った攻撃で取得・解読される対象として正しいのはどれか。"
+    choices:
+      - "サーバーの秘密鍵そのもの"
+      - "Aggressive Modeの応答に含まれる、PSKから導出されたハッシュ値"
+      - "TLS証明書の秘密鍵"
+      - "DNSサーバーのゾーンファイル"
+    answerIndex: 1
+    explanation: "Aggressive Modeでは、PSKから導出されたハッシュ値が暗号化されずに応答に含まれており、これをike-scanで取得し、psk-crackでオフライン解読します。"
+
+  - question: "この攻撃がアカウントロックアウトのような防御機構の対象にならない理由として正しいのはどれか。"
+    choices:
+      - "攻撃者が管理者権限を持っているため"
+      - "ハッシュ取得後の解読作業が、サーバーへの追加通信を発生させない、完全にオフラインの計算処理であるため"
+      - "PSK認証にはロックアウト機能が存在しないため"
+      - "Aggressive Modeではログが記録されないため"
+    answerIndex: 1
+    explanation: "psk-crackによる解読は完全にオフラインの計算処理であり、サーバー側への追加通信が発生しないため、ロックアウトのような防御機構の対象になりません。"
+
+  - question: "この問題への根本的な対策として正しいのはどれか。"
+    choices:
+      - "PSKを証明書認証に変更する以外に対策はない"
+      - "Aggressive Mode自体を無効化(IKEv2へ移行)し、PSKを辞書に載らない強度まで強化する"
+      - "ファイアウォールでUDPポート500を完全に閉じる以外に対策はない"
+      - "IKEのバージョンには関係なく、PSKの長さだけを伸ばせば十分である"
+    answerIndex: 1
+    explanation: "Aggressive Mode自体の無効化(IKEv2への移行)と、PSKの強度向上の組み合わせが、実務上の根本的な対策になります。"
+
+  - question: "拠点間VPNの構成でAggressive Modeを使う必然性が低い理由として正しいのはどれか。"
+    choices:
+      - "拠点間VPNではPSK認証自体が使えないため"
+      - "双方のIPアドレスが固定されているため、Main ModeのIPアドレスベースのPSK検索という制約が問題にならないため"
+      - "拠点間VPNでは常にIKEv1が禁止されているため"
+      - "Aggressive Modeは拠点間VPNでは技術的に利用できない仕様であるため"
+    answerIndex: 1
+    explanation: "Aggressive Modeが必要とされてきた主な理由は、動的IPアドレスを持つクライアントとの相性問題であり、双方のIPアドレスが固定される拠点間VPNではこの制約自体が存在しません。"

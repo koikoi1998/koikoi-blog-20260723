@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the correct difference between IKE's Main Mode and Aggressive Mode?"
+    choices:
+      - "Main Mode uses 3 round trips, Aggressive Mode uses 6"
+      - "Main Mode encrypts identity information before exchanging it, while Aggressive Mode sends it unencrypted"
+      - "Aggressive Mode is exclusive to IKEv2"
+      - "There's no meaningful difference between the two"
+    answerIndex: 1
+    explanation: "Main Mode encrypts identity information before exchanging it across 6 round trips, while Aggressive Mode shortens this to 3 round trips by sending identity information unencrypted."
+
+  - question: "What does an attack using ike-scan and psk-crack actually capture and crack?"
+    choices:
+      - "The server's private key itself"
+      - "A hash derived from the PSK, contained in the Aggressive Mode response"
+      - "A TLS certificate's private key"
+      - "A DNS server's zone file"
+    answerIndex: 1
+    explanation: "In Aggressive Mode, a hash derived from the PSK is sent unencrypted in the response; ike-scan captures it, and psk-crack cracks it offline."
+
+  - question: "Why doesn't this attack trigger a defense mechanism like account lockout?"
+    choices:
+      - "Because the attacker holds administrator privileges"
+      - "Because the cracking work after capturing the hash is a purely offline computation, generating no additional traffic to the server"
+      - "Because PSK authentication has no lockout feature at all"
+      - "Because Aggressive Mode never logs anything"
+    answerIndex: 1
+    explanation: "Cracking with psk-crack is a purely offline computation with no additional traffic to the server, so it never triggers a defense mechanism like lockout."
+
+  - question: "What's the fundamental fix for this problem?"
+    choices:
+      - "There's no fix other than switching PSK to certificate authentication"
+      - "Disable Aggressive Mode itself (move to IKEv2), and strengthen the PSK to a level not found in any dictionary"
+      - "There's no fix other than fully blocking UDP port 500 at the firewall"
+      - "Regardless of IKE version, simply lengthening the PSK is sufficient"
+    answerIndex: 1
+    explanation: "The combination of disabling Aggressive Mode itself (moving to IKEv2) and strengthening the PSK is the real-world fundamental fix."
+
+  - question: "Why is there little real need for Aggressive Mode in a site-to-site VPN configuration?"
+    choices:
+      - "Because PSK authentication itself can't be used in a site-to-site VPN"
+      - "Because both IP addresses are fixed, so Main Mode's constraint of looking up the PSK by IP address is never a problem"
+      - "Because IKEv1 is always banned in a site-to-site VPN"
+      - "Because Aggressive Mode is technically unusable in a site-to-site VPN by spec"
+    answerIndex: 1
+    explanation: "The main reason Aggressive Mode has been needed is compatibility with clients that have dynamic IP addresses; that constraint doesn't exist in a site-to-site VPN, where both IP addresses are fixed."

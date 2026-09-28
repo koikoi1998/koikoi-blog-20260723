@@ -2,6 +2,7 @@
 title: "Understanding SD-WAN and Edge Router Selection from a \"Top 1%\" Perspective — The Differences Between FortiGate, Yamaha, and Meraki, and How Cloud Management Fits In"
 description: "You hear that SD-WAN gets configured on FortiGate for link redundancy — but what is SD-WAN actually? Is it the same thing as the cloud-based centralized configuration you get with Meraki, or something different? This article separates SD-WAN, a traffic-control technology, from cloud management, a centralized operations mechanism, then systematically explains the differences between FortiGate, Yamaha, and Meraki — three products frequently compared in real site-to-site VPN work — and how to choose between them."
 series: "site-to-site-vpn"
+subSeries: "main"
 order: 3
 tags: ["network", "sd-wan", "fortigate", "infra", "vpn"]
 emoji: "🌐"

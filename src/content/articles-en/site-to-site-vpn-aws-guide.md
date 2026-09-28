@@ -2,6 +2,7 @@
 title: "Understanding Site-to-Site VPN with AWS from a \"Top 1%\" Perspective — VGW/CGW/TGW and the Real Communication Path"
 description: "When connecting an on-premises firewall to AWS via VPN, what do the gateways IGW, VGW, CGW, and TGW each actually represent? Does the traffic underneath really travel over the ordinary internet, or through a dedicated AWS network? This article systematically explains the realistic architecture, how to think about pricing, and the flow of the build process."
 series: "site-to-site-vpn"
+subSeries: "main"
 order: 2
 tags: ["aws", "vpn", "ipsec", "network", "infra"]
 emoji: "☁️"

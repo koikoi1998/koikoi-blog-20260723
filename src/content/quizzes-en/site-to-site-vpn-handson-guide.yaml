@@ -1,0 +1,45 @@
+questions:
+  - question: "What causes a NO_PROPOSAL_CHOSEN error?"
+    choices:
+      - "Both sides' traffic selectors (subnet declarations) don't match"
+      - "There's no exact match between the cipher suites (algorithm, key length, DH group) each side offers"
+      - "The PSK strings don't match"
+      - "UDP port 500 is blocked by a firewall"
+    answerIndex: 1
+    explanation: "NO_PROPOSAL_CHOSEN occurs when there's no exact match among the cipher-suite candidates both sides offer during the IKE phase."
+
+  - question: "What causes a TS_UNACCEPTABLE error?"
+    choices:
+      - "The encryption algorithm's key lengths differ"
+      - "The traffic selectors (which local/remote subnet pairing to allow through) don't match"
+      - "The PSK has expired"
+      - "The DH group version is outdated"
+    answerIndex: 1
+    explanation: "TS_UNACCEPTABLE occurs when the traffic selectors (the subnet pairing) negotiated during Phase 2 don't match (or one doesn't contain the other) between both sides."
+
+  - question: "Why does a cipher-suite mismatch rarely surface between devices of the same vendor?"
+    choices:
+      - "Because the same vendor doesn't use IPsec at all"
+      - "Because the management console's wizard often proposes the same default cipher suite to both sides"
+      - "Because Phase 2 negotiation doesn't happen at all between the same vendor"
+      - "Because the same vendor always requires manually matching the cipher suite"
+    answerIndex: 1
+    explanation: "Between the same vendor, the management console's wizard tends to propose the same default values, so a cipher-suite mismatch rarely surfaces."
+
+  - question: "What failure can traffic selector \"narrowing\" cause?"
+    choices:
+      - "The connection can never establish at all"
+      - "Only some hosts can communicate, even though the config specifies matching /24s on both sides"
+      - "The PSK gets automatically invalidated"
+      - "The encryption algorithm automatically downgrades to a weaker one"
+    answerIndex: 1
+    explanation: "Some vendors automatically narrow the established SA's range to only the intersection of the subnets both sides declared, causing a hard-to-diagnose partial connectivity failure."
+
+  - question: "What output should you check to confirm whether narrowing has occurred?"
+    choices:
+      - "The actually-established traffic selector range shown in ipsec statusall's output"
+      - "Only the kernel log from journalctl"
+      - "wg show's output"
+      - "A DNS A record"
+    answerIndex: 0
+    explanation: "ipsec statusall's output shows the actually-established SA's traffic selector range, which you can cross-check against the config file's values to detect narrowing."
