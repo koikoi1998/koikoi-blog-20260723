@@ -146,6 +146,12 @@ The only department, at the moment, that satisfies every grade level. **The goal
 
 Both are educational, defense-focused hands-on labs, meant to strengthen the defenses of a test environment you manage yourself.
 
+### Capstone Project
+
+1. [The Active Directory Department's Capstone Project: Turning an Acquisition-Integration Scenario Into a Portfolio Piece](/en/articles/ad-capstone-handson-guide)
+
+An integrative exercise where you combine, on your own, the techniques learned individually in earlier hands-on labs (forest trust, GPO, delegation, gMSA, backup, Kerberoasting/DCSync auditing) into a single fictional corporate acquisition scenario. It calls for the ability to design from requirements, not just follow steps, and the deliverable is assembled as a portfolio piece usable in a job search.
+
 ### Architect and Beyond
 
 No articles exist here yet. This is expected to cover organization-wide directory-service design spanning multiple departments — not just AD, but certificate infrastructure, monitoring, and more. Work on this will start once other departments have grown enough.
