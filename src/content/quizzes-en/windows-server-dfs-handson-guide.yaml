@@ -1,0 +1,45 @@
+questions:
+  - question: "Why could users keep accessing the same path after FileServer1 was stopped in this hands-on?"
+    choices:
+      - "Because DFS Replication automatically switched the connection target"
+      - "Because the DFS namespace automatically switched its connection to a reachable folder target"
+      - "Because the client side manually rewrote the path"
+      - "Because FileServer1 instantly recovered on its own"
+    answerIndex: 1
+    explanation: "Automatic failover is a DFS namespace feature, automatically switching the connection to a reachable folder target."
+
+  - question: "What's the risk of building only a DFS namespace, without DFS Replication?"
+    choices:
+      - "Failover itself stops happening"
+      - "Failover still happens, but the target it switches to may not have up-to-date data"
+      - "The namespace itself stops working"
+      - "Clients can no longer access the namespace"
+    answerIndex: 1
+    explanation: "Without replication set up, failover itself still happens via the namespace's own feature, but there's no guarantee the target has current data."
+
+  - question: "What problem can DFS Replication's lag cause at failover time?"
+    choices:
+      - "Failover itself gets completely disabled"
+      - "A recent change may not have replicated yet, leaving only stale data visible after failover"
+      - "The namespace's path gets automatically changed"
+      - "Both servers shut down simultaneously"
+    answerIndex: 1
+    explanation: "Since DFS Replication carries some lag, depending on timing, only stale data may be visible right after a failover."
+
+  - question: "What's the purpose of the Get-DfsrBacklog command?"
+    choices:
+      - "Adding a new folder target to the namespace"
+      - "Checking the backlog of files DFS Replication hasn't finished replicating yet"
+      - "Completely deleting a DFS namespace"
+      - "Isolating a printer driver"
+    answerIndex: 1
+    explanation: "Get-DfsrBacklog checks the backlog of files DFS Replication hasn't yet finished replicating."
+
+  - question: "What combination is needed to make automatic failover practical?"
+    choices:
+      - "A DFS namespace alone is sufficient"
+      - "Both a DFS namespace and DFS Replication need to be combined"
+      - "DFS Replication alone is sufficient"
+      - "Integration with the Print Spooler service is required"
+    answerIndex: 1
+    explanation: "A namespace alone doesn't guarantee up-to-date data at the failover target, so it only becomes practical when combined with replication."

@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the correct role of a DFS namespace?"
+    choices:
+      - "Copying a folder's content between servers"
+      - "Presenting multiple servers' shared folders as a single, unified path"
+      - "Encrypting files"
+      - "Automatically expanding available disk space"
+    answerIndex: 1
+    explanation: "A DFS namespace presents data actually spread across multiple servers to the user as a single, unified path."
+
+  - question: "What's the correct role of DFS Replication?"
+    choices:
+      - "Presenting multiple servers' shared folders under a single path"
+      - "Synchronizing and copying a specified folder's content bidirectionally between servers"
+      - "Centrally managing user authentication"
+      - "Automatically generating DNS records"
+    answerIndex: 1
+    explanation: "DFS Replication is a feature independent of the DFS namespace, and it copies a folder's content between servers."
+
+  - question: "What's the correct relationship between a DFS namespace and DFS Replication?"
+    choices:
+      - "They must always be used together as one inseparable feature"
+      - "They're independent features, and using either one alone is common"
+      - "Using DFS Replication automatically makes the DFS namespace unnecessary"
+      - "A DFS namespace is a Linux-only feature"
+    answerIndex: 1
+    explanation: "A DFS namespace and DFS Replication are independent features, and using just one of them alone is common in real-world setups."
+
+  - question: "What's DFS Replication's correct behavior when the same file gets updated at nearly the same moment from multiple sites?"
+    choices:
+      - "It automatically merges both sets of changes"
+      - "It keeps the last update as official and automatically moves the losing side into a hidden folder"
+      - "It discards both changes and reverts to the pre-update state"
+      - "It stops replication entirely"
+    answerIndex: 1
+    explanation: "DFS Replication never merges content — it keeps the last update as official and quarantines the conflicting file into DfsrPrivate\\ConflictAndDeleted."
+
+  - question: "What should you watch for in a conversation that says \"we set up DFS\"?"
+    choices:
+      - "Nothing — DFS always refers to a single feature"
+      - "Clarifying whether it means the namespace, the replication, or both"
+      - "DFS is a deprecated term and should never be used"
+      - "Setting up DFS always requires AD DS"
+    answerIndex: 1
+    explanation: "Since the single name \"DFS\" refers to two independent features, always be clear about which one is being discussed."

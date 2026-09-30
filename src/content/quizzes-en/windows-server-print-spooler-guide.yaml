@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the correct role of the Spooler (Print Spooler)?"
+    choices:
+      - "Streaming print data straight through to the printer the instant it's received"
+      - "Saving a print job as a temporary file and managing it as an ordered queue"
+      - "Automatically updating printer drivers"
+      - "Managing file sharing over the network"
+    answerIndex: 1
+    explanation: "The spooler saves a print job as a temporary file before actually sending it to the printer, managing it as an ordered queue."
+
+  - question: "What's the benefit of the design that saves a print job as a temporary file?"
+    choices:
+      - "It improves the printer's print quality"
+      - "The client can return to its next task right away, without waiting for the printer's processing speed"
+      - "Print data gets automatically encrypted"
+      - "It reduces the printer's ink consumption"
+    answerIndex: 1
+    explanation: "Spooling as a temporary file means the client only has to finish sending, without waiting on the printer's own processing speed."
+
+  - question: "What's the most common cause of a stuck print job?"
+    choices:
+      - "A bug in the spooler service itself"
+      - "The printer driver hanging while processing a specific print job"
+      - "A physical break in the network cable"
+      - "A missed Windows Update"
+    answerIndex: 1
+    explanation: "Most print-job jams are caused not by the spooler service itself, but by a hung printer driver."
+
+  - question: "Why does the standard fix \"restart the spooler service\" work?"
+    choices:
+      - "Because it automatically updates the printer's firmware"
+      - "Because restarting the entire spoolsv.exe process forcibly resets the hung driver's state"
+      - "Because it re-encrypts all print data"
+      - "Because it re-establishes the network connection"
+    answerIndex: 1
+    explanation: "Restarting the spooler service restarts the entire spoolsv.exe process, forcibly resetting the hung driver's abnormal state."
+
+  - question: "What's the effect of Printer Driver Isolation?"
+    choices:
+      - "It consolidates all printer drivers into a single process"
+      - "It keeps a specific driver's hang contained within its own isolated process"
+      - "It doubles print-job processing speed"
+      - "It makes the spooler service itself unnecessary"
+    answerIndex: 1
+    explanation: "Enabling Printer Driver Isolation means a specific driver's malfunction no longer affects other printers' print jobs or the spooler itself."

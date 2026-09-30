@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the purpose behind IIS recycling existing?"
+    choices:
+      - "To free up disk space"
+      - "To serve as a defensive measure against memory leaks and accumulated resources from long uptimes"
+      - "To save network bandwidth"
+      - "To automatically renew SSL certificates"
+    answerIndex: 1
+    explanation: "Recycling is an empirically grounded, defensive design against memory leaks and resource fragmentation accumulating in a long-running process."
+
+  - question: "What's the correct behavior of overlapping recycle?"
+    choices:
+      - "It terminates the old process immediately and launches a new one"
+      - "It launches a new process to handle new requests, and the old process finishes in-flight requests before shutting down"
+      - "It temporarily rejects all requests during the recycle"
+      - "Neither the old nor the new process runs during the recycle"
+    answerIndex: 1
+    explanation: "Under overlapping recycle, the new process starts accepting new requests, and the old process shuts down only after finishing what it was already handling."
+
+  - question: "What's the correct understanding of a memory-usage-based recycling setting?"
+    choices:
+      - "It fixes the memory-leak bug itself"
+      - "It's life support that temporarily suppresses the symptom, without fixing the root cause"
+      - "It improves the application's execution speed"
+      - "It automatically optimizes disk usage"
+    answerIndex: 1
+    explanation: "Memory-usage-based recycling is merely life support, temporarily suppressing the memory-leak symptom rather than fixing the root cause."
+
+  - question: "How should a sudden increase in recycling frequency be interpreted?"
+    choices:
+      - "No need to worry — it's normal variation"
+      - "As an important signal that the application's own code has a memory leak that needs addressing"
+      - "As a sign of a hardware failure on the server"
+      - "As a sign the IIS license is about to expire"
+    answerIndex: 1
+    explanation: "A sudden rise in recycling frequency should be treated as an important signal of a memory leak in the application's own code."
+
+  - question: "Why doesn't a request arriving during a recycle fail?"
+    choices:
+      - "Because recycling itself is always suppressed from happening"
+      - "Because overlapping recycle is enabled by default, designed to avoid any momentary gap"
+      - "Because the request gets automatically forwarded to a different server"
+      - "Because recycling only ever happens in the middle of the night"
+    answerIndex: 1
+    explanation: "Overlapping recycle, enabled by default, lets the old and new processes coexist briefly, avoiding a request failing due to a momentary gap."
