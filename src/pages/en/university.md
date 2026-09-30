@@ -34,6 +34,10 @@ Every department uses this same set of grade labels.
 
 **Through graduate school, most departments pair a "lecture article" (theory) with a "hands-on" (practice) at each grade.** From Architect onward, the content is expected to span multiple departments rather than living inside just one, so no articles exist there yet.
 
+## About the Graduation Exam
+
+Every department's articles each have a [quiz](/quiz) already attached. This isn't a new feature — it's the quiz that's existed on this site all along, simply repositioned as a "graduation exam" to fit the university metaphor. Use the [quiz](/quiz)'s per-topic mode to pick that department's articles and take them on. Whether you can answer the questions for its Senior and Graduate School articles on your own — or, if the department isn't "fully open" yet, its current highest grade's articles — is a good measure of whether you've graduated (or completed that grade). If you miss a question, go back and review the article it's tied to.
+
 ## The Full Faculty/Department Picture (Roadmap)
 
 Regardless of how much content currently exists, here's the full list of faculties and departments we ultimately want to build. Any department whose status isn't "fully open" is a target for future article additions.
