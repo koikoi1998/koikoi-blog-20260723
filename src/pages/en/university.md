@@ -44,7 +44,7 @@ Regardless of how much content currently exists, here's the full list of faculti
 |---|---|---|
 | Active Directory Department | [active-directory](/en/sitemap#series-list) | 🎓 Fully open (through graduate school) |
 | DNS Infrastructure Department | [dns](/en/sitemap#series-list) | 📙 Reached Junior level |
-| Mail Infrastructure Department | [messaging](/en/sitemap#series-list) | 📖 General education–Freshman level |
+| Mail Infrastructure Department | [messaging](/en/sitemap#series-list) | 📙 Reached Junior level |
 | Linux Infrastructure Department | [linux](/en/sitemap#series-list) | 📖 General education level (close to a shared foundational subject across departments) |
 | Windows Server Department | [windows-server](/en/sitemap#series-list) | 📖 General education–Freshman level |
 | Storage Department | [storage](/en/sitemap#series-list) | 🌱 Few articles |
@@ -364,6 +364,43 @@ No articles exist here yet. Niche-spec hands-on (Anycast DNS, building DoH/DoT, 
 ### Audio Learning Materials (Regardless of Grade)
 
 - [[Listen] The DNS Server Fundamentals Series, Fully Recapped](/en/articles/dns-audio-review-guide) (for reviewing everything through Junior year)
+
+## Mail Infrastructure Department
+
+**At the moment, this department only reaches Junior level, just like the DNS Infrastructure Department.** Senior-tier and Graduate-School-tier hands-on labs aren't available yet. The goal for what's built so far is that anyone who works through and understands it on their own comes away able to handle building and operating a mail server with Postfix/Dovecot, and defending against spoofing with SPF/DKIM, at a real-world level.
+
+### General Education (Prerequisite)
+
+None (a basic understanding of DNS is enough).
+
+### Freshman: Fundamentals + Your First Hands-On
+
+**Lectures (Fundamentals, 2 articles)**
+
+1. [Understanding Email Migration to M365 From a "Top 1%" Perspective](/en/articles/m365-email-fundamentals-guide)
+2. [Understanding Mail Server Fundamentals From a "Top 1%" Perspective](/en/articles/mail-server-fundamentals-guide)
+
+**Hands-On (Foundational Tier, 1 article)**
+
+1. [A "Top 1%" Hands-On Lab: Building a Mail Server With Postfix and Dovecot](/en/articles/mail-server-handson-guide)
+
+### Sophomore: Supplementary Deep-Dives
+
+1. [Understanding How SPF, DKIM, and DMARC Work From a "Top 1%" Perspective](/en/articles/mail-spf-dkim-dmarc-guide)
+2. [Understanding Mail Queues and Bounces From a "Top 1%" Perspective](/en/articles/mail-queue-bounce-guide)
+3. [Understanding SMTP's STARTTLS From a "Top 1%" Perspective](/en/articles/mail-tls-encryption-guide)
+
+### Junior: Real-World-Scenario Hands-On
+
+1. [The Top 1% Hands-On for Implementing SPF Checking and DKIM Signing on Postfix](/en/articles/mail-spf-dkim-dmarc-handson-guide)
+
+### Senior and Beyond
+
+No articles exist here yet. Niche-spec hands-on (multi-domain mail relaying, building a mailing-list server, and similar) and security-hardening hands-on (reproducing and defending against open-relay abuse, and similar) are planned additions.
+
+### Audio Learning Materials (Regardless of Grade)
+
+- [[Listen] The Mail Infrastructure Series, Fully Recapped](/en/articles/mail-audio-review-guide) (for reviewing everything through Junior year)
 
 ## What's Next
 

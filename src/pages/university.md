@@ -44,7 +44,7 @@ altHref: "/en/university"
 |---|---|---|
 | ActiveDirectory学科 | [active-directory](/sitemap#シリーズ一覧) | 🎓 開講済み(大学院まで) |
 | DNS基盤学科 | [dns](/sitemap#シリーズ一覧) | 📙 3年生相当まで到達 |
-| メール基盤学科 | [messaging](/sitemap#シリーズ一覧) | 📖 教養課程〜1年生相当 |
+| メール基盤学科 | [messaging](/sitemap#シリーズ一覧) | 📙 3年生相当まで到達 |
 | Linux基盤学科 | [linux](/sitemap#シリーズ一覧) | 📖 教養課程相当(全学科共通の基礎科目に近い) |
 | Windows Server学科 | [windows-server](/sitemap#シリーズ一覧) | 📖 教養課程〜1年生相当 |
 | ストレージ学科 | [storage](/sitemap#シリーズ一覧) | 🌱 記事少数 |
@@ -364,6 +364,43 @@ ActiveDirectory学科・AWS学科・Ansible/IaC学科に続く4つ目の「開�
 ### 耳で学ぶ補助教材(学年を問わず)
 
 - [【音声で聴く】DNSサーバー基礎シリーズ総復習](/articles/dns-audio-review-guide)(3年生までの復習用)
+
+## メール基盤学科
+
+**現時点では3年生相当までの学科です。** DNS基盤学科と同じく、4年生・大学院のハンズオンはまだ用意できていません。ここまでの内容を自力で実施・理解できれば、Postfix/Dovecotでのメールサーバー構築・運用と、SPF/DKIMによるなりすまし対策を、実務レベルで扱えるようになることを目標にしています。
+
+### 教養課程(前提科目)
+
+なし(DNSの基礎知識があれば十分です)。
+
+### 1年生:基礎編+初めてのハンズオン
+
+**座学(基礎編、2記事)**
+
+1. [M365へのメール移行を『上位1%』の視点で理解する](/articles/m365-email-fundamentals-guide)
+2. [メールサーバーの基礎を『上位1%』の視点で理解する](/articles/mail-server-fundamentals-guide)
+
+**実技(ハンズオン基礎編、1記事)**
+
+1. [PostfixとDovecotでメールサーバーを構築するハンズオン](/articles/mail-server-handson-guide)
+
+### 2年生:補足・深掘り編
+
+1. [SPF・DKIM・DMARCの仕組みを『上位1%』の視点で理解する](/articles/mail-spf-dkim-dmarc-guide)
+2. [メールキューとバウンスの仕組みを『上位1%』の視点で理解する](/articles/mail-queue-bounce-guide)
+3. [SMTPにおけるSTARTTLSの仕組みを『上位1%』の視点で理解する](/articles/mail-tls-encryption-guide)
+
+### 3年生:実務シナリオ編ハンズオン
+
+1. [PostfixにSPFチェックとDKIM署名を実装するハンズオン](/articles/mail-spf-dkim-dmarc-handson-guide)
+
+### 4年生以降
+
+まだ記事がありません。今後、ニッチな仕様(マルチドメインでのメール中継、メーリングリストサーバーの構築など)や、セキュリティ強化編(オープンリレーの悪用再現と防御など)のハンズオンを追加していく予定です。
+
+### 耳で学ぶ補助教材(学年を問わず)
+
+- [【音声で聴く】メール基盤シリーズ総復習](/articles/mail-audio-review-guide)(3年生までの復習用)
 
 ## 今後の予定
 
