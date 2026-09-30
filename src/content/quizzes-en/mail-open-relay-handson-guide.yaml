@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the correct description of an open relay?"
+    choices:
+      - "A state where relaying is fine as long as either the sender or recipient is related to your organization"
+      - "A dangerous state where a server unconditionally relays traffic between two third parties, unrelated to either the sender or recipient"
+      - "A state where mail is sent without encryption"
+      - "A state where DNSSEC validation is never performed"
+    answerIndex: 1
+    explanation: "An open relay is a dangerous state where a server unconditionally relays traffic between two third parties unrelated to either the sender or recipient."
+
+  - question: "Within smtpd_relay_restrictions, which setting actually does the real work of preventing an open relay?"
+    choices:
+      - "permit_mynetworks"
+      - "reject_unauth_destination"
+      - "permit_sasl_authenticated"
+      - "smtpd_banner"
+    answerIndex: 1
+    explanation: "reject_unauth_destination is the real core of the defense, reliably rejecting relay requests from outside a trusted network to a domain you don't manage."
+
+  - question: "What's a classic real-world cause of \"becoming an open relay without noticing\"?"
+    choices:
+      - "Deliberately setting smtpd_relay_restrictions = permit"
+      - "Letting the range of mynetworks get too broad"
+      - "A TLS certificate expiring"
+      - "Forgetting to rotate DNSSEC keys"
+    answerIndex: 1
+    explanation: "An unintentionally overly broad mynetworks range effectively treats the entire internet as a trusted internal network."
+
+  - question: "What's the correct understanding of Postfix's access-control evaluation order?"
+    choices:
+      - "Every line is evaluated simultaneously, and the strictest setting wins"
+      - "It's evaluated top to bottom, so an unintended permit before reject_unauth_destination means it never gets reached"
+      - "The evaluation order is decided randomly"
+      - "reject_unauth_destination is always evaluated first"
+    answerIndex: 1
+    explanation: "Postfix's access control is evaluated top to bottom, so an unintended permit in a line before reject_unauth_destination means it's never evaluated."
+
+  - question: "What's the real consequence of getting abused as an open relay?"
+    choices:
+      - "No real harm — it can be left alone"
+      - "Your organization gets recognized as a spam source, and even legitimate mail starts getting rejected via blacklists"
+      - "The server's disk capacity automatically increases"
+      - "DNSSEC validation automatically gets strengthened"
+    answerIndex: 1
+    explanation: "Getting abused as an open relay gets your server widely recognized as a spam source, leading to even legitimate mail being rejected via blacklists."

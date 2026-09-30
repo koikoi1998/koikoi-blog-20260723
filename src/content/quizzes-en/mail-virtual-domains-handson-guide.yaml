@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the correct description of virtual_alias_domains?"
+    choices:
+      - "A setting that expands a real Unix user's mailbox capacity"
+      - "A setting that registers a domain with no real Unix user or mailbox, purely for redirecting destinations"
+      - "A setting that automatically generates an SPF record"
+      - "A setting that automatically renews a TLS certificate"
+    answerIndex: 1
+    explanation: "virtual_alias_domains registers a domain with no real Unix user, purely for redirecting destinations."
+
+  - question: "What happens if a domain added to virtual_alias_domains is also added to mydestination?"
+    choices:
+      - "Both registrations work fine, with no issue"
+      - "Postfix errors out at startup"
+      - "One of the two is automatically ignored"
+      - "Mail delivery speed doubles"
+    answerIndex: 1
+    explanation: "Registering the same domain in both mydestination and virtual_alias_domains makes Postfix error out at startup."
+
+  - question: "What's the correct difference between virtual aliases and virtual mailboxes?"
+    choices:
+      - "They're just two names for the exact same feature"
+      - "A virtual alias redirects to an existing mailbox, while a virtual mailbox creates a new, independent mailbox"
+      - "A virtual alias is Linux-only, a virtual mailbox is Windows-only"
+      - "A virtual mailbox only supports encrypted communication"
+    answerIndex: 1
+    explanation: "A virtual alias redirects to an existing user, while a virtual mailbox creates independent mailboxes without a Unix account — different purposes."
+
+  - question: "What happened when mail was sent to sales@mailtest2.local in this hands-on?"
+    choices:
+      - "It was delivered to a newly created Unix user named sales"
+      - "Following virtual_alias_maps's mapping, it was delivered to an existing Unix user's mailbox (alice)"
+      - "It was never delivered and resulted in an error"
+      - "It was automatically forwarded to a different domain"
+    answerIndex: 1
+    explanation: "Following virtual_alias_maps's mapping, mail to sales@mailtest2.local was delivered to the existing Unix user alice's mailbox."
+
+  - question: "What's standard real-world practice for hosting mail at a scale of thousands of users?"
+    choices:
+      - "Keep using virtual alias domains"
+      - "Consider adopting virtual mailboxes"
+      - "Set up one dedicated server per domain"
+      - "Grant root privileges to every user"
+    answerIndex: 1
+    explanation: "For destinations at a scale of thousands, adopting virtual mailboxes, which can create large numbers of independent mailboxes, is standard practice."

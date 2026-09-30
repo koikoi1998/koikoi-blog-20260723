@@ -1,15 +1,15 @@
 ---
 title: "[Listen] The Mail Infrastructure Series, Fully Recapped"
-description: "An audio-learning article that reviews all 7 articles of the Mail Infrastructure series by ear, during a commute or while doing chores. No tables, diagrams, or bullet points — just spoken-style prose meant to be read aloud by a browser's text-to-speech feature."
+description: "An audio-learning article that reviews all 9 articles of the Mail Infrastructure series by ear, during a commute or while doing chores. No tables, diagrams, or bullet points — just spoken-style prose meant to be read aloud by a browser's text-to-speech feature."
 series: "messaging"
 subSeries: "audio"
-order: 8
+order: 11
 tags: ["email", "audio-review", "infra"]
 emoji: "🎧"
 pubDate: 2026-09-30
 ---
 
-This article is an audio-learning recap for anyone who's already read all seven articles in the Mail Infrastructure series. Use your browser's or phone's text-to-speech feature and let it play in the background during a commute or while doing chores. There are no diagrams, tables, or code here — just spoken-style prose, stitching the whole series back together into a single, continuous thread.
+This article is an audio-learning recap for anyone who's already read all nine articles in the Mail Infrastructure series. Use your browser's or phone's text-to-speech feature and let it play in the background during a commute or while doing chores. There are no diagrams, tables, or code here — just spoken-style prose, stitching the whole series back together into a single, continuous thread.
 
 The series started with what migrating mail from an on-premises Exchange Server to M365, Exchange Online, actually means as concrete work — which specific pieces get switched over. It also covered how a mail address's domain relates to a website's domain.
 
@@ -25,4 +25,8 @@ Then came encryption in SMTP. SMTP was a protocol never designed with encryption
 
 The final article put the SPF, DKIM, and DMARC lecture into practice, hands-on. You actually published an SPF record to DNS and confirmed mail from a sender outside its range actually getting rejected. You also confirmed that wiring in OpenDKIM automatically attaches a digital-signature header to outgoing mail. The understanding that SPF is receiving-side and DKIM is sending-side — an asymmetric division of roles — took shape here as an actual, working configuration.
 
-Looking back across all seven articles, one consistent pattern emerges. The SMTP protocol was originally designed on a kind of good-faith assumption — sender spoofing and eavesdropping were never part of the original picture. SPF, DKIM, DMARC, STARTTLS, and MTA-STS are all mechanisms for trust and safety, layered on top of that good-faith protocol after the fact. The habit this series builds isn't being satisfied on the surface with "the mail got sent, the mail arrived" — it's understanding which mechanism is compensating for which weakness, and how. That's the perspective a top-1% engineer carries away from this series. And that's the recap of the Mail Infrastructure series, complete.
+From here, the series moved into hands-on labs, actually building things by hand. First, virtual domains. You actually built a virtual alias domain setup, letting a single Postfix server accept mail for multiple different domains at once. You felt the design firsthand — no need for a server per domain, and destination resolution cleanly decoupled from creating a real Unix user account.
+
+The final article was a hands-on that deliberately reproduced a dangerous state, an open relay. Deliberately loosening smtpd_relay_restrictions put your own server into a state of unconditionally relaying traffic between two third parties, unrelated to either the sender or the recipient. Putting reject_unauth_destination back in its correct position confirmed you could prevent that dangerous state. You also touched on a practical caveat: the classic real-world cause of becoming an open relay without noticing isn't a deliberate misconfiguration — it's letting the range of mynetworks get too broad.
+
+Looking back across all nine articles, one consistent pattern emerges. The SMTP protocol was originally designed on a kind of good-faith assumption — sender spoofing, eavesdropping, and relaying between unrelated third parties were never part of the original picture. SPF, DKIM, DMARC, STARTTLS, MTA-STS, and the settings behind virtual domains and open-relay defense are all mechanisms for trust and safety, layered on top of that good-faith protocol after the fact. The habit this series builds isn't being satisfied on the surface with "the mail got sent, the mail arrived" — it's understanding which mechanism is compensating for which weakness, and how. That's the perspective a top-1% engineer carries away from this series. And that's the recap of the Mail Infrastructure series, complete.

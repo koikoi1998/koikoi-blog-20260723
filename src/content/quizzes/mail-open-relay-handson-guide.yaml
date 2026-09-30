@@ -1,0 +1,45 @@
+questions:
+  - question: "オープンリレーの説明として正しいのはどれか。"
+    choices:
+      - "送信者と宛先のどちらか一方でも自社と関係があれば中継してよい状態"
+      - "送信元・宛先のどちらとも無関係な、第三者間の通信を無条件に中継してしまう危険な状態"
+      - "メールを暗号化せずに送信する状態"
+      - "DNSSECの検証を行わない状態"
+    answerIndex: 1
+    explanation: "オープンリレーは、送信元・宛先のどちらとも無関係な第三者間の通信を、無条件に中継してしまう危険な状態です。"
+
+  - question: "smtpd_relay_restrictionsの中で、オープンリレー対策として実質的に機能している設定はどれか。"
+    choices:
+      - "permit_mynetworks"
+      - "reject_unauth_destination"
+      - "permit_sasl_authenticated"
+      - "smtpd_banner"
+    answerIndex: 1
+    explanation: "reject_unauth_destinationが、信頼できるネットワークの外から、自分が管理していないドメイン宛の中継要求を確実に拒否する、実質的な防御の中核です。"
+
+  - question: "実務で「気づかないうちにオープンリレーになる」典型的な原因として正しいのはどれか。"
+    choices:
+      - "意図的にsmtpd_relay_restrictions = permitと設定すること"
+      - "mynetworksの範囲を広げすぎてしまうこと"
+      - "TLS証明書の有効期限が切れること"
+      - "DNSSECの鍵をローテーションし忘れること"
+    answerIndex: 1
+    explanation: "mynetworksの範囲を意図せず広げすぎると、事実上インターネット全体が信頼できる内部ネットワークとして扱われてしまいます。"
+
+  - question: "Postfixのアクセス制御の評価順序に関する正しい理解はどれか。"
+    choices:
+      - "すべての行が同時に評価され、最も厳しい設定が優先される"
+      - "上から順に評価されるため、reject_unauth_destinationより前でpermitされると、そこには到達しない"
+      - "評価順序はランダムに決まる"
+      - "reject_unauth_destinationは常に最初に評価される"
+    answerIndex: 1
+    explanation: "Postfixのアクセス制御は上から順に評価されるため、reject_unauth_destinationより前の行で意図せずpermitされると、それ以降は評価されません。"
+
+  - question: "オープンリレーとして悪用された場合の実害として正しいのはどれか。"
+    choices:
+      - "特に実害はなく、放置してよい"
+      - "自社が迷惑メールの送信元として認識され、正規のメール送信までブラックリストで拒否されるようになる"
+      - "サーバーのディスク容量が自動的に増える"
+      - "DNSSECの検証が自動的に強化される"
+    answerIndex: 1
+    explanation: "オープンリレーとして悪用されると、自社サーバーが迷惑メールの送信元として広く認識され、正規のメール送信までブラックリストによって拒否されるようになります。"
