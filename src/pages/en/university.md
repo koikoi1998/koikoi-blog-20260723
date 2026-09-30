@@ -14,7 +14,7 @@ The [sitemap](/en/sitemap) is organized as a "STEP1 through STEP8" roadmap that 
 - **Department**: A specialized area within a faculty. One department corresponds almost exactly to one of the existing "series."
 - **Grade**: The difficulty level of the articles and hands-on labs themselves. From general education through graduate school and beyond, it shows the distance from complete beginner to top engineer, as a sequence of stages.
 
-**At the moment, the [Active Directory Department](#active-directory-department), the [AWS Department](#aws-department), the [Ansible/IaC Department](#ansibleiac-department), and the [VPN Department](#vpn-department) are "fully open" departments, satisfying every grade level.** Other departments will fill in their grades gradually, as content gets added over time. No existing article folder or URL has been changed — this page is purely an additional front door, changing how things are presented.
+**At the moment, the [Active Directory Department](#active-directory-department), the [AWS Department](#aws-department), the [Ansible/IaC Department](#ansibleiac-department), the [VPN Department](#vpn-department), and the [DNS Infrastructure Department](#dns-infrastructure-department) are "fully open" departments, satisfying every grade level.** Other departments will fill in their grades gradually, as content gets added over time. No existing article folder or URL has been changed — this page is purely an additional front door, changing how things are presented.
 
 ## The Shared Grade Ladder
 
@@ -43,7 +43,7 @@ Regardless of how much content currently exists, here's the full list of faculti
 | Department | Corresponding Series | Status |
 |---|---|---|
 | Active Directory Department | [active-directory](/en/sitemap#series-list) | 🎓 Fully open (through graduate school) |
-| DNS Infrastructure Department | [dns](/en/sitemap#series-list) | 📙 Reached Junior level |
+| DNS Infrastructure Department | [dns](/en/sitemap#series-list) | 🎓 Fully open (through graduate school) |
 | Mail Infrastructure Department | [messaging](/en/sitemap#series-list) | 📙 Reached Junior level |
 | Linux Infrastructure Department | [linux](/en/sitemap#series-list) | 📖 General education level (close to a shared foundational subject across departments) |
 | Windows Server Department | [windows-server](/en/sitemap#series-list) | 📙 Reached Junior level |
@@ -330,7 +330,7 @@ No articles exist here yet. As with the other departments, this is expected to c
 
 ## DNS Infrastructure Department
 
-**At the moment, this department only reaches Junior level.** Senior-tier (niche-spec) and Graduate-School-tier (security-hardening) hands-on labs aren't available yet. The goal for what's built so far is that anyone who works through and understands it on their own comes away able to handle building and operating a DNS server with BIND, and signing/validating with DNSSEC, at a real-world level.
+The fifth department to become "fully open," following Active Directory, AWS, Ansible/IaC, and VPN. The goal is that anyone who works through and understands this entire department's curriculum on their own comes away able to handle building and operating a DNS server with BIND, signing/validating with DNSSEC, and defending against delegation issues and DNS amplification, at a real-world level.
 
 ### General Education (Prerequisite)
 
@@ -357,13 +357,25 @@ No articles exist here yet. As with the other departments, this is expected to c
 
 1. [The Top 1% Hands-On for Signing a BIND Zone With DNSSEC and Reproducing a Validation Failure (SERVFAIL) Yourself](/en/articles/dns-dnssec-handson-guide)
 
-### Senior and Beyond
+### Senior (Graduation): Niche-Spec Hands-On
 
-No articles exist here yet. Niche-spec hands-on (Anycast DNS, building DoH/DoT, and similar) and security-hardening hands-on (reproducing and defending against DNS cache poisoning, and similar) are planned additions.
+1. [The Top 1% Hands-On for Building Subdomain Delegation Yourself and Reproducing Lame Delegation](/en/articles/dns-delegation-handson-guide)
+
+**Work through and understand this one, and you're at graduation level, as a "Senior."**
+
+### Graduate School: Security-Hardening Hands-On (An Attacker's Perspective)
+
+1. [The Top 1% Hands-On for Seeing DNS Amplification Firsthand and Defending With Response Rate Limiting (RRL)](/en/articles/dns-amplification-rrl-handson-guide)
+
+An educational, defense-focused hands-on lab, meant to strengthen the defenses of a test environment you manage yourself (spoofing a source IP address is never covered).
+
+### Architect and Beyond
+
+No articles exist here yet. As with the other departments, this is expected to cover system-wide architecture design spanning multiple departments.
 
 ### Audio Learning Materials (Regardless of Grade)
 
-- [[Listen] The DNS Server Fundamentals Series, Fully Recapped](/en/articles/dns-audio-review-guide) (for reviewing everything through Junior year)
+- [[Listen] The DNS Server Fundamentals Series, Fully Recapped](/en/articles/dns-audio-review-guide) (for reviewing after graduation)
 
 ## Mail Infrastructure Department
 
