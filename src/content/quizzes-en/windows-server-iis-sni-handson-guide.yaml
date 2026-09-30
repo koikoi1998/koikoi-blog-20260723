@@ -1,0 +1,45 @@
+questions:
+  - question: "What problem does SNI (Server Name Indication) solve?"
+    choices:
+      - "Improving TLS encryption speed"
+      - "Presenting a different certificate per domain, all from a single IP address"
+      - "Speeding up DNS name resolution"
+      - "Automatically detecting the HTTP version"
+    answerIndex: 1
+    explanation: "SNI lets a single IP address and port combination present a different TLS certificate per hostname."
+
+  - question: "At what stage of the TLS handshake does SNI's information get sent?"
+    choices:
+      - "After the HTTP response comes back"
+      - "Included in plaintext, before encryption, inside the ClientHello message"
+      - "Before the TCP three-way handshake completes"
+      - "After certificate validation finishes"
+    answerIndex: 1
+    explanation: "SNI is included in plaintext, before encryption, in ClientHello, the first message of the TLS handshake."
+
+  - question: "What does the hostnameport form of netsh http add sslcert achieve?"
+    choices:
+      - "Attaching a different certificate per hostname, all under one IP address and port"
+      - "Consolidating multiple IP addresses into one certificate"
+      - "Automatically extending a certificate's validity period"
+      - "Automatically redirecting HTTP to HTTPS"
+    answerIndex: 1
+    explanation: "A hostnameport-style binding lets you attach a different certificate per hostname, under the same IP address and port."
+
+  - question: "What happens when an extremely old client that doesn't support SNI connects?"
+    choices:
+      - "The connection is rejected immediately"
+      - "The default certificate configured for that IP address and port gets returned"
+      - "It automatically gets upgraded to an SNI-supporting client"
+      - "It automatically downgrades to HTTP"
+    answerIndex: 1
+    explanation: "Since the server never receives SNI information from a non-supporting client, it returns the default certificate, which can trigger a name mismatch."
+
+  - question: "What was the structural contradiction TLS had before SNI existed?"
+    choices:
+      - "Too few choices of encryption algorithm"
+      - "Knowing which site a request is for requires HTTP content, but TLS can't decide a certificate until that's known"
+      - "Only one certificate authority existed"
+      - "No decision could be made between using TCP or UDP"
+    answerIndex: 1
+    explanation: "HTTP's Host header is only readable after encryption, but the certificate must be chosen at the start of the TLS handshake — a circular problem."

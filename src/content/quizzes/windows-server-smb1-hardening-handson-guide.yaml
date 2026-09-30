@@ -1,0 +1,45 @@
+questions:
+  - question: "SMB1の構造的な弱点として正しいのはどれか。"
+    choices:
+      - "通信速度がSMB3より常に速い"
+      - "通信内容を暗号化するオプションが一切存在しない"
+      - "複数のクライアントから同時に接続できない"
+      - "IPv6環境でのみ動作する"
+    answerIndex: 1
+    explanation: "SMB1には、SMB3で追加された、通信内容そのものを暗号化する機能が一切存在しません。"
+
+  - question: "SMB1を完全に無効化するために実行するコマンドの組み合わせとして正しいのはどれか。"
+    choices:
+      - "Enable-WindowsFeature FS-SMB1とSet-SmbServerConfiguration -EnableSMB1Protocol $true"
+      - "Remove-WindowsFeature FS-SMB1とSet-SmbServerConfiguration -EnableSMB1Protocol $false"
+      - "Restart-Serviceのみで無効化できる"
+      - "Get-SmbConnectionを実行するだけで自動的に無効化される"
+    answerIndex: 1
+    explanation: "Remove-WindowsFeature FS-SMB1でSMB1機能自体を削除し、Set-SmbServerConfiguration -EnableSMB1Protocol $falseで明示的に無効化します。"
+
+  - question: "SMB1が今も一部の環境に残り続けている、実務上の主な理由として正しいのはどれか。"
+    choices:
+      - "SMB1の方がSMB3より高速であるため"
+      - "SMB1にしか対応していない、古い専用機器との互換性を維持する必要があるため"
+      - "Microsoftが今もSMB1の新規開発を続けているため"
+      - "SMB1を無効化すると法律違反になるため"
+    answerIndex: 1
+    explanation: "SMB1にしか対応していない古いNASや複合機など、専用機器との互換性維持が、SMB1が残り続ける主な理由です。"
+
+  - question: "SMB1の無効化とSMB署名の強制の関係として正しいのはどれか。"
+    choices:
+      - "どちらか一方だけで、実務上十分な防御になる"
+      - "「古い経路を塞ぐ」対策と「残った経路を守る」対策という、独立した別の対策であり、両方の組み合わせが必要"
+      - "SMB署名を強制すれば、SMB1の無効化は不要になる"
+      - "SMB1を無効化すれば、SMB署名の設定は自動的に強制される"
+    answerIndex: 1
+    explanation: "SMB1の無効化とSMB署名の強制は目的が異なる独立した対策であり、両方を組み合わせて初めて十分な防御になります。"
+
+  - question: "クライアントとサーバーが両方SMB3に対応していても、古いダイアレクトがネゴシエートされることがある理由として正しいのはどれか。"
+    choices:
+      - "そのようなことは技術的に絶対に起こらない"
+      - "クライアント側の設定や、経路上の古いデバイスの影響で、意図せず降格することがあるため"
+      - "SMB3はSMB1と互換性がないため、必ずSMB1にフォールバックするため"
+      - "Windows Updateが自動的にSMB3を無効化するため"
+    answerIndex: 1
+    explanation: "クライアント側の設定や、途中の古いデバイスの影響で、意図せず古いダイアレクトへ降格してしまうケースがあります。"

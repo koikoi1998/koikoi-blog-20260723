@@ -1,0 +1,45 @@
+questions:
+  - question: "What's a structural weakness of SMB1?"
+    choices:
+      - "It's always faster than SMB3"
+      - "No option exists at all for encrypting the traffic"
+      - "It can't be connected to by multiple clients at once"
+      - "It only works in an IPv6 environment"
+    answerIndex: 1
+    explanation: "SMB1 has no encryption feature at all, unlike the ability to encrypt traffic added in SMB3."
+
+  - question: "What's the correct combination of commands to fully disable SMB1?"
+    choices:
+      - "Enable-WindowsFeature FS-SMB1 and Set-SmbServerConfiguration -EnableSMB1Protocol $true"
+      - "Remove-WindowsFeature FS-SMB1 and Set-SmbServerConfiguration -EnableSMB1Protocol $false"
+      - "Restart-Service alone disables it"
+      - "Running Get-SmbConnection alone automatically disables it"
+    answerIndex: 1
+    explanation: "Remove-WindowsFeature FS-SMB1 removes the feature itself, and Set-SmbServerConfiguration -EnableSMB1Protocol $false explicitly disables it."
+
+  - question: "What's the main real-world reason SMB1 still lingers in some environments?"
+    choices:
+      - "SMB1 is faster than SMB3"
+      - "The need to maintain compatibility with old, dedicated devices that only support SMB1"
+      - "Microsoft is still actively developing SMB1"
+      - "Disabling SMB1 would be illegal"
+    answerIndex: 1
+    explanation: "Compatibility with old, dedicated devices like an old NAS or multifunction printer that only supports SMB1 is the main reason it lingers."
+
+  - question: "What's the correct relationship between disabling SMB1 and enforcing SMB signing?"
+    choices:
+      - "Either one alone provides adequate real-world protection"
+      - "They're independent defenses — \"closing the old pathway\" and \"protecting the remaining pathway\" — and combining both is necessary"
+      - "Enforcing SMB signing makes disabling SMB1 unnecessary"
+      - "Disabling SMB1 automatically enforces SMB signing"
+    answerIndex: 1
+    explanation: "Disabling SMB1 and enforcing SMB signing serve different purposes as independent defenses, and only combining both provides adequate protection."
+
+  - question: "Why can an old dialect still get negotiated even when both the client and server support SMB3?"
+    choices:
+      - "That's technically impossible"
+      - "A client-side setting or an old device along the path can unintentionally force a downgrade"
+      - "SMB3 is incompatible with SMB1, so it always falls back to SMB1"
+      - "Windows Update automatically disables SMB3"
+    answerIndex: 1
+    explanation: "A client-side setting, or an old device somewhere along the path, can unintentionally force a downgrade to an older dialect."
