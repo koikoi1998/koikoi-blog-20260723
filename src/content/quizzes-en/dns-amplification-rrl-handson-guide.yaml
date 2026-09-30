@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the basic mechanism of a DNS amplification attack?"
+    choices:
+      - "Sending a large query and receiving a small response"
+      - "Sending a small query with the source IP spoofed to the target, directing a larger response's traffic at the target"
+      - "Directly manipulating a DNS server's CPU usage"
+      - "Repeating a zone transfer indefinitely"
+    answerIndex: 1
+    explanation: "A DNS amplification attack sends a small query with the source spoofed to the target, directing larger response traffic at that target."
+
+  - question: "What does Response Rate Limiting (RRL) actually limit?"
+    choices:
+      - "The content of queries a DNS server accepts"
+      - "How often it responds to the same source for the same query pattern"
+      - "The size of the zone file"
+      - "A DNSSEC signature's validity period"
+    answerIndex: 1
+    explanation: "RRL caps how often it responds to the same source for the same query pattern, up to a configured threshold."
+
+  - question: "What's RRL's fundamental goal?"
+    choices:
+      - "Improving your own DNS server's response speed"
+      - "Reducing the traffic volume directed at a target if your server gets abused as a launchpad"
+      - "Speeding up DNSSEC validation"
+      - "Strengthening zone-transfer security"
+    answerIndex: 1
+    explanation: "RRL's fundamental goal is suppressing the harmful traffic volume directed at a target if your server gets abused as an amplification launchpad."
+
+  - question: "What's the correct description of RRL's \"Slip\"?"
+    choices:
+      - "It fully discards the response, returning nothing at all"
+      - "It deliberately corrupts the UDP response, nudging the client to retry over TCP"
+      - "It fully blocks the query itself"
+      - "It automatically invalidates the DNSSEC signature"
+    answerIndex: 1
+    explanation: "Slip deliberately corrupts the UDP response, nudging the client toward retrying over the more reliable TCP."
+
+  - question: "Why is retrying over TCP effectively impossible for an attacker spoofing their source?"
+    choices:
+      - "Because TCP always requires encryption"
+      - "Because TCP's three-way handshake can't complete correctly with a spoofed source"
+      - "Because TCP can't be used for DNS at all"
+      - "Because TCP is always blocked by firewalls"
+    answerIndex: 1
+    explanation: "TCP's three-way handshake can't complete correctly with a spoofed source, so Slip effectively neutralizes the response to an attacker."

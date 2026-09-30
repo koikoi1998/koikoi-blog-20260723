@@ -1,0 +1,45 @@
+questions:
+  - question: "What record gets added to the parent zone to declare a delegation?"
+    choices:
+      - "An MX record"
+      - "An NS record"
+      - "A TXT record"
+      - "A CNAME record"
+    answerIndex: 1
+    explanation: "Delegation is declared by adding an NS record to the parent zone, pointing to the delegated authoritative server."
+
+  - question: "Under what condition does a glue record become necessary?"
+    choices:
+      - "Always, for every delegation"
+      - "When the delegated server's name is contained within the zone being delegated"
+      - "When the delegated server runs on Linux"
+      - "When the delegating zone has an MX record"
+    answerIndex: 1
+    explanation: "When the delegated server's name is contained within the zone being delegated, a circular dependency forms, making a glue record structurally mandatory."
+
+  - question: "What's the correct description of Lame Delegation?"
+    choices:
+      - "A broken delegation state where the delegated server never actually responds"
+      - "Delegating to multiple servers simultaneously"
+      - "A mechanism for encrypting delegation info"
+      - "A state where zone transfers speed up"
+    answerIndex: 1
+    explanation: "Lame Delegation is a broken delegation state, often from a wrong glue record, where the delegated server never actually responds."
+
+  - question: "What's the most common real-world cause of Lame Delegation?"
+    choices:
+      - "A misconfiguration by the child zone's administrator"
+      - "An error in the parent zone's NS record or glue record"
+      - "Corruption in the client's DNS cache"
+      - "A TTL value that's too large"
+    answerIndex: 1
+    explanation: "Most Lame Delegation cases are caused by an error in the parent zone's NS record or glue record, with the child zone's own configuration usually correct."
+
+  - question: "When only a subdomain's name resolution fails, what should you check first?"
+    choices:
+      - "Only the child zone's zone-file syntax"
+      - "Whether the parent zone's NS record and glue record match the delegated server's actual IP address"
+      - "Restart the client machine"
+      - "Rotate the DNSSEC keys"
+    answerIndex: 1
+    explanation: "When only a subdomain fails to resolve, standard practice is to first check whether the parent zone's delegation info (NS record, glue record) is correct."
