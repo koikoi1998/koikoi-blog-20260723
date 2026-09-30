@@ -14,7 +14,7 @@ The [sitemap](/en/sitemap) is organized as a "STEP1 through STEP8" roadmap that 
 - **Department**: A specialized area within a faculty. One department corresponds almost exactly to one of the existing "series."
 - **Grade**: The difficulty level of the articles and hands-on labs themselves. From general education through graduate school and beyond, it shows the distance from complete beginner to top engineer, as a sequence of stages.
 
-**At the moment, the [Active Directory Department](#active-directory-department), the [AWS Department](#aws-department), the [Ansible/IaC Department](#ansibleiac-department), the [VPN Department](#vpn-department), and the [DNS Infrastructure Department](#dns-infrastructure-department) are "fully open" departments, satisfying every grade level.** Other departments will fill in their grades gradually, as content gets added over time. No existing article folder or URL has been changed — this page is purely an additional front door, changing how things are presented.
+**At the moment, the [Active Directory Department](#active-directory-department), the [AWS Department](#aws-department), the [Ansible/IaC Department](#ansibleiac-department), the [VPN Department](#vpn-department), the [DNS Infrastructure Department](#dns-infrastructure-department), and the [Mail Infrastructure Department](#mail-infrastructure-department) are "fully open" departments, satisfying every grade level.** Other departments will fill in their grades gradually, as content gets added over time. No existing article folder or URL has been changed — this page is purely an additional front door, changing how things are presented.
 
 ## The Shared Grade Ladder
 
@@ -44,7 +44,7 @@ Regardless of how much content currently exists, here's the full list of faculti
 |---|---|---|
 | Active Directory Department | [active-directory](/en/sitemap#series-list) | 🎓 Fully open (through graduate school) |
 | DNS Infrastructure Department | [dns](/en/sitemap#series-list) | 🎓 Fully open (through graduate school) |
-| Mail Infrastructure Department | [messaging](/en/sitemap#series-list) | 📙 Reached Junior level |
+| Mail Infrastructure Department | [messaging](/en/sitemap#series-list) | 🎓 Fully open (through graduate school) |
 | Linux Infrastructure Department | [linux](/en/sitemap#series-list) | 📖 General education level (close to a shared foundational subject across departments) |
 | Windows Server Department | [windows-server](/en/sitemap#series-list) | 📙 Reached Junior level |
 | Storage Department | [storage](/en/sitemap#series-list) | 🌱 Few articles |
@@ -379,7 +379,7 @@ No articles exist here yet. As with the other departments, this is expected to c
 
 ## Mail Infrastructure Department
 
-**At the moment, this department only reaches Junior level, just like the DNS Infrastructure Department.** Senior-tier and Graduate-School-tier hands-on labs aren't available yet. The goal for what's built so far is that anyone who works through and understands it on their own comes away able to handle building and operating a mail server with Postfix/Dovecot, and defending against spoofing with SPF/DKIM, at a real-world level.
+The 6th department to become "fully open," following Active Directory, AWS, Ansible/IaC, VPN, and DNS Infrastructure. The goal is that anyone who works through and understands this entire department's curriculum on their own comes away able to handle building and operating a mail server with Postfix/Dovecot, defending against spoofing with SPF/DKIM, and operating virtual domains and defending against open-relay abuse, at a real-world level.
 
 ### General Education (Prerequisite)
 
@@ -406,13 +406,25 @@ None (a basic understanding of DNS is enough).
 
 1. [The Top 1% Hands-On for Implementing SPF Checking and DKIM Signing on Postfix](/en/articles/mail-spf-dkim-dmarc-handson-guide)
 
-### Senior and Beyond
+### Senior (Graduation): Niche-Spec Hands-On
 
-No articles exist here yet. Niche-spec hands-on (multi-domain mail relaying, building a mailing-list server, and similar) and security-hardening hands-on (reproducing and defending against open-relay abuse, and similar) are planned additions.
+1. [The Top 1% Hands-On for Building Virtual Domains to Relay Mail for Multiple Domains on a Single Postfix Server](/en/articles/mail-virtual-domains-handson-guide)
+
+**Work through and understand this one, and you're at graduation level, as a "Senior."**
+
+### Graduate School: Security-Hardening Hands-On (An Attacker's Perspective)
+
+1. [The Top 1% Hands-On for Reproducing an Open Relay Yourself and Defending With Correct Restriction Settings](/en/articles/mail-open-relay-handson-guide)
+
+An educational, defense-focused hands-on lab, meant to strengthen the defenses of a test environment you manage yourself.
+
+### Architect and Beyond
+
+No articles exist here yet. As with the other departments, this is expected to cover system-wide architecture design spanning multiple departments.
 
 ### Audio Learning Materials (Regardless of Grade)
 
-- [[Listen] The Mail Infrastructure Series, Fully Recapped](/en/articles/mail-audio-review-guide) (for reviewing everything through Junior year)
+- [[Listen] The Mail Infrastructure Series, Fully Recapped](/en/articles/mail-audio-review-guide) (for reviewing after graduation)
 
 ## Windows Server Department
 
