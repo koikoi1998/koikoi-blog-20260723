@@ -14,7 +14,7 @@ The [sitemap](/en/sitemap) is organized as a "STEP1 through STEP8" roadmap that 
 - **Department**: A specialized area within a faculty. One department corresponds almost exactly to one of the existing "series."
 - **Grade**: The difficulty level of the articles and hands-on labs themselves. From general education through graduate school and beyond, it shows the distance from complete beginner to top engineer, as a sequence of stages.
 
-**At the moment, the [Active Directory Department](#active-directory-department), the [AWS Department](#aws-department), the [Ansible/IaC Department](#ansibleiac-department), the [VPN Department](#vpn-department), the [DNS Infrastructure Department](#dns-infrastructure-department), and the [Mail Infrastructure Department](#mail-infrastructure-department) are "fully open" departments, satisfying every grade level.** Other departments will fill in their grades gradually, as content gets added over time. No existing article folder or URL has been changed — this page is purely an additional front door, changing how things are presented.
+**At the moment, the [Active Directory Department](#active-directory-department), the [AWS Department](#aws-department), the [Ansible/IaC Department](#ansibleiac-department), the [VPN Department](#vpn-department), the [DNS Infrastructure Department](#dns-infrastructure-department), the [Mail Infrastructure Department](#mail-infrastructure-department), and the [Windows Server Department](#windows-server-department) are "fully open" departments, satisfying every grade level.** Other departments will fill in their grades gradually, as content gets added over time. No existing article folder or URL has been changed — this page is purely an additional front door, changing how things are presented.
 
 ## The Shared Grade Ladder
 
@@ -46,7 +46,7 @@ Regardless of how much content currently exists, here's the full list of faculti
 | DNS Infrastructure Department | [dns](/en/sitemap#series-list) | 🎓 Fully open (through graduate school) |
 | Mail Infrastructure Department | [messaging](/en/sitemap#series-list) | 🎓 Fully open (through graduate school) |
 | Linux Infrastructure Department | [linux](/en/sitemap#series-list) | 📖 General education level (close to a shared foundational subject across departments) |
-| Windows Server Department | [windows-server](/en/sitemap#series-list) | 📙 Reached Junior level |
+| Windows Server Department | [windows-server](/en/sitemap#series-list) | 🎓 Fully open (through graduate school) |
 | Storage Department | [storage](/en/sitemap#series-list) | 🌱 Few articles |
 
 ### Network Engineering Faculty
@@ -428,7 +428,7 @@ No articles exist here yet. As with the other departments, this is expected to c
 
 ## Windows Server Department
 
-**At the moment, this department only reaches Junior level.** Senior-tier and Graduate-School-tier hands-on labs aren't available yet. The goal for what's built so far is that anyone who works through and understands it on their own comes away able to handle Windows Server's file/web server operations, centered on IIS, SMB sharing, and DFS, at a real-world level.
+The 7th department to become "fully open," following Active Directory, AWS, Ansible/IaC, VPN, DNS Infrastructure, and Mail Infrastructure. The goal is that anyone who works through and understands this entire department's curriculum on their own comes away able to handle Windows Server's file/web server operations, centered on IIS, SMB sharing, and DFS, along with security and operational essentials like disabling SMB1 and using SNI, at a real-world level.
 
 ### General Education (Prerequisite)
 
@@ -459,13 +459,25 @@ None.
 
 1. [The Top 1% Hands-On for Consolidating Multiple File Servers With a DFS Namespace and DFS Replication, and Experiencing Automatic Failover](/en/articles/windows-server-dfs-handson-guide) — the series' first genuine hands-on actually covering Windows Server administration itself.
 
-### Senior and Beyond
+### Senior (Graduation): Niche-Spec Hands-On
 
-No articles exist here yet. Niche-spec hands-on (failover clustering, Storage Spaces Direct, and similar) and security-hardening hands-on (enforcing SMB signing, defending against attacks using Printer Driver Isolation, and similar) are planned additions.
+1. [The Top 1% Hands-On for Using SNI on IIS to Run Multiple Domains' TLS Certificates on a Single IP Address](/en/articles/windows-server-iis-sni-handson-guide)
+
+**Work through and understand this one, and you're at graduation level, as a "Senior."**
+
+### Graduate School: Security-Hardening Hands-On (An Attacker's Perspective)
+
+1. [The Top 1% Hands-On for Seeing SMB1's Danger Firsthand and Defending With Protocol Disabling and Signing Enforcement](/en/articles/windows-server-smb1-hardening-handson-guide)
+
+An educational, defense-focused hands-on lab, meant to strengthen the defenses of a test environment you manage yourself (it never performs an actual vulnerability exploit).
+
+### Architect and Beyond
+
+No articles exist here yet. As with the other departments, this is expected to cover system-wide architecture design spanning multiple departments.
 
 ### Audio Learning Materials (Regardless of Grade)
 
-- [[Listen] The Windows Server Operations Series, Fully Recapped](/en/articles/windows-server-audio-review-guide) (for reviewing everything through Junior year)
+- [[Listen] The Windows Server Operations Series, Fully Recapped](/en/articles/windows-server-audio-review-guide) (for reviewing after graduation)
 
 ## What's Next
 

@@ -14,7 +14,7 @@ altHref: "/en/university"
 - **学科(Department)**: 学部の中の専門領域です。1つの学科は、既存の「シリーズ」1つに、ほぼそのまま対応します。
 - **学年(Grade)**: 記事・ハンズオンの難易度そのものです。教養課程から大学院、その先まで、未経験からトップエンジニアまでの距離を、段階として示します。
 
-**現時点では、[ActiveDirectory学科](#activedirectory学科)・[AWS学科](#aws学科)・[Ansible/IaC学科](#ansibleiac学科)・[VPN学科](#vpn学科)・[DNS基盤学科](#dns基盤学科)・[メール基盤学科](#メール基盤学科)が、学年構成をすべて満たす「開講済み」の学科です。** 他の学科は、今後のコンテンツ追加によって、少しずつ学年が埋まっていきます。既存の記事フォルダやURLは変更していません。このページは、あくまで「見せ方」を変えるための、追加の入り口です。
+**現時点では、[ActiveDirectory学科](#activedirectory学科)・[AWS学科](#aws学科)・[Ansible/IaC学科](#ansibleiac学科)・[VPN学科](#vpn学科)・[DNS基盤学科](#dns基盤学科)・[メール基盤学科](#メール基盤学科)・[Windows Server学科](#windows-server学科)が、学年構成をすべて満たす「開講済み」の学科です。** 他の学科は、今後のコンテンツ追加によって、少しずつ学年が埋まっていきます。既存の記事フォルダやURLは変更していません。このページは、あくまで「見せ方」を変えるための、追加の入り口です。
 
 ## 学年ラベルの共通ルール
 
@@ -46,7 +46,7 @@ altHref: "/en/university"
 | DNS基盤学科 | [dns](/sitemap#シリーズ一覧) | 🎓 開講済み(大学院まで) |
 | メール基盤学科 | [messaging](/sitemap#シリーズ一覧) | 🎓 開講済み(大学院まで) |
 | Linux基盤学科 | [linux](/sitemap#シリーズ一覧) | 📖 教養課程相当(全学科共通の基礎科目に近い) |
-| Windows Server学科 | [windows-server](/sitemap#シリーズ一覧) | 📙 3年生相当まで到達 |
+| Windows Server学科 | [windows-server](/sitemap#シリーズ一覧) | 🎓 開講済み(大学院まで) |
 | ストレージ学科 | [storage](/sitemap#シリーズ一覧) | 🌱 記事少数 |
 
 ### ネットワークエンジニア学部
@@ -428,7 +428,7 @@ ActiveDirectory・AWS・Ansible/IaC・VPN・DNS基盤に続く6つ目の「開�
 
 ## Windows Server学科
 
-**現時点では3年生相当までの学科です。** 4年生・大学院のハンズオンはまだ用意できていません。ここまでの内容を自力で実施・理解できれば、IIS・SMB共有・DFSを中心に、Windows Serverのファイル/Webサーバー運用を実務レベルで扱えるようになることを目標にしています。
+ActiveDirectory・AWS・Ansible/IaC・VPN・DNS基盤・メール基盤に続く7つ目の「開講済み」学科です。この学科のカリキュラムをすべて自力で実施・理解できれば、IIS・SMB共有・DFSを中心に、Windows Serverのファイル/Webサーバー運用と、SMB1の無効化やSNIの活用といったセキュリティ・運用上の要点まで、実務レベルで扱えるようになることを目標にしています。
 
 ### 教養課程(前提科目)
 
@@ -459,13 +459,25 @@ ActiveDirectory・AWS・Ansible/IaC・VPN・DNS基盤に続く6つ目の「開�
 
 1. [DFS名前空間とDFSレプリケーションで複数ファイルサーバーを統合し、自動フェイルオーバーを体験するハンズオン](/articles/windows-server-dfs-handson-guide) — このシリーズで初めての、Windows Server管理そのものを扱う本格的なハンズオンです。
 
-### 4年生以降
+### 4年生(卒業):ニッチな仕様・機能編ハンズオン
 
-まだ記事がありません。今後、ニッチな仕様(フェイルオーバークラスタリング、Storage Spaces Directなど)や、セキュリティ強化編(SMB署名の強制、Printer Driver Isolationを使った攻撃対策など)のハンズオンを追加していく予定です。
+1. [IISでSNIを使い、1つのIPアドレスで複数ドメインのTLS証明書を運用するハンズオン](/articles/windows-server-iis-sni-handson-guide)
+
+**この1本まで自力で実施・理解できれば、「4年生」として卒業水準です。**
+
+### 大学院:セキュリティ強化編ハンズオン(攻撃者視点)
+
+1. [SMB1の危険性を自分の目で確認し、プロトコルの無効化と署名の強制で防御するハンズオン](/articles/windows-server-smb1-hardening-handson-guide)
+
+自分が管理する検証環境の防御力を高めるための、教育・防御目的のハンズオンです(実際の脆弱性エクスプロイトは扱いません)。
+
+### アーキテクト以降
+
+まだ記事がありません。他の学科と同様、複数学科をまたいだシステム全体のアーキテクチャ設計を扱う内容になる見込みです。
 
 ### 耳で学ぶ補助教材(学年を問わず)
 
-- [【音声で聴く】Windows Server運用シリーズ総復習](/articles/windows-server-audio-review-guide)(3年生までの復習用)
+- [【音声で聴く】Windows Server運用シリーズ総復習](/articles/windows-server-audio-review-guide)(卒業後の復習用)
 
 ## 今後の予定
 
