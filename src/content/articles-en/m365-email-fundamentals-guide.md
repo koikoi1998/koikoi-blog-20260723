@@ -2,6 +2,7 @@
 title: "Understanding Email Migration to M365 from a \"Top 1%\" Perspective — What \"Domain\" Means for Email, and What Exchange Server Actually Is"
 description: "How does the \"domain\" after the @ in an email address relate to a website's domain? What does Exchange Server actually do? What are you concretely switching over when you migrate mail from an on-premises Exchange Server to M365 (Exchange Online)? This article systematically explains it all."
 series: "messaging"
+subSeries: "main"
 order: 1
 tags: ["email", "exchange", "m365", "dns", "infra"]
 emoji: "✉️"

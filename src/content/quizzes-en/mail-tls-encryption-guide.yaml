@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the correct design of STARTTLS?"
+    choices:
+      - "It starts an encrypted connection on a dedicated port from the outset, like HTTPS"
+      - "It first establishes a plaintext SMTP connection, then upgrades that same connection to an encrypted one"
+      - "It's an independent protocol that only ever sends and receives encrypted mail"
+      - "It's a mechanism that judges whether encryption is needed based on a DNS record"
+    answerIndex: 1
+    explanation: "STARTTLS establishes an existing plaintext SMTP connection first, then upgrades that same connection to an encrypted one via the STARTTLS command."
+
+  - question: "What's the weakness of Opportunistic TLS?"
+    choices:
+      - "Its encryption processing is extremely slow"
+      - "It keeps sending in plaintext if the other side doesn't support STARTTLS"
+      - "It can't check a certificate's expiration date"
+      - "It doesn't work in an IPv6 environment"
+    answerIndex: 1
+    explanation: "Opportunistic encryption's default behavior is giving up on encryption and continuing to send in plaintext when the other side doesn't support it."
+
+  - question: "What are the two elements MTA-STS combines?"
+    choices:
+      - "An SPF record and a DKIM record"
+      - "A DNS TXT record and a policy file served over HTTPS"
+      - "IMAP and POP3"
+      - "A soft bounce and a hard bounce"
+    answerIndex: 1
+    explanation: "MTA-STS strengthens the reliability of its policy by combining a DNS TXT record with a policy file distributed over HTTPS."
+
+  - question: "What's the correct description of smtp_tls_security_level = encrypt?"
+    choices:
+      - "It performs strict verification, including certificate validation"
+      - "It encrypts, but skips certificate verification, so it doesn't prevent impersonation itself"
+      - "It performs no encryption at all"
+      - "It's a setting that changes IMAP's authentication method"
+    answerIndex: 1
+    explanation: "encrypt prevents eavesdropping on the content, but since it involves no certificate verification, it doesn't prevent a man-in-the-middle's impersonation itself."
+
+  - question: "What's the correct description of a STRIPTLS attack?"
+    choices:
+      - "An attack that directly steals a recipient's password"
+      - "An attack that strips the STARTTLS response somewhere along the path, forcing plaintext communication to continue"
+      - "An attack that rewrites a DNS SPF record"
+      - "A DDoS attack that floods a mail queue"
+    answerIndex: 1
+    explanation: "A STRIPTLS attack strips the STARTTLS response along the path, tricking the sender into believing the other side doesn't support it, forcing plaintext to continue."

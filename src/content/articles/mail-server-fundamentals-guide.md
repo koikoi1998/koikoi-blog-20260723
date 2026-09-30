@@ -2,6 +2,7 @@
 title: "メールサーバーの基礎を『上位1%』の視点で理解する——MTA・MDA・MUAとPostfix・Dovecotの役割分担"
 description: "Postfix、Dovecotという名前は聞いたことがあっても、それぞれ何をしているソフトウェアなのか説明できるだろうか。ExchangeがMTA・メールボックス保管を1つの製品で担っているのに対し、OSSの世界ではこれらが複数のソフトウェアに分かれている理由を、MTA・MDA・MUAという役割分担とSMTP・IMAPというプロトコルの違いから体系的に理解する。"
 series: "messaging"
+subSeries: "main"
 order: 2
 tags: ["email", "postfix", "dovecot", "smtp", "imap", "infra"]
 emoji: "📮"

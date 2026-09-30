@@ -1,0 +1,45 @@
+questions:
+  - question: "What does wiring policyd-spf into Postfix achieve?"
+    choices:
+      - "Automatically attaching a DKIM signature to outgoing mail"
+      - "Validating the MAIL FROM domain's SPF record at receive time and cross-checking it against the sending IP address"
+      - "Automatically encrypting mail"
+      - "Automatically adjusting the mail queue's upper limit"
+    answerIndex: 1
+    explanation: "policyd-spf is a policy daemon that validates the SPF record at receive time and cross-checks it against the actual connecting IP address."
+
+  - question: "In this hands-on, what happened when sending was attempted from an IP address outside the SPF record's range?"
+    choices:
+      - "Only a warning was logged, and the mail was delivered normally"
+      - "A 550-range error came back, and Postfix rejected receiving the mail entirely"
+      - "The mail was automatically forwarded to a different domain"
+      - "The SPF record got automatically corrected"
+    answerIndex: 1
+    explanation: "With a strict SPF rejection setting, sending from an IP address outside the range gets rejected with a 550-range error at the RCPT TO stage."
+
+  - question: "What gets automatically attached to outgoing mail once OpenDKIM is wired in?"
+    choices:
+      - "A Received-SPF header"
+      - "A DKIM-Signature header"
+      - "An X-Spam-Status header"
+      - "A Content-Type header"
+    answerIndex: 1
+    explanation: "OpenDKIM creates a signature, using a private key, over the outgoing message's body and some headers, automatically inserting it as a DKIM-Signature header."
+
+  - question: "What's the correct asymmetry in roles between SPF checking and DKIM signing?"
+    choices:
+      - "Both are receiving-side settings"
+      - "SPF is receiving-side (verifying traffic from someone else to you), while DKIM is sending-side (protecting traffic from you to someone else)"
+      - "Both are sending-side settings"
+      - "SPF and DKIM play the same role within the same config file"
+    answerIndex: 1
+    explanation: "SPF is a receiving-side feature that verifies traffic from someone else to your own domain, while DKIM is a sending-side feature that protects traffic your own domain sends out — an asymmetric division of roles."
+
+  - question: "What's a common gradual real-world approach to handling an SPF Fail result?"
+    choices:
+      - "Reject every Fail immediately, starting from day one"
+      - "Start by recording it in a header, identify every legitimate sender, then gradually move to rejection"
+      - "Always ignore an SPF Fail result"
+      - "Never use DKIM alongside SPF"
+    answerIndex: 1
+    explanation: "Standard practice is not to reject immediately — first stick to recording only, identify legitimate senders, and gradually move to rejection."

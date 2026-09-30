@@ -2,6 +2,7 @@
 title: "Understanding Mail Server Fundamentals from a \"Top 1%\" Perspective — MTA, MDA, MUA, and the Roles of Postfix and Dovecot"
 description: "You've heard the names Postfix and Dovecot, but could you explain what each actually does? Exchange bundles the MTA and mailbox-storage roles into a single product, while the open-source world splits these across multiple pieces of software. This article systematically explains why, through the MTA/MDA/MUA division of roles and the difference between the SMTP and IMAP protocols."
 series: "messaging"
+subSeries: "main"
 order: 2
 tags: ["email", "postfix", "dovecot", "smtp", "imap", "infra"]
 emoji: "📮"

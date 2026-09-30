@@ -1,0 +1,45 @@
+questions:
+  - question: "What does SPF actually verify?"
+    choices:
+      - "Whether the message body was tampered with along the way"
+      - "Whether the sending IP address is declared as a legitimate sender for that domain"
+      - "Whether the recipient's email address actually exists"
+      - "Whether the subject line is appropriate"
+    answerIndex: 1
+    explanation: "SPF checks whether the actual sending IP address matches the legitimate senders declared in a DNS TXT record."
+
+  - question: "What does DKIM actually verify?"
+    choices:
+      - "Whether the sending IP address is legitimate"
+      - "Whether the message body and some headers were tampered with along the way, via a digital signature"
+      - "Whether the receiving server's port number is correct"
+      - "Whether the mail's timestamp is accurate"
+    answerIndex: 1
+    explanation: "DKIM lets the receiver verify a signature created by the sender's private key using the sender's public key, confirming whether the body/headers were tampered with."
+
+  - question: "What's the correct role of DMARC?"
+    choices:
+      - "Encrypting mail"
+      - "Combining SPF/DKIM results with alignment and declaring what to do on failure"
+      - "Load-balancing mail servers"
+      - "Reconciling the difference between IMAP and POP3"
+    answerIndex: 1
+    explanation: "DMARC lets the sending domain's owner declare what should happen to failing mail, based on SPF/DKIM results plus alignment (matching against the From header)."
+
+  - question: "What's the correct description of \"alignment\"?"
+    choices:
+      - "A mechanism for comparing SPF and DKIM's verification speed"
+      - "The verification axis checking whether the From header's domain matches the domain SPF/DKIM actually verified"
+      - "A mechanism for time synchronization between mail servers"
+      - "A redundancy configuration between DNS servers"
+    answerIndex: 1
+    explanation: "Alignment is a separate verification axis: even if SPF/DKIM themselves pass, DMARC still fails if they don't match the From header's domain."
+
+  - question: "What's standard real-world practice when adopting DMARC?"
+    choices:
+      - "Start with p=reject right away and adjust if problems arise"
+      - "Collect reports at p=none, confirm legitimate senders, then gradually raise to quarantine, then reject"
+      - "Never adopt DMARC alongside SPF or DKIM"
+      - "Avoid using DMARC's reporting feature altogether"
+    answerIndex: 1
+    explanation: "Jumping straight to reject risks rejecting legitimate senders you weren't even aware of, so a gradual rollout from p=none is standard practice."

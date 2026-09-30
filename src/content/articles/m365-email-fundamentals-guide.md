@@ -2,6 +2,7 @@
 title: "M365へのメール移行を『上位1%』の視点で理解する——メールにおけるドメインとExchangeサーバーとは"
 description: "メールアドレスの@以降にある「ドメイン」は、Webサイトのドメインとどう関係しているのか。Exchangeサーバーは何をしているソフトウェアなのか。オンプレミスのExchange ServerからM365(Exchange Online)へメールを移行するとは、具体的に何を切り替える作業なのかを体系的に理解する。"
 series: "messaging"
+subSeries: "main"
 order: 1
 tags: ["email", "exchange", "m365", "dns", "infra"]
 emoji: "✉️"

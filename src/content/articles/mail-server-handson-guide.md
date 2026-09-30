@@ -2,6 +2,7 @@
 title: "PostfixとDovecotでメールサーバーを構築する『上位1%』のハンズオン"
 description: "Postfix(MTA)とDovecot(IMAP)を実際にインストール・設定し、telnetで生のSMTP/IMAPコマンドを手打ちしてメールを送受信することで、メールサーバーの基礎知識を自分の手で検証するハンズオン。ログの確認方法まで含めて、実際のメールサーバー構築・移行に対応できる実務力を養う。"
 series: "messaging"
+subSeries: "handson"
 order: 3
 tags: ["email", "postfix", "dovecot", "handson", "infra"]
 emoji: "📬"

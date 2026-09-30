@@ -1,0 +1,45 @@
+questions:
+  - question: "What's Postfix's behavior when the SMTP response code is 4xx (a soft bounce)?"
+    choices:
+      - "It discards the mail immediately"
+      - "It keeps the mail in the queue and retries after an interval"
+      - "It returns an error to the sender immediately, without queuing"
+      - "It forcibly empties the recipient's mailbox"
+    answerIndex: 1
+    explanation: "4xx is a temporary error, so Postfix keeps the mail queued and retries at intervals."
+
+  - question: "What's the correct meaning of an SMTP response code of 5xx (a hard bounce)?"
+    choices:
+      - "A temporary overload that might succeed after a while"
+      - "A permanent error, such as a nonexistent destination address, that won't succeed no matter how many times it's retried"
+      - "An indication that mail was delivered successfully"
+      - "An indication that the receiving server is paused"
+    answerIndex: 1
+    explanation: "5xx is a permanent error; Postfix doesn't retry and instead sends a bounce email back to the sender."
+
+  - question: "Why is a bounce email's sender address set to empty (the null sender)?"
+    choices:
+      - "To make it impossible to identify the recipient"
+      - "To prevent an infinite chain of bounces from a failed delivery of the bounce email itself"
+      - "To reduce the mail's size"
+      - "To bypass SPF validation"
+    answerIndex: 1
+    explanation: "An empty sender address prevents generating yet another bounce email if the bounce email itself fails to deliver."
+
+  - question: "What's the role of maximal_queue_lifetime?"
+    choices:
+      - "Limiting the maximum size of a mail message"
+      - "Setting the upper limit on how long soft-bounce retries continue"
+      - "Setting the timeout for an IMAP session"
+      - "Controlling a DNS cache's expiration"
+    answerIndex: 1
+    explanation: "If delivery still hasn't succeeded once maximal_queue_lifetime (5 days by default) elapses, Postfix gives up and sends a bounce email."
+
+  - question: "What effect does a high hard-bounce rate have on the sender?"
+    choices:
+      - "Nothing in particular happens"
+      - "Sender reputation degrades, and even legitimate mail starts getting treated as spam or rejected"
+      - "The SPF record gets automatically corrected"
+      - "The mail server's processing speed improves"
+    answerIndex: 1
+    explanation: "Major mail providers monitor hard-bounce rate as a reputation signal, and a high rate hurts even legitimate mail's deliverability."

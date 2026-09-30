@@ -2,6 +2,7 @@
 title: "A \"Top 1%\" Hands-On Lab: Building a Mail Server with Postfix and Dovecot"
 description: "Actually install and configure Postfix (an MTA) and Dovecot (IMAP), and type raw SMTP/IMAP commands by hand over telnet to send and receive mail — verifying mail server fundamentals with your own hands, log-checking included, to build the real-world skill needed for an actual mail server build or migration."
 series: "messaging"
+subSeries: "handson"
 order: 3
 tags: ["email", "postfix", "dovecot", "handson", "infra"]
 emoji: "📬"
