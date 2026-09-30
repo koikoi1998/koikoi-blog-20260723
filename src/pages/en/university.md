@@ -46,7 +46,7 @@ Regardless of how much content currently exists, here's the full list of faculti
 | DNS Infrastructure Department | [dns](/en/sitemap#series-list) | 📙 Reached Junior level |
 | Mail Infrastructure Department | [messaging](/en/sitemap#series-list) | 📙 Reached Junior level |
 | Linux Infrastructure Department | [linux](/en/sitemap#series-list) | 📖 General education level (close to a shared foundational subject across departments) |
-| Windows Server Department | [windows-server](/en/sitemap#series-list) | 📖 General education–Freshman level |
+| Windows Server Department | [windows-server](/en/sitemap#series-list) | 📙 Reached Junior level |
 | Storage Department | [storage](/en/sitemap#series-list) | 🌱 Few articles |
 
 ### Network Engineering Faculty
@@ -401,6 +401,47 @@ No articles exist here yet. Niche-spec hands-on (multi-domain mail relaying, bui
 ### Audio Learning Materials (Regardless of Grade)
 
 - [[Listen] The Mail Infrastructure Series, Fully Recapped](/en/articles/mail-audio-review-guide) (for reviewing everything through Junior year)
+
+## Windows Server Department
+
+**At the moment, this department only reaches Junior level.** Senior-tier and Graduate-School-tier hands-on labs aren't available yet. The goal for what's built so far is that anyone who works through and understands it on their own comes away able to handle Windows Server's file/web server operations, centered on IIS, SMB sharing, and DFS, at a real-world level.
+
+### General Education (Prerequisite)
+
+None.
+
+### Freshman: Fundamentals + Your First Hands-On
+
+**Lectures (Fundamentals, 6 articles)**
+
+1. [Understanding Windows Server Licensing (OEM, Datacenter, Standard) From a "Top 1%" Perspective](/en/articles/windows-server-licensing-guide)
+2. [Understanding the Configuration Values for Building an NTP Server on Windows Server From a "Top 1%" Perspective](/en/articles/windows-ntp-server-guide)
+3. [Understanding How IIS and ASP.NET Work From a "Top 1%" Perspective](/en/articles/iis-fundamentals-guide)
+4. [Understanding the Relationship Between IIS and FTP From a "Top 1%" Perspective](/en/articles/iis-ftp-guide)
+5. [Understanding Windows Server SMB File Sharing From a "Top 1%" Perspective](/en/articles/smb-file-sharing-guide)
+6. [What's the Difference Between SMB and CIFS?](/en/articles/smb-cifs-linux-interop-guide)
+
+**Hands-On (Foundational Tier, 1 article)**
+
+1. [A "Top 1%" Hands-On Lab: Writing Your Own HTTP Server From Scratch](/en/articles/minimal-http-server-handson-guide) — An introductory hands-on for understanding HTTP's true identity from zero, not a hands-on about Windows Server administration itself.
+
+### Sophomore: Supplementary Deep-Dives
+
+1. [Understanding DFS Namespaces and DFS Replication From a "Top 1%" Perspective](/en/articles/windows-server-dfs-guide)
+2. [Understanding IIS Application Pool Recycling From a "Top 1%" Perspective](/en/articles/windows-server-app-pool-recycling-guide)
+3. [Understanding Print Servers and the Spooler From a "Top 1%" Perspective](/en/articles/windows-server-print-spooler-guide)
+
+### Junior: Real-World-Scenario Hands-On
+
+1. [The Top 1% Hands-On for Consolidating Multiple File Servers With a DFS Namespace and DFS Replication, and Experiencing Automatic Failover](/en/articles/windows-server-dfs-handson-guide) — the series' first genuine hands-on actually covering Windows Server administration itself.
+
+### Senior and Beyond
+
+No articles exist here yet. Niche-spec hands-on (failover clustering, Storage Spaces Direct, and similar) and security-hardening hands-on (enforcing SMB signing, defending against attacks using Printer Driver Isolation, and similar) are planned additions.
+
+### Audio Learning Materials (Regardless of Grade)
+
+- [[Listen] The Windows Server Operations Series, Fully Recapped](/en/articles/windows-server-audio-review-guide) (for reviewing everything through Junior year)
 
 ## What's Next
 
