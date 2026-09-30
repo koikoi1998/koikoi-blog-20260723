@@ -43,7 +43,7 @@ Regardless of how much content currently exists, here's the full list of faculti
 | Department | Corresponding Series | Status |
 |---|---|---|
 | Active Directory Department | [active-directory](/en/sitemap#series-list) | 🎓 Fully open (through graduate school) |
-| DNS Infrastructure Department | [dns](/en/sitemap#series-list) / [dns-server](/en/sitemap#series-list) | 📖 General education–Freshman level |
+| DNS Infrastructure Department | [dns](/en/sitemap#series-list) | 📙 Reached Junior level |
 | Mail Infrastructure Department | [messaging](/en/sitemap#series-list) | 📖 General education–Freshman level |
 | Linux Infrastructure Department | [linux](/en/sitemap#series-list) | 📖 General education level (close to a shared foundational subject across departments) |
 | Windows Server Department | [windows-server](/en/sitemap#series-list) | 📖 General education–Freshman level |
@@ -70,7 +70,7 @@ Regardless of how much content currently exists, here's the full list of faculti
 |---|---|---|
 | Web/API Department | [api](/en/sitemap#series-list) | 🌱 Few articles |
 
-**Legend**: 🎓 Open through graduate school / 📗 Open through all 4 hands-on tiers (theory is thin) / 📖 General education–Freshman level / 🌱 Few articles / ⬜ Not started
+**Legend**: 🎓 Open through graduate school / 📗 Open through all 4 hands-on tiers (theory is thin) / 📙 Reached Junior level / 📖 General education–Freshman level / 🌱 Few articles / ⬜ Not started
 
 ## Active Directory Department
 
@@ -327,6 +327,43 @@ No articles exist here yet. As with the other departments, this is expected to c
 - [[Listen] The Remote-Access VPN / L2TP-IPsec Series, Fully Recapped](/en/articles/vpn-audio-review-guide) (for reviewing after graduation)
 - [[Listen] The Modern VPN Protocol Deep-Dive Series, Fully Recapped](/en/articles/modern-vpn-audio-review-guide) (for reviewing after graduation)
 - [[Listen] The Site-to-Site VPN Series, Fully Recapped](/en/articles/site-to-site-vpn-audio-review-guide) (for reviewing after graduation)
+
+## DNS Infrastructure Department
+
+**At the moment, this department only reaches Junior level.** Senior-tier (niche-spec) and Graduate-School-tier (security-hardening) hands-on labs aren't available yet. The goal for what's built so far is that anyone who works through and understands it on their own comes away able to handle building and operating a DNS server with BIND, and signing/validating with DNSSEC, at a real-world level.
+
+### General Education (Prerequisite)
+
+- [Understanding How DNS Works From a "Top 1%" Perspective](/en/articles/dns-guide) — The fundamentals of name resolution, a prerequisite underlying this entire series.
+
+### Freshman: Fundamentals + Your First Hands-On
+
+**Lectures (Fundamentals, 2 articles)**
+
+1. [Understanding DNS Server Fundamentals From a "Top 1%" Perspective](/en/articles/dns-server-fundamentals-guide)
+2. [Understanding How to Use dig and nslookup From a "Top 1%" Perspective](/en/articles/dig-nslookup-guide)
+
+**Hands-On (Foundational Tier, 1 article)**
+
+1. [A "Top 1%" Hands-On Lab: Building a DNS Server With BIND and Experiencing a Zone Transfer](/en/articles/dns-server-handson-guide)
+
+### Sophomore: Supplementary Deep-Dives
+
+1. [Understanding How DNSSEC Works From a "Top 1%" Perspective](/en/articles/dns-dnssec-fundamentals-guide)
+2. [Understanding Recursive Resolvers, Forwarders, and Negative Caching From a "Top 1%" Perspective](/en/articles/dns-recursive-caching-guide)
+3. [Understanding Split-Horizon DNS (BIND's Views) From a "Top 1%" Perspective](/en/articles/dns-split-horizon-guide)
+
+### Junior: Real-World-Scenario Hands-On
+
+1. [The Top 1% Hands-On for Signing a BIND Zone With DNSSEC and Reproducing a Validation Failure (SERVFAIL) Yourself](/en/articles/dns-dnssec-handson-guide)
+
+### Senior and Beyond
+
+No articles exist here yet. Niche-spec hands-on (Anycast DNS, building DoH/DoT, and similar) and security-hardening hands-on (reproducing and defending against DNS cache poisoning, and similar) are planned additions.
+
+### Audio Learning Materials (Regardless of Grade)
+
+- [[Listen] The DNS Server Fundamentals Series, Fully Recapped](/en/articles/dns-audio-review-guide) (for reviewing everything through Junior year)
 
 ## What's Next
 

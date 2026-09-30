@@ -2,6 +2,7 @@
 title: "A \"Top 1%\" Hands-On Lab: Building a DNS Server With BIND and Experiencing a Zone Transfer"
 description: "Use BIND to create a zone on a master DNS server, then confirm with dig and logs that a zone transfer actually happens to a slave DNS server. Deliberately make a change without bumping the serial number, confirm with your own eyes that the slave never picks it up, and then experience fixing it the right way."
 series: "dns"
+subSeries: "handson"
 order: 2
 tags: ["dns", "bind", "handson", "linux", "infra"]
 emoji: "🌐"

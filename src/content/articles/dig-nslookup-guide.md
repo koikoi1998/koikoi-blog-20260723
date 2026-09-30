@@ -2,6 +2,7 @@
 title: "digとnslookupの使い方・使い分けを『上位1%』の視点で理解する——DNS問い合わせコマンドの読み方"
 description: "digとnslookupという2つのDNS問い合わせコマンドについて、それぞれの基本的な使い方、出力結果(ANSWER SECTIONなど)の読み方、そしてなぜ実務ではdigが好まれ、それでもnslookupが今も使われ続けているのかまでを体系的に理解する。"
 series: "dns"
+subSeries: "main"
 order: 3
 tags: ["dns", "linux", "windows", "infra"]
 emoji: "🔍"

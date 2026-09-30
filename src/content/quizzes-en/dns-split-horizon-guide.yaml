@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the correct description of split-horizon DNS?"
+    choices:
+      - "A mechanism for speeding up zone transfers"
+      - "A design where the same domain name returns a different response depending on where the query came from"
+      - "A mechanism for managing multiple TLDs on a single server"
+      - "A mechanism for speeding up DNSSEC validation"
+    answerIndex: 1
+    explanation: "Split-horizon DNS is a design where the same domain name returns a different response depending on the query's source, such as internal versus external."
+
+  - question: "What criterion does BIND's views use to judge the query's source?"
+    choices:
+      - "The type of DNS record being queried"
+      - "The source IP address range specified in match-clients"
+      - "The port number used for the query"
+      - "The client's MAC address"
+    answerIndex: 1
+    explanation: "views judges which view to use based on the source IP address range specified in match-clients."
+
+  - question: "What's the correct evaluation order when named.conf has multiple view definitions?"
+    choices:
+      - "Evaluated in alphabetical order"
+      - "Evaluated top to bottom, with the first matching view adopted"
+      - "Evaluated in a random order"
+      - "All views are always applied simultaneously"
+    answerIndex: 1
+    explanation: "views are evaluated top to bottom, with the first view whose match-clients matches being adopted, so a more specific condition needs to be written first."
+
+  - question: "What's an important real-world caveat when using views?"
+    choices:
+      - "It creates the operational cost of maintaining separate internal and external zone files going forward"
+      - "Using views automatically disables DNSSEC"
+      - "Using views eliminates the need for zone transfers entirely"
+      - "views only ever needs a single zone file"
+    answerIndex: 0
+    explanation: "Split-horizon DNS requires maintaining two separate zone files, internal and external, for the same domain name, and watching for divergence in shared records."
+
+  - question: "Why does connecting over VPN return the internal view's result?"
+    choices:
+      - "VPN connections automatically enable DNSSEC"
+      - "The VPN connection makes the client's source IP address get treated as an internal address"
+      - "A zone transfer occurs whenever connecting over VPN"
+      - "A VPN connection changes DNS's port number"
+    answerIndex: 1
+    explanation: "Since match-clients judges purely by source IP address, once the VPN connection makes the source IP an internal address, the client gets the internal view's result."

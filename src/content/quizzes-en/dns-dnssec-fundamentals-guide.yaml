@@ -1,0 +1,45 @@
+questions:
+  - question: "What structural weakness does a DNS response have?"
+    choices:
+      - "Its size is always too large"
+      - "The protocol itself has no way to prove a response genuinely came from the legitimate authoritative server"
+      - "It can only use TCP, never UDP"
+      - "It always includes a TTL"
+    answerIndex: 1
+    explanation: "The DNS protocol itself has no mechanism to prove where a response came from, which is exactly what makes DNS cache poisoning possible."
+
+  - question: "What's the correct pairing of roles for DNSSEC's three record types?"
+    choices:
+      - "RRSIG is the public key, DNSKEY is the signature, DS is the hash value"
+      - "RRSIG is the signature, DNSKEY is the public key, DS is a hash registered at the parent zone"
+      - "RRSIG is the hash value, DNSKEY is the signature, DS is the public key"
+      - "All three serve the same, redundant role"
+    answerIndex: 1
+    explanation: "RRSIG is the signature over an individual record, DNSKEY is the public key used to verify it, and DS is a hash of the child zone's DNSKEY registered at the parent zone."
+
+  - question: "What guarantee does DNSSEC actually provide?"
+    choices:
+      - "Encryption (confidentiality) of DNS traffic"
+      - "Proof that a response hasn't been tampered with (integrity) and came from a legitimate source (authenticity)"
+      - "Faster DNS server response times"
+      - "Automated zone transfers"
+    answerIndex: 1
+    explanation: "DNSSEC provides proof of integrity and authenticity; encryption (confidentiality) is handled by a separate mechanism (DoH/DoT)."
+
+  - question: "What's the correct description of the Chain of Trust?"
+    choices:
+      - "Each zone independently vouches for its own public key"
+      - "Each parent zone vouches for its child zone's public key, tracing the hierarchy up to the root zone"
+      - "A client exchanges keys directly with every authoritative server"
+      - "Trust level is determined by the TTL value"
+    answerIndex: 1
+    explanation: "The chain of trust is established by each parent zone vouching for its child's DNSKEY via a DS record, repeated hierarchically up to the root zone."
+
+  - question: "What's a typical cause of a DNSSEC-enabled domain suddenly becoming unresolvable after a key rotation?"
+    choices:
+      - "Forgetting to change the TTL value"
+      - "Forgetting to update the DS record at the parent zone"
+      - "Forgetting to bump the zone file's serial number"
+      - "Using an outdated version of the dig command"
+    answerIndex: 1
+    explanation: "Forgetting to update the parent zone's DS record after a key rotation breaks the chain of trust, failing validation entirely and making the domain unresolvable."

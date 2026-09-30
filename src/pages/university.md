@@ -43,7 +43,7 @@ altHref: "/en/university"
 | 学科 | 対応シリーズ | 状態 |
 |---|---|---|
 | ActiveDirectory学科 | [active-directory](/sitemap#シリーズ一覧) | 🎓 開講済み(大学院まで) |
-| DNS基盤学科 | [dns](/sitemap#シリーズ一覧) / [dns-server](/sitemap#シリーズ一覧) | 📖 教養課程〜1年生相当 |
+| DNS基盤学科 | [dns](/sitemap#シリーズ一覧) | 📙 3年生相当まで到達 |
 | メール基盤学科 | [messaging](/sitemap#シリーズ一覧) | 📖 教養課程〜1年生相当 |
 | Linux基盤学科 | [linux](/sitemap#シリーズ一覧) | 📖 教養課程相当(全学科共通の基礎科目に近い) |
 | Windows Server学科 | [windows-server](/sitemap#シリーズ一覧) | 📖 教養課程〜1年生相当 |
@@ -70,7 +70,7 @@ altHref: "/en/university"
 |---|---|---|
 | Web/API学科 | [api](/sitemap#シリーズ一覧) | 🌱 記事少数 |
 
-**凡例**: 🎓 大学院まで開講済み / 📗 ハンズオン4段階まで開講(座学は薄い) / 📖 教養課程〜1年生相当 / 🌱 記事少数 / ⬜ 未着手
+**凡例**: 🎓 大学院まで開講済み / 📗 ハンズオン4段階まで開講(座学は薄い) / 📙 3年生相当まで到達 / 📖 教養課程〜1年生相当 / 🌱 記事少数 / ⬜ 未着手
 
 ## ActiveDirectory学科
 
@@ -327,6 +327,43 @@ ActiveDirectory学科・AWS学科・Ansible/IaC学科に続く4つ目の「開�
 - [【音声で聴く】リモートアクセスVPN/L2TP・IPsecシリーズ総復習](/articles/vpn-audio-review-guide)(卒業後の復習用)
 - [【音声で聴く】現代的VPNプロトコル深掘りシリーズ総復習](/articles/modern-vpn-audio-review-guide)(卒業後の復習用)
 - [【音声で聴く】拠点間VPN(Site-to-Site VPN)シリーズ総復習](/articles/site-to-site-vpn-audio-review-guide)(卒業後の復習用)
+
+## DNS基盤学科
+
+**現時点では3年生相当までの学科です。** 4年生(ニッチな仕様・機能編)と大学院(セキュリティ強化編)のハンズオンは、まだ用意できていません。ここまでの内容を自力で実施・理解できれば、BINDでのDNSサーバー構築・運用と、DNSSECによる署名・検証を、実務レベルで扱えるようになることを目標にしています。
+
+### 教養課程(前提科目)
+
+- [DNSの仕組みを『上位1%』の視点で理解する](/articles/dns-guide) — このシリーズ全体の前提になっている、名前解決の基礎です。
+
+### 1年生:基礎編+初めてのハンズオン
+
+**座学(基礎編、2記事)**
+
+1. [DNSサーバーの基礎を『上位1%』の視点で理解する](/articles/dns-server-fundamentals-guide)
+2. [digとnslookupの使い方・使い分けを『上位1%』の視点で理解する](/articles/dig-nslookup-guide)
+
+**実技(ハンズオン基礎編、1記事)**
+
+1. [BINDでDNSサーバーを構築し、ゾーン転送を体験するハンズオン](/articles/dns-server-handson-guide)
+
+### 2年生:補足・深掘り編
+
+1. [DNSSECの仕組みを『上位1%』の視点で理解する](/articles/dns-dnssec-fundamentals-guide)
+2. [再帰リゾルバとフォワーダー、ネガティブキャッシュの仕組みを『上位1%』の視点で理解する](/articles/dns-recursive-caching-guide)
+3. [スプリットホライズンDNS(BINDのviews)の仕組みを『上位1%』の視点で理解する](/articles/dns-split-horizon-guide)
+
+### 3年生:実務シナリオ編ハンズオン
+
+1. [BINDでゾーンにDNSSEC署名を行い、検証失敗(SERVFAIL)を自分の手で再現するハンズオン](/articles/dns-dnssec-handson-guide)
+
+### 4年生以降
+
+まだ記事がありません。今後、ニッチな仕様(Anycast DNS、DoH/DoTの構築など)や、セキュリティ強化編(DNSキャッシュポイズニングの再現と防御など)のハンズオンを追加していく予定です。
+
+### 耳で学ぶ補助教材(学年を問わず)
+
+- [【音声で聴く】DNSサーバー基礎シリーズ総復習](/articles/dns-audio-review-guide)(3年生までの復習用)
 
 ## 今後の予定
 

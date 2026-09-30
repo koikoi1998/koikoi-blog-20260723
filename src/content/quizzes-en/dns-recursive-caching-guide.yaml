@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the correct description of a forwarder?"
+    choices:
+      - "A mechanism where an authoritative server copies its zone data to another server"
+      - "A setup where a recursive resolver hands off a query entirely to another DNS server, instead of walking from the root itself"
+      - "A setting that makes a client never use its cache, querying every time"
+      - "A mechanism for encrypting zone transfers"
+    answerIndex: 1
+    explanation: "A forwarder is a setup where a recursive resolver hands off its query entirely to another DNS server specified in forwarders."
+
+  - question: "What's the correct behavior when forward only is specified?"
+    choices:
+      - "It falls back to full resolution on its own even if the query to the forwarder fails"
+      - "It does not fall back to full resolution on its own if the query to the forwarder fails"
+      - "It always queries the root server directly"
+      - "It completely disables negative caching"
+    answerIndex: 1
+    explanation: "Specifying forward only means it never falls back to full resolution on its own, even if the query to the forwarder fails."
+
+  - question: "What does the negative caching TTL control?"
+    choices:
+      - "How long a successful response gets cached"
+      - "How long a negative response — \"this record doesn't exist\" — itself gets cached"
+      - "The interval at which zone transfers happen"
+      - "The validity period of a DNSSEC signature"
+    answerIndex: 1
+    explanation: "The negative caching TTL, the last field of the SOA record, controls how long a negative response itself gets cached."
+
+  - question: "What's the typical cause of a newly added record failing to resolve for a while?"
+    choices:
+      - "The record addition itself failed"
+      - "A negative result from before the addition is still cached along the chain of recursive resolvers"
+      - "The DNSSEC signature is broken"
+      - "The forwarder is misconfigured"
+    answerIndex: 1
+    explanation: "In many cases, the addition itself succeeded, but a negative result cached from before the addition is still lingering, causing resolution to keep failing for a while."
+
+  - question: "What should you keep in mind when adopting a forwarder setup?"
+    choices:
+      - "The security of the path to the forwarder affects whether you can trust an already-validated answer"
+      - "Using a forwarder eliminates the need for DNSSEC validation entirely"
+      - "A forwarder always disables negative caching"
+      - "Using a forwarder automatically encrypts zone transfers"
+    answerIndex: 0
+    explanation: "If the path to the forwarder itself isn't protected, a spoofing risk remains even for an already-validated answer the forwarder returns."

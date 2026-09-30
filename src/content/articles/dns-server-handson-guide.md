@@ -2,6 +2,7 @@
 title: "BINDでDNSサーバーを構築し、ゾーン転送を体験する『上位1%』のハンズオン"
 description: "BINDを使い、マスターDNSサーバーでゾーンを作成し、スレーブDNSサーバーへゾーン転送が実際に発生する様子をdigコマンドとログで確認する。あえてシリアル番号を上げずに変更し、スレーブに反映されないことを自分の目で確認したうえで、正しい手順で反映させるところまでを体験するハンズオン。"
 series: "dns"
+subSeries: "handson"
 order: 2
 tags: ["dns", "bind", "handson", "linux", "infra"]
 emoji: "🌐"

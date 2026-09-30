@@ -2,6 +2,7 @@
 title: "Understanding How to Use dig and nslookup From a \"Top 1%\" Perspective: Reading DNS Query Commands"
 description: "Covers the basic usage of dig and nslookup, two DNS query commands, how to read their output (the ANSWER SECTION and more), and why dig is generally preferred in real-world work while nslookup remains widely used to this day."
 series: "dns"
+subSeries: "main"
 order: 3
 tags: ["dns", "linux", "windows", "infra"]
 emoji: "🔍"

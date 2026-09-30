@@ -2,6 +2,7 @@
 title: "DNSサーバーの基礎を『上位1%』の視点で理解する——BINDのゾーンファイルとマスター/スレーブ構成"
 description: "DNSの名前解決の仕組みは理解していても、実際にDNSサーバーを構築・運用した経験がないと、ゾーンファイル・SOAレコード・マスター/スレーブ構成といった実務用語には手が出しにくい。BIND(Berkeley Internet Name Domain)を題材に、ゾーンファイルの構造、ゾーン転送によるサーバー間同期の仕組み、権威サーバーとキャッシュサーバーを分離すべき理由までを体系的に理解する。"
 series: "dns"
+subSeries: "main"
 order: 1
 tags: ["dns", "bind", "infra", "linux"]
 emoji: "🗺️"

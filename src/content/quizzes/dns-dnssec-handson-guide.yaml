@@ -1,0 +1,45 @@
+questions:
+  - question: "KSKとZSKの役割の違いとして正しいのはどれか。"
+    choices:
+      - "KSKは個々のレコードに署名し、ZSKはDNSKEYレコード自体に署名する"
+      - "KSKはDNSKEYレコード自体に署名し、ZSKは個々のリソースレコードに署名する"
+      - "KSKとZSKは同じ役割を持つ、単なる予備の鍵である"
+      - "KSKはゾーン転送用、ZSKは問い合わせ応答用の鍵である"
+    answerIndex: 1
+    explanation: "KSK(鍵署名鍵)はDNSKEYレコード自体に、ZSK(ゾーン署名鍵)は個々のリソースレコードに署名するという役割分担があります。"
+
+  - question: "署名済みレコードを再署名せずに改ざんした場合、検証を有効にしたリゾルバの挙動として正しいのはどれか。"
+    choices:
+      - "改ざんされた値をそのままクライアントに返す"
+      - "SERVFAILを返し、改ざんされた値をクライアントに届けない"
+      - "自動的に正しい値へ修復して返す"
+      - "警告ログを出力するが、改ざんされた値はそのまま返す"
+    answerIndex: 1
+    explanation: "検証を有効にしたリゾルバは、正しいRRSIG署名が存在しないデータを信頼できないと判断し、SERVFAILを返して応答を拒否します。"
+
+  - question: "dig +dnssecの応答に立つadフラグが意味するものとして正しいのはどれか。"
+    choices:
+      - "そのレコードが広告(Advertisement)用である"
+      - "リゾルバがDNSSEC検証に成功し、データが正規のものであると確認できたこと"
+      - "そのレコードがまもなく削除される予定であること"
+      - "ゾーン転送が許可されていること"
+    answerIndex: 1
+    explanation: "adフラグ(Authenticated Data)は、リゾルバがDNSSEC検証に成功したことを示します。"
+
+  - question: "このハンズオンで、実際のインターネットドメインとは異なる方法で信頼の連鎖を成立させるために使った設定はどれか。"
+    choices:
+      - "allow-transfer"
+      - "trust-anchors"
+      - "forward only"
+      - "match-clients"
+    answerIndex: 1
+    explanation: "実際のドメインでは親ゾーンへのDSレコード登録が必要ですが、このハンズオンでは検証環境内で完結させるため、リゾルバ側にtrust-anchorsで信頼するDNSKEYを直接登録しました。"
+
+  - question: "SERVFAILという結果に遭遇した際の、上位1%のエンジニアの捉え方として正しいのはどれか。"
+    choices:
+      - "常にDNSサーバーが壊れていると即断する"
+      - "障害なのか、意図した検証拒否なのかを切り分けて考える"
+      - "SERVFAILは無視してよいエラーである"
+      - "SERVFAILは必ずネットワーク機器の故障を意味する"
+    answerIndex: 1
+    explanation: "DNSSEC検証環境でのSERVFAILは、障害である場合と、改ざん・不整合を検知した意図的な拒否である場合の両方があり得るため、切り分けが重要です。"

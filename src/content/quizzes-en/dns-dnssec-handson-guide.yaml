@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the correct difference in role between the KSK and ZSK?"
+    choices:
+      - "The KSK signs individual records, and the ZSK signs the DNSKEY record itself"
+      - "The KSK signs the DNSKEY record itself, and the ZSK signs individual resource records"
+      - "The KSK and ZSK serve the same role, as mere backup keys"
+      - "The KSK is for zone transfers, and the ZSK is for query responses"
+    answerIndex: 1
+    explanation: "The KSK (Key Signing Key) signs the DNSKEY record itself, while the ZSK (Zone Signing Key) signs individual resource records."
+
+  - question: "What's the correct behavior of a validating resolver when a signed record is tampered with without re-signing?"
+    choices:
+      - "It returns the tampered value to the client as-is"
+      - "It returns SERVFAIL and never delivers the tampered value to the client"
+      - "It automatically repairs and returns the correct value"
+      - "It logs a warning but still returns the tampered value"
+    answerIndex: 1
+    explanation: "A validating resolver judges data with no valid RRSIG signature as untrustworthy and rejects the response with SERVFAIL."
+
+  - question: "What does the ad flag set on dig +dnssec's response mean?"
+    choices:
+      - "That record is for advertising purposes"
+      - "The resolver succeeded at DNSSEC validation and confirmed the data is genuine"
+      - "That record is scheduled to be deleted soon"
+      - "Zone transfers are permitted"
+    answerIndex: 1
+    explanation: "The ad flag (Authenticated Data) indicates the resolver succeeded at DNSSEC validation."
+
+  - question: "What setting did this hands-on use to establish the chain of trust differently from a real internet domain?"
+    choices:
+      - "allow-transfer"
+      - "trust-anchors"
+      - "forward only"
+      - "match-clients"
+    answerIndex: 1
+    explanation: "A real domain requires registering a DS record with the parent zone, but to keep this hands-on self-contained, the resolver registered the trusted DNSKEY directly via trust-anchors."
+
+  - question: "What's the correct way a top-1% engineer approaches encountering a SERVFAIL result?"
+    choices:
+      - "Always immediately concludes the DNS server is broken"
+      - "Separates whether it's a genuine failure or a deliberate validation rejection"
+      - "Treats SERVFAIL as an error that can always be ignored"
+      - "Always concludes SERVFAIL means a network device has failed"
+    answerIndex: 1
+    explanation: "In a DNSSEC validation environment, SERVFAIL can mean either a genuine failure or a deliberate rejection from detected tampering or inconsistency, so separating the two matters."

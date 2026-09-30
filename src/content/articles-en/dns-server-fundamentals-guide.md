@@ -2,6 +2,7 @@
 title: "Understanding DNS Server Fundamentals from a \"Top 1%\" Perspective — BIND's Zone Files and Master/Slave Configuration"
 description: "Understanding how DNS name resolution works is one thing, but without hands-on experience building and operating a DNS server, practical terms like zone files, SOA records, and master/slave configuration stay out of reach. Using BIND (Berkeley Internet Name Domain) as the example, this article systematically explains zone file structure, how zone transfers keep servers in sync, and why authoritative and caching servers should be kept separate."
 series: "dns"
+subSeries: "main"
 order: 1
 tags: ["dns", "bind", "infra", "linux"]
 emoji: "🗺️"
