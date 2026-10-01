@@ -1,15 +1,15 @@
 ---
 title: "[Listen] The AWS Fundamentals Series, Fully Recapped"
-description: "An audio-learning article that reviews all 16 articles of the AWS Fundamentals series by ear, during a commute or while doing chores. No tables, diagrams, or bullet points — just spoken-style prose meant to be read aloud by a browser's text-to-speech feature."
+description: "An audio-learning article that reviews all 17 articles of the AWS Fundamentals series by ear, during a commute or while doing chores. No tables, diagrams, or bullet points — just spoken-style prose meant to be read aloud by a browser's text-to-speech feature."
 series: "aws-basics"
 subSeries: "audio"
-order: 17
+order: 18
 tags: ["aws", "audio-review", "infra"]
 emoji: "🎧"
 pubDate: 2026-09-26
 ---
 
-This article is an audio-learning recap for anyone who's already read all sixteen articles in the AWS Fundamentals series. Use your browser's or phone's text-to-speech feature and let it play in the background during a commute or while doing chores. There are no diagrams, tables, or code here — just spoken-style prose, stitching the whole series back together into a single, continuous thread.
+This article is an audio-learning recap for anyone who's already read all seventeen articles in the AWS Fundamentals series. Use your browser's or phone's text-to-speech feature and let it play in the background during a commute or while doing chores. There are no diagrams, tables, or code here — just spoken-style prose, stitching the whole series back together into a single, continuous thread.
 
 The series started with an unglamorous fundamental that trips everyone up at some point: EC2's key pair and a subnet's reserved IPs. A key pair's private key can only be downloaded once, and lose it, and it's gone for good. And inside a subnet, a network address, a broadcast address, and a handful of addresses AWS itself reserves all exist, so the number of IPs you can actually hand out is smaller than the CIDR's number suggests on the surface. Design without knowing this, and you're guaranteed to trip over it later.
 
@@ -41,4 +41,6 @@ Next, S3 storage classes. Several tiers exist: Standard for frequently accessed 
 
 Finally, the difference between security groups and Network ACLs got organized. A security group applies per instance — a stateful mechanism where permitting inbound traffic automatically permits the return traffic. A Network ACL applies per subnet — a stateless mechanism requiring inbound and outbound to each be permitted independently. Their evaluation order also differs: an IAM policy always prioritizes an explicit deny, while a Network ACL evaluates the lowest-numbered rule first, and whichever rule matches first is the one applied.
 
-Looking back across all sixteen articles, one consistent pattern emerges. The public access block, the IAM role, the VPC endpoint, the least-privilege policy, the absolute priority of an explicit deny — every one of them was a different, concrete implementation of the same design philosophy: default to the safe side, and deliberately, explicitly open up only the specific range that's genuinely needed. Are you widening the scope more than necessary just to get something working for now? Asking yourself that question, over and over, is the perspective a top-1% engineer carries away from this series. And that's the recap of the AWS Fundamentals series, complete.
+And the seventeenth article wasn't like the others — it never taught a single new technique. Instead, under the setup of a fictional e-commerce company, KoiKoi Shop, migrating fully from on-premises to AWS, you designed, yourself, a single integrated infrastructure combining everything you'd learned separately up to that point: VPC design, EC2, RDS/Secrets Manager, S3, IAM roles, VPC endpoints, EBS backups, least-privilege policies, and CloudTrail/GuardDuty. Following a fixed procedure and designing from requirements are genuinely different skills, and finishing every individual hands-on doesn't make you immediately effective in real work without experience combining them into one coherent architecture. And part of that capstone was assembling the deliverable itself as a portfolio piece — not just screenshots proving it worked, but a document articulating the reasoning behind your design decisions.
+
+Looking back across all seventeen articles, one consistent pattern emerges. The public access block, the IAM role, the VPC endpoint, the least-privilege policy, the absolute priority of an explicit deny, and the whole architecture integrated in the capstone — every one of them was a different, concrete implementation of the same design philosophy: default to the safe side, and deliberately, explicitly open up only the specific range that's genuinely needed. Are you widening the scope more than necessary just to get something working for now? Asking yourself that question, over and over, is the perspective a top-1% engineer carries away from this series. And that's the recap of the AWS Fundamentals series, complete.
