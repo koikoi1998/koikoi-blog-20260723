@@ -1,0 +1,45 @@
+questions:
+  - question: "What distinguishes this capstone project's format from earlier Windows Server hands-on labs?"
+    choices:
+      - "It requires executing a fixed procedure faster"
+      - "It presents only requirements, requiring you to design which techniques to combine and how"
+      - "It requires learning exactly one new Windows Server role"
+      - "It requires using only PowerShell, never the GUI"
+    answerIndex: 1
+    explanation: "This capstone takes a format much closer to real-world work, requiring you to design from requirements rather than follow a fixed procedure."
+
+  - question: "What's the final deliverable this capstone project actually requires?"
+    choices:
+      - "Only screenshots proving it worked"
+      - "A portfolio-assembled deliverable including a document articulating the reasoning behind your design decisions"
+      - "Only a list of PowerShell commands used"
+      - "A verbal explanation alone, with no documentation needed"
+    answerIndex: 1
+    explanation: "The deliverable needs a document articulating why you chose that design, not just proof it worked."
+
+  - question: "Why does this capstone adopt a \"multi-site consolidation\" setting?"
+    choices:
+      - "Because a single site is harder to build"
+      - "Because most real-world Windows Server overhauls need to satisfy availability, security, and operability while cleaning up a scattered environment"
+      - "Because DFS only works across multiple sites"
+      - "Because no other scenario is technically feasible"
+    answerIndex: 1
+    explanation: "This setting was chosen because real-world Windows Server overhauls rarely wrap up with building a single server — they typically need to satisfy multiple axes at once."
+
+  - question: "What's the correct understanding of the relationship between \"following steps\" and \"designing from requirements\"?"
+    choices:
+      - "They're exactly the same skill, with no need to distinguish them"
+      - "They look similar but are entirely different skills, and completing individual hands-on labs alone doesn't build the latter"
+      - "Having the ability to follow steps automatically builds the ability to design"
+      - "The ability to design is only ever assessed on certification exams"
+    answerIndex: 1
+    explanation: "These are similar-looking but entirely different skills, and completing every individual hands-on doesn't build design ability without experience combining them."
+
+  - question: "What completeness bar does this hands-on suggest?"
+    choices:
+      - "Whether you can finish every requirement in the shortest possible time"
+      - "Whether you could show your README.md to an interviewer you've never met and explain your design decisions"
+      - "Whether you used the largest possible number of servers"
+      - "Whether you completed it without ever disabling SMB1"
+    answerIndex: 1
+    explanation: "The suggested bar for completeness is whether you could show your README.md to an unfamiliar interviewer and explain your design decisions."
