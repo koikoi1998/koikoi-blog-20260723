@@ -62,6 +62,7 @@ feedback/00_その他/05_指摘事項.txt への対応として作成。2026-09-
 - **2026-10-01: Ansible/IaC学科に卒業制作(キャップストーン)ハンズオンを新設**。架空のスタートアップ(KoiKoi Tech)の複数環境(dev/staging/prod)構成管理基盤を舞台に、roles/Handlers/テンプレート・Vault・AWS動的インベントリ・環境分離・Galaxy・エラーハンドリング・機密情報保護を自分で設計して統合する総合演習を追加。`ansible-audio-review-guide`を19記事版に同期(order 19→21)。`university.md`/`en/university.md`のAnsible/IaC学科セクションに「卒業制作」節を追加。残り4学科(VPN・DNS基盤・メール基盤・Windows Server)への横展開が次の優先事項。
 - **2026-10-01: VPN学科に卒業制作(キャップストーン)ハンズオンを新設**。架空の多拠点物流企業(KoiKoi Logistics)の本社・支社・リモートワーカーを安全につなぐVPN基盤を舞台に、Site-to-Site VPN・WireGuard・L2TP/IPsec・IKEv2によるPSK強化・トラブルシューティングを自分で設計して統合する総合演習を追加(series: vpnに配置)。`vpn-audio-review-guide`を9記事版に同期(order 10→12)。`university.md`/`en/university.md`のVPN学科セクションに「卒業制作」節を追加。残り3学科(DNS基盤・メール基盤・Windows Server)への横展開が次の優先事項。
 - **2026-10-01: DNS基盤学科に卒業制作(キャップストーン)ハンズオンを新設**。架空企業(KoiKoi Corp)が社外レジストラ任せから自社管理の権威DNS基盤へ移行するという設定を舞台に、マスター/スレーブ構成とゾーン転送・スプリットホライズン・サブドメイン委任・DNSSEC・DNS増幅攻撃対策(RRL)を自分で設計して統合する総合演習を追加。`dns-audio-review-guide`を10記事版に同期(order 11→13)。`university.md`/`en/university.md`のDNS基盤学科セクションに「卒業制作」節を追加。残り2学科(メール基盤・Windows Server)への横展開が次の優先事項。
+- **2026-10-01: メール基盤学科に卒業制作(キャップストーン)ハンズオンを新設**。架空の企業グループ(KoiKoi Holdings)が複数子会社の個別メール契約を1台のサーバーで一元管理する体制へ移行するという設定を舞台に、Postfix/Dovecot構築・バーチャルドメイン・SPF/DKIM/DMARC・STARTTLS・オープンリレー対策・バウンス処理を自分で設計して統合する総合演習を追加。`mail-audio-review-guide`を10記事版に同期(order 11→13)。`university.md`/`en/university.md`のメール基盤学科セクションに「卒業制作」節を追加。残り1学科(Windows Server)への横展開が次の優先事項。
 
 ## 運用ルール
 
