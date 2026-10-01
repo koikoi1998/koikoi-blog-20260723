@@ -397,6 +397,12 @@ The fifth department to become "fully open," following Active Directory, AWS, An
 
 An educational, defense-focused hands-on lab, meant to strengthen the defenses of a test environment you manage yourself (spoofing a source IP address is never covered).
 
+### Capstone Project
+
+1. [The DNS Infrastructure Department's Capstone Project: Turning a Fictional Company's DNS Infrastructure Into a Portfolio Piece](/en/articles/dns-capstone-handson-guide)
+
+An integrative exercise where you combine, on your own, the techniques learned individually in earlier hands-on labs (master/slave zone transfers, split-horizon DNS, subdomain delegation, DNSSEC, DNS amplification defense) into a single fictional company's DNS infrastructure. It calls for the ability to design from requirements, not just follow steps, and the deliverable is assembled as a portfolio piece usable in a job search.
+
 ### Architect and Beyond
 
 No articles exist here yet. As with the other departments, this is expected to cover system-wide architecture design spanning multiple departments.
