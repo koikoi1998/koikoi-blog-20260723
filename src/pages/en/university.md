@@ -511,6 +511,12 @@ None.
 
 An educational, defense-focused hands-on lab, meant to strengthen the defenses of a test environment you manage yourself (it never performs an actual vulnerability exploit).
 
+### Capstone Project
+
+1. [The Windows Server Department's Capstone Project: Turning a Fictional Company's Windows Server Infrastructure Into a Portfolio Piece](/en/articles/windows-server-capstone-handson-guide)
+
+An integrative exercise where you combine, on your own, the techniques learned individually in earlier hands-on labs (DFS namespace/replication, IIS SNI, application pool recycling, print spooler operations, SMB1 hardening, NTP time sync) into a single fictional company's Windows Server infrastructure. It calls for the ability to design from requirements, not just follow steps, and the deliverable is assembled as a portfolio piece usable in a job search.
+
 ### Architect and Beyond
 
 No articles exist here yet. As with the other departments, this is expected to cover system-wide architecture design spanning multiple departments.
@@ -521,6 +527,6 @@ No articles exist here yet. As with the other departments, this is expected to c
 
 ## What's Next
 
-- A **capstone hands-on (a graduation project)** combining content across multiple grades is planned as each department's graduation requirement.
-- We're considering a format — like a GitHub repository of the finished work — that lets you use the result as a job-hunting portfolio.
-- For departments beyond Active Directory too, we'll keep extending things in the spirit of the university metaphor — for example, positioning the existing quiz feature as a "graduation exam."
+- All 7 "open" departments (Active Directory, AWS, Ansible/IaC, VPN, DNS, Mail, Windows Server) now have a **capstone hands-on (a graduation project)** combining content across multiple grades. The deliverable is assembled as a GitHub-repository-style format usable as a job-hunting portfolio.
+- New departments with no articles yet, such as Load Balancing, are planned.
+- The Linux Infrastructure, Storage, Web Proxy/Caching, and Web/API Departments are planned to be grown to the same level as the other "open" departments.
