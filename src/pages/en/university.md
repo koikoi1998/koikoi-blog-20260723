@@ -209,6 +209,12 @@ Following the Active Directory Department, this is the second department to sati
 
 Both are educational, defense-focused hands-on labs, meant to strengthen the defenses of a test environment you manage yourself.
 
+### Capstone Project
+
+1. [The AWS Department's Capstone Project: Turning a Fictional E-Commerce Site's Infrastructure Into a Portfolio Piece](/en/articles/aws-capstone-handson-guide)
+
+An integrative exercise where you combine, on your own, the techniques learned individually in earlier hands-on labs (VPC design, EC2, RDS/Secrets Manager, S3, IAM roles, VPC endpoints, EBS backups, least-privilege policies, CloudTrail/GuardDuty) into a single fictional e-commerce migration scenario. It calls for the ability to design from requirements, not just follow steps, and the deliverable is assembled as a portfolio piece usable in a job search.
+
 ### Architect and Beyond
 
 No articles exist here yet. This is expected to cover system-wide architecture design spanning multiple departments — not just AWS, but Ansible/IaC and network design too.
