@@ -1,15 +1,15 @@
 ---
 title: "[Listen] The Remote-Access VPN / L2TP-IPsec Series, Fully Recapped"
-description: "An audio-learning article that reviews all 8 articles of the Remote-Access VPN / L2TP-IPsec series by ear, during a commute or while doing chores. No tables, diagrams, or bullet points — just spoken-style prose meant to be read aloud by a browser's text-to-speech feature."
+description: "An audio-learning article that reviews all 9 articles of the Remote-Access VPN / L2TP-IPsec series by ear, during a commute or while doing chores. No tables, diagrams, or bullet points — just spoken-style prose meant to be read aloud by a browser's text-to-speech feature."
 series: "vpn"
 subSeries: "audio"
-order: 10
+order: 12
 tags: ["vpn", "l2tp", "ipsec", "audio-review", "infra"]
 emoji: "🎧"
 pubDate: 2026-09-24
 ---
 
-This article is an audio-learning recap for anyone who's already read all eight articles in the Remote-Access VPN / L2TP-IPsec series. Use your browser's or phone's text-to-speech feature and let it play in the background during a commute or while doing chores. There are no diagrams, tables, or code here — just spoken-style prose, stitching the whole series back together into a single, continuous thread.
+This article is an audio-learning recap for anyone who's already read all nine articles in the Remote-Access VPN / L2TP-IPsec series. Use your browser's or phone's text-to-speech feature and let it play in the background during a commute or while doing chores. There are no diagrams, tables, or code here — just spoken-style prose, stitching the whole series back together into a single, continuous thread.
 
 The series started with the real substance behind the name "L2TP/IPsec" itself. That name isn't one protocol — it's the combination of two independent standards, each with a distinct job. L2TP builds a virtual tunnel, and inside it, a PPP connection handles user authentication and hands out an IP address. IPsec then encrypts the entire path, protecting it from eavesdropping and tampering. Keep that division of labor in mind, and everything that follows falls naturally into place.
 
@@ -27,4 +27,6 @@ Finally, we untangled the question of why a single service, RRAS, bundles togeth
 
 Finally came the weakness lurking in IKE's Aggressive Mode, an older mode. Where Main Mode encrypts identity information before exchanging it, Aggressive Mode cuts down the round-trip count in exchange for sending identity information, and a hash derived from the PSK, unencrypted. Capture that hash, and a dictionary attack — a purely offline computation requiring no additional traffic to the server at all — can recover the password itself. And in a setup like a site-to-site VPN, where both IP addresses are fixed, there's practically no real need for Aggressive Mode in the first place — that fact came up too.
 
-Looking back across all eight articles, one consistent pattern emerges. The L2TP/IPsec combination, the meaning of "gateway," the "legacy" label, RRAS as a single service, and Aggressive Mode as an older mode — every one of them shared the same shape: behind the one name or one feature you see on the surface, several independent pieces, or a layer of history, are actually stacked together. The habit this series builds isn't taking a surface-level name at face value — it's tracing back to the combination of pieces underneath, and the history behind how they ended up in their current form. That's the perspective a top-1% engineer carries away from this series. And that's the recap of the Remote-Access VPN / L2TP-IPsec series, complete.
+And the ninth article wasn't like the others — it never taught a single new technique. Instead, under the setup of a fictional logistics company, KoiKoi Logistics, needing to securely connect its headquarters, branches, and remote workers all at once, you designed, yourself, a single integrated VPN infrastructure combining everything you'd learned separately across the whole VPN Department: Site-to-Site VPN, WireGuard, L2TP/IPsec, PSK hardening via IKEv2, and troubleshooting. Following a fixed procedure and designing from requirements are genuinely different skills, and finishing every individual hands-on doesn't make you immediately effective in real work without experience combining them into one coherent infrastructure.
+
+Looking back across all nine articles, one consistent pattern emerges. The L2TP/IPsec combination, the meaning of "gateway," the "legacy" label, RRAS as a single service, Aggressive Mode as an older mode, and the whole VPN infrastructure integrated in the capstone — every one of them shared the same shape: behind the one name or one feature you see on the surface, several independent pieces, or a layer of history, are actually stacked together. The habit this series builds isn't taking a surface-level name at face value — it's tracing back to the combination of pieces underneath, and the history behind how they ended up in their current form. That's the perspective a top-1% engineer carries away from this series. And that's the recap of the Remote-Access VPN / L2TP-IPsec series, complete.
