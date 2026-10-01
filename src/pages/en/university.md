@@ -272,6 +272,12 @@ Following the AWS Department, this is the third department to become "fully open
 
 An educational, defense-focused hands-on lab, meant to strengthen the defenses of a test environment you manage yourself.
 
+### Capstone Project
+
+1. [The Ansible/IaC Department's Capstone Project: Turning a Fictional Startup's Configuration Management Platform Into a Portfolio Piece](/en/articles/ansible-capstone-handson-guide)
+
+An integrative exercise where you combine, on your own, the techniques learned individually in earlier hands-on labs (roles/Handlers/templates, Vault, AWS dynamic inventory, environment separation, Galaxy, error handling, secrets protection) into a single fictional startup's configuration management platform. It calls for the ability to design from requirements, not just follow steps, and the deliverable is assembled as a portfolio piece usable in a job search.
+
 ### Architect and Beyond
 
 No articles exist here yet. As with the AWS Department, this is expected to cover system-wide architecture design spanning multiple departments.

@@ -59,6 +59,7 @@ feedback/00_その他/05_指摘事項.txt への対応として作成。2026-09-
 - **2026-09-30: 既存のクイズ機能を「卒業試験」として位置づけ直した**。機能追加は行わず、`university.md`/`en/university.md`に「卒業試験について」節を新設して`/quiz`への導線を追加し、`quiz.astro`/`en/quiz.astro`の冒頭にも`/university`への導線を追加する、双方向のリンクのみで対応。
 - **2026-09-30: ActiveDirectory学科に卒業制作(キャップストーン)ハンズオンを新設**。架空の企業買収シナリオ(Contoso社によるFabrikam社買収)を舞台に、フォレスト間信頼・GPO・権限移譲・gMSA・バックアップ・Kerberoasting/DCSync監査を自分で設計して統合し、成果物をポートフォリオ(README.md、設計判断の記録、振り返り)としてまとめる、新しい形式のハンズオン。手順をなぞる力ではなく要件から設計する力を試す点が、これまでのハンズオンと異なる。`ad-audio-review-guide`を39記事版に同期(order 44→45)。`university.md`/`en/university.md`のActiveDirectory学科セクションに「卒業制作」節を追加。他の開講済み学科への横展開が次の優先事項。
 - **2026-10-01: AWS学科に卒業制作(キャップストーン)ハンズオンを新設**。ActiveDirectory学科と同じパターンで、架空のECサイト運営会社(KoiKoi Shop)のAWS全面移行を舞台に、VPC設計・EC2・RDS/Secrets Manager・S3・IAMロール・VPCエンドポイント・EBSバックアップ・最小権限ポリシー・CloudTrail/GuardDutyを自分で設計して統合する総合演習を追加。`aws-basics-audio-review-guide`を17記事版に同期(order 17→18)。`university.md`/`en/university.md`のAWS学科セクションに「卒業制作」節を追加。残り5学科(Ansible/IaC・VPN・DNS基盤・メール基盤・Windows Server)への横展開が次の優先事項。
+- **2026-10-01: Ansible/IaC学科に卒業制作(キャップストーン)ハンズオンを新設**。架空のスタートアップ(KoiKoi Tech)の複数環境(dev/staging/prod)構成管理基盤を舞台に、roles/Handlers/テンプレート・Vault・AWS動的インベントリ・環境分離・Galaxy・エラーハンドリング・機密情報保護を自分で設計して統合する総合演習を追加。`ansible-audio-review-guide`を19記事版に同期(order 19→21)。`university.md`/`en/university.md`のAnsible/IaC学科セクションに「卒業制作」節を追加。残り4学科(VPN・DNS基盤・メール基盤・Windows Server)への横展開が次の優先事項。
 
 ## 運用ルール
 
