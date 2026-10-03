@@ -59,7 +59,7 @@ altHref: "/en/university"
 |---|---|---|
 | VPN学科 | [vpn](/sitemap#シリーズ一覧) / [modern-vpn](/sitemap#シリーズ一覧) / [site-to-site-vpn](/sitemap#シリーズ一覧) | 🎓 開講済み(大学院まで) |
 | Webプロキシ・キャッシュ学科 | [web-proxy](/sitemap#シリーズ一覧) | 🌱 記事少数(1年生ハンズオンまで) |
-| ロードバランシング学科 | (未着手) | ⬜ 未着手 |
+| ロードバランシング学科 | [load-balancing](/sitemap#シリーズ一覧) | 📖 教養課程〜1年生相当 |
 
 ### クラウドエンジニア学部
 
@@ -355,6 +355,32 @@ ActiveDirectory学科・AWS学科・Ansible/IaC学科に続く4つ目の「開�
 - [【音声で聴く】リモートアクセスVPN/L2TP・IPsecシリーズ総復習](/articles/vpn-audio-review-guide)(卒業後の復習用)
 - [【音声で聴く】現代的VPNプロトコル深掘りシリーズ総復習](/articles/modern-vpn-audio-review-guide)(卒業後の復習用)
 - [【音声で聴く】拠点間VPN(Site-to-Site VPN)シリーズ総復習](/articles/site-to-site-vpn-audio-review-guide)(卒業後の復習用)
+
+## ロードバランシング学科
+
+記事が1本もない「未着手」状態から新設された学科です。対応シリーズは[load-balancing](/sitemap#シリーズ一覧)です。この学科のカリキュラムを自力で実施・理解できれば、L4/L7ロードバランサーの違い、振り分けアルゴリズムとヘルスチェックの設計、TLS証明書の配置方式(ターミネーション/パススルー/ブリッジング)について、実務レベルで判断できることを目標にしています。
+
+### 教養課程(前提科目)
+
+なし。
+
+### 1年生:基礎編+初めてのハンズオン
+
+**座学(基礎編、3記事)**
+
+1. [ロードバランサーのL4とL7の違いを『上位1%』の視点で理解する](/articles/load-balancing-fundamentals-guide)
+2. [ロードバランシングのアルゴリズムとヘルスチェックの仕組みを『上位1%』の視点で理解する](/articles/load-balancing-algorithms-guide)
+3. [SSLターミネーションとSSLパススルーの違いを『上位1%』の視点で理解する](/articles/load-balancing-ssl-termination-guide)
+
+**実技(ハンズオン基礎編、1記事)**
+
+1. [HAProxyでL7ロードバランサーを構築し、複数のバックエンドサーバーへ振り分けるハンズオン](/articles/load-balancing-haproxy-handson-guide)
+
+**この4本まで自力で実施・理解できれば、「1年生」として一区切りです。** 2年生以降(補足・深掘り編、実務シナリオ編ハンズオン、ニッチな仕様・機能編、セキュリティ強化編)は今後のコンテンツ追加で育てていきます。
+
+### 耳で学ぶ補助教材(学年を問わず)
+
+- [【音声で聴く】ロードバランシング基礎シリーズ総復習](/articles/load-balancing-audio-review-guide)(卒業後の復習用)
 
 ## DNS基盤学科
 

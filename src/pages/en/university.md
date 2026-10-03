@@ -59,7 +59,7 @@ Regardless of how much content currently exists, here's the full list of faculti
 |---|---|---|
 | VPN Department | [vpn](/en/sitemap#series-list) / [modern-vpn](/en/sitemap#series-list) / [site-to-site-vpn](/en/sitemap#series-list) | 🎓 Fully open (through graduate school) |
 | Web Proxy/Caching Department | [web-proxy](/en/sitemap#series-list) | 🌱 Few articles (through Freshman hands-on) |
-| Load Balancing Department | (not started) | ⬜ Not started |
+| Load Balancing Department | [load-balancing](/en/sitemap#series-list) | 📖 General Ed through Freshman level |
 
 ### Cloud Engineering Faculty
 
@@ -355,6 +355,32 @@ No articles exist here yet. As with the other departments, this is expected to c
 - [[Listen] The Remote-Access VPN / L2TP-IPsec Series, Fully Recapped](/en/articles/vpn-audio-review-guide) (for reviewing after graduation)
 - [[Listen] The Modern VPN Protocol Deep-Dive Series, Fully Recapped](/en/articles/modern-vpn-audio-review-guide) (for reviewing after graduation)
 - [[Listen] The Site-to-Site VPN Series, Fully Recapped](/en/articles/site-to-site-vpn-audio-review-guide) (for reviewing after graduation)
+
+## Load Balancing Department
+
+A newly launched department, started from zero articles. Its corresponding series is [load-balancing](/en/sitemap#series-list). Working through this department's curriculum yourself aims to get you to a real-world level of judgment on the L4/L7 load balancer distinction, routing algorithm and health check design, and TLS certificate placement (termination, passthrough, or bridging).
+
+### General Education (Prerequisites)
+
+None.
+
+### Freshman: Fundamentals + Your First Hands-On
+
+**Lecture (fundamentals, 3 articles)**
+
+1. [Understanding the Difference Between L4 and L7 Load Balancers From a Top 1% Perspective](/en/articles/load-balancing-fundamentals-guide)
+2. [Understanding Load Balancing Algorithms and Health Checks From a Top 1% Perspective](/en/articles/load-balancing-algorithms-guide)
+3. [Understanding SSL Termination vs. SSL Passthrough From a Top 1% Perspective](/en/articles/load-balancing-ssl-termination-guide)
+
+**Hands-On (fundamentals, 1 article)**
+
+1. [A Top 1% Hands-On for Building an L7 Load Balancer With HAProxy and Distributing Traffic Across Multiple Backend Servers](/en/articles/load-balancing-haproxy-handson-guide)
+
+**Work through and understand these four, and you're at a solid checkpoint as a "Freshman."** Sophomore and beyond (supplementary deep-dives, real-world-scenario hands-on, niche-spec content, security hardening) will be filled in as more content gets added.
+
+### Audio Learning Materials (Regardless of Grade)
+
+- [[Listen] The Load Balancing Fundamentals Series, Fully Recapped](/en/articles/load-balancing-audio-review-guide) (for reviewing after graduation)
 
 ## DNS Infrastructure Department
 
