@@ -72,7 +72,7 @@ Regardless of how much content currently exists, here's the full list of faculti
 
 | Department | Corresponding Series | Status |
 |---|---|---|
-| Web/API Department | [api](/en/sitemap#series-list) | 📖 General Ed through Freshman level |
+| Web/API Department | [api](/en/sitemap#series-list) | 📙 Reached Junior level |
 
 **Legend**: 🎓 Open through graduate school / 📗 Open through all 4 hands-on tiers (theory is thin) / 📙 Reached Junior level / 📖 General education–Freshman level / 🌱 Few articles / ⬜ Not started
 
@@ -606,8 +606,18 @@ None.
 ### Sophomore: Supplementary Deep-Dives
 
 1. [Understanding What's Actually Happening Behind a Payment API From a Top 1% Perspective](/en/articles/payment-api-guide) — a dense, real-world deep-dive using Stripe as the example, covering PaymentIntent's multi-stage lifecycle, webhooks, and PCI DSS compliance.
+2. [Understanding How OAuth 2.0 Works From a Top 1% Perspective](/en/articles/oauth2-guide) — covers the authorization code flow and its distinction from authentication (OpenID Connect).
+3. [Understanding the Difference Between GraphQL and RESTful APIs From a Top 1% Perspective](/en/articles/graphql-vs-rest-guide) — covers eliminating over-fetching and under-fetching.
 
-Junior and beyond (real-world-scenario hands-on, niche-spec content, security hardening) will be filled in as more content gets added.
+### Junior: Real-World-Scenario Hands-On
+
+1. [A Top 1% Hands-On for Building a Webhook Receiver Yourself and Experiencing Signature Verification and Handling a Retried Delivery](/en/articles/webhook-signature-handson-guide)
+
+**Work through and understand this Junior hands-on, and you're at "Junior" level.** Senior (niche-spec content) and Graduate School (security hardening) will be filled in as more content gets added.
+
+### Audio Learning Materials (Regardless of Grade)
+
+- [[Listen] The Web/API Series, Fully Recapped](/en/articles/api-audio-review-guide) (for reviewing after graduation)
 
 ## Web Proxy/Caching Department
 
