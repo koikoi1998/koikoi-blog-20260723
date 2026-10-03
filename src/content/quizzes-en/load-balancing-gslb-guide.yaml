@@ -1,0 +1,45 @@
+questions:
+  - question: "What does GSLB actually manipulate?"
+    choices:
+      - "The actual communication path between client and server"
+      - "The content of the answer returned by the authoritative DNS server"
+      - "The number of TCP connections on a backend server"
+      - "Where a TLS certificate is placed"
+    answerIndex: 1
+    explanation: "GSLB always only manipulates the authoritative DNS server's answer content, never the actual communication path."
+
+  - question: "Why is EDNS Client Subnet (ECS) needed?"
+    choices:
+      - "To encrypt DNS answers"
+      - "Because a resolver's location and the actual user's location can diverge"
+      - "To speed up zone transfers"
+      - "To increase health check frequency"
+    answerIndex: 1
+    explanation: "For users relying on a public DNS resolver, the resolver's location and the actual user's location can diverge, and ECS addresses this problem."
+
+  - question: "Why does EDNS Client Subnet send only part of the user's IP address, not the full address?"
+    choices:
+      - "Because a full IP address would exceed the DNS packet's size limit"
+      - "Because GSLB only needs a coarse location, so only the precision actually needed is passed, as a privacy consideration"
+      - "Because the encryption algorithm's spec only allows sending some bits"
+      - "Because the authoritative server's spec can only receive some bits"
+    answerIndex: 1
+    explanation: "GSLB only needs a coarse location, with no need to pass a full IP address that could identify an individual user, so only part is sent as a privacy consideration."
+
+  - question: "What constraint always accompanies GSLB's failover on a data center outage?"
+    choices:
+      - "The failover takes effect for every user instantly"
+      - "A lag exists, tied to DNS TTL, before every user actually switches over"
+      - "Every data center becomes unavailable during the failover"
+      - "The failover always requires manual intervention"
+    answerIndex: 1
+    explanation: "Because a previous answer stays cached for the TTL duration, a lag exists between the outage happening and every user switching over."
+
+  - question: "What's the correct understanding of the difference between GSLB and a single load balancer (like HAProxy)?"
+    choices:
+      - "GSLB is an extension of a single load balancer's features"
+      - "GSLB is a mechanism that manipulates DNS answers and never sits in the communication path, unlike a single load balancer"
+      - "They're exactly the same mechanism, just under different names"
+      - "GSLB is another name for an L4 load balancer"
+    answerIndex: 1
+    explanation: "GSLB always only manipulates DNS answer content, and never sits in the actual communication path between client and server."

@@ -1,0 +1,45 @@
+questions:
+  - question: "ロードバランサー自体を冗長化しない場合に生じる問題として正しいのはどれか。"
+    choices:
+      - "バックエンドサーバーへのヘルスチェックが無効になる"
+      - "バックエンドサーバーがいくら冗長化されていても、ロードバランサー自身が新たな単一障害点になる"
+      - "DNSのTTLが自動的に短くなる"
+      - "SSLターミネーションが使用できなくなる"
+    answerIndex: 1
+    explanation: "ロードバランサー自身が1台のままでは、バックエンドの冗長化が進んでいても、それ自身が単一障害点になってしまいます。"
+
+  - question: "VRRPにおけるMasterとBackupの関係について正しいのはどれか。"
+    choices:
+      - "MasterとBackupは、常に同時にVIPへ応答する"
+      - "Masterが現在VIPを保持し応答しており、BackupはMasterの生存通知を監視している"
+      - "Backupは、常にMasterよりも高い優先度で動作する"
+      - "MasterとBackupは、異なるVIPをそれぞれ保持する"
+    answerIndex: 1
+    explanation: "Masterが現在実際にVIPを保持して応答し、BackupはMasterからの生存通知(VRRP Advertisement)を監視する役割を持ちます。"
+
+  - question: "VIPの切り替え時にGratuitous ARPが果たす役割として正しいのはどれか。"
+    choices:
+      - "DNSレコードのTTLを短縮する"
+      - "このVIPのMACアドレスが新しいサーバーのものになったことを、周辺のネットワーク機器へ通知する"
+      - "バックエンドサーバーへのヘルスチェックを実行する"
+      - "TLS証明書を新しいサーバーへ自動的にコピーする"
+    answerIndex: 1
+    explanation: "Gratuitous ARPは、VIPのMACアドレスが新しくMasterになったサーバーのものになったことを、周辺のネットワーク機器へ通知するパケットです。"
+
+  - question: "VRRPによるVIPの切り替えが、GSLBによるデータセンター切り替えと比べて速い理由として正しいのはどれか。"
+    choices:
+      - "VRRPはDNSのキャッシュを一切使用しないため"
+      - "Gratuitous ARPによりネットワーク層で即座に切り替わり、DNSのTTLに起因する遅延が発生しないため"
+      - "VRRPは常に専用の光回線を使用するため"
+      - "VRRPはヘルスチェックを行わないため"
+    answerIndex: 1
+    explanation: "VRRPの切り替えはネットワーク層でGratuitous ARPにより即座に行われるため、DNSのTTLに起因する遅延がありません。"
+
+  - question: "スプリットブレインという障害の説明として正しいのはどれか。"
+    choices:
+      - "MasterとBackupの両方が同時に停止してしまう状態"
+      - "MasterとBackupの両方が互いの生存通知を受け取れなくなり、両方が自分をMasterだと判断してしまう状態"
+      - "VIPが完全に消失してしまう状態"
+      - "バックエンドサーバーがすべて異常と判定される状態"
+    answerIndex: 1
+    explanation: "スプリットブレインは、MasterとBackupが互いの生存通知を受け取れなくなり、両方が自分をMasterだと判断してしまう、避けるべき障害状態です。"

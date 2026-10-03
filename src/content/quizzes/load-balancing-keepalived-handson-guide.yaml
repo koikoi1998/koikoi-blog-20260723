@@ -1,0 +1,45 @@
+questions:
+  - question: "keepalivedの設定で、どちらのサーバーが優先的にMasterになるかを決める設定項目として正しいのはどれか。"
+    choices:
+      - "virtual_router_id"
+      - "priority"
+      - "advert_int"
+      - "auth_pass"
+    answerIndex: 1
+    explanation: "priorityの値が高いサーバーが、優先的にMasterになります。"
+
+  - question: "`virtual_router_id`の設定について正しいのはどれか。"
+    choices:
+      - "同じVRRPグループに属するサーバー同士で、必ず一致させる必要がある"
+      - "各サーバーで異なる値にする必要がある"
+      - "この値は、VIPのIPアドレスそのものを表す"
+      - "この値は、フェイルオーバーの速度を決定する"
+    answerIndex: 0
+    explanation: "virtual_router_idは、同じVRRPグループに属するサーバー同士で一致させる必要がある識別子です。"
+
+  - question: "Master機を停止した後、Backup機で確認された挙動として正しいのはどれか。"
+    choices:
+      - "VIPが完全に消失し、どちらのサーバーにも割り当てられなくなった"
+      - "数秒以内に、Backup機にVIPが引き継がれ、応答するサーバーが切り替わった"
+      - "Backup機がMasterへの昇格を拒否した"
+      - "クライアント側で接続先のIPアドレスを変更する必要が生じた"
+    answerIndex: 1
+    explanation: "Master機からのAdvertisementが途絶えると、数秒以内にBackup機がVIPを引き継ぎ、Masterとして応答するようになります。"
+
+  - question: "フェイルオーバー後、クライアント側で必要になる作業として正しいのはどれか。"
+    choices:
+      - "接続先のIPアドレスを、新しいMaster機のIPアドレスに変更する"
+      - "VIPのIPアドレス自体は変わらないため、クライアント側は何も変更する必要がない"
+      - "DNSキャッシュを手動でクリアする"
+      - "TLS証明書を再インストールする"
+    answerIndex: 1
+    explanation: "VIPという設計の価値は、VIPのIPアドレス自体が変わらないことであり、クライアント側は何も変更する必要がありません。"
+
+  - question: "`auth_pass`の設定が必要な理由として正しいのはどれか。"
+    choices:
+      - "VIPへの通信を暗号化するため"
+      - "同一ネットワーク上の無関係なVRRPグループや偽のAdvertisementを受け取って、意図しないフェイルオーバーが起きるリスクを減らすため"
+      - "HAProxyの設定ファイルを暗号化するため"
+      - "DNSのTTLを短縮するため"
+    answerIndex: 1
+    explanation: "簡易的な認証がなければ、無関係なVRRPグループや悪意のある第三者からの偽のAdvertisementを受け取ってしまうリスクがあります。"

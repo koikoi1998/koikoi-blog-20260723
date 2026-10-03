@@ -1,0 +1,45 @@
+questions:
+  - question: "Which keepalived setting determines which server becomes Master preferentially?"
+    choices:
+      - "virtual_router_id"
+      - "priority"
+      - "advert_int"
+      - "auth_pass"
+    answerIndex: 1
+    explanation: "The server with the higher priority value becomes Master preferentially."
+
+  - question: "What's correct about the `virtual_router_id` setting?"
+    choices:
+      - "It must match exactly across every server in the same VRRP group"
+      - "It must be set to a different value on each server"
+      - "It represents the VIP's own IP address"
+      - "It determines how fast the failover happens"
+    answerIndex: 0
+    explanation: "virtual_router_id is an identifier that must match across every server belonging to the same VRRP group."
+
+  - question: "What behavior was confirmed on the Backup unit after stopping the Master?"
+    choices:
+      - "The VIP disappeared entirely, assigned to neither server"
+      - "Within a few seconds, the VIP was handed off to the Backup unit, and the responding server switched over"
+      - "The Backup unit refused to be promoted to Master"
+      - "The client side needed to change its connection target's IP address"
+    answerIndex: 1
+    explanation: "Once the Master's Advertisements stop arriving, the Backup unit takes over the VIP within seconds and starts responding as the new Master."
+
+  - question: "What does the client side need to do after a failover?"
+    choices:
+      - "Change its connection target to the new Master's IP address"
+      - "Nothing at all, since the VIP's own IP address never changes"
+      - "Manually clear its DNS cache"
+      - "Reinstall its TLS certificate"
+    answerIndex: 1
+    explanation: "The value of the VIP design is exactly that the VIP's IP address never changes, so the client side needs no changes at all."
+
+  - question: "Why is the `auth_pass` setting necessary?"
+    choices:
+      - "To encrypt traffic to the VIP"
+      - "To reduce the risk of accepting an unrelated VRRP group's or a forged Advertisement on the same network, triggering an unintended failover"
+      - "To encrypt the HAProxy configuration file"
+      - "To shorten DNS TTL"
+    answerIndex: 1
+    explanation: "Without lightweight authentication, you risk accepting a forged Advertisement from an unrelated VRRP group or a malicious third party."

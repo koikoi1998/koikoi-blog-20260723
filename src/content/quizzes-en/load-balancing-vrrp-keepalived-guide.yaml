@@ -1,0 +1,45 @@
+questions:
+  - question: "What problem arises when the load balancer itself isn't made redundant?"
+    choices:
+      - "Health checks to backend servers get disabled"
+      - "No matter how redundant the backend servers are, the load balancer itself becomes a new single point of failure"
+      - "DNS TTL automatically shortens"
+      - "SSL termination becomes unusable"
+    answerIndex: 1
+    explanation: "If the load balancer itself remains a single unit, it becomes a new single point of failure, no matter how redundant the backend is."
+
+  - question: "What's the correct relationship between Master and Backup in VRRP?"
+    choices:
+      - "Master and Backup always respond to the VIP simultaneously"
+      - "The Master currently holds and responds to the VIP, while the Backup monitors the Master's liveness notifications"
+      - "The Backup always operates at a higher priority than the Master"
+      - "Master and Backup each hold a different VIP"
+    answerIndex: 1
+    explanation: "The Master currently holds and responds to the VIP, while the Backup's role is monitoring the Master's liveness notifications (VRRP Advertisements)."
+
+  - question: "What role does Gratuitous ARP play during a VIP switchover?"
+    choices:
+      - "Shortening a DNS record's TTL"
+      - "Notifying nearby network equipment that the VIP's MAC address now belongs to the new server"
+      - "Running a health check against backend servers"
+      - "Automatically copying a TLS certificate to the new server"
+    answerIndex: 1
+    explanation: "Gratuitous ARP is a packet notifying nearby network equipment that the VIP's MAC address now belongs to the newly promoted Master."
+
+  - question: "Why is a VRRP VIP switchover faster than a GSLB data center switchover?"
+    choices:
+      - "Because VRRP never uses any DNS caching at all"
+      - "Because Gratuitous ARP switches it instantly at the network layer, with no delay tied to DNS TTL"
+      - "Because VRRP always uses a dedicated fiber line"
+      - "Because VRRP never performs health checks"
+    answerIndex: 1
+    explanation: "A VRRP switchover happens instantly at the network layer via Gratuitous ARP, with no delay tied to DNS TTL."
+
+  - question: "What's the correct description of the split-brain failure mode?"
+    choices:
+      - "A state where both Master and Backup stop simultaneously"
+      - "A state where Master and Backup both stop receiving each other's liveness notifications, and both conclude they're the Master"
+      - "A state where the VIP disappears entirely"
+      - "A state where every backend server gets marked unhealthy"
+    answerIndex: 1
+    explanation: "Split-brain is a failure state to avoid, where Master and Backup both stop receiving each other's liveness notifications and both conclude they're the Master."

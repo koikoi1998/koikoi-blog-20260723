@@ -1,0 +1,45 @@
+questions:
+  - question: "Why does a backend server's access log record the load balancer's own IP address instead of the client's?"
+    choices:
+      - "It's caused by a load balancer misconfiguration"
+      - "Because an L7 load balancer establishes separate TCP connections to the client and the backend, by its own structure"
+      - "Because the backend server's logging feature is broken"
+      - "Because a DNS setting is misconfigured"
+    answerIndex: 1
+    explanation: "Since an L7 load balancer holds separate TCP connections to the client and backend, the backend always sees the load balancer itself as the source."
+
+  - question: "Why can't X-Forwarded-For be used with an L4 load balancer?"
+    choices:
+      - "Because an L4 load balancer only supports encrypted traffic"
+      - "Because XFF is an HTTP header, and an L4 load balancer that never interprets HTTP content has no way to append it"
+      - "Because XFF only works over UDP"
+      - "Because an L4 load balancer lacks sufficient processing power"
+    answerIndex: 1
+    explanation: "XFF is an application-layer HTTP header, and an L4 load balancer that never interprets HTTP content has no mechanism to append it."
+
+  - question: "In an XFF header that's passed through multiple proxies, where does the most trustworthy \"real client IP\" sit?"
+    choices:
+      - "At the end of the list (the one appended last)"
+      - "At the start of the list (the one appended first)"
+      - "In the middle of the list"
+      - "An XFF header never contains trustworthy information"
+    answerIndex: 1
+    explanation: "The value appended first — the start of the list — is the one closest to the original client."
+
+  - question: "Why can the PROXY protocol also be used with an L4 load balancer?"
+    choices:
+      - "Because it conveys information as an HTTP header"
+      - "Because it's a lower-layer approach, inserting information right after the TCP connection, before the protocol's own content"
+      - "Because it conveys information using a DNS record"
+      - "Because it embeds information inside a TLS certificate"
+    answerIndex: 1
+    explanation: "The PROXY protocol inserts information at a low layer right after the TCP connection, without interpreting HTTP content, so it also works with an L4 load balancer."
+
+  - question: "What's required to enable the PROXY protocol correctly?"
+    choices:
+      - "Enabling it on the load balancer side alone is enough"
+      - "Both the load balancer side and the backend server side need to explicitly enable support"
+      - "Enabling it on the backend server side alone is enough"
+      - "It needs to be enabled on the DNS server side"
+    answerIndex: 1
+    explanation: "Without enabling support on both sides, the header's content gets misinterpreted, causing a communication error."
