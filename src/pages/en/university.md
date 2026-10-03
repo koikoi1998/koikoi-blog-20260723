@@ -625,6 +625,12 @@ None.
 
 An educational, defense-focused hands-on lab, meant to strengthen the defenses of a test environment you manage yourself (it contains no procedure for attacking a third party's system).
 
+### Capstone Project
+
+1. [The Web/API Department's Capstone Project: Turning a Fictional SaaS Startup's Public API Platform Into a Portfolio Piece](/en/articles/api-capstone-handson-guide)
+
+An integrative exercise where you combine, on your own, the techniques learned individually in earlier hands-on labs (RESTful API idempotency design, authorization via OAuth 2.0, a structurally safe JWT verification implementation, rate limiting, webhook signature verification and deduplication) into a single fictional SaaS startup's public API platform. It calls for the ability to design from requirements, not just follow steps, and the deliverable is assembled as a portfolio piece usable in a job search.
+
 ### Architect and Beyond
 
 No articles exist here yet. As with the other departments, this is expected to cover system-wide architecture design spanning multiple departments.
@@ -682,5 +688,5 @@ None.
 
 ## What's Next
 
-- The "open" departments (Active Directory, AWS, Ansible/IaC, VPN, DNS, Mail, Windows Server, Load Balancing) already have a **capstone hands-on (a graduation project)** combining content across multiple grades. The deliverable is assembled as a GitHub-repository-style format usable as a job-hunting portfolio. The Web/API Department has reached graduate school, but doesn't have a capstone yet.
+- All 9 "open" departments (Active Directory, AWS, Ansible/IaC, VPN, DNS, Mail, Windows Server, Load Balancing, Web/API) now have a **capstone hands-on (a graduation project)** combining content across multiple grades. The deliverable is assembled as a GitHub-repository-style format usable as a job-hunting portfolio.
 - The Linux Infrastructure, Storage, and Web Proxy/Caching Departments are planned to be grown to the same level as the other "open" departments (the Web Proxy/Caching and Storage Departments have already reached Freshman level).
