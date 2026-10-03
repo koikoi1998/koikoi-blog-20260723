@@ -58,7 +58,7 @@ Regardless of how much content currently exists, here's the full list of faculti
 | Department | Corresponding Series | Status |
 |---|---|---|
 | VPN Department | [vpn](/en/sitemap#series-list) / [modern-vpn](/en/sitemap#series-list) / [site-to-site-vpn](/en/sitemap#series-list) | 🎓 Fully open (through graduate school) |
-| Web Proxy/Caching Department | [web-proxy](/en/sitemap#series-list) | 🌱 Few articles (through Freshman hands-on) |
+| Web Proxy/Caching Department | [web-proxy](/en/sitemap#series-list) | 📖 General Ed through Freshman level |
 | Load Balancing Department | [load-balancing](/en/sitemap#series-list) | 🎓 Fully open (through graduate school) |
 
 ### Cloud Engineering Faculty
@@ -609,7 +609,28 @@ None.
 
 Junior and beyond (real-world-scenario hands-on, niche-spec content, security hardening) will be filled in as more content gets added.
 
+## Web Proxy/Caching Department
+
+Its corresponding series is [web-proxy](/en/sitemap#series-list).
+
+### General Education (Prerequisites)
+
+None.
+
+### Freshman: Fundamentals + Your First Hands-On
+
+**Lecture (fundamentals, 2 articles)**
+
+1. [Understanding When to Use a Proxy vs. a Firewall From a Top 1% Perspective](/en/articles/proxy-firewall-guide)
+2. [Understanding the Rise of HTTPS and the End of Proxy Caching From a Top 1% Perspective](/en/articles/http-caching-cdn-guide)
+
+**Hands-On (fundamentals, 1 article)**
+
+1. [The Top 1% Hands-On for Building an Explicit Proxy With Squid and Experiencing URL-Level Access Control](/en/articles/squid-proxy-handson-guide)
+
+**Work through and understand these three, and you're at a solid checkpoint as a "Freshman."** Sophomore and beyond (supplementary deep-dives, real-world-scenario hands-on, niche-spec content, security hardening) will be filled in as more content gets added.
+
 ## What's Next
 
 - All 8 "open" departments (Active Directory, AWS, Ansible/IaC, VPN, DNS, Mail, Windows Server, Load Balancing) now have a **capstone hands-on (a graduation project)** combining content across multiple grades. The deliverable is assembled as a GitHub-repository-style format usable as a job-hunting portfolio.
-- The Linux Infrastructure, Storage, Web Proxy/Caching, and Web/API Departments are planned to be grown to the same level as the other "open" departments (the Web/API Department has already reached Freshman level).
+- The Linux Infrastructure, Storage, Web Proxy/Caching, and Web/API Departments are planned to be grown to the same level as the other "open" departments (the Web/API and Web Proxy/Caching Departments have already reached Freshman level).
