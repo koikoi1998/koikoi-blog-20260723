@@ -1,0 +1,45 @@
+questions:
+  - question: "What does OAuth 2.0 fundamentally provide?"
+    choices:
+      - "Authentication — confirming who a user is"
+      - "Authorization — deciding what a user allows"
+      - "A feature for encrypting and storing passwords"
+      - "A feature for caching API responses"
+    answerIndex: 1
+    explanation: "OAuth 2.0 isn't authentication — it's a mechanism for authorization, deciding \"what to allow.\""
+
+  - question: "Why does the authorization code flow route through a disposable code instead of passing the access token directly through the browser?"
+    choices:
+      - "Because an authorization code is a longer string than an access token"
+      - "Because the browser redirect path is a relatively low-security route, where information sticks around in URLs and history"
+      - "Because an authorization code must be sent without encryption"
+      - "Because an access token can only ever be sent over HTTPS, by spec"
+    answerIndex: 1
+    explanation: "Routing through a disposable authorization code keeps the powerful access token from ever traveling down the low-security browser redirect path."
+
+  - question: "Why is a client secret needed when exchanging the authorization code?"
+    choices:
+      - "To encrypt the user's password"
+      - "To prove that whoever is trying to use the authorization code is genuinely the legitimate app itself"
+      - "To limit how many times the API can be called"
+      - "To extend a token's expiration"
+    answerIndex: 1
+    explanation: "The client secret is a password that prevents misuse by a third party who stole the authorization code."
+
+  - question: "What's the correct difference in role between an access token and a refresh token?"
+    choices:
+      - "Both have the same lifespan and serve the same purpose"
+      - "The access token is short-lived and used for API calls, while the refresh token is long-lived and only used to reissue a new access token"
+      - "The refresh token always has a shorter lifespan"
+      - "The access token has to be issued manually by the user"
+    answerIndex: 1
+    explanation: "The access token is short-lived and used for API calls, while the refresh token is long-lived and only ever good for reissuing a new access token."
+
+  - question: "Why can't OAuth 2.0 alone, strictly speaking, achieve a \"login\"?"
+    choices:
+      - "Because OAuth 2.0 doesn't support HTTPS"
+      - "Because OAuth 2.0 is an authorization mechanism, and authentication is realized by a separate spec, OpenID Connect (OIDC)"
+      - "Because OAuth 2.0 can only be used with a single app"
+      - "Because OAuth 2.0 has no concept of an access token"
+    answerIndex: 1
+    explanation: "Achieving user authentication (a login) requires a separate spec, OpenID Connect (OIDC), layered on top of OAuth 2.0."

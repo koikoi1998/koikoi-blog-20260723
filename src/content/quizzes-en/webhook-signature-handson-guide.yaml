@@ -1,0 +1,45 @@
+questions:
+  - question: "How does the webhook receiver in this hands-on verify the signature?"
+    choices:
+      - "By checking only the sender's IP address"
+      - "By computing the signature itself from the received payload using the shared secret, and checking whether it matches the signature that was sent"
+      - "By checking only the TLS certificate's expiration date"
+      - "By checking only the number of headers in the request"
+    answerIndex: 1
+    explanation: "The receiver recomputes the signature itself from the received payload, and checks whether it matches the signature that was sent."
+
+  - question: "What behavior was confirmed in this hands-on when the payload's content was tampered with after the signature was computed?"
+    choices:
+      - "The tampering went unnoticed, and it was processed as-is"
+      - "The signature the receiver computed no longer matched the one that was sent, and it was rejected with a 401 error"
+      - "The server crashed"
+      - "It was automatically repaired back to its correct content"
+    answerIndex: 1
+    explanation: "Tampering with the payload makes the receiver's recomputed signature no longer match the sent signature, triggering a 401 rejection."
+
+  - question: "Why is a dedicated comparison function like `hmac.compare_digest` preferred over a plain string comparison (==)?"
+    choices:
+      - "Because it's always faster to process"
+      - "Because it always takes a constant amount of time regardless of string length, preventing a timing-attack risk"
+      - "Because it uses less memory"
+      - "Because it only works with JSON-format data"
+    answerIndex: 1
+    explanation: "An ordinary string comparison stops at the first mismatch, risking a timing attack where the time difference leaks information."
+
+  - question: "What behavior was confirmed on the receiver when a webhook was sent twice with the same event_id?"
+    choices:
+      - "The same processing ran both times"
+      - "The first run processed it, and the second was marked \"already processed,\" with the actual processing skipped"
+      - "The second run was rejected with an error"
+      - "The first run's data got deleted"
+    answerIndex: 1
+    explanation: "The event-ID deduplication mechanism skipped the actual processing on the second run, preventing double processing."
+
+  - question: "What's the correct understanding of the relationship between signature verification and deduplication (event-ID management)?"
+    choices:
+      - "Signature verification alone makes deduplication unnecessary"
+      - "Signature verification confirms whether tampering happened, while deduplication is a separate problem, so both need to be implemented separately"
+      - "Deduplication alone makes signature verification unnecessary"
+      - "Signature verification and deduplication are the exact same operation"
+    answerIndex: 1
+    explanation: "Signature verification confirms no tampering happened, while deduplication guarantees the same event is never processed twice — two defenses with two separate purposes."

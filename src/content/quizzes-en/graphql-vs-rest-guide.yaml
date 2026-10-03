@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the correct description of \"over-fetching\"?"
+    choices:
+      - "Needing multiple API calls just to render one screen"
+      - "Receiving a response containing more data than you actually need"
+      - "The number of API calls getting rate-limited"
+      - "A response never getting cached"
+    answerIndex: 1
+    explanation: "Over-fetching is the problem of receiving more data than needed, including fields the screen never uses."
+
+  - question: "How does GraphQL correctly eliminate over-fetching?"
+    choices:
+      - "By forcing the server side to stop always returning every field"
+      - "By letting the client specify exactly which fields it wants in the query, and only receiving a response containing those"
+      - "By automatically compressing the response"
+      - "By disabling caching entirely"
+    answerIndex: 1
+    explanation: "In GraphQL, the response only contains the fields the client specified in its query, eliminating over-fetching."
+
+  - question: "What actually happens on the server side, for what looks like a single request from the client's view in GraphQL?"
+    choices:
+      - "The server side always wraps up with a single operation too"
+      - "Depending on the query's structure, multiple resolvers (potentially multiple database queries) execute"
+      - "No processing happens on the server side at all"
+      - "The server side never parses the query's content"
+    answerIndex: 1
+    explanation: "It's one request from the client's view, but internally, the server calls multiple resolvers tied to each field in the query."
+
+  - question: "Why doesn't GraphQL lend itself to simple URL-based caching like REST's?"
+    choices:
+      - "Because GraphQL doesn't use HTTP"
+      - "Because the endpoint is always the same, and the response changes based on the query's content"
+      - "Because GraphQL doesn't support encryption"
+      - "Because GraphQL can't return a JSON-format response"
+    answerIndex: 1
+    explanation: "Because GraphQL's endpoint is fixed (/graphql) and the response varies with the query's content, simple URL-keyed caching doesn't apply well."
+
+  - question: "What's the correct understanding of the essential difference between REST and GraphQL?"
+    choices:
+      - "GraphQL is always a superior successor to REST"
+      - "It's a design-philosophy difference in who decides the response's shape — the server side or the client side"
+      - "They're the exact same mechanism, just under different names"
+      - "GraphQL is a proprietary protocol that doesn't use HTTP"
+    answerIndex: 1
+    explanation: "REST has the server side decide the response's shape ahead of time, while GraphQL has the client side decide it with every request."
