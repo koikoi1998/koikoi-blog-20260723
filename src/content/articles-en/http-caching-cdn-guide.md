@@ -2,6 +2,7 @@
 title: "Understanding the Rise of HTTPS and the End of Proxy Caching from a \"Top 1%\" Perspective — How It Relates to Browser Caching and CDNs"
 description: "With HTTPS now the norm, a proxy's role as a cache is said to have all but disappeared. Why did that happen? How is this different from a browser's cache? And how does a CDN relate to this shift? This article systematically explains three caching layers: proxy caching, browser caching, and CDNs."
 series: "web-proxy"
+subSeries: "main"
 order: 2
 tags: ["network", "http", "cdn", "cache", "infra"]
 emoji: "⚡"

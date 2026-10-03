@@ -2,6 +2,7 @@
 title: "プロキシとファイアウォールの使い分けを『上位1%』の視点で理解する——クラウドプロキシ・ゼロトラストとの関係"
 description: "プロキシとファイアウォールは、どちらも通信を中継・制御する仕組みだが、何が違い、どう使い分けるべきなのか。明示的プロキシと透過型プロキシの違い、クラウドプロキシ(SWG)とは何か、そしてゼロトラストとの関係までを体系的に理解する。"
 series: "web-proxy"
+subSeries: "main"
 order: 1
 tags: ["network", "proxy", "firewall", "security", "infra"]
 emoji: "🚦"

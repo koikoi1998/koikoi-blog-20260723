@@ -2,6 +2,7 @@
 title: "Understanding When to Use a Proxy vs. a Firewall from a \"Top 1%\" Perspective — And How Cloud Proxies and Zero Trust Fit In"
 description: "A proxy and a firewall are both mechanisms for relaying and controlling traffic, but what's actually different between them, and when should you use which? This article systematically explains the difference between explicit and transparent proxies, what a cloud proxy (SWG) is, and how it relates to zero trust."
 series: "web-proxy"
+subSeries: "main"
 order: 1
 tags: ["network", "proxy", "firewall", "security", "infra"]
 emoji: "🚦"

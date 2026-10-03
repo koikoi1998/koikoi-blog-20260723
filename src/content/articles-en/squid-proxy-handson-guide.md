@@ -2,6 +2,7 @@
 title: "The Top 1% Hands-On for Building an Explicit Proxy With Squid and Experiencing URL-Level Access Control"
 description: "Use the open-source proxy software Squid to actually build an explicit proxy server, configure a client to route through it, set up a URL-level allow/deny access control list (ACL), and read the access log to see exactly what got relayed and what got denied. An educational hands-on."
 series: "web-proxy"
+subSeries: "handson"
 order: 3
 tags: ["network", "proxy", "squid", "security", "handson"]
 emoji: "🧱"

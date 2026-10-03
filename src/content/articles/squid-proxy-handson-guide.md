@@ -2,6 +2,7 @@
 title: "Squidで明示的プロキシを構築し、URL単位のアクセス制御を体験する『上位1%』のハンズオン"
 description: "OSSのプロキシソフトウェアSquidを使い、実際に明示的プロキシサーバーを構築し、クライアント側にプロキシ設定を行って通信を経由させる。URL単位でのアクセス許可・拒否リスト(ACL)の設定、そしてアクセスログから実際に何が中継・拒否されているかを読み解くところまでを体験する、教育目的のハンズオン。"
 series: "web-proxy"
+subSeries: "handson"
 order: 3
 tags: ["network", "proxy", "squid", "security", "handson"]
 emoji: "🧱"
