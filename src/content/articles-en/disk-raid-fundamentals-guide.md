@@ -2,6 +2,7 @@
 title: "Understanding the Relationship Between RAID and Windows Disk Management from a \"Top 1%\" Perspective — Disk Initialization, MBR/GPT, Volumes, and Formatting"
 description: "After building a RAID array and installing the OS, the C drive works right away, but the D drive requires a disk initialization step before you can use it. What is disk initialization actually doing? This article systematically explains the relationship between the RAID layer and the OS disk management layer, covering the difference between MBR and GPT, the difference between a volume and a partition, and what formatting actually does."
 series: "storage"
+subSeries: "main"
 order: 1
 tags: ["storage", "raid", "windows-server", "infra"]
 emoji: "💾"

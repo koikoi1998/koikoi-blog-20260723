@@ -2,6 +2,7 @@
 title: "Understanding the Difference Between Fibre Channel and LAN Connections from a \"Top 1%\" Perspective — And How SAS Fits In"
 description: "You've been told that with a Fibre Channel connection, you don't need to worry about which segment the server and storage are on — but if it doesn't use IP addresses, how does it recognize the other end? This article systematically explains what FC (Fibre Channel), SAS (Serial Attached SCSI), and LAN (Ethernet/IP) — three connection methods — were each designed for, and how to choose between them."
 series: "storage"
+subSeries: "main"
 order: 2
 tags: ["storage", "fibre-channel", "sas", "san", "infra"]
 emoji: "🔌"

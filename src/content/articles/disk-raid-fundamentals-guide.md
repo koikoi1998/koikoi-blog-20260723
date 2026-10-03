@@ -2,6 +2,7 @@
 title: "RAIDとWindowsのディスク管理の関係を『上位1%』の視点で理解する——ディスクの初期化・MBR/GPT・ボリューム・フォーマットとは"
 description: "RAIDを構築してからOSをインストールすると、Cドライブはすぐ使えるのに、Dドライブは使う前にディスクの初期化が必要になる。ディスクの初期化とは何をしているのか。MBRとGPTの違い、ボリュームとパーティションの違い、最後に行うフォーマットが何をしているのかまで、RAIDとOSのディスク管理という2つのレイヤーの関係を体系的に理解する。"
 series: "storage"
+subSeries: "main"
 order: 1
 tags: ["storage", "raid", "windows-server", "infra"]
 emoji: "💾"

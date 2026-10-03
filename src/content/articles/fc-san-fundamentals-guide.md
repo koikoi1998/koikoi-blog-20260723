@@ -2,6 +2,7 @@
 title: "FCケーブル接続とLANケーブル接続の違いを『上位1%』の視点で理解する——SASとの使い分けまで"
 description: "FCケーブル接続の場合はサーバーとストレージのセグメントを気にしなくてよいと言われたが、IPアドレスを使わないなら相手をどう認識しているのか。FC(Fibre Channel)・SAS(Serial Attached SCSI)・LAN(Ethernet/IP)という3つの接続方式が、それぞれ何のために設計され、どう使い分けられているのかを体系的に理解する。"
 series: "storage"
+subSeries: "main"
 order: 2
 tags: ["storage", "fibre-channel", "sas", "san", "infra"]
 emoji: "🔌"

@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the correct state of the array after marking one disk as failed?"
+    choices:
+      - "The entire array becomes immediately unavailable"
+      - "It enters a \"degraded\" state, losing redundancy while the service keeps running"
+      - "A new disk gets added automatically, returning it to its original state"
+      - "All data is immediately lost"
+    answerIndex: 1
+    explanation: "When one disk fails, the array enters a degraded state, but the service keeps running on the remaining disk."
+
+  - question: "Why is a degraded state considered dangerous?"
+    choices:
+      - "Because reads and writes become completely impossible in a degraded state"
+      - "Because if the one remaining disk also fails, all data is lost"
+      - "Because the filesystem gets automatically deleted once degraded"
+      - "Because network connectivity gets cut off in a degraded state"
+    answerIndex: 1
+    explanation: "A degraded state depends entirely on the one remaining disk, so losing that disk too means losing all the data."
+
+  - question: "What does a \"rebuild,\" run after adding a new disk, actually do?"
+    choices:
+      - "Copies only the differential data onto the new disk"
+      - "Copies the entire content of the remaining healthy disk, start to finish, onto the new disk"
+      - "Only recreates the array's configuration file"
+      - "Restores the data that was on the failed disk"
+    answerIndex: 1
+    explanation: "A rebuild isn't a differential copy — it copies the healthy disk's entire content onto the new disk."
+
+  - question: "What's the single most important lesson this hands-on offers?"
+    choices:
+      - "Building RAID eliminates the need for backups entirely"
+      - "Whenever you build RAID, you also need to build monitoring/alerting that detects a degraded state"
+      - "RAID1 is always superior to RAID5"
+      - "The system needs to be completely shut down during a rebuild"
+    answerIndex: 1
+    explanation: "Without a monitoring/alerting mechanism, a degraded state risks going unnoticed for a long time."
+
+  - question: "What's the correct understanding of the relationship between RAID and backups?"
+    choices:
+      - "RAID can substitute for backups"
+      - "RAID defends against hardware failure, while it does nothing against accidental deletion or ransomware — they serve entirely separate purposes"
+      - "Having backups eliminates the need for RAID"
+      - "RAID and backups are just two names for the exact same mechanism"
+    answerIndex: 1
+    explanation: "RAID defends against hardware failure, while backups defend against logical problems like accidental deletion or ransomware — each serves a separate purpose."

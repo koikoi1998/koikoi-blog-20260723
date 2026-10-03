@@ -2,6 +2,7 @@
 title: "Understanding How the NTFS File System Works from a Top-1% Perspective — How Files Actually Become 'Usable' After a Format"
 description: "Formatting creates the MFT (Master File Table), but why does that alone make it possible to work in terms of 'files' and 'folders'? This article systematically covers the structure of an MFT record, the 'resident attribute' that lets a small file fit directly inside its own MFT record, the fact that a folder is really nothing more than a B-tree index, and what actually happens internally when you open a file in Explorer."
 series: "storage"
+subSeries: "main"
 order: 3
 tags: ["storage", "ntfs", "filesystem", "windows-server", "infra"]
 emoji: "🗂️"
