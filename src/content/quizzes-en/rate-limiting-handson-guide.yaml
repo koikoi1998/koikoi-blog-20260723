@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the correct description of the fixed-window approach's \"boundary burst\" defect?"
+    choices:
+      - "No requests get processed at all right when the window flips over"
+      - "Sending requests right at the end of a window and right after it flips over lets through roughly double the real intended limit"
+      - "The window's length never stays fixed and fluctuates"
+      - "The request counter increments twice for each request"
+    answerIndex: 1
+    explanation: "Concentrating requests right at the end of a window and right after it flips over abuses the counter reset, letting roughly double the limit through."
+
+  - question: "What role does the calculation `elapsed * REFILL_RATE` play in the token bucket approach?"
+    choices:
+      - "Calculating the request's source IP address"
+      - "Calculating how many tokens to continuously refill, based on time elapsed since the last request"
+      - "Deciding the HTTP status code"
+      - "Dynamically changing the window's length"
+    answerIndex: 1
+    explanation: "Instead of resetting at a fixed interval, the token bucket approach continuously refills tokens based on elapsed time."
+
+  - question: "What result came from testing the fixed-window and token-bucket approaches under the same conditions in this hands-on?"
+    choices:
+      - "Both rejected every request"
+      - "The fixed-window approach let all 20 requests through, while the token-bucket approach rejected some with a 429 error"
+      - "Both let every request through successfully"
+      - "The token-bucket approach let through more requests"
+    answerIndex: 1
+    explanation: "The fixed-window approach let all 20 requests through via the boundary burst, while the token-bucket approach could only consume however many tokens had actually been refilled, rejecting some."
+
+  - question: "Why can't the fixed-window approach be called \"always inferior\"?"
+    choices:
+      - "Because the fixed-window approach is always faster to process"
+      - "Because when implementation simplicity itself has real value (a use case where a rough cap suffices), the fixed-window approach can be entirely sufficient"
+      - "Because the fixed-window approach has been improved to never produce a boundary burst"
+      - "Because the fixed-window approach is newer technology than the token bucket"
+    answerIndex: 1
+    explanation: "Where implementation simplicity matters most, it can be rational to choose the fixed-window approach even while accepting the boundary-burst risk."
+
+  - question: "What should you watch for when distributing rate limiting across multiple servers?"
+    choices:
+      - "Having each server manage its own counter independently is the safest approach"
+      - "If each server manages its own counter or token count independently, the effective limit loosens by a factor equal to the server count, so you need to centralize it in a shared store"
+      - "Rate limiting itself should be disabled when distributing across servers"
+      - "Distributed setups require using the fixed-window approach"
+    answerIndex: 1
+    explanation: "If each server manages state independently, the effective limit loosens by a factor equal to the number of servers, so centralizing in a shared store like Redis is necessary."

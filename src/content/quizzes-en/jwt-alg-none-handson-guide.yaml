@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the direct cause of the \"alg: none\" vulnerability?"
+    choices:
+      - "Because a JWT's payload isn't encrypted"
+      - "Because the server's verification logic unconditionally trusts the alg value in the token's header, skipping signature verification when none is specified"
+      - "Because a JWT's header isn't Base64-encoded"
+      - "Because the token has no expiration set"
+    answerIndex: 1
+    explanation: "This vulnerability arises when the server unconditionally trusts the alg value in the token's own header and skips verification when it's none."
+
+  - question: "What happened in this hands-on when a forged token was sent to the vulnerable verification endpoint?"
+    choices:
+      - "It was rejected immediately because it had no signature"
+      - "Despite carrying no signature at all, the forged role: admin permission was accepted as-is"
+      - "The server crashed"
+      - "The token's content was automatically corrected"
+    answerIndex: 1
+    explanation: "The vulnerable implementation skipped signature verification entirely when alg: none was specified, accepting the forged payload as-is."
+
+  - question: "What's the correct defense against the \"alg: none\" vulnerability?"
+    choices:
+      - "Limiting the payload's size"
+      - "The server holds a pre-fixed list of allowed algorithms, and unconditionally rejects any token whose header's alg doesn't match"
+      - "Shortening the token's expiration"
+      - "Using HTTPS"
+    answerIndex: 1
+    explanation: "The correct defense never trusts the header's alg value, instead checking it against a pre-fixed allowed list on the server."
+
+  - question: "What's the single most important design principle this hands-on demonstrates?"
+    choices:
+      - "Encrypting every input makes it safe"
+      - "An untrusted input's content must never be used to decide how that same input gets verified"
+      - "You should always use the newest signature algorithm available"
+      - "You should always use session-based authentication instead of JWT"
+    answerIndex: 1
+    explanation: "The core of this hands-on is the principle that an untrusted input, like a token's header, must never decide its own verification method."
+
+  - question: "What's the shared underlying trait between the \"alg: none\" vulnerability and HTTP request smuggling?"
+    choices:
+      - "Both stem from a flaw in TLS's own implementation"
+      - "Both arise from unconditionally interpreting or trusting untrusted (or contradictory) input"
+      - "Both are caused by a DNS misconfiguration"
+      - "Both only ever occur in the same specific software"
+    answerIndex: 1
+    explanation: "Both problems share the same root structure: unconditionally interpreting or trusting input that's untrusted or contradictory."
