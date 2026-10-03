@@ -59,7 +59,7 @@ Regardless of how much content currently exists, here's the full list of faculti
 |---|---|---|
 | VPN Department | [vpn](/en/sitemap#series-list) / [modern-vpn](/en/sitemap#series-list) / [site-to-site-vpn](/en/sitemap#series-list) | 🎓 Fully open (through graduate school) |
 | Web Proxy/Caching Department | [web-proxy](/en/sitemap#series-list) | 🌱 Few articles (through Freshman hands-on) |
-| Load Balancing Department | [load-balancing](/en/sitemap#series-list) | 📙 Reached Junior level |
+| Load Balancing Department | [load-balancing](/en/sitemap#series-list) | 🎓 Fully open (through graduate school) |
 
 ### Cloud Engineering Faculty
 
@@ -358,7 +358,7 @@ No articles exist here yet. As with the other departments, this is expected to c
 
 ## Load Balancing Department
 
-A newly launched department, started from zero articles. Its corresponding series is [load-balancing](/en/sitemap#series-list). Working through this department's curriculum yourself aims to get you to a real-world level of judgment on the L4/L7 load balancer distinction, routing algorithm and health check design, TLS certificate placement (termination, passthrough, or bridging), making the load balancer itself redundant, and GSLB-based global distribution.
+A newly launched department, started from zero articles, now the 8th department to reach "fully open," following Active Directory, AWS, Ansible/IaC, VPN, DNS, Mail, and Windows Server. Its corresponding series is [load-balancing](/en/sitemap#series-list). Working through this department's full curriculum yourself aims to get you to a real-world level of judgment on the L4/L7 load balancer distinction, routing algorithm and health check design, TLS certificate placement (termination, passthrough, or bridging), making the load balancer itself redundant, GSLB-based global distribution, and niche-spec and security weaknesses like DSR and HTTP request smuggling.
 
 ### General Education (Prerequisites)
 
@@ -388,7 +388,21 @@ None.
 
 1. [A Top 1% Hands-On for Making Two HAProxy Servers Redundant With keepalived and Experiencing Automatic VIP Failover](/en/articles/load-balancing-keepalived-handson-guide)
 
-**Work through and understand this Junior hands-on, and you're at "Junior" level.** Senior (niche-spec content) and Graduate School (security hardening) will be filled in as more content gets added.
+### Senior (Graduation): Niche-Spec Hands-On
+
+1. [A Top 1% Hands-On for Building DSR (Direct Server Return) With IPVS and Feeling a Design Where the Response Never Touches the Load Balancer](/en/articles/load-balancing-dsr-handson-guide)
+
+**Work through and understand this one, and you're at graduation level, as a "Senior."**
+
+### Graduate School: Security-Hardening Hands-On (An Attacker's Perspective)
+
+1. [A Top 1% Hands-On for Reproducing HTTP Request Smuggling With Curl and Netcat, and Confirming HAProxy's Strict Parsing Defense](/en/articles/load-balancing-request-smuggling-handson-guide)
+
+An educational, defense-focused hands-on lab, meant to strengthen the defenses of a test environment you manage yourself (it contains no procedure for attacking a third party's system).
+
+### Architect and Beyond
+
+No articles exist here yet. As with the other departments, this is expected to cover system-wide architecture design spanning multiple departments.
 
 ### Audio Learning Materials (Regardless of Grade)
 
