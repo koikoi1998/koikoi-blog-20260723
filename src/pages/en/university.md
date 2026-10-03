@@ -59,7 +59,7 @@ Regardless of how much content currently exists, here's the full list of faculti
 |---|---|---|
 | VPN Department | [vpn](/en/sitemap#series-list) / [modern-vpn](/en/sitemap#series-list) / [site-to-site-vpn](/en/sitemap#series-list) | 🎓 Fully open (through graduate school) |
 | Web Proxy/Caching Department | [web-proxy](/en/sitemap#series-list) | 🌱 Few articles (through Freshman hands-on) |
-| Load Balancing Department | [load-balancing](/en/sitemap#series-list) | 📖 General Ed through Freshman level |
+| Load Balancing Department | [load-balancing](/en/sitemap#series-list) | 📙 Reached Junior level |
 
 ### Cloud Engineering Faculty
 
@@ -358,7 +358,7 @@ No articles exist here yet. As with the other departments, this is expected to c
 
 ## Load Balancing Department
 
-A newly launched department, started from zero articles. Its corresponding series is [load-balancing](/en/sitemap#series-list). Working through this department's curriculum yourself aims to get you to a real-world level of judgment on the L4/L7 load balancer distinction, routing algorithm and health check design, and TLS certificate placement (termination, passthrough, or bridging).
+A newly launched department, started from zero articles. Its corresponding series is [load-balancing](/en/sitemap#series-list). Working through this department's curriculum yourself aims to get you to a real-world level of judgment on the L4/L7 load balancer distinction, routing algorithm and health check design, TLS certificate placement (termination, passthrough, or bridging), making the load balancer itself redundant, and GSLB-based global distribution.
 
 ### General Education (Prerequisites)
 
@@ -376,7 +376,19 @@ None.
 
 1. [A Top 1% Hands-On for Building an L7 Load Balancer With HAProxy and Distributing Traffic Across Multiple Backend Servers](/en/articles/load-balancing-haproxy-handson-guide)
 
-**Work through and understand these four, and you're at a solid checkpoint as a "Freshman."** Sophomore and beyond (supplementary deep-dives, real-world-scenario hands-on, niche-spec content, security hardening) will be filled in as more content gets added.
+**Work through and understand these four, and you're at a solid checkpoint as a "Freshman."**
+
+### Sophomore: Supplementary Deep-Dives
+
+1. [Understanding GSLB (Global Server Load Balancing) From a Top 1% Perspective](/en/articles/load-balancing-gslb-guide)
+2. [Understanding Load Balancer Redundancy Itself From a Top 1% Perspective](/en/articles/load-balancing-vrrp-keepalived-guide)
+3. [Understanding the PROXY Protocol From a Top 1% Perspective](/en/articles/load-balancing-proxy-protocol-guide)
+
+### Junior: Real-World-Scenario Hands-On
+
+1. [A Top 1% Hands-On for Making Two HAProxy Servers Redundant With keepalived and Experiencing Automatic VIP Failover](/en/articles/load-balancing-keepalived-handson-guide)
+
+**Work through and understand this Junior hands-on, and you're at "Junior" level.** Senior (niche-spec content) and Graduate School (security hardening) will be filled in as more content gets added.
 
 ### Audio Learning Materials (Regardless of Grade)
 
