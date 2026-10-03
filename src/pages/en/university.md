@@ -400,6 +400,12 @@ None.
 
 An educational, defense-focused hands-on lab, meant to strengthen the defenses of a test environment you manage yourself (it contains no procedure for attacking a third party's system).
 
+### Capstone Project
+
+1. [The Load Balancing Department's Capstone Project: Turning a Fictional Video-Streaming Startup's Traffic-Distribution Infrastructure Into a Portfolio Piece](/en/articles/load-balancing-capstone-handson-guide)
+
+An integrative exercise where you combine, on your own, the techniques learned individually in earlier hands-on labs (GSLB, L7 load balancing with HAProxy, VRRP/keepalived redundancy, TLS certificate placement, DSR, preserving the client's IP via the PROXY protocol, HTTP request smuggling defense) into a single fictional video-streaming startup's traffic-distribution infrastructure. It calls for the ability to design from requirements, not just follow steps, and the deliverable is assembled as a portfolio piece usable in a job search.
+
 ### Architect and Beyond
 
 No articles exist here yet. As with the other departments, this is expected to cover system-wide architecture design spanning multiple departments.
