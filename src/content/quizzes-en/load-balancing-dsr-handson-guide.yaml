@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the core mechanism behind DSR (Direct Server Return)?"
+    choices:
+      - "The load balancer rewrites both the destination IP address and port number before forwarding"
+      - "The load balancer leaves the destination IP address unchanged, rewriting only the destination MAC address, before forwarding"
+      - "The load balancer caches and resends the response packet"
+      - "The load balancer decrypts TLS before forwarding"
+    answerIndex: 1
+    explanation: "DSR works by never rewriting the destination IP address (the VIP) at all, forwarding only after rewriting the destination MAC address."
+
+  - question: "Why can't DSR be used with a backend server on a different subnet?"
+    choices:
+      - "Because encrypted communication isn't possible across subnets"
+      - "Because it forwards purely by rewriting the MAC address, restricting it to the same L2 network"
+      - "Because health checks don't work across subnets"
+      - "Because DNS configuration becomes too complex"
+    answerIndex: 1
+    explanation: "Since DSR forwards purely by rewriting the destination MAC address, it's restricted to cases where the load balancer and backend sit within the same L2 network."
+
+  - question: "What problem occurs if `arp_ignore` isn't configured on the backend server?"
+    choices:
+      - "The backend server becomes completely unable to receive packets addressed to the VIP"
+      - "The backend server itself responds to ARP for the VIP, letting client requests reach it directly, bypassing the load balancer"
+      - "The load balancer fails to start"
+      - "The response packet's source IP address changes"
+    answerIndex: 1
+    explanation: "Without arp_ignore, the backend server itself also responds to ARP for the VIP, breaking load balancing entirely."
+
+  - question: "In a DSR setup, what's the correct source IP address on a response packet?"
+    choices:
+      - "The backend server's real IP address"
+      - "The VIP (the virtual IP address the load balancer publishes)"
+      - "The load balancer's IP address"
+      - "The client's IP address"
+    answerIndex: 1
+    explanation: "In DSR, the response's source IP address stays the VIP, so the client side sees no difference from an ordinary load balancer."
+
+  - question: "Why is DSR favored for a service with large response data, like video streaming?"
+    choices:
+      - "Because it always speeds up request processing"
+      - "Because it completely decouples response bandwidth from the load balancer, eliminating the load balancer's own bandwidth bottleneck"
+      - "Because it eliminates the need for TLS certificate management"
+      - "Because it enables failover independent of DNS TTL"
+    answerIndex: 1
+    explanation: "DSR decouples response bandwidth from the load balancer, making it a structurally correct fix for the bandwidth asymmetry in services where response data vastly outweighs requests."

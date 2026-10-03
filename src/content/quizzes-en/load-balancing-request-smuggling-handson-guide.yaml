@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the direct cause that makes HTTP request smuggling possible?"
+    choices:
+      - "A TLS certificate has expired"
+      - "The front end and the backend interpret Content-Length and Transfer-Encoding — two ways of deciding a request's boundary — differently"
+      - "A DNS answer has been tampered with"
+      - "The health check interval is too long"
+    answerIndex: 1
+    explanation: "Request smuggling becomes possible when the front end and the backend disagree on which of Content-Length or Transfer-Encoding to trust for the boundary."
+
+  - question: "What's the fundamental reason a smuggled request gets combined with an unrelated client's request?"
+    choices:
+      - "The load balancer establishes a brand new connection to the backend every single time"
+      - "The connection to the backend (Keep-Alive) gets reused across requests from multiple different clients"
+      - "DNS TTL is too short"
+      - "SSL termination is enabled"
+    answerIndex: 1
+    explanation: "Reusing the connection to the backend (Keep-Alive) is exactly the foundation that lets a smuggled request leak into the next request."
+
+  - question: "What does RFC 7230 state should happen when both Content-Length and Transfer-Encoding appear in a single request?"
+    choices:
+      - "Content-Length should always be interpreted as authoritative"
+      - "The request should be rejected"
+      - "Transfer-Encoding should always be interpreted as authoritative"
+      - "The values of both headers should be added together"
+    answerIndex: 1
+    explanation: "RFC 7230 explicitly states that when both headers are present in a contradictory way, the request should be rejected."
+
+  - question: "What behavior was confirmed in this hands-on when the request was routed through HAProxy?"
+    choices:
+      - "It was forwarded to the backend normally, returning 200 OK"
+      - "It was rejected with 400 Bad Request, and never forwarded to the backend"
+      - "The load balancer itself stopped"
+      - "The request got automatically fixed and then forwarded"
+    answerIndex: 1
+    explanation: "HAProxy detected the request's contradictory headers and rejected it with 400 Bad Request before ever forwarding it to the backend."
+
+  - question: "What's the fundamentally correct fix for HTTP request smuggling?"
+    choices:
+      - "Always manually keeping the front end's and backend's interpretation methods in sync"
+      - "Rejecting the contradictory input itself, rather than deciding which interpretation is correct"
+      - "Banning the use of the Transfer-Encoding header entirely"
+      - "Banning the use of the Content-Length header entirely"
+    answerIndex: 1
+    explanation: "The fundamental fix is rejecting the contradictory input itself as a spec violation, never letting the question of which interpretation to trust arise at all."
