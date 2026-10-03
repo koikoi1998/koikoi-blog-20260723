@@ -29,7 +29,7 @@ feedback/00_その他/05_指摘事項.txt への対応として作成。2026-09-
 | サーバーエンジニア学部 | メール基盤学科 | messaging | 🎓 開講済み(大学院まで) |
 | サーバーエンジニア学部 | Linux基盤学科 | linux | 📖 教養課程相当(全学科共通科目に近い) |
 | サーバーエンジニア学部 | Windows Server学科 | windows-server | 🎓 開講済み(大学院まで) |
-| サーバーエンジニア学部 | ストレージ学科 | storage | 🌱 記事少数 |
+| サーバーエンジニア学部 | ストレージ学科 | storage | 📖 教養課程〜1年生相当 |
 | ネットワークエンジニア学部 | VPN学科 | vpn, modern-vpn, site-to-site-vpn | 🎓 開講済み(大学院まで) |
 | ネットワークエンジニア学部 | Webプロキシ・キャッシュ学科 | web-proxy | 📖 教養課程〜1年生相当 |
 | ネットワークエンジニア学部 | ロードバランシング学科 | load-balancing | 🎓 開講済み(大学院まで) |
@@ -41,8 +41,8 @@ feedback/00_その他/05_指摘事項.txt への対応として作成。2026-09-
 
 ## 次にやること(優先順位順)
 
-1. **Linux基盤学科・ストレージ学科を、DNS/メール/Windows Server/ロードバランシング/Web-API/Webプロキシで確立したパターンで育てる**: 着手順は未定。
-2. **Web/API学科・Webプロキシ・キャッシュ学科を、2年生以降(補足・深掘り編、実務シナリオ編ハンズオン、ニッチな仕様・機能編、セキュリティ強化編)まで育てる**: 両学科とも現状は1年生相当(📖)まで。
+1. **Linux基盤学科を、同じパターンで育てる**: 着手順は未定(現状📖、全学科共通の基礎科目に近い位置づけ)。
+2. **Web/API学科・Webプロキシ・キャッシュ学科・ストレージ学科を、2年生以降(補足・深掘り編、実務シナリオ編ハンズオン、ニッチな仕様・機能編、セキュリティ強化編)まで育てる**: 3学科とも現状は1年生相当(📖)まで。
 
 (「開講済み」全8学科(ActiveDirectory・AWS・Ansible/IaC・VPN・DNS基盤・メール基盤・Windows Server・ロードバランシング)すべてに卒業制作ハンズオンが揃った。2026-10-09完了。完了メモ参照。)
 
@@ -71,6 +71,7 @@ feedback/00_その他/05_指摘事項.txt への対応として作成。2026-09-
 - **2026-10-09: ロードバランシング学科に卒業制作(キャップストーン)ハンズオンを新設**。架空の動画配信スタートアップ(KoiKoi Stream)が東京・バージニアの2つのデータセンターへサービスを拡張するという設定を舞台に、GSLB・HAProxyによるL7ロードバランシング・VRRP/keepalivedによる冗長化・SSL配置方式の選定・DSR・PROXY protocol・HTTPリクエストスマグリング対策を自分で設計して統合する総合演習を追加。`load-balancing-audio-review-guide`を11記事版に同期(order 12→14)。`university.md`/`en/university.md`のロードバランシング学科セクションに「卒業制作」節を追加。**これで「開講済み」全8学科(ActiveDirectory・AWS・Ansible/IaC・VPN・DNS基盤・メール基盤・Windows Server・ロードバランシング)すべてに卒業制作ハンズオンが揃った。** 次の優先事項は、Linux基盤・ストレージ・Webプロキシ・Web/API学科の育成。
 - **2026-10-11: Web/API学科が「🌱記事少数」から「📖1年生相当」に到達**。既存2記事(restful-api-guide, payment-api-guide)にsubSeries(main/supplementary)をretrofitし、1年生相当ハンズオン1本(Pythonのhttp.serverだけでRESTful APIを構築し、POSTの非冪等な挙動とPUTの冪等な挙動の違いをcurlで検証)を追加。記事数が最も少なかった学科のため最優先で着手。`university.md`/`en/university.md`にWeb/API学科セクションを新設(1年生・2年生まで)、ロードマップ表のステータスも更新。「今後の予定」節のapi学科未開講記述と全7→8学科の古い記述もあわせて修正。次の優先事項は、Linux基盤・ストレージ・Webプロキシ学科の育成と、Web/API学科を3年生以降まで育てること。
 - **2026-10-11: Webプロキシ・キャッシュ学科が「🌱記事少数」から「📖1年生相当」に到達**。既存3記事(proxy-firewall-guide, http-caching-cdn-guide, squid-proxy-handson-guide)が、すでに座学2本+ハンズオン1本という1年生相当の構成で揃っていたため、新規コンテンツ追加は行わず、subSeries(main/handson)のretrofitと大学ページへの反映のみで対応。`university.md`/`en/university.md`にWebプロキシ・キャッシュ学科セクションを新設、ロードマップ表のステータスも更新。次の優先事項は、Linux基盤・ストレージ学科の育成と、Web/API学科・Webプロキシ・キャッシュ学科を2年生以降まで育てること。
+- **2026-10-13: ストレージ学科が「🌱記事少数」から「📖1年生相当」に到達**。既存3記事(disk-raid-fundamentals-guide, fc-san-fundamentals-guide, ntfs-mft-internals-guide)にsubSeries: mainをretrofitし、1年生相当ハンズオン1本(mdadmでLinuxソフトウェアRAID1を構築し、ディスク障害とリビルドを自分の手で再現)を追加。記事数が4本に到達したため音声復習記事も新設。`university.md`/`en/university.md`にストレージ学科セクションを新設、ロードマップ表のステータスも更新。次の優先事項は、Linux基盤学科の育成と、Web/API学科・Webプロキシ・キャッシュ学科・ストレージ学科を2年生以降まで育てること。
 
 ## 運用ルール
 

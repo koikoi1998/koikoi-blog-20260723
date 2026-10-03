@@ -51,7 +51,7 @@ Regardless of how much content currently exists, here's the full list of faculti
 | Mail Infrastructure Department | [messaging](/en/sitemap#series-list) | 🎓 Fully open (through graduate school) |
 | Linux Infrastructure Department | [linux](/en/sitemap#series-list) | 📖 General education level (close to a shared foundational subject across departments) |
 | Windows Server Department | [windows-server](/en/sitemap#series-list) | 🎓 Fully open (through graduate school) |
-| Storage Department | [storage](/en/sitemap#series-list) | 🌱 Few articles |
+| Storage Department | [storage](/en/sitemap#series-list) | 📖 General Ed through Freshman level |
 
 ### Network Engineering Faculty
 
@@ -630,7 +630,33 @@ None.
 
 **Work through and understand these three, and you're at a solid checkpoint as a "Freshman."** Sophomore and beyond (supplementary deep-dives, real-world-scenario hands-on, niche-spec content, security hardening) will be filled in as more content gets added.
 
+## Storage Department
+
+Its corresponding series is [storage](/en/sitemap#series-list).
+
+### General Education (Prerequisites)
+
+None.
+
+### Freshman: Fundamentals + Your First Hands-On
+
+**Lecture (fundamentals, 3 articles)**
+
+1. [Understanding the Relationship Between RAID and Windows Disk Management From a Top 1% Perspective](/en/articles/disk-raid-fundamentals-guide)
+2. [Understanding the Difference Between FC Cabling and LAN Cabling From a Top 1% Perspective](/en/articles/fc-san-fundamentals-guide)
+3. [Understanding How the NTFS Filesystem Works From a Top 1% Perspective](/en/articles/ntfs-mft-internals-guide)
+
+**Hands-On (fundamentals, 1 article)**
+
+1. [A Top 1% Hands-On for Building a Linux Software RAID1 Array With mdadm and Reproducing a Disk Failure and Rebuild Yourself](/en/articles/mdadm-raid-handson-guide)
+
+**Work through and understand these four, and you're at a solid checkpoint as a "Freshman."** Sophomore and beyond (supplementary deep-dives, real-world-scenario hands-on, niche-spec content, security hardening) will be filled in as more content gets added.
+
+### Audio Learning Materials (Regardless of Grade)
+
+- [[Listen] The Storage Fundamentals Series, Fully Recapped](/en/articles/storage-audio-review-guide) (for reviewing after graduation)
+
 ## What's Next
 
 - All 8 "open" departments (Active Directory, AWS, Ansible/IaC, VPN, DNS, Mail, Windows Server, Load Balancing) now have a **capstone hands-on (a graduation project)** combining content across multiple grades. The deliverable is assembled as a GitHub-repository-style format usable as a job-hunting portfolio.
-- The Linux Infrastructure, Storage, Web Proxy/Caching, and Web/API Departments are planned to be grown to the same level as the other "open" departments (the Web/API and Web Proxy/Caching Departments have already reached Freshman level).
+- The Linux Infrastructure, Storage, Web Proxy/Caching, and Web/API Departments are planned to be grown to the same level as the other "open" departments (the Web/API, Web Proxy/Caching, and Storage Departments have already reached Freshman level).
