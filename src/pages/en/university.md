@@ -72,7 +72,7 @@ Regardless of how much content currently exists, here's the full list of faculti
 
 | Department | Corresponding Series | Status |
 |---|---|---|
-| Web/API Department | [api](/en/sitemap#series-list) | 🌱 Few articles |
+| Web/API Department | [api](/en/sitemap#series-list) | 📖 General Ed through Freshman level |
 
 **Legend**: 🎓 Open through graduate school / 📗 Open through all 4 hands-on tiers (theory is thin) / 📙 Reached Junior level / 📖 General education–Freshman level / 🌱 Few articles / ⬜ Not started
 
@@ -583,8 +583,33 @@ No articles exist here yet. As with the other departments, this is expected to c
 
 - [[Listen] The Windows Server Operations Series, Fully Recapped](/en/articles/windows-server-audio-review-guide) (for reviewing after graduation)
 
+## Web/API Department
+
+A department whose growth started from a small number of articles. Its corresponding series is [api](/en/sitemap#series-list).
+
+### General Education (Prerequisites)
+
+None.
+
+### Freshman: Fundamentals + Your First Hands-On
+
+**Lecture (fundamentals, 1 article)**
+
+1. [Understanding RESTful APIs — From HTTP/JSON Fundamentals to Real-World Design — From a Top 1% Perspective](/en/articles/restful-api-guide)
+
+**Hands-On (fundamentals, 1 article)**
+
+1. [A Top 1% Hands-On for Building a Simple RESTful API Yourself and Verifying Idempotency and Pagination With curl](/en/articles/restful-api-handson-guide)
+
+**Work through and understand these two, and you're at a solid checkpoint as a "Freshman."**
+
+### Sophomore: Supplementary Deep-Dives
+
+1. [Understanding What's Actually Happening Behind a Payment API From a Top 1% Perspective](/en/articles/payment-api-guide) — a dense, real-world deep-dive using Stripe as the example, covering PaymentIntent's multi-stage lifecycle, webhooks, and PCI DSS compliance.
+
+Junior and beyond (real-world-scenario hands-on, niche-spec content, security hardening) will be filled in as more content gets added.
+
 ## What's Next
 
-- All 7 "open" departments (Active Directory, AWS, Ansible/IaC, VPN, DNS, Mail, Windows Server) now have a **capstone hands-on (a graduation project)** combining content across multiple grades. The deliverable is assembled as a GitHub-repository-style format usable as a job-hunting portfolio.
-- New departments with no articles yet, such as Load Balancing, are planned.
-- The Linux Infrastructure, Storage, Web Proxy/Caching, and Web/API Departments are planned to be grown to the same level as the other "open" departments.
+- All 8 "open" departments (Active Directory, AWS, Ansible/IaC, VPN, DNS, Mail, Windows Server, Load Balancing) now have a **capstone hands-on (a graduation project)** combining content across multiple grades. The deliverable is assembled as a GitHub-repository-style format usable as a job-hunting portfolio.
+- The Linux Infrastructure, Storage, Web Proxy/Caching, and Web/API Departments are planned to be grown to the same level as the other "open" departments (the Web/API Department has already reached Freshman level).
