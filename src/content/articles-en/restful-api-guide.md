@@ -2,6 +2,7 @@
 title: "What Is a RESTful API? Understanding from HTTP/JSON Basics to Practical Design from a \"Top 1%\" Perspective"
 description: "A systematic look at foundational terms like RESTful API, HTTPS, and JSON — from how HTTP works, through REST design philosophy, to authentication, idempotency, and pagination."
 series: "api"
+subSeries: "main"
 order: 1
 tags: ["api", "http", "rest", "json", "web"]
 emoji: "🔗"

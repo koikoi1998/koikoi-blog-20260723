@@ -2,6 +2,7 @@
 title: "RESTful APIとは何か？HTTP・JSONの基礎から実務設計まで『上位1%』の視点で理解する"
 description: "RESTful API・HTTPS・JSONといった基礎用語を、HTTPの仕組みからREST設計思想、認証・冪等性・ページネーションまで体系的に理解する。"
 series: "api"
+subSeries: "main"
 order: 1
 tags: ["api", "http", "rest", "json", "web"]
 emoji: "🔗"

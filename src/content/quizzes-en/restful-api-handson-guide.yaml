@@ -1,0 +1,45 @@
+questions:
+  - question: "What happened when this hands-on sent the same POST request body twice?"
+    choices:
+      - "Only one resource was created, and the second request was ignored"
+      - "Two separate resources, with different IDs, were created"
+      - "The server returned an error, and neither was created"
+      - "One resource was updated twice"
+    answerIndex: 1
+    explanation: "Because POST is deliberately non-idempotent, sending the same content twice created two separate resources, id 1 and id 2."
+
+  - question: "What result confirmed that PUT is idempotent in this hands-on?"
+    choices:
+      - "Sending the same PUT content twice to the same ID made the server's state converge to the exact same single result"
+      - "A new resource was created every time PUT was sent"
+      - "PUT could only be sent once, by spec"
+      - "The server stopped after a PUT request"
+    answerIndex: 0
+    explanation: "Sending the same PUT request content to the same ID any number of times converges the server's state to the exact same result: that ID has this content."
+
+  - question: "What's the correct understanding of idempotency?"
+    choices:
+      - "The HTTP spec automatically guarantees idempotency per method"
+      - "Idempotency is a design agreement realized through the server's own implementation"
+      - "Idempotency is determined entirely by client-side configuration"
+      - "Idempotency only applies to requests using the JSON format"
+    answerIndex: 1
+    explanation: "Idempotency isn't something the HTTP spec guarantees automatically — it's realized when the server deliberately implements \"this method behaves this way.\""
+
+  - question: "What structure did this hands-on's pagination response confirm?"
+    choices:
+      - "The full count (total) and that page's data (items) came back as separate fields"
+      - "The full dataset always came back in a single response"
+      - "The same data always came back regardless of the page number specified"
+      - "Pagination was implemented using only HTTP headers"
+    answerIndex: 0
+    explanation: "The response contained a total field stating the full count, and a separate items field holding just that page's data."
+
+  - question: "What lesson does this hands-on offer for implementing client-side retry logic?"
+    choices:
+      - "Every HTTP method can be resent unconditionally"
+      - "You need to distinguish between idempotent methods (like PUT) and methods that should never be resent (like POST)"
+      - "Retry logic only ever needs to be implemented on the server side"
+      - "Retries can only ever happen with a GET request"
+    answerIndex: 1
+    explanation: "Unconditionally resending a non-idempotent method like POST risks creating unintended duplicate resources, so you need to distinguish which methods are safe to resend."

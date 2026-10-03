@@ -2,6 +2,7 @@
 title: "Understanding Payment APIs from a \"Top 1%\" Perspective: Reading PaymentIntents and Webhooks Through Stripe"
 description: "Why don't payment APIs work as a single 'call charge' operation? Following the actual payment screens a user sees, this article uses Stripe as a concrete example to systematically cover the multi-step PaymentIntent lifecycle, 3D Secure (SCA) support, what a webhook actually is and the correct way to detect payment completion, and how card numbers are kept from ever touching your own server at all, for PCI DSS."
 series: "api"
+subSeries: "supplementary"
 order: 2
 tags: ["api", "payment", "security", "web"]
 emoji: "💳"

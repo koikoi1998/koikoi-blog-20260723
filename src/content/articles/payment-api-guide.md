@@ -2,6 +2,7 @@
 title: "決済APIの裏側の仕組みを『上位1%』の視点で理解する——Stripeを題材にPaymentIntentとWebhookを読み解く"
 description: "決済APIがなぜ単純な「1回のcharge呼び出し」ではなく、PaymentIntentという多段階のライフサイクルを持つのか。ユーザーが実際に目にする決済画面の流れを追いながら、その裏側で何が起きているのかを、3Dセキュア(SCA)対応、Webhookとは何か、決済完了の正しい検知方法、カード番号を自社サーバーに一切触れさせないPCI DSS対応の仕組みまで、Stripeを具体例に体系的に理解する。"
 series: "api"
+subSeries: "supplementary"
 order: 2
 tags: ["api", "payment", "security", "web"]
 emoji: "💳"
