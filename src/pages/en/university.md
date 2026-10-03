@@ -72,7 +72,7 @@ Regardless of how much content currently exists, here's the full list of faculti
 
 | Department | Corresponding Series | Status |
 |---|---|---|
-| Web/API Department | [api](/en/sitemap#series-list) | 📙 Reached Junior level |
+| Web/API Department | [api](/en/sitemap#series-list) | 🎓 Fully open (through graduate school) |
 
 **Legend**: 🎓 Open through graduate school / 📗 Open through all 4 hands-on tiers (theory is thin) / 📙 Reached Junior level / 📖 General education–Freshman level / 🌱 Few articles / ⬜ Not started
 
@@ -585,7 +585,7 @@ No articles exist here yet. As with the other departments, this is expected to c
 
 ## Web/API Department
 
-A department whose growth started from a small number of articles. Its corresponding series is [api](/en/sitemap#series-list).
+A department whose growth started from a small number of articles, now the 9th department to reach "fully open," following Load Balancing. Its corresponding series is [api](/en/sitemap#series-list).
 
 ### General Education (Prerequisites)
 
@@ -613,7 +613,21 @@ None.
 
 1. [A Top 1% Hands-On for Building a Webhook Receiver Yourself and Experiencing Signature Verification and Handling a Retried Delivery](/en/articles/webhook-signature-handson-guide)
 
-**Work through and understand this Junior hands-on, and you're at "Junior" level.** Senior (niche-spec content) and Graduate School (security hardening) will be filled in as more content gets added.
+### Senior (Graduation): Niche-Spec Hands-On
+
+1. [A Top 1% Hands-On for Implementing Rate Limiting Yourself With a Token Bucket, and Reproducing the Fixed Window's Boundary Burst](/en/articles/rate-limiting-handson-guide)
+
+**Work through and understand this one, and you're at graduation level, as a "Senior."**
+
+### Graduate School: Security-Hardening Hands-On (An Attacker's Perspective)
+
+1. [A Top 1% Hands-On for Reproducing JWT's 'alg: none' Vulnerability Yourself and Confirming Defense via an Explicit Allowed-Algorithm List](/en/articles/jwt-alg-none-handson-guide)
+
+An educational, defense-focused hands-on lab, meant to strengthen the defenses of a test environment you manage yourself (it contains no procedure for attacking a third party's system).
+
+### Architect and Beyond
+
+No articles exist here yet. As with the other departments, this is expected to cover system-wide architecture design spanning multiple departments.
 
 ### Audio Learning Materials (Regardless of Grade)
 
@@ -668,5 +682,5 @@ None.
 
 ## What's Next
 
-- All 8 "open" departments (Active Directory, AWS, Ansible/IaC, VPN, DNS, Mail, Windows Server, Load Balancing) now have a **capstone hands-on (a graduation project)** combining content across multiple grades. The deliverable is assembled as a GitHub-repository-style format usable as a job-hunting portfolio.
-- The Linux Infrastructure, Storage, Web Proxy/Caching, and Web/API Departments are planned to be grown to the same level as the other "open" departments (the Web/API, Web Proxy/Caching, and Storage Departments have already reached Freshman level).
+- The "open" departments (Active Directory, AWS, Ansible/IaC, VPN, DNS, Mail, Windows Server, Load Balancing) already have a **capstone hands-on (a graduation project)** combining content across multiple grades. The deliverable is assembled as a GitHub-repository-style format usable as a job-hunting portfolio. The Web/API Department has reached graduate school, but doesn't have a capstone yet.
+- The Linux Infrastructure, Storage, and Web Proxy/Caching Departments are planned to be grown to the same level as the other "open" departments (the Web Proxy/Caching and Storage Departments have already reached Freshman level).
