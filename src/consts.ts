@@ -21,6 +21,7 @@ export const seriesNames: Record<string, string> = {
   openshift: "OpenShiftシリーズ",
   ansible: "Ansibleシリーズ",
   dns: "DNSサーバー基礎シリーズ",
+  "load-balancing": "ロードバランシング基礎シリーズ",
 };
 
 export const seriesNamesEn: Record<string, string> = {
@@ -46,6 +47,7 @@ export const seriesNamesEn: Record<string, string> = {
   openshift: "OpenShift Series",
   ansible: "Ansible Series",
   dns: "DNS Server Fundamentals Series",
+  "load-balancing": "Load Balancing Fundamentals Series",
 };
 
 // シリーズ内をさらに絞り込むためのサブカテゴリの表示名。

@@ -1,0 +1,45 @@
+questions:
+  - question: "Why does this hands-on have each backend server return a response that includes its own name?"
+    choices:
+      - "It's a required setting for HAProxy to start at all"
+      - "So you can tell, just from the response content alone, which backend answered"
+      - "It's used as the health check's judgment criterion"
+      - "It's required for TLS certificate validation"
+    answerIndex: 1
+    explanation: "Including each server's own name in its response lets you tell, just from the response content, which backend answered."
+
+  - question: "What role does `option httpchk` play in HAProxy's configuration?"
+    choices:
+      - "It enables the round-robin algorithm"
+      - "It configures an active health check, sending an HTTP request to each server and checking the response"
+      - "It enables SSL termination"
+      - "It automatically scales the number of backend servers"
+    answerIndex: 1
+    explanation: "option httpchk configures an active health check that sends an HTTP GET request to each server and checks the status code."
+
+  - question: "What happens in HAProxy when the balance directive is omitted?"
+    choices:
+      - "No distribution happens at all"
+      - "Round robin is used by default"
+      - "Least connections is used by default"
+      - "HAProxy itself fails to start"
+    answerIndex: 1
+    explanation: "Omitting the balance directive makes HAProxy use round robin by default."
+
+  - question: "What happened to client requests after stopping one backend server?"
+    choices:
+      - "Every request failed with an error"
+      - "No errors appeared, and every request was routed to the healthy backend"
+      - "HAProxy itself stopped"
+      - "It automatically switched from round robin to least connections"
+    answerIndex: 1
+    explanation: "Because the health check automatically removes an unhealthy backend, clients saw no errors and every request went to the healthy backend."
+
+  - question: "What's the real value of a health check that this hands-on demonstrates?"
+    choices:
+      - "Improving the load balancer's own processing speed"
+      - "Automatically detecting and excluding an unhealthy server, behind the seemingly unremarkable outcome of the service staying up through a failure"
+      - "Automating TLS certificate renewal"
+      - "Replacing DNS round robin"
+    answerIndex: 1
+    explanation: "Without a working health check, requests would still be sent to the down backend, delivering an error straight to the client."

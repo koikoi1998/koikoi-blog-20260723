@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the correct description of SSL termination?"
+    choices:
+      - "The load balancer never decrypts TLS content at all, relaying it still encrypted"
+      - "The load balancer terminates (decrypts) the TLS connection with the client, relaying plaintext HTTP to the backend"
+      - "The backend server itself decrypts TLS, while the load balancer never looks inside"
+      - "The client and the backend server establish a direct TLS connection"
+    answerIndex: 1
+    explanation: "SSL termination decrypts TLS at the load balancer, then relays plaintext HTTP to the backend."
+
+  - question: "What's a disadvantage of SSL passthrough?"
+    choices:
+      - "The certificate only needs to live on one load balancer"
+      - "Since the load balancer can't read HTTP content, L7 routing by URL path is unavailable"
+      - "Encryption to the backend can no longer be maintained"
+      - "The connection with the client is no longer encrypted"
+    answerIndex: 1
+    explanation: "In SSL passthrough, the load balancer never decrypts TLS content, so L7 routing based on HTTP content is unavailable."
+
+  - question: "Why can SSL passthrough still route by hostname?"
+    choices:
+      - "Because the load balancer decrypts all of the TLS content"
+      - "Because the SNI information in ClientHello is visible in plaintext, before encryption begins"
+      - "Because the backend server notifies the load balancer of the routing result"
+      - "Because a DNS server assigns a different load balancer per hostname"
+    answerIndex: 1
+    explanation: "SNI information is included unencrypted in the TLS handshake's first message, enabling hostname-based routing without decryption."
+
+  - question: "What's a characteristic of SSL bridging?"
+    choices:
+      - "Both the load balancer and the backend server need certificate management, making it the most complex configuration"
+      - "It's the simplest approach, requiring no certificate management at all"
+      - "The load balancer can never read any HTTP content"
+      - "The path to the backend is always plaintext"
+    answerIndex: 0
+    explanation: "SSL bridging needs a certificate on both the load balancer and the backend, making it the most complex of the three approaches."
+
+  - question: "Why is SSL termination the most widely adopted approach in real-world practice?"
+    choices:
+      - "Because it's the only approach that supports encryption at all"
+      - "Because the benefit of consolidating certificate management into one place outweighs the need for end-to-end encryption in most environments"
+      - "Because it's always more secure than SSL passthrough"
+      - "Because it can only be used with an L4 load balancer"
+    answerIndex: 1
+    explanation: "Deploying and renewing certificates individually across many backend servers isn't practical, so consolidating certificate management into one place is usually favored."

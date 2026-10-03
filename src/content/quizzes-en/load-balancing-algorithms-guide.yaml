@@ -1,0 +1,45 @@
+questions:
+  - question: "Why is the least-connections algorithm often preferred over round robin for workloads with varying processing times?"
+    choices:
+      - "Because it always runs faster than DNS round robin"
+      - "Because it makes its decision dynamically, based on the real load of connections currently being processed"
+      - "Because it can only be used with an L4 load balancer"
+      - "Because it has a built-in health check feature"
+    answerIndex: 1
+    explanation: "The least-connections algorithm decides dynamically based on the load actually being processed right now, which fits workloads with varying processing times."
+
+  - question: "What's a typical reason session persistence (sticky sessions) becomes necessary?"
+    choices:
+      - "To speed up the load balancer's processing"
+      - "Because when a backend server keeps session information in its own memory, a given client needs to be pinned to the same server"
+      - "To improve health check accuracy"
+      - "To use as a substitute for DNS round robin"
+    answerIndex: 1
+    explanation: "If the backend holds session information in memory, login state and similar data get lost unless a given client is always pinned to the same server."
+
+  - question: "Why is the cookie method of session persistence considered more reliable than the IP hash method?"
+    choices:
+      - "Because it only works over encrypted connections"
+      - "Because it doesn't depend on IP address, instead relying on a dedicated cookie issued by the load balancer"
+      - "Because it can only be used with an L4 load balancer"
+      - "Because it's integrated with the health check"
+    answerIndex: 1
+    explanation: "The cookie method doesn't depend on IP address, so it avoids skew even in environments where multiple clients appear to share one IP address."
+
+  - question: "What problem can occur when a health check's fall threshold is set to 1?"
+    choices:
+      - "The health check itself gets disabled"
+      - "A server gets needlessly pulled out of rotation over a brief network hiccup"
+      - "The round-robin algorithm automatically switches to least connections"
+      - "Session persistence gets forcibly enabled"
+    answerIndex: 1
+    explanation: "Too small a fall threshold marks a server unhealthy over a brief hiccup, causing frequent, unnecessary removals from rotation."
+
+  - question: "What's the correct understanding of the relationship between a health check and a load balancing algorithm?"
+    choices:
+      - "They're the exact same mechanism, with no need to distinguish them"
+      - "A health check decides the pool of routing candidates, while an algorithm decides which server within that pool gets picked — two separate layers"
+      - "Changing the algorithm's configuration eliminates the need for a health check"
+      - "A health check can only be used with an L7 load balancer"
+    answerIndex: 1
+    explanation: "A health check and an algorithm operate at two separate layers, and conflating them leads to investigating the wrong place during troubleshooting."

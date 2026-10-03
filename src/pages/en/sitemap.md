@@ -27,7 +27,7 @@ The [homepage](/en) lists every article, grouped by series. You can also filter 
 
 ### 🎓 University
 
-[The University](/en/university) reorganizes the articles around the units of faculty, department, and grade — a roadmap meant to be followed in order. It maps out the distance from complete beginner to an AWS/Google-caliber top engineer, as a sequence of grade levels. **Use this when you're not sure where to start, or when you want to learn systematically.** At the moment, Active Directory is the only department with a fully complete grade ladder ("fully open"). Other departments will fill in their grades gradually as more content gets added.
+[The University](/en/university) reorganizes the articles around the units of faculty, department, and grade — a roadmap meant to be followed in order. It maps out the distance from complete beginner to an AWS/Google-caliber top engineer, as a sequence of grade levels. **Use this when you're not sure where to start, or when you want to learn systematically.** At the moment, seven departments have a fully complete grade ladder ("fully open"): Active Directory, AWS, Ansible/IaC, VPN, DNS, Mail, and Windows Server. Other departments will fill in their grades gradually as more content gets added.
 
 ### 🔍 Search
 
