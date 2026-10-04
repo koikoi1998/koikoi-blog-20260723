@@ -682,6 +682,12 @@ None.
 
 This is an educational, defensive hands-on, meant to strengthen the defenses of an environment you yourself control (it contains no attack procedure directed at any third-party system whatsoever).
 
+### Capstone Project
+
+1. [The Web Proxy/Caching Department's Capstone Project: Turning a Fictional Multi-Site Retailer's Internet Access Infrastructure Into a Portfolio Piece](/en/articles/web-proxy-capstone-handson-guide)
+
+An integrative exercise where you combine, on your own, the techniques mastered individually in earlier hands-on labs — explicit proxy construction and URL-level access control via Squid, cache control via Cache-Control/Vary, a transparent proxy via iptables and Squid, open-proxy hardening — and the knowledge from the lectures — auto-configuration via PAC files/WPAD, proxy authentication via Basic/NTLM/Kerberos — into a single fictional multi-site retailer's, "KoiKoi Retail's," internet access infrastructure. It demands the ability to design from requirements, not the ability to follow steps, and the deliverable is assembled as a portfolio usable in a job search too.
+
 ### Architect and Beyond
 
 No articles yet. As with other departments, this is expected to cover system-wide architecture design spanning multiple departments.
@@ -816,4 +822,5 @@ No articles yet. As with other departments, this is expected to cover system-wid
 
 ## What's Next
 
-- Of the 12 "fully open" departments (Active Directory, AWS, Ansible/IaC, VPN, DNS, Mail, Windows Server, Load Balancing, Web/API, Storage, Linux Infrastructure, Web Proxy/Caching), 11 now have a **capstone hands-on (a graduation project)** combining content across multiple grades. The deliverable is assembled as a GitHub-repository-style format usable as a job-hunting portfolio. The Web Proxy/Caching Department has reached Senior and Graduate School level, but its capstone is still pending (the next priority) — once complete, all 12 currently planned departments will be complete through their capstone projects too.
+- **All 12 "fully open" departments (Active Directory, AWS, Ansible/IaC, VPN, DNS, Mail, Windows Server, Load Balancing, Web/API, Storage, Linux Infrastructure, Web Proxy/Caching) now have a capstone hands-on (a graduation project) combining content across multiple grades.** The deliverable is assembled as a GitHub-repository-style format usable as a job-hunting portfolio. This completes the department and grade structure currently planned for this site.
+- Future directions for expansion could include adding "Architect and Beyond" content (system-wide architecture design spanning multiple departments) to each department, or adding entirely new departments.
