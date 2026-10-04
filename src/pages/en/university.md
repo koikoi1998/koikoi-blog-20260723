@@ -14,7 +14,7 @@ The [sitemap](/en/sitemap) is organized as a "STEP1 through STEP8" roadmap that 
 - **Department**: A specialized area within a faculty. One department corresponds almost exactly to one of the existing "series."
 - **Grade**: The difficulty level of the articles and hands-on labs themselves. From general education through graduate school and beyond, it shows the distance from complete beginner to top engineer, as a sequence of stages.
 
-**At the moment, the [Active Directory Department](#active-directory-department), the [AWS Department](#aws-department), the [Ansible/IaC Department](#ansibleiac-department), the [VPN Department](#vpn-department), the [DNS Infrastructure Department](#dns-infrastructure-department), the [Mail Infrastructure Department](#mail-infrastructure-department), the [Windows Server Department](#windows-server-department), the [Load Balancing Department](#load-balancing-department), the [Web/API Department](#webapi-department), the [Storage Department](#storage-department), and the [Linux Infrastructure Department](#linux-infrastructure-department) are "fully open" departments, satisfying every grade level.** Other departments will fill in their grades gradually, as content gets added over time. No existing article folder or URL has been changed — this page is purely an additional front door, changing how things are presented.
+**At the moment, the [Active Directory Department](#active-directory-department), the [AWS Department](#aws-department), the [Ansible/IaC Department](#ansibleiac-department), the [VPN Department](#vpn-department), the [DNS Infrastructure Department](#dns-infrastructure-department), the [Mail Infrastructure Department](#mail-infrastructure-department), the [Windows Server Department](#windows-server-department), the [Load Balancing Department](#load-balancing-department), the [Web/API Department](#webapi-department), the [Storage Department](#storage-department), the [Linux Infrastructure Department](#linux-infrastructure-department), and the [Web Proxy/Caching Department](#web-proxycaching-department) are "fully open" departments, satisfying every grade level.** Other departments will fill in their grades gradually, as content gets added over time. No existing article folder or URL has been changed — this page is purely an additional front door, changing how things are presented.
 
 ## The Shared Grade Ladder
 
@@ -58,7 +58,7 @@ Regardless of how much content currently exists, here's the full list of faculti
 | Department | Corresponding Series | Status |
 |---|---|---|
 | VPN Department | [vpn](/en/sitemap#series-list) / [modern-vpn](/en/sitemap#series-list) / [site-to-site-vpn](/en/sitemap#series-list) | 🎓 Fully open (through graduate school) |
-| Web Proxy/Caching Department | [web-proxy](/en/sitemap#series-list) | 📙 Reached Junior level |
+| Web Proxy/Caching Department | [web-proxy](/en/sitemap#series-list) | 🎓 Fully open through grad school |
 | Load Balancing Department | [load-balancing](/en/sitemap#series-list) | 🎓 Fully open (through graduate school) |
 
 ### Cloud Engineering Faculty
@@ -641,7 +641,7 @@ No articles exist here yet. As with the other departments, this is expected to c
 
 ## Web Proxy/Caching Department
 
-Its corresponding series is [web-proxy](/en/sitemap#series-list).
+Following the Linux Infrastructure Department, this is the 12th department to become "fully open." Its corresponding series is [web-proxy](/en/sitemap#series-list).
 
 ### General Education (Prerequisites)
 
@@ -670,7 +670,21 @@ None.
 
 1. [A Top 1% Hands-On for Building Squid as a Caching Proxy and Confirming HIT/MISS With the X-Cache Header](/en/articles/squid-caching-handson-guide)
 
-**Work through and understand this Junior hands-on, and you're at "Junior" level.** Senior (niche-spec content) and Graduate School (security hardening) will be filled in as more content gets added.
+### Senior (Graduating): Niche-Spec Hands-On
+
+1. [A Top 1% Hands-On for Building a Transparent Proxy With iptables and Squid, and Experiencing How a Proxy Gets Forced Without Any Client Configuration](/en/articles/transparent-proxy-handson-guide)
+
+**Work through and understand this one article, and you're at graduation level as a "Senior."**
+
+### Graduate School: Security Hardening Hands-On (Attacker's Perspective)
+
+1. [A Top 1% Hands-On for Reproducing Squid's Open-Proxy Danger Yourself and Defending With ACL-Based Access Restriction](/en/articles/squid-open-proxy-hardening-handson-guide)
+
+This is an educational, defensive hands-on, meant to strengthen the defenses of an environment you yourself control (it contains no attack procedure directed at any third-party system whatsoever).
+
+### Architect and Beyond
+
+No articles yet. As with other departments, this is expected to cover system-wide architecture design spanning multiple departments.
 
 ### Audio Learning Materials (Regardless of Grade)
 
@@ -802,5 +816,4 @@ No articles yet. As with other departments, this is expected to cover system-wid
 
 ## What's Next
 
-- All 11 "fully open" departments (Active Directory, AWS, Ansible/IaC, VPN, DNS, Mail, Windows Server, Load Balancing, Web/API, Storage, Linux Infrastructure) now have a **capstone hands-on (a graduation project)** combining content across multiple grades. The deliverable is assembled as a GitHub-repository-style format usable as a job-hunting portfolio.
-- The Web Proxy/Caching Department is planned to be grown to the same level (Senior and Graduate School) as the other "open" departments (currently at Junior level).
+- Of the 12 "fully open" departments (Active Directory, AWS, Ansible/IaC, VPN, DNS, Mail, Windows Server, Load Balancing, Web/API, Storage, Linux Infrastructure, Web Proxy/Caching), 11 now have a **capstone hands-on (a graduation project)** combining content across multiple grades. The deliverable is assembled as a GitHub-repository-style format usable as a job-hunting portfolio. The Web Proxy/Caching Department has reached Senior and Graduate School level, but its capstone is still pending (the next priority) — once complete, all 12 currently planned departments will be complete through their capstone projects too.
