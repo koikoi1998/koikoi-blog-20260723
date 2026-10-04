@@ -1,0 +1,45 @@
+questions:
+  - question: "Which privilege does a binary with the SUID bit set run with?"
+    choices:
+      - "The privilege of the user who executed it"
+      - "The privilege of the file's owner (often root)"
+      - "Always the lowest-privileged user's privilege"
+      - "The privilege of a different server on the network"
+    answerIndex: 1
+    explanation: "A binary with the SUID bit set runs with the privilege of the file's owner, not the privilege of the user who executed it."
+
+  - question: "What happened in this hands-on when the SUID bit was set on the find command?"
+    choices:
+      - "The find command's search speed improved"
+      - "An ordinary user obtained a root-privileged shell via find's -exec option"
+      - "The find command became unusable"
+      - "Free disk capacity increased"
+    answerIndex: 1
+    explanation: "Abusing the ability to run an arbitrary command via find's -exec option, an ordinary user obtained a root-privileged shell."
+
+  - question: "Why is the SUID bit considered more dangerous than ordinary permission settings?"
+    choices:
+      - "Because the SUID bit always increases file size"
+      - "Because if a binary has a feature that can run a shell or an arbitrary command, root privilege becomes usable through that feature too"
+      - "Because the SUID bit never encrypts network communication"
+      - "Because the SUID bit always prohibits reading the file"
+    answerIndex: 1
+    explanation: "Since SUID grants root privilege to the entire binary, privilege can get seized even through an unintended feature, like invoking a shell."
+
+  - question: "What do Linux Capabilities actually achieve?"
+    choices:
+      - "Granting the entirety of root's power, as-is, to an ordinary user"
+      - "Splitting root's power into meaningful units, granting only the privilege actually needed, individually"
+      - "Removing execute permission from every binary"
+      - "Automatically encrypting network communication"
+    answerIndex: 1
+    explanation: "Capabilities grant only the minimum necessary privilege, in a concrete unit like cap_net_bind_service."
+
+  - question: "What important lesson about privilege design does this hands-on offer?"
+    choices:
+      - "You should always use SUID for any operation that needs root privilege"
+      - "Rather than choosing SUID just because root privilege is needed, you should concretely identify what privilege is genuinely necessary"
+      - "Privilege design is something only security specialists need to consider"
+      - "Capabilities should always be avoided because they're more complex to configure than SUID"
+    answerIndex: 1
+    explanation: "The idea of carving out and handing over only what's actually needed, rather than all-or-nothing privilege, is an important lesson running through privilege design in general."

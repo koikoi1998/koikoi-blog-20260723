@@ -1,0 +1,45 @@
+questions:
+  - question: "What kernel does a process inside a container actually run on?"
+    choices:
+      - "A dedicated, separate lightweight kernel from the host"
+      - "The exact same single Linux kernel as the host"
+      - "A proprietary kernel bundled inside the container image"
+      - "No kernel at all; it runs purely in user space"
+    answerIndex: 1
+    explanation: "A process inside a container runs on the exact same single Linux kernel as the host."
+
+  - question: "What actually happens when a PID namespace is separated?"
+    choices:
+      - "The host's other processes actually terminate"
+      - "Nothing changes about the host's other processes; they simply become invisible from the process inside the new namespace"
+      - "The host's memory usage gets cut in half"
+      - "Processes inside the new namespace automatically speed up"
+    answerIndex: 1
+    explanation: "A namespace isn't a mechanism for duplicating resources — it's a mechanism for withholding certain information from a particular process, restricting its viewpoint."
+
+  - question: "When you start bash inside a new PID namespace, what's that bash's own PID?"
+    choices:
+      - "Always the same value as its PID on the host"
+      - "1 (as the first process inside that namespace)"
+      - "0"
+      - "A randomly assigned value"
+    answerIndex: 1
+    explanation: "Inside a new PID namespace, a process gets PID 1 as the first process within that namespace."
+
+  - question: "What happens to a mount operation performed by a process with a separated mount namespace?"
+    choices:
+      - "It gets reflected on the host side immediately"
+      - "It's only effective within that process's own, independent mount table, and never gets reflected on the host side"
+      - "The mount operation itself always fails"
+      - "The host's disk capacity automatically expands"
+    answerIndex: 1
+    explanation: "A process with a separated mount namespace holds its own independent mount table, and changes there never get reflected on the host side."
+
+  - question: "What's the essential role of a container tool like Docker or Podman?"
+    choices:
+      - "A dedicated virtualization engine entirely independent of the Linux kernel"
+      - "An orchestration layer that automatically and conveniently combines features the Linux kernel already has, like namespaces and cgroups"
+      - "Full-virtualization software that directly emulates hardware"
+      - "A dedicated tool that only provides networking features"
+    answerIndex: 1
+    explanation: "Docker and Podman are an orchestration layer, automating a combination of namespaces and cgroups, features the Linux kernel has had all along."
