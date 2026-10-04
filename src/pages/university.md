@@ -49,7 +49,7 @@ altHref: "/en/university"
 | ActiveDirectory学科 | [active-directory](/sitemap#シリーズ一覧) | 🎓 開講済み(大学院まで) |
 | DNS基盤学科 | [dns](/sitemap#シリーズ一覧) | 🎓 開講済み(大学院まで) |
 | メール基盤学科 | [messaging](/sitemap#シリーズ一覧) | 🎓 開講済み(大学院まで) |
-| Linux基盤学科 | [linux](/sitemap#シリーズ一覧) | 📖 教養課程相当(全学科共通の基礎科目に近い) |
+| Linux基盤学科 | [linux](/sitemap#シリーズ一覧) | 📙 3年生相当まで到達 |
 | Windows Server学科 | [windows-server](/sitemap#シリーズ一覧) | 🎓 開講済み(大学院まで) |
 | ストレージ学科 | [storage](/sitemap#シリーズ一覧) | 📖 教養課程〜1年生相当 |
 
@@ -686,7 +686,53 @@ ActiveDirectory・AWS・Ansible/IaC・VPN・DNS基盤・メール基盤に続く
 
 - [【音声で聴く】ストレージ基礎シリーズ総復習](/articles/storage-audio-review-guide)(卒業後の復習用)
 
+## Linux基盤学科
+
+対応シリーズは[linux](/sitemap#シリーズ一覧)です。他の学科からも前提知識として参照されることが多い、Linux/OSの基礎そのものを扱う学科です。記事数自体は以前から蓄積されていましたが、今回初めて学年構成として整理しました。
+
+### 教養課程(前提科目)
+
+なし。
+
+### 1年生:基礎編+初めてのハンズオン
+
+**座学(基礎編、9記事)**
+
+1. [デーモン(daemon)とは何か](/articles/linux-daemon-guide)
+2. [ライブラリ(library)とは何か](/articles/software-library-guide)
+3. [ユーザー空間とカーネル空間、TUN/TAPデバイスの仕組み](/articles/linux-user-kernel-space-guide)
+4. [パーミッション(chmod)とは何か](/articles/linux-file-permissions-guide)
+5. [sysctlと/etc/sysctl.confの仕組み](/articles/linux-sysctl-guide)
+6. [iptables(netfilter)の仕組み](/articles/linux-iptables-guide)
+7. [/etcとLinuxのディレクトリ構成(FHS)](/articles/linux-filesystem-hierarchy-guide)
+8. [設定ファイルが「効く」までの仕組み](/articles/linux-config-activation-guide)
+9. [journalctlでエラーログを調査する方法](/articles/linux-journalctl-guide)
+
+**実技(ハンズオン基礎編、1記事)**
+
+1. [findコマンドでファイル・ディレクトリを自力で探し当てるハンズオン](/articles/linux-find-guide)
+
+**この10本まで自力で実施・理解できれば、「1年生」として一区切りです。**
+
+### 2年生:補足・深掘り編
+
+1. [curlコマンドの裏側の仕組み](/articles/curl-guide)
+2. [フレームワークとは何か](/articles/software-framework-guide)
+3. [cat > file << 'EOF'の仕組み](/articles/linux-heredoc-redirect-guide)
+4. [Gitの仕組み](/articles/git-basics-guide)
+5. [Nginxの仕組み](/articles/nginx-fundamentals-guide)
+
+### 3年生:実務シナリオ編ハンズオン
+
+1. [Nginxで独自の仮想ホストとリバースプロキシを構築するハンズオン](/articles/nginx-handson-guide)
+
+**この3年生のハンズオンまで自力で実施・理解できれば、「3年生相当」です。** 4年生(ニッチな仕様・機能編)・大学院(セキュリティ強化編)は今後のコンテンツ追加で育てていきます。
+
+### 耳で学ぶ補助教材(学年を問わず)
+
+- [【音声で聴く】Linux/OS基礎シリーズ総復習](/articles/linux-audio-review-guide)(卒業後の復習用)
+
 ## 今後の予定
 
 - 「開講済み」の全9学科(ActiveDirectory・AWS・Ansible/IaC・VPN・DNS基盤・メール基盤・Windows Server・ロードバランシング・Web/API)すべてに、複数学年の内容を組み合わせた**総合演習(卒業制作)ハンズオン**が出揃いました。成果物をGitHubリポジトリなどの形でまとめ、転職活動のポートフォリオとして使える形式になっています。
-- Linux基盤学科・ストレージ学科・Webプロキシ・キャッシュ学科についても、他の「開講済み」学科と同じ水準まで育てていく予定です(Webプロキシ・キャッシュ学科・ストレージ学科は1年生相当まで着手済み)。
+- ストレージ学科・Webプロキシ・キャッシュ学科についても、他の「開講済み」学科と同じ水準まで育てていく予定です(現状1年生相当)。Linux基盤学科は、既存記事を学年構成として整理した結果、3年生相当まで到達しています。

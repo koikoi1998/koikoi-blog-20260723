@@ -2,6 +2,7 @@
 title: "Understanding curl's Inner Workings from a \"Top 1%\" Perspective: Building an HTTP Request by Hand"
 description: "The curl command is a fixture for testing APIs and checking a web server's connectivity, but what HTTP request is it actually assembling and sending under the hood? This article systematically covers what the main options -X, -H, -d, and -i each mean, how to read a response, and how curl is not a self-contained tool but a wrapper around a library called libcurl."
 series: "linux"
+subSeries: "supplementary"
 order: 10
 tags: ["linux", "networking", "http", "api", "curl"]
 emoji: "🌐"

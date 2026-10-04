@@ -49,7 +49,7 @@ Regardless of how much content currently exists, here's the full list of faculti
 | Active Directory Department | [active-directory](/en/sitemap#series-list) | 🎓 Fully open (through graduate school) |
 | DNS Infrastructure Department | [dns](/en/sitemap#series-list) | 🎓 Fully open (through graduate school) |
 | Mail Infrastructure Department | [messaging](/en/sitemap#series-list) | 🎓 Fully open (through graduate school) |
-| Linux Infrastructure Department | [linux](/en/sitemap#series-list) | 📖 General education level (close to a shared foundational subject across departments) |
+| Linux Infrastructure Department | [linux](/en/sitemap#series-list) | 📙 Reached Junior level |
 | Windows Server Department | [windows-server](/en/sitemap#series-list) | 🎓 Fully open (through graduate school) |
 | Storage Department | [storage](/en/sitemap#series-list) | 📖 General Ed through Freshman level |
 
@@ -686,7 +686,53 @@ None.
 
 - [[Listen] The Storage Fundamentals Series, Fully Recapped](/en/articles/storage-audio-review-guide) (for reviewing after graduation)
 
+## Linux Infrastructure Department
+
+Its corresponding series is [linux](/en/sitemap#series-list). This department covers the fundamentals of Linux/OS itself, often referenced as prerequisite knowledge from other departments too. Its article count had already accumulated over time — this is the first time it's been organized into a grade structure.
+
+### General Education (Prerequisites)
+
+None.
+
+### Freshman: Fundamentals + Your First Hands-On
+
+**Lecture (fundamentals, 9 articles)**
+
+1. [What Is a Daemon?](/en/articles/linux-daemon-guide)
+2. [What Is a Library?](/en/articles/software-library-guide)
+3. [User Space, Kernel Space, and TUN/TAP Devices](/en/articles/linux-user-kernel-space-guide)
+4. [What Are Permissions (chmod)?](/en/articles/linux-file-permissions-guide)
+5. [sysctl and /etc/sysctl.conf](/en/articles/linux-sysctl-guide)
+6. [iptables (netfilter)](/en/articles/linux-iptables-guide)
+7. [/etc and the Linux Directory Layout (FHS)](/en/articles/linux-filesystem-hierarchy-guide)
+8. [How a Config File Actually "Takes Effect"](/en/articles/linux-config-activation-guide)
+9. [Investigating Error Logs With journalctl](/en/articles/linux-journalctl-guide)
+
+**Hands-On (fundamentals, 1 article)**
+
+1. [The Top 1% Hands-On for Tracking Down a File or Directory Yourself With find](/en/articles/linux-find-guide)
+
+**Work through and understand these ten, and you're at a solid checkpoint as a "Freshman."**
+
+### Sophomore: Supplementary Deep-Dives
+
+1. [Understanding curl's Inner Workings](/en/articles/curl-guide)
+2. [What Is a Framework?](/en/articles/software-framework-guide)
+3. [How cat > file << 'EOF' Works](/en/articles/linux-heredoc-redirect-guide)
+4. [How Git Works](/en/articles/git-basics-guide)
+5. [How Nginx Works](/en/articles/nginx-fundamentals-guide)
+
+### Junior: Real-World-Scenario Hands-On
+
+1. [The Top 1% Hands-On for Building a Custom Virtual Host and Reverse Proxy With Nginx](/en/articles/nginx-handson-guide)
+
+**Work through and understand this Junior hands-on, and you're at "Junior" level.** Senior (niche-spec content) and Graduate School (security hardening) will be filled in as more content gets added.
+
+### Audio Learning Materials (Regardless of Grade)
+
+- [[Listen] The Linux/OS Fundamentals Series, Fully Recapped](/en/articles/linux-audio-review-guide) (for reviewing after graduation)
+
 ## What's Next
 
 - All 9 "open" departments (Active Directory, AWS, Ansible/IaC, VPN, DNS, Mail, Windows Server, Load Balancing, Web/API) now have a **capstone hands-on (a graduation project)** combining content across multiple grades. The deliverable is assembled as a GitHub-repository-style format usable as a job-hunting portfolio.
-- The Linux Infrastructure, Storage, and Web Proxy/Caching Departments are planned to be grown to the same level as the other "open" departments (the Web Proxy/Caching and Storage Departments have already reached Freshman level).
+- The Storage and Web Proxy/Caching Departments are planned to be grown to the same level as the other "open" departments (currently Freshman level). The Linux Infrastructure Department, after organizing its existing articles into a grade structure, has reached Junior level.

@@ -2,6 +2,7 @@
 title: "curlコマンドの裏側の仕組みを『上位1%』の視点で理解する——HTTPリクエストを手で組み立てる"
 description: "APIの動作確認やWebサーバーの疎通確認で当たり前のように使うcurlコマンドが、裏側で実際にどのようなHTTPリクエストを組み立てて送信しているのか。-X・-H・-d・-iといった主要オプションの意味、レスポンスの見方、そしてcurlが単体で完結したツールではなくlibcurlというライブラリのラッパーであることまでを体系的に理解する。"
 series: "linux"
+subSeries: "supplementary"
 order: 10
 tags: ["linux", "networking", "http", "api", "curl"]
 emoji: "🌐"
