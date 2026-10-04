@@ -1,0 +1,45 @@
+questions:
+  - question: "Why does a three-disk RAID5 array's Array Size (real usable capacity) come out to about two disks' worth?"
+    choices:
+      - "Because a disk has failed"
+      - "Because of the three disks, one disk's worth of capacity goes to parity"
+      - "Because of filesystem overhead"
+      - "Because of an mdadm misconfiguration"
+    answerIndex: 1
+    explanation: "In a three-disk RAID5 array, one disk's worth of capacity goes to parity, so the real usable capacity comes out to two disks' worth."
+
+  - question: "How does RAID5's degraded state actually perform a data read?"
+    choices:
+      - "It simply reads the other complete duplicate"
+      - "It recomputes the lost data on the spot, from the remaining disks' data and the parity relationship"
+      - "Reading data becomes completely impossible"
+      - "It returns old data that was saved in a cache"
+    answerIndex: 1
+    explanation: "In RAID5's degraded state, every read recomputes the lost data on the spot, from the remaining data and parity."
+
+  - question: "What's the correct understanding of the difference between RAID1's and RAID5's degraded states?"
+    choices:
+      - "They're internally the exact same process"
+      - "RAID1 simply reads a duplicate, while RAID5 performs a more complex process, recomputing from parity on every read"
+      - "RAID5's process is always simpler"
+      - "RAID1 has no concept of a degraded state at all"
+    answerIndex: 1
+    explanation: "RAID1's degraded state is a simple duplicate read, while RAID5's degraded state is a more complex process recomputing from parity."
+
+  - question: "What does RAID5's rebuild process actually do?"
+    choices:
+      - "Copies the other disk's content as-is"
+      - "Reconstructs the lost data onto the new disk, using the parity calculation, from the data on the remaining disks"
+      - "Deletes all data and starts from an empty state"
+      - "The concept of a rebuild doesn't exist in RAID5"
+    answerIndex: 1
+    explanation: "RAID5's rebuild reconstructs the lost data onto the new disk, using the parity calculation, from the remaining data."
+
+  - question: "What's an important lens for design evaluation that this hands-on offers?"
+    choices:
+      - "Implementations satisfying the same functional requirement always perform the same internal process"
+      - "When different implementations satisfy the same functional requirement, you need to concretely identify the cost (computational overhead, and similar) each one actually pays"
+      - "RAID5 is always superior to RAID1"
+      - "Understanding RAID's internal process is never necessary in real-world practice"
+    answerIndex: 1
+    explanation: "RAID1 and RAID5 both tolerate a single failure, but pay entirely different costs (computational overhead), and identifying this matters for design evaluation."

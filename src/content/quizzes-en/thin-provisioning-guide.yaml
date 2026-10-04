@@ -1,0 +1,45 @@
+questions:
+  - question: "How does thin provisioning differ from thick provisioning?"
+    choices:
+      - "It reserves and allocates the full real physical capacity outright, at volume creation"
+      - "It never reserves capacity at volume creation, instead allocating physical space afterward, only for data actually written"
+      - "It always displays a capacity smaller than the real physical capacity to the server side"
+      - "It can't be used with RAID"
+    answerIndex: 1
+    explanation: "Thin provisioning allocates physical space afterward, only for the portion of data actually written."
+
+  - question: "What's the key mechanism that makes thin provisioning work?"
+    choices:
+      - "Compressing all data before storing it"
+      - "Managing logical capacity (what the server recognizes) and physical capacity (what's actually consumed) as two separate numbers inside the storage device"
+      - "Keeping multiple storage devices permanently synchronized"
+      - "Never using a filesystem"
+    answerIndex: 1
+    explanation: "Thin provisioning works by managing logical capacity and physical capacity as two separate, individually tracked numbers."
+
+  - question: "What's the correct description of the \"overcommit\" state?"
+    choices:
+      - "A state where the storage device is overheating"
+      - "A state where the combined apparent capacity of multiple volumes exceeds the real total capacity"
+      - "A state where all data is encrypted"
+      - "A state where network bandwidth is insufficient"
+    answerIndex: 1
+    explanation: "Overcommit refers to the combined apparent capacity exceeding the storage device's real total capacity."
+
+  - question: "What serious failure occurs in an environment where overcommit has progressed?"
+    choices:
+      - "The server side's logical capacity display gets automatically corrected"
+      - "Even though the server side still appears to have free space, a write fails from real physical capacity exhaustion"
+      - "Every volume gets automatically deleted"
+      - "The network connection gets cut off"
+    answerIndex: 1
+    explanation: "A write-failing incident from real physical capacity exhaustion occurs, which the logical capacity display alone can never predict."
+
+  - question: "What's the single most important premise for operating thin provisioning safely?"
+    choices:
+      - "Once configured, monitoring is no longer needed"
+      - "Never feel safe just looking at the apparent number (logical capacity) — continuously monitor the real physical capacity's actual consumption"
+      - "Always create volumes at the maximum possible capacity"
+      - "Only ever use RAID1"
+    answerIndex: 1
+    explanation: "Thin provisioning trades efficiency for an operational responsibility: continuously monitoring real physical capacity."

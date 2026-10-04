@@ -1,0 +1,45 @@
+questions:
+  - question: "How does iSCSI achieve a SAN, taking a different approach from FC?"
+    choices:
+      - "By laying new dedicated fiber-optic cabling"
+      - "By wrapping SCSI commands inside TCP/IP packets, achieving a SAN over an existing IP network"
+      - "By never using an IP address at all"
+      - "By using an identifier called a WWN"
+    answerIndex: 1
+    explanation: "iSCSI achieves a SAN on top of existing IP network infrastructure by wrapping SCSI commands inside TCP/IP packets."
+
+  - question: "Where do the terms \"initiator\" and \"target\" come from?"
+    choices:
+      - "They were newly coined, dedicated terms, when iSCSI's spec was drafted"
+      - "They carry over directly from SCSI, an old command set"
+      - "They're a rephrasing of FC's WWN"
+      - "They're standard TCP/IP terminology"
+    answerIndex: 1
+    explanation: "The terms initiator and target carry over directly from SCSI, an older spec."
+
+  - question: "Why is an IQN prepared separately from the IP address?"
+    choices:
+      - "Because an IQN is always a shorter string"
+      - "So the initiator and target can keep uniquely identifying each other under the same name, regardless of IP address changes"
+      - "Because an IQN is an encrypted value"
+      - "Because the IP address alone would slow down communication"
+    answerIndex: 1
+    explanation: "An IQN is an identifier that preserves identification under the same name, regardless of IP address changes (DHCP reassignment, and similar)."
+
+  - question: "What does iSCSI sacrifice compared to FC?"
+    choices:
+      - "Low deployment cost"
+      - "The low latency and physical traffic separation that FC's dedicated infrastructure provided"
+      - "Compatibility with existing infrastructure"
+      - "Compatibility with the SCSI command set"
+    answerIndex: 1
+    explanation: "iSCSI gains lower deployment cost, while sacrificing, to some degree, the low latency and physical traffic separation FC provided."
+
+  - question: "What's the most appropriate way to understand the relationship between FC and iSCSI?"
+    choices:
+      - "iSCSI is a full, superior replacement for FC, always better"
+      - "It's a design-pattern difference: achieving the same goal (a SAN) at an entirely different layer — dedicated infrastructure, or an existing IP network"
+      - "FC and iSCSI are just two names for the exact same technology"
+      - "iSCSI is older technology than FC"
+    answerIndex: 1
+    explanation: "FC and iSCSI achieve the same SAN goal through different design patterns — building a new dedicated layer versus layering on an existing one."

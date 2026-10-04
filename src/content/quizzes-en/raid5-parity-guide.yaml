@@ -1,0 +1,45 @@
+questions:
+  - question: "Why is RAID5 more disk-capacity-efficient than RAID1?"
+    choices:
+      - "Because instead of duplicating the data itself, it stores a smaller parity value on a separate disk"
+      - "Because it compresses every piece of data before storing it"
+      - "Because RAID5 has no redundancy at all"
+      - "Because RAID5 is always built from just one disk"
+    answerIndex: 0
+    explanation: "RAID5 improves capacity efficiency by storing a smaller XOR-computed parity value, instead of duplicating the data itself."
+
+  - question: "What's XOR's single most important property in RAID5?"
+    choices:
+      - "It always returns 0"
+      - "Knowing the parity plus either one of the two data values lets you back-calculate the other"
+      - "It encrypts the data"
+      - "It always halves the data's size"
+    answerIndex: 1
+    explanation: "XOR's property lets you accurately compute one data value from the parity plus the other — the mathematical basis of recovery."
+
+  - question: "Why isn't parity fixed on one dedicated disk in a real-world RAID5 setup?"
+    choices:
+      - "Because parity never actually needs to be stored at all"
+      - "Because fixing it would concentrate load on that one disk with every write, turning it into a bottleneck"
+      - "Because parity needs a different calculation method every single time"
+      - "Because the concept of a dedicated disk doesn't exist in RAID5"
+    answerIndex: 1
+    explanation: "Fixing parity on one disk would concentrate write load there, creating a bottleneck, so it's striped across disks instead."
+
+  - question: "How many simultaneous failures does RAID6 tolerate compared to RAID5?"
+    choices:
+      - "The same 1, as RAID5"
+      - "One more than RAID5, at 2"
+      - "Fewer than RAID5, at 0"
+      - "Unlimited"
+    answerIndex: 1
+    explanation: "RAID6 holds two independent parities, tolerating 2 simultaneous failures compared to RAID5's 1."
+
+  - question: "What's the correct understanding of parity's real essence?"
+    choices:
+      - "A mechanism storing a complete copy of the original data elsewhere"
+      - "An efficiency idea: holding only the smaller information genuinely needed to recover the original data"
+      - "A mechanism compressing data to save storage capacity"
+      - "A mechanism encrypting the original data for protection"
+    answerIndex: 1
+    explanation: "Parity is based on an efficiency idea — holding the minimum information needed for recovery, rather than a complete duplicate."
