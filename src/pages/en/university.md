@@ -51,7 +51,7 @@ Regardless of how much content currently exists, here's the full list of faculti
 | Mail Infrastructure Department | [messaging](/en/sitemap#series-list) | 🎓 Fully open (through graduate school) |
 | Linux Infrastructure Department | [linux](/en/sitemap#series-list) | 📙 Reached Junior level |
 | Windows Server Department | [windows-server](/en/sitemap#series-list) | 🎓 Fully open (through graduate school) |
-| Storage Department | [storage](/en/sitemap#series-list) | 📖 General Ed through Freshman level |
+| Storage Department | [storage](/en/sitemap#series-list) | 📙 Reached Junior level |
 
 ### Network Engineering Faculty
 
@@ -696,7 +696,19 @@ None.
 
 1. [A Top 1% Hands-On for Building a Linux Software RAID1 Array With mdadm and Reproducing a Disk Failure and Rebuild Yourself](/en/articles/mdadm-raid-handson-guide)
 
-**Work through and understand these four, and you're at a solid checkpoint as a "Freshman."** Sophomore and beyond (supplementary deep-dives, real-world-scenario hands-on, niche-spec content, security hardening) will be filled in as more content gets added.
+**Work through and understand these four, and you're at a solid checkpoint as a "Freshman."**
+
+### Sophomore: Supplementary Deep-Dives
+
+1. [Understanding RAID5 and RAID6 Parity Calculation From a Top 1% Perspective](/en/articles/raid5-parity-guide)
+2. [Understanding How iSCSI Works From a Top 1% Perspective](/en/articles/iscsi-guide)
+3. [Understanding Thin Provisioning From a Top 1% Perspective](/en/articles/thin-provisioning-guide)
+
+### Junior: Real-World-Scenario Hands-On
+
+1. [A Top 1% Hands-On for Building RAID5 With mdadm and Confirming Parity-Based Data Recovery Yourself](/en/articles/mdadm-raid5-handson-guide)
+
+**Work through and understand this Junior-level hands-on, and you're at a "Junior" checkpoint.** Senior (niche-spec content) and Graduate School (security hardening) will be filled in as more content gets added.
 
 ### Audio Learning Materials (Regardless of Grade)
 
