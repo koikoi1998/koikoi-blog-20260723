@@ -786,6 +786,12 @@ None.
 
 This is an educational, defensive hands-on, meant to strengthen the defenses of an environment you yourself control (it contains no attack procedure directed at any third-party system whatsoever).
 
+### Capstone Project
+
+1. [The Linux Infrastructure Department's Capstone Project: Turning a Fictional In-House Developer Platform Into a Portfolio Piece](/en/articles/linux-capstone-handson-guide)
+
+An integrative exercise where you combine, on your own, the techniques mastered individually in earlier hands-on labs — investigating with find, a reverse proxy via Nginx, process isolation via namespaces, least-privilege design via Capabilities instead of SUID — and the knowledge from the lectures — daemons, permissions, iptables, journalctl, how a config file takes effect — into a single fictional startup's, "KoiKoi Dev's," in-house developer platform. It demands the ability to design from requirements, not the ability to follow steps, and the deliverable is assembled as a portfolio usable in a job search too.
+
 ### Architect and Beyond
 
 No articles yet. As with other departments, this is expected to cover system-wide architecture design spanning multiple departments.
@@ -796,5 +802,5 @@ No articles yet. As with other departments, this is expected to cover system-wid
 
 ## What's Next
 
-- 10 "fully open" departments (Active Directory, AWS, Ansible/IaC, VPN, DNS, Mail, Windows Server, Load Balancing, Web/API, Storage) now have a **capstone hands-on (a graduation project)** combining content across multiple grades. The deliverable is assembled as a GitHub-repository-style format usable as a job-hunting portfolio. The Linux Infrastructure Department has reached Senior and Graduate School level, but its capstone is still pending (the next priority).
+- All 11 "fully open" departments (Active Directory, AWS, Ansible/IaC, VPN, DNS, Mail, Windows Server, Load Balancing, Web/API, Storage, Linux Infrastructure) now have a **capstone hands-on (a graduation project)** combining content across multiple grades. The deliverable is assembled as a GitHub-repository-style format usable as a job-hunting portfolio.
 - The Web Proxy/Caching Department is planned to be grown to the same level (Senior and Graduate School) as the other "open" departments (currently at Junior level).
