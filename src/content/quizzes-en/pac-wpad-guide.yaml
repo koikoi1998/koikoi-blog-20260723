@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the actual nature of a PAC file?"
+    choices:
+      - "A simple text file that just lists a proxy server's IP address"
+      - "A JavaScript file holding a function called FindProxyForURL"
+      - "An encrypted binary file"
+      - "A record a DNS server generates automatically"
+    answerIndex: 1
+    explanation: "A PAC file is, in reality, a JavaScript text file holding a single function, FindProxyForURL."
+
+  - question: "What does a PAC file's \"DIRECT\" return value instruct?"
+    choices:
+      - "Encrypting all traffic"
+      - "Connecting directly, bypassing the proxy entirely"
+      - "Rejecting the connection outright"
+      - "Forwarding the query to a different DNS server"
+    answerIndex: 1
+    explanation: "DIRECT is a special return value instructing a direct connection, bypassing the proxy entirely."
+
+  - question: "What method does WPAD use to find the PAC file's location?"
+    choices:
+      - "It always uses only the DHCP-based method"
+      - "It combines multiple methods — via DHCP and via DNS"
+      - "It only ever works through manual configuration"
+      - "It infers the location from TLS certificate information"
+    answerIndex: 1
+    explanation: "WPAD combines multiple methods: via DHCP option 252, and via the conventionally-named DNS hostname wpad.<domain>."
+
+  - question: "Why has WPAD's naming mechanism historically been a target for abuse?"
+    choices:
+      - "Because WPAD is always unencrypted"
+      - "Because an attacker who registers the guessable hostname (wpad.<domain>) first can get a forged PAC file loaded"
+      - "Because WPAD uses UDP instead of TCP"
+      - "Because WPAD doesn't support IPv6"
+    answerIndex: 1
+    explanation: "An attacker registering the guessable hostname first can get a forged PAC file loaded, risking traffic interception."
+
+  - question: "What's the correct understanding of the division of roles between a PAC file and WPAD?"
+    choices:
+      - "Both serve the exact same role and are just synonyms"
+      - "A PAC file holds the decision logic, while WPAD is the mechanism that finds where that file lives"
+      - "Having WPAD eliminates the need for a PAC file"
+      - "Having a PAC file always eliminates the need for WPAD"
+    answerIndex: 1
+    explanation: "A PAC file holds the \"which proxy to use\" decision logic, while WPAD automatically discovers the file's own location — two separate roles."

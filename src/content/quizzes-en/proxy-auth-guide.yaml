@@ -1,0 +1,45 @@
+questions:
+  - question: "Why does the status code 407 Proxy Authentication Required exist, separate from 401?"
+    choices:
+      - "Because 407 means the same thing as 404"
+      - "So the client can distinguish whether the entity demanding authentication is the ultimate web server or the proxy itself along the path"
+      - "Because 407 can only ever be used over HTTPS"
+      - "Because 407 indicates the server is overloaded"
+    answerIndex: 1
+    explanation: "407 is a separate status code from 401, specifically signaling that the proxy itself is demanding authentication."
+
+  - question: "Why isn't Basic authentication safe unless it's used over HTTPS?"
+    choices:
+      - "Because Base64 encoding is encoding, not encryption, and can easily be decoded back"
+      - "Because Basic authentication never sends a password at all"
+      - "Because Basic authentication only works per TCP connection"
+      - "Because Basic authentication is a newer method than Kerberos"
+    answerIndex: 1
+    explanation: "Base64 is encoding, not encryption, so over an unencrypted path it's effectively the same as plaintext."
+
+  - question: "Why does NTLM's per-TCP-connection authentication state cause a problem in a load-balanced environment?"
+    choices:
+      - "Because NTLM authentication always uses UDP"
+      - "Because a load balancer routing each request to a different backend proxy collides with the premise of maintaining state per connection"
+      - "Because NTLM authentication can't use HTTPS"
+      - "Because NTLM authentication double-counts connections from a single client"
+    answerIndex: 1
+    explanation: "Routing each request to a different backend breaks NTLM's premise of maintaining authentication state per connection."
+
+  - question: "What's Kerberos authentication's biggest distinguishing trait?"
+    choices:
+      - "It encrypts the password and sends it every time"
+      - "It never sends the password itself, or a value derived from it, over the network at all"
+      - "It's easier to configure than Basic authentication"
+      - "It can never be used without HTTPS"
+    answerIndex: 1
+    explanation: "Kerberos presents a ticket instead, never letting any information about the password travel over the network."
+
+  - question: "What's the most appropriate lens for understanding the difference between Basic, NTLM, and Kerberos?"
+    choices:
+      - "Which method processes requests the fastest"
+      - "A staged design decision about how much of the password, a piece of sensitive information, you're willing to expose on the network"
+      - "Which method was developed most recently"
+      - "Which method consumes the most CPU resources"
+    answerIndex: 1
+    explanation: "The three methods can be understood as a staged design decision about how much of the password gets exposed on the network."

@@ -1,0 +1,45 @@
+questions:
+  - question: "What does the \"no-cache\" directive actually instruct?"
+    choices:
+      - "Never store it in a cache at all"
+      - "Store it in the cache, but always re-validate with the server before using it"
+      - "Make the cache's storage duration unlimited"
+      - "Only forbid storage in a shared cache"
+    answerIndex: 1
+    explanation: "no-cache permits storing it in the cache, while forcing re-validation with the server before it's ever used."
+
+  - question: "Which directive should you use if you intend \"never store this in a cache at all\"?"
+    choices:
+      - "no-cache"
+      - "no-store"
+      - "max-age=0"
+      - "public"
+    answerIndex: 1
+    explanation: "If you intend never to store it at all, you need no-store. no-cache still permits storage."
+
+  - question: "What information does the Age header communicate?"
+    choices:
+      - "The response's language setting"
+      - "How many seconds have elapsed since the caching server's held response was fetched from the origin"
+      - "The client's browser version"
+      - "The response's encryption method"
+    answerIndex: 1
+    explanation: "The Age header lets a caching server communicate to the client how old (how many seconds elapsed) its own cached copy is."
+
+  - question: "What problem does the Vary header address?"
+    choices:
+      - "Specifying how long a cache is stored"
+      - "Making the same URL get managed as separate caches whenever the value of a specified request header differs"
+      - "Switching storage location between a CDN and a browser"
+      - "Specifying the response's compression method"
+    answerIndex: 1
+    explanation: "The Vary header makes requests to the same URL get treated as separate caches, whenever a specified condition differs."
+
+  - question: "What's a common real-world failure that occurs when the Vary header is omitted?"
+    choices:
+      - "Caching gets disabled entirely"
+      - "The response matched to the first user's language setting gets incorrectly served to a different user with a different language setting"
+      - "The server crashes"
+      - "Every request returns a 404 error"
+    answerIndex: 1
+    explanation: "Omitting Vary lets the first user's response get cached and then incorrectly served to other users under different conditions."
