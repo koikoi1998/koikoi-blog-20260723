@@ -14,7 +14,7 @@ The [sitemap](/en/sitemap) is organized as a "STEP1 through STEP8" roadmap that 
 - **Department**: A specialized area within a faculty. One department corresponds almost exactly to one of the existing "series."
 - **Grade**: The difficulty level of the articles and hands-on labs themselves. From general education through graduate school and beyond, it shows the distance from complete beginner to top engineer, as a sequence of stages.
 
-**At the moment, the [Active Directory Department](#active-directory-department), the [AWS Department](#aws-department), the [Ansible/IaC Department](#ansibleiac-department), the [VPN Department](#vpn-department), the [DNS Infrastructure Department](#dns-infrastructure-department), the [Mail Infrastructure Department](#mail-infrastructure-department), the [Windows Server Department](#windows-server-department), the [Load Balancing Department](#load-balancing-department), the [Web/API Department](#webapi-department), and the [Storage Department](#storage-department) are "fully open" departments, satisfying every grade level.** Other departments will fill in their grades gradually, as content gets added over time. No existing article folder or URL has been changed — this page is purely an additional front door, changing how things are presented.
+**At the moment, the [Active Directory Department](#active-directory-department), the [AWS Department](#aws-department), the [Ansible/IaC Department](#ansibleiac-department), the [VPN Department](#vpn-department), the [DNS Infrastructure Department](#dns-infrastructure-department), the [Mail Infrastructure Department](#mail-infrastructure-department), the [Windows Server Department](#windows-server-department), the [Load Balancing Department](#load-balancing-department), the [Web/API Department](#webapi-department), the [Storage Department](#storage-department), and the [Linux Infrastructure Department](#linux-infrastructure-department) are "fully open" departments, satisfying every grade level.** Other departments will fill in their grades gradually, as content gets added over time. No existing article folder or URL has been changed — this page is purely an additional front door, changing how things are presented.
 
 ## The Shared Grade Ladder
 
@@ -49,7 +49,7 @@ Regardless of how much content currently exists, here's the full list of faculti
 | Active Directory Department | [active-directory](/en/sitemap#series-list) | 🎓 Fully open (through graduate school) |
 | DNS Infrastructure Department | [dns](/en/sitemap#series-list) | 🎓 Fully open (through graduate school) |
 | Mail Infrastructure Department | [messaging](/en/sitemap#series-list) | 🎓 Fully open (through graduate school) |
-| Linux Infrastructure Department | [linux](/en/sitemap#series-list) | 📙 Reached Junior level |
+| Linux Infrastructure Department | [linux](/en/sitemap#series-list) | 🎓 Fully open through grad school |
 | Windows Server Department | [windows-server](/en/sitemap#series-list) | 🎓 Fully open (through graduate school) |
 | Storage Department | [storage](/en/sitemap#series-list) | 🎓 Fully open through grad school |
 
@@ -736,7 +736,7 @@ No articles yet. As with other departments, this is expected to cover system-wid
 
 ## Linux Infrastructure Department
 
-Its corresponding series is [linux](/en/sitemap#series-list). This department covers the fundamentals of Linux/OS itself, often referenced as prerequisite knowledge from other departments too. Its article count had already accumulated over time — this is the first time it's been organized into a grade structure.
+Following the Storage Department, this is the 11th department to become "fully open." Its corresponding series is [linux](/en/sitemap#series-list). This department covers the fundamentals of Linux/OS itself, often referenced as prerequisite knowledge from other departments too. Its article count had already accumulated over time — it was organized into a grade structure, and now also carries Senior- and Graduate-School-level hands-on content.
 
 ### General Education (Prerequisites)
 
@@ -774,7 +774,21 @@ None.
 
 1. [The Top 1% Hands-On for Building a Custom Virtual Host and Reverse Proxy With Nginx](/en/articles/nginx-handson-guide)
 
-**Work through and understand this Junior hands-on, and you're at "Junior" level.** Senior (niche-spec content) and Graduate School (security hardening) will be filled in as more content gets added.
+### Senior (Graduating): Niche-Spec Hands-On
+
+1. [A Top 1% Hands-On for Building a Linux Namespace Yourself and Experiencing What a 'Container' Really Is](/en/articles/linux-namespaces-handson-guide)
+
+**Work through and understand this one article, and you're at graduation level as a "Senior."**
+
+### Graduate School: Security Hardening Hands-On (Attacker's Perspective)
+
+1. [A Top 1% Hands-On for Reproducing the SUID Bit's Danger Yourself and Confirming Least-Privilege Defense via Capabilities](/en/articles/linux-suid-capabilities-handson-guide)
+
+This is an educational, defensive hands-on, meant to strengthen the defenses of an environment you yourself control (it contains no attack procedure directed at any third-party system whatsoever).
+
+### Architect and Beyond
+
+No articles yet. As with other departments, this is expected to cover system-wide architecture design spanning multiple departments.
 
 ### Audio Learning Materials (Regardless of Grade)
 
@@ -782,5 +796,5 @@ None.
 
 ## What's Next
 
-- All 10 "fully open" departments (Active Directory, AWS, Ansible/IaC, VPN, DNS, Mail, Windows Server, Load Balancing, Web/API, Storage) now have a **capstone hands-on (a graduation project)** combining content across multiple grades. The deliverable is assembled as a GitHub-repository-style format usable as a job-hunting portfolio.
-- The Linux Infrastructure and Web Proxy/Caching Departments are planned to be grown to the same level (Senior and Graduate School) as the other "open" departments (both currently at Junior level).
+- 10 "fully open" departments (Active Directory, AWS, Ansible/IaC, VPN, DNS, Mail, Windows Server, Load Balancing, Web/API, Storage) now have a **capstone hands-on (a graduation project)** combining content across multiple grades. The deliverable is assembled as a GitHub-repository-style format usable as a job-hunting portfolio. The Linux Infrastructure Department has reached Senior and Graduate School level, but its capstone is still pending (the next priority).
+- The Web Proxy/Caching Department is planned to be grown to the same level (Senior and Graduate School) as the other "open" departments (currently at Junior level).
