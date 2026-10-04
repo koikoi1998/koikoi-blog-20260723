@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the most essential difference between an explicit proxy and a transparent proxy?"
+    choices:
+      - "A transparent proxy never has a caching feature at all"
+      - "An explicit proxy has the client configure a proxy address, while a transparent proxy requires no client configuration at all and intercepts traffic midway through"
+      - "An explicit proxy only ever supports HTTPS"
+      - "There's no technical difference between the two — only the name differs"
+    answerIndex: 1
+    explanation: "An explicit proxy requires client-side configuration, while a transparent proxy intercepts traffic without the client ever noticing."
+
+  - question: "What does iptables's REDIRECT target actually do?"
+    choices:
+      - "It rewrites the packet's payload (the actual data)"
+      - "It rewrites only the packet's destination IP address and port number"
+      - "It encrypts the packet"
+      - "It duplicates the packet and sends it to two destinations"
+    answerIndex: 1
+    explanation: "REDIRECT rewrites only the packet's destination IP address and port number, never its payload."
+
+  - question: "Why is Squid's intercept mode necessary?"
+    choices:
+      - "To increase cache capacity"
+      - "So Squid can correctly relay a request with a disguised destination (one actually addressed to a web server)"
+      - "To speed up communication"
+      - "To change the log output format"
+    answerIndex: 1
+    explanation: "Intercept mode is a configuration letting Squid correctly process an intercepted request whose destination was disguised."
+
+  - question: "What constraint does a transparent proxy face, in principle, against HTTPS traffic?"
+    choices:
+      - "HTTPS isn't TCP-based to begin with, so it can't be handled"
+      - "Because the client validates the destination's certificate, silently rewriting the destination causes certificate validation to fail"
+      - "HTTPS traffic is exempt from iptables filtering"
+      - "HTTPS always communicates over UDP, so REDIRECT doesn't work"
+    answerIndex: 1
+    explanation: "With HTTPS, the client validates the destination's certificate, so silently rewriting the destination fails certificate validation, breaking the communication."
+
+  - question: "What trade-off does a transparent proxy's design carry, in exchange for its convenience?"
+    choices:
+      - "Its deployment cost is always higher than an explicit proxy's"
+      - "The client has no way to verify its traffic is being intercepted"
+      - "It always requires dedicated hardware"
+      - "Its caching feature is always disabled"
+    answerIndex: 1
+    explanation: "The advantage of \"the client never notices\" sits right next to the trustworthiness trade-off that the client has no way to verify it."

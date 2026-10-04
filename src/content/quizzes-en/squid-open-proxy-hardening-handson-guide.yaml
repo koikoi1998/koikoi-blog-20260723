@@ -1,0 +1,45 @@
+questions:
+  - question: "What state does a proxy built with zero access restriction configured end up in?"
+    choices:
+      - "Only its caching feature automatically gets disabled"
+      - "It becomes an \"open proxy,\" accepting a relay request from anyone, regardless of source"
+      - "It becomes completely unreachable from the internet"
+      - "It starts denying only HTTPS traffic"
+    answerIndex: 1
+    explanation: "Without configuring access restriction, a proxy becomes an open proxy, accepting a relay request from anyone, regardless of source."
+
+  - question: "What's an open proxy's real danger?"
+    choices:
+      - "Increased disk usage on the proxy server itself"
+      - "A third party abusing it as a stepping stone, hiding their identity (IP address) while making an unauthorized access against another server"
+      - "The proxy's response speed always getting slower"
+      - "The proxy's configuration file getting automatically deleted"
+    answerIndex: 1
+    explanation: "An open proxy's real danger is getting abused as a stepping stone, letting a third party hide their identity while attacking another server."
+
+  - question: "What does Squid's configuration `acl allowed_network src 192.168.1.0/24` actually do?"
+    choices:
+      - "It encrypts traffic from that IP address range"
+      - "It defines traffic from that IP address range to be identified under the name allowed_network"
+      - "It isolates that IP address range from the internet"
+      - "It expands the cache capacity for that IP address range"
+    answerIndex: 1
+    explanation: "acl is a definition that identifies traffic from a specified IP address range under a given name."
+
+  - question: "Why is an explicit final deny rule considered necessary in access-control rules?"
+    choices:
+      - "Because the server won't start without a deny rule"
+      - "Because rules get evaluated top to bottom, so the behavior when no intended allow rule matches a source needs to be explicitly defined"
+      - "Because a deny rule is only ever used to reduce log output volume"
+      - "Because without a deny rule, all traffic always gets denied automatically"
+    answerIndex: 1
+    explanation: "The final behavior when a source matches no allow rule needs to be explicitly defined with a deny rule."
+
+  - question: "What other technology shares the open proxy's risk structure?"
+    choices:
+      - "RAID5's parity calculation"
+      - "DNS amplification defense (RRL), and mail open-relay hardening"
+      - "Git's commit mechanism"
+      - "NTFS's resident attribute"
+    answerIndex: 1
+    explanation: "The structure where a configuration opens a service up to third parties without limit easily appears across relay-type services like proxies, DNS, and mail."
