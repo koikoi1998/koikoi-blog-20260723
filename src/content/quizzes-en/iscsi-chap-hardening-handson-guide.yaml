@@ -1,0 +1,45 @@
+questions:
+  - question: "What happens when an initiator attempts to log in, with no credentials, to an iSCSI target with no configuration at all?"
+    choices:
+      - "The login is always rejected"
+      - "Merely knowing the IQN is enough for the login to succeed"
+      - "The server side automatically generates and demands a password"
+      - "The connection itself can't even be established, since communication isn't encrypted"
+    answerIndex: 1
+    explanation: "With no authentication configured, anyone who just knows the IQN can successfully log in."
+
+  - question: "Why is an IQN insufficient as a means of proving identity?"
+    choices:
+      - "Because an IQN automatically changes on a regular schedule"
+      - "Because an IQN is a name for identification that anyone sniffing network traffic can learn, not a secret credential"
+      - "Because an IQN is an encrypted value that can never be decrypted"
+      - "Because an IQN's meaning changes depending on the iSCSI version"
+    answerIndex: 1
+    explanation: "An IQN is a name for identifying who you're talking to, not a secret credential like a password."
+
+  - question: "What operation becomes necessary on the initiator side after configuring CHAP authentication?"
+    choices:
+      - "No operation is necessary; it logs in automatically"
+      - "The correct username and password need to be reflected in the initiator side's configuration"
+      - "The initiator side's IQN needs to be changed"
+      - "The network cable needs to be reconnected"
+    answerIndex: 1
+    explanation: "To log in to a target with CHAP authentication configured, you need to configure the correct username and password on the initiator side."
+
+  - question: "What does CHAP authentication actually achieve?"
+    choices:
+      - "It encrypts the actual data communication itself, after login"
+      - "At connection time, it only accepts, as a legitimate connection, whoever presents the correct username and password"
+      - "It automatically encrypts all communication on the network"
+      - "It automatically generates an IQN"
+    answerIndex: 1
+    explanation: "CHAP authentication is a mechanism for proving identity at connection time, not for encrypting the actual data communication after login."
+
+  - question: "What important lesson about equipment deployment does this hands-on offer?"
+    choices:
+      - "A device's default configuration is always designed with safety as the top priority"
+      - "Many devices' default configurations prioritize getting them working first, with the expectation that the user will additionally configure safe operation themselves"
+      - "Once authentication is configured, it never needs to be checked again afterward"
+      - "iSCSI encrypts communication by default"
+    answerIndex: 1
+    explanation: "Many devices' default configurations prioritize getting them working first, and it's not uncommon for the user to need to explicitly add defenses."

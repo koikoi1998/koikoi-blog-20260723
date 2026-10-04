@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the correct state of an LVM snapshot right after it's created?"
+    choices:
+      - "All of the original volume's data has been duplicated"
+      - "It holds almost no data at all, and its Data% relative to the allocated size is tiny"
+      - "The original volume becomes read-only"
+      - "It becomes physically, completely separate from the original volume"
+    answerIndex: 1
+    explanation: "Right after creation, a snapshot holds almost no data. This is the same idea as separating apparent capacity from actual consumption."
+
+  - question: "What timing does the name \"copy-on-write\" describe?"
+    choices:
+      - "Copying all data the instant a snapshot is created"
+      - "Copying the pre-change content of the block about to be overwritten, only when a write occurs"
+      - "Copying data when a read occurs"
+      - "Copying data periodically, at fixed intervals"
+    answerIndex: 1
+    explanation: "Copy-on-write describes the timing of the operation: a copy only happens upon a write."
+
+  - question: "What actually happens on the snapshot side when the original volume is written to?"
+    choices:
+      - "The entire original volume gets duplicated onto the snapshot"
+      - "Only the block about to be overwritten gets preserved into the snapshot"
+      - "Nothing happens; the snapshot's size always stays constant"
+      - "The snapshot gets automatically deleted"
+    answerIndex: 1
+    explanation: "Every time the original volume is written to, only the block about to be overwritten gets preserved into the snapshot via copy-on-write."
+
+  - question: "Why isn't a snapshot a substitute for a backup?"
+    choices:
+      - "Because a snapshot never consumes any capacity at all"
+      - "Because a snapshot is dependent on the original volume, and gets lost along with it if the original volume physically fails"
+      - "Because creating a snapshot takes an extremely long time"
+      - "Because a snapshot can never be restored from at all"
+    answerIndex: 1
+    explanation: "A snapshot is dependent on the original volume, so it offers no protection against a physical failure and isn't a substitute for a real backup."
+
+  - question: "Why is restoring from a snapshot (lvconvert --merge) an efficient process?"
+    choices:
+      - "Because it always rebuilds the entire volume from scratch"
+      - "Because it writes back only the pre-change blocks the snapshot holds, onto the original volume"
+      - "Because the restore process never involves any network communication"
+      - "Because the restore process is guaranteed to always complete instantly"
+    answerIndex: 1
+    explanation: "Since a snapshot only holds the pre-change blocks, the restore writes back only the changed portions, making it an efficient process."
