@@ -720,6 +720,12 @@ None.
 
 This is an educational, defensive hands-on, meant to strengthen the defenses of an environment you yourself control (it contains no attack procedure directed at any third-party system whatsoever).
 
+### Capstone Project
+
+1. [The Storage Department's Capstone Project: Turning a Fictional Video Production Studio's Shared Storage Infrastructure Into a Portfolio Piece](/en/articles/storage-capstone-handson-guide)
+
+An integrative exercise where you combine, on your own, the techniques mastered individually in earlier hands-on labs — redundancy and parity via RAID1 and RAID5, SAN construction and CHAP authentication via iSCSI, logical volume management and snapshots via LVM — into a single fictional video production studio's, "KoiKoi Studio's," shared storage infrastructure. It demands the ability to design from requirements, not the ability to follow steps, and the deliverable is assembled as a portfolio usable in a job search too.
+
 ### Architect and Beyond
 
 No articles yet. As with other departments, this is expected to cover system-wide architecture design spanning multiple departments.
@@ -776,5 +782,5 @@ None.
 
 ## What's Next
 
-- 9 "open" departments (Active Directory, AWS, Ansible/IaC, VPN, DNS, Mail, Windows Server, Load Balancing, Web/API) now have a **capstone hands-on (a graduation project)** combining content across multiple grades. The deliverable is assembled as a GitHub-repository-style format usable as a job-hunting portfolio. The Storage Department has reached Senior and Graduate School level, but its capstone is still pending (the next priority).
+- All 10 "fully open" departments (Active Directory, AWS, Ansible/IaC, VPN, DNS, Mail, Windows Server, Load Balancing, Web/API, Storage) now have a **capstone hands-on (a graduation project)** combining content across multiple grades. The deliverable is assembled as a GitHub-repository-style format usable as a job-hunting portfolio.
 - The Linux Infrastructure and Web Proxy/Caching Departments are planned to be grown to the same level (Senior and Graduate School) as the other "open" departments (both currently at Junior level).
