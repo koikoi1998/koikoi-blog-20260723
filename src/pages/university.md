@@ -58,7 +58,7 @@ altHref: "/en/university"
 | 学科 | 対応シリーズ | 状態 |
 |---|---|---|
 | VPN学科 | [vpn](/sitemap#シリーズ一覧) / [modern-vpn](/sitemap#シリーズ一覧) / [site-to-site-vpn](/sitemap#シリーズ一覧) | 🎓 開講済み(大学院まで) |
-| Webプロキシ・キャッシュ学科 | [web-proxy](/sitemap#シリーズ一覧) | 📖 教養課程〜1年生相当 |
+| Webプロキシ・キャッシュ学科 | [web-proxy](/sitemap#シリーズ一覧) | 📙 3年生相当まで到達 |
 | ロードバランシング学科 | [load-balancing](/sitemap#シリーズ一覧) | 🎓 開講済み(大学院まで) |
 
 ### クラウドエンジニア学部
@@ -658,7 +658,23 @@ ActiveDirectory・AWS・Ansible/IaC・VPN・DNS基盤・メール基盤に続く
 
 1. [Squidで明示的プロキシを構築し、URL単位のアクセス制御を体験するハンズオン](/articles/squid-proxy-handson-guide)
 
-**この3本まで自力で実施・理解できれば、「1年生」として一区切りです。** 2年生以降(補足・深掘り編、実務シナリオ編ハンズオン、ニッチな仕様・機能編、セキュリティ強化編)は今後のコンテンツ追加で育てていきます。
+**この3本まで自力で実施・理解できれば、「1年生」として一区切りです。**
+
+### 2年生:補足・深掘り編
+
+1. [PACファイルとWPADの仕組みを『上位1%』の視点で理解する](/articles/pac-wpad-guide)
+2. [プロキシ認証(Basic/NTLM/Kerberos)の違いを『上位1%』の視点で理解する](/articles/proxy-auth-guide)
+3. [Cache-ControlとVaryヘッダーの仕組みを『上位1%』の視点で理解する](/articles/cache-control-vary-guide)
+
+### 3年生:実務シナリオ編ハンズオン
+
+1. [Squidをキャッシュプロキシとして構築し、X-CacheヘッダーでHIT/MISSを確認するハンズオン](/articles/squid-caching-handson-guide)
+
+**この3年生のハンズオンまで自力で実施・理解できれば、「3年生相当」です。** 4年生(ニッチな仕様・機能編)・大学院(セキュリティ強化編)は今後のコンテンツ追加で育てていきます。
+
+### 耳で学ぶ補助教材(学年を問わず)
+
+- [【音声で聴く】Webプロキシ/キャッシュ基礎シリーズ総復習](/articles/web-proxy-audio-review-guide)(卒業後の復習用)
 
 ## ストレージ学科
 

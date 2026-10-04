@@ -58,7 +58,7 @@ Regardless of how much content currently exists, here's the full list of faculti
 | Department | Corresponding Series | Status |
 |---|---|---|
 | VPN Department | [vpn](/en/sitemap#series-list) / [modern-vpn](/en/sitemap#series-list) / [site-to-site-vpn](/en/sitemap#series-list) | 🎓 Fully open (through graduate school) |
-| Web Proxy/Caching Department | [web-proxy](/en/sitemap#series-list) | 📖 General Ed through Freshman level |
+| Web Proxy/Caching Department | [web-proxy](/en/sitemap#series-list) | 📙 Reached Junior level |
 | Load Balancing Department | [load-balancing](/en/sitemap#series-list) | 🎓 Fully open (through graduate school) |
 
 ### Cloud Engineering Faculty
@@ -658,7 +658,23 @@ None.
 
 1. [The Top 1% Hands-On for Building an Explicit Proxy With Squid and Experiencing URL-Level Access Control](/en/articles/squid-proxy-handson-guide)
 
-**Work through and understand these three, and you're at a solid checkpoint as a "Freshman."** Sophomore and beyond (supplementary deep-dives, real-world-scenario hands-on, niche-spec content, security hardening) will be filled in as more content gets added.
+**Work through and understand these three, and you're at a solid checkpoint as a "Freshman."**
+
+### Sophomore: Supplementary Deep-Dives
+
+1. [Understanding PAC Files and WPAD From a Top 1% Perspective](/en/articles/pac-wpad-guide)
+2. [Understanding the Difference Between Proxy Authentication Methods (Basic/NTLM/Kerberos) From a Top 1% Perspective](/en/articles/proxy-auth-guide)
+3. [Understanding Cache-Control and the Vary Header From a Top 1% Perspective](/en/articles/cache-control-vary-guide)
+
+### Junior: Real-World-Scenario Hands-On
+
+1. [A Top 1% Hands-On for Building Squid as a Caching Proxy and Confirming HIT/MISS With the X-Cache Header](/en/articles/squid-caching-handson-guide)
+
+**Work through and understand this Junior hands-on, and you're at "Junior" level.** Senior (niche-spec content) and Graduate School (security hardening) will be filled in as more content gets added.
+
+### Audio Learning Materials (Regardless of Grade)
+
+- [[Listen] The Web Proxy/Caching Fundamentals Series, Fully Recapped](/en/articles/web-proxy-audio-review-guide) (for reviewing after graduation)
 
 ## Storage Department
 
