@@ -109,13 +109,15 @@ altHref: "/en/university"
 1. [SPN(サービスプリンシパル名)の仕組みを『上位1%』の視点で理解する](/articles/ad-spn-guide)
 2. [Netlogonサービスとセキュアチャネルの仕組みを『上位1%』の視点で理解する](/articles/ad-netlogon-guide)
 3. [Kerberos認証の仕組みを『上位1%』の視点で理解する](/articles/ad-kerberos-guide)
-4. [SYSVOL・DFSR・グループポリシーの仕組みを『上位1%』の視点で理解する](/articles/ad-sysvol-dfsr-gpo-guide)
-5. [AD DS・AD CS・AD FS・AD LDS・AD RMSの違いを『上位1%』の視点で理解する](/articles/ad-family-overview-guide)
-6. [LDAPプロトコルの仕組みを『上位1%』の視点で理解する](/articles/ad-ldap-protocol-guide)
-7. [NetBIOS名とDNSホスト名、なぜ2つの名前が共存しているのか](/articles/ad-netbios-dns-history-guide)
-8. [ADのスキーマ拡張を『上位1%』の視点で理解する](/articles/ad-schema-extension-guide)
-9. [.NET FrameworkとPowerShellの関係を『上位1%』の視点で理解する](/articles/ad-dotnet-powershell-guide)
-10. [ISP(インターネットサービスプロバイダー)とは何かを『上位1%』の視点で理解する](/articles/ad-isp-guide)
+4. [NTLM認証の仕組みを『上位1%』の視点で理解する](/articles/ad-ntlm-mechanism-guide)
+5. [IAKerbとローカルKDCの仕組みを『上位1%』の視点で理解する](/articles/ad-iakerb-localkdc-guide)
+6. [SYSVOL・DFSR・グループポリシーの仕組みを『上位1%』の視点で理解する](/articles/ad-sysvol-dfsr-gpo-guide)
+7. [AD DS・AD CS・AD FS・AD LDS・AD RMSの違いを『上位1%』の視点で理解する](/articles/ad-family-overview-guide)
+8. [LDAPプロトコルの仕組みを『上位1%』の視点で理解する](/articles/ad-ldap-protocol-guide)
+9. [NetBIOS名とDNSホスト名、なぜ2つの名前が共存しているのか](/articles/ad-netbios-dns-history-guide)
+10. [ADのスキーマ拡張を『上位1%』の視点で理解する](/articles/ad-schema-extension-guide)
+11. [.NET FrameworkとPowerShellの関係を『上位1%』の視点で理解する](/articles/ad-dotnet-powershell-guide)
+12. [ISP(インターネットサービスプロバイダー)とは何かを『上位1%』の視点で理解する](/articles/ad-isp-guide)
 
 ### 3年生:実務シナリオ編ハンズオン
 
@@ -127,6 +129,8 @@ altHref: "/en/university"
 6. [Kerberos制約付き委任で『ダブルホップ問題』を解決するハンズオン](/articles/ad-constrained-delegation-handson-guide)
 7. [System Stateバックアップと権威的復元(Authoritative Restore)のハンズオン](/articles/ad-backup-restore-handson-guide)
 8. [旧DCが完全に失われた状況を想定し、FSMOをシージ(強制移行)するハンズオン](/articles/ad-fsmo-seize-handson-guide)
+9. [【障害調査】新DC昇格後にAdministratorでログインできなくなる事象を、エラーから調査するハンズオン](/articles/ad-dc-replace-ntlm-lockout-investigation-guide)
+10. [DCリプレース前に、特権アカウントのパスワードを棚卸し・再設定するハンズオン](/articles/ad-privileged-password-refresh-handson-guide)
 
 ### 4年生(卒業):ニッチな仕様・機能編ハンズオン
 

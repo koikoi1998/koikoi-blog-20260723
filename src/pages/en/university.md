@@ -109,13 +109,15 @@ The only department, at the moment, that satisfies every grade level. **The goal
 1. [Understanding How SPNs (Service Principal Names) Work from a "Top 1%" Perspective](/en/articles/ad-spn-guide)
 2. [Understanding the Netlogon Service and Secure Channel from a "Top 1%" Perspective](/en/articles/ad-netlogon-guide)
 3. [Understanding How Kerberos Authentication Works from a "Top 1%" Perspective](/en/articles/ad-kerberos-guide)
-4. [Understanding SYSVOL, DFSR, and Group Policy from a "Top 1%" Perspective](/en/articles/ad-sysvol-dfsr-gpo-guide)
-5. [Understanding AD DS, AD CS, AD FS, AD LDS, and AD RMS from a Top-1% Perspective](/en/articles/ad-family-overview-guide)
-6. [Understanding the LDAP Protocol from a "Top 1%" Perspective](/en/articles/ad-ldap-protocol-guide)
-7. [Why Do NetBIOS Names and DNS Hostnames Coexist?](/en/articles/ad-netbios-dns-history-guide)
-8. [Understanding AD Schema Extension from a "Top 1%" Perspective](/en/articles/ad-schema-extension-guide)
-9. [Understanding the Relationship Between .NET Framework and PowerShell from a "Top 1%" Perspective](/en/articles/ad-dotnet-powershell-guide)
-10. [Understanding What an ISP (Internet Service Provider) Is from a "Top 1%" Perspective](/en/articles/ad-isp-guide)
+4. [Understanding How NTLM Authentication Works From a Top 1% Perspective](/en/articles/ad-ntlm-mechanism-guide)
+5. [Understanding IAKerb and LocalKDC From a Top 1% Perspective](/en/articles/ad-iakerb-localkdc-guide)
+6. [Understanding SYSVOL, DFSR, and Group Policy from a "Top 1%" Perspective](/en/articles/ad-sysvol-dfsr-gpo-guide)
+7. [Understanding AD DS, AD CS, AD FS, AD LDS, and AD RMS from a Top-1% Perspective](/en/articles/ad-family-overview-guide)
+8. [Understanding the LDAP Protocol from a "Top 1%" Perspective](/en/articles/ad-ldap-protocol-guide)
+9. [Why Do NetBIOS Names and DNS Hostnames Coexist?](/en/articles/ad-netbios-dns-history-guide)
+10. [Understanding AD Schema Extension from a "Top 1%" Perspective](/en/articles/ad-schema-extension-guide)
+11. [Understanding the Relationship Between .NET Framework and PowerShell from a "Top 1%" Perspective](/en/articles/ad-dotnet-powershell-guide)
+12. [Understanding What an ISP (Internet Service Provider) Is from a "Top 1%" Perspective](/en/articles/ad-isp-guide)
 
 ### Junior: Real-World-Scenario Hands-On
 
@@ -127,6 +129,8 @@ The only department, at the moment, that satisfies every grade level. **The goal
 6. [The Top 1% Hands-On for Solving the "Double-Hop Problem" With Kerberos Constrained Delegation](/en/articles/ad-constrained-delegation-handson-guide)
 7. [The Top 1% Hands-On for System State Backup and Authoritative Restore](/en/articles/ad-backup-restore-handson-guide)
 8. [The Top 1% Hands-On for Seizing FSMO Roles, Simulating a Completely Lost Old DC](/en/articles/ad-fsmo-seize-handson-guide)
+9. [[Incident Investigation] A Top 1% Hands-On for Investigating, From the Error Itself, Why You Can't Log In as Administrator After Promoting a New DC](/en/articles/ad-dc-replace-ntlm-lockout-investigation-guide)
+10. [A Top 1% Hands-On for Auditing and Refreshing Privileged Account Passwords Before a DC Replacement](/en/articles/ad-privileged-password-refresh-handson-guide)
 
 ### Senior (Graduation): Niche-Spec Hands-On
 
