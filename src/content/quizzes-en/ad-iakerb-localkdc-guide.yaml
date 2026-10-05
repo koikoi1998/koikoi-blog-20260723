@@ -1,0 +1,45 @@
+questions:
+  - question: "What problem does IAKerb solve?"
+    choices:
+      - "Authentication between local accounts, which were never domain accounts to begin with"
+      - "Letting a client use Kerberos even when it can't directly reach a DC"
+      - "Encrypting the password itself across the network"
+      - "Speeding up DNS name resolution"
+    answerIndex: 1
+    explanation: "IAKerb is a mechanism where the target server relays the Kerberos exchange, when a client can't directly reach the DC."
+
+  - question: "What problem does LocalKDC solve?"
+    choices:
+      - "A client being unable to directly reach a DC"
+      - "Letting Kerberos be used for authentication between local accounts, which were never domain accounts to begin with"
+      - "Building a trust relationship between multiple forests"
+      - "Controlling the order Group Policy gets applied in"
+    answerIndex: 1
+    explanation: "LocalKDC gives each machine itself a small KDC function dedicated to that machine's own local accounts, letting Kerberos be used even between local accounts."
+
+  - question: "What's the difference between IAKerb and the KDC Proxy?"
+    choices:
+      - "They're exactly the same mechanism, with no difference"
+      - "The KDC Proxy is premised on building a dedicated server, while IAKerb is a standard feature built into the OS itself, requiring no dedicated server"
+      - "IAKerb only supports NTLM"
+      - "The KDC Proxy is the newer of the two mechanisms"
+    answerIndex: 1
+    explanation: "The KDC Proxy requires building a dedicated server, while IAKerb achieves the relay as a standard OS feature with no dedicated server needed."
+
+  - question: "What's the accurate statement about NTLM in Windows Server 2025?"
+    choices:
+      - "NTLM is disabled by default in Windows Server 2025"
+      - "Windows Server 2025 still ships with NTLM enabled by default; disabling it by default is planned for the generation after it"
+      - "The NTLM mechanism itself has been completely removed from Windows Server 2025"
+      - "Windows Server 2025 only supports Kerberos, with no NTLM support at all"
+    answerIndex: 1
+    explanation: "Windows Server 2025 itself still ships with NTLM enabled by default; disabling NTLM by default is a change planned for the generation after it."
+
+  - question: "What's the appropriate assessment of the claim \"NTLM is disabled in AWS's Windows Server 2025 AMI\"?"
+    choices:
+      - "It's a confirmed fact, clearly backed by Microsoft's official documentation"
+      - "It should, at this point, be treated as unverified and inaccurate information"
+      - "It's a known specification common to every Windows AMI AWS provides"
+      - "It's a long-standing specification that applies to every version since Windows Server 2016"
+    answerIndex: 1
+    explanation: "No official statement can be found of Microsoft's own OS defaults being changed in the AMI, so this claim should be treated as unverified and inaccurate at this point."

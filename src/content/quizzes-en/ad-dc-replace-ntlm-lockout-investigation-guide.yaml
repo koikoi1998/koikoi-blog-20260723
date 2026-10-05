@@ -1,0 +1,45 @@
+questions:
+  - question: "Why did the login get rejected at the desktop screen, even though RDP's connection popup showed no authentication error?"
+    choices:
+      - "Because RDP's popup authentication and Windows's own logon process (Kerberos authentication) are two separate exchanges"
+      - "Because RDP's popup always completes every authentication process"
+      - "Because the network cable was unplugged"
+      - "Because disk capacity was insufficient"
+    answerIndex: 0
+    explanation: "RDP's popup authenticates to start the connection, while the actual Windows logon process that transitions you to the desktop is a separate, more rigorous exchange."
+
+  - question: "What does event ID 4771 with failure code `KDC_ERR_ETYPE_NOTSUPP` indicate?"
+    choices:
+      - "The network connection itself failed"
+      - "The KDC holds no key, for this account, matching the encryption type the client presented"
+      - "The password is too long"
+      - "DNS name resolution failed"
+    answerIndex: 1
+    explanation: "KDC_ERR_ETYPE_NOTSUPP indicates the KDC holds no key matching the client-presented encryption type (etype), for that account."
+
+  - question: "When do AES and RC4 keys actually get computed?"
+    choices:
+      - "The instant the KDC service starts"
+      - "Exactly at the moment a password is actually set or changed"
+      - "Automatically recomputed every time a DC reboots"
+      - "Automatically recomputed every day at midnight"
+    answerIndex: 1
+    explanation: "AES and RC4 keys get computed and stored exactly when a password is actually set — with no direct relationship to whether the KDC service happens to be running."
+
+  - question: "What did this article's investigation conclude about the initial hypothesis (that the AES key wasn't created because the KDC service hadn't started yet)?"
+    choices:
+      - "The hypothesis was confirmed to be completely correct"
+      - "AES/RC4 key computation happens through the password-change processing pipeline, with no direct relationship to whether the KDC service is running"
+      - "It turned out the KDC service doesn't exist in Windows"
+      - "It turned out AES keys never need to be computed at all"
+    answerIndex: 1
+    explanation: "The investigation found that AES/RC4 key computation happens through the password-change processing pipeline, with no direct relationship to the KDC service's running state."
+
+  - question: "What's the correct understanding about building an entirely new forest from scratch on Windows Server 2025?"
+    choices:
+      - "The exact same incident always occurs in this case too"
+      - "Since Administrator's password gets set on that very Windows Server 2025 machine at forest creation, this incident doesn't normally occur"
+      - "Kerberos authentication itself can't be used at all for a fresh build"
+      - "Only NTLM can be used for a fresh build"
+    answerIndex: 1
+    explanation: "In a fresh forest, Administrator's password gets set during the forest-creation wizard's execution, on that very Windows Server 2025 machine, so both AES and RC4 keys get computed and this incident doesn't normally occur."

@@ -1,0 +1,45 @@
+questions:
+  - question: "In NTLM's challenge-response exchange, what actually travels across the network?"
+    choices:
+      - "The password the user typed, as-is"
+      - "The NTLM hash derived from the password, as-is"
+      - "A response value, computed using the NTLM hash as a key against the challenge the server issued"
+      - "The server's private key"
+    answerIndex: 2
+    explanation: "Only a response value, computed using the NTLM hash as a key, ever travels across the network — the password or the hash itself never does."
+
+  - question: "How does a verifier determine whether a client's response value is correct?"
+    choices:
+      - "By decrypting the response value and directly checking the password inside it"
+      - "By running the same computation itself, using the same NTLM hash, and comparing the result"
+      - "By checking only the length of the response value"
+      - "By judging solely from the client's IP address"
+    answerIndex: 1
+    explanation: "The verifier runs the same computation using the NTLM hash it holds, and judges legitimacy by whether the result matches the client's response value."
+
+  - question: "When the server itself isn't a DC, who actually verifies the NTLM response value?"
+    choices:
+      - "The server itself, using only locally held information"
+      - "The client itself, through self-verification"
+      - "Verification gets delegated to the DC via Netlogon, through pass-through authentication"
+      - "No verification happens at all; it's always allowed"
+    answerIndex: 2
+    explanation: "When the server itself isn't a DC, verifying the response value gets delegated to the DC through pass-through authentication."
+
+  - question: "What's the structural reason non-domain-joined machines depend on NTLM rather than Kerberos?"
+    choices:
+      - "NTLM is always faster"
+      - "A non-domain-joined machine simply has no corresponding KDC, which Kerberos is premised on"
+      - "NTLM always has stronger cryptographic strength"
+      - "Windows is configured to only ever allow NTLM"
+    answerIndex: 1
+    explanation: "Kerberos requires a trust relationship with a KDC, but a non-domain-joined machine or workgroup environment simply has no corresponding KDC at all."
+
+  - question: "What existing mechanism lets a non-domain-joined machine use Kerberos?"
+    choices:
+      - "No such mechanism exists at all"
+      - "The KDC Proxy"
+      - "WPAD"
+      - "DNS round robin"
+    answerIndex: 1
+    explanation: "The KDC Proxy is an existing mechanism where a proxy server relays the exchange with the DC on the client's behalf, letting it obtain a Kerberos ticket over HTTPS."
