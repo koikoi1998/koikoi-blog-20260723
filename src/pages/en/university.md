@@ -730,9 +730,10 @@ None.
 
 ### Sophomore: Supplementary Deep-Dives
 
-1. [Understanding RAID5 and RAID6 Parity Calculation From a Top 1% Perspective](/en/articles/raid5-parity-guide)
-2. [Understanding How iSCSI Works From a Top 1% Perspective](/en/articles/iscsi-guide)
-3. [Understanding Thin Provisioning From a Top 1% Perspective](/en/articles/thin-provisioning-guide)
+1. [Understanding RAID0 (Striping) From a Top 1% Perspective](/en/articles/raid0-striping-guide)
+2. [Understanding RAID5 and RAID6 Parity Calculation From a Top 1% Perspective](/en/articles/raid5-parity-guide)
+3. [Understanding How iSCSI Works From a Top 1% Perspective](/en/articles/iscsi-guide)
+4. [Understanding Thin Provisioning From a Top 1% Perspective](/en/articles/thin-provisioning-guide)
 
 ### Junior: Real-World-Scenario Hands-On
 

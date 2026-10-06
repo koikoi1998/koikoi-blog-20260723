@@ -730,9 +730,10 @@ Web/API学科に続いて、10個目の「開講済み」学科です。対応�
 
 ### 2年生:補足・深掘り編
 
-1. [RAID5とRAID6のパリティ計算の仕組みを『上位1%』の視点で理解する](/articles/raid5-parity-guide)
-2. [iSCSIの仕組みを『上位1%』の視点で理解する](/articles/iscsi-guide)
-3. [シンプロビジョニングの仕組みを『上位1%』の視点で理解する](/articles/thin-provisioning-guide)
+1. [RAID0(ストライピング)の仕組みを『上位1%』の視点で理解する](/articles/raid0-striping-guide)
+2. [RAID5とRAID6のパリティ計算の仕組みを『上位1%』の視点で理解する](/articles/raid5-parity-guide)
+3. [iSCSIの仕組みを『上位1%』の視点で理解する](/articles/iscsi-guide)
+4. [シンプロビジョニングの仕組みを『上位1%』の視点で理解する](/articles/thin-provisioning-guide)
 
 ### 3年生:実務シナリオ編ハンズオン
 
