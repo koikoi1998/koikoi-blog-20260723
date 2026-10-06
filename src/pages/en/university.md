@@ -806,8 +806,9 @@ None.
 ### Senior (Graduating): Niche-Spec Hands-On
 
 1. [A Top 1% Hands-On for Building a Linux Namespace Yourself and Experiencing What a 'Container' Really Is](/en/articles/linux-namespaces-handson-guide)
+2. [A Top 1% Hands-On for Building Linux cgroups (Control Groups) Yourself and Experiencing the Other Half of a 'Container'](/en/articles/linux-cgroups-handson-guide)
 
-**Work through and understand this one article, and you're at graduation level as a "Senior."**
+**Work through and understand these two articles, and you're at graduation level as a "Senior."**
 
 ### Graduate School: Security Hardening Hands-On (Attacker's Perspective)
 
