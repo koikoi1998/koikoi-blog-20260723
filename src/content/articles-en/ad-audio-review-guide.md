@@ -1,6 +1,6 @@
 ---
 title: "[Listen] The Active Directory Series, Fully Recapped — Only the Top-1% Insights, Told as One Continuous Story"
-description: "An audio-learning article for anyone who's finished all 43 articles in the Active Directory series — built to be reviewed with your eyes closed. No tables, no diagrams, no bullet points, just spoken-style narration, so you can listen on a commute or while doing chores using your browser's built-in read-aloud feature (Edge or Chrome's \"Read aloud\" / \"Read this page\" feature)."
+description: "An audio-learning article for anyone who's finished all 44 articles in the Active Directory series — built to be reviewed with your eyes closed. No tables, no diagrams, no bullet points, just spoken-style narration, so you can listen on a commute or while doing chores using your browser's built-in read-aloud feature (Edge or Chrome's \"Read aloud\" / \"Read this page\" feature)."
 series: "active-directory"
 subSeries: "audio"
 order: 45
@@ -12,7 +12,7 @@ updatedDate: 2026-09-26
 
 ## How to Listen to This Article
 
-Nice work getting through all 43 articles in the Active Directory series. This one's different — it's a full recap built to be listened to, not read. No tables, no code blocks, no diagrams anywhere in here, on purpose, so you don't need to look at the screen at all. Listen on your commute, while you're doing the dishes, soaking in the tub, whatever works. If you're on Edge or Chrome, there's a "Read aloud" or "Read this page" feature tucked into a menu somewhere — fire that up and just hand your ears over to this page. Your eyes are free.
+Nice work getting through all 44 articles in the Active Directory series. This one's different — it's a full recap built to be listened to, not read. No tables, no code blocks, no diagrams anywhere in here, on purpose, so you don't need to look at the screen at all. Listen on your commute, while you're doing the dishes, soaking in the tub, whatever works. If you're on Edge or Chrome, there's a "Read aloud" or "Read this page" feature tucked into a menu somewhere — fire that up and just hand your ears over to this page. Your eyes are free.
 
 What follows isn't a rehash of the technical details from those 39 articles. You don't need to trace through the text again — you already did that. Instead, for each article, I'm going to pull out the one line that actually matters most in practice, and tell it back to you as one connected story. Exact command flags and registry key names are genuinely hard to absorb by ear, so if you need that level of detail, go back and check the source article with your eyes when the moment calls for it. Think of today as time spent redrawing the map in your head.
 
@@ -84,7 +84,7 @@ As Kerberos's counterpart, we also dug back into NTLM authentication's own mecha
 
 We also covered two new mechanisms closing that exact gap for non-domain-joined machines. IAKerb lets the target server itself relay the Kerberos exchange, when a client can't directly reach a DC. LocalKDC lets Kerberos be used even for authentication between local accounts, which were never domain accounts to begin with. And here's a misconception worth correcting for good: the claim "NTLM is disabled by default in Windows Server 2025" isn't actually accurate. Windows Server 2025 itself still ships with NTLM enabled by default — disabling it by default is a change planned for the generation after it. Assuming NTLM is already disabled purely "because it's a cloud AMI" or "because it's a newer OS" is an unsupported misconception, so keep that in mind.
 
-## Turning Understanding Into Muscle Memory With Twenty Hands-On Labs
+## Turning Understanding Into Muscle Memory With Twenty-One Hands-On Labs
 
 In the next two hands-on articles, you actually built a forest root, a child domain, and a separate tree, and confirmed with your own eyes exactly what gets shared and what stays isolated. In the other, you walked through a realistic scenario end to end: adding a new DC, verifying replication health, transferring FSMO, demoting the old DC, and verifying the cleanup afterward. If something you thought you understood from reading alone suddenly felt sharper once you actually did it by hand, that's exactly what these labs were for.
 
@@ -122,7 +122,9 @@ In the eighteenth one, using three locations — Tokyo, Osaka, and Nagoya — yo
 
 In the nineteenth, you reproduced Kerberoasting, an attack technique, with your own hands in a safe test environment. You felt firsthand that an ordinary user with no special rights can request a service ticket as long as they know the SPN, and that this is Kerberos's designed behavior, not a bug. Don't forget that the only effective countermeasure is migrating to a gMSA, giving you an unbreakably strong password.
 
-And in the twentieth and final one, you audited the domain root's ACL for the two extended rights related to replicating directory changes, which a technique called DCSync abuses. Don't forget that a legitimate service like Microsoft Entra Connect can also need this right, and that the Tier 0 concept is based on the actual blast radius of compromise, not the superficial criterion of Domain Admins group membership.
+In the twentieth, you audited the domain root's ACL for the two extended rights related to replicating directory changes, which a technique called DCSync abuses. Don't forget that a legitimate service like Microsoft Entra Connect can also need this right, and that the Tier 0 concept is based on the actual blast radius of compromise, not the superficial criterion of Domain Admins group membership.
+
+And in the twenty-first and final one, you reproduced the danger of unconstrained delegation, the counterpart to constrained delegation. You confirmed that once a privileged user, like one in Domain Admins, accesses a server granted unconstrained delegation even once, that user's complete TGT itself ends up cached in the server's own memory. Where constrained delegation used a mechanism called S4U2Proxy to restrict its target to specific services, unconstrained delegation provides no such restriction at all — a danger stemming directly from its design, which, in order to "be ready to handle access to any service whatsoever," simply hands the server the original TGT document that lets it fully become the user. You also confirmed that applying the `AccountNotDelegated` flag — shown in the GUI as "this account is sensitive and cannot be delegated" — to a privileged account like one in Domain Admins, prevents this danger. Keep in mind: one seemingly unremarkable file server can become the shortest possible stepping stone to Domain Admins escalation.
 
 ## Why GPOs Actually Live in Two Places at Once
 
@@ -154,10 +156,10 @@ Last was the ISP article — internet service providers. It might have felt like
 
 ## The Capstone: One Final Piece of Finishing Work
 
-Article number 43 wasn't like the others — it never taught a single new technique. Instead, under the setup of a fictional company, Contoso, acquiring another fictional company, Fabrikam, you designed, yourself, a single integrated environment combining everything you'd learned separately up to that point: forest trusts, GPOs, delegation, gMSA, backup, and Kerberoasting/DCSync auditing. Following a fixed procedure and designing from requirements are genuinely different skills, and finishing every individual hands-on doesn't make you immediately effective in real work without experience combining them into one coherent environment. And part of that capstone was assembling the deliverable itself as a portfolio piece — not just screenshots proving it worked, but a document articulating the reasoning behind your design decisions.
+Article number 44 wasn't like the others — it never taught a single new technique. Instead, under the setup of a fictional company, Contoso, acquiring another fictional company, Fabrikam, you designed, yourself, a single integrated environment combining everything you'd learned separately up to that point: forest trusts, GPOs, delegation, gMSA, backup, and Kerberoasting/DCSync auditing. Following a fixed procedure and designing from requirements are genuinely different skills, and finishing every individual hands-on doesn't make you immediately effective in real work without experience combining them into one coherent environment. And part of that capstone was assembling the deliverable itself as a portfolio piece — not just screenshots proving it worked, but a document articulating the reasoning behind your design decisions.
 
 ## One Last Thing: What Actually Separates the Top 1% From Everyone Else
 
-Having just run back through all 43 articles, here's what I want to leave you with. None of AD's individual features are actually that complicated on their own. What feels complicated is the seams — where one piece connects to another. FSMO and the global catalog. The secure channel and Kerberos. Sites and DNS's SRV records. The GPC and the GPT. The moment you can explain those seams from first principles instead of just memorizing them, you're already past what the average engineer understands.
+Having just run back through all 44 articles, here's what I want to leave you with. None of AD's individual features are actually that complicated on their own. What feels complicated is the seams — where one piece connects to another. FSMO and the global catalog. The secure channel and Kerberos. Sites and DNS's SRV records. The GPC and the GPT. The moment you can explain those seams from first principles instead of just memorizing them, you're already past what the average engineer understands.
 
 Next time you're staring down an AD-related outage or sitting in the middle of an AD migration, run back through this same thread in your head. You'll move with a lot more calm, and a lot more evidence behind every call you make. Nice work today — that's a wrap.

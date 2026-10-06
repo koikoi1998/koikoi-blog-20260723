@@ -1,0 +1,45 @@
+questions:
+  - question: "What happens behind the scenes when a user accesses a server granted unconstrained delegation?"
+    choices:
+      - "Nothing special happens; only an ordinary service ticket gets presented"
+      - "The KDC bundles the client's complete TGT itself into the service ticket and delivers it to the server"
+      - "The user's password gets sent to the server in plaintext"
+      - "The server side resets the user's password"
+    answerIndex: 1
+    explanation: "Accessing a server granted unconstrained delegation causes the KDC to bundle the client's complete TGT into the service ticket and deliver it to the server."
+
+  - question: "What's the essential difference between unconstrained and constrained delegation?"
+    choices:
+      - "Only the scope of what can be delegated differs; the underlying mechanism is the same"
+      - "Unconstrained delegation is a structurally, fundamentally more dangerous mechanism, sending the client's complete TGT itself to the server"
+      - "Constrained delegation is the newer, more dangerous mechanism"
+      - "There's no difference between the two; only the name differs"
+    answerIndex: 1
+    explanation: "Unconstrained delegation is a structurally, fundamentally more dangerous mechanism, sending the client's complete TGT itself to the server."
+
+  - question: "What does the `AccountNotDelegated` flag actually prevent?"
+    choices:
+      - "That account becomes unable to use Kerberos authentication at all"
+      - "The KDC rejects handing that account's TGT to a delegation target server"
+      - "That account's password gets automatically changed"
+      - "That account gets logged off from the domain"
+    answerIndex: 1
+    explanation: "The AccountNotDelegated flag is a setting that makes the KDC reject handing that account's TGT to a delegation target server."
+
+  - question: "What real-world risk does one seemingly ordinary server granted unconstrained delegation carry?"
+    choices:
+      - "That server needs more disk capacity than usual"
+      - "If that server is compromised, the TGT sitting in its memory could be used to access any resource in the domain, as a Domain Admin"
+      - "That server's network speed always degrades"
+      - "That server becomes completely unable to use Kerberos authentication"
+    answerIndex: 1
+    explanation: "If a server granted unconstrained delegation is compromised, the TGT sitting in its memory carries a real danger of being used to access any domain resource as a Domain Admin."
+
+  - question: "When auditing computer objects across a domain, what does a top-1% engineer treat as a top-priority investigation target?"
+    choices:
+      - "The server with the largest disk capacity"
+      - "A server with `TrustedForDelegation` set to `True`"
+      - "The server running the oldest OS version"
+      - "The server with the longest computer name"
+    answerIndex: 1
+    explanation: "A server granted unconstrained delegation (TrustedForDelegation set to True) can become a stepping stone to Domain Admins escalation, so it's treated as a top-priority investigation target."
