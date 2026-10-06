@@ -1,0 +1,45 @@
+questions:
+  - question: "Always On VPNとL2TP/IPsecの、設計思想の違いとして正しいのはどれか。"
+    choices:
+      - "両者はまったく同じ認証方式を使っている"
+      - "L2TP/IPsecはPSKとユーザー認証を組み合わせユーザーが手動で接続するが、Always On VPNはIKEv2と証明書だけで自動的に接続する"
+      - "Always On VPNの方が、常に設定が簡単である"
+      - "L2TP/IPsecには証明書認証という概念がない"
+    answerIndex: 1
+    explanation: "L2TP/IPsecはPSKとユーザー認証を組み合わせ、ユーザーが手動で接続する仕組みだが、Always On VPNはIKEv2と証明書認証だけで、ユーザーのログオン前から自動的に接続を確立します。"
+
+  - question: "デバイストンネルとユーザートンネルの役割の違いとして正しいのはどれか。"
+    choices:
+      - "どちらも同じタイミングで同じ目的のために確立される"
+      - "デバイストンネルはログオン前にマシン証明書で確立され、ユーザートンネルはログオン後にユーザー証明書で確立される"
+      - "デバイストンネルはユーザー証明書を使い、ユーザートンネルはマシン証明書を使う"
+      - "ユーザートンネルは、デバイストンネルより先に確立される"
+    answerIndex: 1
+    explanation: "デバイストンネルはユーザーのログオン前にマシン証明書で自動的に確立され、ユーザートンネルはユーザーのログオン後にユーザー証明書で確立されます。"
+
+  - question: "デバイストンネルの利用に必須となる条件として正しいのはどれか。"
+    choices:
+      - "Windows Home エディションであること"
+      - "ドメイン参加と、Windows EnterpriseまたはEducationエディションであること"
+      - "インターネットに接続していないこと"
+      - "PSKが設定されていること"
+    answerIndex: 1
+    explanation: "デバイストンネルは、ドメイン参加とWindows EnterpriseまたはEducationエディションを必須とし、Proエディションでは利用できません。"
+
+  - question: "Always On VPNの設定情報の配布方法として正しいのはどれか。"
+    choices:
+      - "ユーザーがコントロールパネルで1つずつ手動で入力する"
+      - "ProfileXMLにまとめられ、VPNv2 CSPを通じてMDMソフトウェアから端末へ配布される"
+      - "USBメモリを使って手動でコピーする"
+      - "配布という概念自体が存在しない"
+    answerIndex: 1
+    explanation: "Always On VPNの設定情報は、ProfileXMLという1つのXML文書にまとめられ、VPNv2 CSPを通じてIntuneなどのMDMソフトウェアから端末へ配布されます。"
+
+  - question: "IKEv2のMOBIKEが果たす役割として正しいのはどれか。"
+    choices:
+      - "暗号化の強度を上げる"
+      - "ネットワーク環境が変化しても、既存のIKEセッションを維持したまま接続を保つ"
+      - "PSKの代わりにパスワードを使えるようにする"
+      - "証明書の発行を自動化する"
+    answerIndex: 1
+    explanation: "MOBIKEに対応したIKEv2は、IPアドレスが変化しても既存のIKEセッションを維持したまま、トンネルの終端を新しいIPアドレスへ切り替えることができます。"

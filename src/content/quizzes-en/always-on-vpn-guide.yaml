@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the difference in design philosophy between Always On VPN and L2TP/IPsec?"
+    choices:
+      - "Both use exactly the same authentication method"
+      - "L2TP/IPsec combines a PSK with user authentication requiring manual connection, while Always On VPN authenticates automatically with only IKEv2 and certificates"
+      - "Always On VPN is always simpler to configure"
+      - "L2TP/IPsec has no concept of certificate authentication at all"
+    answerIndex: 1
+    explanation: "L2TP/IPsec combines a PSK with user authentication and requires the user to manually connect, while Always On VPN authenticates with only IKEv2 and certificates, establishing a connection automatically even before the user logs on."
+
+  - question: "What's the difference in role between the device tunnel and the user tunnel?"
+    choices:
+      - "Both are established at the same time, for the same purpose"
+      - "The device tunnel establishes pre-logon with a machine certificate, while the user tunnel establishes post-logon with a user certificate"
+      - "The device tunnel uses a user certificate, while the user tunnel uses a machine certificate"
+      - "The user tunnel always establishes before the device tunnel"
+    answerIndex: 1
+    explanation: "The device tunnel establishes automatically with a machine certificate before the user logs on, while the user tunnel establishes with a user certificate after the user logs on."
+
+  - question: "What's a required condition for using the device tunnel?"
+    choices:
+      - "Running the Windows Home edition"
+      - "Domain membership, and running the Windows Enterprise or Education edition"
+      - "Not being connected to the internet"
+      - "Having a PSK configured"
+    answerIndex: 1
+    explanation: "The device tunnel requires both domain membership and the Windows Enterprise or Education edition — it isn't available on the Pro edition."
+
+  - question: "How is Always On VPN's configuration information distributed?"
+    choices:
+      - "The user manually enters each setting one by one in Control Panel"
+      - "Bundled into ProfileXML and distributed to devices from MDM software through the VPNv2 CSP"
+      - "Manually copied using a USB drive"
+      - "There's no concept of distribution at all"
+    answerIndex: 1
+    explanation: "Always On VPN's configuration information is bundled into a single XML document called ProfileXML, and distributed to devices from MDM software like Intune through the VPNv2 CSP."
+
+  - question: "What role does IKEv2's MOBIKE extension play?"
+    choices:
+      - "Increases the strength of encryption"
+      - "Keeps the connection alive, maintaining the existing IKE session, even when the network environment changes"
+      - "Lets you use a password instead of a PSK"
+      - "Automates certificate issuance"
+    answerIndex: 1
+    explanation: "IKEv2 with MOBIKE support can keep an existing IKE session alive even when the IP address changes, switching the tunnel's endpoint over to the new IP address."
