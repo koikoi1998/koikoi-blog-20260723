@@ -445,6 +445,7 @@ The fifth department to become "fully open," following Active Directory, AWS, An
 1. [Understanding How DNSSEC Works From a "Top 1%" Perspective](/en/articles/dns-dnssec-fundamentals-guide)
 2. [Understanding Recursive Resolvers, Forwarders, and Negative Caching From a "Top 1%" Perspective](/en/articles/dns-recursive-caching-guide)
 3. [Understanding Split-Horizon DNS (BIND's Views) From a "Top 1%" Perspective](/en/articles/dns-split-horizon-guide)
+4. [Understanding DNS over HTTPS (DoH) and DNS over TLS (DoT) From a Top 1% Perspective](/en/articles/dns-doh-dot-guide)
 
 ### Junior: Real-World-Scenario Hands-On
 
