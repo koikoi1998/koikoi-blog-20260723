@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the difference in design philosophy between RAID0 and RAID1?"
+    choices:
+      - "They're nearly identical mechanisms with the same goal"
+      - "RAID1 duplicates the same data for redundancy, while RAID0 only distributes data to raise speed, with no redundancy at all"
+      - "RAID0 is always safer than RAID1"
+      - "RAID1 has no redundancy, while RAID0 has redundancy"
+    answerIndex: 1
+    explanation: "RAID1 duplicates data to secure redundancy, while RAID0 only distributes data to raise speed, holding zero redundancy at all."
+
+  - question: "What happens in RAID0 when one disk among those making up the array fails?"
+    choices:
+      - "Only what was stored on that failed disk is lost; data on the other disks remains readable"
+      - "Since a single file's content is split across multiple disks, every file on the array becomes practically unrecoverable"
+      - "Nothing happens; it keeps operating normally"
+      - "It automatically switches over to RAID1"
+    answerIndex: 1
+    explanation: "In RAID0, since a single file's content is split across multiple disks, one disk failing means losing every single file on the array."
+
+  - question: "What counterintuitive phenomenon occurs in RAID0 when you add more disks?"
+    choices:
+      - "The array's overall failure probability actually rises"
+      - "The array's overall failure probability always drops to zero"
+      - "The failure probability stays constant regardless of disk count"
+      - "Adding more disks automatically creates redundancy"
+    answerIndex: 1
+    explanation: "Since the entire array loses data the moment even one disk fails, adding more disks to a RAID0 array raises its overall failure probability."
+
+  - question: "What's an appropriate premise for adopting RAID0 in real-world practice?"
+    choices:
+      - "Storing the most critical data that must never be lost"
+      - "When performance is the top priority, and losing this data wouldn't be business-critical"
+      - "When redundancy must be the absolute top priority"
+      - "When capacity efficiency is never a consideration at all"
+    answerIndex: 1
+    explanation: "RAID0 should only be adopted in real-world practice when performance is the top priority, and losing the data wouldn't be business-critical."
+
+  - question: "What setup should you consider when you need both speed and redundancy?"
+    choices:
+      - "Keep using RAID0 alone, as-is"
+      - "A more complex setup, like RAID10 (1+0), combining RAID0 with RAID1"
+      - "A single-disk setup, with no RAID at all"
+      - "Reduce the number of disks as much as possible"
+    answerIndex: 1
+    explanation: "When you need both speed and redundancy, you need to consider a more complex setup, like RAID10, combining RAID0 with RAID1."
