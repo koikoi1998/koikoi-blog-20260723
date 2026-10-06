@@ -111,13 +111,15 @@ altHref: "/en/university"
 3. [Kerberos認証の仕組みを『上位1%』の視点で理解する](/articles/ad-kerberos-guide)
 4. [NTLM認証の仕組みを『上位1%』の視点で理解する](/articles/ad-ntlm-mechanism-guide)
 5. [IAKerbとローカルKDCの仕組みを『上位1%』の視点で理解する](/articles/ad-iakerb-localkdc-guide)
-6. [SYSVOL・DFSR・グループポリシーの仕組みを『上位1%』の視点で理解する](/articles/ad-sysvol-dfsr-gpo-guide)
-7. [AD DS・AD CS・AD FS・AD LDS・AD RMSの違いを『上位1%』の視点で理解する](/articles/ad-family-overview-guide)
-8. [LDAPプロトコルの仕組みを『上位1%』の視点で理解する](/articles/ad-ldap-protocol-guide)
-9. [NetBIOS名とDNSホスト名、なぜ2つの名前が共存しているのか](/articles/ad-netbios-dns-history-guide)
-10. [ADのスキーマ拡張を『上位1%』の視点で理解する](/articles/ad-schema-extension-guide)
-11. [.NET FrameworkとPowerShellの関係を『上位1%』の視点で理解する](/articles/ad-dotnet-powershell-guide)
-12. [ISP(インターネットサービスプロバイダー)とは何かを『上位1%』の視点で理解する](/articles/ad-isp-guide)
+6. [AES128とAES256、そしてKerberosにおけるSHA-1の役割を『上位1%』の視点で理解する](/articles/ad-kerberos-encryption-types-guide)
+7. [Windows 11 24H2/WindowsServer 2025以降のRDP認証の変更点を『上位1%』の視点で理解する](/articles/ad-rdp-auth-changes-guide)
+8. [SYSVOL・DFSR・グループポリシーの仕組みを『上位1%』の視点で理解する](/articles/ad-sysvol-dfsr-gpo-guide)
+9. [AD DS・AD CS・AD FS・AD LDS・AD RMSの違いを『上位1%』の視点で理解する](/articles/ad-family-overview-guide)
+10. [LDAPプロトコルの仕組みを『上位1%』の視点で理解する](/articles/ad-ldap-protocol-guide)
+11. [NetBIOS名とDNSホスト名、なぜ2つの名前が共存しているのか](/articles/ad-netbios-dns-history-guide)
+12. [ADのスキーマ拡張を『上位1%』の視点で理解する](/articles/ad-schema-extension-guide)
+13. [.NET FrameworkとPowerShellの関係を『上位1%』の視点で理解する](/articles/ad-dotnet-powershell-guide)
+14. [ISP(インターネットサービスプロバイダー)とは何かを『上位1%』の視点で理解する](/articles/ad-isp-guide)
 
 ### 3年生:実務シナリオ編ハンズオン
 
