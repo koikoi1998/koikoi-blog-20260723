@@ -147,8 +147,9 @@ The only department, at the moment, that satisfies every grade level. **The goal
 
 1. [The Top 1% Hands-On for Reproducing Kerberoasting Yourself and Protecting Service Accounts](/en/articles/ad-kerberoasting-handson-guide)
 2. [The Top 1% Hands-On for Auditing the Replication Rights DCSync Abuses, and Defending With the Tier 0 Model](/en/articles/ad-dcsync-audit-handson-guide)
+3. [A Top 1% Hands-On for Reproducing Unconstrained Delegation's Danger Yourself and Confirming Defense via 'Account Is Sensitive and Cannot Be Delegated'](/en/articles/ad-unconstrained-delegation-handson-guide)
 
-Both are educational, defense-focused hands-on labs, meant to strengthen the defenses of a test environment you manage yourself.
+All three are educational, defense-focused hands-on labs, meant to strengthen the defenses of a test environment you manage yourself.
 
 ### Capstone Project
 

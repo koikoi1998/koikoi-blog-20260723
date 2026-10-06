@@ -147,6 +147,7 @@ altHref: "/en/university"
 
 1. [Kerberoasting攻撃を自分の手で再現し、サービスアカウントを守るハンズオン](/articles/ad-kerberoasting-handson-guide)
 2. [DCSyncが悪用する複製権限を監査し、Tier 0管理モデルで守るハンズオン](/articles/ad-dcsync-audit-handson-guide)
+3. [制約なし委任(Unconstrained Delegation)の危険性を自分の手で再現し、『センシティブで委任不可』による防御を確認するハンズオン](/articles/ad-unconstrained-delegation-handson-guide)
 
 いずれも、自分が管理する検証環境の防御力を高めるための、教育・防御目的のハンズオンです。
 
