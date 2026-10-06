@@ -1,0 +1,45 @@
+questions:
+  - question: "What mechanism actually handles RDP's NLA (Network Level Authentication) processing?"
+    choices:
+      - "DNS"
+      - "CredSSP"
+      - "DHCP"
+      - "WINS"
+    answerIndex: 1
+    explanation: "NLA is the name of a policy — finishing authentication before connecting — while the actual processing is handled by a mechanism called CredSSP."
+
+  - question: "What's CredSSP's behavior regarding which authentication method it uses?"
+    choices:
+      - "It always uses only NTLM"
+      - "It attempts Kerberos authentication first, and automatically falls back to NTLM if that can't be used"
+      - "It always uses only Kerberos, and completely refuses the connection if that fails"
+      - "The user must manually select the authentication method every single time"
+    answerIndex: 1
+    explanation: "CredSSP first attempts authentication via Kerberos, and automatically falls back to NTLM if Kerberos can't be used for some reason."
+
+  - question: "What was actually removed in Windows 11 24H2 and Windows Server 2025?"
+    choices:
+      - "All of NTLM"
+      - "NTLMv1 (NTLMv2 remains usable)"
+      - "All of Kerberos"
+      - "Every authentication method"
+    answerIndex: 1
+    explanation: "Only NTLMv1 got removed — NTLMv2, still widely used today, remains fully usable."
+
+  - question: "In what situation is strengthened duplicate-SID detection for cloned machines especially likely to affect real-world practice?"
+    choices:
+      - "When a hostname was changed manually"
+      - "When sysprep wasn't run while cloning an instance from an AMI or similar"
+      - "When a password gets changed regularly"
+      - "When a firewall setting gets changed"
+    answerIndex: 1
+    explanation: "A machine cloned without running sysprep ends up duplicated at the SID level, even with its hostname changed, making it especially likely to be affected by this strengthened detection."
+
+  - question: "What does Credential Guard mean for unconstrained delegation's danger?"
+    choices:
+      - "It completely eliminates the structural danger of unconstrained delegation itself"
+      - "It functions as an additional defensive layer that raises the difficulty of the attack"
+      - "It automatically disables unconstrained delegation's configuration"
+      - "Credential Guard has no relationship to unconstrained delegation at all"
+    answerIndex: 1
+    explanation: "Credential Guard prevents direct access to credential material in memory, raising the attack's difficulty as an additional defensive layer, but doesn't fundamentally resolve unconstrained delegation's own structural danger."

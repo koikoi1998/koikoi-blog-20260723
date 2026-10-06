@@ -1,0 +1,45 @@
+questions:
+  - question: "What hash function does Kerberos's standard AES256 encryption type (aes256-cts-hmac-sha1-96) use for integrity checking?"
+    choices:
+      - "SHA-256"
+      - "SHA-1"
+      - "MD5"
+      - "SHA-3"
+    answerIndex: 1
+    explanation: "Kerberos's standard AES256 encryption type uses HMAC-SHA1-96 — meaning SHA-1 — for integrity checking. AES's key length and the hash function's kind are separate settings."
+
+  - question: "What's the actual difference between AES128 and AES256 in Kerberos?"
+    choices:
+      - "They use different hash functions for integrity checking (SHA-1 versus SHA-256)"
+      - "Only the encryption key length differs (128 bits versus 256 bits); integrity checking uses SHA-1 for both"
+      - "AES128 performs no encryption at all; only AES256 does"
+      - "AES128 can't be used in Kerberos at all"
+    answerIndex: 1
+    explanation: "AES128 and AES256 only differ in the encryption key length; integrity checking (HMAC-SHA1-96) uses the exact same SHA-1 for both."
+
+  - question: "What's the correct understanding of HMAC-SHA1's security?"
+    choices:
+      - "A collision attack against SHA-1 itself directly makes HMAC-SHA1 dangerous too"
+      - "HMAC-SHA1 is an entirely different, key-based construction, not directly affected by a collision attack against SHA-1 itself"
+      - "HMAC-SHA1 rests on the exact same security basis as a digital certificate's signature"
+      - "HMAC-SHA1 is a method that performs encryption itself"
+    answerIndex: 1
+    explanation: "HMAC-SHA1 is a separate, key-based hashing construction, not directly affected by a collision attack against SHA-1 itself."
+
+  - question: "If an account's `msDS-SupportedEncryptionTypes` attribute value is `28`, which encryption types does it support?"
+    choices:
+      - "RC4 only"
+      - "RC4, AES128, and AES256, all three"
+      - "AES256 only"
+      - "No encryption at all"
+    answerIndex: 1
+    explanation: "28 is the sum of 4 (RC4) + 8 (AES128) + 16 (AES256), meaning it supports RC4, AES128, and AES256, all three."
+
+  - question: "How does a client and a KDC actually decide which encryption type to use for authentication?"
+    choices:
+      - "It always uses only the single first type the client specifies"
+      - "It cross-references the client's prioritized list against the account's support, picking the highest-priority type both sides support in common"
+      - "The KDC always automatically picks the weakest encryption type"
+      - "The encryption type is fixed domain-wide and can never be changed"
+    answerIndex: 1
+    explanation: "The KDC cross-references the client's prioritized list of supported types against the target account's msDS-SupportedEncryptionTypes, picking the highest-priority type both sides support in common."

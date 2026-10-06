@@ -1,0 +1,45 @@
+questions:
+  - question: "RDP接続時のNLA(ネットワークレベル認証)が、実際に処理を担っている仕組みとして正しいのはどれか。"
+    choices:
+      - "DNS"
+      - "CredSSP"
+      - "DHCP"
+      - "WINS"
+    answerIndex: 1
+    explanation: "NLAは認証を接続前に済ませるという方針(ポリシー)の名前であり、実際の処理はCredSSPという仕組みが担っています。"
+
+  - question: "CredSSPの、認証方式に関する挙動として正しいのはどれか。"
+    choices:
+      - "常にNTLMだけを使用する"
+      - "まずKerberosでの認証を試み、使えない場合に自動的にNTLMへフォールバックする"
+      - "常にKerberosだけを使用し、失敗した場合は接続を完全に拒否する"
+      - "ユーザーが毎回、使用する認証方式を手動で選択する必要がある"
+    answerIndex: 1
+    explanation: "CredSSPは、まずKerberosでの認証を試み、何らかの理由でKerberosが使えない場合に、自動的にNTLMへフォールバックします。"
+
+  - question: "Windows 11 24H2・WindowsServer 2025で、実際に廃止されたものとして正しいのはどれか。"
+    choices:
+      - "NTLM全体"
+      - "NTLMv1(NTLMv2は引き続き利用可能)"
+      - "Kerberos全体"
+      - "すべての認証方式"
+    answerIndex: 1
+    explanation: "廃止されたのはNTLMv1だけであり、現在も広く使われているNTLMv2は、引き続き利用可能です。"
+
+  - question: "クローンされた端末の重複SID検出の強化が、実務上特に影響を受けやすい状況として正しいのはどれか。"
+    choices:
+      - "ホスト名を手動で変更した場合"
+      - "AMIなどからインスタンスを複製する際に、sysprepを実行しなかった場合"
+      - "パスワードを定期的に変更している場合"
+      - "ファイアウォールの設定を変更した場合"
+    answerIndex: 1
+    explanation: "sysprepを実行せずにクローンされた端末は、ホスト名を変更していてもSIDレベルで重複してしまい、この検出強化の影響を受けやすくなります。"
+
+  - question: "Credential Guardが、制約なし委任の危険性に対して持つ意味として正しいのはどれか。"
+    choices:
+      - "制約なし委任という設計上の危険性そのものを、完全に解消する"
+      - "攻撃の難易度を上げる、追加の防御層として機能する"
+      - "制約なし委任の設定を、自動的に無効化する"
+      - "Credential Guardは、制約なし委任とは一切関係がない"
+    answerIndex: 1
+    explanation: "Credential Guardは、メモリ上の認証情報への直接アクセスを防ぎ、攻撃の難易度を上げる追加の防御層ですが、制約なし委任の設計上の危険性そのものを根本的に解消するものではありません。"

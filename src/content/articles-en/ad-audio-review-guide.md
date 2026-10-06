@@ -1,6 +1,6 @@
 ---
 title: "[Listen] The Active Directory Series, Fully Recapped — Only the Top-1% Insights, Told as One Continuous Story"
-description: "An audio-learning article for anyone who's finished all 44 articles in the Active Directory series — built to be reviewed with your eyes closed. No tables, no diagrams, no bullet points, just spoken-style narration, so you can listen on a commute or while doing chores using your browser's built-in read-aloud feature (Edge or Chrome's \"Read aloud\" / \"Read this page\" feature)."
+description: "An audio-learning article for anyone who's finished all 46 articles in the Active Directory series — built to be reviewed with your eyes closed. No tables, no diagrams, no bullet points, just spoken-style narration, so you can listen on a commute or while doing chores using your browser's built-in read-aloud feature (Edge or Chrome's \"Read aloud\" / \"Read this page\" feature)."
 series: "active-directory"
 subSeries: "audio"
 order: 45
@@ -12,7 +12,7 @@ updatedDate: 2026-09-26
 
 ## How to Listen to This Article
 
-Nice work getting through all 44 articles in the Active Directory series. This one's different — it's a full recap built to be listened to, not read. No tables, no code blocks, no diagrams anywhere in here, on purpose, so you don't need to look at the screen at all. Listen on your commute, while you're doing the dishes, soaking in the tub, whatever works. If you're on Edge or Chrome, there's a "Read aloud" or "Read this page" feature tucked into a menu somewhere — fire that up and just hand your ears over to this page. Your eyes are free.
+Nice work getting through all 46 articles in the Active Directory series. This one's different — it's a full recap built to be listened to, not read. No tables, no code blocks, no diagrams anywhere in here, on purpose, so you don't need to look at the screen at all. Listen on your commute, while you're doing the dishes, soaking in the tub, whatever works. If you're on Edge or Chrome, there's a "Read aloud" or "Read this page" feature tucked into a menu somewhere — fire that up and just hand your ears over to this page. Your eyes are free.
 
 What follows isn't a rehash of the technical details from those 39 articles. You don't need to trace through the text again — you already did that. Instead, for each article, I'm going to pull out the one line that actually matters most in practice, and tell it back to you as one connected story. Exact command flags and registry key names are genuinely hard to absorb by ear, so if you need that level of detail, go back and check the source article with your eyes when the moment calls for it. Think of today as time spent redrawing the map in your head.
 
@@ -83,6 +83,14 @@ As Kerberos's counterpart, we also dug back into NTLM authentication's own mecha
 ## IAKerb, LocalKDC, and NTLM's Real Deprecation Roadmap
 
 We also covered two new mechanisms closing that exact gap for non-domain-joined machines. IAKerb lets the target server itself relay the Kerberos exchange, when a client can't directly reach a DC. LocalKDC lets Kerberos be used even for authentication between local accounts, which were never domain accounts to begin with. And here's a misconception worth correcting for good: the claim "NTLM is disabled by default in Windows Server 2025" isn't actually accurate. Windows Server 2025 itself still ships with NTLM enabled by default — disabling it by default is a change planned for the generation after it. Assuming NTLM is already disabled purely "because it's a cloud AMI" or "because it's a newer OS" is an unsupported misconception, so keep that in mind.
+
+## Even AES256 Actually Uses SHA-1
+
+We dug one layer deeper into the encryption itself here. Kerberos's standard AES encryption types, both AES128 and AES256, use HMAC-SHA1-96 — meaning SHA-1 — for integrity checking. Raising AES's key length from 128 to 256 bits, and deciding which hash function to use for integrity checking, turned out to be two separate decisions within Kerberos's spec. Most of the context where SHA-1 gets called dangerous is about a collision attack against SHA-1 itself, and HMAC-SHA1, a key-based construction, isn't directly affected by that — an important distinction to keep straight. And we confirmed that which encryption types an account supports gets managed through a bitmask called `msDS-SupportedEncryptionTypes`, with the client and the KDC picking the highest-priority type both sides support in common.
+
+## RDP Authentication Turned Out to Be a Two-Stage Affair: NLA and CredSSP
+
+Finally, we dug into RDP connection authentication itself. RDP's popup authentication is really just the name of a policy, NLA, and the actual processing is handled by a separate mechanism, CredSSP. CredSSP tries Kerberos first, and automatically falls back to NTLM if that can't be used. And starting with Windows 11 24H2 and Windows Server 2025, three changes landed at three different layers: removing NTLMv1 (not NTLMv2), strengthening duplicate-SID detection for machines cloned without running sysprep, and enabling Credential Guard by default. Credential Guard uses virtualization-based security to store NTLM hashes and Kerberos TGTs in a protected region, significantly raising the difficulty of extracting a TGT left sitting in memory through unconstrained delegation. Keep in mind, though, that this doesn't resolve unconstrained delegation's structural danger itself — it's purely an additional defensive layer.
 
 ## Turning Understanding Into Muscle Memory With Twenty-One Hands-On Labs
 
@@ -156,10 +164,10 @@ Last was the ISP article — internet service providers. It might have felt like
 
 ## The Capstone: One Final Piece of Finishing Work
 
-Article number 44 wasn't like the others — it never taught a single new technique. Instead, under the setup of a fictional company, Contoso, acquiring another fictional company, Fabrikam, you designed, yourself, a single integrated environment combining everything you'd learned separately up to that point: forest trusts, GPOs, delegation, gMSA, backup, and Kerberoasting/DCSync auditing. Following a fixed procedure and designing from requirements are genuinely different skills, and finishing every individual hands-on doesn't make you immediately effective in real work without experience combining them into one coherent environment. And part of that capstone was assembling the deliverable itself as a portfolio piece — not just screenshots proving it worked, but a document articulating the reasoning behind your design decisions.
+Article number 46 wasn't like the others — it never taught a single new technique. Instead, under the setup of a fictional company, Contoso, acquiring another fictional company, Fabrikam, you designed, yourself, a single integrated environment combining everything you'd learned separately up to that point: forest trusts, GPOs, delegation, gMSA, backup, and Kerberoasting/DCSync auditing. Following a fixed procedure and designing from requirements are genuinely different skills, and finishing every individual hands-on doesn't make you immediately effective in real work without experience combining them into one coherent environment. And part of that capstone was assembling the deliverable itself as a portfolio piece — not just screenshots proving it worked, but a document articulating the reasoning behind your design decisions.
 
 ## One Last Thing: What Actually Separates the Top 1% From Everyone Else
 
-Having just run back through all 44 articles, here's what I want to leave you with. None of AD's individual features are actually that complicated on their own. What feels complicated is the seams — where one piece connects to another. FSMO and the global catalog. The secure channel and Kerberos. Sites and DNS's SRV records. The GPC and the GPT. The moment you can explain those seams from first principles instead of just memorizing them, you're already past what the average engineer understands.
+Having just run back through all 46 articles, here's what I want to leave you with. None of AD's individual features are actually that complicated on their own. What feels complicated is the seams — where one piece connects to another. FSMO and the global catalog. The secure channel and Kerberos. Sites and DNS's SRV records. The GPC and the GPT. The moment you can explain those seams from first principles instead of just memorizing them, you're already past what the average engineer understands.
 
 Next time you're staring down an AD-related outage or sitting in the middle of an AD migration, run back through this same thread in your head. You'll move with a lot more calm, and a lot more evidence behind every call you make. Nice work today — that's a wrap.
