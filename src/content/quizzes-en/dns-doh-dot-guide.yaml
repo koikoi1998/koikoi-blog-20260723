@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the difference between what DNSSEC and DoH/DoT protect?"
+    choices:
+      - "They protect the exact same thing; there's no difference"
+      - "DNSSEC protects the data's authenticity (detecting tampering/spoofing), while DoH/DoT protect the communication path's confidentiality (preventing eavesdropping)"
+      - "DNSSEC encrypts the communication path, while DoH/DoT verify the data's authenticity"
+      - "Both DNSSEC and DoH/DoT exist purely to improve communication speed"
+    answerIndex: 1
+    explanation: "DNSSEC guarantees the data's own authenticity, while DoH/DoT guarantee the communication path's confidentiality (preventing eavesdropping) — entirely different things."
+
+  - question: "What's the correct assessment of the claim \"DNS communication is safe because DNSSEC is enabled\"?"
+    choices:
+      - "It's a completely accurate claim"
+      - "It's inaccurate. DNSSEC can detect tampering and spoofing, but doesn't prevent the communication's content from being observed along the path"
+      - "DNSSEC performs both encryption and verification, so it's always accurate"
+      - "DNSSEC is a claim about communication speed, unrelated to safety"
+    answerIndex: 1
+    explanation: "DNSSEC can detect tampering and spoofing, but doesn't prevent the communication's content from being observed along the path, so this claim is inaccurate."
+
+  - question: "What scope does DoH/DoT's encryption actually protect?"
+    choices:
+      - "The entire path, from the client all the way to the authoritative DNS server"
+      - "Only between the client and the one resolver it's actually using"
+      - "Every single DNS communication across the entire internet"
+      - "No scope is actually protected by encryption"
+    answerIndex: 1
+    explanation: "What DoH/DoT encrypts is only the first hop: the client sending a query to the resolver it's actually using."
+
+  - question: "What real-world problem does a browser's default DoH usage create for enterprise DNS design?"
+    choices:
+      - "The browser's display speed always degrades"
+      - "It can bypass the internal DNS server, unintentionally breaking an internal name-resolution mechanism like split-horizon DNS"
+      - "The internal DNS server automatically stops"
+      - "DNSSEC verification gets automatically disabled"
+    answerIndex: 1
+    explanation: "A browser's default DoH usage can bypass the internal DNS server, potentially breaking an internal name-resolution mechanism like split-horizon DNS."
+
+  - question: "How does Firefox's canary domain (use-application-dns.net) mechanism work?"
+    choices:
+      - "DoH gets automatically enabled if this domain returns a normal response"
+      - "If the internal DNS server is configured to return NXDOMAIN for this domain, Firefox detects this and disables its default auto-enabled DoH"
+      - "This domain is used exclusively for DNSSEC verification"
+      - "Configuring this domain automatically encrypts all DNS communication"
+    answerIndex: 1
+    explanation: "If the internal DNS server returns NXDOMAIN for use-application-dns.net, Firefox detects this as a signal of enterprise DNS management and disables its default auto-enabled DoH."
