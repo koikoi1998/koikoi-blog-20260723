@@ -1,0 +1,45 @@
+questions:
+  - question: "How does a Shadow Copy actually work?"
+    choices:
+      - "It duplicates the entire volume outright, every time on schedule"
+      - "It holds zero copy right after creation, and preserves only the block about to be overwritten, each time the original volume gets written to"
+      - "It continuously transfers files to a separate server"
+      - "It encrypts files and stores them in a separate area"
+    answerIndex: 1
+    explanation: "A Shadow Copy holds almost no data right after creation, and only the block about to be overwritten gets preserved via copy-on-write, each time the original volume gets written to."
+
+  - question: "What does Windows actually do when a user selects a past state from the \"Previous Versions\" tab?"
+    choices:
+      - "It displays a completely independent copy of that file, saved in advance, as-is"
+      - "It combines the current file's content with the preserved pre-change blocks, reconstructing that moment's complete content on the spot"
+      - "It completely rolls back the entire file server to a past moment"
+      - "It does nothing, always showing only the latest content"
+    answerIndex: 1
+    explanation: "Windows combines the current file's content with the pre-change blocks preserved in the dedicated shadow-copy storage area, reconstructing that moment's complete file content on the spot."
+
+  - question: "When does a Shadow Copy snapshot actually get created?"
+    choices:
+      - "Continuously, in real time, every time a file changes"
+      - "By default, on a fixed schedule, something like twice a day"
+      - "Every time a user opens a file"
+      - "Only once, and never updated again"
+    answerIndex: 1
+    explanation: "A Shadow Copy never continuously records changes to a file — by default, a snapshot gets created on a fixed schedule, something like twice a day."
+
+  - question: "Why is a Shadow Copy never a substitute for a real backup?"
+    choices:
+      - "Because a Shadow Copy never consumes any capacity at all"
+      - "Because a Shadow Copy gets stored on the exact same physical disk as the original volume, offering no protection against that disk itself failing"
+      - "Because a Shadow Copy can't be operated by a user at all"
+      - "Because Shadow Copies only exist as a feature on file servers"
+    answerIndex: 1
+    explanation: "Since a Shadow Copy is stored on the exact same physical disk as the original volume, it offers no protection against that disk itself failing, and is never a substitute for a real backup."
+
+  - question: "What other mechanism, covered in a different article, shares the same underlying idea as a Shadow Copy?"
+    choices:
+      - "DNS amplification defense (RRL)"
+      - "An LVM snapshot's copy-on-write"
+      - "Kerberos authentication's ticket issuance"
+      - "GPO's precedence evaluation"
+    answerIndex: 1
+    explanation: "A Shadow Copy runs on the same idea as an LVM snapshot — copy-on-write, preserving only the pre-change block, only once it's actually needed."
