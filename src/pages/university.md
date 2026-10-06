@@ -558,9 +558,10 @@ ActiveDirectory・AWS・Ansible/IaC・VPN・DNS基盤・メール基盤に続く
 
 ### 2年生:補足・深掘り編
 
-1. [DFS名前空間とDFSレプリケーションの仕組みを『上位1%』の視点で理解する](/articles/windows-server-dfs-guide)
-2. [IISのアプリケーションプールのリサイクルを『上位1%』の視点で理解する](/articles/windows-server-app-pool-recycling-guide)
-3. [プリントサーバーとスプーラーの仕組みを『上位1%』の視点で理解する](/articles/windows-server-print-spooler-guide)
+1. [シャドウコピー(VSS)の仕組みを『上位1%』の視点で理解する](/articles/windows-server-vss-guide)
+2. [DFS名前空間とDFSレプリケーションの仕組みを『上位1%』の視点で理解する](/articles/windows-server-dfs-guide)
+3. [IISのアプリケーションプールのリサイクルを『上位1%』の視点で理解する](/articles/windows-server-app-pool-recycling-guide)
+4. [プリントサーバーとスプーラーの仕組みを『上位1%』の視点で理解する](/articles/windows-server-print-spooler-guide)
 
 ### 3年生:実務シナリオ編ハンズオン
 

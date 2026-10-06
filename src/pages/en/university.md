@@ -558,9 +558,10 @@ None.
 
 ### Sophomore: Supplementary Deep-Dives
 
-1. [Understanding DFS Namespaces and DFS Replication From a "Top 1%" Perspective](/en/articles/windows-server-dfs-guide)
-2. [Understanding IIS Application Pool Recycling From a "Top 1%" Perspective](/en/articles/windows-server-app-pool-recycling-guide)
-3. [Understanding Print Servers and the Spooler From a "Top 1%" Perspective](/en/articles/windows-server-print-spooler-guide)
+1. [Understanding Shadow Copies (VSS) From a Top 1% Perspective](/en/articles/windows-server-vss-guide)
+2. [Understanding DFS Namespaces and DFS Replication From a "Top 1%" Perspective](/en/articles/windows-server-dfs-guide)
+3. [Understanding IIS Application Pool Recycling From a "Top 1%" Perspective](/en/articles/windows-server-app-pool-recycling-guide)
+4. [Understanding Print Servers and the Spooler From a "Top 1%" Perspective](/en/articles/windows-server-print-spooler-guide)
 
 ### Junior: Real-World-Scenario Hands-On
 
