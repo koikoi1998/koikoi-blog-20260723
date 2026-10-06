@@ -499,8 +499,9 @@ ActiveDirectory・AWS・Ansible/IaC・VPN・DNS基盤に続く6つ目の「開�
 ### 2年生:補足・深掘り編
 
 1. [SPF・DKIM・DMARCの仕組みを『上位1%』の視点で理解する](/articles/mail-spf-dkim-dmarc-guide)
-2. [メールキューとバウンスの仕組みを『上位1%』の視点で理解する](/articles/mail-queue-bounce-guide)
-3. [SMTPにおけるSTARTTLSの仕組みを『上位1%』の視点で理解する](/articles/mail-tls-encryption-guide)
+2. [ARC(Authenticated Received Chain)の仕組みを『上位1%』の視点で理解する](/articles/mail-arc-guide)
+3. [メールキューとバウンスの仕組みを『上位1%』の視点で理解する](/articles/mail-queue-bounce-guide)
+4. [SMTPにおけるSTARTTLSの仕組みを『上位1%』の視点で理解する](/articles/mail-tls-encryption-guide)
 
 ### 3年生:実務シナリオ編ハンズオン
 

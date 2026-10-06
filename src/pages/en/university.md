@@ -499,8 +499,9 @@ None (a basic understanding of DNS is enough).
 ### Sophomore: Supplementary Deep-Dives
 
 1. [Understanding How SPF, DKIM, and DMARC Work From a "Top 1%" Perspective](/en/articles/mail-spf-dkim-dmarc-guide)
-2. [Understanding Mail Queues and Bounces From a "Top 1%" Perspective](/en/articles/mail-queue-bounce-guide)
-3. [Understanding SMTP's STARTTLS From a "Top 1%" Perspective](/en/articles/mail-tls-encryption-guide)
+2. [Understanding ARC (Authenticated Received Chain) From a Top 1% Perspective](/en/articles/mail-arc-guide)
+3. [Understanding Mail Queues and Bounces From a "Top 1%" Perspective](/en/articles/mail-queue-bounce-guide)
+4. [Understanding SMTP's STARTTLS From a "Top 1%" Perspective](/en/articles/mail-tls-encryption-guide)
 
 ### Junior: Real-World-Scenario Hands-On
 
