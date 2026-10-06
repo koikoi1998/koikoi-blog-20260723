@@ -1,0 +1,45 @@
+questions:
+  - question: "Why does passing through a mailing list cause SPF to fail?"
+    choices:
+      - "Because the mailing list changes the password"
+      - "Because the source IP visible to the final receiving server changes from the original sender's IP to the mailing list server's own IP"
+      - "Because the mailing list automatically deletes DNS records"
+      - "Because SPF simply isn't designed to support mailing lists at all"
+    answerIndex: 1
+    explanation: "Passing through a mailing list changes the source IP to the list server's own IP, which isn't included in the original sender's domain's SPF record, causing SPF to fail."
+
+  - question: "Why does passing through a mailing list cause DKIM to fail?"
+    choices:
+      - "Because the mailing list changes the message's actual content, such as adding a footer or tagging the Subject"
+      - "Because the mailing list doesn't support encrypted communication"
+      - "Because DKIM was never designed to verify the body in the first place"
+      - "Because the mailing list changes the sender's password"
+    answerIndex: 1
+    explanation: "When a mailing list changes the message's content by adding a footer or a tag, it no longer matches what the original DKIM signature covered, causing DKIM verification to fail."
+
+  - question: "What idea does ARC (Authenticated Received Chain) use to address this problem?"
+    choices:
+      - "It completely disables SPF and DKIM verification itself"
+      - "The forwarder records the authentication results it observed at receipt, signs them, and hands them off to the next destination"
+      - "It bans the use of every mailing list entirely"
+      - "It sends the message's content encrypted"
+    answerIndex: 1
+    explanation: "ARC addresses this by having the forwarder record the original SPF/DKIM/DMARC results observed at receipt, sign them, and hand them off to the next destination."
+
+  - question: "What's the correct understanding of configuring ARC?"
+    choices:
+      - "Configuring ARC automatically rescues every forwarded email"
+      - "Whether an ARC record actually gets trusted is up to the final receiving mail server's own policy"
+      - "Configuring ARC makes SPF/DKIM/DMARC verification unnecessary"
+      - "ARC is always effective, regardless of the receiving side's configuration"
+    answerIndex: 1
+    explanation: "ARC only carries a record in a verifiable form; whether it actually gets trusted is up to the final receiving mail server's own policy."
+
+  - question: "What's the correct understanding of ARC's formal status versus its real-world situation?"
+    choices:
+      - "ARC is a finalized formal standard, with support mandatory for every mail server"
+      - "ARC is positioned as \"Experimental,\" but major mail services like Gmail already support it, and it already has a real-world effect"
+      - "ARC is a purely theoretical mechanism nobody has adopted yet"
+      - "ARC is an older, retired mechanism, predating SPF, DKIM, and DMARC"
+    answerIndex: 1
+    explanation: "RFC 8617, which defines ARC, is positioned as experimental, but major mail services like Gmail, Microsoft 365, and Yahoo already support it, and it genuinely has a real-world effect."
