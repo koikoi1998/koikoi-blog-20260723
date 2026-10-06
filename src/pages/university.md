@@ -317,10 +317,11 @@ ActiveDirectory学科・AWS学科・Ansible/IaC学科に続く4つ目の「開�
 
 1. [IPsecのAH(Authentication Header)とは何かを『上位1%』の視点で理解する](/articles/ipsec-ah-guide)
 2. [Windows Server RRASのVPNアクセス・ダイヤルアップ・デマンドダイヤル・NAT・LANルーティングの違いを『上位1%』の視点で理解する](/articles/windows-rras-roles-guide)
-3. [OpenVPNの仕組みを『上位1%』の視点で理解する](/articles/openvpn-internals-guide)
-4. [WireGuardの仕組みを『上位1%』の視点で理解する](/articles/wireguard-internals-guide)
-5. [Tailscaleの仕組みを『上位1%』の視点で理解する](/articles/tailscale-internals-guide)
-6. [ZTNA(ゼロトラストネットワークアクセス)とは何かを『上位1%』の視点で理解する](/articles/ztna-guide)
+3. [Always On VPN(AOVPN)の仕組みを『上位1%』の視点で理解する](/articles/always-on-vpn-guide)
+4. [OpenVPNの仕組みを『上位1%』の視点で理解する](/articles/openvpn-internals-guide)
+5. [WireGuardの仕組みを『上位1%』の視点で理解する](/articles/wireguard-internals-guide)
+6. [Tailscaleの仕組みを『上位1%』の視点で理解する](/articles/tailscale-internals-guide)
+7. [ZTNA(ゼロトラストネットワークアクセス)とは何かを『上位1%』の視点で理解する](/articles/ztna-guide)
 
 ### 3年生:実務シナリオ編ハンズオン
 

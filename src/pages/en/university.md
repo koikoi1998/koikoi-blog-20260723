@@ -317,10 +317,11 @@ The fourth department to become "fully open," following Active Directory, AWS, a
 
 1. [Understanding IPsec's AH (Authentication Header) From a "Top 1%" Perspective](/en/articles/ipsec-ah-guide)
 2. [Understanding the Differences Between VPN Access, Dial-Up Access, Demand-Dial Access, NAT, and LAN Routing in Windows Server RRAS From a "Top 1%" Perspective](/en/articles/windows-rras-roles-guide)
-3. [How OpenVPN Works Internally From a "Top 1%" Perspective](/en/articles/openvpn-internals-guide)
-4. [How WireGuard Works Internally From a "Top 1%" Perspective](/en/articles/wireguard-internals-guide)
-5. [How Tailscale Works From a "Top 1%" Perspective](/en/articles/tailscale-internals-guide)
-6. [What Is ZTNA (Zero Trust Network Access) From a "Top 1%" Perspective](/en/articles/ztna-guide)
+3. [Understanding Always On VPN (AOVPN) From a Top 1% Perspective](/en/articles/always-on-vpn-guide)
+4. [How OpenVPN Works Internally From a "Top 1%" Perspective](/en/articles/openvpn-internals-guide)
+5. [How WireGuard Works Internally From a "Top 1%" Perspective](/en/articles/wireguard-internals-guide)
+6. [How Tailscale Works From a "Top 1%" Perspective](/en/articles/tailscale-internals-guide)
+7. [What Is ZTNA (Zero Trust Network Access) From a "Top 1%" Perspective](/en/articles/ztna-guide)
 
 ### Junior: Real-World-Scenario Hands-On
 
