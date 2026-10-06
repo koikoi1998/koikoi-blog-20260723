@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the decisive difference in role between a namespace and cgroups?"
+    choices:
+      - "They're exactly the same feature, with no difference"
+      - "A namespace restricts the range of visible information, while cgroups restricts the actual amount of resource consumable"
+      - "A namespace restricts CPU, while cgroups restricts memory"
+      - "cgroups is older than namespaces, and has already been retired"
+    answerIndex: 1
+    explanation: "A namespace restricts the range of visible information (a viewpoint), while cgroups is an independent mechanism that restricts the actual amount of resource consumable."
+
+  - question: "What actually happens when a cgroup's `memory.max` is set to `100M`?"
+    choices:
+      - "Processes belonging to that cgroup automatically switch to using less memory"
+      - "A 100MB cap gets set on the total memory every process belonging to that cgroup can consume"
+      - "The host's overall memory capacity gets restricted to 100MB"
+      - "Nothing happens; the setting gets ignored"
+    answerIndex: 1
+    explanation: "Setting memory.max caps the total memory every process belonging to that cgroup can consume."
+
+  - question: "Under what condition does forced termination occur when a cgroup's memory limit is exceeded?"
+    choices:
+      - "Only when the host overall is running low on memory"
+      - "Even with plenty of free memory on the host overall, once that cgroup itself exceeds its own assigned limit"
+      - "Only when CPU usage reaches 100%"
+      - "Forced termination never occurs under any condition"
+    answerIndex: 1
+    explanation: "Exceeding a cgroup's memory limit triggers forced termination purely because that cgroup itself exceeded its own assigned limit, even with plenty of free memory on the host overall."
+
+  - question: "What is container technology actually a combination of?"
+    choices:
+      - "A single technology: a dedicated lightweight virtual machine"
+      - "Two independent mechanisms: namespaces (what's visible) and cgroups (how much can be used)"
+      - "A single mechanism, complete with cgroups alone"
+      - "A single mechanism, complete with namespaces alone"
+    answerIndex: 1
+    explanation: "Container technology automates, as a single concept, the combination of two independent mechanisms: namespaces (what's visible) and cgroups (how much can be used)."
+
+  - question: "How is cgroups actually configured?"
+    choices:
+      - "Only through a dedicated GUI application"
+      - "Through reading and writing files under `/sys/fs/cgroup`"
+      - "It requires recompiling the kernel"
+      - "Only through a network-based API"
+    answerIndex: 1
+    explanation: "cgroups configuration happens through ordinary file reads and writes under /sys/fs/cgroup, the same underlying idea as procfs."
