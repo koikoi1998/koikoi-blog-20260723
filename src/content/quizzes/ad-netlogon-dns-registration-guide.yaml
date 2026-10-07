@@ -1,0 +1,45 @@
+questions:
+  - question: "DCのSRVレコードを、実際にDNSサーバーへ登録しているのは何か。"
+    choices:
+      - "DHCPクライアントサービス"
+      - "Netlogonサービス"
+      - "DNSマネージャーを使った手動登録のみ"
+      - "Active Directoryユーザーとコンピューター"
+    answerIndex: 1
+    explanation: "DCのSRVレコードは、Netlogonサービス自身が、起動時および一定間隔ごとに、DNSサーバーへ動的更新として自動登録しています。"
+
+  - question: "netlogon.dnsファイルの正体として正しいのはどれか。"
+    choices:
+      - "DNSサーバー自体の設定ファイル"
+      - "Netlogonサービスが登録すべきと認識しているレコードの一覧を、ローカルに保持したファイル"
+      - "クライアント端末のキャッシュファイル"
+      - "ドメインに参加しているすべての端末の一覧"
+    answerIndex: 1
+    explanation: "netlogon.dnsファイルは、DNSサーバーへの登録が実際に成功したかとは無関係に、Netlogonサービスが登録すべきと認識しているレコードの一覧をローカルに保持したものです。"
+
+  - question: "ドメインコントローラー上で`ipconfig /registerdns`を実行した場合に起きることとして正しいのはどれか。"
+    choices:
+      - "SRVレコードがすべて削除される"
+      - "DC上ではDNS登録の役割をNetlogonサービスが担っているため、実質的には何も起こらない"
+      - "DCが自動的に再起動する"
+      - "すべてのドメインユーザーがログオフされる"
+    answerIndex: 1
+    explanation: "ドメインコントローラーでは、DNS登録の役割がNetlogonサービスに属しているため、クライアント向けの`ipconfig /registerdns`は実質的に意味を持ちません。"
+
+  - question: "Netlogonサービスを再起動せずに、DC固有のDNSレコードの登録だけを強制的にやり直せるコマンドはどれか。"
+    choices:
+      - "ipconfig /registerdns"
+      - "nltest /dsregdns"
+      - "netdom computername"
+      - "dcdiag /v"
+    answerIndex: 1
+    explanation: "nltest /dsregdnsは、Netlogonサービスを再起動せずに、DC固有のDNSレコードの登録だけを強制的にやり直せるコマンドです。"
+
+  - question: "Netlogonサービスによる、SRVレコードの既定の再登録頻度として正しいのはどれか。"
+    choices:
+      - "一度登録されれば、二度と再登録されない"
+      - "約1時間ごとに繰り返し再登録される"
+      - "1週間に1回だけ再登録される"
+      - "DCが再起動するたびにしか登録されない"
+    answerIndex: 1
+    explanation: "Netlogonサービスは、起動時だけでなく、既定では約1時間ごとに繰り返しSRVレコードなどの再登録を送信しています。"

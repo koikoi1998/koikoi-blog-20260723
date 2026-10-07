@@ -1,0 +1,45 @@
+questions:
+  - question: "What actually registers a DC's SRV records to the DNS server?"
+    choices:
+      - "The DHCP Client service"
+      - "The Netlogon service"
+      - "Manual registration via DNS Manager only"
+      - "Active Directory Users and Computers"
+    answerIndex: 1
+    explanation: "A DC's SRV records are automatically registered by the Netlogon service itself, as a dynamic update to the DNS server, both at startup and at a fixed interval afterward."
+
+  - question: "What is the netlogon.dns file?"
+    choices:
+      - "A configuration file for the DNS server itself"
+      - "A local file holding the list of records the Netlogon service recognizes it should register"
+      - "A cache file on client devices"
+      - "A list of every device joined to the domain"
+    answerIndex: 1
+    explanation: "The netlogon.dns file is a local record of the list of records the Netlogon service recognizes it should register, regardless of whether registration to the DNS server actually succeeded."
+
+  - question: "What happens when you run `ipconfig /registerdns` on a domain controller?"
+    choices:
+      - "Every SRV record gets deleted"
+      - "It effectively does nothing at all, since the role of DNS registration on a DC belongs to the Netlogon service"
+      - "The DC automatically restarts"
+      - "Every domain user gets logged off"
+    answerIndex: 1
+    explanation: "On a domain controller, the role of DNS registration belongs to the Netlogon service, so the client-oriented `ipconfig /registerdns` carries effectively no meaning at all."
+
+  - question: "Which command can forcibly redo just the registration of DC-specific DNS records, without restarting the Netlogon service?"
+    choices:
+      - "ipconfig /registerdns"
+      - "nltest /dsregdns"
+      - "netdom computername"
+      - "dcdiag /v"
+    answerIndex: 1
+    explanation: "nltest /dsregdns is a command that can forcibly redo just the registration of DC-specific DNS records, without restarting the Netlogon service."
+
+  - question: "How often does the Netlogon service re-register SRV records by default?"
+    choices:
+      - "Once registered, it never gets re-registered again"
+      - "It keeps re-registering roughly every hour"
+      - "Only once a week"
+      - "Only whenever the DC reboots"
+    answerIndex: 1
+    explanation: "The Netlogon service keeps resending registration of SRV records and the like roughly every hour by default, not just at startup."
