@@ -1,0 +1,45 @@
+questions:
+  - question: "How does an NTFS ACL record \"who\" gets a permission?"
+    choices:
+      - "As a readable string, like a username or group name"
+      - "As an internal identifier called a SID (Security Identifier)"
+      - "As an email address"
+      - "As an IP address"
+    answerIndex: 1
+    explanation: "An NTFS ACL records \"who\" gets a permission not as a username or group name, but as an internal identifier called a SID."
+
+  - question: "What happens when you run Robocopy /COPYALL while the new file server isn't domain-joined?"
+    choices:
+      - "Every ACL copies correctly"
+      - "Domain SIDs can't be resolved, so permissions for domain users and groups don't get set correctly"
+      - "The files themselves stop copying too"
+      - "Only share permissions get copied automatically"
+    answerIndex: 1
+    explanation: "At a destination that isn't domain-joined, the DC query needed to resolve domain SIDs isn't possible, so permissions for domain users and groups don't get set correctly."
+
+  - question: "What happens when the old file server's ACL used that server's own local group?"
+    choices:
+      - "It resolves fine as long as the new server is domain-joined"
+      - "A local group's SID can't be resolved from a different computer, and ends up as a dead SID"
+      - "The local group automatically converts into a domain group"
+      - "Robocopy itself becomes unable to run at all"
+    answerIndex: 1
+    explanation: "A local group's SID is specific to the computer where it was created, and can never be resolved from a different computer even if that computer is domain-joined — it ends up as a dead SID."
+
+  - question: "Does a read-only setting made as a share permission get copied by Robocopy?"
+    choices:
+      - "Yes, it gets copied as part of the NTFS ACL too"
+      - "No — share permissions are never recorded on the filesystem, so they're never included in what Robocopy copies"
+      - "Share permissions always take priority over NTFS permissions when copying"
+      - "Share permissions automatically become the strictest setting on the new server"
+    answerIndex: 1
+    explanation: "A share permission is information tied to the shared folder itself, never recorded on the filesystem, so it's never included in the NTFS ACL that Robocopy copies for files and folders."
+
+  - question: "What's the correct order for a file server migration?"
+    choices:
+      - "Copy files with Robocopy first, then domain-join the new server afterward"
+      - "Domain-join the new server, confirm it can query a DC, then copy with Robocopy"
+      - "The order between domain join and the Robocopy copy doesn't matter"
+      - "Remove the old server from the domain before running Robocopy"
+    answerIndex: 1
+    explanation: "Domain-joining the new file server first, and confirming it can query a DC, before copying with Robocopy, lets domain SIDs resolve correctly so the ACL carries over accurately."
