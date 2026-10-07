@@ -106,20 +106,21 @@ The only department, at the moment, that satisfies every grade level. **The goal
 
 ### Sophomore: Supplementary Deep-Dives
 
-1. [Understanding How SPNs (Service Principal Names) Work from a "Top 1%" Perspective](/en/articles/ad-spn-guide)
-2. [Understanding the Netlogon Service and Secure Channel from a "Top 1%" Perspective](/en/articles/ad-netlogon-guide)
-3. [Understanding How Kerberos Authentication Works from a "Top 1%" Perspective](/en/articles/ad-kerberos-guide)
-4. [Understanding How NTLM Authentication Works From a Top 1% Perspective](/en/articles/ad-ntlm-mechanism-guide)
-5. [Understanding IAKerb and LocalKDC From a Top 1% Perspective](/en/articles/ad-iakerb-localkdc-guide)
-6. [Understanding AES128, AES256, and SHA-1's Role in Kerberos From a Top 1% Perspective](/en/articles/ad-kerberos-encryption-types-guide)
-7. [Understanding RDP Authentication Changes Since Windows 11 24H2/Windows Server 2025 From a Top 1% Perspective](/en/articles/ad-rdp-auth-changes-guide)
-8. [Understanding SYSVOL, DFSR, and Group Policy from a "Top 1%" Perspective](/en/articles/ad-sysvol-dfsr-gpo-guide)
-9. [Understanding AD DS, AD CS, AD FS, AD LDS, and AD RMS from a Top-1% Perspective](/en/articles/ad-family-overview-guide)
-10. [Understanding the LDAP Protocol from a "Top 1%" Perspective](/en/articles/ad-ldap-protocol-guide)
-11. [Why Do NetBIOS Names and DNS Hostnames Coexist?](/en/articles/ad-netbios-dns-history-guide)
-12. [Understanding AD Schema Extension from a "Top 1%" Perspective](/en/articles/ad-schema-extension-guide)
-13. [Understanding the Relationship Between .NET Framework and PowerShell from a "Top 1%" Perspective](/en/articles/ad-dotnet-powershell-guide)
-14. [Understanding What an ISP (Internet Service Provider) Is from a "Top 1%" Perspective](/en/articles/ad-isp-guide)
+1. [Replacing a DC With netdom computername's Alternate Name — Migrating to a New DC Without Renaming It, and LDAPS's Extra Requirements](/en/articles/ad-alternate-name-ldaps-guide)
+2. [Understanding How SPNs (Service Principal Names) Work from a "Top 1%" Perspective](/en/articles/ad-spn-guide)
+3. [Understanding the Netlogon Service and Secure Channel from a "Top 1%" Perspective](/en/articles/ad-netlogon-guide)
+4. [Understanding How Kerberos Authentication Works from a "Top 1%" Perspective](/en/articles/ad-kerberos-guide)
+5. [Understanding How NTLM Authentication Works From a Top 1% Perspective](/en/articles/ad-ntlm-mechanism-guide)
+6. [Understanding IAKerb and LocalKDC From a Top 1% Perspective](/en/articles/ad-iakerb-localkdc-guide)
+7. [Understanding AES128, AES256, and SHA-1's Role in Kerberos From a Top 1% Perspective](/en/articles/ad-kerberos-encryption-types-guide)
+8. [Understanding RDP Authentication Changes Since Windows 11 24H2/Windows Server 2025 From a Top 1% Perspective](/en/articles/ad-rdp-auth-changes-guide)
+9. [Understanding SYSVOL, DFSR, and Group Policy from a "Top 1%" Perspective](/en/articles/ad-sysvol-dfsr-gpo-guide)
+10. [Understanding AD DS, AD CS, AD FS, AD LDS, and AD RMS from a Top-1% Perspective](/en/articles/ad-family-overview-guide)
+11. [Understanding the LDAP Protocol from a "Top 1%" Perspective](/en/articles/ad-ldap-protocol-guide)
+12. [Why Do NetBIOS Names and DNS Hostnames Coexist?](/en/articles/ad-netbios-dns-history-guide)
+13. [Understanding AD Schema Extension from a "Top 1%" Perspective](/en/articles/ad-schema-extension-guide)
+14. [Understanding the Relationship Between .NET Framework and PowerShell from a "Top 1%" Perspective](/en/articles/ad-dotnet-powershell-guide)
+15. [Understanding What an ISP (Internet Service Provider) Is from a "Top 1%" Perspective](/en/articles/ad-isp-guide)
 
 ### Junior: Real-World-Scenario Hands-On
 

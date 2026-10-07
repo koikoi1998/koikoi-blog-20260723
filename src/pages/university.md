@@ -106,20 +106,21 @@ altHref: "/en/university"
 
 ### 2年生:補足・深掘り編
 
-1. [SPN(サービスプリンシパル名)の仕組みを『上位1%』の視点で理解する](/articles/ad-spn-guide)
-2. [Netlogonサービスとセキュアチャネルの仕組みを『上位1%』の視点で理解する](/articles/ad-netlogon-guide)
-3. [Kerberos認証の仕組みを『上位1%』の視点で理解する](/articles/ad-kerberos-guide)
-4. [NTLM認証の仕組みを『上位1%』の視点で理解する](/articles/ad-ntlm-mechanism-guide)
-5. [IAKerbとローカルKDCの仕組みを『上位1%』の視点で理解する](/articles/ad-iakerb-localkdc-guide)
-6. [AES128とAES256、そしてKerberosにおけるSHA-1の役割を『上位1%』の視点で理解する](/articles/ad-kerberos-encryption-types-guide)
-7. [Windows 11 24H2/WindowsServer 2025以降のRDP認証の変更点を『上位1%』の視点で理解する](/articles/ad-rdp-auth-changes-guide)
-8. [SYSVOL・DFSR・グループポリシーの仕組みを『上位1%』の視点で理解する](/articles/ad-sysvol-dfsr-gpo-guide)
-9. [AD DS・AD CS・AD FS・AD LDS・AD RMSの違いを『上位1%』の視点で理解する](/articles/ad-family-overview-guide)
-10. [LDAPプロトコルの仕組みを『上位1%』の視点で理解する](/articles/ad-ldap-protocol-guide)
-11. [NetBIOS名とDNSホスト名、なぜ2つの名前が共存しているのか](/articles/ad-netbios-dns-history-guide)
-12. [ADのスキーマ拡張を『上位1%』の視点で理解する](/articles/ad-schema-extension-guide)
-13. [.NET FrameworkとPowerShellの関係を『上位1%』の視点で理解する](/articles/ad-dotnet-powershell-guide)
-14. [ISP(インターネットサービスプロバイダー)とは何かを『上位1%』の視点で理解する](/articles/ad-isp-guide)
+1. [netdom computernameの代替名でDCを更改する——ホスト名を変えずに新DCへ移行する方法とLDAPSの追加対応](/articles/ad-alternate-name-ldaps-guide)
+2. [SPN(サービスプリンシパル名)の仕組みを『上位1%』の視点で理解する](/articles/ad-spn-guide)
+3. [Netlogonサービスとセキュアチャネルの仕組みを『上位1%』の視点で理解する](/articles/ad-netlogon-guide)
+4. [Kerberos認証の仕組みを『上位1%』の視点で理解する](/articles/ad-kerberos-guide)
+5. [NTLM認証の仕組みを『上位1%』の視点で理解する](/articles/ad-ntlm-mechanism-guide)
+6. [IAKerbとローカルKDCの仕組みを『上位1%』の視点で理解する](/articles/ad-iakerb-localkdc-guide)
+7. [AES128とAES256、そしてKerberosにおけるSHA-1の役割を『上位1%』の視点で理解する](/articles/ad-kerberos-encryption-types-guide)
+8. [Windows 11 24H2/WindowsServer 2025以降のRDP認証の変更点を『上位1%』の視点で理解する](/articles/ad-rdp-auth-changes-guide)
+9. [SYSVOL・DFSR・グループポリシーの仕組みを『上位1%』の視点で理解する](/articles/ad-sysvol-dfsr-gpo-guide)
+10. [AD DS・AD CS・AD FS・AD LDS・AD RMSの違いを『上位1%』の視点で理解する](/articles/ad-family-overview-guide)
+11. [LDAPプロトコルの仕組みを『上位1%』の視点で理解する](/articles/ad-ldap-protocol-guide)
+12. [NetBIOS名とDNSホスト名、なぜ2つの名前が共存しているのか](/articles/ad-netbios-dns-history-guide)
+13. [ADのスキーマ拡張を『上位1%』の視点で理解する](/articles/ad-schema-extension-guide)
+14. [.NET FrameworkとPowerShellの関係を『上位1%』の視点で理解する](/articles/ad-dotnet-powershell-guide)
+15. [ISP(インターネットサービスプロバイダー)とは何かを『上位1%』の視点で理解する](/articles/ad-isp-guide)
 
 ### 3年生:実務シナリオ編ハンズオン
 
