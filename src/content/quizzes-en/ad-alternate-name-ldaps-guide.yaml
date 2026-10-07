@@ -1,0 +1,45 @@
+questions:
+  - question: "What characterizes operating with just `/add`, never running `/makeprimary`, in netdom computername?"
+    choices:
+      - "The new DC's name gets completely swapped for the old DC's name"
+      - "The new DC keeps its own distinct new name, while the old DC name becomes an alternate name functioning only at the SPN and DNS level"
+      - "Neither the SPN nor DNS gets rewritten at all under this approach"
+      - "This approach must always run before `/makeprimary`"
+    answerIndex: 1
+    explanation: "Operating with just `/add` leaves the new DC's primary name as-is, while the old DC name remains a subordinate alternate name functioning only at the level of the SPN and DNS record."
+
+  - question: "What does adding an alternate name (`/add`) concretely rewrite?"
+    choices:
+      - "The SAN of the server certificate installed on the new DC"
+      - "The SPN on the new DC's computer object, and DNS's A record"
+      - "Only the firewall rules"
+      - "Only the client-side hosts file"
+    answerIndex: 1
+    explanation: "Adding an alternate name adds an SPN to the new DC's computer object and adds an A record to DNS pointing the old DC name to the new DC's IP — rewriting two mapping tables."
+
+  - question: "Why doesn't LDAPS (port 636) get resolved by adding an alternate name alone?"
+    choices:
+      - "LDAPS doesn't use SPN or DNS at all"
+      - "LDAPS needs to pass through a third mapping table, independent of SPN and DNS, that verifies the certificate's SAN"
+      - "LDAPS can only ever connect using an IP address"
+      - "LDAPS doesn't support the concept of an alternate name at all"
+    answerIndex: 1
+    explanation: "LDAPS verifies the certificate's CN/SAN during the TLS handshake — a third name mapping table, independent of SPN and DNS — and adding an alternate name never rewrites the certificate."
+
+  - question: "What's the correct set of steps for handling an integration system that uses LDAPS?"
+    choices:
+      - "A firewall configuration change alone is sufficient"
+      - "Installing a certificate on the new DC, adding the old DC name to that certificate's SAN, and registering the root CA certificate on the integration system"
+      - "Adding a DNS A record alone is sufficient"
+      - "Running the netdom computername command once more is sufficient"
+    answerIndex: 1
+    explanation: "An integration system using LDAPS needs three steps: installing a certificate on the new DC, adding the old DC name to that certificate's SAN, and registering the root CA certificate on the integration system's side."
+
+  - question: "Why doesn't a setting that specifies an IP address directly get resolved by adding an alternate name?"
+    choices:
+      - "A hardcoded IP address setting never goes through name resolution in the first place"
+      - "A hardcoded IP address setting always requires an SPN"
+      - "Adding an alternate name does rewrite the IP address setting automatically, it just takes time to apply"
+      - "A hardcoded IP address setting is only ever used with LDAPS"
+    answerIndex: 0
+    explanation: "A setting that specifies an IP address directly never goes through name resolution (DNS) in the first place, so adding an alternate name has no effect on it — the setting value itself needs to be changed individually."
