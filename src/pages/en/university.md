@@ -792,17 +792,18 @@ None.
 2. [What Is a Library?](/en/articles/software-library-guide)
 3. [User Space, Kernel Space, and TUN/TAP Devices](/en/articles/linux-user-kernel-space-guide)
 4. [What Are Permissions (chmod)?](/en/articles/linux-file-permissions-guide)
-5. [sysctl and /etc/sysctl.conf](/en/articles/linux-sysctl-guide)
-6. [iptables (netfilter)](/en/articles/linux-iptables-guide)
-7. [/etc and the Linux Directory Layout (FHS)](/en/articles/linux-filesystem-hierarchy-guide)
-8. [How a Config File Actually "Takes Effect"](/en/articles/linux-config-activation-guide)
-9. [Investigating Error Logs With journalctl](/en/articles/linux-journalctl-guide)
+5. [The Difference Between Hard Links and Symbolic Links](/en/articles/linux-hardlink-symlink-guide)
+6. [sysctl and /etc/sysctl.conf](/en/articles/linux-sysctl-guide)
+7. [iptables (netfilter)](/en/articles/linux-iptables-guide)
+8. [/etc and the Linux Directory Layout (FHS)](/en/articles/linux-filesystem-hierarchy-guide)
+9. [How a Config File Actually "Takes Effect"](/en/articles/linux-config-activation-guide)
+10. [Investigating Error Logs With journalctl](/en/articles/linux-journalctl-guide)
 
 **Hands-On (fundamentals, 1 article)**
 
 1. [The Top 1% Hands-On for Tracking Down a File or Directory Yourself With find](/en/articles/linux-find-guide)
 
-**Work through and understand these ten, and you're at a solid checkpoint as a "Freshman."**
+**Work through and understand these eleven, and you're at a solid checkpoint as a "Freshman."**
 
 ### Sophomore: Supplementary Deep-Dives
 
