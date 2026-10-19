@@ -676,9 +676,10 @@ None.
 
 ### Sophomore: Supplementary Deep-Dives
 
-1. [Understanding PAC Files and WPAD From a Top 1% Perspective](/en/articles/pac-wpad-guide)
-2. [Understanding the Difference Between Proxy Authentication Methods (Basic/NTLM/Kerberos) From a Top 1% Perspective](/en/articles/proxy-auth-guide)
-3. [Understanding Cache-Control and the Vary Header From a Top 1% Perspective](/en/articles/cache-control-vary-guide)
+1. [Understanding the CONNECT Method From a Top 1% Perspective](/en/articles/http-connect-method-guide)
+2. [Understanding PAC Files and WPAD From a Top 1% Perspective](/en/articles/pac-wpad-guide)
+3. [Understanding the Difference Between Proxy Authentication Methods (Basic/NTLM/Kerberos) From a Top 1% Perspective](/en/articles/proxy-auth-guide)
+4. [Understanding Cache-Control and the Vary Header From a Top 1% Perspective](/en/articles/cache-control-vary-guide)
 
 ### Junior: Real-World-Scenario Hands-On
 

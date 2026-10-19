@@ -676,9 +676,10 @@ Linux基盤学科に続いて、12個目の「開講済み」学科です。対�
 
 ### 2年生:補足・深掘り編
 
-1. [PACファイルとWPADの仕組みを『上位1%』の視点で理解する](/articles/pac-wpad-guide)
-2. [プロキシ認証(Basic/NTLM/Kerberos)の違いを『上位1%』の視点で理解する](/articles/proxy-auth-guide)
-3. [Cache-ControlとVaryヘッダーの仕組みを『上位1%』の視点で理解する](/articles/cache-control-vary-guide)
+1. [CONNECTメソッドの仕組みを『上位1%』の視点で理解する](/articles/http-connect-method-guide)
+2. [PACファイルとWPADの仕組みを『上位1%』の視点で理解する](/articles/pac-wpad-guide)
+3. [プロキシ認証(Basic/NTLM/Kerberos)の違いを『上位1%』の視点で理解する](/articles/proxy-auth-guide)
+4. [Cache-ControlとVaryヘッダーの仕組みを『上位1%』の視点で理解する](/articles/cache-control-vary-guide)
 
 ### 3年生:実務シナリオ編ハンズオン
 
