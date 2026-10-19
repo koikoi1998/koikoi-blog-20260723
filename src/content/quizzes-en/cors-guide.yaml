@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the accurate reason a CORS error occurs?"
+    choices:
+      - "Because the server is rejecting the request"
+      - "Because the server returns the response normally, but the browser refuses to let JavaScript read that response"
+      - "Because the network itself is unreachable"
+      - "Because DNS name resolution failed"
+    answerIndex: 1
+    explanation: "In most cases the server processes the request normally and returns a response, but a CORS error happens because the browser refuses to let JavaScript read that response."
+
+  - question: "Why does a request succeed with curl or Postman, but only fail from browser JavaScript?"
+    choices:
+      - "Because curl and Postman have faster network speeds"
+      - "Because the Same-Origin Policy is a constraint belonging to the browser software itself, and curl/Postman aren't browsers, so this constraint doesn't apply to them"
+      - "Because the server specially allows requests only from curl"
+      - "Because only browsers enforce HTTPS"
+    answerIndex: 1
+    explanation: "The Same-Origin Policy is a constraint belonging to the browser itself, and doesn't apply to curl or Postman, since they aren't browsers."
+
+  - question: "What does CORS (the Same-Origin Policy) actually protect?"
+    choices:
+      - "The server itself, from unauthorized access"
+      - "The user operating the browser, from a malicious site abusing their cookies"
+      - "Network equipment, from overload"
+      - "The DNS server"
+    answerIndex: 1
+    explanation: "CORS protects not the server, but the user operating the browser, preventing a malicious site from using the user's cookies to read information from another site."
+
+  - question: "What happens when you use Content-Type: application/json?"
+    choices:
+      - "It's always treated as a simple request, and no preflight occurs"
+      - "Since it isn't included in the simple-request conditions, a preflight occurs in most cases"
+      - "CORS constraints get completely disabled"
+      - "The server automatically converts the JSON into XML"
+    answerIndex: 1
+    explanation: "Content-Type: application/json isn't included in the simple-request conditions, so most API calls sending JSON trigger a preflight."
+
+  - question: "What's the correct way to set Access-Control-Allow-Origin when allowing a request carrying credentials?"
+    choices:
+      - "Specify a wildcard (*)"
+      - "You can't use a wildcard — you must explicitly specify the requesting origin's concrete value"
+      - "It gets allowed automatically with no setting needed at all"
+      - "It can be set freely, regardless of Access-Control-Allow-Credentials"
+    answerIndex: 1
+    explanation: "When using Access-Control-Allow-Credentials: true, you can never specify a wildcard for Access-Control-Allow-Origin — you must explicitly specify the concrete origin."
