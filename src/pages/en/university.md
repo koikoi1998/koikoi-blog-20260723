@@ -566,11 +566,12 @@ None.
 
 ### Sophomore: Supplementary Deep-Dives
 
-1. [Understanding Shadow Copies (VSS) From a Top 1% Perspective](/en/articles/windows-server-vss-guide)
-2. [Why You Shouldn't Robocopy Before Domain-Joining in a File Server Migration](/en/articles/file-server-migration-robocopy-sid-guide)
-3. [Understanding DFS Namespaces and DFS Replication From a "Top 1%" Perspective](/en/articles/windows-server-dfs-guide)
-4. [Understanding IIS Application Pool Recycling From a "Top 1%" Perspective](/en/articles/windows-server-app-pool-recycling-guide)
-5. [Understanding Print Servers and the Spooler From a "Top 1%" Perspective](/en/articles/windows-server-print-spooler-guide)
+1. [Understanding DHCP Relay Agents From a Top 1% Perspective](/en/articles/windows-server-dhcp-relay-guide)
+2. [Understanding Shadow Copies (VSS) From a Top 1% Perspective](/en/articles/windows-server-vss-guide)
+3. [Why You Shouldn't Robocopy Before Domain-Joining in a File Server Migration](/en/articles/file-server-migration-robocopy-sid-guide)
+4. [Understanding DFS Namespaces and DFS Replication From a "Top 1%" Perspective](/en/articles/windows-server-dfs-guide)
+5. [Understanding IIS Application Pool Recycling From a "Top 1%" Perspective](/en/articles/windows-server-app-pool-recycling-guide)
+6. [Understanding Print Servers and the Spooler From a "Top 1%" Perspective](/en/articles/windows-server-print-spooler-guide)
 
 ### Junior: Real-World-Scenario Hands-On
 
