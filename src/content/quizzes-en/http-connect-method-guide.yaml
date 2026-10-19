@@ -1,0 +1,45 @@
+questions:
+  - question: "What does the CONNECT method request the proxy to do?"
+    choices:
+      - "Fetch the content of the specified URL"
+      - "Relay a TCP connection to the specified hostname and port"
+      - "Decrypt and inspect the traffic's contents"
+      - "Perform DNS name resolution on the client's behalf"
+    answerIndex: 1
+    explanation: "The CONNECT method is a request to \"relay a TCP connection to this hostname and port\" — not a request to forward an HTTP request."
+
+  - question: "What information can the proxy know once a CONNECT tunnel is established?"
+    choices:
+      - "The URL path of every HTTP request the client sends"
+      - "Only the destination hostname and port number, handed over at the time of the CONNECT request"
+      - "The full body of every response returned by the server"
+      - "The private key used for the encrypted connection"
+    answerIndex: 1
+    explanation: "Once a CONNECT tunnel is established, the proxy can't see the encrypted traffic's contents at all, and knows only the destination hostname and port number handed over at CONNECT time."
+
+  - question: "Why can access control for HTTPS sites, by default, only ever work at the \"hostname\" level?"
+    choices:
+      - "HTTPS doesn't support access control at all"
+      - "Once a CONNECT tunnel is established, the proxy has no way of knowing the actual HTTP request (the URL path)"
+      - "Hostname-level control performs better than path-level control"
+      - "SSL inspection is always automatically enabled"
+    answerIndex: 1
+    explanation: "Once a CONNECT tunnel is established, the proxy can't see the encrypted traffic's contents, and has no way of knowing the actual HTTP request (the full URL, including the path) the client sends."
+
+  - question: "What's the correct behavior for proxy authentication on a CONNECT request?"
+    choices:
+      - "Proxy authentication never applies to CONNECT requests at all"
+      - "It gets the same 407 status code as an ordinary HTTP request, and is subject to authentication"
+      - "A CONNECT request always gets allowed unconditionally"
+      - "A CONNECT request uses the 401 status code instead"
+    answerIndex: 1
+    explanation: "A CONNECT request gets the same 407 status code as an ordinary HTTP request, and is subject to proxy authentication just the same."
+
+  - question: "What's the relationship between a CONNECT tunnel and SSL inspection?"
+    choices:
+      - "Both are exactly the same operating mode, and always happen together"
+      - "A CONNECT tunnel is the proxy's default behavior, while SSL inspection is an entirely separate operating mode that must be explicitly enabled"
+      - "Without SSL inspection, the proxy can't relay anything at all"
+      - "A CONNECT tunnel only ever happens when SSL inspection is enabled"
+    answerIndex: 1
+    explanation: "A blind tunnel via the CONNECT method is the proxy's default behavior, while SSL inspection is an entirely separate operating mode requiring a certificate-trust configuration on the client side, which must be explicitly enabled."
