@@ -1,0 +1,45 @@
+questions:
+  - question: "Why does ALB mandate at least two different Availability Zones (AZs)?"
+    choices:
+      - "It's due to how AWS billing works"
+      - "ALB itself is a distributed resource spanning multiple AZs, guaranteeing high availability at the design level"
+      - "It's a spec to increase the number of EC2 instances"
+      - "It's a spec to simplify security group configuration"
+    answerIndex: 1
+    explanation: "ALB mandates subnets in at least two different AZs to guarantee high availability at the design level, so the service can keep running even if one AZ goes down."
+
+  - question: "What's the appropriate inbound rule for the EC2 instances' security group, in a setup that routes through an ALB?"
+    choices:
+      - "Allow port 80 from 0.0.0.0/0"
+      - "Allow port 80 only from the ALB's security group"
+      - "Configure no inbound rules at all"
+      - "Allow every port from 0.0.0.0/0"
+    answerIndex: 1
+    explanation: "In a setup that routes through an ALB, the EC2 instances should only allow traffic from the ALB's own security group, blocking direct internet access."
+
+  - question: "If creating an ALB gives the error \"At least two subnets in two different Availability Zones must be specified,\" what should you check?"
+    choices:
+      - "Increase the number of EC2 instances"
+      - "Whether the subnets you selected actually belong to two different AZs"
+      - "Delete the security group"
+      - "Delete and recreate the VPC itself"
+    answerIndex: 1
+    explanation: "This error appears when the selected subnets don't belong to two different AZs, so you need to check which AZ each subnet actually belongs to."
+
+  - question: "What is ALB's \"Deregistration Delay\" actually?"
+    choices:
+      - "A feature that delays the ALB's own startup"
+      - "AWS's concrete implementation of connection draining, letting a target keep responding to existing connections for a configured number of seconds during deregistration"
+      - "A feature that changes the health check interval"
+      - "A feature that speeds up DNS propagation"
+    answerIndex: 1
+    explanation: "Deregistration delay lets a target keep responding to its existing connections for the configured number of seconds when being deregistered — AWS's concrete implementation of the connection-draining design philosophy."
+
+  - question: "If a target group's health check stays unhealthy indefinitely, what should you check first?"
+    choices:
+      - "Reinstall the EC2 instance's OS"
+      - "Whether the EC2 security group allows health-check traffic from the ALB's security group"
+      - "Change the ALB's DNS name"
+      - "Change the VPC's CIDR block"
+    answerIndex: 1
+    explanation: "A typical cause of a health check staying unhealthy is that the EC2 security group doesn't allow health-check traffic from the ALB's security group."
