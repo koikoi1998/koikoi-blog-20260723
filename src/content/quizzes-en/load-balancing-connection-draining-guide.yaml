@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the difference between the MAINT state and the DRAIN state?"
+    choices:
+      - "They're just two different names for the same behavior"
+      - "MAINT cuts off existing connections immediately, while DRAIN lets existing connections continue until they naturally finish"
+      - "DRAIN cuts off existing connections immediately, while MAINT lets them continue until they naturally finish"
+      - "Both MAINT and DRAIN keep sending new connections"
+    answerIndex: 1
+    explanation: "MAINT blocks both new and existing connections immediately, while DRAIN stops only new connections and lets existing ones continue until they naturally finish."
+
+  - question: "Why isn't simply deleting the config file entry and reloading enough, when putting a backend server into planned maintenance?"
+    choices:
+      - "Because reloading the config file takes too long"
+      - "Because an in-flight request that hasn't returned a response yet risks being forcibly cut off"
+      - "Because reloading the config file creates a security vulnerability"
+      - "Because deleting the config entry affects other servers too"
+    answerIndex: 1
+    explanation: "Deleting the config file entry and reloading risks forcibly cutting off a request that server is still processing, without regard for its state."
+
+  - question: "What's the correct way to change a server to the DRAIN state in HAProxy?"
+    choices:
+      - "Edit the config file and restart the process"
+      - "Set the server's state to drain via the Runtime API (the stats socket)"
+      - "Directly power off the server"
+      - "Set the DNS TTL to 0"
+    answerIndex: 1
+    explanation: "In HAProxy, you change to the DRAIN state by running `set server backend_name/server_name state drain` via the Runtime API (the stats socket)."
+
+  - question: "What's AWS ELB/ALB's name for the feature equivalent to connection draining?"
+    choices:
+      - "Security group"
+      - "Deregistration delay"
+      - "Auto Scaling group"
+      - "Health check grace period"
+    answerIndex: 1
+    explanation: "AWS's ELB/ALB calls the mechanism equivalent to connection draining \"deregistration delay.\""
+
+  - question: "What's true about the design philosophy of separating \"stopping new inflow\" from \"waiting for existing work to complete\"?"
+    choices:
+      - "This design philosophy exists only in HAProxy"
+      - "This design philosophy is widely shared across HAProxy, AWS, GCP, and Kubernetes, even though each names it differently"
+      - "This design philosophy only applies to L4 load balancers"
+      - "This design philosophy isn't used in cloud services at all"
+    answerIndex: 1
+    explanation: "The design philosophy of separating \"stopping new inflow\" from \"waiting for existing work to complete\" is widely shared across HAProxy, AWS, GCP, and Kubernetes, even though each names it differently."
