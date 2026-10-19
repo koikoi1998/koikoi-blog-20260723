@@ -1,0 +1,45 @@
+questions:
+  - question: "What is a PTR record, actually?"
+    choices:
+      - "A record deriving an IP address from a hostname, the same direction as an A record"
+      - "A reverse-lookup record deriving a hostname from an IP address, the opposite direction of an A record"
+      - "A record specifying mail encryption method"
+      - "A record used in place of SPF"
+    answerIndex: 1
+    explanation: "A PTR record is a DNS record for reverse lookups, deriving a hostname from an IP address — the opposite direction of an A record (hostname to IP address)."
+
+  - question: "What can happen when a sending IP address has no PTR record?"
+    choices:
+      - "Mail always gets delivered without any problem"
+      - "It gets treated as a typical characteristic of spam, becoming a major factor in connection rejection or spam classification"
+      - "SPF, DKIM, and DMARC settings get automatically disabled"
+      - "The mail's character encoding gets automatically converted"
+    answerIndex: 1
+    explanation: "A sending IP address with no PTR record at all gets treated as a typical characteristic of spam senders, and that alone can get the connection rejected or counted heavily toward a spam classification."
+
+  - question: "What are the concrete two stages of FCrDNS (forward-match verification)?"
+    choices:
+      - "Confirming the sender's password twice"
+      - "Getting a hostname via the PTR record, then forward-looking up that hostname via an A record to confirm it matches the original IP address"
+      - "Querying two different DNS servers for the sending domain"
+      - "Inspecting the mail's subject line twice"
+    answerIndex: 1
+    explanation: "FCrDNS is a two-stage check: getting a hostname via the PTR record's reverse lookup, then forward-looking up that hostname via an A record to confirm the resulting IP address matches the original connecting IP address."
+
+  - question: "What's the difference between PTR/FCrDNS and SPF/DKIM/DMARC?"
+    choices:
+      - "Both verify exactly the same thing"
+      - "PTR/FCrDNS is an identity check on the IP address itself, while SPF/DKIM/DMARC is an identity check on the domain — an entirely separate layer of verification"
+      - "If SPF/DKIM/DMARC are correct, PTR/FCrDNS verification becomes unnecessary"
+      - "PTR/FCrDNS is just another name for SPF"
+    answerIndex: 1
+    explanation: "PTR/FCrDNS is an identity check on the IP address itself, while SPF/DKIM/DMARC is an identity check on the domain — an entirely separate, independent layer of verification."
+
+  - question: "What's the correct procedure and constraint for setting a PTR record in an AWS EC2 environment?"
+    choices:
+      - "It can be set directly on your own DNS server"
+      - "You need to request it through AWS Support Center, and the corresponding forward A record must already be set beforehand"
+      - "A PTR record can never be set on EC2 at all"
+      - "A PTR record can only be set without using an Elastic IP address"
+    answerIndex: 1
+    explanation: "On AWS EC2, you need to request the PTR record setting through AWS Support Center, and the corresponding forward A record is required to already be set beforehand."
