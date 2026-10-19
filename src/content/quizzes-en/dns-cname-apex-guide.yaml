@@ -1,0 +1,45 @@
+questions:
+  - question: "What constraint does a CNAME record carry under the DNS specification?"
+    choices:
+      - "It can coexist freely with other records"
+      - "No other record type at all can coexist at the same name"
+      - "Only one can exist per zone"
+      - "It can only ever be set on a subdomain"
+    answerIndex: 1
+    explanation: "Under the DNS specification (RFC 1034), a CNAME record carries the constraint that no other record type at all can coexist at the same name."
+
+  - question: "What records must always exist at the zone apex, for the zone to function?"
+    choices:
+      - "A CNAME record and a TXT record"
+      - "An SOA record and an NS record"
+      - "Only an MX record"
+      - "Only a PTR record"
+    answerIndex: 1
+    explanation: "A zone apex must always carry an SOA record and an NS record, for that zone to function at all."
+
+  - question: "Why can't a CNAME be placed at a zone apex?"
+    choices:
+      - "Because a DNS server can't physically recognize the zone apex"
+      - "Because the constraint that CNAME can't coexist with other records collides with the requirement that SOA and NS are mandatory at the zone apex"
+      - "Because CNAME only supports encrypted communication"
+      - "Because there's a character limit at the zone apex"
+    answerIndex: 1
+    explanation: "Because the constraint that a CNAME can't coexist with other records collides with the requirement that SOA and NS are mandatory at the zone apex, placing a CNAME there is structurally impossible."
+
+  - question: "What is an ALIAS/ANAME record actually?"
+    choices:
+      - "Just another name for a CNAME record"
+      - "A provider-specific mechanism that doesn't exist in the standard DNS protocol, which actually responds as an A record at the protocol level"
+      - "A special TXT record that can't be set at the zone apex"
+      - "A record used only for DNSSEC validation"
+    answerIndex: 1
+    explanation: "ALIAS/ANAME is a provider-specific mechanism that doesn't exist in the standard DNS protocol, and at the DNS protocol level it actually responds as an A record."
+
+  - question: "What failure can occur if some provider mistakenly allows setting a CNAME at the root domain?"
+    choices:
+      - "Nothing goes wrong at all"
+      - "Other mandatory records at the zone apex (like MX) can get implicitly lost, leading to a confusing failure (like mail delivery stopping) later"
+      - "The DNS server itself crashes immediately"
+      - "The domain name automatically expires"
+    answerIndex: 1
+    explanation: "Even if it's allowed, other mandatory records at the zone apex can get implicitly lost, risking a confusing failure that only shows up later."
