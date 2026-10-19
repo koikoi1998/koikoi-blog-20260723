@@ -1,0 +1,45 @@
+questions:
+  - question: "What happens in a SAN environment with multiple physical paths, if nothing is done about it?"
+    choices:
+      - "The OS automatically recognizes it correctly as a single LUN"
+      - "The OS recognizes each path as a separate disk"
+      - "The storage array automatically returns an error"
+      - "Every path gets disabled"
+    answerIndex: 1
+    explanation: "Without doing anything about it, the OS recognizes each physical path as a separate disk, so what should be a single LUN shows up as multiple disks."
+
+  - question: "What is a WWID, actually?"
+    choices:
+      - "The server's MAC address"
+      - "A unique, persistent identifier the storage array assigns to each individual LUN"
+      - "The SAN switch's IP address"
+      - "The filesystem's label name"
+    answerIndex: 1
+    explanation: "A WWID is a unique, persistent identifier the storage array assigns to each individual LUN, returning the same value for that LUN regardless of the path used."
+
+  - question: "What does Multipath I/O software concretely do?"
+    choices:
+      - "Combines multiple, physically separate disks into one, like RAID"
+      - "Checks multiple devices sharing the same WWID, and consolidates them into a single logical multipath device"
+      - "Automatically expands network bandwidth"
+      - "Updates the storage array's firmware"
+    answerIndex: 1
+    explanation: "Multipath I/O software checks the WWID of every block device the OS recognizes, and consolidates multiple devices sharing the same WWID into a single logical multipath device."
+
+  - question: "What's the difference between RAID and Multipath I/O?"
+    choices:
+      - "Both consolidate exactly the same thing"
+      - "RAID consolidates multiple, physically separate disks, while Multipath I/O consolidates multiple paths to one single, same LUN"
+      - "Multipath I/O is always faster than RAID"
+      - "RAID consolidates paths, and Multipath I/O consolidates disks"
+    answerIndex: 1
+    explanation: "RAID consolidates multiple, physically separate disks into one logical disk, while what Multipath I/O consolidates is multiple paths for reaching one single, same LUN."
+
+  - question: "What should you check first when a newly connected SAN LUN shows up as multiple disks of the same capacity?"
+    choices:
+      - "The storage array's firmware version"
+      - "Whether Multipath I/O software is correctly configured and working on the server side"
+      - "The length of the network cable"
+      - "The power supply unit's redundancy status"
+    answerIndex: 1
+    explanation: "In most cases, the cause isn't on the storage side — it's that Multipath I/O software on the server side is either unconfigured or not working correctly."
