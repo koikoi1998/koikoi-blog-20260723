@@ -1,0 +1,45 @@
+questions:
+  - question: "What does a Playbook do to hosts in the inventory by default?"
+    choices:
+      - "Processes them one at a time, in order"
+      - "Applies the task to nearly every host at almost the same time (in parallel, up to the fork limit)"
+      - "Applies the task only to one randomly chosen host"
+      - "Asks the user to confirm the target hosts every single run"
+    answerIndex: 1
+    explanation: "By default, a Playbook runs each task against every target host in parallel, up to the fork limit."
+
+  - question: "What does the serial keyword achieve?"
+    choices:
+      - "Automatic removal from the load balancer"
+      - "Splitting a Playbook run into batches of the specified size, forcing sequential execution"
+      - "Encrypting secrets with Ansible Vault"
+      - "Rendering Jinja2 templates"
+    answerIndex: 1
+    explanation: "serial splits a single Playbook run into batches of the specified size, forcing one batch to fully complete before the next one begins."
+
+  - question: "Why can't serial alone achieve zero downtime?"
+    choices:
+      - "Because serial only limits the host count, while the host being processed keeps receiving traffic from the load balancer"
+      - "Because serial only exists in old versions of Ansible"
+      - "Because using serial makes processing extremely slow"
+      - "Because serial can only ever apply to a single server"
+    answerIndex: 0
+    explanation: "serial only limits how many hosts get processed — without separately building in an explicit removal from the load balancer, an in-flight request can still be lost."
+
+  - question: "What does delegate_to actually do?"
+    choices:
+      - "Changes the target hosts for the entire Playbook"
+      - "Runs just a specific task on a different, specified host, instead of the host being processed"
+      - "Runs every task only on localhost"
+      - "Rewrites the contents of the inventory file"
+    answerIndex: 1
+    explanation: "delegate_to is an instruction to run a specific task on a different, specified host, instead of the host Ansible is currently looping over."
+
+  - question: "What risk comes from not setting max_fail_percentage?"
+    choices:
+      - "The Playbook's execution speed improves"
+      - "Even if the first batch fails, Ansible won't notice and will keep processing the remaining batches, risking putting every host into the same broken state"
+      - "The serial setting gets automatically disabled"
+      - "The connection to the load balancer gets automatically cut off"
+    answerIndex: 1
+    explanation: "Without max_fail_percentage, even if something goes wrong in the first batch, Ansible won't notice and will keep processing the remaining batches."
