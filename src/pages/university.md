@@ -390,9 +390,10 @@ ActiveDirectory学科・AWS学科・Ansible/IaC学科に続く4つ目の「開�
 
 ### 2年生:補足・深掘り編
 
-1. [GSLB(グローバルサーバーロードバランシング)の仕組みを『上位1%』の視点で理解する](/articles/load-balancing-gslb-guide)
-2. [ロードバランサー自体の冗長化を『上位1%』の視点で理解する](/articles/load-balancing-vrrp-keepalived-guide)
-3. [PROXY protocolの仕組みを『上位1%』の視点で理解する](/articles/load-balancing-proxy-protocol-guide)
+1. [ロードバランサーからサーバーを安全に外す——コネクションドレインの仕組み](/articles/load-balancing-connection-draining-guide)
+2. [GSLB(グローバルサーバーロードバランシング)の仕組みを『上位1%』の視点で理解する](/articles/load-balancing-gslb-guide)
+3. [ロードバランサー自体の冗長化を『上位1%』の視点で理解する](/articles/load-balancing-vrrp-keepalived-guide)
+4. [PROXY protocolの仕組みを『上位1%』の視点で理解する](/articles/load-balancing-proxy-protocol-guide)
 
 ### 3年生:実務シナリオ編ハンズオン
 

@@ -390,9 +390,10 @@ None.
 
 ### Sophomore: Supplementary Deep-Dives
 
-1. [Understanding GSLB (Global Server Load Balancing) From a Top 1% Perspective](/en/articles/load-balancing-gslb-guide)
-2. [Understanding Load Balancer Redundancy Itself From a Top 1% Perspective](/en/articles/load-balancing-vrrp-keepalived-guide)
-3. [Understanding the PROXY Protocol From a Top 1% Perspective](/en/articles/load-balancing-proxy-protocol-guide)
+1. [Safely Removing a Server From a Load Balancer — Connection Draining](/en/articles/load-balancing-connection-draining-guide)
+2. [Understanding GSLB (Global Server Load Balancing) From a Top 1% Perspective](/en/articles/load-balancing-gslb-guide)
+3. [Understanding Load Balancer Redundancy Itself From a Top 1% Perspective](/en/articles/load-balancing-vrrp-keepalived-guide)
+4. [Understanding the PROXY Protocol From a Top 1% Perspective](/en/articles/load-balancing-proxy-protocol-guide)
 
 ### Junior: Real-World-Scenario Hands-On
 
