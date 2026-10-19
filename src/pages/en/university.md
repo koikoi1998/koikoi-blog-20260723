@@ -622,9 +622,10 @@ None.
 
 ### Sophomore: Supplementary Deep-Dives
 
-1. [Understanding What's Actually Happening Behind a Payment API From a Top 1% Perspective](/en/articles/payment-api-guide) — a dense, real-world deep-dive using Stripe as the example, covering PaymentIntent's multi-stage lifecycle, webhooks, and PCI DSS compliance.
-2. [Understanding How OAuth 2.0 Works From a Top 1% Perspective](/en/articles/oauth2-guide) — covers the authorization code flow and its distinction from authentication (OpenID Connect).
-3. [Understanding the Difference Between GraphQL and RESTful APIs From a Top 1% Perspective](/en/articles/graphql-vs-rest-guide) — covers eliminating over-fetching and under-fetching.
+1. [Understanding CORS (Cross-Origin Resource Sharing) From a Top 1% Perspective](/en/articles/cors-guide) — covers why it succeeds in Postman, but fails from the browser.
+2. [Understanding What's Actually Happening Behind a Payment API From a Top 1% Perspective](/en/articles/payment-api-guide) — a dense, real-world deep-dive using Stripe as the example, covering PaymentIntent's multi-stage lifecycle, webhooks, and PCI DSS compliance.
+3. [Understanding How OAuth 2.0 Works From a Top 1% Perspective](/en/articles/oauth2-guide) — covers the authorization code flow and its distinction from authentication (OpenID Connect).
+4. [Understanding the Difference Between GraphQL and RESTful APIs From a Top 1% Perspective](/en/articles/graphql-vs-rest-guide) — covers eliminating over-fetching and under-fetching.
 
 ### Junior: Real-World-Scenario Hands-On
 

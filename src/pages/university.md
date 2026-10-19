@@ -622,9 +622,10 @@ ActiveDirectory・AWS・Ansible/IaC・VPN・DNS基盤・メール基盤に続く
 
 ### 2年生:補足・深掘り編
 
-1. [決済APIの裏側の仕組みを『上位1%』の視点で理解する](/articles/payment-api-guide) — Stripeを題材に、PaymentIntentの多段階ライフサイクル・Webhook・PCI DSS対応までを扱う、実務密度の高い深掘り記事です。
-2. [OAuth 2.0の仕組みを『上位1%』の視点で理解する](/articles/oauth2-guide) — 認可コードフローと、認証(OpenID Connect)との違いを扱います。
-3. [GraphQLとRESTful APIの違いを『上位1%』の視点で理解する](/articles/graphql-vs-rest-guide) — オーバーフェッチ/アンダーフェッチの解消を扱います。
+1. [CORS(Cross-Origin Resource Sharing)の仕組みを『上位1%』の視点で理解する](/articles/cors-guide) — なぜPostmanでは成功するのに、ブラウザからは失敗するのかを扱います。
+2. [決済APIの裏側の仕組みを『上位1%』の視点で理解する](/articles/payment-api-guide) — Stripeを題材に、PaymentIntentの多段階ライフサイクル・Webhook・PCI DSS対応までを扱う、実務密度の高い深掘り記事です。
+3. [OAuth 2.0の仕組みを『上位1%』の視点で理解する](/articles/oauth2-guide) — 認可コードフローと、認証(OpenID Connect)との違いを扱います。
+4. [GraphQLとRESTful APIの違いを『上位1%』の視点で理解する](/articles/graphql-vs-rest-guide) — オーバーフェッチ/アンダーフェッチの解消を扱います。
 
 ### 3年生:実務シナリオ編ハンズオン
 
