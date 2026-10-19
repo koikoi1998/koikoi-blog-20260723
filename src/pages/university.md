@@ -273,8 +273,9 @@ AWS学科に続いて、3つ目の「開講済み」学科です。**この学�
 1. [AnsibleのJinja2フィルターとloop・whenの落とし穴を体験するハンズオン](/articles/ansible-jinja2-loops-handson-guide)
 2. [Ansibleのfacts収集をキャッシュして大規模インベントリを高速化するハンズオン](/articles/ansible-facts-caching-handson-guide)
 3. [Ansibleのblock/rescue/alwaysで構成変更失敗時のロールバックを設計するハンズオン](/articles/ansible-error-handling-handson-guide)
+4. [Ansibleのserialとdelegate_toで、ロードバランサーから外しながらローリングアップデートするハンズオン](/articles/ansible-serial-rolling-update-handson-guide)
 
-**この3本まで自力で実施・理解できれば、「4年生」として卒業水準です。**
+**この4本まで自力で実施・理解できれば、「4年生」として卒業水準です。**
 
 ### 大学院:セキュリティ強化編ハンズオン(攻撃者視点)
 

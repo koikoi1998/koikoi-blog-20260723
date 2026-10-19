@@ -273,8 +273,9 @@ Following the AWS Department, this is the third department to become "fully open
 1. [The Top 1% Hands-On for Experiencing Ansible's Jinja2 Filters and the loop/when Gotchas](/en/articles/ansible-jinja2-loops-handson-guide)
 2. [The Top 1% Hands-On for Speeding Up a Large Inventory by Caching Ansible Facts](/en/articles/ansible-facts-caching-handson-guide)
 3. [The Top 1% Hands-On for Designing a Rollback on Failed Configuration Changes With Ansible's block/rescue/always](/en/articles/ansible-error-handling-handson-guide)
+4. [Rolling Updates With Ansible's serial and delegate_to, Draining Each Host From the Load Balancer](/en/articles/ansible-serial-rolling-update-handson-guide)
 
-**Work through and understand all 3 of these, and you're at graduation level, as a "Senior."**
+**Work through and understand all 4 of these, and you're at graduation level, as a "Senior."**
 
 ### Graduate School: Security-Hardening Hands-On (An Attacker's Perspective)
 
