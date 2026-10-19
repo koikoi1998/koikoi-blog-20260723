@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the nature of a DHCP Discover packet?"
+    choices:
+      - "A unicast query addressed to the DHCP server"
+      - "A broadcast packet addressed to every device on the same segment"
+      - "Encrypted communication through a dedicated tunnel"
+      - "Something always sent via a DNS server"
+    answerIndex: 1
+    explanation: "DHCP Discover is a broadcast packet — destination IP 255.255.255.255, destination MAC ff:ff:ff:ff:ff:ff — addressed to every device on the same segment."
+
+  - question: "What does a DHCP relay agent actually do?"
+    choices:
+      - "Duplicates the DHCP server itself"
+      - "Receives a client's broadcast packet, converts it into a unicast packet, and forwards it to the DHCP server"
+      - "Encrypts the DHCP query"
+      - "Fully takes over address assignment, making the DHCP server unnecessary"
+    answerIndex: 1
+    explanation: "A DHCP relay agent receives a client's broadcast packet and re-forwards it as a unicast packet addressed to the DHCP server."
+
+  - question: "What does the giaddr field represent?"
+    choices:
+      - "The client's own IP address"
+      - "The relaying relay agent's own IP address"
+      - "The DHCP server's MAC address"
+      - "The DNS server's IP address"
+    answerIndex: 1
+    explanation: "giaddr isn't the client's IP address — it's a field representing the relaying relay agent's own IP address."
+
+  - question: "What does the DHCP server use the giaddr field for?"
+    choices:
+      - "Encrypting the client's MAC address"
+      - "Determining the requesting subnet, and choosing an address from the correct corresponding scope"
+      - "Automatically updating DNS records"
+      - "Dynamically changing firewall rules"
+    answerIndex: 1
+    explanation: "By looking at the giaddr field, the DHCP server determines the requesting subnet and responds with an address chosen from the correct corresponding scope."
+
+  - question: "What's the relationship between a DHCP relay agent and DHCP Failover?"
+    choices:
+      - "They resolve exactly the same problem"
+      - "The relay agent resolves the reachability problem, while failover resolves the redundancy problem for the DHCP server itself — design decisions on separate axes"
+      - "Configuring a relay agent makes failover unnecessary"
+      - "Configuring failover automatically enables distribution to a different subnet"
+    answerIndex: 1
+    explanation: "A DHCP relay agent resolves the reachability problem, while redundancy for the DHCP server itself needs to be addressed separately, through a mechanism like DHCP Failover."
