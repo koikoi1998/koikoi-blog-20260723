@@ -202,7 +202,8 @@ Following the Active Directory Department, this is the second department to sati
 1. [The Top 1% Hands-On for Never Giving EC2 an Access Key: Escaping Hardcoded Credentials With an IAM Role](/en/articles/aws-iam-role-handson-guide)
 2. [The Top 1% Hands-On for Publishing a Static Website From an S3 Bucket](/en/articles/aws-s3-static-website-handson-guide)
 3. [The Top 1% Hands-On for Building a VPC With Public/Private Subnets Yourself](/en/articles/aws-vpc-handson-guide)
-4. [The Top 1% Hands-On for Never Letting an App Write a Password With RDS and Secrets Manager](/en/articles/aws-rds-secrets-handson-guide)
+4. [Distributing Traffic Across Multiple EC2 Instances With an Application Load Balancer (ALB)](/en/articles/aws-alb-handson-guide)
+5. [The Top 1% Hands-On for Never Letting an App Write a Password With RDS and Secrets Manager](/en/articles/aws-rds-secrets-handson-guide)
 
 ### Senior (Graduation): Niche-Spec Hands-On
 
