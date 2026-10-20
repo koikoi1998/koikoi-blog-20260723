@@ -131,11 +131,12 @@ altHref: "/en/university"
 3. [GPOを実際に作成・リンクし、優先順位とトラブルシューティングを体験するハンズオン](/articles/ad-gpo-handson-guide)
 4. [きめ細かいパスワードポリシー(PSO)で部署ごとに異なるパスワード要件を適用するハンズオン](/articles/ad-fgpp-handson-guide)
 5. [OUへの権限移譲(Delegation of Control)でヘルプデスクに権限だけを渡すハンズオン](/articles/ad-delegation-handson-guide)
-6. [Kerberos制約付き委任で『ダブルホップ問題』を解決するハンズオン](/articles/ad-constrained-delegation-handson-guide)
-7. [System Stateバックアップと権威的復元(Authoritative Restore)のハンズオン](/articles/ad-backup-restore-handson-guide)
-8. [旧DCが完全に失われた状況を想定し、FSMOをシージ(強制移行)するハンズオン](/articles/ad-fsmo-seize-handson-guide)
-9. [【障害調査】新DC昇格後にAdministratorでログインできなくなる事象を、エラーから調査するハンズオン](/articles/ad-dc-replace-ntlm-lockout-investigation-guide)
-10. [DCリプレース前に、特権アカウントのパスワードを棚卸し・再設定するハンズオン](/articles/ad-privileged-password-refresh-handson-guide)
+6. [Windows LAPSでローカル管理者パスワードを自動ローテーションするハンズオン](/articles/ad-laps-handson-guide)
+7. [Kerberos制約付き委任で『ダブルホップ問題』を解決するハンズオン](/articles/ad-constrained-delegation-handson-guide)
+8. [System Stateバックアップと権威的復元(Authoritative Restore)のハンズオン](/articles/ad-backup-restore-handson-guide)
+9. [旧DCが完全に失われた状況を想定し、FSMOをシージ(強制移行)するハンズオン](/articles/ad-fsmo-seize-handson-guide)
+10. [【障害調査】新DC昇格後にAdministratorでログインできなくなる事象を、エラーから調査するハンズオン](/articles/ad-dc-replace-ntlm-lockout-investigation-guide)
+11. [DCリプレース前に、特権アカウントのパスワードを棚卸し・再設定するハンズオン](/articles/ad-privileged-password-refresh-handson-guide)
 
 ### 4年生(卒業):ニッチな仕様・機能編ハンズオン
 

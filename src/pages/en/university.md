@@ -131,11 +131,12 @@ The only department, at the moment, that satisfies every grade level. **The goal
 3. [The Top 1% Hands-On for Actually Creating and Linking GPOs, and Experiencing Priority and Troubleshooting](/en/articles/ad-gpo-handson-guide)
 4. [The Top 1% Hands-On for Applying Different Password Requirements Per Department With Fine-Grained Password Policy (PSO)](/en/articles/ad-fgpp-handson-guide)
 5. [The Top 1% Hands-On for Delegating OU Control: Giving the Help Desk Password-Reset Rights Only](/en/articles/ad-delegation-handson-guide)
-6. [The Top 1% Hands-On for Solving the "Double-Hop Problem" With Kerberos Constrained Delegation](/en/articles/ad-constrained-delegation-handson-guide)
-7. [The Top 1% Hands-On for System State Backup and Authoritative Restore](/en/articles/ad-backup-restore-handson-guide)
-8. [The Top 1% Hands-On for Seizing FSMO Roles, Simulating a Completely Lost Old DC](/en/articles/ad-fsmo-seize-handson-guide)
-9. [[Incident Investigation] A Top 1% Hands-On for Investigating, From the Error Itself, Why You Can't Log In as Administrator After Promoting a New DC](/en/articles/ad-dc-replace-ntlm-lockout-investigation-guide)
-10. [A Top 1% Hands-On for Auditing and Refreshing Privileged Account Passwords Before a DC Replacement](/en/articles/ad-privileged-password-refresh-handson-guide)
+6. [A Top 1% Hands-On for Automatically Rotating Local Administrator Passwords With Windows LAPS](/en/articles/ad-laps-handson-guide)
+7. [The Top 1% Hands-On for Solving the "Double-Hop Problem" With Kerberos Constrained Delegation](/en/articles/ad-constrained-delegation-handson-guide)
+8. [The Top 1% Hands-On for System State Backup and Authoritative Restore](/en/articles/ad-backup-restore-handson-guide)
+9. [The Top 1% Hands-On for Seizing FSMO Roles, Simulating a Completely Lost Old DC](/en/articles/ad-fsmo-seize-handson-guide)
+10. [[Incident Investigation] A Top 1% Hands-On for Investigating, From the Error Itself, Why You Can't Log In as Administrator After Promoting a New DC](/en/articles/ad-dc-replace-ntlm-lockout-investigation-guide)
+11. [A Top 1% Hands-On for Auditing and Refreshing Privileged Account Passwords Before a DC Replacement](/en/articles/ad-privileged-password-refresh-handson-guide)
 
 ### Senior (Graduation): Niche-Spec Hands-On
 
