@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the role of Ansible's `tags` keyword?"
+    choices:
+      - "It automatically selects or excludes a task"
+      - "It only labels a task — the actual selecting or excluding is handled by execution-time options"
+      - "It determines the order tasks run in"
+      - "It determines variable precedence"
+    answerIndex: 1
+    explanation: "The tags keyword only labels a task — what actually selects or excludes it is the --tags/--skip-tags option at execution time."
+
+  - question: "How does a tag on `include_tasks` actually behave?"
+    choices:
+      - "It automatically propagates down to the individual tasks inside the file"
+      - "It only applies to the include task itself, never propagating to individual tasks inside the file"
+      - "You can't put a tag on it at all"
+      - "It always skips every task"
+    answerIndex: 1
+    explanation: "A tag on include_tasks only applies to the include task itself, never propagating to the individual tasks written inside the file."
+
+  - question: "How does a tag on `import_tasks` actually behave?"
+    choices:
+      - "It only applies to the include task itself"
+      - "It correctly propagates down to each individual imported task"
+      - "The tag itself gets ignored"
+      - "It always results in an error"
+    answerIndex: 1
+    explanation: "import_tasks statically expands the file's content when the Playbook is parsed, so the tag correctly propagates down to each individual task."
+
+  - question: "How does a task tagged `always` behave?"
+    choices:
+      - "It always runs no matter which tag you specify with --tags (unless explicitly excluded with --skip-tags always)"
+      - "It's always skipped unless explicitly specified"
+      - "It always ends in an error"
+      - "It can only ever run once"
+    answerIndex: 0
+    explanation: "A task tagged always runs every time, no matter which tag you specify with --tags, unless you explicitly exclude it with --skip-tags always."
+
+  - question: "When you hit the problem \"I specified a tag, but the task I expected never ran,\" what should you check first?"
+    choices:
+      - "Whether the network connection is healthy"
+      - "Whether the target task is loaded via include_tasks"
+      - "Whether you're running the latest Ansible version"
+      - "Whether the SSH key permissions are correct"
+    answerIndex: 1
+    explanation: "In real-world practice, when a tag doesn't seem to work, the cause in most cases is that the target task gets loaded through include_tasks."
