@@ -1,0 +1,45 @@
+questions:
+  - question: "What kind has every proxy this series built so far belonged to?"
+    choices:
+      - "A reverse proxy"
+      - "A forward proxy"
+      - "A DNS proxy"
+      - "A mail proxy"
+    answerIndex: 1
+    explanation: "Both the explicit proxy built with Squid and the transparent proxy were forward proxies, standing on the client's side and acting on the client's behalf."
+
+  - question: "What's the fundamental axis separating a forward proxy from a reverse proxy?"
+    choices:
+      - "Whether it supports encryption"
+      - "The direction of representation itself — which side's identity the proxy hides from the other"
+      - "Whether it has a caching feature"
+      - "Whether it's open source or a commercial product"
+    answerIndex: 1
+    explanation: "The axis separating the two is the direction of representation itself — which side's identity (the client's or the server's) the proxy hides from the other."
+
+  - question: "What's a reverse proxy's role?"
+    choices:
+      - "Deployed near the client, acting on the client's behalf"
+      - "Deployed near the server, receiving access from unspecified clients and acting on the server's behalf"
+      - "Representing only DNS name resolution"
+      - "Representing only mail sending and receiving"
+    answerIndex: 1
+    explanation: "A reverse proxy is deployed near the server, acting as its representative, receiving unspecified clients trying to access it."
+
+  - question: "What are HAProxy and nginx, covered in the Load Balancing Fundamentals series, actually?"
+    choices:
+      - "A kind of forward proxy"
+      - "A prime example of a reverse proxy, with distribution across multiple backend servers as an applied use"
+      - "A kind of DNS server"
+      - "A kind of firewall"
+    answerIndex: 1
+    explanation: "HAProxy and nginx are a prime example of a reverse proxy, and their ability to distribute traffic across multiple backend servers is one applied use of that role."
+
+  - question: "What is a CDN (Content Delivery Network), structurally?"
+    choices:
+      - "A forward proxy, deployed in a massively distributed network"
+      - "A reverse proxy, deployed in a massively distributed network"
+      - "An independent technology, entirely unrelated to a proxy"
+      - "Just a kind of DNS server"
+    answerIndex: 1
+    explanation: "A CDN can be understood structurally as a reverse proxy, deployed across countless sites worldwide."
