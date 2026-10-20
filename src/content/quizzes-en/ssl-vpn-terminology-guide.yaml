@@ -1,0 +1,45 @@
+questions:
+  - question: "What does the term \"SSL VPN\" actually refer to?"
+    choices:
+      - "One clear-cut VPN protocol, standing alongside L2TP/IPsec and OpenVPN"
+      - "A general term for two structurally entirely different features: clientless mode and tunnel mode"
+      - "An old VPN method with no encryption at all"
+      - "A method exclusive to site-to-site VPNs"
+    answerIndex: 1
+    explanation: "SSL VPN isn't a term referring to one clear-cut protocol specification — it's used as a general term for two structurally entirely different features: clientless mode and tunnel mode."
+
+  - question: "What does clientless mode actually do, in practice?"
+    choices:
+      - "Establishes a genuine network-layer tunnel"
+      - "Establishes no network-layer tunnel at all, operating much closer to a reverse proxy"
+      - "Operates as a DNS server"
+      - "Operates as a firewall"
+    answerIndex: 1
+    explanation: "Clientless mode has a structure much closer to a reverse proxy, with the gateway rewriting URLs and relaying traffic, establishing no network-layer tunnel."
+
+  - question: "What does tunnel mode structurally belong to the same lineage as?"
+    choices:
+      - "OpenVPN"
+      - "A DNS caching server"
+      - "A reverse proxy"
+      - "WPAD"
+    answerIndex: 0
+    explanation: "Tunnel mode is genuine network-layer tunneling, belonging to nearly the same lineage as OpenVPN — encrypting and sending IP packets over TLS."
+
+  - question: "What's a common real-world source of confusion with SSL VPN products?"
+    choices:
+      - "Every product only ever provides tunnel mode"
+      - "Both clientless mode and tunnel mode often coexist as separately selectable features under the same product name"
+      - "SSL VPN doesn't support encryption"
+      - "SSL VPN only runs on Linux"
+    answerIndex: 1
+    explanation: "Under a product name like Cisco's former AnyConnect, both modes coexist as separately selectable features, so you need to clearly distinguish which one is enabled."
+
+  - question: "What does the name \"SSL\" actually refer to?"
+    choices:
+      - "The operating mode (clientless or tunnel)"
+      - "Only the encryption method (TLS) part"
+      - "The vendor providing the VPN"
+      - "The network-layer addressing scheme"
+    answerIndex: 1
+    explanation: "The name \"SSL VPN\" only refers to the encryption method part (TLS, historically named SSL) — the name itself never decides the operating mode."
