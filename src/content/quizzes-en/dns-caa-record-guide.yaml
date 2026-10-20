@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the default behavior when a domain has no CAA record set at all?"
+    choices:
+      - "No certificate authority can issue a certificate"
+      - "Any certificate authority can issue a certificate for that domain"
+      - "DNSSEC gets automatically disabled"
+      - "HTTPS communication itself becomes impossible"
+    answerIndex: 1
+    explanation: "The CAA record is an opt-in mechanism meant to restrict issuance to one specified CA. Declare nothing, and no restriction applies at all."
+
+  - question: "What's the role of the CAA record's `issuewild` tag?"
+    choices:
+      - "Authorizes both ordinary and wildcard certificates"
+      - "Specifies a narrower authorization applying only to wildcard certificates"
+      - "Authorizes DNSSEC signature validation"
+      - "Specifies a contact for policy-violation notifications"
+    answerIndex: 1
+    explanation: "The issuewild tag is a narrower authorization applying only to wildcard certificates — when present, the contents of the issue tag are ignored for wildcard certificates."
+
+  - question: "When did checking the CAA record become mandatory for every public certificate authority?"
+    choices:
+      - "January 2010"
+      - "Starting September 8, 2017"
+      - "December 2020"
+      - "It has never been mandatory"
+    answerIndex: 1
+    explanation: "Through Ballot 187, adopted by the CA/Browser Forum in March 2017, checking the CAA record before issuance became mandatory starting September 8, 2017."
+
+  - question: "How is the CAA check designed to behave when the DNS query itself fails (such as with SERVFAIL)?"
+    choices:
+      - "It fails safe, refusing to issue the certificate"
+      - "It issues the certificate without a problem"
+      - "It automatically switches to DNSSEC"
+      - "It automatically delegates issuance to a different CA"
+    answerIndex: 0
+    explanation: "Even if the DNS query itself fails, the design fails safe — refusing issuance rather than erring toward allowing it."
+
+  - question: "What's the difference in purpose between the CAA record and DNSSEC?"
+    choices:
+      - "They serve exactly the same purpose"
+      - "DNSSEC proves the DNS response's authenticity, while CAA restricts which CA can issue a certificate"
+      - "DNSSEC restricts which CA can issue a certificate, while CAA proves the DNS response's authenticity"
+      - "Both exist to authenticate the sender of an email"
+    answerIndex: 1
+    explanation: "DNSSEC proves the authenticity of the DNS response itself, while CAA restricts which CA is allowed to issue a certificate — the two serve entirely different purposes."
