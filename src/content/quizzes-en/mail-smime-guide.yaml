@@ -1,0 +1,45 @@
+questions:
+  - question: "What can a relaying mail server's operator do, even when STARTTLS works perfectly?"
+    choices:
+      - "Read the decrypted body in plain sight"
+      - "See nothing of the body at all"
+      - "Automatically obtain the sender's private key"
+      - "Automatically invalidate the recipient's public key"
+    answerIndex: 0
+    explanation: "Since STARTTLS only aims to encrypt the communication path, a relaying server's operator can read the decrypted body in plain sight."
+
+  - question: "What kind of certificate does S/MIME use?"
+    choices:
+      - "A server certificate, proving the identity of the server you're communicating with"
+      - "An email certificate, tied to a specific email address"
+      - "A zone certificate, proving a DNS zone's identity"
+      - "A device certificate, proving a Wi-Fi router's identity"
+    answerIndex: 1
+    explanation: "S/MIME uses an email certificate (a personal digital certificate) tied to a specific email address."
+
+  - question: "What's the difference in what STARTTLS and S/MIME each encrypt?"
+    choices:
+      - "STARTTLS encrypts the body, S/MIME encrypts the communication path"
+      - "STARTTLS encrypts the communication path, S/MIME encrypts the body itself"
+      - "Both encrypt exactly the same thing"
+      - "Neither one encrypts anything at all"
+    answerIndex: 1
+    explanation: "STARTTLS encrypts the communication path between mail servers, while S/MIME is an entirely different layer of mechanism, encrypting the email body itself."
+
+  - question: "What stays outside S/MIME's scope of encryption and gets sent as plaintext, even in an S/MIME-encrypted email?"
+    choices:
+      - "The entire email body"
+      - "Some header information, such as the Subject line"
+      - "The sender's private key itself"
+      - "The recipient's public key itself"
+    answerIndex: 1
+    explanation: "Some header information, such as the Subject line, stays outside S/MIME's scope of encryption and gets sent as plaintext."
+
+  - question: "What's the relationship between STARTTLS and S/MIME?"
+    choices:
+      - "Picking one makes the other unnecessary"
+      - "Since they protect different things, combining them covers the range each one can't cover alone"
+      - "S/MIME is a backward-compatible successor developed to replace STARTTLS"
+      - "They're competing, incompatible standards"
+    answerIndex: 1
+    explanation: "The two protect different things (the body, or the entire communication path) — combining them covers the range each one can't cover on its own."
