@@ -1,0 +1,45 @@
+questions:
+  - question: "What actually happens to a process that exceeds a memory limit?"
+    choices:
+      - "The process exits abnormally on its own"
+      - "The kernel's OOM Killer picks a process based on a score and forcibly terminates it with SIGKILL"
+      - "The system automatically adds more memory"
+      - "Nothing happens, and the process keeps running as-is"
+    answerIndex: 1
+    explanation: "A process that exceeds a memory limit doesn't exit on its own — the kernel's OOM Killer picks a process based on a score and forcibly terminates it with SIGKILL."
+
+  - question: "What does exit code 137 mean?"
+    choices:
+      - "Normal termination"
+      - "Termination by SIGKILL (128 + 9)"
+      - "Disk space exhaustion"
+      - "A network connection error"
+    answerIndex: 1
+    explanation: "Exit code 137 is 128 + 9, meaning termination by SIGKILL — a strong clue pointing to a forced termination by the OOM Killer."
+
+  - question: "What criterion does the OOM Killer use to decide which process to terminate?"
+    choices:
+      - "The process that has been running the longest"
+      - "The process with the highest oom_score, based on its usage ratio against allowed memory"
+      - "The process with the largest process ID"
+      - "A randomly chosen process"
+    answerIndex: 1
+    explanation: "The OOM Killer picks the process with the highest oom_score, a metric calculated from the usage ratio against allowed memory."
+
+  - question: "What's the scope the OOM Killer fires within, under cgroup v2?"
+    choices:
+      - "Every process across the entire system"
+      - "Within that cgroup's own scope, with no effect on processes in other cgroups"
+      - "Only processes running with root privileges"
+      - "The OOM Killer never fires inside a cgroup"
+    answerIndex: 1
+    explanation: "Under cgroup v2, the OOM Killer fires within the scope of that cgroup itself, with no effect on processes in other cgroups."
+
+  - question: "How do you ensure a specific process is never an OOM Killer target?"
+    choices:
+      - "Set that process's /proc/<pid>/oom_score_adj to 1000"
+      - "Set that process's /proc/<pid>/oom_score_adj to -1000"
+      - "Run that process with root privileges"
+      - "Restart that process"
+    answerIndex: 1
+    explanation: "Setting /proc/<pid>/oom_score_adj to -1000 means that process will never be terminated by the OOM Killer."

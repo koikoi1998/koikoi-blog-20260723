@@ -1,0 +1,45 @@
+questions:
+  - question: "メモリ上限を超えたプロセスに、実際に起こることとして正しいのはどれか。"
+    choices:
+      - "プロセスが自分から異常終了する"
+      - "カーネルのOOM Killerが、スコアに基づいて選んだプロセスを強制的にSIGKILLで終了させる"
+      - "システムが自動的にメモリを増設する"
+      - "何も起こらず、プロセスはそのまま動作を続ける"
+    answerIndex: 1
+    explanation: "メモリ上限を超えたプロセスは自分から終了するのではなく、カーネルのOOM Killerが、スコアに基づいて選んだプロセスを強制的にSIGKILLで終了させます。"
+
+  - question: "終了コード137の意味として正しいのはどれか。"
+    choices:
+      - "正常終了を意味する"
+      - "SIGKILLによる終了(128+9)を意味する"
+      - "ディスク容量不足を意味する"
+      - "ネットワーク接続エラーを意味する"
+    answerIndex: 1
+    explanation: "終了コード137は128+9であり、SIGKILLによる終了を意味し、OOM Killerによる強制終了の有力な手がかりです。"
+
+  - question: "OOM Killerが、どのプロセスを終了させるかを決める基準として正しいのはどれか。"
+    choices:
+      - "起動してからの経過時間が最も長いプロセス"
+      - "許可されたメモリに対する使用率にもとづくoom_scoreが最も高いプロセス"
+      - "プロセスIDが最も大きいプロセス"
+      - "ランダムに選ばれたプロセス"
+    answerIndex: 1
+    explanation: "OOM Killerは、許可されたメモリに対する使用率にもとづいて計算されるoom_scoreが最も高いプロセスを選んで終了させます。"
+
+  - question: "cgroup v2における、OOM Killerの発動範囲として正しいのはどれか。"
+    choices:
+      - "システム全体のすべてのプロセスが対象になる"
+      - "そのcgroup自身の範囲内で発動し、他のcgroupのプロセスには影響しない"
+      - "常にroot権限のプロセスだけが対象になる"
+      - "OOM Killerはcgroup内では発動しない"
+    answerIndex: 1
+    explanation: "cgroup v2では、そのcgroup自身の範囲内でOOM Killerが発動し、他のcgroupのプロセスには影響しません。"
+
+  - question: "特定のプロセスを、OOM Killerの対象から絶対に外したい場合の方法として正しいのはどれか。"
+    choices:
+      - "そのプロセスの/proc/<pid>/oom_score_adjを1000に設定する"
+      - "そのプロセスの/proc/<pid>/oom_score_adjを-1000に設定する"
+      - "そのプロセスをroot権限で実行する"
+      - "そのプロセスを再起動する"
+    answerIndex: 1
+    explanation: "/proc/<pid>/oom_score_adjに-1000を設定すると、そのプロセスはOOM Killerによって絶対に終了させられなくなります。"
