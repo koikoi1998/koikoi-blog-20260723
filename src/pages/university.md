@@ -657,6 +657,7 @@ ActiveDirectory・AWS・Ansible/IaC・VPN・DNS基盤・メール基盤に続く
 ### 大学院:セキュリティ強化編ハンズオン(攻撃者視点)
 
 1. [JWTの『alg: none』脆弱性を自分の手で再現し、許可アルゴリズムの明示的な制限による防御を確認するハンズオン](/articles/jwt-alg-none-handson-guide)
+2. [JWTのアルゴリズム混同攻撃(RS256→HS256)を自分の手で再現するハンズオン](/articles/jwt-algorithm-confusion-handson-guide)
 
 自分が管理する検証環境の防御力を高めるための、教育・防御目的のハンズオンです(第三者のシステムへの攻撃手順は一切含みません)。
 

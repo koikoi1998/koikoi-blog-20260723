@@ -657,6 +657,7 @@ None.
 ### Graduate School: Security-Hardening Hands-On (An Attacker's Perspective)
 
 1. [A Top 1% Hands-On for Reproducing JWT's 'alg: none' Vulnerability Yourself and Confirming Defense via an Explicit Allowed-Algorithm List](/en/articles/jwt-alg-none-handson-guide)
+2. [A Top 1% Hands-On for Reproducing the JWT Algorithm Confusion Attack (RS256 → HS256) Yourself](/en/articles/jwt-algorithm-confusion-handson-guide)
 
 An educational, defense-focused hands-on lab, meant to strengthen the defenses of a test environment you manage yourself (it contains no procedure for attacking a third party's system).
 
