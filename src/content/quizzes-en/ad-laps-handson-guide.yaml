@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the biggest risk of setting the same local administrator password on every device?"
+    choices:
+      - "The password gets too long"
+      - "One device's password leak leads to lateral movement to other devices via pass-the-hash"
+      - "There are too many GPOs"
+      - "DNS name resolution gets slower"
+    answerIndex: 1
+    explanation: "The moment one device's local admin password leaks, an attacker can use that password's hash to move laterally to every other device in the organization."
+
+  - question: "How does Windows LAPS store each device's local administrator password?"
+    choices:
+      - "As plaintext, in an AD attribute"
+      - "Encrypted with DPAPI-NG, in an AD attribute"
+      - "Only on each device's local disk"
+      - "Emailed to the administrator"
+    answerIndex: 1
+    explanation: "Windows LAPS encrypts the password with DPAPI-NG before storing it in AD, and only principals explicitly granted permission can decrypt it."
+
+  - question: "What's the decisive difference between legacy Microsoft LAPS and Windows LAPS?"
+    choices:
+      - "Legacy LAPS stored it encrypted, while Windows LAPS stores it as plaintext"
+      - "Legacy LAPS stored it as plaintext, while Windows LAPS encrypts it with DPAPI-NG"
+      - "There's no difference in security between the two"
+      - "Legacy LAPS is the newer technology"
+    answerIndex: 1
+    explanation: "Legacy Microsoft LAPS stored the password in AD as plaintext, while Windows LAPS encrypts it with DPAPI-NG before storing it."
+
+  - question: "What's the recommended way to grant help desk staff read access to LAPS passwords?"
+    choices:
+      - "Add every help desk staffer to Domain Admins"
+      - "Use `Set-LapsADReadPasswordPermission` on the target OU to delegate read access to only the help desk group"
+      - "Share the password individually by email"
+      - "Disable the BIOS password on every device"
+    answerIndex: 1
+    explanation: "Using the same approach as OU delegation of control, use `Set-LapsADReadPasswordPermission` on the target OU to delegate read access to only the help desk group."
+
+  - question: "What design philosophy do gMSA and Windows LAPS share?"
+    choices:
+      - "Both fix a password permanently forever"
+      - "Driving the number of passwords a human manages manually as close to zero as possible"
+      - "Both provide network-layer encryption"
+      - "Both automatically generate DNS records"
+    answerIndex: 1
+    explanation: "gMSA applies to service accounts and LAPS to local administrator accounts, but both are based on the same design philosophy: driving manually-managed passwords as close to zero as possible."
