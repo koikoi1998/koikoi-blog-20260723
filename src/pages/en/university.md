@@ -456,9 +456,10 @@ The fifth department to become "fully open," following Active Directory, AWS, An
 
 1. [Why Can't You Put a CNAME at a Root Domain? From a Top 1% Perspective](/en/articles/dns-cname-apex-guide)
 2. [Understanding How DNSSEC Works From a "Top 1%" Perspective](/en/articles/dns-dnssec-fundamentals-guide)
-3. [Understanding Recursive Resolvers, Forwarders, and Negative Caching From a "Top 1%" Perspective](/en/articles/dns-recursive-caching-guide)
-4. [Understanding Split-Horizon DNS (BIND's Views) From a "Top 1%" Perspective](/en/articles/dns-split-horizon-guide)
-5. [Understanding DNS over HTTPS (DoH) and DNS over TLS (DoT) From a Top 1% Perspective](/en/articles/dns-doh-dot-guide)
+3. [Understanding How the CAA Record Works From a Top 1% Perspective](/en/articles/dns-caa-record-guide)
+4. [Understanding Recursive Resolvers, Forwarders, and Negative Caching From a "Top 1%" Perspective](/en/articles/dns-recursive-caching-guide)
+5. [Understanding Split-Horizon DNS (BIND's Views) From a "Top 1%" Perspective](/en/articles/dns-split-horizon-guide)
+6. [Understanding DNS over HTTPS (DoH) and DNS over TLS (DoT) From a Top 1% Perspective](/en/articles/dns-doh-dot-guide)
 
 ### Junior: Real-World-Scenario Hands-On
 
