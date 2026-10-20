@@ -713,6 +713,7 @@ None.
 ### Graduate School: Security Hardening Hands-On (Attacker's Perspective)
 
 1. [A Top 1% Hands-On for Reproducing Squid's Open-Proxy Danger Yourself and Defending With ACL-Based Access Restriction](/en/articles/squid-open-proxy-hardening-handson-guide)
+2. [Understanding How ICAP Works From a Top 1% Perspective](/en/articles/icap-content-adaptation-guide)
 
 This is an educational, defensive hands-on, meant to strengthen the defenses of an environment you yourself control (it contains no attack procedure directed at any third-party system whatsoever).
 
