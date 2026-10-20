@@ -1,0 +1,45 @@
+questions:
+  - question: "Windows ServerのSecurityログが、構築直後はほとんど空のままである理由として正しいのはどれか。"
+    choices:
+      - "SecurityログはWindowsに標準搭載されていないため"
+      - "既定では監査ポリシーが有効化されておらず、記録対象が明示的に設定されていないため"
+      - "Securityログは、常に手動で削除する必要があるため"
+      - "Securityログは、再起動のたびに自動的に消去されるため"
+    answerIndex: 1
+    explanation: "Securityログは、既定では監査ポリシーが有効化されていないため、ほとんどの項目が記録されず、構築直後はほとんど空のままです。"
+
+  - question: "イベントIDという番号の、一意性の範囲として正しいのはどれか。"
+    choices:
+      - "Windows全体で一意であることが保証されている"
+      - "プロバイダー(そのログを発生させた機能やサービス)の範囲内でのみ一意性が保証されている"
+      - "1台のコンピューターごとに一意であることが保証されている"
+      - "一意性は保証されておらず、常にランダムに割り当てられる"
+    answerIndex: 1
+    explanation: "イベントIDの一意性は、あくまでプロバイダーの範囲内だけで保証されており、Windows全体で一意なわけではありません。"
+
+  - question: "同じ『イベントID 50』が、実際に別の意味を持つ例として挙げられているのはどれか。"
+    choices:
+      - "NTFSのプロバイダーとWin32Timeのプロバイダー"
+      - "SystemログとApplicationログ"
+      - "32ビット版と64ビット版のWindows"
+      - "日本語版と英語版のWindows"
+    answerIndex: 0
+    explanation: "同じ『イベントID 50』という番号が、NTFSのプロバイダーが発生させた場合とWin32Timeのプロバイダーが発生させた場合とで、まったく別の意味を持つという事例があります。"
+
+  - question: "Get-WinEventで、イベントIDの取り違えを防ぐための方法として正しいのはどれか。"
+    choices:
+      - "-FilterHashtableに、IdだけでなくProviderNameも指定する"
+      - "-FilterHashtableに、日付だけを指定する"
+      - "常にすべてのログを目視で確認する"
+      - "イベントビューアーのGUIだけを使い、PowerShellは使わない"
+    answerIndex: 0
+    explanation: "-FilterHashtableパラメータに、ProviderNameとIdを両方指定することで、同じIDを持つ別のプロバイダーのイベントとの取り違えを防げます。"
+
+  - question: "journalctlと、Windowsのセキュリティログの、既定の記録方針の違いとして正しいのはどれか。"
+    choices:
+      - "両者はまったく同じ記録方針を持っている"
+      - "journalctlは既定で広く記録し、セキュリティログは既定で何も記録しない側に倒されている"
+      - "journalctlは何も記録せず、セキュリティログは常にすべてを記録する"
+      - "どちらも、記録方針を変更することはできない"
+    answerIndex: 1
+    explanation: "journalctlはsystemdが管理するほぼすべてのサービスのログを既定で収集しますが、Windowsのセキュリティログは既定では何も記録しない側に倒されており、管理者が明示的に監査ポリシーを有効化する必要があります。"

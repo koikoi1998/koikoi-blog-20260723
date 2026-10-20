@@ -1,0 +1,45 @@
+questions:
+  - question: "Why does the Security log start out mostly empty right after setup?"
+    choices:
+      - "The Security log isn't built into Windows by default"
+      - "Audit policy isn't enabled by default, so no recording target was explicitly set"
+      - "The Security log always needs to be deleted manually"
+      - "The Security log automatically gets wiped on every reboot"
+    answerIndex: 1
+    explanation: "Since audit policy isn't enabled by default, most items in the Security log never get recorded, so it starts out mostly empty right after setup."
+
+  - question: "What's the scope of uniqueness for an Event ID number?"
+    choices:
+      - "Guaranteed to be unique across all of Windows"
+      - "Guaranteed to be unique only within the scope of a provider (the feature or service that raised that log)"
+      - "Guaranteed to be unique per individual computer"
+      - "Never guaranteed to be unique — always assigned randomly"
+    answerIndex: 1
+    explanation: "An Event ID's uniqueness is only guaranteed within the scope of a provider — it isn't unique across all of Windows."
+
+  - question: "What's an example given where the same 'Event ID 50' actually means something different?"
+    choices:
+      - "The NTFS provider and the Win32Time provider"
+      - "The System log and the Application log"
+      - "32-bit and 64-bit Windows"
+      - "Japanese and English editions of Windows"
+    answerIndex: 0
+    explanation: "There's a documented case where the same number, 'Event ID 50,' means something entirely different depending on whether it was raised by the NTFS provider or the Win32Time provider."
+
+  - question: "How do you prevent an Event ID mix-up in Get-WinEvent?"
+    choices:
+      - "Specify ProviderName along with Id in -FilterHashtable"
+      - "Specify only a date in -FilterHashtable"
+      - "Always check every log visually"
+      - "Only use the Event Viewer GUI, never PowerShell"
+    answerIndex: 0
+    explanation: "Specifying both ProviderName and Id in the -FilterHashtable parameter prevents a mix-up with an event from a different provider sharing the same ID."
+
+  - question: "What's the difference in default recording policy between journalctl and Windows's Security log?"
+    choices:
+      - "Both have exactly the same default recording policy"
+      - "journalctl records broadly by default, while the Security log defaults to recording nothing at all"
+      - "journalctl records nothing, while the Security log always records everything"
+      - "Neither one's recording policy can ever be changed"
+    answerIndex: 1
+    explanation: "journalctl collects logs by default from nearly every service systemd manages, while Windows's Security log defaults to recording nothing — an administrator must explicitly enable audit policy."
