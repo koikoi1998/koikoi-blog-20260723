@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the correct description of bit rot?"
+    choices:
+      - "A disk fully failing and reporting a read error"
+      - "A disk, without ever reporting an error, quietly returning data off by just one bit"
+      - "The RAID controller itself failing"
+      - "A network storage connection getting disconnected"
+    answerIndex: 1
+    explanation: "Bit rot is a phenomenon where a disk quietly (silently) returns data off by just one bit, with no error ever reported."
+
+  - question: "What limitation does a traditional RAID controller face when it detects a mirror mismatch?"
+    choices:
+      - "It can always automatically judge which side is correct"
+      - "It has no means at all, to begin with, of judging which one holds the correct data"
+      - "It can't even detect the mismatch in the first place"
+      - "It automatically replaces the disk"
+    answerIndex: 1
+    explanation: "A RAID controller can detect that two mirrored copies disagree, but it has no means at all of judging which one holds the correct data."
+
+  - question: "Where does a filesystem like ZFS store its checksum?"
+    choices:
+      - "In exactly the same location as the data itself, bundled together"
+      - "In a location separate from the data itself (in ZFS's case, the parent block pointer)"
+      - "It never stores a checksum at all — it's generated fresh each time"
+      - "In an entirely separate file on a different disk"
+    answerIndex: 1
+    explanation: "A filesystem like ZFS stores, for each data block, a checksum in a location separate from the data itself — in ZFS's case, the parent block pointer."
+
+  - question: "What's the role of a \"scrub\"?"
+    choices:
+      - "Deleting all data on the disk"
+      - "Periodically verifying the entire storage pool, including parity blocks that normally never get read, to discover and repair corruption"
+      - "Automatically changing the RAID configuration"
+      - "Automatically taking a backup over the network"
+    answerIndex: 1
+    explanation: "A scrub is a process that periodically reads the entire storage pool's data — including parity blocks, which normally never get read — and verifies every checksum."
+
+  - question: "What's the counterintuitive outcome that can happen when repairing a mirror mismatch in traditional RAID1 with no checksum?"
+    choices:
+      - "It always unifies on the healthy side's content"
+      - "The corrupted side's content can overwrite the healthy side, actually spreading the corruption"
+      - "Both disks get automatically reinitialized"
+      - "The mismatch automatically disappears the moment it's detected"
+    answerIndex: 1
+    explanation: "With no means of judging which side is correct, the overwrite can use the corrupted side's content to overwrite the healthy side, actually spreading the corruption."
