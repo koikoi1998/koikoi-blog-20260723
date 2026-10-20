@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the operational burden traditional site-to-site VPN carries as the number of sites grows?"
+    choices:
+      - "You need to change the encryption algorithm per site"
+      - "You need to individually add a tunnel configuration on the hub side, per site"
+      - "You need to use a different IPsec version per site"
+      - "No operational burden occurs at all, no matter how many sites you add"
+    answerIndex: 1
+    explanation: "In traditional IPsec site-to-site VPN, every time you add one new site, you have to individually add a tunnel configuration dedicated to that site on the hub side, which becomes the scalability wall."
+
+  - question: "What's the role of mGRE (multipoint GRE)?"
+    choices:
+      - "Preparing an individual tunnel interface per site"
+      - "Preparing just one single tunnel interface on the hub side, accepting connections from multiple sites all at once"
+      - "Performing the encryption itself"
+      - "Performing DNS name resolution"
+    answerIndex: 1
+    explanation: "mGRE prepares just one tunnel interface on the hub side, and that one interface accepts connections from multiple sites all at once."
+
+  - question: "What's the role of NHRP (Next Hop Resolution Protocol)?"
+    choices:
+      - "Dynamically managing the mapping between a virtual tunnel IP address and each site's actual public IP address"
+      - "Deciding the packet's encryption algorithm"
+      - "Automatically adjusting bandwidth between sites"
+      - "Performing VLAN tagging"
+    answerIndex: 0
+    explanation: "NHRP dynamically manages the mapping between DMVPN's virtual tunnel IP address and each site's actual public IP address."
+
+  - question: "What's DMVPN Phase 1's behavior?"
+    choices:
+      - "A direct tunnel between spokes always forms automatically"
+      - "Every communication always goes through the hub — a direct tunnel between spokes never forms"
+      - "No encryption happens at all"
+      - "NHRP is never used"
+    answerIndex: 1
+    explanation: "In Phase 1, every communication always goes through the hub — a direct tunnel between spokes never forms."
+
+  - question: "What's the decisive difference between Phase 2 and Phase 3 regarding route summarization?"
+    choices:
+      - "Neither Phase 2 nor Phase 3 supports route summarization"
+      - "Phase 2 can't summarize routes because it preserves next-hop information, while Phase 3's NHRP redirect makes route summarization possible"
+      - "Both Phase 2 and Phase 3 always support route summarization"
+      - "Phase 3 eliminates the need for a hub entirely"
+    answerIndex: 1
+    explanation: "Phase 2 preserves next-hop information, so route summarization isn't possible, while Phase 3's NHRP redirect mechanism makes route summarization possible."
