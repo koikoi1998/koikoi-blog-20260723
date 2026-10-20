@@ -206,7 +206,8 @@ ActiveDirectory学科に続いて、学年構成のすべてを満たした学�
 2. [S3バケットで静的Webサイトを公開するハンズオン](/articles/aws-s3-static-website-handson-guide)
 3. [パブリック/プライベートサブネットを持つVPCを自力で構築するハンズオン](/articles/aws-vpc-handson-guide)
 4. [Application Load Balancer(ALB)で複数のEC2インスタンスへ振り分けるハンズオン](/articles/aws-alb-handson-guide)
-5. [RDSとSecrets Managerでアプリにパスワードを一切書かせないハンズオン](/articles/aws-rds-secrets-handson-guide)
+5. [Auto Scaling Group(ASG)でEC2インスタンスを自動的に増減させるハンズオン](/articles/aws-autoscaling-handson-guide)
+6. [RDSとSecrets Managerでアプリにパスワードを一切書かせないハンズオン](/articles/aws-rds-secrets-handson-guide)
 
 ### 4年生(卒業):ニッチな仕様・機能編ハンズオン
 
