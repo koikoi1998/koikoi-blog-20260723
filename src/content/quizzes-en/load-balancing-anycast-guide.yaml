@@ -1,0 +1,45 @@
+questions:
+  - question: "At what layer does Anycast make its site-distribution decision?"
+    choices:
+      - "The layer of DNS name resolution"
+      - "The layer of BGP, which handles the internet's own routing"
+      - "An application-layer HTTP header"
+      - "The physical layer's cabling"
+    answerIndex: 1
+    explanation: "Anycast achieves site distribution not at the layer of DNS name resolution, but at the layer of BGP, which handles the internet's own routing."
+
+  - question: "What's the difference in failover speed between GSLB and Anycast?"
+    choices:
+      - "Both switch over at exactly the same speed"
+      - "GSLB can be delayed since it depends on DNS cache TTL, while Anycast generally switches faster through routing re-convergence"
+      - "Anycast is always slower to switch over than GSLB"
+      - "GSLB never switches over automatically on a failure"
+    answerIndex: 1
+    explanation: "GSLB's switchover might not take effect until the DNS cache's TTL expires, while Anycast generally switches over faster, through the network's own routing re-convergence."
+
+  - question: "What does Anycast fail to consider?"
+    choices:
+      - "The length of the BGP AS path"
+      - "A site's current load status"
+      - "The IP address being announced"
+      - "The router's configuration"
+    answerIndex: 1
+    explanation: "What Anycast decides is purely closeness along the network path — it never considers a site's current load status, how congested it is, at all."
+
+  - question: "What weakness does Anycast have regarding individual connections?"
+    choices:
+      - "It doesn't support encryption"
+      - "It has no mechanism for maintaining connection (session) state, so a routing change can send the same connection to a different site"
+      - "It doesn't support IPv6"
+      - "It only supports UDP"
+    answerIndex: 1
+    explanation: "Since Anycast has no mechanism for maintaining an individual connection's state, a routing change can cause the exact same, still-ongoing connection to reach a different site, mid-stream."
+
+  - question: "What's the relationship between GSLB and Anycast in real-world practice?"
+    choices:
+      - "They're competing options, and you should only choose one"
+      - "They're often used together, each solving a problem at a different level of abstraction"
+      - "Using Anycast makes GSLB completely unnecessary"
+      - "Using GSLB makes Anycast completely unnecessary"
+    answerIndex: 1
+    explanation: "GSLB and Anycast aren't competing options — in real-world practice, they're commonly used together, each solving a problem at a different level of abstraction."
