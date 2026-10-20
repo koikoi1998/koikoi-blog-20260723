@@ -1,0 +1,45 @@
+questions:
+  - question: "What does Ansible's basic model (the push model) require as a premise?"
+    choices:
+      - "The target node's side knows the control node's IP address ahead of time"
+      - "The control node knows every target node's IP address ahead of time, and the target node's side has inbound SSH open"
+      - "The target node has no internet connectivity at all"
+      - "The control node and target node run the same OS"
+    answerIndex: 1
+    explanation: "Ansible's push model requires the control node to already know every target node's IP address ahead of time, and the target node's side to have an inbound SSH port open."
+
+  - question: "What does ansible-pull actually do, on the target node itself?"
+    choices:
+      - "Connects to the control node over SSH and fetches configuration"
+      - "Fetches the Playbook from a git repository and runs it locally, addressed to localhost"
+      - "Reboots the target node itself"
+      - "Automatically discovers the control node's IP address"
+    answerIndex: 1
+    explanation: "ansible-pull has the target node itself fetch the Playbook from the specified git repository, and applies it as a local execution with the connection fixed to localhost."
+
+  - question: "What does the target node need, when using ansible-pull?"
+    choices:
+      - "An inbound SSH connection from the control node"
+      - "Only outbound reachability to the git repository"
+      - "A dedicated VPN connection"
+      - "Being on the same subnet as the control node"
+    answerIndex: 1
+    explanation: "With ansible-pull, all the target node needs is outbound reachability to the git repository — no inbound SSH connection happens at all."
+
+  - question: "Why is the pull model especially effective in auto-scaling environments?"
+    choices:
+      - "The pull model is always faster than the push model"
+      - "A new instance just runs ansible-pull itself at launch, completing configuration with zero intervention from the control node"
+      - "The pull model is free to use"
+      - "The pull model only works on Windows servers"
+    answerIndex: 1
+    explanation: "With the pull model, a new instance just runs ansible-pull itself from its launch-time user data, completing configuration with zero intervention from the control node's side at all."
+
+  - question: "What trade-off does the pull model carry compared to the push model?"
+    choices:
+      - "The pull model requires writing Playbooks in an entirely different way"
+      - "There's no built-in mechanism, by default, for the control node to centrally know individual target nodes' execution results in real time"
+      - "The pull model can't use SSH at all"
+      - "The pull model can't use Ansible Vault at all"
+    answerIndex: 1
+    explanation: "Since each node runs autonomously in the pull model, there's no built-in mechanism, by default, for the control node's side to centrally know each node's execution results in real time."
