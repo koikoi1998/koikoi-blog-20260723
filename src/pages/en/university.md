@@ -577,9 +577,10 @@ None.
 1. [Understanding DHCP Relay Agents From a Top 1% Perspective](/en/articles/windows-server-dhcp-relay-guide)
 2. [Understanding Shadow Copies (VSS) From a Top 1% Perspective](/en/articles/windows-server-vss-guide)
 3. [Why You Shouldn't Robocopy Before Domain-Joining in a File Server Migration](/en/articles/file-server-migration-robocopy-sid-guide)
-4. [Understanding DFS Namespaces and DFS Replication From a "Top 1%" Perspective](/en/articles/windows-server-dfs-guide)
-5. [Understanding IIS Application Pool Recycling From a "Top 1%" Perspective](/en/articles/windows-server-app-pool-recycling-guide)
-6. [Understanding Print Servers and the Spooler From a "Top 1%" Perspective](/en/articles/windows-server-print-spooler-guide)
+4. [Understanding How Windows Event Log (Event Viewer) Works From a Top 1% Perspective](/en/articles/windows-event-log-guide)
+5. [Understanding DFS Namespaces and DFS Replication From a "Top 1%" Perspective](/en/articles/windows-server-dfs-guide)
+6. [Understanding IIS Application Pool Recycling From a "Top 1%" Perspective](/en/articles/windows-server-app-pool-recycling-guide)
+7. [Understanding Print Servers and the Spooler From a "Top 1%" Perspective](/en/articles/windows-server-print-spooler-guide)
 
 ### Junior: Real-World-Scenario Hands-On
 
