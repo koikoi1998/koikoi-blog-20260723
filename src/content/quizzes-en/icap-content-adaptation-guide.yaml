@@ -1,0 +1,45 @@
+questions:
+  - question: "How is the virus-scanning feature a corporate proxy provides actually implemented?"
+    choices:
+      - "Proxy software like Squid performs the scanning itself"
+      - "The proxy hands the job off to a dedicated ICAP server via the ICAP relay protocol"
+      - "The client-side browser performs the virus scanning"
+      - "The DNS server performs the virus scanning"
+    answerIndex: 1
+    explanation: "In most cases, the proxy never performs the inspection itself at all — it hands the job off to a dedicated ICAP server via the ICAP relay protocol."
+
+  - question: "What's the difference between REQMOD and RESPMOD?"
+    choices:
+      - "REQMOD inspects the response, RESPMOD inspects the request"
+      - "REQMOD inspects a request from the client (such as an upload), RESPMOD inspects a response from the server (such as a download)"
+      - "Both inspect exactly the same content at exactly the same time"
+      - "REQMOD only caches, RESPMOD only encrypts"
+    answerIndex: 1
+    explanation: "REQMOD inspects a request from the client (such as upload content), while RESPMOD inspects a response from the server (such as a downloaded file), at entirely separate times."
+
+  - question: "What does a '204 No Content' response from the ICAP server mean?"
+    choices:
+      - "The inspected content has a problem, and communication is refused"
+      - "The inspected content has no problem, and the proxy keeps using the original request or response, unchanged"
+      - "The ICAP server itself has failed"
+      - "The inspection process timed out"
+    answerIndex: 1
+    explanation: "When the ICAP server judges the inspected content has no problem, it returns a 204 No Content response, and the proxy keeps using the original request or response, completely unchanged."
+
+  - question: "In what situation might a 204 response become unusable?"
+    choices:
+      - "When the payload exceeds a certain size, or its size is hard to determine in advance"
+      - "When the communication is encrypted"
+      - "When the client is a mobile device"
+      - "When the ICAP server's version is newer"
+    answerIndex: 0
+    explanation: "When the payload exceeds a certain size (64KB in Squid's implementation) or its size is hard to determine in advance, a 204 may not be accepted."
+
+  - question: "What structural characteristic of a proxy does the ICAP mechanism reveal?"
+    choices:
+      - "Within a single proxy product, relaying and content inspection — independent specialties — are connected by ICAP, a thin protocol"
+      - "A proxy is always built from just a single specialty"
+      - "ICAP is an unnecessary mechanism that only degrades a proxy's performance"
+      - "An ICAP server is always built into the proxy software itself"
+    answerIndex: 0
+    explanation: "The proxy's own specialty — HTTP relaying and caching — and the ICAP server's entirely separate specialty — content inspection — are just connected by ICAP, a thin protocol."
