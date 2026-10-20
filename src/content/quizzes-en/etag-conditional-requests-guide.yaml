@@ -1,0 +1,45 @@
+questions:
+  - question: "What does idempotency guarantee?"
+    choices:
+      - "That two different requests never conflict"
+      - "That the result stays the same no matter how many times you resend the same request"
+      - "That every request gets encrypted"
+      - "That the server's processing speed stays constant"
+    answerIndex: 1
+    explanation: "Idempotency guarantees that resending the same request any number of times produces the same result — it's unrelated to the lost update problem, where two different requests conflict."
+
+  - question: "What is an ETag, actually?"
+    choices:
+      - "A random string the client generates"
+      - "A unique identifier the server issues for a resource's current state"
+      - "Another name for an API key"
+      - "A value representing when the request was sent"
+    answerIndex: 1
+    explanation: "An ETag is a unique identifier a server issues for a resource's current state, and its value changes whenever the resource's content changes."
+
+  - question: "What's the purpose of the If-None-Match header?"
+    choices:
+      - "Detecting concurrent-update conflicts"
+      - "Caching efficiency — the server returns 304 Not Modified without the response body, if the ETag matches"
+      - "Encrypting the request"
+      - "Specifying the API's version"
+    answerIndex: 1
+    explanation: "If-None-Match is a conditional request for caching efficiency, where the server returns 304 Not Modified without the response body if the ETag matches."
+
+  - question: "What status code gets returned for a PUT request with If-Match, when the current ETag doesn't match the presented value?"
+    choices:
+      - "200 OK"
+      - "412 Precondition Failed"
+      - "500 Internal Server Error"
+      - "301 Moved Permanently"
+    answerIndex: 1
+    explanation: "If the ETag presented via If-Match doesn't match the current ETag, the server never executes the update — it returns 412 Precondition Failed."
+
+  - question: "What mechanism does the combination of an ETag and If-Match implement?"
+    choices:
+      - "Database backup"
+      - "HTTP's concrete implementation of optimistic locking"
+      - "Communication encryption"
+      - "API rate limiting"
+    answerIndex: 1
+    explanation: "The combination of an ETag and If-Match implements optimistic locking — checking whether the state still matches right before the update, instead of acquiring a lock ahead of time — using HTTP's own standard mechanism."

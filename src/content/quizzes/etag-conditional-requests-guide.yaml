@@ -1,0 +1,45 @@
+questions:
+  - question: "冪等性が保証することとして正しいのはどれか。"
+    choices:
+      - "異なる2つのリクエストが競合しないこと"
+      - "同じリクエストを何度再送しても、結果が変わらないこと"
+      - "すべてのリクエストが暗号化されること"
+      - "サーバーの処理速度が常に一定であること"
+    answerIndex: 1
+    explanation: "冪等性は、同じリクエストを何度再送しても結果が変わらないことを保証する性質であり、異なる2つのリクエストが競合するロストアップデート問題とは無関係です。"
+
+  - question: "ETagの正体として正しいのはどれか。"
+    choices:
+      - "クライアントが生成する、ランダムな文字列"
+      - "サーバーが、リソースの現在の状態に対して発行する一意な識別子"
+      - "APIキーの別名"
+      - "リクエストの送信時刻を表す値"
+    answerIndex: 1
+    explanation: "ETagは、サーバーがあるリソースの現在の状態に対して発行する、一意な識別子であり、リソースの内容が変わるとETagの値も変わります。"
+
+  - question: "If-None-Matchヘッダーが使われる目的として正しいのはどれか。"
+    choices:
+      - "同時更新の競合を検出するため"
+      - "ETagが一致する場合、サーバーがレスポンスボディを送らずに304 Not Modifiedを返す、キャッシュの効率化のため"
+      - "リクエストを暗号化するため"
+      - "APIのバージョンを指定するため"
+    answerIndex: 1
+    explanation: "If-None-Matchは、ETagが一致する場合にサーバーがレスポンスボディを送らず304 Not Modifiedを返す、キャッシュの効率化のための条件付きリクエストです。"
+
+  - question: "If-Matchヘッダーを使ったPUTリクエストで、現在のETagが提示された値と一致しない場合に返されるステータスコードとして正しいのはどれか。"
+    choices:
+      - "200 OK"
+      - "412 Precondition Failed"
+      - "500 Internal Server Error"
+      - "301 Moved Permanently"
+    answerIndex: 1
+    explanation: "If-Matchで提示されたETagが、現在のETagと一致しない場合、サーバーは更新を実行せず、412 Precondition Failedを返します。"
+
+  - question: "ETagとIf-Matchの組み合わせが実現している仕組みとして正しいのはどれか。"
+    choices:
+      - "データベースのバックアップ"
+      - "楽観的ロック(Optimistic Locking)の、HTTPにおける具体的な実装"
+      - "通信の暗号化"
+      - "APIのレートリミット"
+    answerIndex: 1
+    explanation: "ETagとIf-Matchの組み合わせは、事前にロックを取得する代わりに、更新の直前に状態の一致を確認する、楽観的ロックという仕組みを、HTTPの標準的な仕組みの中で実現したものです。"
