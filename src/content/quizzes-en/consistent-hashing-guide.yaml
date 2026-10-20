@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the fatal weakness of the simple method `hash(key) % number of servers`?"
+    choices:
+      - "The calculation is too heavy to be practical"
+      - "Adding or removing just one server changes the assigned server for almost every single key"
+      - "The same server can only ever be assigned the same key"
+      - "It's unencrypted, carrying a risk of eavesdropping"
+    answerIndex: 1
+    explanation: "With simple modulo-based hashing, adding or removing just one server changes the assigned server for almost every single key."
+
+  - question: "What rule decides which server a key gets assigned to in consistent hashing?"
+    choices:
+      - "The remainder of the key's value divided by the number of servers"
+      - "Walking clockwise around the ring from that key's position, the first server you encounter"
+      - "Always the server with the lowest load on the ring"
+      - "A randomly chosen server"
+    answerIndex: 1
+    explanation: "In consistent hashing, which server a key gets assigned to is decided by walking clockwise around the ring from that key's position, and finding the first server you encounter."
+
+  - question: "What range of keys moves in consistent hashing when one server is added?"
+    choices:
+      - "Every single key always moves"
+      - "Only the keys that were positioned around the new server move to the neighboring server"
+      - "Not a single key moves"
+      - "A randomly chosen half of all keys move"
+    answerIndex: 1
+    explanation: "When a server is added or removed, only the keys that were positioned around that server move to the neighboring server, while keys at every other position on the ring stay unaffected."
+
+  - question: "What's the role of a virtual node?"
+    choices:
+      - "Strengthening encryption"
+      - "Addressing the imbalance in ring placement that occurs when there are few physical servers"
+      - "Encrypting communication between servers"
+      - "Increasing the frequency of health checks"
+    answerIndex: 1
+    explanation: "A virtual node places one physical server repeatedly at multiple positions on the ring, addressing the load imbalance that occurs when there are few physical servers."
+
+  - question: "Which systems widely adopt consistent hashing?"
+    choices:
+      - "Memcached, Amazon DynamoDB, Apache Cassandra, Redis Cluster"
+      - "Only DNS servers"
+      - "Only a web browser's caching feature"
+      - "Only print spoolers"
+    answerIndex: 0
+    explanation: "Consistent hashing is widely adopted by distributed caches and distributed databases, including Memcached client libraries, Amazon DynamoDB, Apache Cassandra, and Redis Cluster."
