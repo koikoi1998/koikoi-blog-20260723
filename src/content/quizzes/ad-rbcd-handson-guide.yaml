@@ -1,0 +1,45 @@
+questions:
+  - question: "RBCD(リソースベース制約付き委任)が、従来の制約付き委任から逆転させた点として正しいのはどれか。"
+    choices:
+      - "暗号化の方式"
+      - "委任を許可するかどうかを決める側が、委任元ではなく委任先(バックエンド)のリソース自身になった"
+      - "Kerberosの認証プロトコル自体"
+      - "サービスチケットの有効期限"
+    answerIndex: 1
+    explanation: "RBCDは、委任を許可するかどうかを、委任先(バックエンド)のリソース自身が、msDS-AllowedToActOnBehalfOfOtherIdentity属性で決める構造に逆転させています。"
+
+  - question: "RBCDを構成するために、攻撃者が実際に必要とする権限として正しいのはどれか。"
+    choices:
+      - "ドメイン管理者の特権(SeEnableDelegationPrivilege)"
+      - "対象のバックエンドリソースへの書き込み権限(GenericWriteなど)"
+      - "物理的なDCへのアクセス"
+      - "すべてのユーザーのパスワード"
+    answerIndex: 1
+    explanation: "RBCDは、ドメイン管理者だけが持つ特権を必要とせず、対象のバックエンドリソースへの書き込み権限さえあれば構成できます。"
+
+  - question: "ms-DS-MachineAccountQuotaの既定値として正しいのはどれか。"
+    choices:
+      - "0"
+      - "10"
+      - "100"
+      - "無制限"
+    answerIndex: 1
+    explanation: "ms-DS-MachineAccountQuotaの既定値は10であり、特別な権限を持たない一般ドメインユーザーでも最大10台までコンピューターアカウントを作成できます。"
+
+  - question: "RBCDの悪用が成立するために、同時に必要な2つの前提条件として正しいのはどれか。"
+    choices:
+      - "ドメイン管理者権限と、物理的なサーバーへのアクセス"
+      - "攻撃者が完全に制御できるコンピューターアカウントと、標的のコンピューターオブジェクトへの書き込み権限"
+      - "VPN接続と、2要素認証の無効化"
+      - "すべてのDCの停止"
+    answerIndex: 1
+    explanation: "RBCDの悪用には、攻撃者が完全に制御できるコンピューターアカウント(ms-DS-MachineAccountQuotaで入手)と、標的のコンピューターオブジェクトへの書き込み権限という、2つの前提条件が同時に必要です。"
+
+  - question: "この攻撃に対する、有効な対策として正しいのはどれか。"
+    choices:
+      - "ms-DS-MachineAccountQuotaを0に設定し、コンピューターオブジェクトへの書き込み権限を定期的に監査する"
+      - "すべてのDCを物理的に停止する"
+      - "Kerberos認証そのものを無効化する"
+      - "すべてのユーザーのパスワードを毎日変更する"
+    answerIndex: 0
+    explanation: "ms-DS-MachineAccountQuotaを0に設定し、バックエンドへの書き込み権限を定期的に監査することが、有効な対策です。"

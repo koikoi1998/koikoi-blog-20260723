@@ -1,0 +1,45 @@
+questions:
+  - question: "What does RBCD (Resource-Based Constrained Delegation) flip, compared to traditional constrained delegation?"
+    choices:
+      - "The encryption method"
+      - "The side that decides whether delegation is allowed shifts from the delegating side to the delegation target (back-end) resource itself"
+      - "The Kerberos authentication protocol itself"
+      - "The service ticket's expiration time"
+    answerIndex: 1
+    explanation: "RBCD flips the structure so the delegation target (back-end) resource itself decides whether delegation is allowed, via the msDS-AllowedToActOnBehalfOfOtherIdentity attribute."
+
+  - question: "What privilege does an attacker actually need to configure RBCD?"
+    choices:
+      - "A domain admin's privilege (SeEnableDelegationPrivilege)"
+      - "Write access to the target back-end resource (such as GenericWrite)"
+      - "Physical access to a DC"
+      - "Every user's password"
+    answerIndex: 1
+    explanation: "RBCD can be configured with no domain admin privilege at all — only write access to the target back-end resource."
+
+  - question: "What's the default value of ms-DS-MachineAccountQuota?"
+    choices:
+      - "0"
+      - "10"
+      - "100"
+      - "Unlimited"
+    answerIndex: 1
+    explanation: "The default value of ms-DS-MachineAccountQuota is 10 — even an ordinary domain user with no special privileges can create up to 10 computer accounts."
+
+  - question: "What two preconditions need to hold at the same time for RBCD abuse to work?"
+    choices:
+      - "Domain admin privileges and physical access to a server"
+      - "A computer account the attacker fully controls, and write access to the target computer object"
+      - "A VPN connection and disabled two-factor authentication"
+      - "Shutting down every DC"
+    answerIndex: 1
+    explanation: "Abusing RBCD requires a computer account the attacker fully controls (usually obtained via ms-DS-MachineAccountQuota) and write access to the target computer object, at the same time."
+
+  - question: "What's an effective countermeasure against this attack?"
+    choices:
+      - "Setting ms-DS-MachineAccountQuota to 0 and regularly auditing write access to computer objects"
+      - "Physically shutting down every DC"
+      - "Disabling Kerberos authentication itself"
+      - "Changing every user's password daily"
+    answerIndex: 0
+    explanation: "Setting ms-DS-MachineAccountQuota to 0 and regularly auditing write access to the back end are effective countermeasures."
