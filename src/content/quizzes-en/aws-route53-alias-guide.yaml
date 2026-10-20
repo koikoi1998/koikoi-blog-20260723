@@ -1,0 +1,45 @@
+questions:
+  - question: "Why can a Route 53 Alias record sit at a zone apex?"
+    choices:
+      - "AWS specially rewrites the standard DNS specification"
+      - "It actually responds as an A record at the protocol level, so it never conflicts with the coexistence constraint against SOA/NS"
+      - "The concept of a zone apex doesn't exist in AWS at all"
+      - "Alias records are never subject to any record coexistence constraint in the first place"
+    answerIndex: 1
+    explanation: "An Alias record actually responds as an A record at the DNS protocol level, so placing it at the zone apex never conflicts with the coexistence constraint against SOA/NS records."
+
+  - question: "What can an Alias record point at?"
+    choices:
+      - "Any domain on the internet, freely"
+      - "Resources AWS explicitly supports, like ALB, CloudFront, and S3 static websites"
+      - "Only on-premises servers"
+      - "Only resources on other cloud providers"
+    answerIndex: 1
+    explanation: "What an Alias record can point at is limited to resources AWS explicitly supports, like ALB and CloudFront."
+
+  - question: "Why does an Alias record need one fewer round trip for name resolution than a regular CNAME?"
+    choices:
+      - "Because Alias records are never cached"
+      - "Because Route 53 itself already internally knows the target's IP address, and can return it directly on the first query"
+      - "Because Alias records use TCP instead of UDP"
+      - "Because Alias records are IPv6-only"
+    answerIndex: 1
+    explanation: "With an Alias record, Route 53 itself already knows the target's IP address, so it can return it directly on the first query, needing one fewer round trip than CNAME's two-stage lookup."
+
+  - question: "How are queries to an Alias record targeting an AWS resource billed?"
+    choices:
+      - "They're billed at a higher rate than regular records"
+      - "They're exempt from Route 53's query billing (free)"
+      - "They require a request to AWS Support"
+      - "Creating the Alias record itself incurs a fixed monthly fee"
+    answerIndex: 1
+    explanation: "Queries to an Alias record targeting an AWS resource are exempt from Route 53's query billing — they're free."
+
+  - question: "What is an Alias record, actually?"
+    choices:
+      - "Just another name for a CNAME record, or a superset of it"
+      - "A Route 53-specific mechanism that doesn't exist in the standard DNS protocol — AWS's implementation of the ALIAS/ANAME concept"
+      - "A special record used only for DNSSEC validation"
+      - "A record using the same mechanism as an AWS security group"
+    answerIndex: 1
+    explanation: "An Alias record is a Route 53-provided abstraction that doesn't exist in the standard DNS protocol — it's AWS's concrete implementation of the ALIAS/ANAME concept."
