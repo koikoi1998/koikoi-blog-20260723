@@ -1,0 +1,45 @@
+questions:
+  - question: "What's an ASG's (Auto Scaling Group's) default health check type?"
+    choices:
+      - "ELB"
+      - "EC2"
+      - "ALB"
+      - "CloudWatch"
+    answerIndex: 1
+    explanation: "An ASG's default health check type is EC2, which only checks whether the instance is running correctly from AWS's own perspective."
+
+  - question: "Why doesn't the ASG replace an instance when the application itself has crashed and the ALB's health check keeps failing?"
+    choices:
+      - "An ASG has no capability to replace instances at all"
+      - "The health check type is still EC2, so the ALB's health check result is never seen"
+      - "The ALB's health check is always judged as successful"
+      - "The maximum instance capacity has been reached"
+    answerIndex: 1
+    explanation: "The ASG's default health check type is EC2 — the ALB's health check result goes unseen unless you explicitly switch to the ELB health check type."
+
+  - question: "What's a design characteristic of a launch template?"
+    choices:
+      - "It can always be edited directly after creation, at any time"
+      - "It can't be edited directly after creation — any change requires creating a new version"
+      - "A launch template is unnecessary for any given ASG"
+      - "A launch template can only be created after an EC2 instance has already launched"
+    answerIndex: 1
+    explanation: "A launch template is immutable by design — it can't be edited directly after creation, and any change requires creating a new version."
+
+  - question: "What's the role of the health check grace period?"
+    choices:
+      - "A setting that prevents an instance from ever being terminated"
+      - "The span between when a new instance launches and when it actually becomes subject to health check judgment"
+      - "A setting that limits the ASG's maximum capacity"
+      - "A setting that determines the target CPU utilization value"
+    answerIndex: 1
+    explanation: "The health check grace period is a buffer that prevents a temporary unhealthy state right after launch from being mistakenly judged as a failure."
+
+  - question: "An ASG's lifecycle hook serves the same purpose as which mechanism covered in the Load Balancing Department?"
+    choices:
+      - "Connection draining"
+      - "GSLB"
+      - "The PROXY protocol"
+      - "Consistent hashing"
+    answerIndex: 0
+    explanation: "A lifecycle hook lets you insert custom processing before an instance terminates, serving exactly the same purpose as connection draining — safely removing a server."
