@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the role of the NSEC record?"
+    choices:
+      - "Encrypting the DNS response itself"
+      - "Proving that a record doesn't exist, by showing the next name that actually does exist"
+      - "Authenticating a zone transfer"
+      - "Deciding a DNS cache's expiration time"
+    answerIndex: 1
+    explanation: "NSEC proves non-existence by responding in a form like: the name you queried doesn't exist, but walking the zone in sorted order, here's the next name that actually does exist."
+
+  - question: "What's the correct description of the technique called \"zone walking\"?"
+    choices:
+      - "A technique for encrypting a zone transfer"
+      - "A technique for enumerating every name in a zone by repeatedly following NSEC's \"next name\""
+      - "A technique for clearing a DNS cache"
+      - "A technique for load-balancing across multiple DNS servers"
+    answerIndex: 1
+    explanation: "By repeatedly querying non-existent names and following the \"next name\" NSEC indicates each time, you can enumerate every single name in the zone, in order."
+
+  - question: "How does NSEC3 differ from NSEC?"
+    choices:
+      - "It performs no encryption at all"
+      - "It chains a hashed value of the actual name, instead of the real name itself"
+      - "It completely disables zone transfers"
+      - "It makes DNSSEC's signature unnecessary"
+    answerIndex: 1
+    explanation: "NSEC3 keeps the same \"next name\" mechanism as NSEC, but chains a hashed value instead of the real name."
+
+  - question: "Why isn't NSEC3 a complete defense?"
+    choices:
+      - "Because NSEC3 usually isn't actually implemented"
+      - "Because the hash isn't irreversible, and a predictable name can potentially be identified via a dictionary attack"
+      - "Because NSEC3 is an entirely separate standard, unrelated to DNSSEC"
+      - "Because NSEC3 makes zone transfers themselves impossible"
+    answerIndex: 1
+    explanation: "An NSEC3 hash isn't irreversible, and an attacker can precompute hashes of likely names and compare them against published values, potentially identifying the original name."
+
+  - question: "What's RFC 9276's current recommendation for NSEC3's salt and iteration count?"
+    choices:
+      - "Lengthen the salt and increase the iteration count"
+      - "Leave the salt empty and set the iteration count to zero"
+      - "Randomly change the salt and iteration count every time"
+      - "Never use NSEC3 at all — always use NSEC"
+    answerIndex: 1
+    explanation: "RFC 9276's current recommendation is to leave the salt empty and set the iteration count to zero — increasing them only makes key rollover more complicated, without a meaningful security benefit."
