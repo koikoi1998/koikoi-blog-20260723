@@ -122,6 +122,7 @@ altHref: "/en/university"
 14. [ADのスキーマ拡張を『上位1%』の視点で理解する](/articles/ad-schema-extension-guide)
 15. [.NET FrameworkとPowerShellの関係を『上位1%』の視点で理解する](/articles/ad-dotnet-powershell-guide)
 16. [ISP(インターネットサービスプロバイダー)とは何かを『上位1%』の視点で理解する](/articles/ad-isp-guide)
+17. [AdminSDHolderとSDProp(セキュリティ記述子プロパゲーター)の仕組みを『上位1%』の視点で理解する](/articles/ad-adminsdholder-sdprop-guide)
 
 ### 3年生:実務シナリオ編ハンズオン
 

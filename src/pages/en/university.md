@@ -122,6 +122,7 @@ The only department, at the moment, that satisfies every grade level. **The goal
 14. [Understanding AD Schema Extension from a "Top 1%" Perspective](/en/articles/ad-schema-extension-guide)
 15. [Understanding the Relationship Between .NET Framework and PowerShell from a "Top 1%" Perspective](/en/articles/ad-dotnet-powershell-guide)
 16. [Understanding What an ISP (Internet Service Provider) Is from a "Top 1%" Perspective](/en/articles/ad-isp-guide)
+17. [Understanding AdminSDHolder and SDProp From a Top 1% Perspective](/en/articles/ad-adminsdholder-sdprop-guide)
 
 ### Junior: Real-World-Scenario Hands-On
 
