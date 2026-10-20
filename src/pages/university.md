@@ -517,6 +517,7 @@ ActiveDirectory・AWS・Ansible/IaC・VPN・DNS基盤に続く6つ目の「開�
 3. [送信元メールサーバーのPTRレコード(逆引きDNS)が必須級の理由を『上位1%』の視点で理解する](/articles/mail-ptr-fcrdns-guide)
 4. [メールキューとバウンスの仕組みを『上位1%』の視点で理解する](/articles/mail-queue-bounce-guide)
 5. [SMTPにおけるSTARTTLSの仕組みを『上位1%』の視点で理解する](/articles/mail-tls-encryption-guide)
+6. [S/MIMEの仕組みを『上位1%』の視点で理解する](/articles/mail-smime-guide)
 
 ### 3年生:実務シナリオ編ハンズオン
 
