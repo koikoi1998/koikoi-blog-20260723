@@ -398,11 +398,12 @@ ActiveDirectory学科・AWS学科・Ansible/IaC学科に続く4つ目の「開�
 
 ### 2年生:補足・深掘り編
 
-1. [ロードバランサーからサーバーを安全に外す——コネクションドレインの仕組み](/articles/load-balancing-connection-draining-guide)
-2. [GSLB(グローバルサーバーロードバランシング)の仕組みを『上位1%』の視点で理解する](/articles/load-balancing-gslb-guide)
-3. [Anycastによるグローバルロードバランシングを『上位1%』の視点で理解する](/articles/load-balancing-anycast-guide)
-4. [ロードバランサー自体の冗長化を『上位1%』の視点で理解する](/articles/load-balancing-vrrp-keepalived-guide)
-5. [PROXY protocolの仕組みを『上位1%』の視点で理解する](/articles/load-balancing-proxy-protocol-guide)
+1. [コンシステントハッシュの仕組みを『上位1%』の視点で理解する](/articles/consistent-hashing-guide)
+2. [ロードバランサーからサーバーを安全に外す——コネクションドレインの仕組み](/articles/load-balancing-connection-draining-guide)
+3. [GSLB(グローバルサーバーロードバランシング)の仕組みを『上位1%』の視点で理解する](/articles/load-balancing-gslb-guide)
+4. [Anycastによるグローバルロードバランシングを『上位1%』の視点で理解する](/articles/load-balancing-anycast-guide)
+5. [ロードバランサー自体の冗長化を『上位1%』の視点で理解する](/articles/load-balancing-vrrp-keepalived-guide)
+6. [PROXY protocolの仕組みを『上位1%』の視点で理解する](/articles/load-balancing-proxy-protocol-guide)
 
 ### 3年生:実務シナリオ編ハンズオン
 

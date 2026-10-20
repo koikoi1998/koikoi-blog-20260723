@@ -398,11 +398,12 @@ None.
 
 ### Sophomore: Supplementary Deep-Dives
 
-1. [Safely Removing a Server From a Load Balancer — Connection Draining](/en/articles/load-balancing-connection-draining-guide)
-2. [Understanding GSLB (Global Server Load Balancing) From a Top 1% Perspective](/en/articles/load-balancing-gslb-guide)
-3. [Understanding Anycast for Global Load Balancing From a Top 1% Perspective](/en/articles/load-balancing-anycast-guide)
-4. [Understanding Load Balancer Redundancy Itself From a Top 1% Perspective](/en/articles/load-balancing-vrrp-keepalived-guide)
-5. [Understanding the PROXY Protocol From a Top 1% Perspective](/en/articles/load-balancing-proxy-protocol-guide)
+1. [Understanding How Consistent Hashing Works From a Top 1% Perspective](/en/articles/consistent-hashing-guide)
+2. [Safely Removing a Server From a Load Balancer — Connection Draining](/en/articles/load-balancing-connection-draining-guide)
+3. [Understanding GSLB (Global Server Load Balancing) From a Top 1% Perspective](/en/articles/load-balancing-gslb-guide)
+4. [Understanding Anycast for Global Load Balancing From a Top 1% Perspective](/en/articles/load-balancing-anycast-guide)
+5. [Understanding Load Balancer Redundancy Itself From a Top 1% Perspective](/en/articles/load-balancing-vrrp-keepalived-guide)
+6. [Understanding the PROXY Protocol From a Top 1% Perspective](/en/articles/load-balancing-proxy-protocol-guide)
 
 ### Junior: Real-World-Scenario Hands-On
 
