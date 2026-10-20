@@ -1,6 +1,6 @@
 ---
 title: "[Listen] The Active Directory Series, Fully Recapped — Only the Top-1% Insights, Told as One Continuous Story"
-description: "An audio-learning article for anyone who's finished all 48 articles in the Active Directory series — built to be reviewed with your eyes closed. No tables, no diagrams, no bullet points, just spoken-style narration, so you can listen on a commute or while doing chores using your browser's built-in read-aloud feature (Edge or Chrome's \"Read aloud\" / \"Read this page\" feature)."
+description: "An audio-learning article for anyone who's finished all 49 articles in the Active Directory series — built to be reviewed with your eyes closed. No tables, no diagrams, no bullet points, just spoken-style narration, so you can listen on a commute or while doing chores using your browser's built-in read-aloud feature (Edge or Chrome's \"Read aloud\" / \"Read this page\" feature)."
 series: "active-directory"
 subSeries: "audio"
 order: 45
@@ -12,7 +12,7 @@ updatedDate: 2026-09-26
 
 ## How to Listen to This Article
 
-Nice work getting through all 48 articles in the Active Directory series. This one's different — it's a full recap built to be listened to, not read. No tables, no code blocks, no diagrams anywhere in here, on purpose, so you don't need to look at the screen at all. Listen on your commute, while you're doing the dishes, soaking in the tub, whatever works. If you're on Edge or Chrome, there's a "Read aloud" or "Read this page" feature tucked into a menu somewhere — fire that up and just hand your ears over to this page. Your eyes are free.
+Nice work getting through all 49 articles in the Active Directory series. This one's different — it's a full recap built to be listened to, not read. No tables, no code blocks, no diagrams anywhere in here, on purpose, so you don't need to look at the screen at all. Listen on your commute, while you're doing the dishes, soaking in the tub, whatever works. If you're on Edge or Chrome, there's a "Read aloud" or "Read this page" feature tucked into a menu somewhere — fire that up and just hand your ears over to this page. Your eyes are free.
 
 What follows isn't a rehash of the technical details from those 39 articles. You don't need to trace through the text again — you already did that. Instead, for each article, I'm going to pull out the one line that actually matters most in practice, and tell it back to you as one connected story. Exact command flags and registry key names are genuinely hard to absorb by ear, so if you need that level of detail, go back and check the source article with your eyes when the moment calls for it. Think of today as time spent redrawing the map in your head.
 
@@ -164,14 +164,18 @@ Next was the relationship between .NET Framework and PowerShell. We covered the 
 
 ## What an ISP Actually Is, Behind Something You Never Think About
 
-Last was the ISP article — internet service providers. It might have felt like a step away from actual AD migration work, but it's the foundation for understanding how your internal network actually reaches the internet at all. We covered the Tier 1, Tier 2, and Tier 3 hierarchy the industry runs on, and the difference between the two ways networks connect — peering and transit. And in Japan specifically, we touched on the historical reason local cable TV companies so often double as ISPs.
+Next came the ISP article — internet service providers. It might have felt like a step away from actual AD migration work, but it's the foundation for understanding how your internal network actually reaches the internet at all. We covered the Tier 1, Tier 2, and Tier 3 hierarchy the industry runs on, and the difference between the two ways networks connect — peering and transit. And in Japan specifically, we touched on the historical reason local cable TV companies so often double as ISPs.
+
+## AdminSDHolder and SDProp: the Real Identity Behind an ACL That Reverts an Hour Later
+
+Last came AdminSDHolder and SDProp. You set a custom permission on a member of a privileged group like Domain Admins, and somehow, about an hour later, it reverts back on its own. This isn't a bug — it's deliberate design, where AdminSDHolder, a special object functioning as the correct permission template, has its ACL forcibly recopied onto every protected account by a process called SDProp, by default every 60 minutes. And don't forget the point that matters especially during an audit: even after removing a user from a privileged group, the adminCount flag never automatically resets and stays at 1, so adminCount=1 is never proof that an account is currently still a privileged group member.
 
 ## The Capstone: One Final Piece of Finishing Work
 
-Article number 48 wasn't like the others — it never taught a single new technique. Instead, under the setup of a fictional company, Contoso, acquiring another fictional company, Fabrikam, you designed, yourself, a single integrated environment combining everything you'd learned separately up to that point: forest trusts, GPOs, delegation, gMSA, backup, and Kerberoasting/DCSync auditing. Following a fixed procedure and designing from requirements are genuinely different skills, and finishing every individual hands-on doesn't make you immediately effective in real work without experience combining them into one coherent environment. And part of that capstone was assembling the deliverable itself as a portfolio piece — not just screenshots proving it worked, but a document articulating the reasoning behind your design decisions.
+Article number 49 wasn't like the others — it never taught a single new technique. Instead, under the setup of a fictional company, Contoso, acquiring another fictional company, Fabrikam, you designed, yourself, a single integrated environment combining everything you'd learned separately up to that point: forest trusts, GPOs, delegation, gMSA, backup, and Kerberoasting/DCSync auditing. Following a fixed procedure and designing from requirements are genuinely different skills, and finishing every individual hands-on doesn't make you immediately effective in real work without experience combining them into one coherent environment. And part of that capstone was assembling the deliverable itself as a portfolio piece — not just screenshots proving it worked, but a document articulating the reasoning behind your design decisions.
 
 ## One Last Thing: What Actually Separates the Top 1% From Everyone Else
 
-Having just run back through all 48 articles, here's what I want to leave you with. None of AD's individual features are actually that complicated on their own. What feels complicated is the seams — where one piece connects to another. FSMO and the global catalog. The secure channel and Kerberos. Sites and DNS's SRV records. The GPC and the GPT. The moment you can explain those seams from first principles instead of just memorizing them, you're already past what the average engineer understands.
+Having just run back through all 49 articles, here's what I want to leave you with. None of AD's individual features are actually that complicated on their own. What feels complicated is the seams — where one piece connects to another. FSMO and the global catalog. The secure channel and Kerberos. Sites and DNS's SRV records. The GPC and the GPT. The moment you can explain those seams from first principles instead of just memorizing them, you're already past what the average engineer understands.
 
 Next time you're staring down an AD-related outage or sitting in the middle of an AD migration, run back through this same thread in your head. You'll move with a lot more calm, and a lot more evidence behind every call you make. Nice work today — that's a wrap.

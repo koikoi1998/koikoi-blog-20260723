@@ -1,0 +1,45 @@
+questions:
+  - question: "What is AdminSDHolder, actually?"
+    choices:
+      - "An object holding backups of every user account"
+      - "A special object functioning as the correct permission template that should apply to every protected account"
+      - "A service monitoring DC health"
+      - "A group object defining password policy"
+    answerIndex: 1
+    explanation: "AdminSDHolder is a special object that exists within AD DS, functioning as the correct permission template that should apply to every protected account."
+
+  - question: "What does SDProp (Security Descriptor Propagator) do by default?"
+    choices:
+      - "Takes a backup of every DC once a day"
+      - "Forcibly recopies AdminSDHolder's ACL onto every protected account, every 60 minutes"
+      - "Automatically resets users' passwords"
+      - "Runs global catalog replication"
+    answerIndex: 1
+    explanation: "SDProp runs by default every 60 minutes, forcibly recopying AdminSDHolder's ACL onto every protected account and group."
+
+  - question: "Why does a custom permission set on a privileged group member revert after a delay?"
+    choices:
+      - "Because some kind of bug is occurring"
+      - "Because SDProp forcibly recopies AdminSDHolder's ACL — deliberate design"
+      - "Because of network latency"
+      - "Because the DC is low on disk space"
+    answerIndex: 1
+    explanation: "This isn't a bug — it's deliberate design, where SDProp forcibly recopies AdminSDHolder's ACL every 60 minutes."
+
+  - question: "What happens to the adminCount attribute when a user is removed from a privileged group?"
+    choices:
+      - "It automatically resets to 0"
+      - "It never automatically resets — it stays at 1"
+      - "The attribute itself gets deleted"
+      - "It changes to a random value"
+    answerIndex: 1
+    explanation: "Even after removing a user from a privileged group, the adminCount attribute never automatically resets — it stays at 1. This is deliberate behavior."
+
+  - question: "What's the correct understanding of an account with adminCount=1 set?"
+    choices:
+      - "It guarantees the account is currently, definitely a member of a privileged group"
+      - "It only shows a past history of having been protected — it doesn't guarantee the current group membership reality"
+      - "It indicates the account has been disabled"
+      - "It indicates the account's password has leaked"
+    answerIndex: 1
+    explanation: "adminCount=1 only shows that the account became protected at some point in the past — it doesn't necessarily reflect the current group membership reality."
