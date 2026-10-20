@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the difference in signing scheme between RS256 and HS256?"
+    choices:
+      - "RS256 is symmetric, HS256 is asymmetric"
+      - "RS256 is asymmetric (signs with a private key, verifies with a public key), while HS256 is symmetric (signs and verifies with the same shared secret)"
+      - "The two are exactly the same signing scheme"
+      - "Neither RS256 nor HS256 performs any encryption at all"
+    answerIndex: 1
+    explanation: "RS256 is an asymmetric scheme signing with a private key and verifying with a public key, while HS256 is a symmetric scheme using one shared secret for both signing and verification."
+
+  - question: "What's the root cause of the algorithm confusion attack?"
+    choices:
+      - "The RSA key's bit length is too short"
+      - "The verification logic never distinguishes which key was prepared for which algorithm, and changes how it uses the key based on whatever alg value the token itself claims"
+      - "HTTPS isn't being used"
+      - "The JWT payload isn't encrypted"
+    answerIndex: 1
+    explanation: "The root cause of this vulnerability is that the verification logic never distinguished which key was prepared for which algorithm, instead changing how it used the key based on the token's own claimed alg value."
+
+  - question: "What does the attacker abuse to sign a forged token?"
+    choices:
+      - "The server's private key"
+      - "The server's RS256 public key, abused as the HMAC secret"
+      - "The database connection string"
+      - "The TLS certificate's private key"
+    answerIndex: 1
+    explanation: "The attacker uses the publicly available RS256 public key as the HMAC secret for HS256, and signs a forged token with it."
+
+  - question: "What's the one reliable defense against this attack?"
+    choices:
+      - "Increasing the RSA key's bit length"
+      - "Explicitly pinning the allowed algorithm at verification time, never relying on the token's own header"
+      - "Encrypting the JWT payload"
+      - "Making the token's expiration extremely short"
+    answerIndex: 1
+    explanation: "The one reliable defense is explicitly pinning the allowed algorithm at verification time, never relying on the token's own header."
+
+  - question: "Why can a similar problem resurface even after the library is patched?"
+    choices:
+      - "Because library patches are always incomplete"
+      - "Because the calling code may rely on the library's default instead of explicitly specifying the algorithms parameter at verification time"
+      - "Because the JWT standard itself is fundamentally insecure"
+      - "Because an RSA key pair can only ever be used once"
+    answerIndex: 1
+    explanation: "Even after a library is patched, a similar problem can resurface in a different shape if the calling code never explicitly specifies the algorithms parameter at verification time."
