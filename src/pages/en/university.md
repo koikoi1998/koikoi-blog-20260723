@@ -344,6 +344,7 @@ The fourth department to become "fully open," following Active Directory, AWS, a
 1. [Understanding Site-to-Site VPN From a "Top 1%" Perspective](/en/articles/site-to-site-vpn-guide)
 2. [Understanding Site-to-Site VPN With AWS From a "Top 1%" Perspective](/en/articles/site-to-site-vpn-aws-guide)
 3. [Understanding SD-WAN and Edge Router Selection From a "Top 1%" Perspective](/en/articles/sdwan-edge-router-guide)
+4. [Understanding How DMVPN (mGRE/NHRP) Works From a Top 1% Perspective](/en/articles/dmvpn-mgre-nhrp-guide)
 
 **Hands-On (1 article)**
 
