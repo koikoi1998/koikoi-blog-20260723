@@ -198,8 +198,9 @@ ActiveDirectory学科に続いて、学年構成のすべてを満たした学�
 
 1. [Route 53のエイリアスレコードを『上位1%』の視点で理解する](/articles/aws-route53-alias-guide)
 2. [IAMポリシーの評価ロジックを『上位1%』の視点で理解する](/articles/aws-iam-policy-evaluation-guide)
-3. [S3のストレージクラスとライフサイクルポリシーを『上位1%』の視点で理解する](/articles/aws-s3-storage-classes-guide)
-4. [セキュリティグループとネットワークACL(NACL)の違いを『上位1%』の視点で理解する](/articles/aws-nacl-security-group-guide)
+3. [AWS KMSのキーポリシーを『上位1%』の視点で理解する](/articles/aws-kms-key-policy-guide)
+4. [S3のストレージクラスとライフサイクルポリシーを『上位1%』の視点で理解する](/articles/aws-s3-storage-classes-guide)
+5. [セキュリティグループとネットワークACL(NACL)の違いを『上位1%』の視点で理解する](/articles/aws-nacl-security-group-guide)
 
 ### 3年生:実務シナリオ編ハンズオン
 
