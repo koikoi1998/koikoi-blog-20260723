@@ -282,8 +282,9 @@ Following the AWS Department, this is the third department to become "fully open
 3. [The Top 1% Hands-On for Designing a Rollback on Failed Configuration Changes With Ansible's block/rescue/always](/en/articles/ansible-error-handling-handson-guide)
 4. [Rolling Updates With Ansible's serial and delegate_to, Draining Each Host From the Load Balancer](/en/articles/ansible-serial-rolling-update-handson-guide)
 5. [Understanding How Ansible's Tags/Skip-Tags Work From a Top 1% Perspective](/en/articles/ansible-tags-guide)
+6. [A Top 1% Hands-On: Automatically Testing Your Own Ansible Role With Molecule](/en/articles/ansible-molecule-testing-handson-guide)
 
-**Work through and understand all 5 of these, and you're at graduation level, as a "Senior."**
+**Work through and understand all 6 of these, and you're at graduation level, as a "Senior."**
 
 ### Graduate School: Security-Hardening Hands-On (An Attacker's Perspective)
 
