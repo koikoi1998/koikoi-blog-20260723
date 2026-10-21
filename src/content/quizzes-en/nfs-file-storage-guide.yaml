@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the difference in operating layer between iSCSI and NFS?"
+    choices:
+      - "iSCSI operates at the file level, NFS at the block level"
+      - "iSCSI operates at the block level, NFS at the file level"
+      - "The two operate at exactly the same layer"
+      - "Neither relates to the concept of a layer at all"
+    answerIndex: 1
+    explanation: "iSCSI hands over the disk itself (a block device), operating at the block level, while NFS hands over an already-organized directory tree, operating at the file level."
+
+  - question: "What's the risk when multiple clients access the same iSCSI LUN concurrently without coordination?"
+    choices:
+      - "No risk occurs at all"
+      - "Data corruption becomes a real risk, unless you're using a cluster-aware filesystem"
+      - "Data gets automatically encrypted"
+      - "Communication speed automatically improves"
+    answerIndex: 1
+    explanation: "When multiple clients access the same iSCSI LUN concurrently without coordination, data corruption becomes a real risk, unless you're using a cluster-aware filesystem."
+
+  - question: "What's the decisive difference in design philosophy between NFSv3 and NFSv4?"
+    choices:
+      - "NFSv3 is stateful, NFSv4 is stateless"
+      - "NFSv3 is stateless, delegating locking to a separate ancillary protocol, while NFSv4 integrated locking into the protocol itself, becoming stateful"
+      - "There's no design difference between the two at all"
+      - "NFSv4 doesn't support reading or writing files at all"
+    answerIndex: 1
+    explanation: "NFSv3 was stateless, delegating file locking to a separate ancillary protocol called NLM, while NFSv4 integrated the locking mechanism into the protocol itself, becoming a stateful design."
+
+  - question: "Why did NFSv4 make operation across a firewall dramatically easier?"
+    choices:
+      - "Because it completely eliminated encryption"
+      - "Because communication consolidated onto just one single TCP port, 2049"
+      - "Because every port must always stay open"
+      - "Because NFSv4 made network communication itself unnecessary"
+    answerIndex: 1
+    explanation: "NFSv4 integrated locking into the protocol itself, consolidating communication onto just one single TCP port, 2049, making operation across a firewall dramatically easier."
+
+  - question: "What's the correct way to think about the choice between \"block or file\"?"
+    choices:
+      - "Block-level is always technically superior"
+      - "It's a question of fit for the requirement, not technical superiority"
+      - "File-level is always technically superior"
+      - "Either choice gives exactly the same result"
+    answerIndex: 1
+    explanation: "iSCSI and NFS aren't in a relationship of superiority — whether you want to decide the filesystem yourself, or safely access the same data concurrently from multiple clients, decides which one you should pick."
