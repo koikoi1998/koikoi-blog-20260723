@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the difference in foundation of trust between MTA-STS and DANE?"
+    choices:
+      - "MTA-STS trusts DNSSEC, DANE trusts the CA system"
+      - "MTA-STS trusts the existing CA (certificate authority) system, DANE trusts DNSSEC"
+      - "The two share exactly the same trust model"
+      - "Neither one performs any encryption at all"
+    answerIndex: 1
+    explanation: "MTA-STS trusts the existing CA (certificate authority) system as its foundation, while DANE trusts DNSSEC as its foundation — entirely different mechanisms."
+
+  - question: "What's the role of a TLSA record?"
+    choices:
+      - "Directly writing, into DNS, the hash of the certificate (or public key) an SMTP server should present"
+      - "Deciding a mail's delivery route"
+      - "Authenticating the sender in place of SPF"
+      - "Generating a DKIM signing key"
+    answerIndex: 0
+    explanation: "A TLSA record directly writes, into DNS, the hash of the certificate (or its public key) an SMTP server should present."
+
+  - question: "What's the absolute prerequisite for DANE to work?"
+    choices:
+      - "The sender operates an HTTPS server"
+      - "The TLSA record itself is signed by DNSSEC, and the receiving side can verify that signature"
+      - "The sender and recipient use the same mail server software"
+      - "No SPF record is configured"
+    answerIndex: 1
+    explanation: "For DANE to work, there's an absolute prerequisite: the TLSA record itself must be signed by DNSSEC, and the receiving side must be able to verify that signature."
+
+  - question: "What's MTA-STS's weakness?"
+    choices:
+      - "Complete dependence on DNSSEC"
+      - "Protection hasn't kicked in yet during the very first connection, before the policy file has been cached"
+      - "Using an outdated encryption algorithm"
+      - "Being unable to use HTTPS at all"
+    answerIndex: 1
+    explanation: "MTA-STS's weakness is that protection hasn't kicked in yet during the very first connection (the initial contact, TOFU), before the policy file has ever been cached."
+
+  - question: "What's the recommended rule when both DANE and MTA-STS are deployed?"
+    choices:
+      - "MTA-STS policy validation may override a failing DANE validation result to allow the connection anyway"
+      - "MTA-STS policy validation must never override a failing DANE validation result to allow the connection anyway"
+      - "DANE should be disabled, using only MTA-STS"
+      - "MTA-STS should be disabled, using only DANE"
+    answerIndex: 1
+    explanation: "When both are deployed, there's a rule: MTA-STS policy validation must never override a failing DANE validation result to allow the connection anyway."
