@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the correct description of cache stampede?"
+    choices:
+      - "The cache malfunctioning and losing data"
+      - "The instant a popular cache entry's TTL lapses, a flood of concurrent requests all miss the cache at once and rush the origin server"
+      - "A setting that makes a cache's storage duration infinite"
+      - "A phenomenon where multiple proxies can no longer communicate with each other"
+    answerIndex: 1
+    explanation: "Cache stampede is a phenomenon where, the instant a popular cache entry's TTL lapses, every one of the concurrent requests for that key misses the cache all at once and rushes the origin server."
+
+  - question: "How does request coalescing (single-flight) work?"
+    choices:
+      - "It forwards every request individually to the origin server"
+      - "It forwards only the first request to the origin server, making the remaining requests wait until that result comes back"
+      - "It randomly rejects requests"
+      - "It disables the cache entirely"
+    answerIndex: 1
+    explanation: "Request coalescing forwards only the first of multiple concurrent requests for the same key to the origin server, making the remaining requests wait until that result comes back."
+
+  - question: "How does stale-while-revalidate work?"
+    choices:
+      - "It immediately returns an error once the TTL lapses"
+      - "For a set period right after the TTL lapses, it immediately returns the old data as-is, while sending just one revalidation request behind the scenes"
+      - "It disables the cache entirely"
+      - "It rejects every request"
+    answerIndex: 1
+    explanation: "stale-while-revalidate immediately returns the old (stale) data to the client as-is for a set period right after the TTL lapses, while sending just one revalidation request to the origin server behind the scenes."
+
+  - question: "What's the role of TTL jitter?"
+    choices:
+      - "Always setting the TTL value to infinite"
+      - "Adding a small random variation to the configured TTL value, staggering when different cache entries expire"
+      - "Randomly changing where the cache is stored"
+      - "Processing every request in a random order"
+    answerIndex: 1
+    explanation: "TTL jitter adds a small random variation to the configured TTL value, slightly staggering when different cache entries expire, preventing a mass simultaneous expiration."
+
+  - question: "What's the essential characteristic of the cache stampede phenomenon?"
+    choices:
+      - "It's caused by a bug in an individual component"
+      - "Each individual request and each individual cache's behavior is correct, yet it becomes an incident when it happens in massive numbers simultaneously"
+      - "It's always caused by a network failure"
+      - "It only ever happens in an environment with no caching deployed"
+    answerIndex: 1
+    explanation: "What makes cache stampede dangerous is that nothing is wrong when you look at any individual request or cache's behavior — it only becomes an incident when that exact correct behavior happens in massive numbers at once."
