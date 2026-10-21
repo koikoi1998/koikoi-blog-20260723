@@ -820,13 +820,14 @@ None.
 7. [iptables (netfilter)](/en/articles/linux-iptables-guide)
 8. [/etc and the Linux Directory Layout (FHS)](/en/articles/linux-filesystem-hierarchy-guide)
 9. [How a Config File Actually "Takes Effect"](/en/articles/linux-config-activation-guide)
-10. [Investigating Error Logs With journalctl](/en/articles/linux-journalctl-guide)
+10. [A Top 1% Hands-On for Reproducing Yourself Why a Cron Job 'Should Work but Fails'](/en/articles/linux-cron-environment-handson-guide)
+11. [Investigating Error Logs With journalctl](/en/articles/linux-journalctl-guide)
 
 **Hands-On (fundamentals, 1 article)**
 
 1. [The Top 1% Hands-On for Tracking Down a File or Directory Yourself With find](/en/articles/linux-find-guide)
 
-**Work through and understand these eleven, and you're at a solid checkpoint as a "Freshman."**
+**Work through and understand these twelve, and you're at a solid checkpoint as a "Freshman."**
 
 ### Sophomore: Supplementary Deep-Dives
 

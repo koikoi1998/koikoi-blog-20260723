@@ -820,13 +820,14 @@ Web/API学科に続いて、10個目の「開講済み」学科です。対応�
 7. [iptables(netfilter)の仕組み](/articles/linux-iptables-guide)
 8. [/etcとLinuxのディレクトリ構成(FHS)](/articles/linux-filesystem-hierarchy-guide)
 9. [設定ファイルが「効く」までの仕組み](/articles/linux-config-activation-guide)
-10. [journalctlでエラーログを調査する方法](/articles/linux-journalctl-guide)
+10. [cronジョブの『動くはずなのに失敗する』を自分の手で再現するハンズオン](/articles/linux-cron-environment-handson-guide)
+11. [journalctlでエラーログを調査する方法](/articles/linux-journalctl-guide)
 
 **実技(ハンズオン基礎編、1記事)**
 
 1. [findコマンドでファイル・ディレクトリを自力で探し当てるハンズオン](/articles/linux-find-guide)
 
-**この11本まで自力で実施・理解できれば、「1年生」として一区切りです。**
+**この12本まで自力で実施・理解できれば、「1年生」として一区切りです。**
 
 ### 2年生:補足・深掘り編
 
