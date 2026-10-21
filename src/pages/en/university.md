@@ -523,7 +523,8 @@ None (a basic understanding of DNS is enough).
 3. [Why a Sending Mail Server's PTR Record (Reverse DNS) Is Essentially Mandatory From a Top 1% Perspective](/en/articles/mail-ptr-fcrdns-guide)
 4. [Understanding Mail Queues and Bounces From a "Top 1%" Perspective](/en/articles/mail-queue-bounce-guide)
 5. [Understanding SMTP's STARTTLS From a "Top 1%" Perspective](/en/articles/mail-tls-encryption-guide)
-6. [Understanding How S/MIME Works From a Top 1% Perspective](/en/articles/mail-smime-guide)
+6. [Understanding How DANE (TLSA Records) Works From a Top 1% Perspective](/en/articles/mail-dane-tlsa-guide)
+7. [Understanding How S/MIME Works From a Top 1% Perspective](/en/articles/mail-smime-guide)
 
 ### Junior: Real-World-Scenario Hands-On
 
