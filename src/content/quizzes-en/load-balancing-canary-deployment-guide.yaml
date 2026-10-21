@@ -1,0 +1,45 @@
+questions:
+  - question: "How does weighted round robin get repurposed for canary deployment?"
+    choices:
+      - "By fixing every server's weight to the exact same value at all times"
+      - "By gradually increasing weight toward the new version (e.g., 5% → 25% → 50% → 100%), monitoring error rate and latency at each step"
+      - "By completely disabling the weighting mechanism"
+      - "By instantly stopping every old-version server at once"
+    answerIndex: 1
+    explanation: "Canary deployment gradually increases weight toward the new version — 5% → 25% → 50% → 100% — monitoring error rate and latency at each step, advancing only if nothing goes wrong."
+
+  - question: "What's the difference between blue-green deployment and canary deployment?"
+    choices:
+      - "The two are exactly the same technique"
+      - "Blue-green deployment is an instant, all-at-once switchover between two independent environments, while canary deployment is a gradual weight change sharing a single environment"
+      - "Blue-green deployment never needs a load balancer at all"
+      - "Canary deployment always doubles infrastructure cost"
+    answerIndex: 1
+    explanation: "Blue-green deployment prepares two entirely independent environments and switches all traffic instantly, while canary deployment shares a single environment, gradually changing only the weight ratio."
+
+  - question: "What effect do sticky sessions have on canary deployment?"
+    choices:
+      - "Sticky sessions always improve canary deployment's accuracy"
+      - "A client already pinned to the old version keeps connecting to it even after you change the weight ratio, which can distort the observed split"
+      - "Sticky sessions are an entirely unrelated layer, with no connection to canary deployment"
+      - "Enabling sticky sessions automatically completes the migration to the new version"
+    answerIndex: 1
+    explanation: "With session persistence enabled, a client already pinned to the old version keeps connecting to it even after the weight ratio changes, which can cause the observed split to stop matching the configured weight."
+
+  - question: "What's the infrastructure cost trade-off of blue-green deployment?"
+    choices:
+      - "Infrastructure cost effectively drops to zero"
+      - "Maintaining two environments simultaneously effectively doubles infrastructure cost"
+      - "Infrastructure cost is always lower than canary deployment"
+      - "The concept of infrastructure cost doesn't apply at all"
+    answerIndex: 1
+    explanation: "Blue-green deployment needs to maintain two entirely independent environments, old and new, simultaneously, which carries the trade-off of effectively doubling infrastructure cost."
+
+  - question: "What combination is recommended for real-world canary deployment?"
+    choices:
+      - "Relying solely on 24-hour human visual monitoring"
+      - "Per-step metrics monitoring combined with an automatic rollback mechanism that resets weight to 0% when a threshold is exceeded"
+      - "No monitoring at all, always promoting straight to 100% in one step"
+      - "Never using a load balancer at all"
+    answerIndex: 1
+    explanation: "Real-world canary deployment is recommended to combine per-step metrics monitoring with an automatic rollback mechanism that resets the new version's weight to 0% once a predefined threshold is exceeded."
