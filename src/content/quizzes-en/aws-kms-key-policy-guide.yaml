@@ -1,0 +1,45 @@
+questions:
+  - question: "For a KMS customer managed key, what's the correct relationship between an IAM policy and the key policy?"
+    choices:
+      - "If the IAM policy allows it, the action always executes regardless of the key policy's content"
+      - "Decryption never works with the IAM policy's allow alone, unless the key policy itself also allows that action (or declares delegation to IAM)"
+      - "The key policy always has lower priority than the IAM policy"
+      - "KMS has no concept of a key policy at all"
+    answerIndex: 1
+    explanation: "A KMS customer managed key carries an absolute gate, the key policy, entirely separate from an IAM policy — unless the key policy itself also allows the action (or declares delegation to IAM), the IAM policy's allow alone never results in decryption."
+
+  - question: "What statement is automatically included in a new customer managed key's default key policy?"
+    choices:
+      - "Unconditional full access granted to every IAM user"
+      - "A statement granting full access to that AWS account's root account"
+      - "A statement denying every action"
+      - "Unconditional full access granted to other AWS accounts"
+    answerIndex: 1
+    explanation: "When you create a new customer managed key, its default key policy automatically includes a statement granting full access to that AWS account's root account, which is what lets an IAM policy within that same account effectively handle the decision."
+
+  - question: "In envelope encryption, what does KMS directly generate and protect?"
+    choices:
+      - "The entire data being encrypted"
+      - "A small symmetric key called the data key"
+      - "The AWS account's root credentials"
+      - "The VPC routing table"
+    answerIndex: 1
+    explanation: "KMS never directly encrypts an entire S3 object or RDS database — it only generates and protects a small symmetric key called the data key. The actual data body gets encrypted locally by each AWS service using that data key."
+
+  - question: "What permission is required to decrypt data?"
+    choices:
+      - "Access permission on the encrypted data itself is enough"
+      - "Permission (kms:Decrypt) to send the encrypted data key to KMS and have it decrypted"
+      - "No permission is required at all — anyone can decrypt it"
+      - "Access permission on the VPC endpoint alone is enough"
+    answerIndex: 1
+    explanation: "To decrypt data, you need permission (kms:Decrypt) to send the encrypted data key to KMS and have it decrypted. Access permission on the data alone is never enough."
+
+  - question: "What's a correct characteristic of KMS Grants?"
+    choices:
+      - "They can't be used at all unless you directly edit the JSON-format key policy"
+      - "They allow dynamic, fine-grained permission delegation without ever editing the JSON-format key policy itself"
+      - "They make IAM policies completely unnecessary"
+      - "Internal services like EBS never use them"
+    answerIndex: 1
+    explanation: "KMS Grants are a mechanism for dynamic, fine-grained permission delegation without editing the JSON-format key policy itself, and internal services like EBS use this mechanism."
