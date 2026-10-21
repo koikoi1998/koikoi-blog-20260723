@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the correct description of a 'Harvest Now, Decrypt Later' attack?"
+    choices:
+      - "Immediately decrypting current traffic"
+      - "Recording and storing encrypted traffic that can't be decrypted today, then retroactively breaking the key exchange with a future quantum computer"
+      - "Immediately discarding WireGuard packets"
+      - "An attack that poisons a DNS cache"
+    answerIndex: 1
+    explanation: "Harvest Now, Decrypt Later records and stores encrypted traffic that can't be decrypted today, then, once a sufficiently powerful quantum computer exists, retroactively breaks the key exchange method."
+
+  - question: "Why does WireGuard's PresharedKey (PSK) serve as a practical defense against this attack?"
+    choices:
+      - "Because a PSK computes faster than Curve25519"
+      - "Because a PSK is a symmetric key, manually distributed ahead of time, that never once travels over the network"
+      - "Because a PSK automatically changes every hour"
+      - "Because a PSK disables quantum computers themselves"
+    answerIndex: 1
+    explanation: "A PSK is a symmetric key the administrator manually distributes to both devices ahead of time, never traveling over the network, so even if the key exchange gets broken in the future, the PSK's actual value can never be obtained."
+
+  - question: "How does WireGuard derive its final encryption key?"
+    choices:
+      - "Using only the result of the Curve25519 key exchange"
+      - "By cryptographically mixing the shared secret from the Curve25519 key exchange with the PSK"
+      - "Using only the PSK, alone"
+      - "Without performing any key exchange at all"
+    answerIndex: 1
+    explanation: "WireGuard cryptographically mixes the shared secret obtained from the Curve25519 key exchange together with the PSK, to derive the final encryption key."
+
+  - question: "What's the correct understanding of using a PSK?"
+    choices:
+      - "Using a PSK makes WireGuard fully quantum-resistant"
+      - "A PSK is a practical defense against a harvest-now-decrypt-later attack, but it doesn't mean full quantum resistance"
+      - "A PSK never improves WireGuard's security at all"
+      - "Using a PSK always degrades communication speed"
+    answerIndex: 1
+    explanation: "A PSK is a practical defense against the specific harvest-now-decrypt-later attack scenario, but this doesn't mean WireGuard has become fully quantum-resistant."
+
+  - question: "How is a PSK configured?"
+    choices:
+      - "It's automatically enabled in WireGuard's default settings"
+      - "It's generated with `wg genpsk`, and the administrator must explicitly add it to the config file"
+      - "It gets automatically distributed over the internet"
+      - "It's published as a DNS record"
+    answerIndex: 1
+    explanation: "A PSK is an optional feature — the administrator must generate it with the `wg genpsk` command and explicitly add it to the config file."

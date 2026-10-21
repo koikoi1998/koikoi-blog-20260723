@@ -1,0 +1,45 @@
+questions:
+  - question: "『Harvest Now, Decrypt Later』攻撃の正しい説明はどれか。"
+    choices:
+      - "現在の通信を即座に解読する攻撃"
+      - "現時点で解読できない暗号化通信を記録・保存し、将来の量子コンピュータで鍵交換を遡って解読する攻撃"
+      - "WireGuardのパケットを即座に破棄する攻撃"
+      - "DNSキャッシュを汚染する攻撃"
+    answerIndex: 1
+    explanation: "Harvest Now, Decrypt Laterは、現時点で解読できない暗号化通信を記録・保存しておき、将来十分な性能を持つ量子コンピュータが実現すれば、鍵交換方式を遡って解読するという攻撃です。"
+
+  - question: "WireGuardのPresharedKey(PSK)が、この攻撃に対する実用的な防御になる理由として正しいのはどれか。"
+    choices:
+      - "PSKは、Curve25519よりも計算速度が速いため"
+      - "PSKは、ネットワーク上を一度も流れることのない、事前に手動配布された対称鍵であるため"
+      - "PSKは、自動的に1時間ごとに変更されるため"
+      - "PSKは、量子コンピュータそのものを無効化するため"
+    answerIndex: 1
+    explanation: "PSKは、ネットワーク上を一度も流れることのない、事前に管理者自身の手で両方の端末へ手動配布される対称鍵であるため、鍵交換の部分が将来解読されても、PSKの値そのものは入手できません。"
+
+  - question: "WireGuardが、最終的な暗号鍵を導出する方法として正しいのはどれか。"
+    choices:
+      - "Curve25519による鍵交換の結果だけを使う"
+      - "Curve25519による鍵交換で得られた共有鍵と、PSKを、暗号学的に混合する"
+      - "PSKだけを単独で使う"
+      - "鍵交換を一切行わない"
+    answerIndex: 1
+    explanation: "WireGuardは、Curve25519による鍵交換で得られた共有鍵と、PSKを、暗号学的に混合して、最終的な暗号鍵を導出します。"
+
+  - question: "PSKを使うことについての、正しい理解はどれか。"
+    choices:
+      - "PSKを使えば、WireGuardは完全に耐量子になる"
+      - "PSKはHarvest Now, Decrypt Later攻撃に対する実用的な防御だが、完全な耐量子とは言えない"
+      - "PSKは、WireGuardの安全性を一切向上させない"
+      - "PSKを使うと、通信速度が必ず低下する"
+    answerIndex: 1
+    explanation: "PSKはHarvest Now, Decrypt Laterという特定の攻撃シナリオに対する実用的な防御になりますが、これをもって完全な耐量子とまでは言えません。"
+
+  - question: "PSKの設定方法として正しいのはどれか。"
+    choices:
+      - "WireGuardの既定設定で、自動的に有効になっている"
+      - "`wg genpsk`で生成し、管理者が明示的に設定ファイルへ追記する必要がある"
+      - "インターネット経由で自動的に配布される"
+      - "DNSレコードとして公開する"
+    answerIndex: 1
+    explanation: "PSKはオプション機能であり、管理者が`wg genpsk`コマンドで生成し、明示的に設定ファイルへ追記する必要があります。"
