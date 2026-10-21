@@ -332,8 +332,9 @@ The fourth department to become "fully open," following Active Directory, AWS, a
 4. [Understanding Always On VPN (AOVPN) From a Top 1% Perspective](/en/articles/always-on-vpn-guide)
 5. [How OpenVPN Works Internally From a "Top 1%" Perspective](/en/articles/openvpn-internals-guide)
 6. [How WireGuard Works Internally From a "Top 1%" Perspective](/en/articles/wireguard-internals-guide)
-7. [How Tailscale Works From a "Top 1%" Perspective](/en/articles/tailscale-internals-guide)
-8. [What Is ZTNA (Zero Trust Network Access) From a "Top 1%" Perspective](/en/articles/ztna-guide)
+7. [Understanding WireGuard's PresharedKey (PSK) From a Top 1% Perspective](/en/articles/wireguard-psk-post-quantum-guide)
+8. [How Tailscale Works From a "Top 1%" Perspective](/en/articles/tailscale-internals-guide)
+9. [What Is ZTNA (Zero Trust Network Access) From a "Top 1%" Perspective](/en/articles/ztna-guide)
 
 ### Junior: Real-World-Scenario Hands-On
 
