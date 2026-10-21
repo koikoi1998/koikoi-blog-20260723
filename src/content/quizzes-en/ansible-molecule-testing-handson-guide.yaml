@@ -1,0 +1,45 @@
+questions:
+  - question: "What does Molecule's idempotence test actually verify?"
+    choices:
+      - "Whether the playbook completes without an error on its first run"
+      - "Whether running the same playbook a second time reports any task as changed"
+      - "Whether the playbook's execution speed stays under a threshold"
+      - "Whether the container's disk usage stays under a threshold"
+    answerIndex: 1
+    explanation: "The idempotence test runs the same playbook a second time, and fails the test itself if even one single task gets reported as changed."
+
+  - question: "What's a typical cause of an idempotence test failure?"
+    choices:
+      - "Specifying a name on every task"
+      - "Not setting changed_when on a command/shell module task"
+      - "Writing every task inside a role"
+      - "Writing the inventory file in YAML format"
+    answerIndex: 1
+    explanation: "A task using the command or shell module with no changed_when set always gets reported as changed even when nothing actually changed, a typical cause of an idempotence test failure."
+
+  - question: "In Molecule 6.0 and later, what's the correct procedure for creating a role and adding a test scenario?"
+    choices:
+      - "molecule init role alone creates both the role and the test scenario"
+      - "Create the role with ansible-galaxy role init, and add the test scenario separately with molecule init scenario"
+      - "Role testing is no longer supported in Molecule 6.0 and later"
+      - "It's entirely impossible to create a test scenario without Docker"
+    answerIndex: 1
+    explanation: "molecule init role was removed in Molecule 6.0 and later — create the role itself with ansible-galaxy role init, and add the test scenario separately with molecule init scenario."
+
+  - question: "What's the role of the verify stage?"
+    choices:
+      - "Provisioning the container"
+      - "Using Testinfra to confirm a service has actually reached its intended state"
+      - "Only checking the playbook's syntax for errors"
+      - "Tearing down the container"
+    answerIndex: 1
+    explanation: "The verify stage uses Testinfra to confirm whether a service is actually running, a port is listening, and other intended states have actually been reached."
+
+  - question: "What's the correct relationship between \"the playbook succeeded\" and \"the role is correct\"?"
+    choices:
+      - "They mean exactly the same thing and don't need to be distinguished"
+      - "A playbook running without an error guarantees neither reaching the intended state nor idempotence on a re-run"
+      - "If the playbook succeeds, idempotence is automatically guaranteed"
+      - "If the role is correct, the playbook always runs fast"
+    answerIndex: 1
+    explanation: "The fact that a playbook ran without an error guarantees neither that it reached the intended state, nor that re-running it produces the same result — these are separate guarantees, and Molecule verifies them at separate stages."
