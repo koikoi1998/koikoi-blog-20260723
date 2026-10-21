@@ -1,0 +1,45 @@
+questions:
+  - question: "What's quorum's role in WSFC?"
+    choices:
+      - "Judging which node is technically healthy"
+      - "Only permitting the group of nodes holding a majority of votes to serve the workload"
+      - "Improving communication speed between nodes"
+      - "Stopping every node simultaneously"
+    answerIndex: 1
+    explanation: "Quorum is a mechanism that only permits the group of nodes holding a majority of votes to keep operating as the cluster."
+
+  - question: "What problem occurs in a two-node cluster when communication between nodes gets cut?"
+    choices:
+      - "Both nodes obtain 2 votes each, and both keep operating"
+      - "A 1-to-1 tie never forms a majority, so WSFC fails safe and both nodes stop serving entirely"
+      - "A new node gets automatically added"
+      - "No problem occurs, and operation continues as normal"
+    answerIndex: 1
+    explanation: "With only two nodes, if communication gets cut, each holds just one vote, and in a 1-to-1 tie neither can obtain a majority, so WSFC fails safe and both nodes stop serving."
+
+  - question: "What's the role of a Witness?"
+    choices:
+      - "Providing the cluster's resource itself"
+      - "Functioning as a third voter, holding exactly one vote, while never providing any cluster resource"
+      - "Replicating every node's data"
+      - "Increasing network bandwidth"
+    answerIndex: 1
+    explanation: "A Witness never provides a cluster resource — it only provides the one vote used as a third voter."
+
+  - question: "What situation can Dynamic Quorum not handle?"
+    choices:
+      - "Nodes being lost one at a time, in sequence"
+      - "A simultaneous failure, such as an entire site going down all at once"
+      - "A situation where no node ever fails"
+      - "A situation where the Witness is operating normally"
+    answerIndex: 1
+    explanation: "Dynamic Quorum handles nodes being lost one at a time in sequence, but can't handle a simultaneous failure, such as an entire site going down all at once."
+
+  - question: "What's Microsoft's current recommendation for a two-node cluster?"
+    choices:
+      - "A Witness is unnecessary — Dynamic Quorum alone is sufficient"
+      - "Always use a Witness"
+      - "Never cluster at all unless you expand to three or more nodes"
+      - "Only use a Witness in a cluster of three or more nodes"
+    answerIndex: 1
+    explanation: "Microsoft's current recommendation is to always use a Witness for a two-node cluster."
