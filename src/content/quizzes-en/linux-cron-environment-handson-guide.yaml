@@ -1,0 +1,45 @@
+questions:
+  - question: "Why does a script that works when run manually fail silently once registered in crontab?"
+    choices:
+      - "Crontab has no capability to run scripts at all"
+      - "Cron never goes through files like .bashrc that a login shell loads, running the job with only a minimal set of environment variables"
+      - "Crontab can only run scripts with root privileges"
+      - "Crontab can only run a job once per day"
+    answerIndex: 1
+    explanation: "Cron runs a job without ever going through /etc/profile or ~/.bashrc, the files loaded when a login shell starts up, so it only holds a minimal set of environment variables."
+
+  - question: "What's a typical characteristic of cron's actual PATH?"
+    choices:
+      - "It's extended, drastically longer than an interactive shell's PATH"
+      - "It's limited to a minimal value, drastically shorter than an interactive shell's PATH"
+      - "The PATH variable itself doesn't exist at all"
+      - "It's automatically inherited, exactly identical to the interactive shell's PATH"
+    answerIndex: 1
+    explanation: "Cron's actual PATH environment variable is limited to a bare minimum, something like PATH=/usr/bin:/bin, drastically shorter than an interactive shell's."
+
+  - question: "What's cron's default behavior when a job fails?"
+    choices:
+      - "An error message always gets recorded in the system log"
+      - "Standard output and standard error are never displayed anywhere, so the error is silently lost unless explicit redirection is set up"
+      - "The administrator is automatically notified by email"
+      - "The job is automatically retried"
+    answerIndex: 1
+    explanation: "By default, cron never displays a job's standard output or standard error anywhere, so an error is silently lost unless you've set up explicit redirection."
+
+  - question: "How can you confirm, with your own eyes, the difference between cron's environment and an interactive shell's environment?"
+    choices:
+      - "Read crontab's manual page"
+      - "Register a temporary cron job like env > file, and compare it against env captured from an interactive shell"
+      - "Reboot the system"
+      - "Check the cron daemon's version"
+    answerIndex: 1
+    explanation: "Writing out the env command's output as a cron job, and comparing it against env captured from an interactive shell, lets you confirm the difference between the two environments with your own eyes."
+
+  - question: "What's an effective way to prevent a PATH-dependent problem in a cron job?"
+    choices:
+      - "Do nothing, and wait for cron to automatically inherit the interactive shell's environment"
+      - "Specify commands with their full path inside the script, or explicitly set PATH at the top of the script"
+      - "Delete the crontab file itself"
+      - "Reduce how often the job runs"
+    answerIndex: 1
+    explanation: "Specifying commands with their full path inside the script, or explicitly setting PATH at the top of the script, is an effective way to prevent a PATH-dependent problem under cron."
