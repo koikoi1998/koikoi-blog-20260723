@@ -1,0 +1,45 @@
+questions:
+  - question: "What's true about a filesystem's total inode count?"
+    choices:
+      - "It automatically grows as needed while the filesystem is in use"
+      - "It gets fixed the moment the filesystem is created, and can never be increased afterward"
+      - "It's determined by the sum of all file sizes"
+      - "The concept of an inode doesn't exist in Linux"
+    answerIndex: 1
+    explanation: "The total number of inodes a filesystem can hold gets fixed the moment that filesystem is created (when mkfs runs), and can never be increased afterward."
+
+  - question: "What's the correct command for diagnosing inode exhaustion?"
+    choices:
+      - "df -h alone is enough — no other command is needed"
+      - "Run df -i and check whether IUse% is approaching 100%"
+      - "Run ps aux and check the process list"
+      - "Check network reachability with the ping command"
+    answerIndex: 1
+    explanation: "To diagnose inode exhaustion, run df -i and check whether the IUse% column is approaching 100%. df -h only displays data area usage."
+
+  - question: "What's a typical cause of inode exhaustion?"
+    choices:
+      - "The existence of a single, very large file"
+      - "A group of files that are small in size but extremely numerous, like PHP session files or mail queues"
+      - "A physical disk failure"
+      - "A severed network connection"
+    answerIndex: 1
+    explanation: "A typical cause of inode exhaustion is a group of files that are small in size but extremely numerous — PHP session files, mail queue spool files, or unrotated log files."
+
+  - question: "What could cause \"No space left on device\" even when both df -h and df -i look fine?"
+    choices:
+      - "This phenomenon can never technically occur"
+      - "Some process may still be holding a deleted file open as a file descriptor"
+      - "A network cable has been physically cut"
+      - "CPU usage is too high"
+    answerIndex: 1
+    explanation: "As long as some process keeps a deleted file open as a file descriptor, that inode and its data area never get freed, which can cause a space shortage."
+
+  - question: "What's the correct fix for an inode shortage?"
+    choices:
+      - "Add inodes to the existing filesystem with a single command"
+      - "Delete unneeded small files, or recreate the filesystem"
+      - "Power the disk off and back on once"
+      - "Make just one file larger"
+    answerIndex: 1
+    explanation: "Since the total inode count can't be added to afterward, fixing this requires either deleting unneeded small files or recreating the filesystem with a higher inode count."
