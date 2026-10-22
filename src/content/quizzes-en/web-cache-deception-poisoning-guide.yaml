@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the fundamental root cause that makes web cache deception possible?"
+    choices:
+      - "The origin server rejects every single request"
+      - "The cache layer and the origin server interpret the same URL differently"
+      - "A user keeps reusing the exact same password"
+      - "A network device has a physical hardware failure"
+    answerIndex: 1
+    explanation: "Web cache deception abuses a mismatch between how the cache layer and the origin server interpret the same URL — the origin ignores the extra trailing path, while the cache wrongly decides it's static just from the extension."
+
+  - question: "What's the characteristic of the input web cache poisoning abuses?"
+    choices:
+      - "An input that's always included in the cache key"
+      - "An input that actually affects the response's content, yet was never included in the cache key"
+      - "An input that only travels over an unencrypted communication channel"
+      - "An input that only ever contains a username and password"
+    answerIndex: 1
+    explanation: "Web cache poisoning abuses an input — like a header such as X-Forwarded-Host — that actually affects the response's content, yet was never included in the cache key."
+
+  - question: "What's the relationship between web cache deception and web cache poisoning?"
+    choices:
+      - "They're just two names for exactly the same attack"
+      - "They're separate attacks with different mechanisms (an interpretation mismatch vs. an input left out of the key)"
+      - "Web cache deception is a later version succeeding web cache poisoning"
+      - "Both only ever occur on websites that use no caching at all"
+    answerIndex: 1
+    explanation: "Web cache deception abuses an interpretation mismatch between the cache and the origin, while web cache poisoning abuses an input left out of the cache key — two attacks with different mechanisms."
+
+  - question: "How do many cache layers decide whether to cache a response?"
+    choices:
+      - "By always individually querying the origin server for a decision"
+      - "They sometimes decide independently, based solely on the URL's extension"
+      - "By having a human manually review every single response's content"
+      - "No decision is ever made at all — every response gets cached unconditionally"
+    answerIndex: 1
+    explanation: "Many cache layers decide independently whether to cache a response, based solely on the URL's extension, which is exactly the condition that makes web cache deception possible."
+
+  - question: "What did 2024 research reveal?"
+    choices:
+      - "That every HTTP server and proxy interprets a URL in exactly the same way"
+      - "That differences in how various HTTP servers and proxies interpret a cleverly crafted URL can be abused across numerous websites and CDN providers"
+      - "That the caching mechanism itself is technically impossible"
+      - "That every CDN provider has already fully implemented a fix for this issue"
+    answerIndex: 1
+    explanation: "Research published in 2024 systematically revealed that differences in how various HTTP servers and proxies interpret a cleverly crafted URL enable attacks across numerous websites and CDN providers."
