@@ -596,6 +596,7 @@ ActiveDirectory・AWS・Ansible/IaC・VPN・DNS基盤・メール基盤に続く
 6. [Windows Server フェイルオーバークラスタリング(WSFC)のクォーラムを『上位1%』の視点で理解する](/articles/windows-server-failover-cluster-quorum-guide)
 7. [IISのアプリケーションプールのリサイクルを『上位1%』の視点で理解する](/articles/windows-server-app-pool-recycling-guide)
 8. [プリントサーバーとスプーラーの仕組みを『上位1%』の視点で理解する](/articles/windows-server-print-spooler-guide)
+9. [WSUSのコンテンツフォルダー肥大化を『上位1%』の視点で理解する](/articles/windows-server-wsus-content-cleanup-guide)
 
 ### 3年生:実務シナリオ編ハンズオン
 

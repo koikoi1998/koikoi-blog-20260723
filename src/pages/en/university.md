@@ -596,6 +596,7 @@ None.
 6. [Understanding Windows Server Failover Clustering (WSFC) Quorum From a Top 1% Perspective](/en/articles/windows-server-failover-cluster-quorum-guide)
 7. [Understanding IIS Application Pool Recycling From a "Top 1%" Perspective](/en/articles/windows-server-app-pool-recycling-guide)
 8. [Understanding Print Servers and the Spooler From a "Top 1%" Perspective](/en/articles/windows-server-print-spooler-guide)
+9. [Understanding WSUS Content Folder Bloat From a Top 1% Perspective](/en/articles/windows-server-wsus-content-cleanup-guide)
 
 ### Junior: Real-World-Scenario Hands-On
 
