@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the difference in what DNSSEC and TSIG each prove?"
+    choices:
+      - "They prove exactly the same thing — there's no difference"
+      - "DNSSEC proves data authenticity, while TSIG proves a communication between two specific parties"
+      - "DNSSEC proves communication, while TSIG proves data"
+      - "Neither has any concept of proof at all"
+    answerIndex: 1
+    explanation: "DNSSEC proves that data was signed by the zone owner and is legitimate, while TSIG proves that a specific communication between two specific parties hasn't been tampered with — they prove entirely different things."
+
+  - question: "What's true about TSIG's key distribution?"
+    choices:
+      - "The DNS protocol itself handles key distribution automatically"
+      - "Key distribution falls outside the protocol, requiring an administrator to distribute the same shared secret to both servers out of band"
+      - "Key distribution is built into DNSSEC's signing process"
+      - "TSIG has no concept of a key at all"
+    answerIndex: 1
+    explanation: "TSIG's key distribution itself falls outside the protocol's specification, requiring an administrator to distribute the same shared secret to both the primary and secondary ahead of time, out of band."
+
+  - question: "Why can't DNSSEC alone protect a zone transfer?"
+    choices:
+      - "DNSSEC doesn't support the concept of a zone transfer at all"
+      - "DNSSEC protects signed data, but glue records fall outside its protection, and it performs no access control over the transfer itself"
+      - "DNSSEC always completely disables zone transfers"
+      - "DNSSEC processes slower than TSIG"
+    answerIndex: 1
+    explanation: "What DNSSEC protects is a signed record's own data — glue records and unsigned records fall outside its protection — and it's never a mechanism for access control over who can request a zone transfer."
+
+  - question: "What's the correct real-world relationship between DNSSEC and TSIG?"
+    choices:
+      - "You should choose only one — using both is pointless"
+      - "They aren't competing choices — combining them covers the range each one leaves unprotected"
+      - "TSIG is an obsolete technology that's now completely unnecessary"
+      - "They're technically identical protocols"
+    answerIndex: 1
+    explanation: "DNSSEC and TSIG aren't a matter of choosing one or the other — combining them, as complementary mechanisms, covers the range each one leaves unprotected."
+
+  - question: "Why isn't TSIG suited for authenticating against an unspecified, large number of parties?"
+    choices:
+      - "TSIG is too weak as an encryption algorithm"
+      - "The shared secret must be distributed out of band ahead of time, and the number of key combinations explodes as the number of parties grows"
+      - "TSIG only supports a single server"
+      - "TSIG doesn't support communication over the internet"
+    answerIndex: 1
+    explanation: "TSIG requires distributing a shared secret out of band ahead of time, which suits a small, specific set of servers, but becomes impractical against an unspecified large number of parties as key combinations explode."
