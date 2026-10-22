@@ -723,11 +723,12 @@ None.
 
 1. [Understanding the Difference Between Forward Proxies and Reverse Proxies From a Top 1% Perspective](/en/articles/forward-reverse-proxy-guide)
 2. [Understanding the CONNECT Method From a Top 1% Perspective](/en/articles/http-connect-method-guide)
-3. [Understanding PAC Files and WPAD From a Top 1% Perspective](/en/articles/pac-wpad-guide)
-4. [Understanding the Difference Between Proxy Authentication Methods (Basic/NTLM/Kerberos) From a Top 1% Perspective](/en/articles/proxy-auth-guide)
-5. [Understanding Cache-Control and the Vary Header From a Top 1% Perspective](/en/articles/cache-control-vary-guide)
-6. [Understanding Cache Stampede From a Top 1% Perspective](/en/articles/cache-stampede-guide)
-7. [Understanding Web Cache Deception and Web Cache Poisoning From a Top 1% Perspective](/en/articles/web-cache-deception-poisoning-guide)
+3. [Understanding WebSocket Through a Reverse Proxy From a Top 1% Perspective](/en/articles/web-proxy-websocket-guide)
+4. [Understanding PAC Files and WPAD From a Top 1% Perspective](/en/articles/pac-wpad-guide)
+5. [Understanding the Difference Between Proxy Authentication Methods (Basic/NTLM/Kerberos) From a Top 1% Perspective](/en/articles/proxy-auth-guide)
+6. [Understanding Cache-Control and the Vary Header From a Top 1% Perspective](/en/articles/cache-control-vary-guide)
+7. [Understanding Cache Stampede From a Top 1% Perspective](/en/articles/cache-stampede-guide)
+8. [Understanding Web Cache Deception and Web Cache Poisoning From a Top 1% Perspective](/en/articles/web-cache-deception-poisoning-guide)
 
 ### Junior: Real-World-Scenario Hands-On
 
