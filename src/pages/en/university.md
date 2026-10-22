@@ -526,11 +526,12 @@ None (a basic understanding of DNS is enough).
 
 1. [Understanding How SPF, DKIM, and DMARC Work From a "Top 1%" Perspective](/en/articles/mail-spf-dkim-dmarc-guide)
 2. [Understanding ARC (Authenticated Received Chain) From a Top 1% Perspective](/en/articles/mail-arc-guide)
-3. [Why a Sending Mail Server's PTR Record (Reverse DNS) Is Essentially Mandatory From a Top 1% Perspective](/en/articles/mail-ptr-fcrdns-guide)
-4. [Understanding Mail Queues and Bounces From a "Top 1%" Perspective](/en/articles/mail-queue-bounce-guide)
-5. [Understanding SMTP's STARTTLS From a "Top 1%" Perspective](/en/articles/mail-tls-encryption-guide)
-6. [Understanding How DANE (TLSA Records) Works From a Top 1% Perspective](/en/articles/mail-dane-tlsa-guide)
-7. [Understanding How S/MIME Works From a Top 1% Perspective](/en/articles/mail-smime-guide)
+3. [Understanding Google and Yahoo's Bulk Sender Requirements From a Top 1% Perspective](/en/articles/mail-bulk-sender-requirements-guide)
+4. [Why a Sending Mail Server's PTR Record (Reverse DNS) Is Essentially Mandatory From a Top 1% Perspective](/en/articles/mail-ptr-fcrdns-guide)
+5. [Understanding Mail Queues and Bounces From a "Top 1%" Perspective](/en/articles/mail-queue-bounce-guide)
+6. [Understanding SMTP's STARTTLS From a "Top 1%" Perspective](/en/articles/mail-tls-encryption-guide)
+7. [Understanding How DANE (TLSA Records) Works From a Top 1% Perspective](/en/articles/mail-dane-tlsa-guide)
+8. [Understanding How S/MIME Works From a Top 1% Perspective](/en/articles/mail-smime-guide)
 
 ### Junior: Real-World-Scenario Hands-On
 
