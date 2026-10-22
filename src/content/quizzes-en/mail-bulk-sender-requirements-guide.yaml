@@ -1,0 +1,45 @@
+questions:
+  - question: "Besides SPF/DKIM/DMARC authentication, what else did Google and Yahoo mandate for bulk senders in 2024?"
+    choices:
+      - "Changing the sending domain every month"
+      - "An RFC 8058-compliant one-click unsubscribe implementation, and maintaining a spam complaint rate under 0.3%"
+      - "Sending every email without any encryption"
+      - "Randomly changing the sender's IP address every time"
+    answerIndex: 1
+    explanation: "Google's and Yahoo's bulk sender requirements mandate, on top of SPF/DKIM/DMARC authentication, an RFC 8058-compliant one-click unsubscribe implementation and maintaining a spam complaint rate under 0.3%, as one bundled set."
+
+  - question: "How does RFC 8058's one-click unsubscribe actually get achieved?"
+    choices:
+      - "By the List-Unsubscribe header alone"
+      - "By combining the List-Unsubscribe header with the List-Unsubscribe-Post header"
+      - "By simply putting an unsubscribe URL at the bottom of the email body"
+      - "By removing the sender's domain from DNS"
+    answerIndex: 1
+    explanation: "RFC 8058's one-click unsubscribe is achieved by combining the List-Unsubscribe header with List-Unsubscribe-Post: List-Unsubscribe=One-Click, completing the unsubscribe instantly with no redirect to a login page."
+
+  - question: "Why is transactional mail exempt from the one-click unsubscribe requirement?"
+    choices:
+      - "Transactional mail technically can't have headers added to it"
+      - "Transactional mail is a direct response to a user's own action, standing in a different category from promotional/marketing mail"
+      - "Transactional mail never passes through Google's or Yahoo's servers"
+      - "Transactional mail never includes the sender's domain"
+    answerIndex: 1
+    explanation: "Transactional mail, like a password reset or order confirmation, is a direct response to a user's own action and is exempt from the one-click unsubscribe requirement, but the responsibility for this classification rests on the sender."
+
+  - question: "What's true about the \"bulk sender\" classification?"
+    choices:
+      - "The classification automatically lifts once you reduce your sending volume"
+      - "Once classified, it's said to stay permanent regardless of any later change in sending volume"
+      - "The classification gets re-evaluated and automatically reset every year"
+      - "The classification only gets assigned if the sender applies for it themselves"
+    answerIndex: 1
+    explanation: "Once Google or Yahoo classifies you as a bulk sender, that classification is said to stay permanent, even if you later reduce your sending volume."
+
+  - question: "What shift in SPF/DKIM/DMARC's standing does this article point out?"
+    choices:
+      - "SPF/DKIM/DMARC have always remained a completely optional setting, unchanged"
+      - "SPF/DKIM/DMARC's standing has shifted from their original anti-spoofing role to a mandatory precondition for reaching the inbox"
+      - "SPF/DKIM/DMARC were completely abolished in 2024"
+      - "SPF/DKIM/DMARC only apply to transactional mail"
+    answerIndex: 1
+    explanation: "SPF/DKIM/DMARC tended to be understood mostly as anti-spoofing measures, but today they've become a mandatory precondition for being allowed to reach a major provider's inbox at all."
