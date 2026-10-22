@@ -1,0 +1,45 @@
+questions:
+  - question: "Ansibleのasync/pollにおいて、本当に『投げっぱなし』を実現する設定として正しいのはどれか。"
+    choices:
+      - "asyncだけを指定し、pollを省略する"
+      - "poll: 0を明示的に指定する"
+      - "poll: 100のような、大きな値を指定する"
+      - "asyncもpollも、一切指定しない"
+    answerIndex: 1
+    explanation: "asyncだけを指定してpollを省略するか、0より大きい値を指定すると、Ansibleは既定のポーリング間隔で完了を待ち続けます。poll: 0という明示的なゼロの指定だけが、本当の意味での「投げっぱなし」を実現します。"
+
+  - question: "poll: 0で開始したタスクの、その後の完了確認の方法として正しいのはどれか。"
+    choices:
+      - "何もしなくても、自動的に完了が通知される"
+      - "registerでジョブIDを記録し、別のタスクでasync_statusモジュールを使って確認する"
+      - "SSH接続を再接続すれば、自動的に完了が確認できる"
+      - "完了確認という概念自体が、async/pollには存在しない"
+    answerIndex: 1
+    explanation: "poll: 0で開始したタスクのansible_job_idをregisterで記録し、別のタスクでasync_statusモジュールを使い、until: job_result is finishedのような条件でポーリングして完了を確認します。"
+
+  - question: "asyncタスクが、冪等性テストと衝突する理由として正しいのはどれか。"
+    choices:
+      - "asyncタスクは、実行自体が技術的に不可能だから"
+      - "asyncタスクは、実際には何も変更していなくても、常にchangedとして報告されるから"
+      - "asyncタスクは、SSH接続を永久に切断してしまうから"
+      - "asyncタスクは、Moleculeのテスト環境を破壊してしまうから"
+    answerIndex: 1
+    explanation: "asyncを使ったタスクは、実際には何も変更していなくても常にchangedとして報告されるという仕様上の制約があり、これはMoleculeの冪等性テストと直接衝突します。"
+
+  - question: "poll: 0で実行したジョブの状態ファイルに関する記述として正しいのはどれか。"
+    choices:
+      - "Ansibleが自動的にクリーンアップしてくれる"
+      - "自動的にクリーンアップされないため、async_statusをmode: cleanupで呼び出して手動で削除する必要がある"
+      - "状態ファイルという概念自体が、存在しない"
+      - "次回のPlaybook実行時に、自動的に上書きされる"
+    answerIndex: 1
+    explanation: "poll: 0で実行したジョブの状態ファイルは、Ansibleが自動的にクリーンアップしてくれないため、async_statusモジュールをmode: cleanupで呼び出し、手動で削除する必要があります。"
+
+  - question: "poll: 0を、yumやaptのような排他ロックを必要とする操作に使う際の注意点として正しいのはどれか。"
+    choices:
+      - "注意点は一切なく、常に安全に使用できる"
+      - "バックグラウンド処理がまだロックを保持している状態で、後続のタスクが同じリソースへアクセスしようとして失敗する可能性がある"
+      - "排他ロックという概念自体が、yumやaptには存在しない"
+      - "poll: 0を使うと、ロックが自動的に解除される"
+    answerIndex: 1
+    explanation: "排他ロックを必要とする操作に対してpoll: 0を使うと、バックグラウンド処理がまだロックを保持している状態で、後続のタスクが同じリソースへアクセスしようとして失敗する、という競合が発生する可能性があります。"

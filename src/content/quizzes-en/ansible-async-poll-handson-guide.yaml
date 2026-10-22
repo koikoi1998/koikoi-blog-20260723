@@ -1,0 +1,45 @@
+questions:
+  - question: "What setting genuinely achieves a true \"fire and forget\" in Ansible's async/poll?"
+    choices:
+      - "Specifying only async and omitting poll"
+      - "Explicitly specifying poll: 0"
+      - "Specifying a large value for poll, like poll: 100"
+      - "Specifying neither async nor poll at all"
+    answerIndex: 1
+    explanation: "Omitting poll, or specifying a value greater than 0, still has Ansible waiting for completion at its default polling interval. Only the explicit poll: 0 genuinely achieves fire and forget."
+
+  - question: "How do you later check on a task started with poll: 0?"
+    choices:
+      - "Completion gets automatically notified without doing anything"
+      - "Record the job ID via register, then check with the async_status module in a separate task"
+      - "Reconnecting the SSH connection automatically confirms completion"
+      - "The concept of checking completion doesn't exist for async/poll at all"
+    answerIndex: 1
+    explanation: "Record the ansible_job_id of a task started with poll: 0 via register, then use the async_status module in a separate task, polling with a condition like until: job_result is finished."
+
+  - question: "Why does an async task collide with idempotence testing?"
+    choices:
+      - "An async task is technically impossible to run at all"
+      - "An async task always gets reported as changed, even when nothing actually changed"
+      - "An async task permanently severs the SSH connection"
+      - "An async task destroys the Molecule test environment"
+    answerIndex: 1
+    explanation: "A task using async carries a specification-level quirk: it always gets reported as changed, even when nothing actually changed, which collides directly with Molecule's idempotence testing."
+
+  - question: "What's true about the status file for a job run with poll: 0?"
+    choices:
+      - "Ansible cleans it up automatically"
+      - "It doesn't get cleaned up automatically — you need to call async_status with mode: cleanup to manually remove it"
+      - "The concept of a status file doesn't exist at all"
+      - "It automatically gets overwritten on the next playbook run"
+    answerIndex: 1
+    explanation: "The status file for a job run with poll: 0 doesn't get cleaned up automatically by Ansible — you need to call the async_status module with mode: cleanup to manually remove it."
+
+  - question: "What's the caveat when using poll: 0 against an operation requiring an exclusive lock, like yum or apt?"
+    choices:
+      - "There's no caveat at all — it's always safe to use"
+      - "A later task may try to access the same resource while the backgrounded process still holds that lock, and fail"
+      - "The concept of an exclusive lock doesn't exist for yum or apt"
+      - "Using poll: 0 automatically releases the lock"
+    answerIndex: 1
+    explanation: "Using poll: 0 against an operation requiring an exclusive lock carries the risk of a conflict: a later task trying to access the same resource while the backgrounded process still holds that lock."
