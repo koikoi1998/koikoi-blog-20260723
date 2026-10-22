@@ -787,10 +787,11 @@ None.
 2. [Understanding RAID5 and RAID6 Parity Calculation From a Top 1% Perspective](/en/articles/raid5-parity-guide)
 3. [Understanding Bit Rot (Silent Data Corruption) and Checksums From a Top 1% Perspective](/en/articles/storage-bit-rot-checksum-guide)
 4. [Understanding Erasure Coding From a Top 1% Perspective](/en/articles/storage-erasure-coding-guide)
-5. [Understanding How iSCSI Works From a Top 1% Perspective](/en/articles/iscsi-guide)
-6. [Understanding How NFS Works From a Top 1% Perspective](/en/articles/nfs-file-storage-guide)
-7. [Understanding Multipath I/O (MPIO) From a Top 1% Perspective](/en/articles/storage-multipath-mpio-guide)
-8. [Understanding Thin Provisioning From a Top 1% Perspective](/en/articles/thin-provisioning-guide)
+5. [Understanding a RAID Controller's Write-Back and Write-Through From a Top 1% Perspective](/en/articles/storage-write-cache-bbu-guide)
+6. [Understanding How iSCSI Works From a Top 1% Perspective](/en/articles/iscsi-guide)
+7. [Understanding How NFS Works From a Top 1% Perspective](/en/articles/nfs-file-storage-guide)
+8. [Understanding Multipath I/O (MPIO) From a Top 1% Perspective](/en/articles/storage-multipath-mpio-guide)
+9. [Understanding Thin Provisioning From a Top 1% Perspective](/en/articles/thin-provisioning-guide)
 
 ### Junior: Real-World-Scenario Hands-On
 
