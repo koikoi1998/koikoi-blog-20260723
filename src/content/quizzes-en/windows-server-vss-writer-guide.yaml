@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the role of a VSS writer?"
+    choices:
+      - "Automatically repairing a physical disk failure"
+      - "Requesting that an application freeze right before a snapshot, so the snapshot gets taken in a consistent state"
+      - "Handling encryption of network communication"
+      - "Performing user login authentication"
+    answerIndex: 1
+    explanation: "A VSS writer is the application-side coordination mechanism that asks each registered application to \"freeze\" right before a snapshot, and takes the snapshot during that brief consistent-state window."
+
+  - question: "What's the correct command for checking a VSS writer's state?"
+    choices:
+      - "The ping command"
+      - "vssadmin list writers"
+      - "ipconfig /all"
+      - "netstat -an"
+    answerIndex: 1
+    explanation: "To check each VSS writer's current state, run vssadmin list writers with administrator privileges."
+
+  - question: "What's the relationship between a successful block-level snapshot and backup reliability?"
+    choices:
+      - "If the block-level snapshot succeeds, the backup is guaranteed to restore normally"
+      - "A successful block-level snapshot and an application-consistent backup are two separate guarantees"
+      - "The concept of a block-level snapshot doesn't exist at all"
+      - "Backup reliability has nothing to do with the snapshot"
+    answerIndex: 1
+    explanation: "Even when block-level copy-on-write works perfectly, the data can become unusable after restore if the application wasn't in a consistent state at that moment — these are separate guarantees."
+
+  - question: "What should you check if the SQL Server writer doesn't appear in the list?"
+    choices:
+      - "Only check the amount of free disk space"
+      - "Check whether a database name contains a trailing space, and whether the service account holds sysadmin rights"
+      - "Only check CPU usage"
+      - "Only check the network cable's connection status"
+    answerIndex: 1
+    explanation: "If the SQL Server writer doesn't appear in the list, check whether a database name contains a space, including a trailing one, and whether the service account holds sysadmin rights."
+
+  - question: "What's the correct response if restarting the VSS writer's service doesn't resolve the problem?"
+    choices:
+      - "Ignore the problem and continue the backup anyway"
+      - "A full server reboot may be needed, and if the failure keeps recurring, investigate the root cause"
+      - "Completely disable the VSS mechanism itself"
+      - "Delete all the data and start over from scratch"
+    answerIndex: 1
+    explanation: "If a service restart doesn't resolve it, a full server reboot may be required, and if the same failure keeps recurring, its root cause needs independent investigation."
