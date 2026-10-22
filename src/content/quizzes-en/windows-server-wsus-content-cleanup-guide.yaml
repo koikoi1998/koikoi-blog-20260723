@@ -1,0 +1,45 @@
+questions:
+  - question: "Why does running the Server Cleanup Wizard barely free any space in the WsusContent folder?"
+    choices:
+      - "There's a software bug in the wizard itself"
+      - "The wizard never touches the files of a superseded update still sitting in Approved status"
+      - "WSUS doesn't have any file-deletion capability at all"
+      - "The disk itself is physically damaged"
+    answerIndex: 1
+    explanation: "The Server Cleanup Wizard never touches the files of a superseded update still sitting in Approved status, which is why it sometimes frees only a few megabytes in practice."
+
+  - question: "What's the correct procedure for genuinely reclaiming WSUS disk space?"
+    choices:
+      - "Simply reverting an update to 'Not Approved' is enough"
+      - "Explicitly decline superseded updates, then run the Cleanup Wizard"
+      - "Simply restarting the WSUS service is enough"
+      - "Simply restarting the whole server is enough"
+    answerIndex: 1
+    explanation: "To genuinely reclaim disk space, filter the Approved view by Superseded, explicitly decline the relevant updates, and then run the Server Cleanup Wizard."
+
+  - question: "What's true about the \"superseded\" determination?"
+    choices:
+      - "This determination is always 100% accurate and never needs to be doubted"
+      - "This determination sometimes holds only under a specific combination of system configurations, and isn't necessarily fully reliable"
+      - "This determination is manually confirmed by Microsoft, one update at a time"
+      - "This determination never happens unless a user manually configures it"
+    answerIndex: 1
+    explanation: "Even when an update is determined to be superseded, that determination sometimes holds only under a specific combination of system configurations, and isn't necessarily fully reliable."
+
+  - question: "What's true about the Express installation files setting?"
+    choices:
+      - "It's a setting that reduces disk space usage"
+      - "It's a feature for clients on a slow link, but increases the required disk space by 3 to 4 times"
+      - "It's a setting that only exists to strengthen WSUS security"
+      - "Enabling it always improves synchronization speed"
+    answerIndex: 1
+    explanation: "Express installation files provides binary-delta patching for clients connecting over a slow link, but it increases the required disk space by 3 to 4 times the normal amount."
+
+  - question: "What does seeing Event ID 10041 or 10042 in the logs indicate?"
+    choices:
+      - "The WSUS license has expired"
+      - "The content storage volume is running low on free space"
+      - "A client machine has a virus infection"
+      - "A physical network cable has been cut"
+    answerIndex: 1
+    explanation: "Event ID 10041 and 10042 signal that the content storage volume is running low on free space, and continuing in that state can cause synchronization itself to start failing."
