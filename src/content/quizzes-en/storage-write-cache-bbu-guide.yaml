@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the difference between write-back and write-through?"
+    choices:
+      - "They're exactly the same behavior, just two names for it"
+      - "Write-through responds after waiting for the real disk write to finish, while write-back responds instantly once written to cache"
+      - "Write-back always waits for the real write to disk"
+      - "Write-through never uses a cache at all"
+    answerIndex: 1
+    explanation: "Write-through never responds until the write actually finishes on disk — safe but slow — while write-back responds complete the instant it's written to the fast cache."
+
+  - question: "What's the risk when a power loss occurs under write-back?"
+    choices:
+      - "The disk itself gets physically damaged"
+      - "Data in the cache gets lost, and the host application never notices at all"
+      - "The RAID controller itself becomes permanently unusable"
+      - "There's no risk at all"
+    answerIndex: 1
+    explanation: "Under write-back, if power drops while cached data hasn't yet reached disk, that data gets lost, and since the host already received a \"complete\" response, it never notices."
+
+  - question: "What's true about a BBU's (Battery Backup Unit's) charge?"
+    choices:
+      - "A BBU's charge is unlimited, no matter how many days power stays out"
+      - "A BBU's charge has a limit, typically protecting the cache for only about 24 to 48 hours"
+      - "A BBU has no concept of charge at all"
+      - "A BBU automatically breaks completely the instant power is restored"
+    answerIndex: 1
+    explanation: "A BBU's charge has a limit, typically protecting the cache for only about 24 to 48 hours, and if power isn't restored within that window, the data gets lost anyway."
+
+  - question: "What do many RAID controllers do upon detecting a degraded BBU?"
+    choices:
+      - "Automatically switch from write-back to write-through, with no administrator action needed"
+      - "Instantly delete all data"
+      - "Physically cut power to the disk"
+      - "Nothing changes — it keeps running in write-back"
+    answerIndex: 1
+    explanation: "Many RAID controllers, on detecting a degraded or failed BBU, automatically switch from write-back to write-through with no administrator action, prioritizing data safety."
+
+  - question: "What should you absolutely avoid doing with a degraded battery?"
+    choices:
+      - "Replacing the battery itself"
+      - "Manually forcing write-back back on"
+      - "Checking the RAID controller's state"
+      - "Monitoring the BBU's state with a management tool"
+    answerIndex: 1
+    explanation: "If an administrator manually forces write-back back on despite the battery showing as degraded, an event that would otherwise have been an ordinary power outage turns into a genuine data-loss incident."
