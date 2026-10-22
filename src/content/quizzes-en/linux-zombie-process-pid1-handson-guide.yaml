@@ -1,0 +1,45 @@
+questions:
+  - question: "What is a zombie process (<defunct>)?"
+    choices:
+      - "A process still in the middle of starting up, not yet fully initialized"
+      - "A state where a terminated child process's exit status keeps sitting in the process table, waiting for the parent to call wait()"
+      - "A runaway process using an abnormally large amount of memory"
+      - "A process in a communication-error state, after its network connection dropped"
+    answerIndex: 1
+    explanation: "When a child process terminates, its exit status keeps sitting in the process table until the parent calls wait() to reap it. A process in this waiting-to-be-reaped state is a zombie process."
+
+  - question: "What happens when you run kill -9 against a zombie process?"
+    choices:
+      - "The process disappears instantly and gets removed from the process table"
+      - "No error occurs, but the process never disappears — the zombie has already finished executing, and no code exists to process a signal"
+      - "The entire system reboots"
+      - "The parent process automatically restarts"
+    answerIndex: 1
+    explanation: "A zombie process has already finished executing, with no code left to receive and process a signal, so kill -9 can never remove it. The only genuine fix is reaping by the parent process."
+
+  - question: "What special treatment does PID 1 get that distinguishes it from an ordinary process?"
+    choices:
+      - "PID 1 always gets assigned the highest CPU priority"
+      - "The kernel never applies default signal handling to PID 1, so it keeps ignoring SIGTERM unless an explicit handler is registered"
+      - "PID 1 can use an unlimited amount of memory"
+      - "PID 1 can't perform any network communication at all"
+    answerIndex: 1
+    explanation: "An ordinary process gets the kernel's default behavior (termination) applied on receiving SIGTERM, but PID 1 is the exception — it keeps silently ignoring SIGTERM unless it has explicitly registered a handler."
+
+  - question: "What's the direct cause of a container not stopping even after running docker stop?"
+    choices:
+      - "The Docker daemon itself has crashed"
+      - "The application itself is running as PID 1 and hasn't implemented an explicit response to SIGTERM"
+      - "The container has run out of disk space"
+      - "The container's network configuration is misconfigured"
+    answerIndex: 1
+    explanation: "docker stop internally sends SIGTERM, but PID 1 ignores it without an explicit handler, so when the application itself runs as PID 1, it never responds, forcing a wait until the default timeout triggers a SIGKILL."
+
+  - question: "What problem do lightweight init wrappers like tini and dumb-init solve?"
+    choices:
+      - "They automatically fix memory leaks in the application"
+      - "They run as the container's PID 1, taking over reaping zombie processes and correctly forwarding signals"
+      - "They automatically optimize the application's source code"
+      - "They improve the container's network speed"
+    answerIndex: 1
+    explanation: "tini and dumb-init are lightweight wrappers that run as a container's PID 1, taking on the two responsibilities an ordinary init process handles: reaping zombie processes and correctly forwarding signals."
