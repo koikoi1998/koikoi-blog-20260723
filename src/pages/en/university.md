@@ -831,25 +831,26 @@ None.
 
 ### Freshman: Fundamentals + Your First Hands-On
 
-**Lecture (fundamentals, 9 articles)**
+**Lecture (fundamentals, 10 articles)**
 
 1. [What Is a Daemon?](/en/articles/linux-daemon-guide)
 2. [What Is a Library?](/en/articles/software-library-guide)
 3. [User Space, Kernel Space, and TUN/TAP Devices](/en/articles/linux-user-kernel-space-guide)
 4. [What Are Permissions (chmod)?](/en/articles/linux-file-permissions-guide)
 5. [The Difference Between Hard Links and Symbolic Links](/en/articles/linux-hardlink-symlink-guide)
-6. [sysctl and /etc/sysctl.conf](/en/articles/linux-sysctl-guide)
-7. [iptables (netfilter)](/en/articles/linux-iptables-guide)
-8. [/etc and the Linux Directory Layout (FHS)](/en/articles/linux-filesystem-hierarchy-guide)
-9. [How a Config File Actually "Takes Effect"](/en/articles/linux-config-activation-guide)
-10. [A Top 1% Hands-On for Reproducing Yourself Why a Cron Job 'Should Work but Fails'](/en/articles/linux-cron-environment-handson-guide)
-11. [Investigating Error Logs With journalctl](/en/articles/linux-journalctl-guide)
+6. [Understanding Inode Exhaustion From a Top 1% Perspective](/en/articles/linux-inode-exhaustion-guide)
+7. [sysctl and /etc/sysctl.conf](/en/articles/linux-sysctl-guide)
+8. [iptables (netfilter)](/en/articles/linux-iptables-guide)
+9. [/etc and the Linux Directory Layout (FHS)](/en/articles/linux-filesystem-hierarchy-guide)
+10. [How a Config File Actually "Takes Effect"](/en/articles/linux-config-activation-guide)
+11. [A Top 1% Hands-On for Reproducing Yourself Why a Cron Job 'Should Work but Fails'](/en/articles/linux-cron-environment-handson-guide)
+12. [Investigating Error Logs With journalctl](/en/articles/linux-journalctl-guide)
 
 **Hands-On (fundamentals, 1 article)**
 
 1. [The Top 1% Hands-On for Tracking Down a File or Directory Yourself With find](/en/articles/linux-find-guide)
 
-**Work through and understand these twelve, and you're at a solid checkpoint as a "Freshman."**
+**Work through and understand these thirteen, and you're at a solid checkpoint as a "Freshman."**
 
 ### Sophomore: Supplementary Deep-Dives
 
