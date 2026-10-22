@@ -406,13 +406,14 @@ ActiveDirectory学科・AWS学科・Ansible/IaC学科に続く4つ目の「開�
 
 ### 2年生:補足・深掘り編
 
-1. [コンシステントハッシュの仕組みを『上位1%』の視点で理解する](/articles/consistent-hashing-guide)
-2. [重み付けラウンドロビンによるカナリアデプロイを『上位1%』の視点で理解する](/articles/load-balancing-canary-deployment-guide)
-3. [ロードバランサーからサーバーを安全に外す——コネクションドレインの仕組み](/articles/load-balancing-connection-draining-guide)
-4. [GSLB(グローバルサーバーロードバランシング)の仕組みを『上位1%』の視点で理解する](/articles/load-balancing-gslb-guide)
-5. [Anycastによるグローバルロードバランシングを『上位1%』の視点で理解する](/articles/load-balancing-anycast-guide)
-6. [ロードバランサー自体の冗長化を『上位1%』の視点で理解する](/articles/load-balancing-vrrp-keepalived-guide)
-7. [PROXY protocolの仕組みを『上位1%』の視点で理解する](/articles/load-balancing-proxy-protocol-guide)
+1. [L7のパスベース/ホストベースルーティングを『上位1%』の視点で理解する](/articles/load-balancing-content-based-routing-guide)
+2. [コンシステントハッシュの仕組みを『上位1%』の視点で理解する](/articles/consistent-hashing-guide)
+3. [重み付けラウンドロビンによるカナリアデプロイを『上位1%』の視点で理解する](/articles/load-balancing-canary-deployment-guide)
+4. [ロードバランサーからサーバーを安全に外す——コネクションドレインの仕組み](/articles/load-balancing-connection-draining-guide)
+5. [GSLB(グローバルサーバーロードバランシング)の仕組みを『上位1%』の視点で理解する](/articles/load-balancing-gslb-guide)
+6. [Anycastによるグローバルロードバランシングを『上位1%』の視点で理解する](/articles/load-balancing-anycast-guide)
+7. [ロードバランサー自体の冗長化を『上位1%』の視点で理解する](/articles/load-balancing-vrrp-keepalived-guide)
+8. [PROXY protocolの仕組みを『上位1%』の視点で理解する](/articles/load-balancing-proxy-protocol-guide)
 
 ### 3年生:実務シナリオ編ハンズオン
 

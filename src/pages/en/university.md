@@ -406,13 +406,14 @@ None.
 
 ### Sophomore: Supplementary Deep-Dives
 
-1. [Understanding How Consistent Hashing Works From a Top 1% Perspective](/en/articles/consistent-hashing-guide)
-2. [Understanding Canary Deployment via Weighted Round Robin From a Top 1% Perspective](/en/articles/load-balancing-canary-deployment-guide)
-3. [Safely Removing a Server From a Load Balancer — Connection Draining](/en/articles/load-balancing-connection-draining-guide)
-4. [Understanding GSLB (Global Server Load Balancing) From a Top 1% Perspective](/en/articles/load-balancing-gslb-guide)
-5. [Understanding Anycast for Global Load Balancing From a Top 1% Perspective](/en/articles/load-balancing-anycast-guide)
-6. [Understanding Load Balancer Redundancy Itself From a Top 1% Perspective](/en/articles/load-balancing-vrrp-keepalived-guide)
-7. [Understanding the PROXY Protocol From a Top 1% Perspective](/en/articles/load-balancing-proxy-protocol-guide)
+1. [Understanding L7's Path-Based and Host-Based Routing From a Top 1% Perspective](/en/articles/load-balancing-content-based-routing-guide)
+2. [Understanding How Consistent Hashing Works From a Top 1% Perspective](/en/articles/consistent-hashing-guide)
+3. [Understanding Canary Deployment via Weighted Round Robin From a Top 1% Perspective](/en/articles/load-balancing-canary-deployment-guide)
+4. [Safely Removing a Server From a Load Balancer — Connection Draining](/en/articles/load-balancing-connection-draining-guide)
+5. [Understanding GSLB (Global Server Load Balancing) From a Top 1% Perspective](/en/articles/load-balancing-gslb-guide)
+6. [Understanding Anycast for Global Load Balancing From a Top 1% Perspective](/en/articles/load-balancing-anycast-guide)
+7. [Understanding Load Balancer Redundancy Itself From a Top 1% Perspective](/en/articles/load-balancing-vrrp-keepalived-guide)
+8. [Understanding the PROXY Protocol From a Top 1% Perspective](/en/articles/load-balancing-proxy-protocol-guide)
 
 ### Junior: Real-World-Scenario Hands-On
 
