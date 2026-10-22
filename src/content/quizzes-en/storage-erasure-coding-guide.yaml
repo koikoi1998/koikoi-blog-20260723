@@ -1,0 +1,45 @@
+questions:
+  - question: "How does erasure coding generalize RAID 5/6's parity idea?"
+    choices:
+      - "By completely abolishing the idea of parity itself"
+      - "By generalizing the data-to-parity ratio into any ratio, expressed as k data chunks to m parity chunks"
+      - "By always fixing the number of parity disks at exactly one"
+      - "By making disk failure technically impossible"
+    answerIndex: 1
+    explanation: "Erasure coding generalizes RAID 5/6's fixed parity ratio into any ratio at all, expressed as k data chunks to m parity chunks."
+
+  - question: "What's the difference in placement between RAID and erasure coding?"
+    choices:
+      - "Both use exactly the same placement method"
+      - "RAID stays entirely contained within a single disk array, while erasure coding spreads chunks across multiple nodes in a distributed cluster"
+      - "RAID is always placed only in the cloud"
+      - "Erasure coding is placed only within a single disk"
+    answerIndex: 1
+    explanation: "RAID stays entirely contained within a single disk array, while erasure coding typically spreads its chunks across multiple nodes in a distributed cluster."
+
+  - question: "Why is erasure coding more capacity-efficient than replication?"
+    choices:
+      - "The capacity needed for equivalent durability is smaller than with replication (e.g., about 1.4x-1.6x instead of 3x)"
+      - "Erasure coding never actually stores any data at all"
+      - "Replication always uses only a single disk"
+      - "Erasure coding always combines with compression"
+    answerIndex: 1
+    explanation: "Triple replication needs 3x the original capacity to survive two failures, while an erasure-coded configuration with equivalent durability often needs only about 1.4x to 1.6x."
+
+  - question: "What's the most widely used algorithm for implementing erasure coding?"
+    choices:
+      - "The AES encryption algorithm"
+      - "Reed-Solomon code"
+      - "The SHA-256 hash algorithm"
+      - "RSA public-key cryptography"
+    answerIndex: 1
+    explanation: "Reed-Solomon code is the most widely used algorithm for implementing erasure coding, and it's also Ceph's default erasure plugin."
+
+  - question: "What's the trade-off that comes with erasure coding?"
+    choices:
+      - "Poor capacity efficiency but fast recovery"
+      - "Excellent capacity efficiency, but slower recovery and higher CPU load"
+      - "Both capacity efficiency and recovery speed are always worse than replication"
+      - "There's no trade-off at all"
+    answerIndex: 1
+    explanation: "Erasure coding excels at capacity efficiency, but recovering from a failure requires more computation, making it slower and more CPU-intensive."
