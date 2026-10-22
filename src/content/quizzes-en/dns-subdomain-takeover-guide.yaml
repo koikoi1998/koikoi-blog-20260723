@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the direct cause that makes a subdomain takeover possible?"
+    choices:
+      - "A successful unauthorized access to the DNS server itself"
+      - "After a cloud resource is deleted, forgetting to delete the CNAME record that pointed to it, leaving it dangling"
+      - "The domain's registration expired"
+      - "The SSL certificate expired"
+    answerIndex: 1
+    explanation: "If you forget to delete the CNAME record pointing at a cloud resource when you delete that resource, the CNAME stays dangling, and an attacker can hijack the subdomain by re-registering a resource under the same name."
+
+  - question: "How does an attacker hijack a dangling CNAME?"
+    choices:
+      - "By directly rewriting the DNS server's configuration file"
+      - "By re-registering the same resource name (a bucket name or app name) under their own account, on the cloud service's own side"
+      - "By gaining unauthorized access to the victim company's domain registrar account"
+      - "By stealing the private key of the SSL certificate"
+    answerIndex: 1
+    explanation: "An attacker needs no unauthorized access to the DNS server at all — the takeover succeeds just by re-registering a resource under the same name, still left behind as a CNAME, under their own account."
+
+  - question: "What's the premise behind a cloud service's namespace that makes subdomain takeover possible?"
+    choices:
+      - "Resource names are managed in a completely independent namespace per user"
+      - "Resource names are often managed within a single namespace shared across every user, and a deleted name goes right back to being available for anyone to claim"
+      - "Once a resource name is registered, no one else can ever register it again"
+      - "Resource names have no character-length limit"
+    answerIndex: 1
+    explanation: "Cloud services like S3, Heroku, and Azure App Service often manage resource names within a single namespace shared across every user, so a deleted name immediately becomes available for anyone to claim again."
+
+  - question: "What's true about a hijacked subdomain?"
+    choices:
+      - "A hijacked subdomain looks obviously suspicious, so users notice right away"
+      - "A hijacked subdomain displays as part of a legitimate domain, so it's generally hard for users to notice anything's wrong just by looking"
+      - "A hijacked subdomain gets automatically blocked by browsers"
+      - "A hijacked subdomain gets completely removed from DNS"
+    answerIndex: 1
+    explanation: "A hijacked subdomain gets treated as part of a domain your company legitimately owns, so it's generally hard for users to notice anything's wrong just by looking."
+
+  - question: "What's the basic countermeasure for preventing subdomain takeover?"
+    choices:
+      - "Wait a while after deleting the cloud resource, then delete the DNS record"
+      - "Delete the DNS record that points to a cloud resource first, or at the same time, before deleting that resource"
+      - "Always configure the exact same CNAME on every subdomain"
+      - "Never change a DNS record once it's configured"
+    answerIndex: 1
+    explanation: "The basic prevention is deleting the DNS record that points at a cloud resource first, or at the same time, before deleting the resource itself, so no dangling window ever opens up."
