@@ -338,6 +338,7 @@ ActiveDirectory学科・AWS学科・Ansible/IaC学科に続く4つ目の「開�
 7. [WireGuardのPresharedKey(PSK)を『上位1%』の視点で理解する](/articles/wireguard-psk-post-quantum-guide)
 8. [Tailscaleの仕組みを『上位1%』の視点で理解する](/articles/tailscale-internals-guide)
 9. [ZTNA(ゼロトラストネットワークアクセス)とは何かを『上位1%』の視点で理解する](/articles/ztna-guide)
+10. [VPNのキルスイッチを『上位1%』の視点で理解する](/articles/vpn-kill-switch-guide)
 
 ### 3年生:実務シナリオ編ハンズオン
 

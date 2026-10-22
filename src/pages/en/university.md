@@ -338,6 +338,7 @@ The fourth department to become "fully open," following Active Directory, AWS, a
 7. [Understanding WireGuard's PresharedKey (PSK) From a Top 1% Perspective](/en/articles/wireguard-psk-post-quantum-guide)
 8. [How Tailscale Works From a "Top 1%" Perspective](/en/articles/tailscale-internals-guide)
 9. [What Is ZTNA (Zero Trust Network Access) From a "Top 1%" Perspective](/en/articles/ztna-guide)
+10. [Understanding a VPN's Kill Switch From a Top 1% Perspective](/en/articles/vpn-kill-switch-guide)
 
 ### Junior: Real-World-Scenario Hands-On
 
