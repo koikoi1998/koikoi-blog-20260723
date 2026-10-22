@@ -660,6 +660,7 @@ None.
 4. [Understanding How OAuth 2.0 Works From a Top 1% Perspective](/en/articles/oauth2-guide) — covers the authorization code flow and its distinction from authentication (OpenID Connect).
 5. [Understanding OAuth 2.0's PKCE From a Top 1% Perspective](/en/articles/oauth2-pkce-guide) — covers protecting against authorization code interception for mobile apps and SPAs that can't hold a client secret.
 6. [Understanding the Difference Between GraphQL and RESTful APIs From a Top 1% Perspective](/en/articles/graphql-vs-rest-guide) — covers eliminating over-fetching and under-fetching.
+7. [Understanding GraphQL's N+1 Problem and DataLoader From a Top 1% Perspective](/en/articles/graphql-n-plus-one-dataloader-guide) — covers the new performance problem caused by the exact same flexibility that eliminated over-fetching and under-fetching.
 
 ### Junior: Real-World-Scenario Hands-On
 
