@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the real identity of a VPN kill switch?"
+    choices:
+      - "A special encryption feature built into the VPN protocol itself"
+      - "An entirely ordinary firewall policy that denies all traffic by default, except through the tunnel"
+      - "A dedicated hardware feature that only runs on the VPN server side"
+      - "A feature that automatically rewrites DNS server settings"
+    answerIndex: 1
+    explanation: "A kill switch isn't a special feature of the VPN protocol itself — it's nothing more than an entirely ordinary firewall policy: deny all traffic by default, except through the VPN tunnel."
+
+  - question: "What's the typical combination of rules used to build a kill switch yourself?"
+    choices:
+      - "Just one rule that always unconditionally allows all traffic"
+      - "Three rules: allow traffic to the VPN server, allow traffic via the tunnel, and deny everything else"
+      - "Just one rule that denies only traffic to the VPN server"
+      - "Firewall rules have nothing to do with a kill switch at all"
+    answerIndex: 1
+    explanation: "A kill switch is typically built from a combination of three rules: (1) allow traffic to the VPN server itself, (2) allow traffic via the tunnel interface, and (3) deny everything else."
+
+  - question: "What's a typical cause of a kill switch's deny rule not actually working?"
+    choices:
+      - "The deny rule's text is too long"
+      - "The deny rule sits below (after) some other, looser allow rule"
+      - "The VPN server's IP address changed"
+      - "The firewall itself doesn't exist"
+    answerIndex: 1
+    explanation: "Firewall rules often get evaluated top to bottom with the first match winning, so if the final deny rule sits below a looser allow rule, the deny rule never takes effect at all."
+
+  - question: "What's the recommended test method for correctly verifying a kill switch's behavior?"
+    choices:
+      - "Cleanly disconnect the VPN connection and check the behavior"
+      - "Forcibly kill the VPN process while continuously checking your own public IP address"
+      - "Change the VPN server's password and check the behavior"
+      - "Completely disable the firewall and check the behavior"
+    answerIndex: 1
+    explanation: "A clean disconnect lets the client run proper cleanup, so testing by forcibly killing the process, while continuously checking the public IP address, is recommended instead."
+
+  - question: "What's a typical failure pattern confirmed in real-world kill switch testing?"
+    choices:
+      - "A kill switch always works with 100% certainty, no matter what"
+      - "A leak occurs in the gap between the OS's network interface coming up and the VPN tunnel actually establishing, at boot time"
+      - "A kill switch only stops working while the VPN is actually connected"
+      - "A kill switch only works over a wired connection"
+    answerIndex: 1
+    explanation: "Testing confirmed a typical failure pattern where a leak occurs in the gap between the OS's network interface coming up and the VPN tunnel actually establishing, at boot time."
