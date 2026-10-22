@@ -285,8 +285,9 @@ AWS学科に続いて、3つ目の「開講済み」学科です。**この学�
 4. [Ansibleのserialとdelegate_toで、ロードバランサーから外しながらローリングアップデートするハンズオン](/articles/ansible-serial-rolling-update-handson-guide)
 5. [Ansibleのtags・skip-tagsの仕組みを『上位1%』の視点で理解する](/articles/ansible-tags-guide)
 6. [Moleculeで、自分のAnsibleロールを自動テストする『上位1%』のハンズオン](/articles/ansible-molecule-testing-handson-guide)
+7. [Ansibleのasync/pollで、SSH接続を切断したまま長時間タスクを実行する『上位1%』のハンズオン](/articles/ansible-async-poll-handson-guide)
 
-**この6本まで自力で実施・理解できれば、「4年生」として卒業水準です。**
+**この7本まで自力で実施・理解できれば、「4年生」として卒業水準です。**
 
 ### 大学院:セキュリティ強化編ハンズオン(攻撃者視点)
 

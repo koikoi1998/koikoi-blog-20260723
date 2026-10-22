@@ -285,8 +285,9 @@ Following the AWS Department, this is the third department to become "fully open
 4. [Rolling Updates With Ansible's serial and delegate_to, Draining Each Host From the Load Balancer](/en/articles/ansible-serial-rolling-update-handson-guide)
 5. [Understanding How Ansible's Tags/Skip-Tags Work From a Top 1% Perspective](/en/articles/ansible-tags-guide)
 6. [A Top 1% Hands-On: Automatically Testing Your Own Ansible Role With Molecule](/en/articles/ansible-molecule-testing-handson-guide)
+7. [A Top 1% Hands-On: Running a Long Task in Ansible With async/poll Without Holding Open the SSH Connection](/en/articles/ansible-async-poll-handson-guide)
 
-**Work through and understand all 6 of these, and you're at graduation level, as a "Senior."**
+**Work through and understand all 7 of these, and you're at graduation level, as a "Senior."**
 
 ### Graduate School: Security-Hardening Hands-On (An Attacker's Perspective)
 
