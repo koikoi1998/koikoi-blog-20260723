@@ -1,0 +1,45 @@
+questions:
+  - question: "What does a Golden Ticket achieve using the krbtgt secret key?"
+    choices:
+      - "It makes a network connection to the domain controller completely unnecessary"
+      - "It forges a TGT with any username, any privilege, and any expiration date, with no query to the real DC at all"
+      - "It automatically changes every user's password to the same value"
+      - "It physically disables the domain controller itself"
+    answerIndex: 1
+    explanation: "With the krbtgt secret key in hand, an attacker can freely forge a TGT with any username, any privilege, and any expiration date, entirely inside their own machine, with no query to the real DC."
+
+  - question: "Why can't changing the krbtgt password once invalidate a Golden Ticket?"
+    choices:
+      - "The krbtgt password technically can't be changed at all"
+      - "AD DS simultaneously keeps both the current and the previous krbtgt password"
+      - "A Golden Ticket stays valid forever, regardless of any password"
+      - "The domain controller can't detect a password change"
+    answerIndex: 1
+    explanation: "AD DS keeps both the current and previous krbtgt passwords simultaneously, so a single change still leaves a Golden Ticket signed with the previous password valid."
+
+  - question: "What's the correct procedure to genuinely invalidate the krbtgt password?"
+    choices:
+      - "Changing the password just once is enough"
+      - "Change the password twice in a row, after the default Kerberos ticket lifetime has elapsed"
+      - "Simply restart every domain controller"
+      - "Delete the krbtgt account itself"
+    answerIndex: 1
+    explanation: "A genuine invalidation requires changing the password twice in a row, and the second change should happen only after the default Kerberos ticket lifetime (10 hours) has elapsed."
+
+  - question: "Why is a Golden Ticket hard to detect?"
+    choices:
+      - "A Golden Ticket is always rejected by the DC as a cryptographically invalid ticket"
+      - "Because it's correctly signed with the genuine krbtgt key, the DC accepts it as a cryptographically valid ticket"
+      - "A Golden Ticket never travels over the network at all"
+      - "No logs are ever recorded for detection purposes"
+    answerIndex: 1
+    explanation: "Because a Golden Ticket is correctly signed with the genuine krbtgt key, the domain controller accepts it as a cryptographically valid ticket, which makes detection difficult."
+
+  - question: "What's a well-known anomaly pattern to watch for when detecting a Golden Ticket?"
+    choices:
+      - "The ticket's issuing IP address is always the same"
+      - "An implausibly long ticket lifetime, access under a nonexistent username, and use of an outdated encryption method"
+      - "The user's login time always falls within business hours"
+      - "The password length is under 8 characters"
+    answerIndex: 1
+    explanation: "What's worth watching for detection isn't the ticket's content, but anomalies in how it's used: an implausible lifetime, a nonexistent username, and an outdated encryption method are three well-known anomaly patterns."
