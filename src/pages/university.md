@@ -718,6 +718,7 @@ Linux基盤学科に続いて、12個目の「開講済み」学科です。対�
 4. [プロキシ認証(Basic/NTLM/Kerberos)の違いを『上位1%』の視点で理解する](/articles/proxy-auth-guide)
 5. [Cache-ControlとVaryヘッダーの仕組みを『上位1%』の視点で理解する](/articles/cache-control-vary-guide)
 6. [キャッシュスタンピードを『上位1%』の視点で理解する](/articles/cache-stampede-guide)
+7. [Webキャッシュ欺瞞とキャッシュポイズニングを『上位1%』の視点で理解する](/articles/web-cache-deception-poisoning-guide)
 
 ### 3年生:実務シナリオ編ハンズオン
 

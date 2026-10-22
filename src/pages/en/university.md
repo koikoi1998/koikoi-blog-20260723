@@ -718,6 +718,7 @@ None.
 4. [Understanding the Difference Between Proxy Authentication Methods (Basic/NTLM/Kerberos) From a Top 1% Perspective](/en/articles/proxy-auth-guide)
 5. [Understanding Cache-Control and the Vary Header From a Top 1% Perspective](/en/articles/cache-control-vary-guide)
 6. [Understanding Cache Stampede From a Top 1% Perspective](/en/articles/cache-stampede-guide)
+7. [Understanding Web Cache Deception and Web Cache Poisoning From a Top 1% Perspective](/en/articles/web-cache-deception-poisoning-guide)
 
 ### Junior: Real-World-Scenario Hands-On
 
