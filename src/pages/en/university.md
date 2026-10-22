@@ -198,10 +198,11 @@ Following the Active Directory Department, this is the second department to sati
 ### Sophomore: Supplementary Deep-Dives
 
 1. [Understanding Route 53 Alias Records From a Top 1% Perspective](/en/articles/aws-route53-alias-guide)
-2. [Understanding IAM Policy Evaluation Logic From a "Top 1%" Perspective](/en/articles/aws-iam-policy-evaluation-guide)
-3. [Understanding AWS KMS's Key Policy From a Top 1% Perspective](/en/articles/aws-kms-key-policy-guide)
-4. [Understanding S3 Storage Classes and Lifecycle Policies From a "Top 1%" Perspective](/en/articles/aws-s3-storage-classes-guide)
-5. [Understanding the Difference Between Security Groups and Network ACLs (NACLs) From a "Top 1%" Perspective](/en/articles/aws-nacl-security-group-guide)
+2. [Understanding VPC Peering and Transit Gateway From a Top 1% Perspective](/en/articles/aws-vpc-peering-transit-gateway-guide)
+3. [Understanding IAM Policy Evaluation Logic From a "Top 1%" Perspective](/en/articles/aws-iam-policy-evaluation-guide)
+4. [Understanding AWS KMS's Key Policy From a Top 1% Perspective](/en/articles/aws-kms-key-policy-guide)
+5. [Understanding S3 Storage Classes and Lifecycle Policies From a "Top 1%" Perspective](/en/articles/aws-s3-storage-classes-guide)
+6. [Understanding the Difference Between Security Groups and Network ACLs (NACLs) From a "Top 1%" Perspective](/en/articles/aws-nacl-security-group-guide)
 
 ### Junior: Real-World-Scenario Hands-On
 
