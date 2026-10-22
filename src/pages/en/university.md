@@ -156,8 +156,9 @@ The only department, at the moment, that satisfies every grade level. **The goal
 3. [A Top 1% Hands-On: Forging a Golden Ticket From the krbtgt Hash Stolen via DCSync](/en/articles/ad-golden-ticket-handson-guide)
 4. [A Top 1% Hands-On for Reproducing Unconstrained Delegation's Danger Yourself and Confirming Defense via 'Account Is Sensitive and Cannot Be Delegated'](/en/articles/ad-unconstrained-delegation-handson-guide)
 5. [A Top 1% Hands-On for Reproducing Resource-Based Constrained Delegation (RBCD) Abuse Yourself](/en/articles/ad-rbcd-handson-guide)
+6. [A Top 1% Hands-On: Reproducing the Shadow Credentials Attack Abusing msDS-KeyCredentialLink Yourself](/en/articles/ad-shadow-credentials-handson-guide)
 
-All three are educational, defense-focused hands-on labs, meant to strengthen the defenses of a test environment you manage yourself.
+All of these are educational, defense-focused hands-on labs, meant to strengthen the defenses of a test environment you manage yourself.
 
 ### Capstone Project
 

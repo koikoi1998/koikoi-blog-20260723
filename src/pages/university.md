@@ -156,6 +156,7 @@ altHref: "/en/university"
 3. [DCSyncで盗んだkrbtgtのハッシュから、ゴールデンチケットを偽造する『上位1%』のハンズオン](/articles/ad-golden-ticket-handson-guide)
 4. [制約なし委任(Unconstrained Delegation)の危険性を自分の手で再現し、『センシティブで委任不可』による防御を確認するハンズオン](/articles/ad-unconstrained-delegation-handson-guide)
 5. [リソースベース制約付き委任(RBCD)の悪用を自分の手で再現するハンズオン](/articles/ad-rbcd-handson-guide)
+6. [msDS-KeyCredentialLinkを悪用するシャドウクレデンシャル攻撃を自分の手で再現する『上位1%』のハンズオン](/articles/ad-shadow-credentials-handson-guide)
 
 いずれも、自分が管理する検証環境の防御力を高めるための、教育・防御目的のハンズオンです。
 
