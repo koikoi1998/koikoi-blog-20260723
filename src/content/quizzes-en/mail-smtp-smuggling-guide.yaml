@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the discrepancy between the sending and receiving MTA that SMTP smuggling abuses?"
+    choices:
+      - "A difference in which port number is used"
+      - "A difference in how each interprets the message's end-of-data sequence (<CR><LF>.<CR><LF>)"
+      - "A difference in supported character encoding"
+      - "A difference in who issued the TLS certificate"
+    answerIndex: 1
+    explanation: "SMTP smuggling abuses a subtle discrepancy in how the sending MTA and the receiving MTA each interpret the message's end-of-data sequence, using different standards."
+
+  - question: "Why does the outer envelope pass SPF/DKIM/DMARC entirely in an SMTP smuggling attack?"
+    choices:
+      - "Because SPF/DKIM/DMARC themselves are technically non-functional"
+      - "Because the outer envelope genuinely arrived from a legitimate sender, with legitimate authentication credentials"
+      - "Because the receiving MTA always skips verification"
+      - "Because the attacker gained unauthorized access to the authentication server"
+    answerIndex: 1
+    explanation: "The outer envelope itself genuinely arrived from a legitimate sender with legitimate authentication credentials, so it correctly passes every one of SPF/DKIM/DMARC's checks."
+
+  - question: "Which major MTA software packages were confirmed in 2023 to actually be vulnerable to SMTP smuggling?"
+    choices:
+      - "Only Apache HTTPd and nginx"
+      - "Postfix, Sendmail, and Exim"
+      - "Only Windows Notepad"
+      - "Every web browser"
+    answerIndex: 1
+    explanation: "This attack technique was confirmed in 2023 to actually succeed against several major MTA software packages: Postfix (CVE-2023-51764), Sendmail (CVE-2023-51765), and Exim (CVE-2023-51766)."
+
+  - question: "What's the fix for SMTP smuggling on Postfix?"
+    choices:
+      - "Setting smtpd_forbid_bare_newline=yes, which stops treating a bare LF as a valid component of the end-of-data sequence"
+      - "Disabling every SPF/DKIM/DMARC check entirely"
+      - "Completely stopping the Postfix service itself"
+      - "Permanently closing port 25"
+    answerIndex: 1
+    explanation: "For Postfix, a fix is available by enabling the smtpd_forbid_bare_newline=yes setting, which stops treating a bare LF without a CR as a valid component of the end-of-data sequence."
+
+  - question: "What's the relationship between SMTP smuggling and HTTP request smuggling?"
+    choices:
+      - "They're entirely unrelated, different kinds of problems"
+      - "Both abuse the same class of bug: multiple implementations holding different standards for interpreting a message's boundary"
+      - "SMTP smuggling is a predecessor to HTTP request smuggling, no longer in use"
+      - "Both only ever occur in the exact same software"
+    answerIndex: 1
+    explanation: "SMTP smuggling carries the exact same structural problem as HTTP request smuggling, covered in the Load Balancing Department — both abuse multiple implementations disagreeing on a message's boundary."
