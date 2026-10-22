@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the difference between a DNS leak and the leak a kill switch addresses?"
+    choices:
+      - "They're exactly the same kind of problem"
+      - "A kill switch addresses a leak on connection drop, while a DNS leak occurs while the connection works perfectly normally"
+      - "A DNS leak is always a more serious problem than a kill switch's leak"
+      - "Both only ever occur after the connection has fully dropped"
+    answerIndex: 1
+    explanation: "Unlike the leak on connection drop a kill switch addresses, a DNS leak is a different kind of leak that occurs exactly while the connection is working perfectly normally."
+
+  - question: "How does Windows's Smart Multi-Homed Name Resolution cause a DNS leak?"
+    choices:
+      - "It always intentionally rejects DNS queries"
+      - "It sends a DNS query out on every available network interface simultaneously and adopts whichever response comes back fastest"
+      - "It discards DNS queries as-is, without encrypting them"
+      - "It completely bans any connection to a DNS server at all"
+    answerIndex: 1
+    explanation: "Smart Multi-Homed Name Resolution is designed to send a DNS query out on every available network interface simultaneously and adopt whichever response comes back fastest."
+
+  - question: "Why does an ISP's DNS server tend to respond \"faster\" than one reached through the VPN tunnel?"
+    choices:
+      - "The ISP's DNS server is always broken"
+      - "The ISP's DNS server is physically closer and carries no encryption or tunneling overhead"
+      - "The VPN tunnel itself is technically non-functional"
+      - "The ISP's DNS server never responds at all"
+    answerIndex: 1
+    explanation: "An ISP's DNS server is often physically closer and never carries encryption or tunneling overhead, so it tends to respond faster than one reached through the VPN tunnel."
+
+  - question: "What's the more accurate description of a DNS leak's cause?"
+    choices:
+      - "It's always caused by a defect in the VPN software itself"
+      - "In most cases, it's not a defect in the VPN software, but an existing OS design decision made for performance optimization"
+      - "A DNS leak is technically impossible to occur at all"
+      - "It's always caused by a physical defect in the network cable"
+    answerIndex: 1
+    explanation: "A DNS leak's cause is often not a defect in the VPN software itself, but an existing design decision the OS makes for performance optimization."
+
+  - question: "What's a correct fix for a DNS leak?"
+    choices:
+      - "Stop using the VPN entirely"
+      - "Disable Smart Multi-Homed Name Resolution, or configure the same DNS server on every interface"
+      - "Completely disconnect your internet connection"
+      - "No fix exists at all"
+    answerIndex: 1
+    explanation: "The fix has two approaches: disabling the Smart Multi-Homed Name Resolution feature itself, or explicitly configuring the same DNS server on every network interface."
