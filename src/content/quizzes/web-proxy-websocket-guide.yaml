@@ -1,0 +1,45 @@
+questions:
+  - question: "UpgradeヘッダーがHTTPの仕様上、どのように分類されているか、正しいのはどれか。"
+    choices:
+      - "常にプロキシが自動的に転送する義務を持つ、必須ヘッダー"
+      - "プロキシが次のホップへ転送する義務を持たない、ホップバイホップヘッダー"
+      - "HTTPの仕様に、そもそも存在しないヘッダー"
+      - "常に暗号化された状態でのみ送信されるヘッダー"
+    answerIndex: 1
+    explanation: "Upgradeヘッダーは、HTTPの仕様上、プロキシが次のホップへ転送する義務を持たない「ホップバイホップヘッダー」に分類されており、プロキシは明示的な設定なしにこれを転送しません。"
+
+  - question: "Nginxで、Upgradeヘッダーを正しくバックエンドへ転送するために必要な設定として正しいのはどれか。"
+    choices:
+      - "何も設定しなくても、既定で自動的に転送される"
+      - "proxy_http_version 1.1と、proxy_set_headerによるUpgrade/Connectionヘッダーの明示的な設定"
+      - "SSL証明書を無効化する設定"
+      - "ポート番号を80番に固定する設定"
+    answerIndex: 1
+    explanation: "Nginxで、Upgradeヘッダーを正しくバックエンドへ転送するには、proxy_http_version 1.1に加え、proxy_set_header Upgrade $http_upgradeとproxy_set_header Connection \"upgrade\"を、明示的に設定する必要があります。"
+
+  - question: "WebSocketの接続が、一定時間後に突然切れる、典型的な原因として正しいのはどれか。"
+    choices:
+      - "WebSocketという技術自体が、長時間の接続維持に対応していない"
+      - "リバースプロキシの既定のアイドルタイムアウト設定が、データのやり取りがない期間に接続を強制的に切断する"
+      - "クライアントのブラウザが、常に自動的に接続を切断する"
+      - "この現象は、技術的に発生し得ない"
+    answerIndex: 1
+    explanation: "リバースプロキシの既定のタイムアウト設定(Nginxのproxy_read_timeoutは既定60秒)は、その間にデータが一切流れない期間が続くと、接続を強制的に切断してしまいます。"
+
+  - question: "WebSocketのハンドシェイクが成功した場合に返される、正しいHTTPステータスコードはどれか。"
+    choices:
+      - "404 Not Found"
+      - "101 Switching Protocols"
+      - "500 Internal Server Error"
+      - "301 Moved Permanently"
+    answerIndex: 1
+    explanation: "WebSocketのハンドシェイクが成功すると、サーバーは101 Switching Protocolsというステータスコードを返します。代わりに200や400が返ってきた場合は、ヘッダーが失われている可能性があります。"
+
+  - question: "WebSocketの長時間接続への対策として、より確実と推奨される方法はどれか。"
+    choices:
+      - "タイムアウトの値を、常に無限大に設定する"
+      - "アプリケーション側からWebSocketのPINGフレームを定期的に送信し、タイマーのリセットと接続の生存確認を同時に行う"
+      - "WebSocketという技術の利用を、完全に中止する"
+      - "すべてのプロキシ設定を、工場出荷時の状態に戻す"
+    answerIndex: 1
+    explanation: "タイムアウトの値を大きく延長する方法に加え、アプリケーション側からWebSocketのPINGフレームを定期的に送信し、タイマーをリセットしつつ接続が生きていることも確認する方法が、より確実な対策として推奨されています。"

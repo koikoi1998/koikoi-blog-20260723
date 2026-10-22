@@ -1,0 +1,45 @@
+questions:
+  - question: "How is the Upgrade header classified by the HTTP spec?"
+    choices:
+      - "A mandatory header a proxy is always obligated to forward automatically"
+      - "A hop-by-hop header a proxy carries no obligation to forward to the next hop"
+      - "A header that doesn't actually exist in the HTTP spec at all"
+      - "A header that only ever gets sent in an encrypted form"
+    answerIndex: 1
+    explanation: "The Upgrade header is classified, by the HTTP spec itself, as a hop-by-hop header a proxy carries no obligation to forward to the next hop, so a proxy never forwards it without explicit configuration."
+
+  - question: "What settings are needed on Nginx to correctly forward the Upgrade header to the backend?"
+    choices:
+      - "Nothing — it gets forwarded automatically by default"
+      - "proxy_http_version 1.1, plus explicitly setting the Upgrade/Connection headers via proxy_set_header"
+      - "A setting that disables the SSL certificate"
+      - "A setting that pins the port number to 80"
+    answerIndex: 1
+    explanation: "To correctly forward the Upgrade header to the backend on Nginx, you need to explicitly set proxy_http_version 1.1, plus proxy_set_header Upgrade $http_upgrade and proxy_set_header Connection \"upgrade\"."
+
+  - question: "What's a typical cause of a WebSocket connection suddenly cutting off after some time?"
+    choices:
+      - "WebSocket as a technology simply doesn't support staying connected for a long time"
+      - "A reverse proxy's default idle timeout setting forcibly severs the connection during a period with no data exchange"
+      - "The client's browser always automatically disconnects on its own"
+      - "This phenomenon can never technically occur"
+    answerIndex: 1
+    explanation: "A reverse proxy's default timeout setting (Nginx's proxy_read_timeout defaults to 60 seconds) forcibly severs the connection once no data flows across it for that long."
+
+  - question: "What's the correct HTTP status code returned when a WebSocket handshake succeeds?"
+    choices:
+      - "404 Not Found"
+      - "101 Switching Protocols"
+      - "500 Internal Server Error"
+      - "301 Moved Permanently"
+    answerIndex: 1
+    explanation: "When a WebSocket handshake succeeds, the server returns status code 101 Switching Protocols. Getting 200 or 400 instead suggests a header got lost."
+
+  - question: "What's the more reliable, recommended fix for a WebSocket's long-lived connection?"
+    choices:
+      - "Always set the timeout value to infinity"
+      - "Have the application periodically send a WebSocket PING frame, both resetting the timer and confirming the connection's liveness"
+      - "Completely stop using WebSocket as a technology"
+      - "Reset every proxy setting back to factory defaults"
+    answerIndex: 1
+    explanation: "On top of significantly extending the timeout value, using a WebSocket PING frame to both reset the timer and confirm liveness is recommended as a more reliable fix."
