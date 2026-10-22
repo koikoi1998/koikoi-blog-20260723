@@ -776,10 +776,11 @@ Web/API学科に続いて、10個目の「開講済み」学科です。対応�
 1. [RAID0(ストライピング)の仕組みを『上位1%』の視点で理解する](/articles/raid0-striping-guide)
 2. [RAID5とRAID6のパリティ計算の仕組みを『上位1%』の視点で理解する](/articles/raid5-parity-guide)
 3. [ビットロット(サイレント・データ破損)とチェックサムの仕組みを『上位1%』の視点で理解する](/articles/storage-bit-rot-checksum-guide)
-4. [iSCSIの仕組みを『上位1%』の視点で理解する](/articles/iscsi-guide)
-5. [NFSの仕組みを『上位1%』の視点で理解する](/articles/nfs-file-storage-guide)
-6. [マルチパスI/O(MPIO)の仕組みを『上位1%』の視点で理解する](/articles/storage-multipath-mpio-guide)
-7. [シンプロビジョニングの仕組みを『上位1%』の視点で理解する](/articles/thin-provisioning-guide)
+4. [イレージャーコーディングを『上位1%』の視点で理解する](/articles/storage-erasure-coding-guide)
+5. [iSCSIの仕組みを『上位1%』の視点で理解する](/articles/iscsi-guide)
+6. [NFSの仕組みを『上位1%』の視点で理解する](/articles/nfs-file-storage-guide)
+7. [マルチパスI/O(MPIO)の仕組みを『上位1%』の視点で理解する](/articles/storage-multipath-mpio-guide)
+8. [シンプロビジョニングの仕組みを『上位1%』の視点で理解する](/articles/thin-provisioning-guide)
 
 ### 3年生:実務シナリオ編ハンズオン
 
