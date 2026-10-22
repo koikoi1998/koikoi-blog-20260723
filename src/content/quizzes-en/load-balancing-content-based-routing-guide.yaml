@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the difference between host-based routing and path-based routing?"
+    choices:
+      - "They're just two names for exactly the same feature"
+      - "Host-based routing sends different hostnames, while path-based routing sends different URL path prefixes, to different backends respectively"
+      - "Host-based routing is a feature only an L4 load balancer has"
+      - "Path-based routing only looks at the TCP/UDP header to route"
+    answerIndex: 1
+    explanation: "Host-based routing sends different hostnames, and path-based routing sends different URL path prefixes, to different backend pools respectively."
+
+  - question: "What's a typical cause of a path-based routing rule causing unintended routing?"
+    choices:
+      - "There are too many rules configured"
+      - "A more general path rule got placed ahead of a more specific one"
+      - "A rule doesn't include a color specification"
+      - "There are too few backend servers"
+    answerIndex: 1
+    explanation: "Rules typically get evaluated top to bottom, with the first match winning, so placing a more general rule ahead of a more specific one causes unintended routing."
+
+  - question: "Why can't an L4 load balancer do path-based routing?"
+    choices:
+      - "L4 is simply too slow at processing"
+      - "L4 only looks at the TCP/UDP header's IP address and port number, so it can't reference an HTTP request's own content, like its path"
+      - "L4 only supports encrypted communication"
+      - "L4 can only route to a single server"
+    answerIndex: 1
+    explanation: "An L4 load balancer looks only at the TCP/UDP header's IP address and port number, so it has no way at all to reference an HTTP request's own content, like its path or hostname."
+
+  - question: "What conditions can be combined within a single routing rule?"
+    choices:
+      - "Only path and hostname — no other condition can ever be combined"
+      - "Multiple conditions, like path, hostname, HTTP method, and source IP address, can be combined"
+      - "A condition is always limited to exactly one per rule"
+      - "Combining conditions is technically impossible"
+    answerIndex: 1
+    explanation: "On top of path and hostname, you can also combine multiple conditions — an HTTP method, a source IP address, a query parameter — within a single routing rule."
+
+  - question: "What should you check when adding a new routing rule?"
+    choices:
+      - "Whether the rule's character count exceeds a defined limit"
+      - "Whether this new rule should be evaluated before or after each existing rule"
+      - "Whether the rule's color overlaps with an existing rule's"
+      - "Whether the rule's creation timestamp is correctly recorded"
+    answerIndex: 1
+    explanation: "Re-asking, every time you add a new rule, whether it should be evaluated before or after each existing rule is important for preventing unintended routing."
