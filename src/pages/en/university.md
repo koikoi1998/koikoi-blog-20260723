@@ -597,13 +597,14 @@ None.
 
 1. [Understanding DHCP Relay Agents From a Top 1% Perspective](/en/articles/windows-server-dhcp-relay-guide)
 2. [Understanding Shadow Copies (VSS) From a Top 1% Perspective](/en/articles/windows-server-vss-guide)
-3. [Why You Shouldn't Robocopy Before Domain-Joining in a File Server Migration](/en/articles/file-server-migration-robocopy-sid-guide)
-4. [Understanding How Windows Event Log (Event Viewer) Works From a Top 1% Perspective](/en/articles/windows-event-log-guide)
-5. [Understanding DFS Namespaces and DFS Replication From a "Top 1%" Perspective](/en/articles/windows-server-dfs-guide)
-6. [Understanding Windows Server Failover Clustering (WSFC) Quorum From a Top 1% Perspective](/en/articles/windows-server-failover-cluster-quorum-guide)
-7. [Understanding IIS Application Pool Recycling From a "Top 1%" Perspective](/en/articles/windows-server-app-pool-recycling-guide)
-8. [Understanding Print Servers and the Spooler From a "Top 1%" Perspective](/en/articles/windows-server-print-spooler-guide)
-9. [Understanding WSUS Content Folder Bloat From a Top 1% Perspective](/en/articles/windows-server-wsus-content-cleanup-guide)
+3. [Understanding VSS Writers From a Top 1% Perspective](/en/articles/windows-server-vss-writer-guide)
+4. [Why You Shouldn't Robocopy Before Domain-Joining in a File Server Migration](/en/articles/file-server-migration-robocopy-sid-guide)
+5. [Understanding How Windows Event Log (Event Viewer) Works From a Top 1% Perspective](/en/articles/windows-event-log-guide)
+6. [Understanding DFS Namespaces and DFS Replication From a "Top 1%" Perspective](/en/articles/windows-server-dfs-guide)
+7. [Understanding Windows Server Failover Clustering (WSFC) Quorum From a Top 1% Perspective](/en/articles/windows-server-failover-cluster-quorum-guide)
+8. [Understanding IIS Application Pool Recycling From a "Top 1%" Perspective](/en/articles/windows-server-app-pool-recycling-guide)
+9. [Understanding Print Servers and the Spooler From a "Top 1%" Perspective](/en/articles/windows-server-print-spooler-guide)
+10. [Understanding WSUS Content Folder Bloat From a Top 1% Perspective](/en/articles/windows-server-wsus-content-cleanup-guide)
 
 ### Junior: Real-World-Scenario Hands-On
 

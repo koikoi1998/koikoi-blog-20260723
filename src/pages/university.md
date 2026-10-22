@@ -597,13 +597,14 @@ ActiveDirectory・AWS・Ansible/IaC・VPN・DNS基盤・メール基盤に続く
 
 1. [DHCPリレーエージェントの仕組みを『上位1%』の視点で理解する](/articles/windows-server-dhcp-relay-guide)
 2. [シャドウコピー(VSS)の仕組みを『上位1%』の視点で理解する](/articles/windows-server-vss-guide)
-3. [ファイルサーバー移行で、ドメイン参加前にRobocopyしてはいけない理由](/articles/file-server-migration-robocopy-sid-guide)
-4. [Windowsのイベントログ(Event Viewer)の仕組みを『上位1%』の視点で理解する](/articles/windows-event-log-guide)
-5. [DFS名前空間とDFSレプリケーションの仕組みを『上位1%』の視点で理解する](/articles/windows-server-dfs-guide)
-6. [Windows Server フェイルオーバークラスタリング(WSFC)のクォーラムを『上位1%』の視点で理解する](/articles/windows-server-failover-cluster-quorum-guide)
-7. [IISのアプリケーションプールのリサイクルを『上位1%』の視点で理解する](/articles/windows-server-app-pool-recycling-guide)
-8. [プリントサーバーとスプーラーの仕組みを『上位1%』の視点で理解する](/articles/windows-server-print-spooler-guide)
-9. [WSUSのコンテンツフォルダー肥大化を『上位1%』の視点で理解する](/articles/windows-server-wsus-content-cleanup-guide)
+3. [VSSライターを『上位1%』の視点で理解する](/articles/windows-server-vss-writer-guide)
+4. [ファイルサーバー移行で、ドメイン参加前にRobocopyしてはいけない理由](/articles/file-server-migration-robocopy-sid-guide)
+5. [Windowsのイベントログ(Event Viewer)の仕組みを『上位1%』の視点で理解する](/articles/windows-event-log-guide)
+6. [DFS名前空間とDFSレプリケーションの仕組みを『上位1%』の視点で理解する](/articles/windows-server-dfs-guide)
+7. [Windows Server フェイルオーバークラスタリング(WSFC)のクォーラムを『上位1%』の視点で理解する](/articles/windows-server-failover-cluster-quorum-guide)
+8. [IISのアプリケーションプールのリサイクルを『上位1%』の視点で理解する](/articles/windows-server-app-pool-recycling-guide)
+9. [プリントサーバーとスプーラーの仕組みを『上位1%』の視点で理解する](/articles/windows-server-print-spooler-guide)
+10. [WSUSのコンテンツフォルダー肥大化を『上位1%』の視点で理解する](/articles/windows-server-wsus-content-cleanup-guide)
 
 ### 3年生:実務シナリオ編ハンズオン
 
