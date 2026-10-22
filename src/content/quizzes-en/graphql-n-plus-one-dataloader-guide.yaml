@@ -1,0 +1,45 @@
+questions:
+  - question: "What's the direct cause of GraphQL's N+1 problem?"
+    choices:
+      - "The GraphQL server itself crashes frequently"
+      - "Because resolvers operate independently per field, an additional query gets fired once for every item in a list"
+      - "Because GraphQL doesn't support encrypted communication"
+      - "Because the client side always sends the exact same query repeatedly"
+    answerIndex: 1
+    explanation: "Because a GraphQL resolver operates independently per field, an additional query ends up getting fired once for every single item in a list, after the one query that fetches the list — this is called the N+1 problem."
+
+  - question: "What two mechanisms does DataLoader combine to solve the N+1 problem?"
+    choices:
+      - "Encryption and compression"
+      - "Batching (converting individual requests into one combined lookup) and deduplicating caching"
+      - "Logging and alert notifications"
+      - "Authentication and authorization"
+    answerIndex: 1
+    explanation: "DataLoader combines batching — converting individual resolver requests into one combined lookup — with deduplicating caching, which fetches a repeated key only once within the same request."
+
+  - question: "What's the danger of sharing a DataLoader instance globally across requests?"
+    choices:
+      - "Server memory usage always decreases"
+      - "A cached result could get returned as-is to a different user with a different authorization scope, risking an information leak"
+      - "Query execution speed always improves"
+      - "There's no danger at all — it's actually a recommended implementation"
+    answerIndex: 1
+    explanation: "Sharing a DataLoader instance globally across requests creates a real information-leak risk: a cached result could get returned as-is to a different user with a different authorization scope."
+
+  - question: "What happens if DataLoader is adopted in only some resolvers?"
+    choices:
+      - "Every N+1 problem always gets fully solved regardless"
+      - "Batches don't aggregate properly, and the performance benefit ends up limited"
+      - "The GraphQL server itself fails to start"
+      - "A query syntax error occurs"
+    answerIndex: 1
+    explanation: "Unless every resolver that could cause an N+1 problem consistently uses DataLoader, batches don't aggregate properly, and the performance benefit ends up limited."
+
+  - question: "What does this article point out about a GraphQL resolver's flexibility?"
+    choices:
+      - "This flexibility is only ever beneficial for solving over-fetching/under-fetching, and causes no other problem at all"
+      - "The exact same flexibility that solved over-fetching/under-fetching is also exactly what causes an entirely new performance problem, the N+1 problem"
+      - "This flexibility should be completely removed from GraphQL's specification"
+      - "This flexibility originally existed in RESTful APIs too"
+    answerIndex: 1
+    explanation: "The flexibility of a GraphQL resolver operating independently is the exact same mechanism that solved over-fetching/under-fetching, while also being exactly what causes the entirely new N+1 performance problem."
