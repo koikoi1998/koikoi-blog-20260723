@@ -857,8 +857,9 @@ None.
 1. [A Top 1% Hands-On for Building a Linux Namespace Yourself and Experiencing What a 'Container' Really Is](/en/articles/linux-namespaces-handson-guide)
 2. [A Top 1% Hands-On for Building Linux cgroups (Control Groups) Yourself and Experiencing the Other Half of a 'Container'](/en/articles/linux-cgroups-handson-guide)
 3. [A Top 1% Hands-On for Triggering Linux's OOM Killer Yourself and Pinpointing the Cause From dmesg and cgroup v2's memory.events](/en/articles/linux-oom-killer-handson-guide)
+4. [A Top 1% Hands-On: Reproducing the Zombie Process and PID 1 Problem Yourself](/en/articles/linux-zombie-process-pid1-handson-guide)
 
-**Work through and understand these three articles, and you're at graduation level as a "Senior."**
+**Work through and understand these four articles, and you're at graduation level as a "Senior."**
 
 ### Graduate School: Security Hardening Hands-On (Attacker's Perspective)
 

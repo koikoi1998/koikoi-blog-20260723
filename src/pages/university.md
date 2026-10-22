@@ -857,8 +857,9 @@ Web/API学科に続いて、10個目の「開講済み」学科です。対応�
 1. [Linuxのnamespaceを自分の手で構築し、『コンテナ』の正体を体験するハンズオン](/articles/linux-namespaces-handson-guide)
 2. [Linuxのcgroups(コントロールグループ)を自分の手で構築し、『コンテナ』のもう半分の正体を体験するハンズオン](/articles/linux-cgroups-handson-guide)
 3. [LinuxのOOM Killerを自分の手で発生させ、原因をdmesgとcgroup v2のmemory.eventsから特定するハンズオン](/articles/linux-oom-killer-handson-guide)
+4. [ゾンビプロセスとPID 1問題を自分の手で再現する『上位1%』のハンズオン](/articles/linux-zombie-process-pid1-handson-guide)
 
-**この3本まで自力で実施・理解できれば、「4年生」として卒業水準です。**
+**この4本まで自力で実施・理解できれば、「4年生」として卒業水準です。**
 
 ### 大学院:セキュリティ強化編ハンズオン(攻撃者視点)
 
