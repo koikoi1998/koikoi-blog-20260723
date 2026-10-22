@@ -1,0 +1,45 @@
+questions:
+  - question: "What does it mean that VPC peering \"isn't transitive\"?"
+    choices:
+      - "That a peering connection doesn't technically exist at all"
+      - "That if VPC A peers with VPC B, and B also peers with VPC C, A still can't reach C through B"
+      - "That a peering connection is always free to use"
+      - "That a peering connection only works within the same region"
+    answerIndex: 1
+    explanation: "VPC peering carries the constraint of not being transitive: if VPC A peers with VPC B, and B also peers with VPC C, A still can't reach C through B at all."
+
+  - question: "How many peering connections are needed to connect N VPCs in a full mesh?"
+    choices:
+      - "Always just one, regardless of N"
+      - "N × (N-1) / 2"
+      - "Twice N"
+      - "Always exactly 10, regardless of the number of VPCs"
+    answerIndex: 1
+    explanation: "Making N VPCs all directly reachable from each other (a full mesh) requires N × (N-1) / 2 peering connections, growing sharply as the VPC count increases."
+
+  - question: "How does Transit Gateway resolve VPC peering's constraint?"
+    choices:
+      - "By merging every VPC into one single giant VPC"
+      - "Through a hub-and-spoke design, where each VPC creates just one attachment to a central hub gateway, and the hub's own route tables control communication"
+      - "By further increasing the number of peering connections"
+      - "By abolishing the concept of a VPC itself"
+    answerIndex: 1
+    explanation: "Transit Gateway achieves transitive connectivity through a hub-and-spoke design, where each VPC creates just one attachment to a central hub gateway, and Transit Gateway's own route tables control communication."
+
+  - question: "Why can't you insert a security appliance into the traffic path under VPC peering?"
+    choices:
+      - "Security appliance products simply don't exist"
+      - "Traffic flows directly between peers, so there's no place to insert an appliance at all"
+      - "AWS bans the use of security appliances"
+      - "Peering connections are always encrypted, so inspection is unnecessary"
+    answerIndex: 1
+    explanation: "Under VPC peering, traffic flows directly between peers, so there's simply no place at all to insert a security appliance, like a firewall, into the path."
+
+  - question: "What's the right basis for deciding between VPC peering and Transit Gateway?"
+    choices:
+      - "Always use Transit Gateway, and never use VPC peering at all"
+      - "Consider whether the VPC count might grow later, and whether transitive connectivity or single-point inspection is needed"
+      - "VPC peering is always superior in every respect"
+      - "The two choices are technically identical, with no difference at all"
+    answerIndex: 1
+    explanation: "When connecting multiple VPCs, you need to consider the possibility the VPC count grows later, whether transitive connectivity is needed, and whether single-point inspection matters, to decide between peering and Transit Gateway."
