@@ -342,6 +342,7 @@ The fourth department to become "fully open," following Active Directory, AWS, a
 8. [How Tailscale Works From a "Top 1%" Perspective](/en/articles/tailscale-internals-guide)
 9. [What Is ZTNA (Zero Trust Network Access) From a "Top 1%" Perspective](/en/articles/ztna-guide)
 10. [Understanding a VPN's Kill Switch From a Top 1% Perspective](/en/articles/vpn-kill-switch-guide)
+11. [Understanding a VPN's DNS Leak From a Top 1% Perspective](/en/articles/vpn-dns-leak-guide)
 
 ### Junior: Real-World-Scenario Hands-On
 
