@@ -469,14 +469,15 @@ ActiveDirectory・AWS・Ansible/IaC・VPNに続く5つ目の「開講済み」�
 
 ### 2年生:補足・深掘り編
 
-1. [なぜルートドメインにCNAMEを設定できないのかを『上位1%』の視点で理解する](/articles/dns-cname-apex-guide)
-2. [サブドメインテイクオーバー(ダングリングDNS)を『上位1%』の視点で理解する](/articles/dns-subdomain-takeover-guide)
-3. [DNSSECの仕組みを『上位1%』の視点で理解する](/articles/dns-dnssec-fundamentals-guide)
-4. [CAAレコードの仕組みを『上位1%』の視点で理解する](/articles/dns-caa-record-guide)
-5. [NSEC/NSEC3によるゾーンウォーキングを『上位1%』の視点で理解する](/articles/dns-nsec-zone-walking-guide)
-6. [再帰リゾルバとフォワーダー、ネガティブキャッシュの仕組みを『上位1%』の視点で理解する](/articles/dns-recursive-caching-guide)
-7. [スプリットホライズンDNS(BINDのviews)の仕組みを『上位1%』の視点で理解する](/articles/dns-split-horizon-guide)
-8. [DNS over HTTPS(DoH)とDNS over TLS(DoT)の仕組みを『上位1%』の視点で理解する](/articles/dns-doh-dot-guide)
+1. [DNSのTSIGを『上位1%』の視点で理解する](/articles/dns-tsig-guide)
+2. [なぜルートドメインにCNAMEを設定できないのかを『上位1%』の視点で理解する](/articles/dns-cname-apex-guide)
+3. [サブドメインテイクオーバー(ダングリングDNS)を『上位1%』の視点で理解する](/articles/dns-subdomain-takeover-guide)
+4. [DNSSECの仕組みを『上位1%』の視点で理解する](/articles/dns-dnssec-fundamentals-guide)
+5. [CAAレコードの仕組みを『上位1%』の視点で理解する](/articles/dns-caa-record-guide)
+6. [NSEC/NSEC3によるゾーンウォーキングを『上位1%』の視点で理解する](/articles/dns-nsec-zone-walking-guide)
+7. [再帰リゾルバとフォワーダー、ネガティブキャッシュの仕組みを『上位1%』の視点で理解する](/articles/dns-recursive-caching-guide)
+8. [スプリットホライズンDNS(BINDのviews)の仕組みを『上位1%』の視点で理解する](/articles/dns-split-horizon-guide)
+9. [DNS over HTTPS(DoH)とDNS over TLS(DoT)の仕組みを『上位1%』の視点で理解する](/articles/dns-doh-dot-guide)
 
 ### 3年生:実務シナリオ編ハンズオン
 
