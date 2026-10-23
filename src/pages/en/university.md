@@ -731,13 +731,14 @@ None.
 ### Sophomore: Supplementary Deep-Dives
 
 1. [Understanding the Difference Between Forward Proxies and Reverse Proxies From a Top 1% Perspective](/en/articles/forward-reverse-proxy-guide)
-2. [Understanding the CONNECT Method From a Top 1% Perspective](/en/articles/http-connect-method-guide)
-3. [Understanding WebSocket Through a Reverse Proxy From a Top 1% Perspective](/en/articles/web-proxy-websocket-guide)
-4. [Understanding PAC Files and WPAD From a Top 1% Perspective](/en/articles/pac-wpad-guide)
-5. [Understanding the Difference Between Proxy Authentication Methods (Basic/NTLM/Kerberos) From a Top 1% Perspective](/en/articles/proxy-auth-guide)
-6. [Understanding Cache-Control and the Vary Header From a Top 1% Perspective](/en/articles/cache-control-vary-guide)
-7. [Understanding Cache Stampede From a Top 1% Perspective](/en/articles/cache-stampede-guide)
-8. [Understanding Web Cache Deception and Web Cache Poisoning From a Top 1% Perspective](/en/articles/web-cache-deception-poisoning-guide)
+2. [Understanding HTTP's Via Header From a Top 1% Perspective](/en/articles/web-proxy-via-header-guide)
+3. [Understanding the CONNECT Method From a Top 1% Perspective](/en/articles/http-connect-method-guide)
+4. [Understanding WebSocket Through a Reverse Proxy From a Top 1% Perspective](/en/articles/web-proxy-websocket-guide)
+5. [Understanding PAC Files and WPAD From a Top 1% Perspective](/en/articles/pac-wpad-guide)
+6. [Understanding the Difference Between Proxy Authentication Methods (Basic/NTLM/Kerberos) From a Top 1% Perspective](/en/articles/proxy-auth-guide)
+7. [Understanding Cache-Control and the Vary Header From a Top 1% Perspective](/en/articles/cache-control-vary-guide)
+8. [Understanding Cache Stampede From a Top 1% Perspective](/en/articles/cache-stampede-guide)
+9. [Understanding Web Cache Deception and Web Cache Poisoning From a Top 1% Perspective](/en/articles/web-cache-deception-poisoning-guide)
 
 ### Junior: Real-World-Scenario Hands-On
 
