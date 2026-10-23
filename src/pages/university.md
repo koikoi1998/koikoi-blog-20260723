@@ -414,10 +414,11 @@ ActiveDirectory学科・AWS学科・Ansible/IaC学科に続く4つ目の「開�
 2. [コンシステントハッシュの仕組みを『上位1%』の視点で理解する](/articles/consistent-hashing-guide)
 3. [重み付けラウンドロビンによるカナリアデプロイを『上位1%』の視点で理解する](/articles/load-balancing-canary-deployment-guide)
 4. [ロードバランサーからサーバーを安全に外す——コネクションドレインの仕組み](/articles/load-balancing-connection-draining-guide)
-5. [GSLB(グローバルサーバーロードバランシング)の仕組みを『上位1%』の視点で理解する](/articles/load-balancing-gslb-guide)
-6. [Anycastによるグローバルロードバランシングを『上位1%』の視点で理解する](/articles/load-balancing-anycast-guide)
-7. [ロードバランサー自体の冗長化を『上位1%』の視点で理解する](/articles/load-balancing-vrrp-keepalived-guide)
-8. [PROXY protocolの仕組みを『上位1%』の視点で理解する](/articles/load-balancing-proxy-protocol-guide)
+5. [ロードバランサーのバックエンドコネクションプーリングを『上位1%』の視点で理解する](/articles/load-balancing-backend-connection-pooling-guide)
+6. [GSLB(グローバルサーバーロードバランシング)の仕組みを『上位1%』の視点で理解する](/articles/load-balancing-gslb-guide)
+7. [Anycastによるグローバルロードバランシングを『上位1%』の視点で理解する](/articles/load-balancing-anycast-guide)
+8. [ロードバランサー自体の冗長化を『上位1%』の視点で理解する](/articles/load-balancing-vrrp-keepalived-guide)
+9. [PROXY protocolの仕組みを『上位1%』の視点で理解する](/articles/load-balancing-proxy-protocol-guide)
 
 ### 3年生:実務シナリオ編ハンズオン
 
