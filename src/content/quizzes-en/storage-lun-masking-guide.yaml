@@ -1,0 +1,45 @@
+questions:
+  - question: "What does zoning control?"
+    choices:
+      - "Which LUNs a storage device shows to which server"
+      - "Which initiator can communicate with which target, at the fabric layer"
+      - "File system access permissions inside a server"
+      - "Bandwidth allocation across the entire network"
+    answerIndex: 1
+    explanation: "Zoning operates at the FC switch (fabric) level, restricting which initiator (server) can communicate with which target (storage device port)."
+
+  - question: "What does LUN masking control?"
+    choices:
+      - "Whether servers can communicate with each other at the fabric layer"
+      - "Which LUNs get shown, even among the parties already allowed to communicate"
+      - "The number of physical ports on an FC switch"
+      - "Power management on the storage device"
+    answerIndex: 1
+    explanation: "LUN masking operates on the storage device itself (or the host-side adapter), restricting which LUNs get shown, even among the parties zoning has already allowed to communicate."
+
+  - question: "What is the correct relationship between zoning and LUN masking?"
+    choices:
+      - "Setting up either one alone completely handles access control"
+      - "They're separate checkpoints — even after passing zoning, LUN masking further restricts LUN visibility"
+      - "LUN masking is a feature that completely disables zoning"
+      - "The two can never technically be configured at the same time"
+    answerIndex: 1
+    explanation: "Zoning and LUN masking are separate checkpoints — even once zoning allows communication, LUN masking further restricts which LUNs are visible. In real-world practice, combining both is the standard approach."
+
+  - question: "Where is LUN masking correctly implemented?"
+    choices:
+      - "Always only on the storage controller side, never anywhere else"
+      - "Generally on the storage controller side (or host adapter side), but some FC switches can also implement it as LUN-level zoning"
+      - "Always on the client's web browser side"
+      - "The LUN masking feature itself has now been discontinued"
+    answerIndex: 1
+    explanation: "LUN masking is generally implemented on the storage controller side (or the host adapter side), but some FC switches support LUN-level zoning, letting the switch perform an equivalent control."
+
+  - question: "What is the correct limit of WWN-based zoning and LUN masking against spoofing?"
+    choices:
+      - "Both are perfect defenses against impersonation"
+      - "Both ultimately judge based on a WWN or initiator ID, so neither is a fundamental defense against WWN spoofing"
+      - "The concept of impersonation doesn't exist in a SAN environment"
+      - "Only LUN masking can completely prevent impersonation"
+    answerIndex: 1
+    explanation: "Both zoning and LUN masking ultimately judge based on a WWN or initiator ID, so neither is a fundamental defense against this kind of spoofing — they need to be combined with separate measures."
