@@ -1,0 +1,45 @@
+questions:
+  - question: "What is correct about the Via header?"
+    choices:
+      - "It's a non-standard header that records the client's real IP address"
+      - "It's a standard header defined by the HTTP spec itself, recording information about the proxies a request or response passed through"
+      - "It's a header that encrypts and stores proxy authentication credentials"
+      - "It's a header that records only the cache's expiration time"
+    answerIndex: 1
+    explanation: "The Via header is a standard header defined by the HTTP spec itself (RFC 7230/9110), recording which proxy a request or response actually passed through."
+
+  - question: "How does the Via header change when passing through multiple proxies?"
+    choices:
+      - "Only the most recent proxy's information remains; earlier information gets overwritten"
+      - "Each proxy appends its own information, building up a comma-separated history of the path"
+      - "The Via header itself gets deleted once it passes through a second proxy"
+      - "The Via header always ends up empty when passing through multiple proxies"
+    answerIndex: 1
+    explanation: "Each proxy appends its own information to the Via header when forwarding a message, so passing through multiple proxies builds up a comma-separated history of the path."
+
+  - question: "Why can the Via header be used to detect a forwarding loop?"
+    choices:
+      - "Because the Via header contains an encryption key that automatically cuts off a loop"
+      - "Because a proxy can check whether its own identifier already appears in the received request's Via header"
+      - "Because the Via header is always fixed at a constant length"
+      - "Because the Via header itself automatically gets erased when a loop occurs"
+    answerIndex: 1
+    explanation: "A proxy can detect an unintended forwarding loop by checking whether its own identifier already appears in the received request's Via header."
+
+  - question: "What is the correct difference in purpose between the Via header and X-Forwarded-For?"
+    choices:
+      - "They're simply two names for recording exactly the same information"
+      - "X-Forwarded-For records the client's identity, while the Via header records the path taken — two separate headers"
+      - "The Via header is always a newer technology than X-Forwarded-For"
+      - "X-Forwarded-For is a standard header defined by the HTTP spec itself"
+    answerIndex: 1
+    explanation: "X-Forwarded-For is used to record the client's real IP address, while the Via header records information about the proxies and protocol versions a message passed through — two separate headers with different purposes."
+
+  - question: "Why can loop detection based on the Via header alone be insufficient in some implementations?"
+    choices:
+      - "Because the Via header mechanism itself doesn't technically work at all"
+      - "Because some implementations use the Via header for other purposes too, leading to a movement to define a dedicated separate header, like CDN-Loop, purely for loop detection"
+      - "Because the Via header can only pass through a single proxy"
+      - "Because loop detection always requires a DNS configuration change"
+    answerIndex: 1
+    explanation: "Some implementations use the Via header for purposes other than loop detection, so a movement has emerged among CDN operators to define a separate, dedicated header called CDN-Loop purely for loop detection."
