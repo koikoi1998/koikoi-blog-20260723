@@ -669,6 +669,7 @@ ActiveDirectory・AWS・Ansible/IaC・VPN・DNS基盤・メール基盤に続く
 5. [OAuth 2.0のPKCEを『上位1%』の視点で理解する](/articles/oauth2-pkce-guide) — クライアントシークレットを持てないモバイルアプリ・SPA向けの、認可コード横取り対策を扱います。
 6. [GraphQLとRESTful APIの違いを『上位1%』の視点で理解する](/articles/graphql-vs-rest-guide) — オーバーフェッチ/アンダーフェッチの解消を扱います。
 7. [GraphQLのN+1問題とDataLoaderを『上位1%』の視点で理解する](/articles/graphql-n-plus-one-dataloader-guide) — オーバーフェッチ/アンダーフェッチを解消した、まさにその柔軟性が生む新しい性能問題を扱います。
+8. [gRPCとRESTの違いを『上位1%』の視点で理解する](/articles/grpc-vs-rest-browser-guide) — gRPCが高速な理由と、ブラウザから直接呼び出せないという構造的な制約を扱います。
 
 ### 3年生:実務シナリオ編ハンズオン
 

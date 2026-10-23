@@ -669,6 +669,7 @@ None.
 5. [Understanding OAuth 2.0's PKCE From a Top 1% Perspective](/en/articles/oauth2-pkce-guide) — covers protecting against authorization code interception for mobile apps and SPAs that can't hold a client secret.
 6. [Understanding the Difference Between GraphQL and RESTful APIs From a Top 1% Perspective](/en/articles/graphql-vs-rest-guide) — covers eliminating over-fetching and under-fetching.
 7. [Understanding GraphQL's N+1 Problem and DataLoader From a Top 1% Perspective](/en/articles/graphql-n-plus-one-dataloader-guide) — covers the new performance problem caused by the exact same flexibility that eliminated over-fetching and under-fetching.
+8. [Understanding gRPC vs REST From a Top 1% Perspective](/en/articles/grpc-vs-rest-browser-guide) — covers why gRPC is fast, and the structural constraint that keeps it from being called directly from a browser.
 
 ### Junior: Real-World-Scenario Hands-On
 
