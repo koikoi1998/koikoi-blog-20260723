@@ -607,11 +607,12 @@ None.
 3. [Understanding VSS Writers From a Top 1% Perspective](/en/articles/windows-server-vss-writer-guide)
 4. [Why You Shouldn't Robocopy Before Domain-Joining in a File Server Migration](/en/articles/file-server-migration-robocopy-sid-guide)
 5. [Understanding How Windows Event Log (Event Viewer) Works From a Top 1% Perspective](/en/articles/windows-event-log-guide)
-6. [Understanding DFS Namespaces and DFS Replication From a "Top 1%" Perspective](/en/articles/windows-server-dfs-guide)
-7. [Understanding Windows Server Failover Clustering (WSFC) Quorum From a Top 1% Perspective](/en/articles/windows-server-failover-cluster-quorum-guide)
-8. [Understanding IIS Application Pool Recycling From a "Top 1%" Perspective](/en/articles/windows-server-app-pool-recycling-guide)
-9. [Understanding Print Servers and the Spooler From a "Top 1%" Perspective](/en/articles/windows-server-print-spooler-guide)
-10. [Understanding WSUS Content Folder Bloat From a Top 1% Perspective](/en/articles/windows-server-wsus-content-cleanup-guide)
+6. [Understanding NTFS Permissions vs Share Permissions From a Top 1% Perspective](/en/articles/windows-server-ntfs-share-permissions-guide)
+7. [Understanding DFS Namespaces and DFS Replication From a "Top 1%" Perspective](/en/articles/windows-server-dfs-guide)
+8. [Understanding Windows Server Failover Clustering (WSFC) Quorum From a Top 1% Perspective](/en/articles/windows-server-failover-cluster-quorum-guide)
+9. [Understanding IIS Application Pool Recycling From a "Top 1%" Perspective](/en/articles/windows-server-app-pool-recycling-guide)
+10. [Understanding Print Servers and the Spooler From a "Top 1%" Perspective](/en/articles/windows-server-print-spooler-guide)
+11. [Understanding WSUS Content Folder Bloat From a Top 1% Perspective](/en/articles/windows-server-wsus-content-cleanup-guide)
 
 ### Junior: Real-World-Scenario Hands-On
 
