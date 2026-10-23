@@ -157,6 +157,7 @@ The only department, at the moment, that satisfies every grade level. **The goal
 4. [A Top 1% Hands-On for Reproducing Unconstrained Delegation's Danger Yourself and Confirming Defense via 'Account Is Sensitive and Cannot Be Delegated'](/en/articles/ad-unconstrained-delegation-handson-guide)
 5. [A Top 1% Hands-On for Reproducing Resource-Based Constrained Delegation (RBCD) Abuse Yourself](/en/articles/ad-rbcd-handson-guide)
 6. [A Top 1% Hands-On: Reproducing the Shadow Credentials Attack Abusing msDS-KeyCredentialLink Yourself](/en/articles/ad-shadow-credentials-handson-guide)
+7. [Reproducing AD CS's ESC1 (a Misconfigured Certificate Template) Hands-On From a Top 1% Perspective](/en/articles/ad-cs-esc1-handson-guide)
 
 All of these are educational, defense-focused hands-on labs, meant to strengthen the defenses of a test environment you manage yourself.
 
