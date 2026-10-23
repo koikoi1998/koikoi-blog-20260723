@@ -1,0 +1,45 @@
+questions:
+  - question: "What is EDNS0's original role?"
+    choices:
+      - "Encrypting DNS queries"
+      - "Effectively raising the UDP response-size ceiling (around 512 bytes) through a client declaration"
+      - "Hiding the DNS server's IP address"
+      - "Improving zone transfer speed"
+    answerIndex: 1
+    explanation: "EDNS0 is an extension specification that lets the client side tell the server 'I can receive a larger response,' effectively raising the 512-byte ceiling traditional DNS carried."
+
+  - question: "Why is EDNS0 an essential foundation for DNSSEC?"
+    choices:
+      - "Because DNSSEC's signature (RRSIG) and DNSKEY records easily exceed the 512-byte constraint"
+      - "Because DNSSEC can't select an encryption algorithm without EDNS0"
+      - "Because EDNS0 automatically generates DNSSEC's signatures"
+      - "Because EDNS0 and DNSSEC are technically completely unrelated"
+    answerIndex: 0
+    explanation: "DNSSEC's signature (RRSIG) and DNSKEY records easily exceed the traditional 512-byte constraint, so EDNS0's ability to declare a larger buffer size is the precondition for operating DNSSEC practically."
+
+  - question: "What is the correct effect of EDNS0 on DNS amplification attacks?"
+    choices:
+      - "EDNS0 completely neutralizes amplification attacks"
+      - "Because servers can now return larger responses, the amplification factor for the same technique rises dramatically"
+      - "EDNS0 is completely unrelated to amplification attacks"
+      - "EDNS0 makes source IP address spoofing itself impossible"
+    answerIndex: 1
+    explanation: "Before EDNS0, response size was limited and the amplification factor was around 8x, but once EDNS0 let servers return much larger responses, the amplification factor for the same technique rose dramatically."
+
+  - question: "What is the limit of the mitigation that declares a smaller EDNS0 buffer size?"
+    choices:
+      - "This countermeasure alone completely prevents amplification attacks"
+      - "Since it doesn't prevent source IP address spoofing itself, this alone is insufficient"
+      - "This countermeasure makes operating DNSSEC completely impossible"
+      - "This countermeasure has no technical limits whatsoever"
+    answerIndex: 1
+    explanation: "Declaring a smaller EDNS0 buffer size doesn't stop the source-IP-spoofed query itself, so this alone is insufficient. A fundamental fix needs source-spoofing prevention like BCP 38."
+
+  - question: "What is the correct fundamental countermeasure against DNS amplification attacks?"
+    choices:
+      - "Limiting the EDNS0 buffer size alone is sufficient"
+      - "Widespread adoption of a mechanism like BCP 38 (Ingress Filtering), which prevents source IP address spoofing itself"
+      - "Completely disabling DNSSEC"
+      - "Shutting down every authoritative DNS server"
+    answerIndex: 1
+    explanation: "The fundamental countermeasure against DNS amplification attacks is widespread internet-wide adoption of a mechanism like BCP 38 (Ingress Filtering), which prevents source IP address spoofing itself."
