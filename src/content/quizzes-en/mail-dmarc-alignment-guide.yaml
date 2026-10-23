@@ -1,0 +1,45 @@
+questions:
+  - question: "What does DMARC alignment check?"
+    choices:
+      - "Whether the email body is spam"
+      - "Whether the domain SPF or DKIM authenticated matches the visible From header's domain"
+      - "The geographic location of the sending server's IP address"
+      - "Whether the email's character encoding is correct"
+    answerIndex: 1
+    explanation: "DMARC alignment is the mechanism that checks whether the domain SPF or DKIM authenticated matches the visible From header's domain that the recipient actually sees."
+
+  - question: "What is the correct condition for DMARC to pass?"
+    choices:
+      - "Both SPF and DKIM must be aligned (an AND condition)"
+      - "DMARC passes if either SPF or DKIM is aligned (an OR condition)"
+      - "If only SPF is aligned, DKIM's result is completely ignored"
+      - "If only DKIM is aligned, SPF's result is completely ignored"
+    answerIndex: 1
+    explanation: "DMARC passes on an OR condition — if either SPF or DKIM is aligned, DMARC passes overall."
+
+  - question: "What is the correct difference between relaxed mode and strict mode?"
+    choices:
+      - "There's no practical difference between the two"
+      - "Relaxed mode passes on an organizational-domain match, while strict mode requires an exact match"
+      - "Relaxed mode performs no encryption, while strict mode does"
+      - "Relaxed mode applies only to SPF, and strict mode applies only to DKIM"
+    answerIndex: 1
+    explanation: "Relaxed mode (the default) passes as long as the organizational domain matches, while strict mode requires an exact match, so results differ for sending via a subdomain."
+
+  - question: "When can SPF show 'pass' while DMARC still fails?"
+    choices:
+      - "This situation can never technically occur"
+      - "When the envelope-From domain SPF authenticated doesn't match the From header's domain by the alignment standard"
+      - "Because a DKIM signature always automatically overrides SPF's result"
+      - "Because the mail server is using an old version of SMTP"
+    answerIndex: 1
+    explanation: "If the envelope-From domain SPF authenticated doesn't match the visible From header's domain by the alignment standard, SPF passing on its own doesn't get counted toward DMARC."
+
+  - question: "Why does mail forwarding tend to break DMARC alignment?"
+    choices:
+      - "Because forwarding always completely deletes the email"
+      - "Because forwarding changes the sending IP address, breaking SPF, and body/header changes can invalidate the DKIM signature"
+      - "Because forwarded mail is always excluded from DMARC checks"
+      - "Because forwarding has technically zero effect on alignment's matching standard"
+    answerIndex: 1
+    explanation: "When a message is forwarded by a third party, SPF almost always fails because the sending IP address changes, and the DKIM signature can also become invalid if the body or headers are modified in transit — a structural weakness that makes forwarded mail prone to failing DMARC."
