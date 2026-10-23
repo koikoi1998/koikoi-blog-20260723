@@ -1,0 +1,45 @@
+questions:
+  - question: "What problem does connection pooling solve?"
+    choices:
+      - "Insufficient browser cache capacity on the client side"
+      - "The TCP handshake overhead caused by opening a brand-new connection for every single client request"
+      - "Insufficient free disk space"
+      - "DNS name resolution delay"
+    answerIndex: 1
+    explanation: "If a load balancer opened a brand-new TCP connection to the backend for every single client request, TCP handshake overhead would occur every single time. Connection pooling reduces this overhead by reusing persistent connections."
+
+  - question: "What is required on Nginx to actually reuse a connection to the backend?"
+    choices:
+      - "Setting keepalive in the upstream block alone is sufficient"
+      - "In addition to the keepalive setting, proxy_http_version 1.1 and clearing the Connection header are required"
+      - "SSL certificates must be disabled"
+      - "Nothing needs to be configured — it's reused automatically by default"
+    answerIndex: 1
+    explanation: "Nginx communicates with the backend using HTTP/1.0 by default, so the keepalive setting alone is not enough — proxy_http_version 1.1 and explicitly clearing the Connection header forwarded from the client are additionally required."
+
+  - question: "What does the number specified in Nginx's keepalive setting represent?"
+    choices:
+      - "The absolute upper limit on backend connections across the entire load balancer"
+      - "A per-worker-process limit — with multiple worker processes, the total connection count exceeds that number"
+      - "The maximum number of simultaneous connections allowed on the client side"
+      - "The DNS TTL value"
+    answerIndex: 1
+    explanation: "The number specified in keepalive is a per-worker-process limit, so in a configuration with multiple worker processes, more connections than expected end up being held against the backend."
+
+  - question: "Why does connection pooling become a prerequisite for HTTP request smuggling?"
+    choices:
+      - "Connection pooling and HTTP request smuggling are completely unrelated"
+      - "Because a persistent connection is reused across multiple different clients' requests, a single request can affect an entirely unrelated client"
+      - "Because enabling connection pooling completely disables encryption"
+      - "Because connection pooling always automatically prevents request smuggling"
+    answerIndex: 1
+    explanation: "HTTP request smuggling can affect an entirely unrelated client's request precisely because a persistent connection is reused across multiple clients' requests."
+
+  - question: "What is the correct diagnostic clue for checking whether a connection was actually reused?"
+    choices:
+      - "A $upstream_connect_time of zero means the connection was reused; a nonzero value means a new handshake occurred"
+      - "Check the server's CPU usage"
+      - "Check the available disk space"
+      - "There is no technical way to check this value"
+    answerIndex: 1
+    explanation: "A value of zero for the $upstream_connect_time variable means an existing connection was reused; a nonzero value means a new handshake occurred."
