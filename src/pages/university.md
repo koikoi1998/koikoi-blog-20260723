@@ -842,26 +842,27 @@ Web/API学科に続いて、10個目の「開講済み」学科です。対応�
 
 ### 1年生:基礎編+初めてのハンズオン
 
-**座学(基礎編、10記事)**
+**座学(基礎編、11記事)**
 
 1. [デーモン(daemon)とは何か](/articles/linux-daemon-guide)
 2. [ライブラリ(library)とは何か](/articles/software-library-guide)
 3. [ユーザー空間とカーネル空間、TUN/TAPデバイスの仕組み](/articles/linux-user-kernel-space-guide)
 4. [パーミッション(chmod)とは何か](/articles/linux-file-permissions-guide)
-5. [ハードリンクとシンボリックリンクの違い](/articles/linux-hardlink-symlink-guide)
-6. [inodeの枯渇を『上位1%』の視点で理解する](/articles/linux-inode-exhaustion-guide)
-7. [sysctlと/etc/sysctl.confの仕組み](/articles/linux-sysctl-guide)
-8. [iptables(netfilter)の仕組み](/articles/linux-iptables-guide)
-9. [/etcとLinuxのディレクトリ構成(FHS)](/articles/linux-filesystem-hierarchy-guide)
-10. [設定ファイルが「効く」までの仕組み](/articles/linux-config-activation-guide)
-11. [cronジョブの『動くはずなのに失敗する』を自分の手で再現するハンズオン](/articles/linux-cron-environment-handson-guide)
-12. [journalctlでエラーログを調査する方法](/articles/linux-journalctl-guide)
+5. [SELinuxとDAC/MACの違いを『上位1%』の視点で理解する](/articles/linux-selinux-dac-mac-guide)
+6. [ハードリンクとシンボリックリンクの違い](/articles/linux-hardlink-symlink-guide)
+7. [inodeの枯渇を『上位1%』の視点で理解する](/articles/linux-inode-exhaustion-guide)
+8. [sysctlと/etc/sysctl.confの仕組み](/articles/linux-sysctl-guide)
+9. [iptables(netfilter)の仕組み](/articles/linux-iptables-guide)
+10. [/etcとLinuxのディレクトリ構成(FHS)](/articles/linux-filesystem-hierarchy-guide)
+11. [設定ファイルが「効く」までの仕組み](/articles/linux-config-activation-guide)
+12. [cronジョブの『動くはずなのに失敗する』を自分の手で再現するハンズオン](/articles/linux-cron-environment-handson-guide)
+13. [journalctlでエラーログを調査する方法](/articles/linux-journalctl-guide)
 
 **実技(ハンズオン基礎編、1記事)**
 
 1. [findコマンドでファイル・ディレクトリを自力で探し当てるハンズオン](/articles/linux-find-guide)
 
-**この13本まで自力で実施・理解できれば、「1年生」として一区切りです。**
+**この14本まで自力で実施・理解できれば、「1年生」として一区切りです。**
 
 ### 2年生:補足・深掘り編
 
