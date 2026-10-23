@@ -793,15 +793,16 @@ Web/API学科に続いて、10個目の「開講済み」学科です。対応�
 
 ### 2年生:補足・深掘り編
 
-1. [RAID0(ストライピング)の仕組みを『上位1%』の視点で理解する](/articles/raid0-striping-guide)
-2. [RAID5とRAID6のパリティ計算の仕組みを『上位1%』の視点で理解する](/articles/raid5-parity-guide)
-3. [ビットロット(サイレント・データ破損)とチェックサムの仕組みを『上位1%』の視点で理解する](/articles/storage-bit-rot-checksum-guide)
-4. [イレージャーコーディングを『上位1%』の視点で理解する](/articles/storage-erasure-coding-guide)
-5. [RAIDコントローラーのライトバック/ライトスルーを『上位1%』の視点で理解する](/articles/storage-write-cache-bbu-guide)
-6. [iSCSIの仕組みを『上位1%』の視点で理解する](/articles/iscsi-guide)
-7. [NFSの仕組みを『上位1%』の視点で理解する](/articles/nfs-file-storage-guide)
-8. [マルチパスI/O(MPIO)の仕組みを『上位1%』の視点で理解する](/articles/storage-multipath-mpio-guide)
-9. [シンプロビジョニングの仕組みを『上位1%』の視点で理解する](/articles/thin-provisioning-guide)
+1. [LUNマスキングとゾーニングの違いを『上位1%』の視点で理解する](/articles/storage-lun-masking-guide)
+2. [RAID0(ストライピング)の仕組みを『上位1%』の視点で理解する](/articles/raid0-striping-guide)
+3. [RAID5とRAID6のパリティ計算の仕組みを『上位1%』の視点で理解する](/articles/raid5-parity-guide)
+4. [ビットロット(サイレント・データ破損)とチェックサムの仕組みを『上位1%』の視点で理解する](/articles/storage-bit-rot-checksum-guide)
+5. [イレージャーコーディングを『上位1%』の視点で理解する](/articles/storage-erasure-coding-guide)
+6. [RAIDコントローラーのライトバック/ライトスルーを『上位1%』の視点で理解する](/articles/storage-write-cache-bbu-guide)
+7. [iSCSIの仕組みを『上位1%』の視点で理解する](/articles/iscsi-guide)
+8. [NFSの仕組みを『上位1%』の視点で理解する](/articles/nfs-file-storage-guide)
+9. [マルチパスI/O(MPIO)の仕組みを『上位1%』の視点で理解する](/articles/storage-multipath-mpio-guide)
+10. [シンプロビジョニングの仕組みを『上位1%』の視点で理解する](/articles/thin-provisioning-guide)
 
 ### 3年生:実務シナリオ編ハンズオン
 
