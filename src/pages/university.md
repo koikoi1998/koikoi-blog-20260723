@@ -537,14 +537,15 @@ ActiveDirectory・AWS・Ansible/IaC・VPN・DNS基盤に続く6つ目の「開�
 ### 2年生:補足・深掘り編
 
 1. [SPF・DKIM・DMARCの仕組みを『上位1%』の視点で理解する](/articles/mail-spf-dkim-dmarc-guide)
-2. [ARC(Authenticated Received Chain)の仕組みを『上位1%』の視点で理解する](/articles/mail-arc-guide)
-3. [GoogleとYahooの一括送信者要件を『上位1%』の視点で理解する](/articles/mail-bulk-sender-requirements-guide)
-4. [SMTPスマグリングを『上位1%』の視点で理解する](/articles/mail-smtp-smuggling-guide)
-5. [送信元メールサーバーのPTRレコード(逆引きDNS)が必須級の理由を『上位1%』の視点で理解する](/articles/mail-ptr-fcrdns-guide)
-6. [メールキューとバウンスの仕組みを『上位1%』の視点で理解する](/articles/mail-queue-bounce-guide)
-7. [SMTPにおけるSTARTTLSの仕組みを『上位1%』の視点で理解する](/articles/mail-tls-encryption-guide)
-8. [DANE(TLSAレコード)の仕組みを『上位1%』の視点で理解する](/articles/mail-dane-tlsa-guide)
-9. [S/MIMEの仕組みを『上位1%』の視点で理解する](/articles/mail-smime-guide)
+2. [DMARCのアライメント(整合性)を『上位1%』の視点で理解する](/articles/mail-dmarc-alignment-guide)
+3. [ARC(Authenticated Received Chain)の仕組みを『上位1%』の視点で理解する](/articles/mail-arc-guide)
+4. [GoogleとYahooの一括送信者要件を『上位1%』の視点で理解する](/articles/mail-bulk-sender-requirements-guide)
+5. [SMTPスマグリングを『上位1%』の視点で理解する](/articles/mail-smtp-smuggling-guide)
+6. [送信元メールサーバーのPTRレコード(逆引きDNS)が必須級の理由を『上位1%』の視点で理解する](/articles/mail-ptr-fcrdns-guide)
+7. [メールキューとバウンスの仕組みを『上位1%』の視点で理解する](/articles/mail-queue-bounce-guide)
+8. [SMTPにおけるSTARTTLSの仕組みを『上位1%』の視点で理解する](/articles/mail-tls-encryption-guide)
+9. [DANE(TLSAレコード)の仕組みを『上位1%』の視点で理解する](/articles/mail-dane-tlsa-guide)
+10. [S/MIMEの仕組みを『上位1%』の視点で理解する](/articles/mail-smime-guide)
 
 ### 3年生:実務シナリオ編ハンズオン
 
