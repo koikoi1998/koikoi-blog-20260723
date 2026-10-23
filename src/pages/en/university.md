@@ -204,6 +204,7 @@ Following the Active Directory Department, this is the second department to sati
 4. [Understanding AWS KMS's Key Policy From a Top 1% Perspective](/en/articles/aws-kms-key-policy-guide)
 5. [Understanding S3 Storage Classes and Lifecycle Policies From a "Top 1%" Perspective](/en/articles/aws-s3-storage-classes-guide)
 6. [Understanding the Difference Between Security Groups and Network ACLs (NACLs) From a "Top 1%" Perspective](/en/articles/aws-nacl-security-group-guide)
+7. [Understanding RDS Multi-AZ vs Read Replica From a Top 1% Perspective](/en/articles/aws-rds-multi-az-read-replica-guide)
 
 ### Junior: Real-World-Scenario Hands-On
 

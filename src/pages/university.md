@@ -204,6 +204,7 @@ ActiveDirectory学科に続いて、学年構成のすべてを満たした学�
 4. [AWS KMSのキーポリシーを『上位1%』の視点で理解する](/articles/aws-kms-key-policy-guide)
 5. [S3のストレージクラスとライフサイクルポリシーを『上位1%』の視点で理解する](/articles/aws-s3-storage-classes-guide)
 6. [セキュリティグループとネットワークACL(NACL)の違いを『上位1%』の視点で理解する](/articles/aws-nacl-security-group-guide)
+7. [RDSのMulti-AZとリードレプリカの違いを『上位1%』の視点で理解する](/articles/aws-rds-multi-az-read-replica-guide)
 
 ### 3年生:実務シナリオ編ハンズオン
 
