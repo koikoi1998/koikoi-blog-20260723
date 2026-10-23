@@ -478,11 +478,12 @@ ActiveDirectory・AWS・Ansible/IaC・VPNに続く5つ目の「開講済み」�
 2. [なぜルートドメインにCNAMEを設定できないのかを『上位1%』の視点で理解する](/articles/dns-cname-apex-guide)
 3. [サブドメインテイクオーバー(ダングリングDNS)を『上位1%』の視点で理解する](/articles/dns-subdomain-takeover-guide)
 4. [DNSSECの仕組みを『上位1%』の視点で理解する](/articles/dns-dnssec-fundamentals-guide)
-5. [CAAレコードの仕組みを『上位1%』の視点で理解する](/articles/dns-caa-record-guide)
-6. [NSEC/NSEC3によるゾーンウォーキングを『上位1%』の視点で理解する](/articles/dns-nsec-zone-walking-guide)
-7. [再帰リゾルバとフォワーダー、ネガティブキャッシュの仕組みを『上位1%』の視点で理解する](/articles/dns-recursive-caching-guide)
-8. [スプリットホライズンDNS(BINDのviews)の仕組みを『上位1%』の視点で理解する](/articles/dns-split-horizon-guide)
-9. [DNS over HTTPS(DoH)とDNS over TLS(DoT)の仕組みを『上位1%』の視点で理解する](/articles/dns-doh-dot-guide)
+5. [EDNS0の仕組みを『上位1%』の視点で理解する](/articles/dns-edns0-guide)
+6. [CAAレコードの仕組みを『上位1%』の視点で理解する](/articles/dns-caa-record-guide)
+7. [NSEC/NSEC3によるゾーンウォーキングを『上位1%』の視点で理解する](/articles/dns-nsec-zone-walking-guide)
+8. [再帰リゾルバとフォワーダー、ネガティブキャッシュの仕組みを『上位1%』の視点で理解する](/articles/dns-recursive-caching-guide)
+9. [スプリットホライズンDNS(BINDのviews)の仕組みを『上位1%』の視点で理解する](/articles/dns-split-horizon-guide)
+10. [DNS over HTTPS(DoH)とDNS over TLS(DoT)の仕組みを『上位1%』の視点で理解する](/articles/dns-doh-dot-guide)
 
 ### 3年生:実務シナリオ編ハンズオン
 
