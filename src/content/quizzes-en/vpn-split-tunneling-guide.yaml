@@ -1,0 +1,45 @@
+questions:
+  - question: "What is the correct behavior of full tunneling (the default configuration)?"
+    choices:
+      - "Only some traffic goes through the VPN tunnel, with the rest using the local connection"
+      - "Every bit of traffic during a VPN connection goes through the VPN tunnel, with no exceptions"
+      - "The VPN connection itself never technically gets established"
+      - "Only DNS queries go through the tunnel, while all other traffic uses the local connection"
+    answerIndex: 1
+    explanation: "Full tunneling is the default configuration, where every bit of traffic during a VPN connection goes through the VPN tunnel, with no exceptions."
+
+  - question: "What is the correct protection status of traffic configured not to go through the tunnel under split tunneling?"
+    choices:
+      - "An equivalent level of encryption to VPN gets automatically applied through a different mechanism"
+      - "It receives no VPN encryption or protection at all"
+      - "Only the local network administrator can see its contents"
+      - "The traffic itself gets completely blocked technically"
+    answerIndex: 1
+    explanation: "Under split tunneling, traffic configured not to go through the VPN tunnel receives no VPN encryption or protection at all, becoming visible to the ISP or an attacker on an untrusted network."
+
+  - question: "What problem can split tunneling cause in a corporate environment?"
+    choices:
+      - "It always strengthens the organization's protection mechanisms further"
+      - "It can become a path that bypasses the organization's protection mechanisms, such as DNS filtering or a firewall"
+      - "It technically shuts down the entire corporate network"
+      - "This setting can't technically be used in a corporate environment"
+    answerIndex: 1
+    explanation: "In a corporate environment, split tunneling can become a path that bypasses the protection mechanisms the organization has put in place, such as DNS filtering or a firewall."
+
+  - question: "What is a different trade-off that full tunneling carries?"
+    choices:
+      - "Full tunneling has no trade-offs at all"
+      - "It can make devices on the same local network, like a NAS or printer, unreachable"
+      - "Full tunneling is always slower than split tunneling"
+      - "Full tunneling disables the VPN's encryption feature itself"
+    answerIndex: 1
+    explanation: "Full tunneling is the safer default configuration, but it carries the side effect of making devices on the same local network, such as a NAS or a printer, unreachable."
+
+  - question: "What is the recommended policy for applying split tunneling in real-world practice?"
+    choices:
+      - "Always apply split tunneling to all traffic"
+      - "Apply it only to specific users, roles, or destinations, leaving everything else at full tunneling by default"
+      - "Completely abolish the split tunneling feature itself"
+      - "There's no need to periodically review the configuration at all"
+    answerIndex: 1
+    explanation: "Real-world practice recommends a minimal-application policy: apply split tunneling only to specific users, roles, or destinations, and leave everything else at full tunneling by default."
