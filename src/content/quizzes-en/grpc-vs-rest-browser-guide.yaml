@@ -1,0 +1,45 @@
+questions:
+  - question: "What is the correct explanation for how gRPC achieves faster communication than REST/JSON?"
+    choices:
+      - "It always uses a dedicated fiber-optic line"
+      - "It uses Protocol Buffers for binary serialization and HTTP/2 multiplexing"
+      - "It always uses twice the server's CPU"
+      - "It performs no encryption at all"
+    answerIndex: 1
+    explanation: "gRPC serializes data in a binary format called Protocol Buffers and communicates using HTTP/2 multiplexing, achieving faster communication compared to REST, which predominantly uses JSON over HTTP/1.1."
+
+  - question: "What is the fundamental reason a browser can't call a gRPC server directly?"
+    choices:
+      - "gRPC as a technology is banned for security reasons"
+      - "Browser JavaScript can't read the HTTP/2 trailers that convey gRPC's communication status"
+      - "Browsers can't process binary data at all"
+      - "gRPC is a protocol that doesn't use HTTP at all"
+    answerIndex: 1
+    explanation: "gRPC conveys a call's final status via HTTP/2 trailers, but the Fetch API's response.trailers, despite existing in the spec, isn't implemented in any major browser, so browser JavaScript can't handle it directly."
+
+  - question: "What is the correct role of gRPC-Web?"
+    choices:
+      - "An additional optimization technology that makes gRPC even faster"
+      - "A separate protocol that re-embeds trailer information at the end of the response body, made usable from a browser via a translating proxy"
+      - "A technology for converting gRPC to HTTP/1.0"
+      - "A new language that replaces browser JavaScript itself"
+    answerIndex: 1
+    explanation: "gRPC-Web is a separate protocol that re-embeds the information normally sent as trailers into a special frame at the end of the response body, made usable from a browser via a translating proxy such as Envoy."
+
+  - question: "What is a correct functional limitation of gRPC-Web?"
+    choices:
+      - "Every feature works exactly the same as regular gRPC"
+      - "Client-side streaming and bidirectional streaming aren't supported"
+      - "Only server-side streaming isn't supported"
+      - "Encrypted communication isn't supported at all"
+    answerIndex: 1
+    explanation: "gRPC-Web doesn't support client-side streaming or bidirectional streaming — only server-side streaming is supported."
+
+  - question: "What is a widely adopted pattern for combining gRPC and REST in real-world practice?"
+    choices:
+      - "Replacing every single API with gRPC, without exception"
+      - "Using gRPC for internal service-to-service communication and REST or GraphQL for externally exposed APIs"
+      - "Unifying every single API to REST alone, without exception"
+      - "gRPC and REST technically cannot be used together"
+    answerIndex: 1
+    explanation: "A widely adopted real-world pattern uses gRPC's speed for internal service-to-service communication that never goes through a browser, while using REST or GraphQL for externally exposed APIs."
