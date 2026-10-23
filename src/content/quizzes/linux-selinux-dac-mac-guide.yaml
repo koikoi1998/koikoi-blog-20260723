@@ -1,0 +1,45 @@
+questions:
+  - question: "通常のパーミッション(chmod・所有者・グループ)が属する、アクセス制御の種類として正しいのはどれか。"
+    choices:
+      - "MAC(強制アクセス制御)"
+      - "DAC(任意アクセス制御)"
+      - "ACL(アクセス制御リスト)専用の仕組みであり、DACでもMACでもない"
+      - "この分類自体が、Linuxには存在しない"
+    answerIndex: 1
+    explanation: "通常のLinuxパーミッション(chmod・所有者・グループ)は、ファイルの所有者が自分の裁量でアクセス権を決める、DAC(Discretionary Access Control、任意アクセス制御)に分類されます。"
+
+  - question: "chmod 777にしても、SELinuxが有効な環境でPermission deniedが解消しない理由として正しいのはどれか。"
+    choices:
+      - "chmod 777という操作自体が、技術的に無効なコマンドだから"
+      - "DACとMAC(SELinux)という、2つの独立した検査の両方を通らなければアクセスが許可されず、MAC側のポリシーが拒否しているから"
+      - "SELinuxが有効な環境では、chmodコマンド自体が実行できないから"
+      - "ファイルシステムが、読み取り専用モードになっているから"
+    answerIndex: 1
+    explanation: "DACとMACは完全に独立した2段階の検査であり、chmod 777でDAC側を完全に開放しても、SELinuxのMAC側のポリシーが拒否していれば、アクセスは依然として拒否されたままになります。"
+
+  - question: "SELinuxが原因かどうかを確認するための、正しい方法はどれか。"
+    choices:
+      - "ファイルを完全に削除し、再作成する"
+      - "setenforce 0でPermissiveモードへ一時的に切り替え、問題が解消するかを確認する"
+      - "サーバー自体を再起動する以外に、確認する方法は存在しない"
+      - "chmod 777を、さらに繰り返し実行する"
+    answerIndex: 1
+    explanation: "setenforce 0で一時的にPermissiveモード(拒否はせず記録だけする)へ切り替え、問題が解消するかどうかを見ることが、SELinuxが原因かどうかを確認する最も簡単な方法です。"
+
+  - question: "SELinuxのラベルの問題に対する、正しい修正方法はどれか。"
+    choices:
+      - "SELinux自体を完全に無効化する"
+      - "restorecon(永続的な例外が必要な場合はsemanage fcontext)で、ラベルを正しい値に修正する"
+      - "ファイルのパーミッションを、さらに厳しく制限する"
+      - "ファイルシステム全体を、フォーマットし直す"
+    answerIndex: 1
+    explanation: "正しい修正は、ラベルを元のポリシーが期待する値へ戻すrestoreconコマンド、または永続的な例外をポリシーへ登録するsemanage fcontextコマンドです。SELinux自体の無効化は、防御そのものを失う対処であり、推奨されません。"
+
+  - question: "chconコマンドでラベルを変更した場合の挙動として正しいのはどれか。"
+    choices:
+      - "変更は永久に保持され、二度と元に戻らない"
+      - "一時的な変更であり、restoreconの実行や再起動で元に戻る"
+      - "chconは、ラベルを変更する機能を一切持たない"
+      - "chconによる変更は、システム全体のすべてのファイルに適用される"
+    answerIndex: 1
+    explanation: "chconによる変更は一時的なものであり、restoreconの実行や再起動で元に戻ってしまいます。永続的な変更には、semanage fcontextコマンドを使う必要があります。"

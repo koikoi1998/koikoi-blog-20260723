@@ -1,0 +1,45 @@
+questions:
+  - question: "What type of access control do ordinary permissions (chmod, ownership, groups) belong to?"
+    choices:
+      - "MAC (Mandatory Access Control)"
+      - "DAC (Discretionary Access Control)"
+      - "A mechanism exclusive to ACLs (Access Control Lists), neither DAC nor MAC"
+      - "This classification doesn't exist in Linux at all"
+    answerIndex: 1
+    explanation: "Ordinary Linux permissions (chmod, ownership, groups) are classified as DAC (Discretionary Access Control) — access rights the file's owner decides at their own discretion."
+
+  - question: "Why does 'Permission denied' persist in an SELinux-enabled environment even after chmod 777?"
+    choices:
+      - "Because the chmod 777 operation itself is a technically invalid command"
+      - "Because both of two independent checks, DAC and MAC (SELinux), must pass for access to be allowed, and the MAC side's policy denies it"
+      - "Because the chmod command itself can't be run in an SELinux-enabled environment"
+      - "Because the filesystem has switched to read-only mode"
+    answerIndex: 1
+    explanation: "DAC and MAC are two entirely independent checks, so even fully opening up the DAC side with chmod 777 still leaves access denied if SELinux's MAC-side policy denies it."
+
+  - question: "What is the correct way to check whether SELinux is the cause of a problem?"
+    choices:
+      - "Completely delete and recreate the file"
+      - "Temporarily switch to permissive mode with setenforce 0 and check if the problem goes away"
+      - "There's no way to check other than rebooting the server itself"
+      - "Repeatedly run chmod 777 again and again"
+    answerIndex: 1
+    explanation: "Temporarily switching to permissive mode (which logs instead of denying) with setenforce 0 and seeing if the problem goes away is the simplest way to confirm whether SELinux is the cause."
+
+  - question: "What is the correct fix for an SELinux labeling problem?"
+    choices:
+      - "Completely disable SELinux itself"
+      - "Fix the label to its correct value with restorecon (or semanage fcontext when a permanent exception is needed)"
+      - "Further tighten the file's permissions"
+      - "Reformat the entire filesystem"
+    answerIndex: 1
+    explanation: "The correct fix is the restorecon command, which resets a label back to what the original policy expects, or the semanage fcontext command, which registers a permanent exception into policy. Disabling SELinux itself sacrifices the defense and isn't recommended."
+
+  - question: "What happens when a label is changed with the chcon command?"
+    choices:
+      - "The change is kept permanently and never reverts"
+      - "It's a temporary change that reverts after running restorecon or on a reboot"
+      - "chcon has no functionality to change a label at all"
+      - "A chcon change applies to every file on the entire system"
+    answerIndex: 1
+    explanation: "A chcon change is temporary — it reverts after running restorecon or on a reboot. A permanent change requires using the semanage fcontext command."
