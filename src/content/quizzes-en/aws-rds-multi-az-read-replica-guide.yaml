@@ -1,0 +1,45 @@
+questions:
+  - question: "What is correct about the standby in a Multi-AZ DB instance deployment?"
+    choices:
+      - "The standby can freely serve read traffic"
+      - "By default, the standby cannot serve read traffic and exists solely for failover during an outage"
+      - "The standby only ever handles write traffic"
+      - "The concept of a standby doesn't exist in RDS at all"
+    answerIndex: 1
+    explanation: "According to the official AWS documentation, a traditional Multi-AZ DB instance deployment's standby cannot serve read traffic by default, and its dedicated role is to provide failover when a failure occurs."
+
+  - question: "What is the replication method used by a read replica?"
+    choices:
+      - "Synchronous replication, with absolutely no lag"
+      - "Asynchronous replication, which can experience replication lag"
+      - "The concept of replication doesn't apply here at all"
+      - "Data is always reflected simultaneously with the primary"
+    answerIndex: 1
+    explanation: "A read replica uses asynchronous replication, so there can be a replication lag before writes to the primary are reflected on the read replica."
+
+  - question: "What is the difference in behavior between Multi-AZ and a read replica when the primary fails?"
+    choices:
+      - "Both fail over automatically"
+      - "Multi-AZ fails over automatically, while a read replica requires manual promotion"
+      - "Both require manual promotion"
+      - "A read replica always fails over faster"
+    answerIndex: 1
+    explanation: "Multi-AZ fails over automatically on failure, but a read replica does not fail over automatically — it requires manual promotion and rewriting the endpoint."
+
+  - question: "What is the correct choice for achieving read scaling with RDS?"
+    choices:
+      - "Direct reads at a traditional Multi-AZ DB instance deployment's standby"
+      - "Set up a separate read replica, or use a Multi-AZ DB cluster deployment with readable standbys"
+      - "The concept of read scaling doesn't exist in RDS"
+      - "Completely stop writes to the primary"
+    answerIndex: 1
+    explanation: "Read scaling requires either setting up a separate read replica, or using the newer Multi-AZ DB cluster deployment, which has two readable standbys."
+
+  - question: "What is correct about the relationship between Multi-AZ and read replicas?"
+    choices:
+      - "They are mutually exclusive — only one can be used"
+      - "When both availability and read scaling are needed, combining them is the common practice"
+      - "Setting up a read replica automatically disables Multi-AZ"
+      - "The two cannot technically coexist"
+    answerIndex: 1
+    explanation: "Multi-AZ and read replicas are not competing options; combining the automatic failover of Multi-AZ with the read scaling of a read replica is the common practice when both are needed."
