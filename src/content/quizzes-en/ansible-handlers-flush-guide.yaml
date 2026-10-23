@@ -1,0 +1,45 @@
+questions:
+  - question: "When does a handler invoked by notify run by default?"
+    choices:
+      - "The instant notify is called"
+      - "All at once, immediately after each section finishes — pre_tasks, roles/tasks, post_tasks"
+      - "The day after the entire playbook finishes running"
+      - "The concept of a handler doesn't exist in Ansible at all"
+    answerIndex: 1
+    explanation: "By default, Ansible flushes notified handlers all at once, immediately after each section of a play finishes: pre_tasks, roles/tasks, and post_tasks."
+
+  - question: "If the same handler is notified three times within one section, how many times does it run?"
+    choices:
+      - "Three times"
+      - "Exactly once"
+      - "Zero times — it never runs at all"
+      - "The notify count only changes the execution order"
+    answerIndex: 1
+    explanation: "No matter how many times the same handler is notified, it only runs once at the end of that section — a deliberate efficiency design."
+
+  - question: "What's the correct way to run a handler immediately, mid-play, without waiting for the end of a section?"
+    choices:
+      - "Insert a task with meta: flush_handlers"
+      - "Stop using handlers entirely and rewrite everything as regular tasks"
+      - "Call notify twice"
+      - "This is technically impossible"
+    answerIndex: 1
+    explanation: "Inserting a task with meta: flush_handlers triggers whatever handlers have been notified up to that point, right on the spot, without waiting for the end of the section."
+
+  - question: "What happens to already-notified handlers when a task fails partway through?"
+    choices:
+      - "They always run automatically regardless of the failure"
+      - "The play stops, and the notified handlers don't run either — unless force_handlers is enabled, no cleanup happens"
+      - "Handler execution is completely unrelated to task failure"
+      - "A failure actually increases how many times handlers run"
+    answerIndex: 1
+    explanation: "A task failure stops the entire play, leaving any previously notified handlers unrun. Enabling force_handlers forces already-notified handlers to run even after a failure."
+
+  - question: "What's the correct caution about using a variable inside a handler name?"
+    choices:
+      - "Variables are never allowed in a handler name at all"
+      - "A handler name gets templated very early, so if the variable's value isn't available at that point, the entire play fails"
+      - "A variable in a handler name is evaluated at the very end of the play, so it's always safe"
+      - "Using a variable in a handler name automatically skips all handlers"
+    answerIndex: 1
+    explanation: "A handler's name gets templated very early in the play, so if a variable used inside that name isn't yet available at that point, the entire play can fail."
