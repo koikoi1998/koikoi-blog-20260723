@@ -267,9 +267,10 @@ AWS学科に続いて、3つ目の「開講済み」学科です。**この学�
 ### 2年生:補足・深掘り編
 
 1. [ansible-pullの仕組みを『上位1%』の視点で理解する](/articles/ansible-pull-guide)
-2. [Ansibleの実行戦略(strategy)とforkの並列度を『上位1%』の視点で理解する](/articles/ansible-execution-strategy-guide)
-3. [Ansibleのignore_errors・any_errors_fatal・failed_whenを『上位1%』の視点で理解する](/articles/ansible-error-handling-strategies-guide)
-4. [Ansible Tower/AWXを『上位1%』の視点で理解する](/articles/ansible-tower-awx-overview-guide)
+2. [Ansibleのハンドラーの実行タイミングを『上位1%』の視点で理解する](/articles/ansible-handlers-flush-guide)
+3. [Ansibleの実行戦略(strategy)とforkの並列度を『上位1%』の視点で理解する](/articles/ansible-execution-strategy-guide)
+4. [Ansibleのignore_errors・any_errors_fatal・failed_whenを『上位1%』の視点で理解する](/articles/ansible-error-handling-strategies-guide)
+5. [Ansible Tower/AWXを『上位1%』の視点で理解する](/articles/ansible-tower-awx-overview-guide)
 
 ### 3年生:実務シナリオ編ハンズオン
 

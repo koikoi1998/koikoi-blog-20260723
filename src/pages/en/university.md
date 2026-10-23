@@ -267,9 +267,10 @@ Following the AWS Department, this is the third department to become "fully open
 ### Sophomore: Supplementary Deep-Dives
 
 1. [Understanding ansible-pull From a Top 1% Perspective](/en/articles/ansible-pull-guide)
-2. [Understanding Ansible's Execution Strategy and Fork Parallelism From a "Top 1%" Perspective](/en/articles/ansible-execution-strategy-guide)
-3. [Understanding Ansible's ignore_errors, any_errors_fatal, and failed_when From a "Top 1%" Perspective](/en/articles/ansible-error-handling-strategies-guide)
-4. [Understanding Ansible Tower/AWX From a "Top 1%" Perspective](/en/articles/ansible-tower-awx-overview-guide)
+2. [Understanding Ansible Handler Timing From a Top 1% Perspective](/en/articles/ansible-handlers-flush-guide)
+3. [Understanding Ansible's Execution Strategy and Fork Parallelism From a "Top 1%" Perspective](/en/articles/ansible-execution-strategy-guide)
+4. [Understanding Ansible's ignore_errors, any_errors_fatal, and failed_when From a "Top 1%" Perspective](/en/articles/ansible-error-handling-strategies-guide)
+5. [Understanding Ansible Tower/AWX From a "Top 1%" Perspective](/en/articles/ansible-tower-awx-overview-guide)
 
 ### Junior: Real-World-Scenario Hands-On
 
