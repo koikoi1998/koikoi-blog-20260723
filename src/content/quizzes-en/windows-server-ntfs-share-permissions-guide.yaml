@@ -1,0 +1,45 @@
+questions:
+  - question: "How is the effective permission determined when accessing a file share over a network?"
+    choices:
+      - "Only NTFS permissions apply, and share permissions are completely ignored"
+      - "Both share permissions and NTFS permissions are checked, and the stricter one is adopted as the effective permission"
+      - "Only share permissions apply, and NTFS permissions are completely ignored"
+      - "The more permissive permission is always automatically adopted"
+    answerIndex: 1
+    explanation: "When accessing over a network, both share permissions and NTFS permissions are checked, and whichever is stricter (more restrictive) is adopted as the effective permission."
+
+  - question: "How are permissions applied when accessing a server directly via local logon?"
+    choices:
+      - "Both share permissions and NTFS permissions are always checked the same way"
+      - "Share permissions don't come into play at all — only NTFS permissions apply"
+      - "NTFS permissions don't come into play at all — only share permissions apply"
+      - "The concept of a permission check doesn't exist for a local logon"
+    answerIndex: 1
+    explanation: "When accessing a server directly via local logon, share permissions don't come into play at all, and NTFS permissions apply as-is."
+
+  - question: "What's the correct principle when a user's own permission differs from a group they belong to, within the same permission system?"
+    choices:
+      - "Only the user's own permission is ever effective"
+      - "Permissions add up, and the more permissive one becomes the effective permission"
+      - "Only the group's permission is ever effective"
+      - "Permissions are always nullified and access is denied"
+    answerIndex: 1
+    explanation: "Within the same permission system, a user's own permission and a group's permission combine additively, with the more permissive one becoming the effective permission."
+
+  - question: "What is the correct priority of an explicit deny?"
+    choices:
+      - "A deny is always nullified if even a single allow exists"
+      - "An explicit deny always takes priority over any allow within the same permission system"
+      - "Deny and allow are always decided randomly, fifty-fifty"
+      - "A deny setting doesn't technically exist in Windows"
+    answerIndex: 1
+    explanation: "An explicit deny always takes priority within the same permission system, no matter how many allows have stacked up."
+
+  - question: "What is correct about NTFS's 'Effective Access' tab?"
+    choices:
+      - "It shows the complete effective permission, including share permissions"
+      - "It shows the effective permission based on NTFS permissions alone, but doesn't factor in share permissions, so it can't fully confirm the effective permission over a network"
+      - "This tab is a feature for changing permissions in real time"
+      - "This tab doesn't exist in Windows Server"
+    answerIndex: 1
+    explanation: "The 'Effective Access' tab shows the effective permission based on NTFS permissions alone; since it doesn't factor in share permissions, fully confirming the effective permission over a network requires separately checking share permissions too."
