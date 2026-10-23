@@ -1,0 +1,45 @@
+questions:
+  - question: "What does TLS session resumption achieve?"
+    choices:
+      - "Completely disabling encrypted communication"
+      - "Reusing previously established session information to skip a heavy full handshake"
+      - "Automatically extending a certificate's validity period"
+      - "Achieving load balancer redundancy itself"
+    answerIndex: 1
+    explanation: "TLS session resumption reuses information from a previously established session (a session ID or session ticket) to skip a heavy full handshake, completing reconnection with a shortened abbreviated handshake."
+
+  - question: "What is a typical reason TLS session resumption fails in a multi-node load balancer setup?"
+    choices:
+      - "Because TLS as a technology doesn't support a multi-node setup at all"
+      - "Because session information isn't shared across nodes by default, so resumption fails when routed to a different node"
+      - "Because a certificate can't be issued in a multi-node setup"
+      - "Because encrypted communication itself is prohibited in a multi-node setup"
+    answerIndex: 1
+    explanation: "In a multi-node load balancer setup, session information established on one node isn't shared with other nodes by default, so resumption fails and a full handshake happens when a client is routed to a different node."
+
+  - question: "What is the correct difference in what needs to be 'shared' between the session ID method and the session ticket method?"
+    choices:
+      - "Neither method has anything that needs to be shared"
+      - "The session ID method needs a shared server-side cache; the ticket method needs a shared encryption/decryption key"
+      - "Only the session ID method can be used in a multi-node setup"
+      - "Only the ticket method can be used in a multi-node setup"
+    answerIndex: 1
+    explanation: "The session ID method requires the server-side cache of session information to be shared across nodes, while the ticket method requires the key used to encrypt and decrypt the ticket to match across every node."
+
+  - question: "How does a session cache filling up typically manifest?"
+    choices:
+      - "An explicit error message always appears"
+      - "No clear error appears — it shows up as a hard-to-spot drop in resumption success rate and a rise in CPU usage"
+      - "The server itself immediately shuts down completely"
+      - "This problem can never technically occur"
+    answerIndex: 1
+    explanation: "When a session cache fills up, old sessions get quietly evicted, resumption's success rate gradually drops, and CPU usage climbs — a hard-to-spot degradation with no explicit error."
+
+  - question: "What is correct about session resumption in TLS 1.3?"
+    choices:
+      - "Only the traditional session ID method is used; the ticket method was removed"
+      - "The traditional session ID method was removed; session resumption now happens only via the ticket method"
+      - "The concept of session resumption doesn't technically exist in TLS 1.3"
+      - "The session ID method and ticket method are always used together simultaneously"
+    answerIndex: 1
+    explanation: "TLS 1.3 removed the traditional session ID method entirely, so session resumption now happens only via the ticket method. Disabling the ticket feature eliminates session resumption altogether."
