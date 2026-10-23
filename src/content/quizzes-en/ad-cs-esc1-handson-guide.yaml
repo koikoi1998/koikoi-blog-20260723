@@ -1,0 +1,45 @@
+questions:
+  - question: "What certificate template setting does the ESC1 attack abuse?"
+    choices:
+      - "The template's name being left at its default value"
+      - "ENROLLEE_SUPPLIES_SUBJECT being enabled, letting the requester freely specify the subject name"
+      - "The certificate's validity period being set to one year"
+      - "The CA being configured as an offline root CA"
+    answerIndex: 1
+    explanation: "ESC1 abuses a misconfiguration where the ENROLLEE_SUPPLIES_SUBJECT flag is enabled, letting the certificate requester themselves freely specify the identity (subject name) written into the certificate."
+
+  - question: "Which of the following is NOT one of the four conditions required for ESC1 to work?"
+    choices:
+      - "ENROLLEE_SUPPLIES_SUBJECT is enabled"
+      - "An Extended Key Usage (EKU) such as client authentication is configured"
+      - "Manager approval is set as mandatory"
+      - "A low-privileged user is granted enrollment rights"
+    answerIndex: 2
+    explanation: "One of ESC1's conditions is that manager approval is NOT required. If approval were mandatory, a low-privileged user couldn't obtain a fraudulent certificate unilaterally."
+
+  - question: "Why does a fraudulent certificate issued via ESC1 remain valid even after the target user's password is reset?"
+    choices:
+      - "Because a certificate is technically completely unrelated to a password, and remains valid unless explicitly revoked"
+      - "Because a password reset automatically extends the certificate's validity period"
+      - "Because certificates are automatically reissued every week"
+      - "This statement itself is false — it's actually invalidated immediately"
+    answerIndex: 0
+    explanation: "A certificate remains valid for continued use even after the target user's password is reset, unless the certificate itself is explicitly revoked (added to the CRL)."
+
+  - question: "What is the correct relationship between the shadow credentials attack and ESC1?"
+    choices:
+      - "They're exactly the same attack, just with different names"
+      - "Both hijack the same PKINIT authentication, but through entirely different paths — writing a key versus fraudulently issuing a certificate"
+      - "ESC1 only works if the shadow credentials attack has been defended against"
+      - "The two attacks technically cancel each other out"
+    answerIndex: 1
+    explanation: "The shadow credentials attack hijacks PKINIT authentication by writing a key into msDS-KeyCredentialLink, while ESC1 hijacks that same PKINIT authentication through a different path — getting the CA to legitimately issue a certificate."
+
+  - question: "What is the correct approach for identifying dangerous certificate templates?"
+    choices:
+      - "Just visually check the template names"
+      - "Use a tool like Certify or Certipy to inventory every template against the four conditions: ENROLLEE_SUPPLIES_SUBJECT, EKU, approval requirement, and enrollment rights"
+      - "Delete every template without checking any of them"
+      - "Never check the certificate issuance history and just restart the CA"
+    answerIndex: 1
+    explanation: "Using a tool like Certify or Certipy to systematically inventory every template against the four conditions — ENROLLEE_SUPPLIES_SUBJECT, EKU, approval requirement, and enrollment rights — is the correct approach for identifying dangerous templates."
